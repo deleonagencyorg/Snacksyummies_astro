@@ -1,4 +1,4 @@
-# Taqueritos Astro
+# Snacksyummies.com Astro
 
 Sitio web multilingüe para Taqueritos, construido con Astro y Tailwind CSS. Incluye sistema de internacionalización, efectos parallax, animaciones, y más.
 
