@@ -1,0 +1,18 @@
+---
+// Este archivo redirige automáticamente a la versión localizada (/es)
+const defaultLocale = 'es';
+
+// Redirigir a la versión localizada
+Astro.redirect(`/${defaultLocale}/`);
+---
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="refresh" content={`0;url=/${defaultLocale}/`} />
+	</head>
+	<body>
+	</body>
+</html>

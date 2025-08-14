@@ -58,11 +58,7 @@ export const GET: APIRoute = async ({ request, url }) => {
           const ipResponse = await fetch('https://api.ipify.org?format=json');
           const ipData = await ipResponse.json();
           clientIp = ipData.ip;
-          console.log('IP real obtenida:', clientIp);
         } catch (error) {
-          console.log('No se pudo obtener IP real, usando IP de prueba Guatemala');
-          // IP de Guatemala para pruebas
-          clientIp = '190.108.82.1';
         }
       } else {
         return new Response(JSON.stringify({ 

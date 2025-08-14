@@ -17,6 +17,7 @@ import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
 import AnimHeart from '../../components/common/AnimHeart/index.astro';
 import ChipsFromBag from '../../components/common/ChipsFromBag/index.astro';
 import InstagramEmbed from '../../components/common/InstagramEmbed/index.astro';
+import Delivery from '../../components/sections/Delivery/index.astro';
 
 // Add styles for active brand logo and floating animation
 const activeLogoStyles = `
@@ -420,45 +421,13 @@ const slides = Array.isArray(commonAssets)
     </div>
   </section>
 
-  <section id="delivery" class="w-full py-12 flex flex-col items-center justify-center relative overflow-hidden" style="background-color: #84B3DA;">
-    <!-- Ondas de sonar -->
-    <div class="sonar-wave sonar-wave-1"></div>
-    <div class="sonar-wave sonar-wave-2"></div>
-    <div class="sonar-wave sonar-wave-3"></div>
-    
-    <div class="container mx-auto px-4 relative z-10">
-      <!-- Icono de geolocalización flotante -->
-      <div class="flex justify-center mb-6">
-        <div class="animate-float-gentle">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-700">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
-          </svg>
-        </div>
-      </div>
+  <!-- Sección de Delivery usando componente atómico -->
+  <Delivery 
+    deliveryTitle={t('home.delivery.delivery_title', { namespace: 'common', locale: currentLang })}
+    deliverySubTitle={t('home.delivery.delivery_sub_title', { namespace: 'common', locale: currentLang })}
+    deliveryApps={deliveryApps}
+  />
 
-      <!-- Título de la sección -->
-      <div class="text-center mb-8">
-        <h2 class="text-white font-sans uppercase font-bold text-xl md:text-4xl mb-2">
-          {t('home.delivery.delivery_title', { namespace: 'common', locale: currentLang })}
-        </h2>
-        <h3 class="text-white font-title uppercase font-bold text-3xl md:text-6xl">
-          {t('home.delivery.delivery_sub_title', { namespace: 'common', locale: currentLang })}
-        </h3>
-      </div>
-
-      <!-- Contenedor para las apps de delivery -->
-      <div id="delivery-app-container" class="flex justify-center items-center">
-        <div id="delivery-loading" class="text-center p-8 max-w-sm animate-pulse">
-          <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
-          <div class="h-4 bg-gray-300 rounded w-3/4 mx-auto mb-2"></div>
-          <div class="h-8 bg-gray-300 rounded w-full"></div>
-        </div>
-        
-        <div id="delivery-content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
-          <!-- Las apps se insertarán aquí dinámicamente -->
-        </div>
-      </div>
-    </div>
 
     <!-- Script para detección de país y mostrar app correspondiente -->
     <script define:vars={{ deliveryApps }}>
@@ -526,7 +495,7 @@ const slides = Array.isArray(commonAssets)
         const loadingElement = document.getElementById('delivery-loading');
         const contentElement = document.getElementById('delivery-content');
         
-        // Verificar que los elementos existen
+        // Verificar que los elementos existan
         if (!loadingElement || !contentElement) {
           console.error('Elementos del DOM no encontrados');
           return;
@@ -730,81 +699,8 @@ const slides = Array.isArray(commonAssets)
     
     </div>
   </section> -->
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const iframe = entry.target.querySelector('iframe');
-              if (iframe) {
-                iframe.src = iframe.dataset.src;
-                iframe.classList.remove('hidden');
-                entry.target.querySelector('.spotify-skeleton').remove();
-                observer.unobserve(entry.target);
-              }
-            }
-          });
-        }, { rootMargin: '200px' });
 
-        document.querySelectorAll('#spotify > div > div').forEach(container => {
-          observer.observe(container);
-        });
-      });
-    </script>
 
-    <style>
-      /* Animación flotante para el icono de geolocalización */
-      @keyframes float-gentle {
-        0%, 100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-8px);
-        }
-      }
-      
-      .animate-float-gentle {
-        animation: float-gentle 3s ease-in-out infinite;
-      }
-      
-      /* Efecto sonar con ondas */
-      .sonar-wave {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 200px;
-        height: 200px;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        animation: sonar-pulse 4s ease-out infinite;
-      }
-      
-      .sonar-wave-1 {
-        animation-delay: 0s;
-      }
-      
-      .sonar-wave-2 {
-        animation-delay: 1.3s;
-      }
-      
-      .sonar-wave-3 {
-        animation-delay: 2.6s;
-      }
-      
-      @keyframes sonar-pulse {
-        0% {
-          transform: translate(-50%, -50%) scale(0.1);
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.5;
-        }
-        100% {
-          transform: translate(-50%, -50%) scale(8);
-          opacity: 0;
-        }
-      }
-    </style>
+
 
   </main>

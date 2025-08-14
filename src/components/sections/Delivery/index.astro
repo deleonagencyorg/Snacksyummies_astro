@@ -1,0 +1,238 @@
+---
+// Delivery Section Component
+// Componente atómico para la sección de delivery con detección de país
+
+export interface Props {
+  deliveryTitle: string;
+  deliverySubTitle: string;
+  deliveryApps: Array<{
+    app_icon: string;
+    app_name: string;
+    app_url: string;
+    country: string;
+  }>;
+}
+
+const { deliveryTitle, deliverySubTitle, deliveryApps } = Astro.props;
+---
+
+<section id="delivery" class="w-full py-12 flex flex-col items-center justify-center relative overflow-hidden" style="background-color: #008ddd;">
+  <!-- Ondas de sonar -->
+  <div class="sonar-wave sonar-wave-1"></div>
+  <div class="sonar-wave sonar-wave-2"></div>
+  <div class="sonar-wave sonar-wave-3"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Icono de geolocalización flotante -->
+    <div class="flex justify-center mb-6">
+      <div class="animate-float-gentle">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-gray-700">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Título de la sección -->
+    <div class="text-center mb-8">
+      <h2 class="text-white font-sans uppercase font-bold text-xl md:text-4xl mb-2">
+        {deliveryTitle}
+      </h2>
+      <h3 class="text-white font-title uppercase font-bold text-3xl md:text-6xl">
+        {deliverySubTitle}
+      </h3>
+    </div>
+
+    <!-- Contenedor para las apps de delivery -->
+    <div id="delivery-app-container" class="flex justify-center items-center">
+      <div id="delivery-loading" class="text-center p-8 max-w-sm animate-pulse">
+        <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
+        <div class="h-4 bg-gray-300 rounded w-3/4 mx-auto mb-2"></div>
+        <div class="h-8 bg-gray-300 rounded w-full"></div>
+        <p class="text-white mt-2">Detectando tu ubicación...</p>
+      </div>
+      
+      <div id="delivery-content" class="hidden">
+        <!-- Las apps se cargarán dinámicamente aquí -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ deliveryApps }}>
+  // Función para mostrar apps de delivery según el país detectado
+  function showDeliveryApps(detectedCountry) {
+    const loadingElement = document.getElementById('delivery-loading');
+    const contentElement = document.getElementById('delivery-content');
+    
+    // Verificar que los elementos existen
+    if (!loadingElement || !contentElement) {
+      console.error('Elementos del DOM no encontrados');
+      return;
+    }
+
+    // Limpiar contenido anterior
+    contentElement.innerHTML = '';
+
+    // Buscar si hay app para el país detectado
+    const userCountryApp = detectedCountry ? 
+      deliveryApps.find(app => app.country.toLowerCase() === detectedCountry.toLowerCase()) : 
+      null;
+
+    let appsToShow = [];
+    let showCountryIndicator = true;
+
+    if (userCountryApp) {
+      // Si hay app para el país del usuario, solo mostrar esa
+      appsToShow = [userCountryApp];
+      showCountryIndicator = false;
+      console.log(`Mostrando solo la app de tu país: ${userCountryApp.app_name} (${detectedCountry})`);
+    } else {
+      // Si no hay app para el país o no se detectó país, mostrar todas
+      appsToShow = deliveryApps;
+      showCountryIndicator = true;
+      console.log(`No hay app específica para ${detectedCountry || 'país no detectado'}, mostrando todas las apps`);
+    }
+
+    // Crear una tarjeta para cada app a mostrar
+    appsToShow.forEach(app => {
+      const appCard = document.createElement('div');
+      appCard.className = `text-center transition-all duration-300 hover:scale-105`;
+      
+      appCard.innerHTML = `
+        <div class="relative">
+          <a href="${app.app_url}" target="_blank" rel="noopener noreferrer" >
+          <img src="${app.app_icon}" alt="Logo de ${app.app_name}" class="w-40 h-40 bg-white mx-auto mb-4 rounded-full object-cover shadow-lg p-4">
+          ${showCountryIndicator ? `<p class="text-sm text-gray-600 mb-4">Disponible en <span class="font-semibold text-secondary">${app.country}</span></p>` : ''}
+          </a>
+         
+        </div>
+      `;
+      
+      contentElement.appendChild(appCard);
+    });
+
+    // Ajustar el grid según la cantidad de apps
+    if (appsToShow.length === 1) {
+      contentElement.className = 'flex justify-center max-w-sm mx-auto';
+    } else {
+      contentElement.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl';
+    }
+
+    // Ocultar loading y mostrar contenido
+    loadingElement.classList.add('hidden');
+    contentElement.classList.remove('hidden');
+    
+    console.log(`Mostrando ${appsToShow.length} app(s) de delivery. País detectado: ${detectedCountry || 'No detectado'}`);
+  }
+
+  // Función para detectar país del usuario
+  async function detectUserCountry() {
+    try {
+      console.log('Iniciando detección de país...');
+      
+      // Intentar usar nuestra API primero
+      const response = await fetch('/api/country');
+      if (response.ok) {
+        const data = await response.json();
+        console.log(`País detectado: ${data.country} ${data.countryCode} (${data.source?.toUpperCase()})`);
+        return data.country;
+      }
+      
+      // Fallback a APIs externas si nuestra API falla
+      console.log('API local falló, intentando con APIs externas...');
+      
+      // Intentar con ipapi.co
+      try {
+        const ipapiResponse = await fetch('https://ipapi.co/json/');
+        if (ipapiResponse.ok) {
+          const ipapiData = await ipapiResponse.json();
+          console.log(`País detectado via ipapi.co: ${ipapiData.country_name} (${ipapiData.country_code})`);
+          return ipapiData.country_name;
+        }
+      } catch (error) {
+        console.log('ipapi.co falló:', error);
+      }
+      
+      // Intentar con api.country.is
+      try {
+        const countryResponse = await fetch('https://api.country.is/');
+        if (countryResponse.ok) {
+          const countryData = await countryResponse.json();
+          console.log(`País detectado via api.country.is: ${countryData.country}`);
+          return countryData.country;
+        }
+      } catch (error) {
+        console.log('api.country.is falló:', error);
+      }
+      
+      console.log('Todas las APIs de detección fallaron');
+      return null;
+      
+    } catch (error) {
+      console.error('Error detectando país:', error);
+      return null;
+    }
+  }
+
+  // Inicializar detección cuando se carga el DOM
+  document.addEventListener('DOMContentLoaded', async () => {
+    console.log('DOM cargado, iniciando detección de país para delivery...');
+    const detectedCountry = await detectUserCountry();
+    showDeliveryApps(detectedCountry);
+  });
+</script>
+
+<style>
+  /* Animación flotante para el icono de geolocalización */
+  @keyframes float-gentle {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  
+  .animate-float-gentle {
+    animation: float-gentle 3s ease-in-out infinite;
+  }
+  
+  /* Efecto sonar con ondas */
+  .sonar-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: sonar-pulse 4s ease-out infinite;
+  }
+  
+  .sonar-wave-1 {
+    animation-delay: 0s;
+  }
+  
+  .sonar-wave-2 {
+    animation-delay: 1.3s;
+  }
+  
+  .sonar-wave-3 {
+    animation-delay: 2.6s;
+  }
+  
+  @keyframes sonar-pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0.1);
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(8);
+      opacity: 0;
+    }
+  }
+</style>
