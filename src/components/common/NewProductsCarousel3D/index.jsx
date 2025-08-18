@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel } from '3d-react-carousal';
+// import { Carousel } from '3d-react-carousal'; // Removed due to React 19 compatibility
 import './styles.css';
 
 /**
@@ -47,13 +47,12 @@ export default function NewProductsCarousel3D({
 
   return (
     <div className="new-products-carousel-3d">
-      <Carousel
-        slides={slides}
-        autoplay={autoplay}
-        interval={interval}
-        arrows={arrows}
-        onSlideChange={handleSlideChange}
-      />
+      {/* 3D Carousel temporarily disabled due to React 19 compatibility */}
+      <div className="fallback-carousel">
+        <div className="products-grid">
+          {slides}
+        </div>
+      </div>
     </div>
   );
 }
