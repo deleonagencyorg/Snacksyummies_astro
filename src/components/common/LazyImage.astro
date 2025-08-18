@@ -184,8 +184,8 @@ if (isWebP) {
   }}
   aria-hidden={decorative ? 'true' : undefined}
   role={decorative ? 'presentation' : undefined}
-  loading={priority ? undefined : "lazy"}
-  decoding="async"
+  loading={priority ? "eager" : "lazy"}
+  decoding={priority ? "sync" : "async"}
   fetchpriority={priority ? "high" : "auto"}
   width={width}
   height={height}

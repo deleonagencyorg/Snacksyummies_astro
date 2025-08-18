@@ -35,6 +35,13 @@ const twitterUrl = socialMedia?.twitter?.url || '';
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href={pageUrl} />
 
+<!-- Performance: Preconnect to critical origins -->
+<link rel="preconnect" href="https://snack.yummiespromociones.com" crossorigin />
+<link rel="dns-prefetch" href="https://snack.yummiespromociones.com" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin />
+
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={pageUrl} />

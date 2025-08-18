@@ -12,4 +12,28 @@ export default defineConfig({
       applyBaseStyles: true,
     }),
   ],
+  build: {
+    // Inline small assets to reduce HTTP requests
+    inlineStylesheets: 'auto',
+    // Split chunks for better caching
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom'],
+          'swiper': ['swiper']
+        }
+      }
+    }
+  },
+  vite: {
+    build: {
+      // Optimize CSS
+      cssCodeSplit: true,
+      // Use esbuild for minification (faster and no extra deps)
+      minify: 'esbuild',
+      target: 'es2020'
+    },
+    // Optimize images
+    assetsInclude: ['**/*.webp', '**/*.avif']
+  }
 });
