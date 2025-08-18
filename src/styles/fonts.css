@@ -6,6 +6,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: 'kern' 1;
 }
 
 @font-face {
@@ -14,6 +15,7 @@
   font-weight: bold;
   font-style: normal;
   font-display: swap;
+  font-feature-settings: 'kern' 1;
 }
 
 
