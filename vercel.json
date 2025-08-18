@@ -50,7 +50,7 @@
     }
   ],
   "functions": {
-    "src/pages/api/**/*.ts": {
+    "api/**/*.ts": {
       "maxDuration": 10
     }
   },
