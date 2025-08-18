@@ -29,14 +29,9 @@ export default defineConfig({
     build: {
       // Optimize CSS
       cssCodeSplit: true,
-      // Reduce bundle size
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true
-        }
-      }
+      // Use esbuild for minification (faster and no extra deps)
+      minify: 'esbuild',
+      target: 'es2020'
     },
     // Optimize images
     assetsInclude: ['**/*.webp', '**/*.avif']
