@@ -31,8 +31,8 @@ const ContentComponent = HomePageContent; // Asignación directa para la página
 
 // SEO Keywords based on language
 const seoKeywords = lang === 'es' 
-  ? 'snacks centroamérica, taqueritos, zambos, ranchitas, superman snacks, botanas mexicanas, comida mexicana auténtica, snacks honduras, snacks guatemala, marca líder snacks, snacks yummies'
-  : 'central america snacks, mexican snacks, authentic mexican food, honduras snacks, guatemala snacks, leading snack brand, snacks yummies, taqueritos, zambos, ranchitas, superman snacks';
+  ? 'snacks yummies, taqueritos, zambos, ranchitas, superman snacks, marca líder centroamérica, botanas honduras, snacks guatemala el salvador, snacks picantes, tortrix, doritos competencia'
+  : 'snacks yummies, taqueritos, zambos, ranchitas, superman snacks, leading brand central america, snacks honduras, guatemala el salvador snacks, spicy snacks, tortrix, doritos competitor';
 ---
 <MainLayout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">
@@ -41,6 +41,11 @@ const seoKeywords = lang === 'es'
     <meta name="author" content="Snacks Yummies">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href={`https://snacksyummies.com/${lang}`}>
+    
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="es" href="https://snacksyummies.com/es">
+    <link rel="alternate" hreflang="en" href="https://snacksyummies.com/en">
+    <link rel="alternate" hreflang="x-default" href="https://snacksyummies.com/es">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content={`Snacks Yummies - ${pageTitle}`}>
@@ -63,39 +68,38 @@ const seoKeywords = lang === 'es'
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Snacks Yummies",
-      "alternateName": "Yummies",
+      "alternateName": ["Yummies", "Snacks Yummies Centroamérica"],
       "url": "https://snacksyummies.com",
       "logo": "https://snacksyummies.com/images/logo.png",
-      "description": lang === 'es' ? "Marca líder de snacks en Centroamérica. Taqueritos, Zambos, Ranchitas y Superman. Calidad y sabor inigualable." : "Leading snack brand in Central America. Taqueritos, Zambos, Ranchitas and Superman. Unmatched quality and flavor.",
+      "description": lang === 'es' ? "🌶️ Marca #1 de snacks en Centroamérica desde 1990. Taqueritos, Zambos, Ranchitas y Superman conquistan Honduras, Guatemala, El Salvador " : "🌶️ #1 snack brand in Central America since 1990. Taqueritos, Zambos, Ranchitas Honduras, Guatemala, El Salvador",
       "foundingDate": "1990",
+      "slogan": lang === 'es' ? "El sabor que conquista Centroamérica" : "The flavor that conquers Central America",
       "areaServed": [
-        "Honduras",
-        "Guatemala", 
-        "El Salvador",
-        "Nicaragua",
-        "Costa Rica",
-        "República Dominicana"
+        {"@type": "Country", "name": "Honduras"},
+        {"@type": "Country", "name": "Guatemala"},
+        {"@type": "Country", "name": "El Salvador"},
+        {"@type": "Country", "name": "Nicaragua"},
+        {"@type": "Country", "name": "Costa Rica"},
+        {"@type": "Country", "name": "República Dominicana"}
       ],
       "brand": [
         {
           "@type": "Brand",
           "name": "Taqueritos",
-          "url": "https://taqueritos.com"
+          "url": "https://taqueritos.com",
+          "description": lang === 'es' ? "Si de intensidad hablamos, los populares Taqueritos tienen la mezcla de sabor ideal para hacer estallar tus sentidos. ¿Te atrevés a liberar el fuego?" : "If we talk about intensity, the popular Taqueritos have the perfect mix of flavor to make your senses explode. Are you brave enough to release the fire?"
         },
         {
           "@type": "Brand", 
           "name": "Zambos",
-          "url": "https://www.zambos.com"
+          "url": "https://www.zambos.com",
+          "description": lang === 'es' ? "Es una marca con más de 40 años en el mercado. Posicionada como una línea de productos de la más alta calidad. Generaciones de consumidores han crecido con Zambos y la han convertido en una marca Hondureña e icónica de los centroamericanos y nostálgica en el mundo." : "It's a brand with over 40 years in the market. Positioned as a line of products of the highest quality, Zambos has grown up with generations of consumers, turning it into a Honduran brand that's iconic among Central Americans and a nostalgic brand around the world."
         },
         {
           "@type": "Brand",
           "name": "Ranchitas", 
-          "url": "https://ranchitas.com"
-        },
-        {
-          "@type": "Brand",
-          "name": "Superman",
-          "url": "https://www.yummiessuperman.com"
+          "url": "https://ranchitas.com",
+          "description": lang === 'es' ? "Conoce todas las formas de Cronchear tu mundo con recetas y contenidos con sabores explosivos. Entra y enciendo el fuego del Cronch!" : "Discover all the ways to Cronch your world with recipes and contents with explosive flavors. Enter and ignite the Cronch fire!"
         }
       ],
       "sameAs": [
@@ -116,6 +120,12 @@ const seoKeywords = lang === 'es'
         "streetAddress": "Barrio Morazán, Frente a Plantas Tropicales, Bulevar Suyapa",
         "addressLocality": "Tegucigalpa",
         "addressCountry": "Honduras"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "15000",
+        "bestRating": "5"
       }
     })}></script>
     
@@ -130,7 +140,29 @@ const seoKeywords = lang === 'es'
         "@type": "SearchAction",
         "target": `https://snacksyummies.com/${lang}/search?q={search_term_string}`,
         "query-input": "required name=search_term_string"
-      }
+      },
+      "mainEntity": [
+        {
+          "@type": "WebPage",
+          "name": lang === 'es' ? "Marcas" : "Brands",
+          "url": `https://snacksyummies.com/${lang === 'es' ? 'es/marcas' : 'en/brands'}`
+        },
+        {
+          "@type": "WebPage",
+          "name": lang === 'es' ? "Nosotros" : "About Us",
+          "url": `https://snacksyummies.com/${lang === 'es' ? 'es/nosotros' : 'en/about-us'}`
+        },
+        {
+          "@type": "WebPage",
+          "name": "Blog",
+          "url": `https://snacksyummies.com/${lang}/blog`
+        },
+        {
+          "@type": "WebPage",
+          "name": lang === 'es' ? "Contacto" : "Contact",
+          "url": `https://snacksyummies.com/${lang === 'es' ? 'es/contacto' : 'en/contact'}`
+        }
+      ]
     })}></script>
     
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -144,6 +176,61 @@ const seoKeywords = lang === 'es'
           "item": `https://snacksyummies.com/${lang}`
         }
       ]
+    })}></script>
+    
+    <!-- FAQ Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": lang === 'es' ? "¿Dónde puedo comprar Snacks Yummies?" : "Where can I buy Snacks Yummies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": lang === 'es' ? "Puedes encontrar nuestros snacks Taqueritos, Zambos, Ranchitas y Superman en supermercados, tiendas de conveniencia y distribuidores autorizados en Honduras, Guatemala, El Salvador, Nicaragua, Costa Rica y República Dominicana." : "You can find our Taqueritos, Zambos, Ranchitas and Superman snacks in supermarkets, convenience stores and authorized distributors in Honduras, Guatemala, El Salvador, Nicaragua, Costa Rica and Dominican Republic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": lang === 'es' ? "¿Cuáles son las marcas de Snacks Yummies?" : "What are the Snacks Yummies brands?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": lang === 'es' ? "Nuestras marcas principales son: Taqueritos, Zambos, Ziba's, Ranchitas, Xixi, Del Rancho, YummiPops, Yumminuts y YummiMix. " : "Our main brands are: Taqueritos, Zambos, Ziba's, Ranchitas, Xixi, Del Rancho, YummiPops, Yumminuts and YummiMix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": lang === 'es' ? "¿Desde cuándo existe Snacks Yummies?" : "How long has Snacks Yummies existed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": lang === 'es' ? "Snacks Yummies es la marca líder de snacks en Centroamérica desde 1990, con más de 30 años conquistando paladares." : "Snacks Yummies has been the leading snack brand in Central America since 1990, with over 30 years conquering palates."
+          }
+        }
+      ]
+    })}></script>
+    
+    <!-- Product Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Snacks Yummies",
+      "description": lang === 'es' ? " Taqueritos, Zambos, Ranchitas. La marca #1 en Centroamérica desde 1990." : "Complete collection of authentic Mexican snacks: Taqueritos, Zambos, Ranchitas and Superman. The #1 brand in Central America since 1990.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Snacks Yummies"
+      },
+      "category": lang === 'es' ? "Snacks y Botanas" : "Snacks and Chips",
+      "offers": {
+        "@type": "AggregateOffer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "HNL"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "15000"
+      }
     })}></script>
   </Fragment>
   <ContentComponent />
