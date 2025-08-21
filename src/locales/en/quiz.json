@@ -1,6 +1,49 @@
 {
   "title": "Yummies Quiz",
   "subtitle": "Discover your Yummies personality",
+  "personalities": [
+    {
+      "id": "snackero",
+      "title": "The Good Vibes Snacker",
+      "emoji": "👑",
+      "description": "Always ready for good company, laughter, and real flavor. You're authentic and uncomplicated, just like your Ziba's chips.",
+      "image": "/images/products/zibas-clasicas.png"
+    },
+    {
+      "id": "aventurero",
+      "title": "The Crunchy Adventurer",
+      "emoji": "🏄",
+      "description": "You seek thrills and intense flavors. You fear nothing and are always ready for the next challenge, like our Takis Fuego.",
+      "image": "/images/products/takis-fuego.png"
+    },
+    {
+      "id": "gamer",
+      "title": "The Gamer Snacker",
+      "emoji": "🎮",
+      "description": "Your perfect combo is a good game and your Doritos. Strategic, competitive, and always energized for one more round.",
+      "image": "/images/products/doritos-nacho.png"
+    },
+    {
+      "id": "creativo",
+      "title": "The Tasty Creative",
+      "emoji": "✨",
+      "description": "Full of fresh and original ideas like our Cheetos. Your imagination has no limits and you always find ways to surprise.",
+      "image": "/images/products/cheetos-torciditos.png"
+    },
+    {
+      "id": "fiestero",
+      "title": "The Life of the Party",
+      "emoji": "🎵",
+      "description": "Wherever there's music and good vibes, that's where you are with your Ruffles. Sociable, fun, and always ready to share unforgettable moments.",
+      "image": "/images/products/ruffles-queso.png"
+    }
+  ],
+  "results": {
+    "title": "Your result:",
+    "share": "Share on social media",
+    "restart": "Restart Quiz",
+    "home": "Home page"
+  },
   "questions": [
     {
       "id": 1,
