@@ -42,7 +42,8 @@
     "title": "Your result:",
     "share": "Share on social media",
     "restart": "Restart Quiz",
-    "home": "Home page"
+    "home": "Home page",
+    "shareMessage": "I discovered my personality in the Yummies Quiz!"
   },
   "questions": [
     {

@@ -42,7 +42,8 @@
     "title": "Tu resultado:",
     "share": "Comparte en redes",
     "restart": "Repetir Quiz",
-    "home": "Home page"
+    "home": "Home page",
+    "shareMessage": "¡Descubrí mi personalidad en el Quiz de Yummies!"
   },
   "questions": [
     {
