@@ -6,11 +6,13 @@ import esNews from '../locales/es/news.json';
 import esProducts from '../locales/es/products.json';
 import esBrands from '../locales/es/brands.json';
 import esNewProducts from '../locales/es/newproducts.json';
+import esQuiz from '../locales/es/quiz.json';
 import enRecipes from '../locales/en/recipes.json';
 import enNews from '../locales/en/news.json';
 import enProducts from '../locales/en/products.json';
 import enBrands from '../locales/en/brands.json';
 import enNewProducts from '../locales/en/newproducts.json';
+import enQuiz from '../locales/en/quiz.json';
 
 // Tipos para las traducciones
 export type Locale = 'es' | 'en';
@@ -24,7 +26,8 @@ const translations = {
     news: esNews,
     products: esProducts,
     brands: esBrands,
-    newproducts: esNewProducts
+    newproducts: esNewProducts,
+    quiz: esQuiz
   },
   en: {
     common: enCommon,
@@ -32,7 +35,8 @@ const translations = {
     news: enNews,
     products: enProducts,
     brands: enBrands,
-    newproducts: enNewProducts
+    newproducts: enNewProducts,
+    quiz: enQuiz
   }
 };
 

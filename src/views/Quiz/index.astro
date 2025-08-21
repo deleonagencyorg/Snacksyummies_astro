@@ -1,0 +1,453 @@
+---
+// src/views/Quiz/index.astro
+import { t } from '../../i18n/i18n';
+import type { Locale } from '../../i18n/i18n';
+import { getLocale } from '../../i18n/i18n';
+import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
+import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
+import { fade } from 'astro:transitions';
+
+const currentLang = getLocale();
+
+// Cargar datos del quiz desde el archivo JSON correspondiente
+let quizData: any = {};
+let questions: any[] = [];
+let navigation: any = {};
+let progress: any = {};
+
+try {
+  quizData = {
+    title: t('title', { namespace: 'quiz', locale: currentLang }),
+    subtitle: t('subtitle', { namespace: 'quiz', locale: currentLang }),
+    questions: t('questions', { namespace: 'quiz', locale: currentLang }) || [],
+    navigation: t('navigation', { namespace: 'quiz', locale: currentLang }) || {},
+    progress: t('progress', { namespace: 'quiz', locale: currentLang }) || {}
+  };
+  
+  questions = quizData.questions;
+  navigation = quizData.navigation;
+  progress = quizData.progress;
+  
+  console.log('Quiz loaded successfully:', {
+    questionsCount: questions.length,
+    hasNavigation: !!navigation,
+    hasProgress: !!progress
+  });
+} catch (error) {
+  console.error('Error loading quiz data:', error);
+  questions = [];
+  navigation = { previous: 'Anterior', next: 'Siguiente', result: 'Resultado' };
+  progress = { of: 'de' };
+}
+
+// Breadcrumb data
+const breadcrumbItems = [
+  { label: t('nav.home'), href: `/${currentLang}` },
+  { label: quizData.title || 'Quiz', href: `/${currentLang}/quiz` }
+];
+---
+
+<section class="min-h-screen bg-primary py-16 px-4" transition:animate={fade({ duration: '0.3s' })}>
+  <div class="container mx-auto max-w-4xl">
+    <!-- Breadcrumb -->
+    <div class="mb-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <CrownTitle 
+        title={quizData.title || 'Quiz Yummies'} 
+        subtitle={quizData.subtitle || 'Descubre tu personalidad'}
+        titleColor="text-white"
+        subtitleColor="text-white/80"
+      />
+    </div>
+
+    <!-- Quiz Container -->
+    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <!-- Progress Bar -->
+      <div class="bg-gray-100 p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <span class="text-lg font-semibold text-gray-700" id="progress-text">1 {progress.of || 'de'} {questions.length}</span>
+          </div>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-red h-3 rounded-full transition-all duration-500 ease-out" 
+               style="width: 20%" id="progress-bar"></div>
+        </div>
+      </div>
+
+      <!-- Quiz Content -->
+      <div class="p-8">
+        <!-- Question Container -->
+        <div id="quiz-container">
+          {questions.length > 0 ? (
+            questions.map((question: any, index: number) => (
+              <div class={`question-slide ${index === 0 ? 'active' : 'hidden'}`} data-question={index + 1}>
+                <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+                  {question.question}
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  {question.options.map((option: any) => (
+                    <label class="option-card cursor-pointer group">
+                      <input 
+                        type="checkbox" 
+                        name={`question-${question.id}`}
+                        value={option.id}
+                        class="hidden option-input"
+                      />
+                      <div class="p-4 border-2 border-gray-200 rounded-xl transition-all duration-300 hover:border-primary hover:bg-primary/5 group-hover:shadow-md">
+                        <div class="flex items-center space-x-3">
+                          <div class="w-6 h-6 border-2 border-gray-300 rounded-md flex items-center justify-center transition-all duration-300 checkbox-indicator">
+                            <svg class="w-4 h-4 text-white hidden checkmark" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                          </div>
+                          <span class="text-gray-700 font-medium flex-1">{option.text}</span>
+                        </div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div class="text-center py-12">
+              <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-600 mb-2">No hay preguntas disponibles</h3>
+              <p class="text-gray-500">Por favor, intenta recargar la página.</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Navigation Buttons - Centered below questions -->
+        <div class="flex justify-center items-center pt-8 mt-4 border-t border-gray-200 gap-6">
+          <!-- Previous Button -->
+          <button 
+            id="prev-btn"
+            class="flex items-center justify-center w-14 h-14 bg-primary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-300"
+            disabled
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+
+          <!-- Navigation Text (hidden on mobile) -->
+          <div class="hidden md:flex items-center justify-center space-x-6">
+            <span class="text-gray-500 font-medium text-lg">{navigation.previous || 'Anterior'}</span>
+            <span class="text-primary font-bold text-lg" id="next-text">{navigation.next || 'Siguiente'}</span>
+          </div>
+
+          <!-- Next Button -->
+          <button 
+            id="next-btn"
+            class="flex items-center justify-center w-14 h-14 bg-primary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section (Hidden initially) -->
+    <div id="results-section" class="hidden bg-white rounded-3xl shadow-2xl overflow-hidden mt-8">
+      <div class="p-8 text-center">
+        <div class="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Quiz Completado!</h2>
+        <p class="text-gray-600 mb-6">Gracias por participar en nuestro quiz de personalidad Yummies.</p>
+        <div id="quiz-results" class="bg-gray-50 rounded-xl p-6 mb-6">
+          <!-- Results will be populated by JavaScript -->
+        </div>
+        <button 
+          id="restart-btn"
+          class="px-8 py-3 bg-primary text-white rounded-xl font-semibold transition-all duration-300 hover:bg-primary/90"
+        >
+          Reiniciar Quiz
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ questions, navigation, progress }}>
+  class QuizManager {
+    constructor() {
+      this.currentQuestion = 0;
+      this.totalQuestions = questions.length;
+      this.answers = {};
+      this.navigation = navigation;
+      this.progress = progress;
+      this.init();
+    }
+
+    init() {
+      // Ensure we have valid data before initializing
+      if (this.totalQuestions === 0) {
+        console.warn('No questions available for quiz');
+        return;
+      }
+      this.bindEvents();
+      this.updateUI();
+    }
+
+    bindEvents() {
+      // Navigation buttons
+      document.getElementById('prev-btn').addEventListener('click', () => this.previousQuestion());
+      document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
+      document.getElementById('restart-btn').addEventListener('click', () => this.restartQuiz());
+
+      // Option selection
+      document.querySelectorAll('.option-input').forEach(input => {
+        input.addEventListener('change', (e) => this.handleOptionChange(e));
+      });
+    }
+
+    handleOptionChange(e) {
+      const questionId = e.target.name;
+      const optionId = e.target.value;
+      const isChecked = e.target.checked;
+
+      // Initialize answers array for this question if it doesn't exist
+      if (!this.answers[questionId]) {
+        this.answers[questionId] = [];
+      }
+
+      if (isChecked) {
+        // Add option to answers
+        if (!this.answers[questionId].includes(optionId)) {
+          this.answers[questionId].push(optionId);
+        }
+      } else {
+        // Remove option from answers
+        this.answers[questionId] = this.answers[questionId].filter(id => id !== optionId);
+      }
+
+      // Update checkbox visual state
+      this.updateCheckboxes();
+      this.updateNavigationState();
+    }
+
+    updateCheckboxes() {
+      document.querySelectorAll('.option-card').forEach(card => {
+        const input = card.querySelector('.option-input');
+        const indicator = card.querySelector('.checkbox-indicator');
+        const checkmark = card.querySelector('.checkmark');
+        const cardDiv = card.querySelector('div');
+
+        if (input.checked) {
+          indicator.classList.add('bg-primary', 'border-primary');
+          indicator.classList.remove('border-gray-300');
+          checkmark.classList.remove('hidden');
+          cardDiv.classList.add('border-primary', 'bg-primary/10');
+          cardDiv.classList.remove('border-gray-200');
+        } else {
+          indicator.classList.remove('bg-primary', 'border-primary');
+          indicator.classList.add('border-gray-300');
+          checkmark.classList.add('hidden');
+          cardDiv.classList.remove('border-primary', 'bg-primary/10');
+          cardDiv.classList.add('border-gray-200');
+        }
+      });
+    }
+
+    previousQuestion() {
+      if (this.currentQuestion > 0) {
+        this.currentQuestion--;
+        this.showQuestion(this.currentQuestion);
+        this.updateUI();
+      }
+    }
+
+    nextQuestion() {
+      if (this.currentQuestion < this.totalQuestions - 1) {
+        this.currentQuestion++;
+        this.showQuestion(this.currentQuestion);
+        this.updateUI();
+      } else {
+        this.showResults();
+      }
+    }
+
+    showQuestion(index) {
+      document.querySelectorAll('.question-slide').forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove('hidden');
+          slide.classList.add('active');
+        } else {
+          slide.classList.add('hidden');
+          slide.classList.remove('active');
+        }
+      });
+
+      // Restore checkbox states for current question
+      setTimeout(() => {
+        this.updateCheckboxes();
+      }, 100);
+    }
+
+    updateUI() {
+      // Update progress
+      const progressPercent = ((this.currentQuestion + 1) / this.totalQuestions) * 100;
+      const progressBar = document.getElementById('progress-bar');
+      const progressText = document.getElementById('progress-text');
+      
+      if (progressBar) progressBar.style.width = `${progressPercent}%`;
+      if (progressText) {
+        progressText.textContent = `${this.currentQuestion + 1} ${this.progress.of || 'de'} ${this.totalQuestions}`;
+      }
+
+      // Update navigation buttons
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const nextText = document.getElementById('next-text');
+
+      const isPrevDisabled = this.currentQuestion === 0;
+      if (prevBtn) prevBtn.disabled = isPrevDisabled;
+
+      const nextButtonText = this.currentQuestion === this.totalQuestions - 1 
+        ? this.navigation.result || 'Resultado' 
+        : this.navigation.next || 'Siguiente';
+
+      // Update text if element exists (might be hidden on mobile)
+      if (nextText) nextText.textContent = nextButtonText;
+      
+      // Add aria-label to buttons for accessibility
+      if (prevBtn) prevBtn.setAttribute('aria-label', navigation.previous || 'Anterior');
+      if (nextBtn) nextBtn.setAttribute('aria-label', nextButtonText);
+
+      this.updateNavigationState();
+    }
+
+    updateNavigationState() {
+      // Check if current question has any answers
+      const currentQuestionName = `question-${questions[this.currentQuestion].id}`;
+      const hasAnswers = this.answers[currentQuestionName] && this.answers[currentQuestionName].length > 0;
+      
+      // Get the next button if not already available from updateUI
+      const nextBtn = document.getElementById('next-btn');
+
+      if (nextBtn) nextBtn.disabled = !hasAnswers;
+    }
+
+    showResults() {
+      document.getElementById('quiz-container').parentElement.parentElement.classList.add('hidden');
+      document.getElementById('results-section').classList.remove('hidden');
+
+      // Calculate and display results
+      const resultsDiv = document.getElementById('quiz-results');
+      const totalAnswers = Object.values(this.answers).flat().length;
+      
+      resultsDiv.innerHTML = `
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Tus Respuestas:</h3>
+        <div class="text-left space-y-2">
+          <p class="text-gray-600">Total de respuestas seleccionadas: <span class="font-semibold">${totalAnswers}</span></p>
+          <p class="text-gray-600">Preguntas completadas: <span class="font-semibold">${this.totalQuestions}</span></p>
+        </div>
+        <div class="mt-4 p-4 bg-primary/10 rounded-lg">
+          <p class="text-primary font-semibold">¡Gracias por completar el quiz!</p>
+          <p class="text-gray-600 text-sm mt-1">Tus respuestas han sido registradas.</p>
+        </div>
+      `;
+    }
+
+    restartQuiz() {
+      this.currentQuestion = 0;
+      this.answers = {};
+      
+      // Reset all checkboxes
+      document.querySelectorAll('.option-input').forEach(input => {
+        input.checked = false;
+      });
+
+      // Show quiz container and hide results
+      document.getElementById('quiz-container').parentElement.parentElement.classList.remove('hidden');
+      document.getElementById('results-section').classList.add('hidden');
+
+      // Show first question
+      this.showQuestion(0);
+      this.updateUI();
+      this.updateCheckboxes();
+    }
+  }
+
+  // Initialize quiz when DOM is loaded
+  function initializeQuiz() {
+    // Clean up any existing quiz manager
+    if (window.quizManager) {
+      window.quizManager = null;
+    }
+    
+    // Only initialize if we have questions
+    if (questions && questions.length > 0) {
+      window.quizManager = new QuizManager();
+    } else {
+      console.warn('Quiz initialization failed: No questions available');
+    }
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeQuiz);
+  } else {
+    initializeQuiz();
+  }
+
+  // Reinitialize on page navigation (for language switching)
+  document.addEventListener('astro:page-load', initializeQuiz);
+</script>
+
+<style>
+  .question-slide {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .question-slide.active {
+    opacity: 1;
+  }
+
+  .question-slide.hidden {
+    opacity: 0;
+  }
+
+  .option-card:hover .checkbox-indicator {
+    transform: scale(1.05);
+  }
+
+  .checkbox-indicator {
+    transition: all 0.3s ease;
+  }
+
+  #progress-bar {
+    transition: width 0.5s ease-out;
+  }
+
+  .container {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

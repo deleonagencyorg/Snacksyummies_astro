@@ -5,11 +5,18 @@ import LazyImage from '../LazyImage.astro';
 import './styles.css';
 
 interface Props {
-  text: string;
-  className?: string;
+  title: string;
+  subtitle: string;
+  titleColor?: string;
+  subtitleColor?: string;
 }
 
-const { text, className = '' } = Astro.props;
+const { 
+  title, 
+  subtitle, 
+  titleColor = 'text-primary', 
+  subtitleColor = 'text-gray-600' 
+} = Astro.props;
 ---
 
 <div class="crown-title-container">
@@ -20,9 +27,10 @@ const { text, className = '' } = Astro.props;
     width="34"
     height="34"
   />
-  <h1 class={`text-6xl md:text-8xl font-bold mb-4 font-title text-primary ${className}`}>
-    {text}
+  <h1 class={`text-6xl md:text-8xl font-bold mb-2 font-title ${titleColor}`}>
+    {title}
   </h1>
+  <p class={`text-lg md:text-xl font-medium ${subtitleColor}`}>{subtitle}</p>
 </div>
 
 <script src="./script.js"></script>

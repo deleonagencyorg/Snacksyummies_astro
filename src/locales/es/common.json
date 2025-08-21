@@ -31,6 +31,10 @@
     "yummiesone": {
       "title": "Yummies One",
       "description": "Descubre Yummies One, nuestra nueva plataforma exclusiva para los verdaderos amantes de los snacks."
+    },
+    "quiz": {
+      "title": "Quiz Yummies - Descubre tu Personalidad",
+      "description": "Descubre qué tipo de personalidad Yummies eres con nuestro divertido quiz interactivo. ¡Responde las preguntas y conoce tu perfil!"
     }
   },
   "social_media": {
