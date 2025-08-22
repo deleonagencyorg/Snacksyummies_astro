@@ -31,6 +31,10 @@
     "yummiesone": {
       "title": "Yummies One",
       "description": "Descubre Yummies One, nuestra nueva plataforma exclusiva para los verdaderos amantes de los snacks."
+    },
+    "quiz": {
+      "title": "Quiz Yummies - Descubre tu Personalidad",
+      "description": "Descubre qué tipo de personalidad Yummies eres con nuestro divertido quiz interactivo. ¡Responde las preguntas y conoce tu perfil!"
     }
   },
   "social_media": {
@@ -129,6 +133,9 @@
     "open_main_menu": "Abrir menú principal",
     "explore": "Explorar"
   },
+  "nav": {
+    "home": "Inicio"
+  },
   "menu_items": [
     {
       "text": "Superman",
@@ -208,7 +215,7 @@
       "title":"https://snack.yummiespromociones.com/snacksyummies/titlequiz.webp",
       "description":"Descubre cómo hacer tus días más Yummies",
       "button":"Hacer Quiz",
-      "urlButton":"/es/marcas"
+      "urlButton":"/es/quiz"
     },
     "spotify":{
      "listen_in_spotify":"https://snack.yummiespromociones.com/taqueritos/Listen-Lockup-Spanish-Horizontal-White-768x116.webp",

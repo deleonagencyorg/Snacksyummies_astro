@@ -1,0 +1,740 @@
+---
+// src/views/Quiz/index.astro
+import { t } from '../../i18n/i18n';
+import type { Locale } from '../../i18n/i18n';
+import { getLocale } from '../../i18n/i18n';
+import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
+import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
+import SocialShare from '../../components/common/SocialShare.astro';
+import { fade } from 'astro:transitions';
+import LazyImage from '../../components/common/LazyImage.astro';
+
+const currentLang = getLocale();
+
+// Cargar datos del quiz desde el archivo JSON correspondiente
+let quizData: any = {};
+let questions: any[] = [];
+let navigation: any = {};
+let progress: any = {};
+let personalities: any[] = [];
+let resultsText: any = {};
+
+try {
+  quizData = {
+    title: t('title', { namespace: 'quiz', locale: currentLang }),
+    subtitle: t('subtitle', { namespace: 'quiz', locale: currentLang }),
+    questions: t('questions', { namespace: 'quiz', locale: currentLang }) || [],
+    navigation: t('navigation', { namespace: 'quiz', locale: currentLang }) || {},
+    progress: t('progress', { namespace: 'quiz', locale: currentLang }) || {},
+    personalities: t('personalities', { namespace: 'quiz', locale: currentLang }) || [],
+    results: t('results', { namespace: 'quiz', locale: currentLang }) || {}
+  };
+  
+  questions = quizData.questions;
+  navigation = quizData.navigation;
+  progress = quizData.progress;
+  personalities = quizData.personalities;
+  resultsText = quizData.results;
+  
+  console.log('Quiz loaded successfully:', {
+    questionsCount: questions.length,
+    hasNavigation: !!navigation,
+    hasProgress: !!progress,
+    personalities: personalities,
+    resultsText: resultsText
+  });
+} catch (error) {
+  console.error('Error loading quiz data:', error);
+  questions = [];
+  navigation = { previous: 'Anterior', next: 'Siguiente', result: 'Resultado' };
+  progress = { of: 'de' };
+}
+
+// Breadcrumb data
+const breadcrumbItems = [
+  { label: t('nav.home'), href: `/${currentLang}` },
+  { label: quizData.title || 'Quiz', href: `/${currentLang}/quiz` }
+];
+---
+
+<section id="quiz-section" class="min-h-screen py-16 px-4 bg-cover bg-center bg-no-repeat" 
+  style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgquiz2.webp')" 
+  transition:animate={fade({ duration: '0.3s' })}>
+  <div class="container mx-auto max-w-4xl">
+    <!-- Breadcrumb -->
+    <div class="mb-8">
+      <Breadcrumb items={breadcrumbItems} />
+    </div>
+
+    <!-- Header -->
+  
+
+    <!-- Quiz Container -->
+    <div class="text-white">
+      <!-- Progress Bar -->
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-3">
+         
+            
+          </div>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-3">
+          <div class="bg-red h-3 rounded-full transition-all duration-500 ease-out" 
+               style="width: 20%" id="progress-bar"></div>
+               <div class="w-full flex justify-center pt-4"> <span class="text-lg font-semibold text-white" id="progress-text">1 { '/'} {questions.length}</span></div>
+        </div>
+      </div>
+
+      <!-- Quiz Content -->
+      <div class="p-8">
+        <!-- Question Container -->
+        <div id="quiz-container">
+          {questions.length > 0 ? (
+            questions.map((question: any, index: number) => (
+              <div class={`question-slide ${index === 0 ? 'active' : 'hidden'}`} data-question={index + 1}>
+                <h2 class="text-2xl text-2xl text-white font-sans mb-8 text-center mt-8">
+                  {question.question}
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  {question.options.map((option: any) => (
+                    <label class="option-card cursor-pointer group">
+                      <input 
+                        type="checkbox" 
+                        name={`question-${question.id}`}
+                        value={option.id}
+                        class="hidden option-input"
+                      />
+                      <div class="p-4 bg-white border-4 border-gray-200 rounded-xl transition-all duration-300 hover:border-quinary hover:bg-gray-200 group-hover:shadow-md">
+                        <div class="flex items-center space-x-3">
+                          <div class="w-6 h-6 border-2 border-gray-300 rounded-md flex items-center justify-center transition-all duration-300 checkbox-indicator">
+                            <svg class="w-4 h-4 text-white hidden checkmark" fill="currentColor" viewBox="0 0 20 20">
+                              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                          </div>
+                          <span class="text-gray-700 font-medium flex-1">{option.text}</span>
+                        </div>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div class="text-center py-12">
+              <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-white mb-2">No hay preguntas disponibles</h3>
+              <p class="text-white">Por favor, intenta recargar la página.</p>
+            </div>
+          )}
+        </div>
+
+        <!-- Navigation Buttons - Centered below questions -->
+        <div class="flex justify-center items-center pt-8 mt-4  gap-6">
+          <!-- Previous Button -->
+          <button 
+            id="prev-btn"
+            class="flex items-center justify-center w-14 h-14 border-2 border-white bg-quinary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-300"
+            disabled
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+
+          <!-- Navigation Text (hidden on mobile) -->
+          <div class="hidden md:flex items-center justify-center space-x-6">
+            <span class="text-white font-medium text-lg">{navigation.previous || 'Anterior'}</span>
+            <span class="text-white font-bold text-lg" id="next-text">{navigation.next || 'Siguiente'}</span>
+          </div>
+
+          <!-- Next Button -->
+          <button 
+            id="next-btn"
+            class="flex items-center justify-center w-14 h-14 border-2 border-white bg-quinary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section (Hidden initially) -->
+    <div id="results-section" class="hidden mt-8">
+      <div class="">
+        <div class="p-8 text-center">
+          <!-- <h2 class="text-4xl font-bold text-white mb-6" id="results-title"></h2> -->
+
+          <div class="flex flex-col md:flex-row items-center justify-center gap-8 mt-8">
+            <div class="w-full md:w-1/2 text-left text-white">
+              <div class="flex items-center gap-3 mb-4">
+                <h3 class="text-3xl font-sans font-bold" id="personality-title"></h3>
+                <span class="text-3xl" id="personality-emoji"></span>
+              </div>
+              <p class="text-xl mb-6" id="personality-description"></p>
+
+              
+              <div class="mt-6">
+                <p class="text-white/80 mb-3" id="share-text"></p>
+                <div id="social-share-container">
+                  <SocialShare 
+                    title="" 
+                    description="" 
+                    className="text-white" 
+                    buttonClassName="mr-2" 
+                    iconSize={36} 
+                    round={true} 
+                    showLabels={false} 
+                  />
+                </div>
+              </div>
+              
+              <div class="flex space-x-4 mt-8">
+                <button 
+                  id="restart-btn"
+                  class="px-6 py-3 bg-primary text-white rounded-full font-semibold transition-all duration-300 hover:bg-primary"
+                ></button>
+                <a 
+                  id="home-btn"
+                  href="/"
+                  class="px-6 py-3 bg-white text-primary rounded-full font-semibold transition-all duration-300 hover:bg-gray-100"
+                ></a>
+              </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 flex justify-center items-center">
+              <div class="relative flex justify-center items-center w-96 h-96">
+                <!-- Background image with rotation and zoom -->
+                <LazyImage 
+                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/bgresult.webp" 
+                  alt="Background decoration" 
+                  class="absolute rounded-full animate-bg-spin-zoom" 
+                  style="width: 450px; height: 450px; z-index: 1; object-fit: cover;"
+                />
+                <!-- Product image -->
+                <LazyImage id="personality-image" src="{personality.image}" alt="{personality.brand}" class="relative z-10 max-w-xs animate-zoom-float">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ questions, navigation, progress, personalities, resultsText }}>
+  class QuizManager {
+    constructor() {
+      this.currentQuestion = 0;
+      this.totalQuestions = questions.length;
+      this.answers = {};
+      this.navigation = navigation;
+      this.progress = progress;
+      this.init();
+    }
+
+    init() {
+      // Ensure we have valid data before initializing
+      if (this.totalQuestions === 0) {
+        console.warn('No questions available for quiz');
+        return;
+      }
+      
+      // Clear all checkboxes and reset state
+      this.clearAllCheckboxes();
+      this.bindEvents();
+      this.showQuestion(0);
+      this.updateUI();
+    }
+
+    clearAllCheckboxes() {
+      // Reset all checkbox states
+      document.querySelectorAll('.option-input').forEach(input => {
+        input.checked = false;
+      });
+      
+      // Reset all visual states
+      document.querySelectorAll('.option-card').forEach(card => {
+        const indicator = card.querySelector('.checkbox-indicator');
+        const checkmark = card.querySelector('.checkmark');
+        const cardDiv = card.querySelector('div');
+
+        if (indicator) {
+          indicator.classList.remove('bg-primary', 'border-primary');
+          indicator.classList.add('border-gray-300');
+        }
+        if (checkmark) {
+          checkmark.classList.add('hidden');
+        }
+        if (cardDiv) {
+          cardDiv.classList.remove('border-primary', 'bg-primary/10');
+          cardDiv.classList.add('border-gray-200');
+        }
+      });
+    }
+
+    bindEvents() {
+      // Navigation buttons
+      document.getElementById('prev-btn').addEventListener('click', () => this.previousQuestion());
+      document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
+      document.getElementById('restart-btn').addEventListener('click', () => this.restartQuiz());
+
+      // Option selection
+      document.querySelectorAll('.option-input').forEach(input => {
+        input.addEventListener('change', (e) => this.handleOptionChange(e));
+      });
+    }
+
+    handleOptionChange(e) {
+      const questionId = e.target.name;
+      const optionId = e.target.value;
+      const isChecked = e.target.checked;
+
+      // Initialize answers array for this question if it doesn't exist
+      if (!this.answers[questionId]) {
+        this.answers[questionId] = [];
+      }
+
+      if (isChecked) {
+        // Add option to answers
+        if (!this.answers[questionId].includes(optionId)) {
+          this.answers[questionId].push(optionId);
+        }
+      } else {
+        // Remove option from answers
+        this.answers[questionId] = this.answers[questionId].filter(id => id !== optionId);
+      }
+
+      // Update checkbox visual state
+      this.updateCheckboxes();
+      this.updateNavigationState();
+    }
+
+    updateCheckboxes() {
+      // Only update checkboxes for the current question to avoid conflicts
+      const currentSlide = document.querySelectorAll('.question-slide')[this.currentQuestion];
+      if (!currentSlide) return;
+      
+      const currentCards = currentSlide.querySelectorAll('.option-card');
+      currentCards.forEach(card => {
+        const input = card.querySelector('.option-input');
+        const indicator = card.querySelector('.checkbox-indicator');
+        const checkmark = card.querySelector('.checkmark');
+        const cardDiv = card.querySelector('div');
+
+        if (input && input.checked) {
+          if (indicator) {
+            indicator.classList.add('bg-primary', 'border-primary');
+            indicator.classList.remove('border-gray-300');
+          }
+          if (checkmark) {
+            checkmark.classList.remove('hidden');
+          }
+          if (cardDiv) {
+            cardDiv.classList.add('border-primary', 'bg-primary/10');
+            cardDiv.classList.remove('border-gray-200');
+          }
+        } else {
+          if (indicator) {
+            indicator.classList.remove('bg-primary', 'border-primary');
+            indicator.classList.add('border-gray-300');
+          }
+          if (checkmark) {
+            checkmark.classList.add('hidden');
+          }
+          if (cardDiv) {
+            cardDiv.classList.remove('border-primary', 'bg-primary/10');
+            cardDiv.classList.add('border-gray-200');
+          }
+        }
+      });
+    }
+
+    previousQuestion() {
+      if (this.currentQuestion > 0) {
+        this.currentQuestion--;
+        this.showQuestion(this.currentQuestion);
+        this.updateUI();
+      }
+    }
+
+    nextQuestion() {
+      if (this.currentQuestion < this.totalQuestions - 1) {
+        this.currentQuestion++;
+        this.showQuestion(this.currentQuestion);
+        this.updateUI();
+      } else {
+        this.showResults();
+      }
+    }
+
+    showQuestion(index) {
+      document.querySelectorAll('.question-slide').forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.remove('hidden');
+          slide.classList.add('active');
+        } else {
+          slide.classList.add('hidden');
+          slide.classList.remove('active');
+        }
+      });
+
+      // Restore checkbox states for current question
+      this.restoreQuestionState(index);
+    }
+
+    restoreQuestionState(questionIndex) {
+      const currentQuestionName = `question-${questions[questionIndex].id}`;
+      const savedAnswers = this.answers[currentQuestionName] || [];
+      
+      // Reset all checkboxes for current question first
+      const currentSlide = document.querySelectorAll('.question-slide')[questionIndex];
+      if (currentSlide) {
+        const checkboxes = currentSlide.querySelectorAll('.option-input');
+        checkboxes.forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        
+        // Then restore saved answers
+        savedAnswers.forEach(optionId => {
+          const checkbox = currentSlide.querySelector(`input[value="${optionId}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+          }
+        });
+        
+        // Update visual states
+        this.updateCheckboxes();
+      }
+    }
+
+    updateUI() {
+      // Update progress
+      const progressPercent = ((this.currentQuestion + 1) / this.totalQuestions) * 100;
+      const progressBar = document.getElementById('progress-bar');
+      const progressText = document.getElementById('progress-text');
+      
+      if (progressBar) progressBar.style.width = `${progressPercent}%`;
+      if (progressText) {
+        progressText.textContent = `${this.currentQuestion + 1} ${this.progress.of || 'de'} ${this.totalQuestions}`;
+      }
+
+      // Update navigation buttons
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const nextText = document.getElementById('next-text');
+
+      const isPrevDisabled = this.currentQuestion === 0;
+      if (prevBtn) prevBtn.disabled = isPrevDisabled;
+
+      const nextButtonText = this.currentQuestion === this.totalQuestions - 1 
+        ? this.navigation.result || 'Resultado' 
+        : this.navigation.next || 'Siguiente';
+
+      // Update text if element exists (might be hidden on mobile)
+      if (nextText) nextText.textContent = nextButtonText;
+      
+      // Add aria-label to buttons for accessibility
+      if (prevBtn) prevBtn.setAttribute('aria-label', navigation.previous || 'Anterior');
+      if (nextBtn) nextBtn.setAttribute('aria-label', nextButtonText);
+
+      this.updateNavigationState();
+    }
+
+    updateNavigationState() {
+      // Check if current question has any answers
+      const currentQuestionName = `question-${questions[this.currentQuestion].id}`;
+      const hasAnswers = this.answers[currentQuestionName] && this.answers[currentQuestionName].length > 0;
+      
+      // Get the next button if not already available from updateUI
+      const nextBtn = document.getElementById('next-btn');
+
+      if (nextBtn) nextBtn.disabled = !hasAnswers;
+    }
+
+    showResults() {
+      document.getElementById('quiz-container').parentElement.parentElement.classList.add('hidden');
+      document.getElementById('results-section').classList.remove('hidden');
+      
+      // Cambiar el fondo del section principal a bg-quinary cuando se muestran los resultados
+      const quizSection = document.getElementById('quiz-section');
+      if (quizSection) {
+        quizSection.style.backgroundImage = 'none';
+        quizSection.classList.remove('bg-cover', 'bg-center', 'bg-no-repeat');
+        quizSection.classList.add('bg-quinary');
+      }
+
+      console.log('Mostrando resultados:', { personalities, resultsText });
+      
+      // Verificar que tenemos personalidades disponibles
+      if (!personalities || personalities.length === 0) {
+        console.error('No hay personalidades disponibles');
+        return;
+      }
+      
+      // Seleccionar una personalidad aleatoria
+      const randomIndex = Math.floor(Math.random() * personalities.length);
+      const personality = personalities[randomIndex];
+      
+      console.log('Personalidad seleccionada:', personality);
+      
+      // Actualizar elementos de la UI con la personalidad seleccionada
+      const resultsTitle = document.getElementById('results-title');
+      if (resultsTitle) resultsTitle.textContent = resultsText?.title || 'Tu resultado:';
+      
+      const personalityTitle = document.getElementById('personality-title');
+      if (personalityTitle) personalityTitle.textContent = personality?.title || 'Personalidad';
+      
+      const personalityDescription = document.getElementById('personality-description');
+      if (personalityDescription) personalityDescription.textContent = personality?.description || 'Descripción no disponible';
+      
+      const personalityEmoji = document.getElementById('personality-emoji');
+      if (personalityEmoji) personalityEmoji.textContent = personality?.emoji || '🎮';
+      
+      const shareText = document.getElementById('share-text');
+      if (shareText) shareText.textContent = resultsText?.share || 'Comparte en redes';
+      
+      const restartBtn = document.getElementById('restart-btn');
+      if (restartBtn) restartBtn.textContent = resultsText?.restart || 'Repetir Quiz';
+      
+      const homeBtn = document.getElementById('home-btn');
+      if (homeBtn) homeBtn.textContent = resultsText?.home || 'Home page';
+      
+      // Actualizar imagen
+      const imgElement = document.getElementById('personality-image');
+      if (imgElement) {
+        imgElement.src = personality?.image || '';
+        imgElement.alt = personality?.title || '';
+      }
+      
+      // Actualizar enlace del botón home
+      const currentLang = window.location.pathname.split('/')[1] || 'es';
+      if (homeBtn) homeBtn.href = `/${currentLang}`;
+      
+      // Configurar el componente SocialShare
+      const socialShareContainer = document.getElementById('social-share-container');
+      if (socialShareContainer) {
+        // Crear un nuevo elemento div para el componente SocialShare
+        const socialShareDiv = document.createElement('div');
+        socialShareDiv.id = 'social-share-component';
+        socialShareContainer.innerHTML = ''; // Limpiar el contenedor
+        socialShareContainer.appendChild(socialShareDiv);
+        
+        // Crear el componente SocialShare usando la API de Astro
+        const shareUrl = window.location.href;
+        const shareTitle = `${resultsText.shareMessage || '¡Descubrí mi personalidad en el Quiz de Yummies!'} ${personality.title}`;
+        const shareDescription = personality.description;
+        const shareHashtags = ['Yummies', 'QuizYummies', personality.title.replace(/\s+/g, '')]; 
+        
+        // Usar la API de Astro para renderizar el componente
+        // Nota: Como no podemos usar directamente la API de Astro en JavaScript cliente,
+        // vamos a crear los botones de compartir manualmente
+        
+        // Facebook
+        const fbBtn = document.createElement('a');
+        fbBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareTitle)}`;
+        fbBtn.target = '_blank';
+        fbBtn.rel = 'noopener noreferrer';
+        fbBtn.className = 'text-white hover:text-white/80 mr-3';
+        fbBtn.innerHTML = `<svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>`;
+        
+        // Twitter/X
+        const twBtn = document.createElement('a');
+        twBtn.href = `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}&hashtags=${shareHashtags.join(',')}`;
+        twBtn.target = '_blank';
+        twBtn.rel = 'noopener noreferrer';
+        twBtn.className = 'text-white hover:text-white/80 mr-3';
+        twBtn.innerHTML = `<svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>`;
+        
+        // WhatsApp
+        const waBtn = document.createElement('a');
+        waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${shareTitle}\n\n${shareDescription}\n\n${shareUrl}`)}`;
+        waBtn.target = '_blank';
+        waBtn.rel = 'noopener noreferrer';
+        waBtn.className = 'text-white hover:text-white/80 mr-3';
+        waBtn.innerHTML = `<svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.415 14.382c-.298-.149-1.759-.867-2.031-.967-.272-.099-.47-.148-.669.15-.198.296-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.241-.579-.486-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.57-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0011.992 0C5.438 0 .102 5.335.1 11.892c-.001 2.096.546 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.892-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>`;
+        
+        // Telegram
+        const tgBtn = document.createElement('a');
+        tgBtn.href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(`${shareTitle}\n\n${shareDescription}`)}`;
+        tgBtn.target = '_blank';
+        tgBtn.rel = 'noopener noreferrer';
+        tgBtn.className = 'text-white hover:text-white/80';
+        tgBtn.innerHTML = `<svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>`;
+        
+        // Agregar los botones al contenedor
+        socialShareDiv.appendChild(fbBtn);
+        socialShareDiv.appendChild(twBtn);
+        socialShareDiv.appendChild(waBtn);
+        socialShareDiv.appendChild(tgBtn);
+        
+        // Aplicar estilos al contenedor
+        socialShareDiv.className = 'flex items-center';
+      }
+      
+    }
+
+    restartQuiz() {
+      this.currentQuestion = 0;
+      this.answers = {};
+      
+      // Clear all checkboxes and visual states
+      this.clearAllCheckboxes();
+
+      // Show quiz container and hide results
+      document.getElementById('quiz-container').parentElement.parentElement.classList.remove('hidden');
+      document.getElementById('results-section').classList.add('hidden');
+      
+      // Restaurar el fondo de imagen para las preguntas
+      const quizSection = document.getElementById('quiz-section');
+      if (quizSection) {
+        quizSection.style.backgroundImage = "url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgquiz2.webp')";
+        quizSection.classList.add('bg-cover', 'bg-center', 'bg-no-repeat');
+        quizSection.classList.remove('bg-quinary');
+      }
+
+      // Show first question
+      this.showQuestion(0);
+      this.updateUI();
+    }
+  }
+
+  // Initialize quiz when DOM is loaded
+  function initializeQuiz() {
+    // Clean up any existing quiz manager
+    if (window.quizManager) {
+      window.quizManager = null;
+    }
+    
+    // Only initialize if we have questions
+    if (questions && questions.length > 0) {
+      window.quizManager = new QuizManager();
+    } else {
+      console.warn('Quiz initialization failed: No questions available');
+    }
+  }
+
+  // Initialize on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeQuiz);
+  } else {
+    initializeQuiz();
+  }
+
+  // Reinitialize on page navigation (for language switching)
+  document.addEventListener('astro:page-load', initializeQuiz);
+</script>
+
+<style>
+  .question-slide {
+    display: none;
+  }
+  
+  .question-slide.active {
+    display: block;
+  }
+
+  .option-card {
+    transition: all 0.3s ease;
+  }
+
+  .option-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .checkbox-indicator {
+    transition: all 0.3s ease;
+  }
+
+  .checkmark {
+    transition: opacity 0.3s ease;
+  }
+
+  @keyframes zoomOnly {
+    0% { 
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-zoom-only {
+    animation: zoomOnly 1.5s ease-out forwards;
+  }
+
+  @keyframes zoomFloat {
+    0% { 
+      transform: scale(0.8) translateY(0px);
+      opacity: 0;
+    }
+    20% {
+      transform: scale(1) translateY(0px);
+      opacity: 1;
+    }
+    50% { 
+      transform: scale(1) translateY(-10px);
+    }
+    100% { 
+      transform: scale(1) translateY(0px);
+    }
+  }
+
+  .animate-zoom-float {
+    animation: zoomFloat 2s ease-out forwards, gentleFloat 3s ease-in-out 2s infinite;
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-gentle-float {
+    animation: gentleFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes bgSpinZoom {
+    0% { 
+      transform: scale(0.8) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      transform: scale(1) rotate(72deg);
+      opacity: 1;
+    }
+    100% { 
+      transform: scale(1) rotate(360deg);
+      opacity: 1;
+    }
+  }
+
+  .animate-bg-spin-zoom {
+    animation: bgSpinZoom 3s ease-out forwards, continuousRotate 20s linear 3s infinite;
+  }
+
+  @keyframes continuousRotate {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+  }
+
+  .container {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
