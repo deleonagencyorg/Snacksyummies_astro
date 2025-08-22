@@ -16,7 +16,7 @@ interface Props {
   textColor?: string;
 }
 
-const { items, bgColor, textColor = 'text-white' } = Astro.props;
+const { items = [], bgColor, textColor = 'text-white' } = Astro.props;
 
 // Convert Tailwind classes to actual colors for inline styles
 let backgroundColor = 'transparent';
@@ -36,7 +36,7 @@ else if (textColor === 'text-gray-500') textColorValue = '#6b7280';
 <nav class="breadcrumb-container pt-8 mt-[2rem]" style={`background-color: ${backgroundColor};`} aria-label="Breadcrumb">
   <div class="breadcrumb-wrapper">
     <ol class="breadcrumb-list">
-      {items.map((item, index) => (
+      {Array.isArray(items) && items.map((item, index) => (
         <li class="breadcrumb-item" style={`color: ${textColorValue};`}>
           {index > 0 && <span class="breadcrumb-separator" aria-hidden="true">/</span>}
           <a 

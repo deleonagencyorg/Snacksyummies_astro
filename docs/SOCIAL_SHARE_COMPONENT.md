@@ -19,8 +19,8 @@ import SocialShare from '../components/common/SocialShare.astro';
 <SocialShare 
   url="https://yummies.com/es/producto/doritos"
   title="¡Mira este producto increíble!"
-  description="Los mejores Doritos para tus fiestas"
-  hashtags={["Yummies", "Doritos", "Snacks"]}
+  description="Los mejores Taqueritos para tus fiestas"
+  hashtags={["Yummies", "Taqueritos", "Snacks"]}
   iconSize={32}
   round={true}
   className="my-4"
@@ -56,8 +56,8 @@ function MyComponent() {
     <SocialShare 
       url="https://yummies.com/es/producto/doritos"
       title="¡Mira este producto increíble!"
-      description="Los mejores Doritos para tus fiestas"
-      hashtags={["Yummies", "Doritos", "Snacks"]}
+      description="Los mejores Taqueritos para tus fiestas"
+      hashtags={["Yummies", "Taqueritos", "Snacks"]}
       iconSize={32}
       round={true}
       className="my-4"

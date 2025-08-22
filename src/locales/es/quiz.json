@@ -7,36 +7,29 @@
       "title": "El Buena Vibra Snackero",
       "emoji": "👑",
       "description": "Siempre listo para la buena compañía, las risas y el sabor real. Eres auténtico y sin complicaciones, como tus chips Ziba's.",
-      "image": "/images/products/zibas-clasicas.png"
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp",
+      "brand": "Ziba's",
+      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-logo-3.webp"
     },
     {
       "id": "aventurero",
       "title": "El Aventurero Crujiente",
       "emoji": "🏄",
-      "description": "Buscas emociones fuertes y sabores intensos. No le temes a nada y siempre estás listo para el próximo reto, como nuestras Takis Fuego.",
-      "image": "/images/products/takis-fuego.png"
+      "description": "Buscas emociones fuertes y sabores intensos. No le temes a nada y siempre estás listo para el próximo reto, como nuestras Taqueritos Fuego.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp",
+      "brand": "Taqueritos",
+      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-logo.webp"
     },
     {
       "id": "gamer",
       "title": "El Gamer Snacker",
       "emoji": "🎮",
-      "description": "Tu combo perfecto es una buena partida y tus Doritos. Estratégico, competitivo y siempre con energía para una partida más.",
-      "image": "/images/products/doritos-nacho.png"
-    },
-    {
-      "id": "creativo",
-      "title": "El Creativo Sabroso",
-      "emoji": "✨",
-      "description": "Lleno de ideas frescas y originales como nuestros Cheetos. Tu imaginación no tiene límites y siempre encuentras formas de sorprender.",
-      "image": "/images/products/cheetos-torciditos.png"
-    },
-    {
-      "id": "fiestero",
-      "title": "El Alma de la Fiesta",
-      "emoji": "🎵",
-      "description": "Donde hay música y buena onda, ahí estás tú con tus Ruffles. Sociable, divertido y siempre listo para compartir momentos inolvidables.",
-      "image": "/images/products/ruffles-queso.png"
+      "description": "Tu combo perfecto es una buena partida y tus Taqueritos. Estratégico, competitivo y siempre con energía para una partida más.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp",
+      "brand": "Taqueritos",
+      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-logo.webp"
     }
+
   ],
   "results": {
     "title": "Tu resultado:",

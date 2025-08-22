@@ -133,6 +133,9 @@
     "open_main_menu": "Abrir menú principal",
     "explore": "Explorar"
   },
+  "nav": {
+    "home": "Inicio"
+  },
   "menu_items": [
     {
       "text": "Superman",
@@ -212,7 +215,7 @@
       "title":"https://snack.yummiespromociones.com/snacksyummies/titlequiz.webp",
       "description":"Descubre cómo hacer tus días más Yummies",
       "button":"Hacer Quiz",
-      "urlButton":"/es/marcas"
+      "urlButton":"/es/quiz"
     },
     "spotify":{
      "listen_in_spotify":"https://snack.yummiespromociones.com/taqueritos/Listen-Lockup-Spanish-Horizontal-White-768x116.webp",

@@ -151,6 +151,9 @@
     "open_main_menu": "Open main menu",
     "explore": "Explore"
   },
+  "nav": {
+    "home": "Home"
+  },
   "menu_items": [
     {
       "id": "brands",
@@ -225,7 +228,7 @@
       "title":"https://snack.yummiespromociones.com/snacksyummies/titlequiz.webp",
       "description":"Discover how to make your days more Yummies",
       "button":"Make Quiz",
-        "urlButton":"/es/marcas"
+        "urlButton":"/es/quiz"
       
     },
     "spotify":{

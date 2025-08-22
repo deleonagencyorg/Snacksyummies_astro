@@ -7,6 +7,7 @@ import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
 import SocialShare from '../../components/common/SocialShare.astro';
 import { fade } from 'astro:transitions';
+import LazyImage from '../../components/common/LazyImage.astro';
 
 const currentLang = getLocale();
 
@@ -38,7 +39,9 @@ try {
   console.log('Quiz loaded successfully:', {
     questionsCount: questions.length,
     hasNavigation: !!navigation,
-    hasProgress: !!progress
+    hasProgress: !!progress,
+    personalities: personalities,
+    resultsText: resultsText
   });
 } catch (error) {
   console.error('Error loading quiz data:', error);
@@ -54,7 +57,9 @@ const breadcrumbItems = [
 ];
 ---
 
-<section class="min-h-screen bg-primary py-16 px-4" transition:animate={fade({ duration: '0.3s' })}>
+<section id="quiz-section" class="min-h-screen py-16 px-4 bg-cover bg-center bg-no-repeat" 
+  style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgquiz2.webp')" 
+  transition:animate={fade({ duration: '0.3s' })}>
   <div class="container mx-auto max-w-4xl">
     <!-- Breadcrumb -->
     <div class="mb-8">
@@ -62,32 +67,22 @@ const breadcrumbItems = [
     </div>
 
     <!-- Header -->
-    <div class="text-center mb-12">
-      <CrownTitle 
-        title={quizData.title || 'Quiz Yummies'} 
-        subtitle={quizData.subtitle || 'Descubre tu personalidad'}
-        titleColor="text-white"
-        subtitleColor="text-white/80"
-      />
-    </div>
+  
 
     <!-- Quiz Container -->
-    <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+    <div class="text-white">
       <!-- Progress Bar -->
-      <div class="bg-gray-100 p-6">
+      <div class="p-6">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-            </div>
-            <span class="text-lg font-semibold text-gray-700" id="progress-text">1 {progress.of || 'de'} {questions.length}</span>
+         
+            
           </div>
         </div>
         <div class="w-full bg-gray-200 rounded-full h-3">
           <div class="bg-red h-3 rounded-full transition-all duration-500 ease-out" 
                style="width: 20%" id="progress-bar"></div>
+               <div class="w-full flex justify-center pt-4"> <span class="text-lg font-semibold text-white" id="progress-text">1 { '/'} {questions.length}</span></div>
         </div>
       </div>
 
@@ -98,7 +93,7 @@ const breadcrumbItems = [
           {questions.length > 0 ? (
             questions.map((question: any, index: number) => (
               <div class={`question-slide ${index === 0 ? 'active' : 'hidden'}`} data-question={index + 1}>
-                <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+                <h2 class="text-2xl text-2xl text-white font-sans mb-8 text-center mt-8">
                   {question.question}
                 </h2>
                 
@@ -111,7 +106,7 @@ const breadcrumbItems = [
                         value={option.id}
                         class="hidden option-input"
                       />
-                      <div class="p-4 border-2 border-gray-200 rounded-xl transition-all duration-300 hover:border-primary hover:bg-primary/5 group-hover:shadow-md">
+                      <div class="p-4 bg-white border-4 border-gray-200 rounded-xl transition-all duration-300 hover:border-quinary hover:bg-gray-200 group-hover:shadow-md">
                         <div class="flex items-center space-x-3">
                           <div class="w-6 h-6 border-2 border-gray-300 rounded-md flex items-center justify-center transition-all duration-300 checkbox-indicator">
                             <svg class="w-4 h-4 text-white hidden checkmark" fill="currentColor" viewBox="0 0 20 20">
@@ -128,23 +123,23 @@ const breadcrumbItems = [
             ))
           ) : (
             <div class="text-center py-12">
-              <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                 </svg>
               </div>
-              <h3 class="text-xl font-semibold text-gray-600 mb-2">No hay preguntas disponibles</h3>
-              <p class="text-gray-500">Por favor, intenta recargar la página.</p>
+              <h3 class="text-xl font-semibold text-white mb-2">No hay preguntas disponibles</h3>
+              <p class="text-white">Por favor, intenta recargar la página.</p>
             </div>
           )}
         </div>
 
         <!-- Navigation Buttons - Centered below questions -->
-        <div class="flex justify-center items-center pt-8 mt-4 border-t border-gray-200 gap-6">
+        <div class="flex justify-center items-center pt-8 mt-4  gap-6">
           <!-- Previous Button -->
           <button 
             id="prev-btn"
-            class="flex items-center justify-center w-14 h-14 bg-primary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-300"
+            class="flex items-center justify-center w-14 h-14 border-2 border-white bg-quinary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-300"
             disabled
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -152,14 +147,14 @@ const breadcrumbItems = [
 
           <!-- Navigation Text (hidden on mobile) -->
           <div class="hidden md:flex items-center justify-center space-x-6">
-            <span class="text-gray-500 font-medium text-lg">{navigation.previous || 'Anterior'}</span>
-            <span class="text-primary font-bold text-lg" id="next-text">{navigation.next || 'Siguiente'}</span>
+            <span class="text-white font-medium text-lg">{navigation.previous || 'Anterior'}</span>
+            <span class="text-white font-bold text-lg" id="next-text">{navigation.next || 'Siguiente'}</span>
           </div>
 
           <!-- Next Button -->
           <button 
             id="next-btn"
-            class="flex items-center justify-center w-14 h-14 bg-primary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+            class="flex items-center justify-center w-14 h-14 border-2 border-white bg-quinary text-white rounded-full transition-all duration-300 hover:bg-primary/90 shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </button>
@@ -169,14 +164,18 @@ const breadcrumbItems = [
 
     <!-- Results Section (Hidden initially) -->
     <div id="results-section" class="hidden mt-8">
-      <div class="bg-primary rounded-3xl shadow-2xl overflow-hidden">
+      <div class="">
         <div class="p-8 text-center">
-          <h2 class="text-2xl font-bold text-white mb-2" id="results-title"></h2>
+          <!-- <h2 class="text-4xl font-bold text-white mb-6" id="results-title"></h2> -->
+
           <div class="flex flex-col md:flex-row items-center justify-center gap-8 mt-8">
             <div class="w-full md:w-1/2 text-left text-white">
-              <h3 class="text-3xl font-bold mb-4" id="personality-title"></h3>
+              <div class="flex items-center gap-3 mb-4">
+                <h3 class="text-3xl font-sans font-bold" id="personality-title"></h3>
+                <span class="text-3xl" id="personality-emoji"></span>
+              </div>
               <p class="text-xl mb-6" id="personality-description"></p>
-              <p class="text-lg mb-8" id="personality-emoji"></p>
+
               
               <div class="mt-6">
                 <p class="text-white/80 mb-3" id="share-text"></p>
@@ -196,22 +195,27 @@ const breadcrumbItems = [
               <div class="flex space-x-4 mt-8">
                 <button 
                   id="restart-btn"
-                  class="px-6 py-3 bg-blue-800 text-white rounded-xl font-semibold transition-all duration-300 hover:bg-blue-700"
+                  class="px-6 py-3 bg-primary text-white rounded-full font-semibold transition-all duration-300 hover:bg-primary"
                 ></button>
                 <a 
                   id="home-btn"
                   href="/"
-                  class="px-6 py-3 bg-white text-primary rounded-xl font-semibold transition-all duration-300 hover:bg-gray-100"
+                  class="px-6 py-3 bg-white text-primary rounded-full font-semibold transition-all duration-300 hover:bg-gray-100"
                 ></a>
               </div>
             </div>
             
-            <div class="w-full md:w-1/2 flex justify-center">
-              <div class="relative">
-                <!-- Radial background effect -->
-                <div class="absolute inset-0 bg-blue-900 rounded-full scale-150 z-0" style="background: radial-gradient(circle, #00337C 0%, #00337C 50%, transparent 100%);"></div>
+            <div class="w-full md:w-1/2 flex justify-center items-center">
+              <div class="relative flex justify-center items-center w-96 h-96">
+                <!-- Background image with rotation and zoom -->
+                <LazyImage 
+                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/bgresult.webp" 
+                  alt="Background decoration" 
+                  class="absolute rounded-full animate-bg-spin-zoom" 
+                  style="width: 450px; height: 450px; z-index: 1; object-fit: cover;"
+                />
                 <!-- Product image -->
-                <img id="personality-image" src="" alt="" class="relative z-10 max-w-xs transform rotate-2 animate-float">
+                <LazyImage id="personality-image" src="{personality.image}" alt="{personality.brand}" class="relative z-10 max-w-xs animate-zoom-float">
               </div>
             </div>
           </div>
@@ -238,8 +242,38 @@ const breadcrumbItems = [
         console.warn('No questions available for quiz');
         return;
       }
+      
+      // Clear all checkboxes and reset state
+      this.clearAllCheckboxes();
       this.bindEvents();
+      this.showQuestion(0);
       this.updateUI();
+    }
+
+    clearAllCheckboxes() {
+      // Reset all checkbox states
+      document.querySelectorAll('.option-input').forEach(input => {
+        input.checked = false;
+      });
+      
+      // Reset all visual states
+      document.querySelectorAll('.option-card').forEach(card => {
+        const indicator = card.querySelector('.checkbox-indicator');
+        const checkmark = card.querySelector('.checkmark');
+        const cardDiv = card.querySelector('div');
+
+        if (indicator) {
+          indicator.classList.remove('bg-primary', 'border-primary');
+          indicator.classList.add('border-gray-300');
+        }
+        if (checkmark) {
+          checkmark.classList.add('hidden');
+        }
+        if (cardDiv) {
+          cardDiv.classList.remove('border-primary', 'bg-primary/10');
+          cardDiv.classList.add('border-gray-200');
+        }
+      });
     }
 
     bindEvents() {
@@ -280,24 +314,41 @@ const breadcrumbItems = [
     }
 
     updateCheckboxes() {
-      document.querySelectorAll('.option-card').forEach(card => {
+      // Only update checkboxes for the current question to avoid conflicts
+      const currentSlide = document.querySelectorAll('.question-slide')[this.currentQuestion];
+      if (!currentSlide) return;
+      
+      const currentCards = currentSlide.querySelectorAll('.option-card');
+      currentCards.forEach(card => {
         const input = card.querySelector('.option-input');
         const indicator = card.querySelector('.checkbox-indicator');
         const checkmark = card.querySelector('.checkmark');
         const cardDiv = card.querySelector('div');
 
-        if (input.checked) {
-          indicator.classList.add('bg-primary', 'border-primary');
-          indicator.classList.remove('border-gray-300');
-          checkmark.classList.remove('hidden');
-          cardDiv.classList.add('border-primary', 'bg-primary/10');
-          cardDiv.classList.remove('border-gray-200');
+        if (input && input.checked) {
+          if (indicator) {
+            indicator.classList.add('bg-primary', 'border-primary');
+            indicator.classList.remove('border-gray-300');
+          }
+          if (checkmark) {
+            checkmark.classList.remove('hidden');
+          }
+          if (cardDiv) {
+            cardDiv.classList.add('border-primary', 'bg-primary/10');
+            cardDiv.classList.remove('border-gray-200');
+          }
         } else {
-          indicator.classList.remove('bg-primary', 'border-primary');
-          indicator.classList.add('border-gray-300');
-          checkmark.classList.add('hidden');
-          cardDiv.classList.remove('border-primary', 'bg-primary/10');
-          cardDiv.classList.add('border-gray-200');
+          if (indicator) {
+            indicator.classList.remove('bg-primary', 'border-primary');
+            indicator.classList.add('border-gray-300');
+          }
+          if (checkmark) {
+            checkmark.classList.add('hidden');
+          }
+          if (cardDiv) {
+            cardDiv.classList.remove('border-primary', 'bg-primary/10');
+            cardDiv.classList.add('border-gray-200');
+          }
         }
       });
     }
@@ -332,9 +383,32 @@ const breadcrumbItems = [
       });
 
       // Restore checkbox states for current question
-      setTimeout(() => {
+      this.restoreQuestionState(index);
+    }
+
+    restoreQuestionState(questionIndex) {
+      const currentQuestionName = `question-${questions[questionIndex].id}`;
+      const savedAnswers = this.answers[currentQuestionName] || [];
+      
+      // Reset all checkboxes for current question first
+      const currentSlide = document.querySelectorAll('.question-slide')[questionIndex];
+      if (currentSlide) {
+        const checkboxes = currentSlide.querySelectorAll('.option-input');
+        checkboxes.forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        
+        // Then restore saved answers
+        savedAnswers.forEach(optionId => {
+          const checkbox = currentSlide.querySelector(`input[value="${optionId}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+          }
+        });
+        
+        // Update visual states
         this.updateCheckboxes();
-      }, 100);
+      }
     }
 
     updateUI() {
@@ -384,29 +458,61 @@ const breadcrumbItems = [
     showResults() {
       document.getElementById('quiz-container').parentElement.parentElement.classList.add('hidden');
       document.getElementById('results-section').classList.remove('hidden');
+      
+      // Cambiar el fondo del section principal a bg-quinary cuando se muestran los resultados
+      const quizSection = document.getElementById('quiz-section');
+      if (quizSection) {
+        quizSection.style.backgroundImage = 'none';
+        quizSection.classList.remove('bg-cover', 'bg-center', 'bg-no-repeat');
+        quizSection.classList.add('bg-quinary');
+      }
 
+      console.log('Mostrando resultados:', { personalities, resultsText });
+      
+      // Verificar que tenemos personalidades disponibles
+      if (!personalities || personalities.length === 0) {
+        console.error('No hay personalidades disponibles');
+        return;
+      }
+      
       // Seleccionar una personalidad aleatoria
       const randomIndex = Math.floor(Math.random() * personalities.length);
       const personality = personalities[randomIndex];
       
+      console.log('Personalidad seleccionada:', personality);
+      
       // Actualizar elementos de la UI con la personalidad seleccionada
-      document.getElementById('results-title').textContent = resultsText.title || 'Tu resultado:';
-      document.getElementById('personality-title').textContent = personality.title;
-      document.getElementById('personality-description').textContent = personality.description;
-      document.getElementById('personality-emoji').textContent = personality.emoji;
-      document.getElementById('share-text').textContent = resultsText.share || 'Comparte en redes';
-      document.getElementById('restart-btn').textContent = resultsText.restart || 'Repetir Quiz';
-      document.getElementById('home-btn').textContent = resultsText.home || 'Home page';
+      const resultsTitle = document.getElementById('results-title');
+      if (resultsTitle) resultsTitle.textContent = resultsText?.title || 'Tu resultado:';
+      
+      const personalityTitle = document.getElementById('personality-title');
+      if (personalityTitle) personalityTitle.textContent = personality?.title || 'Personalidad';
+      
+      const personalityDescription = document.getElementById('personality-description');
+      if (personalityDescription) personalityDescription.textContent = personality?.description || 'Descripción no disponible';
+      
+      const personalityEmoji = document.getElementById('personality-emoji');
+      if (personalityEmoji) personalityEmoji.textContent = personality?.emoji || '🎮';
+      
+      const shareText = document.getElementById('share-text');
+      if (shareText) shareText.textContent = resultsText?.share || 'Comparte en redes';
+      
+      const restartBtn = document.getElementById('restart-btn');
+      if (restartBtn) restartBtn.textContent = resultsText?.restart || 'Repetir Quiz';
+      
+      const homeBtn = document.getElementById('home-btn');
+      if (homeBtn) homeBtn.textContent = resultsText?.home || 'Home page';
       
       // Actualizar imagen
       const imgElement = document.getElementById('personality-image');
-      imgElement.src = personality.image;
-      imgElement.alt = personality.title;
+      if (imgElement) {
+        imgElement.src = personality?.image || '';
+        imgElement.alt = personality?.title || '';
+      }
       
       // Actualizar enlace del botón home
-      const homeBtn = document.getElementById('home-btn');
       const currentLang = window.location.pathname.split('/')[1] || 'es';
-      homeBtn.href = `/${currentLang}`;
+      if (homeBtn) homeBtn.href = `/${currentLang}`;
       
       // Configurar el componente SocialShare
       const socialShareContainer = document.getElementById('social-share-container');
@@ -475,19 +581,24 @@ const breadcrumbItems = [
       this.currentQuestion = 0;
       this.answers = {};
       
-      // Reset all checkboxes
-      document.querySelectorAll('.option-input').forEach(input => {
-        input.checked = false;
-      });
+      // Clear all checkboxes and visual states
+      this.clearAllCheckboxes();
 
       // Show quiz container and hide results
       document.getElementById('quiz-container').parentElement.parentElement.classList.remove('hidden');
       document.getElementById('results-section').classList.add('hidden');
+      
+      // Restaurar el fondo de imagen para las preguntas
+      const quizSection = document.getElementById('quiz-section');
+      if (quizSection) {
+        quizSection.style.backgroundImage = "url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgquiz2.webp')";
+        quizSection.classList.add('bg-cover', 'bg-center', 'bg-no-repeat');
+        quizSection.classList.remove('bg-quinary');
+      }
 
       // Show first question
       this.showQuestion(0);
       this.updateUI();
-      this.updateCheckboxes();
     }
   }
 
@@ -519,27 +630,97 @@ const breadcrumbItems = [
 
 <style>
   .question-slide {
-    transition: opacity 0.3s ease-in-out;
+    display: none;
   }
-
+  
   .question-slide.active {
-    opacity: 1;
+    display: block;
   }
 
-  .question-slide.hidden {
-    opacity: 0;
+  .option-card {
+    transition: all 0.3s ease;
   }
 
-  .option-card:hover .checkbox-indicator {
-    transform: scale(1.05);
+  .option-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
   .checkbox-indicator {
     transition: all 0.3s ease;
   }
 
-  #progress-bar {
-    transition: width 0.5s ease-out;
+  .checkmark {
+    transition: opacity 0.3s ease;
+  }
+
+  @keyframes zoomOnly {
+    0% { 
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-zoom-only {
+    animation: zoomOnly 1.5s ease-out forwards;
+  }
+
+  @keyframes zoomFloat {
+    0% { 
+      transform: scale(0.8) translateY(0px);
+      opacity: 0;
+    }
+    20% {
+      transform: scale(1) translateY(0px);
+      opacity: 1;
+    }
+    50% { 
+      transform: scale(1) translateY(-10px);
+    }
+    100% { 
+      transform: scale(1) translateY(0px);
+    }
+  }
+
+  .animate-zoom-float {
+    animation: zoomFloat 2s ease-out forwards, gentleFloat 3s ease-in-out 2s infinite;
+  }
+
+  @keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .animate-gentle-float {
+    animation: gentleFloat 3s ease-in-out infinite;
+  }
+
+  @keyframes bgSpinZoom {
+    0% { 
+      transform: scale(0.8) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      transform: scale(1) rotate(72deg);
+      opacity: 1;
+    }
+    100% { 
+      transform: scale(1) rotate(360deg);
+      opacity: 1;
+    }
+  }
+
+  .animate-bg-spin-zoom {
+    animation: bgSpinZoom 3s ease-out forwards, continuousRotate 20s linear 3s infinite;
+  }
+
+  @keyframes continuousRotate {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
   }
 
   .container {
@@ -554,22 +735,6 @@ const breadcrumbItems = [
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0% {
-      transform: translateY(0px) rotate(2deg);
-    }
-    50% {
-      transform: translateY(-10px) rotate(2deg);
-    }
-    100% {
-      transform: translateY(0px) rotate(2deg);
     }
   }
 </style>
