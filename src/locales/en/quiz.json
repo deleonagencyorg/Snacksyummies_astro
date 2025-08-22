@@ -1,0 +1,201 @@
+{
+  "title": "Yummies Quiz",
+  "subtitle": "Discover your Yummies personality",
+  "personalities": [
+    {
+      "id": "snackero",
+      "title": "The Good Vibes Snacker",
+      "emoji": "👑",
+      "description": "Always ready for good company, laughter and real flavor. You're authentic and uncomplicated, just like your Ziba's chips.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp",
+      "brand": "Ziba's",
+      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-logo-3.webp"
+    },
+    {
+      "id": "aventurero",
+      "title": "The Crunchy Adventurer",
+      "emoji": "🏄",
+      "description": "You seek strong emotions and intense flavors. You're not afraid of anything and always ready for the next challenge, like our Taqueritos Fire.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp",
+      "brand": "Taqueritos",
+      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-logo.webp"
+    },
+    {
+      "id": "gamer",
+      "title": "The Gamer Snacker",
+      "emoji": "🎮",
+      "description": "Your perfect combo is a good game and your Taqueritos. Strategic, competitive and always with energy for one more game.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp",
+      "brand": "Taqueritos",
+      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-logo.webp"
+    }
+
+  ],
+  "results": {
+    "title": "Your result:",
+    "share": "Share on social media",
+    "restart": "Restart Quiz",
+    "home": "Home page",
+    "shareMessage": "I discovered my personality in the Yummies Quiz!"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "question": "A perfect weekend plan is:",
+      "options": [
+        {
+          "id": "1a",
+          "text": "Watch Formula 1"
+        },
+        {
+          "id": "1b",
+          "text": "Watch a game with friends"
+        },
+        {
+          "id": "1c",
+          "text": "Play video games with friends"
+        },
+        {
+          "id": "1d",
+          "text": "Imagine and create something new"
+        },
+        {
+          "id": "1e",
+          "text": "Go to the beach with live music"
+        },
+        {
+          "id": "1f",
+          "text": "Exercise"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "If you were a phrase, which would you be?",
+      "options": [
+        {
+          "id": "2a",
+          "text": "Let's do something extreme!"
+        },
+        {
+          "id": "2b",
+          "text": "Devour the world without fear"
+        },
+        {
+          "id": "2c",
+          "text": "One more game?"
+        },
+        {
+          "id": "2d",
+          "text": "Everything starts with a little magic"
+        },
+        {
+          "id": "2e",
+          "text": "Music is my life"
+        },
+        {
+          "id": "2f",
+          "text": "Health is flavor"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "How do you see yourself at a meeting?",
+      "options": [
+        {
+          "id": "3a",
+          "text": "Creating extreme challenges"
+        },
+        {
+          "id": "3b",
+          "text": "Devouring the snacks"
+        },
+        {
+          "id": "3c",
+          "text": "Talking about video games"
+        },
+        {
+          "id": "3d",
+          "text": "Playing all the time"
+        },
+        {
+          "id": "3e",
+          "text": "Encouraging everyone to go to a concert"
+        },
+        {
+          "id": "3f",
+          "text": "With something tasty and healthy"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "What can't be missing from your backpack or purse?",
+      "options": [
+        {
+          "id": "4a",
+          "text": "GoPro"
+        },
+        {
+          "id": "4b",
+          "text": "My favorite chips"
+        },
+        {
+          "id": "4c",
+          "text": "Headphones and video game controller"
+        },
+        {
+          "id": "4d",
+          "text": "An inspiration notebook"
+        },
+        {
+          "id": "4e",
+          "text": "Sunglasses and concert tickets"
+        },
+        {
+          "id": "4f",
+          "text": "Water bottle and a healthy snack"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Which social network represents you the most?",
+      "options": [
+        {
+          "id": "5a",
+          "text": "TikTok: Challenges, fun, attitude"
+        },
+        {
+          "id": "5b",
+          "text": "YouTube: real and direct content"
+        },
+        {
+          "id": "5c",
+          "text": "Twitch: Games, streaming, community"
+        },
+        {
+          "id": "5d",
+          "text": "Pinterest: magical ideas and inspiration"
+        },
+        {
+          "id": "5e",
+          "text": "Instagram: Photos, style and vibes"
+        },
+        {
+          "id": "5f",
+          "text": "Strava or Spotify: I like to move and take care of myself"
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "previous": "Previous",
+    "next": "Next",
+    "result": "Result"
+  },
+  "progress": {
+    "of": "of"
+  }
+}

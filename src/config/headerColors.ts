@@ -116,6 +116,13 @@ export const headerColors: HeaderColors = {
     hoverBackgroundColor: 'hover:bg-secondary',
     showMessageCarousel: false
   },
+  quiz: {
+    textColor: 'text-white',
+    backgroundColor: 'bg-primary',
+    hoverTextColor: 'hover:text-primary',
+    hoverBackgroundColor: 'hover:bg-primary',
+    showMessageCarousel: false
+  }
 };
 
 // Función para obtener la configuración de colores basada en la ruta actual
@@ -153,6 +160,10 @@ export function getHeaderColors(pathname: string): HeaderColorConfig {
    
   if (path.includes('/about') || path.includes('/nosotros')) {
     return headerColors.about;
+  }
+  
+  if (path.includes('/quiz')) {
+    return headerColors.quiz;
   }
   
   // Para la página de inicio (ruta raíz)

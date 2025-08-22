@@ -64,6 +64,13 @@ export const routesConfig: RouteConfig[] = [
     metaTitleKey: 'meta.about_us.title',
     metaDescriptionKey: 'meta.about_us.description',
   },
+  {
+    id: 'quiz',
+    slugs: { es: 'quiz', en: 'quiz' },
+    contentComponent: '@/views/Quiz/index.astro',
+    metaTitleKey: 'meta.quiz.title',
+    metaDescriptionKey: 'meta.quiz.description',
+  },
   // ... Agrega más rutas aquí
 ];
 
