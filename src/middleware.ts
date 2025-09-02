@@ -7,7 +7,10 @@ const routeMappings = {
   'products': { es: 'productos', en: 'products' },
   'news': { es: 'noticias', en: 'news' },
   'recipes': { es: 'recetas', en: 'recipes' },
-  'yummiesone': { es: 'yummiesone', en: 'yummiesone' }
+  'yummiesone': { es: 'yummiesone', en: 'yummiesone' },
+  'promotions': { es: 'promociones', en: 'promotions' },
+  'winners': { es: 'ganadores', en: 'winners' },
+  'contact': { es: 'contacto', en: 'contact' }
 };
 
 export const onRequest = defineMiddleware(async ({ request, redirect }, next) => {

@@ -1,0 +1,64 @@
+---
+// src/pages/[lang]/winners/[slug].astro
+import { setLocale, t, type Locale } from '../../../i18n/i18n';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import WinnersView from '../../../views/Winners/index.astro';
+
+export async function getStaticPaths() {
+  // Obtener todas las promociones disponibles para ambos idiomas
+  const esPromotionsData = t('promotions', { namespace: 'promotions', locale: 'es' }) || [];
+  const enPromotionsData = t('promotions', { namespace: 'promotions', locale: 'en' }) || [];
+  
+  // Solo incluir promociones que tienen winners: true
+  const esPromotionsWithWinners = esPromotionsData.filter((promotion: any) => promotion.winners === true);
+  const enPromotionsWithWinners = enPromotionsData.filter((promotion: any) => promotion.winners === true);
+  
+  const esPaths = esPromotionsWithWinners.map((promotion: any) => ({
+    params: { 
+      lang: 'es',
+      slug: promotion.slug 
+    },
+    props: { 
+      promotionSlug: promotion.slug,
+      promotionTitle: promotion.title
+    }
+  }));
+  
+  const enPaths = enPromotionsWithWinners.map((promotion: any) => ({
+    params: { 
+      lang: 'en',
+      slug: promotion.slug 
+    },
+    props: { 
+      promotionSlug: promotion.slug,
+      promotionTitle: promotion.title
+    }
+  }));
+  
+  console.log('Generated ES paths:', esPaths);
+  console.log('Generated EN paths:', enPaths);
+  
+  return [...esPaths, ...enPaths];
+}
+
+const { lang, slug } = Astro.params as { lang: Locale; slug: string };
+const { promotionSlug, promotionTitle } = Astro.props;
+
+setLocale(lang);
+
+// Obtener datos de la promoción para metadatos
+const promotionsData = t('promotions', { namespace: 'promotions', locale: lang }) || [];
+const promotion = promotionsData.find((p: any) => p.slug === promotionSlug);
+
+if (!promotion) {
+  return Astro.redirect(`/${lang}/404`);
+}
+
+// Metadatos dinámicos
+const metaTitle = `${t('meta.winners.title', { namespace: 'common', locale: lang })} - ${promotion.title}`;
+const metaDescription = t('meta.winners.description', { namespace: 'common', locale: lang }) || promotion.subtitle;
+---
+
+<MainLayout title={metaTitle} description={metaDescription}>
+  <WinnersView currentLang={lang} promotionSlug={promotionSlug} />
+</MainLayout>

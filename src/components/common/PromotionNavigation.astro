@@ -1,0 +1,52 @@
+---
+// src/components/common/PromotionNavigation.astro
+import { t, type Locale } from '../../i18n/i18n';
+import LanguageSwitcher from '../i18n/LanguageSwitcher.astro';
+
+export interface Props {
+  currentLang: Locale;
+  currentSlug?: string;
+}
+
+const { currentLang, currentSlug } = Astro.props;
+
+// Obtener rutas de promociones
+const promotionsRoute = currentLang === 'es' ? '/es/promociones' : '/en/promotions';
+const currentPromotionRoute = currentSlug ? `${promotionsRoute}/${currentSlug}` : promotionsRoute;
+
+// Obtener texto de navegación
+const backToPromotions = currentLang === 'es' ? 'Volver a Promociones' : 'Back to Promotions';
+
+// Obtener la URL actual para el LanguageSwitcher
+const currentUrl = Astro.url.pathname;
+---
+
+<div class="promotion-navigation bg-white shadow-sm border-b">
+  <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-4">
+        <a 
+          href={promotionsRoute}
+          class="text-primary hover:text-blue-800 font-semibold flex items-center"
+        >
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          {backToPromotions}
+        </a>
+      </div>
+      
+      <div class="flex items-center space-x-4">
+        <LanguageSwitcher activeLocale={currentLang} />
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .promotion-navigation {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+</style>

@@ -1,0 +1,143 @@
+---
+// src/views/Winners/index.astro
+import { t, type Locale } from '../../i18n/i18n';
+import LazyImage from '../../components/common/LazyImage.astro';
+import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
+import { winners_promotions as esWinners } from '../../locales/es/winners/index';
+import { winners_promotions as enWinners } from '../../locales/en/winners/index';
+import './styles.css';
+
+export interface Props {
+  currentLang: Locale;
+  promotionSlug: string;
+}
+
+const { currentLang, promotionSlug } = Astro.props;
+
+// Obtener datos de la promoción específica
+const promotionsData = t('promotions', { namespace: 'promotions', locale: currentLang }) || [];
+const promotion = promotionsData.find((p: any) => p.slug === promotionSlug);
+
+// Debug: Verificar qué promociones están disponibles
+console.log('Available Promotions:', promotionsData.map((p: any) => p.slug));
+console.log('Found Promotion:', promotion);
+
+// Si no se encuentra la promoción, redirigir a 404
+if (!promotion) {
+  console.log('Promotion not found, redirecting to 404');
+  return Astro.redirect(`/${currentLang}/404`);
+}
+
+// Obtener datos de ganadores directamente
+const winnersData = currentLang === 'es' ? esWinners : enWinners;
+const promotionWinners = winnersData[promotionSlug] || {};
+
+// Obtener países disponibles
+const countries = Object.keys(promotionWinners).filter(country => 
+  promotionWinners[country] && promotionWinners[country].length > 0
+);
+
+// Obtener textos de la UI
+const uiTexts = t('ui', { namespace: 'winners', locale: currentLang }) || {};
+---
+
+<main class="winners-page">
+  <!-- Breadcrumb -->
+  <Breadcrumb 
+    items={[
+      { label: currentLang === 'es' ? 'Inicio' : 'Home', href: `/${currentLang}` },
+      { label: currentLang === 'es' ? 'Promociones' : 'Promotions', href: currentLang === 'es' ? '/es/promociones' : '/en/promotions' },
+      { label: promotion.title, href: currentLang === 'es' ? `/es/promociones/${promotionSlug}` : `/en/promotions/${promotionSlug}` },
+      { label: currentLang === 'es' ? 'Ganadores' : 'Winners', href: currentLang === 'es' ? `/es/ganadores/${promotionSlug}` : `/en/winners/${promotionSlug}` }
+    ]}
+    bgColor="bg-white"
+    textColor="text-gray-600"
+  />
+
+  <!-- Hero Section -->
+  <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-title font-bold mb-4">
+          {uiTexts.heroTitle || (currentLang === 'es' ? 'Ganadores' : 'Winners')}
+        </h1>
+        <p class="text-xl mb-6 opacity-90 max-w-3xl mx-auto">
+          {promotion.title}
+        </p>
+        <p class="text-lg opacity-75">
+          {uiTexts.heroSubtitle || (currentLang === 'es' ? 'Conoce a los afortunados ganadores de esta promoción' : 'Meet the lucky winners of this promotion')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Winners by Country -->
+  <section class="winners-section py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      {countries.length > 0 ? (
+        <div class="space-y-12">
+          {countries.map((country) => (
+            <div class="country-winners">
+              <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-8 text-primary">
+                {country}
+              </h2>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {promotionWinners[country].map((winner: any, index: number) => (
+                  <div class="winner-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                    <div class="winner-image">
+                      <LazyImage 
+                        src={winner.image}
+                        alt={winner.description}
+                        class="w-full h-64 object-cover"
+                      />
+                    </div>
+                    <div class="p-6">
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="bg-primary text-white px-3 py-1 rounded-full text-sm font-bold">
+                          {uiTexts.winnerLabel || (currentLang === 'es' ? 'Ganador' : 'Winner')} #{index + 1}
+                        </span>
+                        <span class="text-gray-500 text-sm">
+                          {country}
+                        </span>
+                      </div>
+                      <p class="text-gray-700 font-medium">
+                        {winner.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <div class="mb-6">
+            <svg class="w-24 h-24 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-600 mb-4">
+            {uiTexts.noWinnersTitle || (currentLang === 'es' ? 'No hay ganadores aún' : 'No winners yet')}
+          </h3>
+          <p class="text-gray-500 text-lg">
+            {uiTexts.noWinnersMessage || (currentLang === 'es' ? 'Los ganadores serán anunciados próximamente. ¡Mantente atento!' : 'Winners will be announced soon. Stay tuned!')}
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Back to Promotion -->
+  <section class="back-section py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <a 
+        href={currentLang === 'es' ? `/es/promociones/${promotionSlug}` : `/en/promotions/${promotionSlug}`}
+        class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-blue-800 transition-colors text-lg"
+      >
+        {uiTexts.backToPromotion || (currentLang === 'es' ? 'Volver a la Promoción' : 'Back to Promotion')}
+      </a>
+    </div>
+  </section>
+</main>

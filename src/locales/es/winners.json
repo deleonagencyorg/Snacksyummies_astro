@@ -1,0 +1,13 @@
+{
+  "ui": {
+    "heroTitle": "Ganadores",
+    "heroSubtitle": "Conoce a los afortunados ganadores de esta promoción",
+    "winnerLabel": "Ganador",
+    "noWinnersTitle": "No hay ganadores aún",
+    "noWinnersMessage": "Los ganadores serán anunciados próximamente. ¡Mantente atento!",
+    "backToPromotion": "Volver a la Promoción",
+    "countryLabel": "País",
+    "winnerNumber": "Ganador #",
+    "congratulations": "¡Felicitaciones a todos los ganadores!"
+  }
+}

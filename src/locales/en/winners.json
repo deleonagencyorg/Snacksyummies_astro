@@ -1,0 +1,13 @@
+{
+  "ui": {
+    "heroTitle": "Winners",
+    "heroSubtitle": "Meet the lucky winners of this promotion",
+    "winnerLabel": "Winner",
+    "noWinnersTitle": "No winners yet",
+    "noWinnersMessage": "Winners will be announced soon. Stay tuned!",
+    "backToPromotion": "Back to Promotion",
+    "countryLabel": "Country",
+    "winnerNumber": "Winner #",
+    "congratulations": "Congratulations to all winners!"
+  }
+}

@@ -1,0 +1,193 @@
+---
+// src/views/Promotions/Detail/index.astro
+import { t, type Locale } from '../../../i18n/i18n';
+import LazyImage from '../../../components/common/LazyImage.astro';
+import PromotionNavigation from '../../../components/common/PromotionNavigation.astro';
+import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
+import './styles.css';
+
+export interface Props {
+  currentLang: Locale;
+  promotionSlug: string;
+}
+
+const { currentLang, promotionSlug } = Astro.props;
+
+// Obtener datos de la promoción específica
+const promotionsData = t('promotions', { namespace: 'promotions', locale: currentLang }) || [];
+const promotion = promotionsData.find((p: any) => p.slug === promotionSlug);
+
+// Si no se encuentra la promoción, redirigir a 404
+if (!promotion) {
+  return Astro.redirect(`/${currentLang}/404`);
+}
+
+const detailData = promotion.detail || {};
+---
+
+<main class="promotion-detail-page">
+  <!-- Breadcrumb -->
+  <Breadcrumb 
+    items={[
+      { label: currentLang === 'es' ? 'Inicio' : 'Home', href: `/${currentLang}` },
+      { label: currentLang === 'es' ? 'Promociones' : 'Promotions', href: currentLang === 'es' ? '/es/promociones' : '/en/promotions' },
+      { label: promotion.title, href: currentLang === 'es' ? `/es/promociones/${promotionSlug}` : `/en/promotions/${promotionSlug}` }
+    ]}
+    bgColor="bg-white"
+    textColor="text-gray-600"
+  />
+  
+  <!-- Navigation -->
+  <PromotionNavigation currentLang={currentLang} currentSlug={promotionSlug} />
+  
+  <!-- Hero Section -->
+  <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-title font-bold mb-4">
+          {promotion.title}
+        </h1>
+        <p class="text-xl mb-6 opacity-90 max-w-3xl mx-auto">
+          {promotion.subtitle}
+        </p>
+        <div class="flex items-center justify-center text-sm opacity-75">
+          <span class="mr-2">📅</span>
+          <span>
+            {t('ui.dateFormat', { namespace: 'promotions', locale: currentLang })
+              .replace('{startDate}', new Date(promotion.startDate).toLocaleDateString(currentLang))
+              .replace('{endDate}', new Date(promotion.endDate).toLocaleDateString(currentLang))}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps Section -->
+  <section class="steps-section py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-primary">
+        {detailData.title}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {detailData.steps?.map((step: any, index: number) => (
+          <div class="step-card text-center">
+            <div class="step-number bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              {step.number}
+            </div>
+            <div class="step-image mb-4">
+              <LazyImage 
+                src={step.image}
+                alt={step.title}
+                class="w-full h-48 object-cover rounded-lg"
+              />
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-2">
+              {step.title}
+            </h3>
+            <p class="text-gray-600">
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+      
+      <div class="text-center mt-12">
+        <a 
+          href={detailData.registerButtonUrl || '#'}
+          class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-full hover:bg-blue-800 transition-colors text-lg"
+        >
+          {detailData.registerButton}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Information Sections -->
+  <section class="info-sections py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        {detailData.sections && Object.entries(detailData.sections).map(([key, section]: [string, any]) => (
+          <div class="info-card bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h3 class="text-2xl font-bold text-primary mb-4 flex items-center">
+              <span class="mr-3">
+                {key === 'validity' && '📅'}
+                {key === 'terms' && '📋'}
+                {key === 'prizes' && '🏆'}
+                {key === 'privacy' && '🔒'}
+                {key === 'faq' && '❓'}
+              </span>
+              {section.title}
+            </h3>
+            <p class="text-gray-600">
+              {section.content}
+            </p>
+            {section.link && (
+              <a 
+                href={section.link}
+                class="inline-block mt-4 text-primary hover:underline font-semibold"
+              >
+                {t('ui.readMore', { namespace: 'promotions', locale: currentLang }) || 'Leer más'}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {promotion.winners && (
+    <!-- Winners Section -->
+    <section class="winners-section py-16 bg-gray-50">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-primary mb-6">
+          {currentLang === 'es' ? '¿Quieres ver los ganadores?' : 'Want to see the winners?'}
+        </h3>
+        <p class="text-gray-600 mb-8">
+          {currentLang === 'es' ? 'Descubre quiénes se llevaron los increíbles premios de esta promoción' : 'Discover who took home the amazing prizes from this promotion'}
+        </p>
+        <a 
+          href={currentLang === 'es' ? `/es/ganadores/${promotionSlug}` : `/en/winners/${promotionSlug}`}
+          class="inline-block bg-secondary text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors text-lg"
+        >
+          {currentLang === 'es' ? 'Ver Ganadores' : 'View Winners'}
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- Share Section -->
+  <section class="share-section py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <h3 class="text-2xl font-bold text-primary mb-6">
+        {t('ui.sharePromotion', { namespace: 'promotions', locale: currentLang }) || 'Compartir esta promoción'}
+      </h3>
+      <div class="flex justify-center space-x-4">
+        <a 
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.href)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-colors"
+        >
+          📘 Facebook
+        </a>
+        <a 
+          href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(Astro.url.href)}&text=${encodeURIComponent(promotion.title)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition-colors"
+        >
+          🐦 Twitter
+        </a>
+        <a 
+          href={`https://wa.me/?text=${encodeURIComponent(`${promotion.title} - ${Astro.url.href}`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-green-500 text-white p-3 rounded-full hover:bg-green-600 transition-colors"
+        >
+          📱 WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</main>

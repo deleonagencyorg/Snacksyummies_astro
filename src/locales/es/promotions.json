@@ -1,0 +1,193 @@
+{
+  "hero": {
+    "title": "MOMENTOS que puedes SABOREAR",
+    "subtitle": "Sé parte de la comunidad Yummies One y mantente al tanto de nuestras promociones",
+    "button": "Registrarme",
+    "buttonUrl": "/es/yummiesone"
+  },
+  "sections": {
+    "active": {
+      "title": "Promociones activas",
+      "emptyMessage": "No hay promociones activas en este momento"
+    },
+    "finished": {
+      "title": "Promociones finalizadas",
+      "emptyMessage": "No hay promociones finalizadas"
+    }
+  },
+  "promotions": [
+    {
+      "id": "superman-six-flags-2024",
+      "slug": "superman-six-flags-mexico",
+      "title": "SUPERMAN",
+      "subtitle": "Participa para ganar UN VIAJE TODO INCLUIDO a SIX FLAGS MÉXICO y muchos premios más",
+      "description": "Gánate un viaje todo incluido a Six Flags Mexico y muchos premios más",
+      "startDate": "2024-01-19",
+      "endDate": "2024-02-19",
+      "status": "active",
+      "winners": true,
+      "image": {
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-desktop.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-mobile.webp",
+        "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
+      },
+      "buttonText": "Ver detalles",
+      "buttonUrl": "/es/promociones/superman-six-flags-mexico",
+      "shareText": "Compartir:",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
+        "instagram": "https://www.instagram.com/",
+        "x": "https://x.com/intent/tweet?url="
+      },
+      "tags": ["superman", "six-flags", "viaje", "premios"],
+      "category": "travel",
+      "detail": {
+        "title": "Para participar, sigue estos pasos:",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Regístrate",
+            "description": "Crea tu cuenta en Yummies One",
+            "icon": "📝",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step1-register.webp"
+          },
+          {
+            "number": 2,
+            "title": "Ingresa el código de tu vuelo Chappa",
+            "description": "Introduce el código que viene en tu producto",
+            "icon": "🎫",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step2-code.webp"
+          },
+          {
+            "number": 3,
+            "title": "Juega y gana",
+            "description": "Participa para ganar UN VIAJE TODO INCLUIDO a SIX FLAGS MÉXICO y muchos premios más",
+            "icon": "✈️",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step3-play-win.webp"
+          }
+        ],
+        "registerButton": "Regístrate",
+        "sections": {
+          "validity": {
+            "title": "Vigencia",
+            "content": "Esta promoción estará vigente desde el 19 de enero de 2024 hasta el 19 de febrero de 2024."
+          },
+          "terms": {
+            "title": "Bases y Condiciones",
+            "content": "Lee las bases y condiciones completas de la promoción Superman - Six Flags México."
+          },
+          "prizes": {
+            "title": "Premios",
+            "content": "Descubre todos los premios disponibles en esta promoción."
+          },
+          "privacy": {
+            "title": "Política de Privacidad",
+            "content": "Conoce cómo protegemos tu información personal."
+          },
+          "faq": {
+            "title": "FAQ's",
+            "content": "Preguntas frecuentes sobre la promoción."
+          }
+        }
+      }
+    },
+    {
+      "id": "guardianes-sabor-punta-cana",
+      "slug": "guardianes-sabor-punta-cana",
+      "title": "LOS GUARDIANES DEL SABOR",
+      "subtitle": "¡GANA UN VIAJE A PUNTA CANA! PARA 2 PERSONAS",
+      "description": "Gánate un viaje todo incluido a Punta Cana para 2 personas y muchos premios más",
+      "startDate": "2023-11-01",
+      "endDate": "2023-12-31",
+      "status": "finished",
+      "winners": true,
+      "image": {
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guardianes-punta-cana-desktop.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guardianes-punta-cana-mobile.webp",
+        "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua"
+      },
+      "buttonText": "Ver detalles",
+      "buttonUrl": "/es/promociones/guardianes-sabor-punta-cana",
+      "shareText": "Compartir:",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
+        "instagram": "https://www.instagram.com/",
+        "x": "https://x.com/intent/tweet?url="
+      },
+      "tags": ["guardianes", "punta-cana", "viaje", "tropical"],
+      "category": "travel",
+      "participationSteps": [
+        "CÓMO PARTICIPAR?",
+        "DISFRUTA Y GANA!"
+      ],
+      "detail": {
+        "title": "Para participar, sigue estos pasos:",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Regístrate",
+            "description": "Crea tu cuenta en Yummies One",
+            "icon": "📝",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step1-register.webp"
+          },
+          {
+            "number": 2,
+            "title": "Ingresa el código de tu producto",
+            "description": "Introduce el código que viene en tu producto Guardianes del Sabor",
+            "icon": "🎫",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step2-code.webp"
+          },
+          {
+            "number": 3,
+            "title": "Juega y gana",
+            "description": "¡GANA UN VIAJE A PUNTA CANA! PARA 2 PERSONAS y muchos premios más",
+            "icon": "✈️",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step3-play-win.webp"
+          }
+        ],
+        "registerButton": "Regístrate",
+        "sections": {
+          "validity": {
+            "title": "Vigencia",
+            "content": "Esta promoción estuvo vigente desde el 1 de noviembre de 2023 hasta el 31 de diciembre de 2023."
+          },
+          "terms": {
+            "title": "Bases y Condiciones",
+            "content": "Lee las bases y condiciones completas de la promoción Los Guardianes del Sabor - Punta Cana."
+          },
+          "prizes": {
+            "title": "Premios",
+            "content": "Descubre todos los premios disponibles en esta promoción."
+          },
+          "privacy": {
+            "title": "Política de Privacidad",
+            "content": "Conoce cómo protegemos tu información personal."
+          },
+          "faq": {
+            "title": "FAQ's",
+            "content": "Preguntas frecuentes sobre la promoción."
+          }
+        }
+      }
+    }
+  ],
+  "ui": {
+    "dateFormat": "Del {startDate} al {endDate}",
+    "finishedLabel": "Finalizada",
+    "activeLabel": "Activa",
+    "comingSoonLabel": "Próximamente",
+    "calendarIcon": "📅",
+    "shareIcon": "📤",
+    "readMore": "Leer más",
+    "sharePromotion": "Compartir esta promoción"
+  },
+  "filters": {
+    "all": "Todas",
+    "active": "Activas",
+    "finished": "Finalizadas",
+    "comingSoon": "Próximamente",
+    "travel": "Viajes",
+    "products": "Productos",
+    "experiences": "Experiencias"
+  }
+}
