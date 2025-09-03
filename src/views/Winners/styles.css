@@ -4,6 +4,7 @@
   min-height: 100vh;
 }
 
+/* Enhanced title section styles */
 .hero-section {
   background: linear-gradient(135deg, #0A3D7E 0%, #008DDD 100%);
   position: relative;
@@ -21,9 +22,54 @@
   opacity: 0.3;
 }
 
+/* Title section specific styles */
+.title-section {
+  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 50%, #7C3AED 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.title-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+/* Enhanced typography */
+@font-face {
+  font-family: 'Trois Mille TRIAL Bold';
+  src: url('/src/assets/fonts/TroisMilleBold.otf') format('opentype'),
+       url('/src/assets/fonts/TroisMilleBold2.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.title-text {
+  background: linear-gradient(45deg, #ffffff 0%, #f8fafc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+}
+
+/* Decorative animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-element {
+  animation: float 3s ease-in-out infinite;
+}
+
 .winner-card {
   transition: all 0.3s ease;
-  border: 1px solid #e5e7eb;
   position: relative;
   overflow: hidden;
 }
@@ -160,4 +206,42 @@
 
 .back-section a:hover::before {
   left: 100%;
+}
+
+/* Carousel winner card styles for SVG badge */
+.winners-carousel .winner-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible; /* Allow SVG to extend outside card */
+}
+
+.winners-carousel .winner-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Ensure the carousel container allows overflow */
+.winners-carousel .carousel-slide {
+  padding: 35px 35px 10px 35px; /* Add padding to accommodate SVG overflow */
+}
+
+/* SVG badge hover effect */
+.winners-carousel .winner-card svg {
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.winners-carousel .winner-card:hover svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+}
+
+/* Animation for the SVG badge */
+@keyframes badgeBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2px) scale(1.02); }
+}
+
+.winners-carousel .winner-card:hover svg {
+  animation: badgeBounce 0.6s ease-in-out;
 }

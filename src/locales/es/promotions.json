@@ -27,7 +27,7 @@
       "status": "active",
       "winners": true,
       "image": {
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-desktop.webp",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-mobile.webp",
         "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
       },
@@ -43,6 +43,11 @@
       "category": "travel",
       "detail": {
         "title": "Para participar, sigue estos pasos:",
+        "image": {
+          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-mobile.webp",
+          "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
+        },
         "steps": [
           {
             "number": 1,
@@ -102,7 +107,8 @@
       "status": "finished",
       "winners": true,
       "image": {
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guardianes-punta-cana-desktop.webp",
+        
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guardianes-punta-cana-mobile.webp",
         "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua"
       },

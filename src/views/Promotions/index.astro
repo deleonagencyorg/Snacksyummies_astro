@@ -4,6 +4,7 @@ import { t, type Locale } from '../../i18n/i18n';
 import LazyImage from '../../components/common/LazyImage.astro';
 import Carousel from '../../components/common/Carousel/index.astro';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
+import PromosCarousel from '../../components/promotions/PromosCarousel.astro';
 import './styles.css';
 
 export interface Props {
@@ -20,99 +21,56 @@ const sectionsData = t('sections', { namespace: 'promotions', locale: currentLan
 // Filtrar promociones activas e inactivas
 const activePromotions = promotionsData.filter((promo: any) => promo.status === 'active');
 const finishedPromotions = promotionsData.filter((promo: any) => promo.status === 'finished');
+
+// Get common assets and filter for promotion slides only (with IDs containing 'slide-promotion')
+const commonAssets = t('assets.slider', { namespace: 'common', locale: currentLang }) || [];
+const filteredAssets = Array.isArray(commonAssets) 
+  ? commonAssets.filter(asset => 
+      asset && 
+      typeof asset === 'object' && 
+      asset.id && 
+      /slide-promotion\d+/.test(asset.id)
+    )
+  : [];
+
+const slides = filteredAssets
+  .filter(asset => asset.desktop && asset.mobile)
+  .map(asset => ({
+    desktop: asset.desktop,
+    mobile: asset.mobile,
+    alt: asset.alt || 'Snacks Yummies',
+    title: asset.title || '',
+    subtitle: asset.description || '',
+    link: asset.url || asset.link || ''
+  }));
 ---
 
 <main class="promotions-page">
-  <!-- Breadcrumb -->
-  <Breadcrumb 
-    items={[
-      { label: currentLang === 'es' ? 'Inicio' : 'Home', href: `/${currentLang}` },
-      { label: currentLang === 'es' ? 'Promociones' : 'Promotions', href: currentLang === 'es' ? '/es/promociones' : '/en/promotions' }
-    ]}
-    bgColor="bg-white"
-    textColor="text-gray-600"
-  />
+  
   
   <!-- Hero Section -->
   <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white py-16">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="md:w-1/2 mb-8 md:mb-0">
-          <h1 class="text-4xl md:text-6xl font-title font-bold mb-4">
-            {heroData.title}
-          </h1>
-          <p class="text-xl mb-6 opacity-90">
-            {heroData.subtitle}
-          </p>
-          <a 
-            href={heroData.buttonUrl} 
-            class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors"
-          >
-            {heroData.button}
-          </a>
-        </div>
-        <div class="md:w-1/2">
-          <LazyImage 
-            src="https://snack.yummiespromociones.com/SnacksyummiesAssets/promotions-hero.webp"
-            alt="Promociones Snacks Yummies"
-            class="w-full h-auto rounded-lg shadow-lg"
-          />
-        </div>
-      </div>
+    <div class="relative z-0 w-full md:w-[100%] md:ml-auto md:h-full h-[72vh] md:flex md:items-center md:justify-center">
+        <Carousel slides={slides} />
     </div>
   </section>
 
   <!-- Active Promotions Section -->
-  <section class="active-promotions py-16 bg-gray-50">
+  <section class="active-promotions py-16 bg-[#1A649E]">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-primary">
+      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-white">
         {sectionsData.active?.title}
       </h2>
       
       {activePromotions.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {activePromotions.map((promotion: any) => (
-            <div class="promotion-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <div class="promotion-image">
-                <LazyImage 
-                  src={promotion.image.desktop}
-                  alt={promotion.image.alt}
-                  class="w-full h-48 object-cover"
-                />
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-primary mb-2">
-                  {promotion.title}
-                </h3>
-                <p class="text-gray-600 mb-4">
-                  {promotion.subtitle}
-                </p>
-                <div class="flex items-center text-sm text-gray-500 mb-4">
-                  <span class="mr-2">📅</span>
-                  <span>
-                    {t('ui.dateFormat', { namespace: 'promotions', locale: currentLang })
-                      .replace('{startDate}', new Date(promotion.startDate).toLocaleDateString(currentLang))
-                      .replace('{endDate}', new Date(promotion.endDate).toLocaleDateString(currentLang))}
-                  </span>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3">
-                  <a 
-                    href={promotion.buttonUrl}
-                    class="inline-block bg-primary text-white font-bold py-2 px-6 rounded-full hover:bg-blue-800 transition-colors"
-                  >
-                    {promotion.buttonText}
-                  </a>
-                  {promotion.winners && (
-                    <a 
-                      href={currentLang === 'es' ? `/es/ganadores/${promotion.slug}` : `/en/winners/${promotion.slug}`}
-                      class="inline-block bg-secondary text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-colors"
-                    >
-                      {currentLang === 'es' ? 'Ver Ganadores' : 'View Winners'}
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
+        <div class="w-full max-w-[1036px] mx-auto">
+          {activePromotions.map((promotion: any, index: number) => (
+            <PromosCarousel 
+              promotion={promotion} 
+              currentLang={currentLang}
+              currentIndex={index}
+              totalItems={activePromotions.length}
+            />
           ))}
         </div>
       ) : (
@@ -126,58 +84,31 @@ const finishedPromotions = promotionsData.filter((promo: any) => promo.status ==
   </section>
 
   <!-- Finished Promotions Section -->
-  <section class="finished-promotions py-16">
+  <section class="finished-promotions py-16 bg-[#1A649E]">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-primary">
+      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-white">
         {sectionsData.finished?.title}
       </h2>
       
       {finishedPromotions.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {finishedPromotions.map((promotion: any) => (
-            <div class="promotion-card bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow opacity-75">
-              <div class="promotion-image relative">
-                <LazyImage 
-                  src={promotion.image.desktop}
-                  alt={promotion.image.alt}
-                  class="w-full h-48 object-cover"
-                />
-                <div class="absolute top-4 right-4 bg-red text-white px-3 py-1 rounded-full text-sm font-bold">
-                  {t('ui.finishedLabel', { namespace: 'promotions', locale: currentLang })}
-                </div>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-primary mb-2">
-                  {promotion.title}
-                </h3>
-                <p class="text-gray-600 mb-4">
-                  {promotion.subtitle}
-                </p>
-                <div class="flex items-center text-sm text-gray-500 mb-4">
-                  <span class="mr-2">📅</span>
-                  <span>
-                    {t('ui.dateFormat', { namespace: 'promotions', locale: currentLang })
-                      .replace('{startDate}', new Date(promotion.startDate).toLocaleDateString(currentLang))
-                      .replace('{endDate}', new Date(promotion.endDate).toLocaleDateString(currentLang))}
-                  </span>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3">
-                  <a 
-                    href={promotion.buttonUrl}
-                    class="inline-block bg-gray-500 text-white font-bold py-2 px-6 rounded-full hover:bg-gray-600 transition-colors"
-                  >
-                    {promotion.buttonText}
-                  </a>
-                  {promotion.winners && (
-                    <a 
-                      href={currentLang === 'es' ? `/es/ganadores/${promotion.slug}` : `/en/winners/${promotion.slug}`}
-                      class="inline-block bg-secondary text-white font-bold py-2 px-6 rounded-full hover:bg-blue-600 transition-colors"
-                    >
-                      {currentLang === 'es' ? 'Ver Ganadores' : 'View Winners'}
-                    </a>
-                  )}
-                </div>
-              </div>
+        <div class="w-full max-w-[1036px] mx-auto">
+          {finishedPromotions.map((promotion: any, index: number) => (
+            <div class="opacity-75">
+              <PromosCarousel 
+                promotion={{
+                  ...promotion,
+                  buttonUrl: promotion.buttonUrl,
+                  buttonText: promotion.buttonText,
+                  image: {
+                    ...promotion.image,
+                    desktop: promotion.image.desktop + '?grayscale=1' // Add grayscale effect to finished promotions
+                  }
+                }}
+                currentLang={currentLang}
+                currentIndex={index}
+                totalItems={finishedPromotions.length}
+                isFinished={true}
+              />
             </div>
           ))}
         </div>

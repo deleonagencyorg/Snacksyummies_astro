@@ -1,0 +1,263 @@
+---
+// src/components/common/WinnersCarousel/WinnersCarousel.astro
+import LazyImage from '../LazyImage.astro';
+
+export interface Props {
+  country: string;
+  winners: Array<{
+    image: string;
+    description: string;
+  }>;
+  currentLang: 'es' | 'en';
+  uiTexts?: {
+    winnerLabel?: string;
+  };
+}
+
+const { country, winners, currentLang, uiTexts } = Astro.props;
+
+// Ensure we have winners data
+const displayWinners = winners || [];
+const totalSlides = Math.ceil(displayWinners.length / 4); // 4 cards per slide
+---
+
+<div class="winners-carousel" data-country={country}>
+  <!-- Country Title -->
+  <div class="mb-8">
+    <h2 class="font-bold text-white text-[56px] leading-[56px] font-['Trois_Mille_TRIAL_Bold'] mb-0">
+      {country}
+    </h2>
+  </div>
+
+  <!-- Carousel Container -->
+  <div class="flex flex-col gap-6 items-center justify-center w-full">
+    <!-- Photo Cards Container -->
+    <div class="carousel-container relative w-full overflow-hidden">
+      <div class="carousel-track flex transition-transform duration-300 ease-in-out" data-slides={totalSlides}>
+        {Array.from({ length: totalSlides }, (_, slideIndex) => {
+          const startIndex = slideIndex * 4;
+          const slideWinners = displayWinners.slice(startIndex, startIndex + 4);
+          
+          return (
+            <div class="carousel-slide flex gap-8 min-w-full">
+              {slideWinners.map((winner, index) => (
+                <div class="winner-card flex flex-col items-start justify-start relative w-[265px] flex-shrink-0">
+                  <div class="bg-[#faf1e9] flex flex-col gap-4 items-center justify-start overflow-hidden p-4 rounded-[20px] w-full relative">
+                    <!-- Winner Image -->
+                    <div class="h-[234px] w-full rounded-lg overflow-hidden">
+                      <LazyImage 
+                        src={winner.image}
+                        alt={winner.description}
+                        class="w-full h-full object-cover bg-center"
+                      />
+                    </div>
+                    
+                    <!-- Description Container -->
+                    <div class="flex flex-col gap-[22px] items-center justify-start py-4 w-full">
+                      <div class="font-['Trois_Mille_TRIAL_Medium'] text-[#11448e] text-[18px] leading-[20px] text-center w-[189px] font-medium">
+                        <p>{winner.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Winner Badge/Logo -->
+                  <div class="absolute left-[-35px] top-[-32px] w-[70px] h-[65px] z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="65" viewBox="0 0 70 65" fill="none" class="w-full h-full">
+                      <path d="M52.1367 5.02148C53.3055 4.50763 54.4798 4.55138 55.4043 4.8252C57.1511 5.34267 58.6206 6.8462 58.96 8.85059L59.0293 9.2627C61.0896 19.1624 63.092 28.7881 65.1543 38.6973H65.1523C65.2973 39.3574 65.3286 39.9782 65.3018 40.5342L65.3037 40.5352C65.3031 40.5502 65.3005 40.5651 65.2998 40.5801C65.2992 40.5921 65.3005 40.6042 65.2998 40.6162L65.2979 40.6152C65.2489 41.5945 65.0009 42.5234 64.6094 43.3564L64.6104 43.3574C61.7312 49.4873 55.8032 54.1708 49.5439 57.0234C43.2729 59.8814 35.9446 61.2364 29.6992 59.9512L29.6611 59.9434L29.623 59.9346C29.1375 59.8248 28.6262 59.6459 28.124 59.3818V59.3838C28.1125 59.3778 28.1013 59.3712 28.0898 59.3652C28.0727 59.3561 28.0552 59.3473 28.0381 59.3379V59.3359C27.2778 58.9267 26.7193 58.4023 26.3379 57.9688L26.3311 57.96L26.3232 57.9512C23.6061 54.8272 10.8722 39.7411 5.99023 33.7832L5.99121 33.7822C4.73947 32.2551 4.4631 30.1784 5.2666 28.4316C5.6713 27.5519 6.39306 26.683 7.47168 26.1484C8.57094 25.6037 9.77775 25.5387 10.8652 25.8447C16.0476 27.2852 18.8338 28.5099 22.8857 29.1816C22.9453 28.8357 22.9926 28.3973 23.0264 27.834C23.2124 23.905 22.9037 20.1659 22.7588 15.7607V15.7598C22.6991 14.3905 22.6475 13.0398 22.5967 11.666C22.5228 9.66596 23.5379 7.65507 25.5303 6.71289C27.5065 5.7785 29.6786 6.25668 31.1758 7.54102L31.1768 7.54004C37.8332 13.2208 39.8693 15.5432 44.4639 18.7051C44.563 18.7714 44.6516 18.8273 44.7305 18.874C44.8409 18.7015 44.9778 18.474 45.1348 18.1729C45.5143 17.4449 45.8235 16.7213 46.291 15.7129C47.2163 13.5747 48.442 10.4557 49.6621 7.56348C50.1006 6.52385 50.9208 5.55607 52.1367 5.02148ZM12.1777 28.7129C12.1826 28.7188 12.1875 28.7246 12.1924 28.7305L12.1768 28.71L12.1777 28.7129Z" fill="#D23627" stroke="#FAF1E9" stroke-width="8"/>
+                      <!-- Winner Number Text -->
+                      <text x="35" y="30" text-anchor="middle" dominant-baseline="central" 
+                            class="fill-white font-bold text-sm font-['Trois_Mille_TRIAL_Bold']">
+                        {startIndex + index + 1}
+                      </text>
+                    </svg>
+                  </div>
+                </div>
+              ))}
+              
+              <!-- Fill empty slots if needed -->
+              {Array.from({ length: 4 - slideWinners.length }, () => (
+                <div class="w-[265px] flex-shrink-0"></div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <!-- Carousel Navigation -->
+    {totalSlides > 1 && (
+      <div class="carousel-nav flex gap-6 items-center justify-center">
+        <!-- Previous Button -->
+        <button 
+          class="carousel-prev w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors cursor-pointer"
+          aria-label="Previous slide"
+        >
+          <svg class="w-full h-full" viewBox="0 0 32 32" fill="none">
+            <path d="M20 8L12 16L20 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Navigation Dots -->
+        <div class="nav-dots flex items-center justify-center">
+          {Array.from({ length: totalSlides }, (_, index) => (
+            <div class="nav-dot relative w-10 h-10 flex items-center justify-center cursor-pointer">
+              <div 
+                class={`dot w-4 h-4 rounded-full transition-colors ${index === 0 ? 'bg-white' : 'bg-[#a4aeb7]'}`}
+                data-slide={index}
+              ></div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Next Button -->
+        <button 
+          class="carousel-next w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors cursor-pointer"
+          aria-label="Next slide"
+        >
+          <svg class="w-full h-full" viewBox="0 0 32 32" fill="none">
+            <path d="M12 8L20 16L12 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .winners-carousel {
+    width: 100%;
+  }
+
+  .carousel-container {
+    width: 100%;
+  }
+
+  .carousel-track {
+    width: 100%;
+  }
+
+  .carousel-slide {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Custom font loading */
+  @font-face {
+    font-family: 'Trois_Mille_TRIAL_Bold';
+    src: url('/src/assets/fonts/TroisMilleBold.otf') format('opentype');
+    font-weight: 700;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Trois_Mille_TRIAL_Medium';
+    src: url('/src/assets/fonts/TroisMilleTRIALRglr23.otf') format('opentype');
+    font-weight: 550;
+    font-display: swap;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .carousel-slide {
+      gap: 1rem;
+    }
+    
+    .winner-card {
+      width: calc(25% - 0.75rem);
+      min-width: 240px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .carousel-slide {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .winner-card {
+      width: calc(50% - 0.5rem);
+      min-width: 200px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .winner-card {
+      width: 100%;
+      max-width: 265px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousels = document.querySelectorAll('.winners-carousel');
+    
+    carousels.forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const prevBtn = carousel.querySelector('.carousel-prev');
+      const nextBtn = carousel.querySelector('.carousel-next');
+      const dots = carousel.querySelectorAll('.nav-dot');
+      let currentSlide = 0;
+      const totalSlides = slides.length;
+
+      if (totalSlides <= 1 || !track) return;
+
+      // Update carousel position and dots
+      function updateCarousel() {
+        // Move track
+        const translateX = -currentSlide * 100;
+        if (track instanceof HTMLElement) {
+          track.style.transform = `translateX(${translateX}%)`;
+        }
+
+        // Update dots
+        dots.forEach((dot, index) => {
+          const dotElement = dot.querySelector('.dot');
+          if (dotElement instanceof HTMLElement) {
+            if (index === currentSlide) {
+              dotElement.className = 'dot w-4 h-4 rounded-full transition-colors bg-white';
+            } else {
+              dotElement.className = 'dot w-4 h-4 rounded-full transition-colors bg-[#a4aeb7]';
+            }
+          }
+        });
+      }
+
+      // Navigation functions
+      function prevSlide() {
+        currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+        updateCarousel();
+      }
+
+      function nextSlide() {
+        currentSlide = currentSlide === totalSlides - 1 ? 0 : currentSlide + 1;
+        updateCarousel();
+      }
+
+      function goToSlide(slideIndex: number) {
+        currentSlide = slideIndex;
+        updateCarousel();
+      }
+
+      // Add event listeners
+      if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+      }
+
+      // Add dot navigation
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+      });
+
+      // Auto-slide every 5 seconds
+      setInterval(nextSlide, 5000);
+
+      // Initialize
+      updateCarousel();
+    });
+  });
+</script>
