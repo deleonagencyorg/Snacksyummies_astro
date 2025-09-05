@@ -1,0 +1,155 @@
+---
+// src/views/Promotions/Detail/index.astro
+import { t, type Locale } from '../../../i18n/i18n';
+import LazyImage from '../../../components/common/LazyImage.astro';
+import PromotionNavigation from '../../../components/common/PromotionNavigation.astro';
+import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
+import './styles.css';
+
+export interface Props {
+  currentLang: Locale;
+  promotionSlug: string;
+}
+
+const { currentLang, promotionSlug } = Astro.props;
+
+// Obtener datos de la promoción específica
+const promotionsData = t('promotions', { namespace: 'promotions', locale: currentLang }) || [];
+const promotion = promotionsData.find((p: any) => p.slug === promotionSlug);
+
+// Si no se encuentra la promoción, redirigir a 404
+if (!promotion) {
+  return Astro.redirect(`/${currentLang}/404`);
+}
+
+const detailData = promotion.detail || {};
+
+---
+
+<main class="promotion-detail-page">
+  <!-- Hero Section -->
+  <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white py-16">
+    <div class="block w-full h-full">
+      <div class="w-full h-full overflow-hidden">
+        <LazyImage 
+          src={detailData.image.mobile} 
+          alt={detailData.image.alt}
+          class="w-full h-full object-cover object-center md:hidden"
+          priority={true}
+        />
+        <LazyImage 
+          src={detailData.image.desktop} 
+          alt={detailData.image.alt}
+          class="w-full h-full object-cover object-center hidden md:block"
+          priority={true}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Steps Section -->
+  <section class="steps-section py-16 pb-0 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-16 text-white">
+        {detailData.title}
+      </h2>
+      
+      <div class="flex flex-col md:flex-row gap-16 md:gap-32 items-center justify-center max-w-7xl mx-auto">
+        {detailData.steps?.map((step: any, index: number) => (
+          <div class="step-circle-container relative">
+            <!-- Circular Background with Gradient -->
+            <div class="step-circle-bg"></div>
+            
+            <!-- Step Content -->
+            <div class="step-content">
+              <!-- Step Number -->
+              <div class="step-number-large">
+                {step.number}
+              </div>
+              
+              <!-- Step Title -->
+              <h3 class="step-title">
+                {step.title}
+              </h3>
+              
+              <!-- Step Image -->
+              <div class="step-image-container">
+                <LazyImage 
+                  src={step.image}
+                  alt={step.title}
+                  class="step-image-figma"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="text-center mt-20 mb-10">
+        <a 
+          href={detailData.registerButtonUrl || '#'}
+          class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-blue-800 transition-colors text-lg"
+        >
+          {detailData.registerButton}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Information Sections -->
+  <section class="info-sections pt-16 pb-16 bg-gradient-to-r from-primary to-secondary">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        {detailData.sections && Object.entries(detailData.sections).map(([key, section]: [string, any]) => (
+          <div class="accordion-item group">
+            <div class="accordion-header flex items-center justify-between px-0 py-4 cursor-pointer border-b border-white/20 hover:bg-white/5 transition-all duration-300">
+              <h3 class="text-xl font-text font-normal text-white leading-7">
+                {section.title}
+              </h3>
+              <div class="accordion-icon text-white transition-transform duration-300 group-hover:rotate-180">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="accordion-content px-0 py-4 text-white/90 text-base leading-7 font-text hidden group-hover:block">
+              <p>
+                {section.content}
+              </p>
+              {section.link && (
+                <a 
+                  href={section.link}
+                  class="inline-block mt-4 text-white hover:text-white/80 font-semibold underline transition-colors duration-300"
+                >
+                  {t('ui.readMore', { namespace: 'promotions', locale: currentLang }) || 'Leer más'}
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <!-- Winners Section 
+  {promotion.winners && (
+   
+    <section class="winners-section py-16 bg-gray-50">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-primary mb-6">
+          {currentLang === 'es' ? '¿Quieres ver los ganadores?' : 'Want to see the winners?'}
+        </h3>
+        <p class="text-gray-600 mb-8">
+          {currentLang === 'es' ? 'Descubre quiénes se llevaron los increíbles premios de esta promoción' : 'Discover who took home the amazing prizes from this promotion'}
+        </p>
+        <a 
+          href={currentLang === 'es' ? `/es/ganadores/${promotionSlug}` : `/en/winners/${promotionSlug}`}
+          class="inline-block bg-secondary text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors text-lg"
+        >
+          {currentLang === 'es' ? 'Ver Ganadores' : 'View Winners'}
+        </a>
+      </div>
+    </section>
+  )}
+  -->
+  
+</main>

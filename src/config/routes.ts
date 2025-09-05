@@ -71,6 +71,20 @@ export const routesConfig: RouteConfig[] = [
     metaTitleKey: 'meta.quiz.title',
     metaDescriptionKey: 'meta.quiz.description',
   },
+  {
+    id: 'promotions',
+    slugs: { es: 'promociones', en: 'promotions' },
+    contentComponent: '@/views/Promotions/index.astro',
+    metaTitleKey: 'meta.promotions.title',
+    metaDescriptionKey: 'meta.promotions.description',
+  },
+  {
+    id: 'winners',
+    slugs: { es: 'ganadores', en: 'winners' },
+    contentComponent: '@/views/Winners/index.astro',
+    metaTitleKey: 'meta.winners.title',
+    metaDescriptionKey: 'meta.winners.description',
+  },
   // ... Agrega más rutas aquí
 ];
 

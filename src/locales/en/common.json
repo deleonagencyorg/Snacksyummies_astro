@@ -35,6 +35,14 @@
     "quiz": {
       "title": "Yummies Quiz - Discover Your Personality",
       "description": "Discover what type of Yummies personality you are with our fun interactive quiz. Answer the questions and find out your profile!"
+    },
+    "promotions": {
+      "title": "Promotions - Snacks Yummies",
+      "description": "Discover all our active promotions and participate to win amazing prizes. Don't miss any opportunity!"
+    },
+    "winners": {
+      "title": "Winners - Snacks Yummies",
+      "description": "Meet the lucky winners of our promotions. Discover who took home the amazing prizes!"
     }
   },
   "countries": {

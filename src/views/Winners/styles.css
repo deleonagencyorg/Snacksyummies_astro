@@ -1,0 +1,247 @@
+/* src/views/Winners/styles.css */
+
+.winners-page {
+  min-height: 100vh;
+}
+
+/* Enhanced title section styles */
+.hero-section {
+  background: linear-gradient(135deg, #0A3D7E 0%, #008DDD 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.3;
+}
+
+/* Title section specific styles */
+.title-section {
+  background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 50%, #7C3AED 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.title-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+/* Enhanced typography */
+@font-face {
+  font-family: 'Trois Mille TRIAL Bold';
+  src: url('/src/assets/fonts/TroisMilleBold.otf') format('opentype'),
+       url('/src/assets/fonts/TroisMilleBold2.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.title-text {
+  background: linear-gradient(45deg, #ffffff 0%, #f8fafc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+}
+
+/* Decorative animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-element {
+  animation: float 3s ease-in-out infinite;
+}
+
+.winner-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.winner-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.winner-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.winner-image img {
+  transition: transform 0.3s ease;
+}
+
+.winner-card:hover .winner-image img {
+  transform: scale(1.05);
+}
+
+.country-winners {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.country-winners:nth-child(1) { animation-delay: 0.1s; }
+.country-winners:nth-child(2) { animation-delay: 0.2s; }
+.country-winners:nth-child(3) { animation-delay: 0.3s; }
+.country-winners:nth-child(4) { animation-delay: 0.4s; }
+
+/* Animation for winner cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.winner-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.winner-card:nth-child(1) { animation-delay: 0.1s; }
+.winner-card:nth-child(2) { animation-delay: 0.2s; }
+.winner-card:nth-child(3) { animation-delay: 0.3s; }
+.winner-card:nth-child(4) { animation-delay: 0.4s; }
+.winner-card:nth-child(5) { animation-delay: 0.5s; }
+.winner-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Winner badge styles */
+.winner-card .bg-primary {
+  background: linear-gradient(45deg, #0A3D7E, #008DDD);
+}
+
+/* Country section styles */
+.country-winners h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.country-winners h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #0A3D7E, #008DDD);
+  border-radius: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    text-align: center;
+  }
+  
+  .winner-card {
+    margin-bottom: 1rem;
+  }
+  
+  .country-winners h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Empty state styles */
+.winners-page .text-center svg {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Back button hover effect */
+.back-section a {
+  position: relative;
+  overflow: hidden;
+}
+
+.back-section a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.back-section a:hover::before {
+  left: 100%;
+}
+
+/* Carousel winner card styles for SVG badge */
+.winners-carousel .winner-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible; /* Allow SVG to extend outside card */
+}
+
+.winners-carousel .winner-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Ensure the carousel container allows overflow */
+.winners-carousel .carousel-slide {
+  padding: 35px 35px 10px 35px; /* Add padding to accommodate SVG overflow */
+}
+
+/* SVG badge hover effect */
+.winners-carousel .winner-card svg {
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+.winners-carousel .winner-card:hover svg {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+}
+
+/* Animation for the SVG badge */
+@keyframes badgeBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2px) scale(1.02); }
+}
+
+.winners-carousel .winner-card:hover svg {
+  animation: badgeBounce 0.6s ease-in-out;
+}
