@@ -26,6 +26,8 @@ const formattedDate = (startDate: string, endDate: string) => {
   const end = new Date(endDate).toLocaleDateString(currentLang);
   return `${start} - ${end}`;
 };
+// Safe background image to avoid undefined access during build
+const bgDesktop: string = promotion?.image?.desktop ?? '';
 ---
 
 <script>
@@ -54,7 +56,7 @@ const formattedDate = (startDate: string, endDate: string) => {
     <div class={`promo-carousel-slide bg-white h-[471px] overflow-hidden relative rounded-[40px] w-full shadow-lg hover:shadow-xl transition-shadow ${isFinished ? 'opacity-75' : ''}`}>
       <div 
         class="absolute h-full left-0 top-0 w-[517px] bg-center bg-cover bg-no-repeat" 
-        style={`background-image: url('${promotion.image.desktop}')`}
+        style={`background-image: url('${bgDesktop}')`}
       >
         {/* Image overlay for better text contrast */}
         <div class={`absolute inset-0 bg-gradient-to-r from-transparent to-white/10 ${isFinished ? 'bg-black/20' : ''}`}></div>
