@@ -122,6 +122,20 @@ export const headerColors: HeaderColors = {
     hoverTextColor: 'hover:text-primary',
     hoverBackgroundColor: 'hover:bg-primary',
     showMessageCarousel: false
+  },
+  promotions: {
+    textColor: 'text-white',
+    backgroundColor: 'bg-primary',
+    hoverTextColor: 'hover:text-primary',
+    hoverBackgroundColor: 'hover:bg-primary',
+    showMessageCarousel: false
+  },
+  winners: {
+    textColor: 'text-white',
+    backgroundColor: 'bg-primary',
+    hoverTextColor: 'hover:text-primary',
+    hoverBackgroundColor: 'hover:bg-primary',
+    showMessageCarousel: false
   }
 };
 
@@ -169,6 +183,14 @@ export function getHeaderColors(pathname: string): HeaderColorConfig {
   // Para la página de inicio (ruta raíz)
   if (path === '/' || path === '/es' || path === '/en' || path.endsWith('/index')) {
     return headerColors.home;
+  }
+  
+  if (path.includes('/promotions') || path.includes('/promociones')) {
+    return headerColors.promotions;
+  }
+  
+  if (path.includes('/winners') || path.includes('/ganadores')) {
+    return headerColors.winners;
   }
   
   // Si no coincide con ninguna sección específica, usar la configuración por defecto

@@ -49,14 +49,21 @@ const slides = filteredAssets
   
   
   <!-- Hero Section -->
-  <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white py-16">
+  <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white">
     <div class="relative z-0 w-full md:w-[100%] md:ml-auto md:h-full h-[72vh] md:flex md:items-center md:justify-center">
         <Carousel slides={slides} />
     </div>
   </section>
-
+  <div class=" -mt-8 bg-gradient-to-r bg-[#1A649E] py-4">
+    <Breadcrumb
+    items={[
+      { label: t('home', { namespace: 'promotions', locale: currentLang }), href: `/${currentLang}` },
+      { label: currentLang=='es'?'Promociones':'Promotions', href: `/${currentLang}/promociones` },
+    ]}
+  />
+  </div>
   <!-- Active Promotions Section -->
-  <section class="active-promotions py-16 bg-[#1A649E]">
+  <section class="active-promotions py-16 bg-[#1A649E] -mt-4">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-white">
         {sectionsData.active?.title}

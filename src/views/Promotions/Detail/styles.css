@@ -46,8 +46,9 @@
 
 .step-circle-bg {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
   background: radial-gradient(circle at center, rgba(0, 48, 111, 0.9) 0%, rgba(0, 48, 111, 0.7) 50%, rgba(0, 141, 221, 0.8) 100%);
   border-radius: 50%;
   box-shadow: 
@@ -94,21 +95,21 @@
 .step-image-container {
   width: 120px;
   height: 120px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 3px solid white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .step-image-figma {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
 /* Responsive adjustments for circular layout */
 @media (max-width: 768px) {
+  .step-circle-bg {
+    width: 200px;
+    height: 200px;
+  }
   .step-circle-container {
     width: 280px;
     height: 280px;
@@ -120,8 +121,8 @@
   }
   
   .step-title {
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 16px;
   }
   
   .step-image-container {
