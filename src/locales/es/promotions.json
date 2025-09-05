@@ -28,7 +28,7 @@
       "winners": true,
       "image": {
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-mobile.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
         "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
       },
       "buttonText": "Ver detalles",
@@ -45,7 +45,7 @@
         "title": "Para participar, sigue estos pasos:",
         "image": {
           "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-mobile.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
           "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
         },
         "steps": [
@@ -54,21 +54,21 @@
             "title": "Regístrate",
             "description": "Crea tu cuenta en Yummies One",
             "icon": "📝",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step1-register.webp"
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/s01.webp"
           },
           {
             "number": 2,
             "title": "Ingresa el código de tu vuelo Chappa",
             "description": "Introduce el código que viene en tu producto",
             "icon": "🎫",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step2-code.webp"
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/s02.webp"
           },
           {
             "number": 3,
             "title": "Juega y gana",
             "description": "Participa para ganar UN VIAJE TODO INCLUIDO a SIX FLAGS MÉXICO y muchos premios más",
             "icon": "✈️",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step3-play-win.webp"
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/s03.webp"
           }
         ],
         "registerButton": "Regístrate",
@@ -107,9 +107,8 @@
       "status": "finished",
       "winners": true,
       "image": {
-        
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guardianes-punta-cana-mobile.webp",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
         "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua"
       },
       "buttonText": "Ver detalles",
@@ -127,28 +126,30 @@
         "DISFRUTA Y GANA!"
       ],
       "detail": {
+        "image": {
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
+        "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua"
+      },
         "title": "Para participar, sigue estos pasos:",
         "steps": [
           {
             "number": 1,
             "title": "Regístrate",
             "description": "Crea tu cuenta en Yummies One",
-            "icon": "📝",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step1-register.webp"
+            "icon": "📝"
           },
           {
             "number": 2,
             "title": "Ingresa el código de tu producto",
             "description": "Introduce el código que viene en tu producto Guardianes del Sabor",
-            "icon": "🎫",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step2-code.webp"
+            "icon": "🎫"
           },
           {
             "number": 3,
             "title": "Juega y gana",
             "description": "¡GANA UN VIAJE A PUNTA CANA! PARA 2 PERSONAS y muchos premios más",
-            "icon": "✈️",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step3-play-win.webp"
+            "icon": "✈️"
           }
         ],
         "registerButton": "Regístrate",

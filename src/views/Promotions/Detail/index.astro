@@ -30,8 +30,8 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
 
 <main class="promotion-detail-page">
   <!-- Hero Section -->
-  <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white py-16">
-    <div class="block w-full h-full">
+  <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white">
+    <div class="block w-full h-[300px] md:h-[800px]">
       <div class="w-full h-full overflow-hidden">
         {mobileSrc && (
           <LazyImage 
@@ -65,8 +65,20 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
     </div>
   </section>
 
+ 
+<div class=" -mt-8 bg-gradient-to-r from-primary to-secondary py-4">
+  <Breadcrumb
+  items={[
+    { label: t('ui.home', { namespace: 'promotions', locale: currentLang }), href: `/${currentLang}` },
+    { label: currentLang=='es'?'Promociones':'Promotions', href: `/${currentLang}/promociones` },
+    { label: promotion.title, href: `/${currentLang}/promociones/${promotionSlug}` },
+  ]}
+/>
+</div>
   <!-- Steps Section -->
-  <section class="steps-section py-16 pb-0 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+  <section class="-mt-4 steps-section py-16 pb-0 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+     <!-- Migaja de galletas -->
+ 
     <div class="container mx-auto px-4">
       <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-16 text-white">
         {detailData.title}
@@ -86,17 +98,23 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
               </div>
               
               <!-- Step Title -->
-              <h3 class="step-title">
+              <h2 class="step-title text-xl">
                 {step.title}
-              </h3>
+              </h2>
               
               <!-- Step Image -->
               <div class="step-image-container">
-                <LazyImage 
-                  src={step.image}
-                  alt={step.title}
-                  class="step-image-figma"
-                />
+                {step.image ? (
+                  <LazyImage 
+                    src={step.image} 
+                    alt={step.title}
+                    class="step-image-figma"
+                  />
+                ) : (
+                  <div class="flex items-center justify-center w-full h-full text-4xl">
+                    {step.icon}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -106,7 +124,7 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
       <div class="text-center mt-20 mb-10">
         <a 
           href={detailData.registerButtonUrl || '#'}
-          class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-blue-800 transition-colors text-lg"
+          class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-blue-800 hover:text-white transition-colors text-lg"
         >
           {detailData.registerButton}
         </a>

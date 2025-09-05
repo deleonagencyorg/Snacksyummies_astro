@@ -38,33 +38,80 @@ const countries = Object.keys(promotionWinners).filter(country =>
 
 // Obtener textos de la UI
 const uiTexts = t('ui', { namespace: 'winners', locale: currentLang }) || {};
+// Mapeo país -> emoji bandera y utilidades para mostrar banderas dinámicas
+const flagEmojiByCountry: Record<string, string> = {
+  "Honduras": "🇭🇳",
+  "Guatemala": "🇬🇹",
+  "El Salvador": "🇸🇻",
+  "Nicaragua": "🇳🇮",
+  "Costa Rica": "🇨🇷",
+  "República Dominicana": "🇩🇴",
+  "Republica Dominicana": "🇩🇴",
+  "Dominican Republic": "🇩🇴",
+  "Panamá": "🇵🇦",
+  "Panama": "🇵🇦",
+  "México": "🇲🇽",
+  "Mexico": "🇲🇽",
+  "Estados Unidos": "🇺🇸",
+  "United States": "🇺🇸",
+  "Colombia": "🇨🇴",
+  "Perú": "🇵🇪",
+  "Peru": "🇵🇪",
+};
+
+function getFlag(country?: string) {
+  if (!country) return "";
+  const normalized = country.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+  const found = Object.keys(flagEmojiByCountry).find((key) => {
+    const k = key.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+    return k === normalized;
+  });
+  return found ? flagEmojiByCountry[found] : "";
+}
+
+// Deriva la lista de banderas a mostrar desde los países disponibles
+const winnerCountries = countries.map((name) => ({ name, flag: getFlag(name) }));
 ---
 
 <main class="winners-page">
 
   <!-- Hero Section -->
-   <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white py-16">
-    <div class="block w-full h-full">
+  <section class="hero-section bg-sexinary text-white">
+    <div class="block w-full h-[300px] md:h-[800px]">
       <div class="w-full h-full overflow-hidden">
-        <LazyImage 
-          src={promotion.image.mobile} 
-          alt={promotion.image.alt}
-          class="w-full h-full object-cover object-center md:hidden"
-          priority={true}
-        />
-        <LazyImage 
-          src={promotion.image.desktop} 
-          alt={promotion.image.alt}
-          class="w-full h-full object-cover object-center hidden md:block"
-          priority={true}
-        />
+        {promotion?.image?.mobile && (
+          <LazyImage 
+            src={promotion.image.mobile} 
+            alt={promotion.image?.alt || ''}
+            class="w-full h-full object-cover object-center md:hidden"
+            priority={true}
+          />
+        )}
+        {promotion?.image?.desktop && (
+          <LazyImage 
+            src={promotion.image.desktop} 
+            alt={promotion.image?.alt || ''}
+            class="w-full h-full object-cover object-center hidden md:block"
+            priority={true}
+          />
+        )}
       </div>
     </div>
   </section>
+  <div class="bg-sexinary -mt-8 pt-8">
+    <Breadcrumb
+      items={[
+        { label: t('home', { namespace: 'promotions', locale: currentLang }), href: `/${currentLang}` },
+        { label: currentLang=='es'?'Promociones':'Promotions', href: `/${currentLang}/promociones` },
+        { label: promotion.title, href: `/${currentLang}/promociones/${promotionSlug}` },
+        { label: currentLang=='es'?'Ganadores':'Winners', href: `#` },
+      ]}
+    />
+  </div>
   <!-- Title Section -->
-  <section class="relative bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white py-20 overflow-hidden">
+  <section class="relative bg-sexinary text-white overflow-hidden -mt-8">
     <!-- Background pattern -->
-    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20"></div>
+    <div class="absolute inset-0 -gradient-to-r from-blue-500/20 to-purple-600/20"></div>
     
     <!-- Confetti Animations -->
     <ConfettiAnimation side="left" class="z-10" />
@@ -72,10 +119,10 @@ const uiTexts = t('ui', { namespace: 'winners', locale: currentLang }) || {};
     
     <!-- Content -->
     <div class="relative z-20 container mx-auto px-4">
-      <div class="flex gap-6 items-center justify-center size-full" data-name="Title">
+      <div class="flex gap-6 items-center justify-center size-full py-8" data-name="Title">
         <div class="text-center">
           <!-- Main Title with enhanced styling -->
-          <h1 class="text-4xl md:text-5xl lg:text-5xl font-black mb-6 tracking-tight leading-none">
+          <h1 class="text-4xl md:text-5xl lg:text-4xl font-black mb-6 tracking-tight leading-none pt-8">
             {uiTexts.heroTitle || (currentLang === 'es' ? 'Nuestros Ganadores' : 'Our Winners')}
           </h1>
           
@@ -92,9 +139,20 @@ const uiTexts = t('ui', { namespace: 'winners', locale: currentLang }) || {};
         </div>
       </div>
     </div>
-    <div class="content-stretch flex gap-8 items-center justify-center size-full" data-name="Flags">
-      <!-- Add flag images or content here -->
-      <!-- Example: <img src="/images/en/flag.svg" alt="Flag" class="h-12 w-auto" /> -->
+    <div class="content-stretch flex gap-8 items-center justify-center size-full py-8 [&_svg]:hidden" data-name="Flags">
+      <!-- Emoji Flags (derived from winners countries) -->
+      {winnerCountries.length > 0 ? (
+        winnerCountries.map((c) => (
+          <span class="text-4xl" title={c.name}>
+            {c.flag || "🏁"}
+          </span>
+        ))
+      ) : (
+        <span class="text-sm opacity-70 text-white font-bold font-title">
+          {currentLang === 'es' ? 'Sin países disponibles' : 'No countries available'}
+        </span>
+      )}
+      <!-- Existing SVG flags below are kept but hidden via [&_svg]:hidden to avoid large patch edits -->
       <svg xmlns="http://www.w3.org/2000/svg" width="61" height="45" viewBox="0 0 61 45" fill="none">
         <g clip-path="url(#clip0_2_918)">
           <path d="M0.5 0H60.5V45H0.5V0Z" fill="#18C3DF"/>
@@ -415,7 +473,7 @@ const uiTexts = t('ui', { namespace: 'winners', locale: currentLang }) || {};
   </section>
 
   <!-- Winners by Country -->
-  <section class="relative bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white py-20 overflow-hidden">
+  <section class="relative bg-sexinary text-white py-20 overflow-hidden">
     <div class="container mx-auto px-4">
       {countries.length > 0 ? (
         <div class="space-y-16">
@@ -431,14 +489,14 @@ const uiTexts = t('ui', { namespace: 'winners', locale: currentLang }) || {};
       ) : (
         <div class="text-center py-12">
           <div class="mb-6">
-            <svg class="w-24 h-24 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-24 h-24 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-600 mb-4">
+          <h3 class="text-2xl font-bold mb-4 font-title text-white">
             {uiTexts.noWinnersTitle || (currentLang === 'es' ? 'No hay ganadores aún' : 'No winners yet')}
           </h3>
-          <p class="text-gray-500 text-lg">
+          <p class="text-white text-lg">
             {uiTexts.noWinnersMessage || (currentLang === 'es' ? 'Los ganadores serán anunciados próximamente. ¡Mantente atento!' : 'Winners will be announced soon. Stay tuned!')}
           </p>
         </div>
