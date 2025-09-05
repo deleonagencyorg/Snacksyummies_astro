@@ -23,6 +23,8 @@ if (!promotion) {
 }
 
 const detailData = promotion.detail || {};
+const mobileSrc: string | undefined = detailData?.image?.mobile;
+const desktopSrc: string | undefined = detailData?.image?.desktop;
 
 ---
 
@@ -31,21 +33,33 @@ const detailData = promotion.detail || {};
   <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white">
     <div class="block w-full h-[300px] md:h-[800px]">
       <div class="w-full h-full overflow-hidden">
-        {detailData?.image?.mobile && (
+        {mobileSrc && (
           <LazyImage 
-            src={detailData.image.mobile} 
+            src={mobileSrc}
             alt={detailData.image?.alt || ''}
             class="w-full h-full object-cover object-center md:hidden"
             priority={true}
           />
         )}
-        {detailData?.image?.desktop && (
+        {desktopSrc && (
           <LazyImage 
-            src={detailData.image.desktop} 
+            src={desktopSrc} 
             alt={detailData.image?.alt || ''}
             class="w-full h-full object-cover object-center hidden md:block"
             priority={true}
           />
+        )}
+        {!mobileSrc && !desktopSrc && (
+          <div class="w-full h-full flex items-center justify-center bg-[#1A649E] text-white text-center p-6">
+            <div>
+              <h2 class="text-2xl md:text-4xl font-title font-bold mb-2">
+                {detailData.title || promotion.title}
+              </h2>
+              <p class="opacity-90">
+                {detailData.subtitle || promotion.subtitle || (currentLang === 'es' ? 'Imagen no disponible' : 'Image not available')}
+              </p>
+            </div>
+          </div>
         )}
       </div>
     </div>

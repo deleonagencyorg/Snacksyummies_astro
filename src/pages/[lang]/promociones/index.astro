@@ -2,6 +2,7 @@
 // src/pages/[lang]/promociones/index.astro
 import { setLocale, t, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
+import SEO from '../../../components/SEO.astro';
 import PromotionsView from '../../../views/Promotions/index.astro';
 
 export async function getStaticPaths() {
@@ -21,5 +22,12 @@ const metaDescription = t('meta.promotions.description', { namespace: 'common', 
 ---
 
 <MainLayout title={metaTitle} description={metaDescription}>
+  <SEO 
+    slot="head"
+    currentLang={lang}
+    title={metaTitle}
+    description={metaDescription}
+    canonicalUrl={`https://snacksyummies.com/${lang}/promociones`}
+  />
   <PromotionsView currentLang={lang} />
 </MainLayout>
