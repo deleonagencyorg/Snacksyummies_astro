@@ -1,0 +1,193 @@
+{
+  "hero": {
+    "title": "MOMENTS you can SAVOR",
+    "subtitle": "Be part of the Yummies One community and stay updated on our promotions",
+    "button": "Register",
+    "buttonUrl": "/en/yummiesone"
+  },
+  "sections": {
+    "active": {
+      "title": "Active Promotions",
+      "emptyMessage": "No active promotions at the moment"
+    },
+    "finished": {
+      "title": "Finished Promotions",
+      "emptyMessage": "No finished promotions"
+    }
+  },
+  "promotions": [
+    {
+      "id": "superman-six-flags-2024",
+      "slug": "superman-six-flags-mexico",
+      "title": "SUPERMAN",
+      "subtitle": "Participate to win an ALL-INCLUSIVE TRIP to SIX FLAGS MEXICO and many more prizes",
+      "description": "Win an all-inclusive trip to Six Flags Mexico and many more prizes",
+      "startDate": "2024-01-19",
+      "endDate": "2024-02-19",
+      "status": "active",
+      "winners": true,
+      "image": {
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-desktop.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-six-flags-mobile.webp",
+        "alt": "Superman flying with a white dog, Six Flags Mexico in the background with snack bags"
+      },
+      "buttonText": "See details",
+      "buttonUrl": "/en/promotions/superman-six-flags-mexico",
+      "shareText": "Share:",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
+        "instagram": "https://www.instagram.com/",
+        "x": "https://x.com/intent/tweet?url="
+      },
+      "tags": ["superman", "six-flags", "trip", "prizes"],
+      "category": "travel",
+      "detail": {
+        "title": "To participate, follow these steps:",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Register",
+            "description": "Create your Yummies One account",
+            "icon": "📝",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step1-register.webp"
+          },
+          {
+            "number": 2,
+            "title": "Enter your Chappa flight code",
+            "description": "Enter the code that comes with your product",
+            "icon": "🎫",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step2-code.webp"
+          },
+          {
+            "number": 3,
+            "title": "Play and win",
+            "description": "Participate to win an ALL-INCLUSIVE TRIP to SIX FLAGS MEXICO and many more prizes",
+            "icon": "✈️",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step3-play-win.webp"
+          }
+        ],
+        "registerButton": "Register",
+        "sections": {
+          "validity": {
+            "title": "Validity",
+            "content": "This promotion will be valid from January 19, 2024 to February 19, 2024."
+          },
+          "terms": {
+            "title": "Terms and Conditions",
+            "content": "Read the complete terms and conditions of the Superman - Six Flags Mexico promotion."
+          },
+          "prizes": {
+            "title": "Prizes",
+            "content": "Discover all the prizes available in this promotion."
+          },
+          "privacy": {
+            "title": "Privacy Policy",
+            "content": "Learn how we protect your personal information."
+          },
+          "faq": {
+            "title": "FAQ's",
+            "content": "Frequently asked questions about the promotion."
+          }
+        }
+      }
+    },
+    {
+      "id": "guardianes-sabor-punta-cana",
+      "slug": "guardianes-sabor-punta-cana",
+      "title": "THE GUARDIANS OF FLAVOR",
+      "subtitle": "WIN A TRIP TO PUNTA CANA! FOR 2 PEOPLE",
+      "description": "Win an all-inclusive trip to Punta Cana for 2 people and many more prizes",
+      "startDate": "2023-11-01",
+      "endDate": "2023-12-31",
+      "status": "finished",
+      "winners": true,
+      "image": {
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guardianes-punta-cana-desktop.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guardianes-punta-cana-mobile.webp",
+        "alt": "The Guardians of Flavor with tropical elements, palm trees and water splashes"
+      },
+      "buttonText": "See details",
+      "buttonUrl": "/en/promotions/guardianes-sabor-punta-cana",
+      "shareText": "Share:",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
+        "instagram": "https://www.instagram.com/",
+        "x": "https://x.com/intent/tweet?url="
+      },
+      "tags": ["guardians", "punta-cana", "trip", "tropical"],
+      "category": "travel",
+      "participationSteps": [
+        "HOW TO PARTICIPATE?",
+        "ENJOY AND WIN!"
+      ],
+      "detail": {
+        "title": "To participate, follow these steps:",
+        "steps": [
+          {
+            "number": 1,
+            "title": "Register",
+            "description": "Create your Yummies One account",
+            "icon": "📝",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step1-register.webp"
+          },
+          {
+            "number": 2,
+            "title": "Enter your product code",
+            "description": "Enter the code that comes with your Guardians of Flavor product",
+            "icon": "🎫",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step2-code.webp"
+          },
+          {
+            "number": 3,
+            "title": "Play and win",
+            "description": "WIN A TRIP TO PUNTA CANA! FOR 2 PEOPLE and many more prizes",
+            "icon": "✈️",
+            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/step3-play-win.webp"
+          }
+        ],
+        "registerButton": "Register",
+        "sections": {
+          "validity": {
+            "title": "Validity",
+            "content": "This promotion was valid from November 1, 2023 to December 31, 2023."
+          },
+          "terms": {
+            "title": "Terms and Conditions",
+            "content": "Read the complete terms and conditions of the Guardians of Flavor - Punta Cana promotion."
+          },
+          "prizes": {
+            "title": "Prizes",
+            "content": "Discover all the prizes available in this promotion."
+          },
+          "privacy": {
+            "title": "Privacy Policy",
+            "content": "Learn how we protect your personal information."
+          },
+          "faq": {
+            "title": "FAQ's",
+            "content": "Frequently asked questions about the promotion."
+          }
+        }
+      }
+    }
+  ],
+  "ui": {
+    "dateFormat": "From {startDate} to {endDate}",
+    "finishedLabel": "Finished",
+    "activeLabel": "Active",
+    "comingSoonLabel": "Coming Soon",
+    "calendarIcon": "📅",
+    "shareIcon": "📤",
+    "readMore": "Read more",
+    "sharePromotion": "Share this promotion"
+  },
+  "filters": {
+    "all": "All",
+    "active": "Active",
+    "finished": "Finished",
+    "comingSoon": "Coming Soon",
+    "travel": "Travel",
+    "products": "Products",
+    "experiences": "Experiences"
+  }
+}

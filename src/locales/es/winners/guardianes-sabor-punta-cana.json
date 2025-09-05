@@ -1,0 +1,36 @@
+{
+  "Honduras": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/guardianes/honduras/winner-1.webp",
+      "description": "Ganador de viaje a Punta Cana"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/guardianes/honduras/winner-2.webp",
+      "description": "Ganador de PlayStation 5"
+    }
+  ],
+  "Guatemala": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/guardianes/guatemala/winner-1.webp",
+      "description": "Ganador de viaje a Punta Cana"
+    }
+  ],
+  "El Salvador": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/guardianes/elsalvador/winner-1.webp",
+      "description": "Ganador de PlayStation 5"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/guardianes/elsalvador/winner-2.webp",
+      "description": "Ganador de tablet Samsung"
+    }
+  ],
+  "Nicaragua": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/guardianes/nicaragua/winner-1.webp",
+      "description": "Ganador de PlayStation 5"
+    }
+  ],
+  "Costa Rica": [],
+  "República Dominicana": []
+}

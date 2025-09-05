@@ -1,0 +1,44 @@
+{
+  "Honduras": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/honduras/winner-1.webp",
+      "description": "Winner of trip to Six Flags México"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/honduras/winner-2.webp",
+      "description": "Winner of PlayStation 5"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/honduras/winner-3.webp",
+      "description": "Winner of Samsung tablet"
+    }
+  ],
+  "Guatemala": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/guatemala/winner-1.webp",
+      "description": "Winner of trip to Six Flags México"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/guatemala/winner-2.webp",
+      "description": "Winner of PlayStation 5"
+    }
+  ],
+  "El Salvador": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/elsalvador/winner-1.webp",
+      "description": "Winner of PlayStation 5"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/elsalvador/winner-2.webp",
+      "description": "Winner of Samsung tablet"
+    }
+  ],
+  "Nicaragua": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/winners/superman/nicaragua/winner-1.webp",
+      "description": "Winner of PlayStation 5"
+    }
+  ],
+  "Costa Rica": [],
+  "Dominican Republic": []
+}

@@ -35,6 +35,14 @@
     "quiz": {
       "title": "Quiz Yummies - Descubre tu Personalidad",
       "description": "Descubre qué tipo de personalidad Yummies eres con nuestro divertido quiz interactivo. ¡Responde las preguntas y conoce tu perfil!"
+    },
+    "promotions": {
+      "title": "Promociones - Snacks Yummies",
+      "description": "Descubre todas nuestras promociones activas y participa para ganar increíbles premios. ¡No te pierdas ninguna oportunidad!"
+    },
+    "winners": {
+      "title": "Ganadores - Snacks Yummies",
+      "description": "Conoce a los afortunados ganadores de nuestras promociones. ¡Descubre quiénes se llevaron los increíbles premios!"
     }
   },
   "social_media": {
@@ -112,6 +120,24 @@
         "title": "",
         "description": "",
         "link": "https://www.zambos.com"
+      },
+      {
+        "id": "slide-promotion1",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-m.webp",
+        "alt": "Superman",
+        "title": "",
+        "description": "",
+        "link": "http://www.yummiessuperman.com/?utm_source=WebYummies&utm_medium=WebYummies&utm_campaign=WebYummies&utm_id=WebYummies"
+      },
+      {
+        "id": "slide-promotion2",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-m.webp",
+        "alt": "Ranchitas Buffalo Ranch",
+        "title": "",
+        "description": "",
+        "link": "https://ranchitas.com"
       }
     ],
     "products": [
