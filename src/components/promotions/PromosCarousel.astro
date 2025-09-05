@@ -26,7 +26,7 @@ const formattedDate = (startDate: string, endDate: string) => {
   const end = new Date(endDate).toLocaleDateString(currentLang);
   return `${start} - ${end}`;
 };
-// Safe background image source for desktop
+// Safe background image to avoid undefined access during build
 const bgDesktop: string = promotion?.image?.desktop ?? '';
 ---
 

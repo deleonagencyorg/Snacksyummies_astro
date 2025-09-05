@@ -53,14 +53,9 @@ const metaTitle = `${promotion.title} - ${t('meta.promotions.title', { namespace
 const metaDescription = promotion.subtitle || t('meta.promotions.description', { namespace: 'common', locale: lang });
 const metaImage = promotion?.image?.desktop || promotion?.image?.mobile || '';
 
-<MainLayout title={metaTitle} description={metaDescription}>
-  <SEO 
-    slot="head"
-    currentLang={lang}
-    title={metaTitle}
-    description={metaDescription}
-    canonicalUrl={`https://snacksyummies.com/${lang}/promociones/${promotionSlug}`}
-    imageUrl={metaImage}
-  />
+---
+
+<MainLayout>
+  <SEO slot="head" currentLang={lang} title={metaTitle} description={metaDescription} canonicalUrl={'https://snacksyummies.com/' + lang + '/promociones/' + promotionSlug} imageUrl={metaImage} />
   <PromotionDetailView currentLang={lang} promotionSlug={promotionSlug} />
 </MainLayout>
