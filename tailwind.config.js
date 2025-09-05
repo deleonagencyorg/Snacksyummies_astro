@@ -15,6 +15,7 @@ module.exports = {
         tertiary: '#4895CE',
         cuaternary: '#0073C1',
         quinary: '#91CAE9',
+        sexinary: '#1A649E',
         red: '#D23627',
         white: '#FFFFFF',
         brown: '#FAF1E9',

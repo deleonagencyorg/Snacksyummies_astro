@@ -2,6 +2,7 @@
 // src/pages/[lang]/winners/[slug].astro
 import { setLocale, t, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
+import SEO from '../../../components/SEO.astro';
 import WinnersView from '../../../views/Winners/index.astro';
 
 export async function getStaticPaths() {
@@ -57,8 +58,17 @@ if (!promotion) {
 // Metadatos dinámicos
 const metaTitle = `${t('meta.winners.title', { namespace: 'common', locale: lang })} - ${promotion.title}`;
 const metaDescription = t('meta.winners.description', { namespace: 'common', locale: lang }) || promotion.subtitle;
+const metaImage = promotion?.image?.desktop || promotion?.image?.mobile || '';
 ---
 
 <MainLayout title={metaTitle} description={metaDescription}>
+  <SEO 
+    slot="head"
+    currentLang={lang}
+    title={metaTitle}
+    description={metaDescription}
+    canonicalUrl={`https://snacksyummies.com/${lang}/${lang === 'es' ? 'ganadores' : 'winners'}/${promotionSlug}`}
+    imageUrl={metaImage}
+  />
   <WinnersView currentLang={lang} promotionSlug={promotionSlug} />
 </MainLayout>
