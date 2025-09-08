@@ -10,11 +10,14 @@ interface RecipeItem {
   title: string;
   description: string;
   ingredients: string[];
-  instructions: string;
+  instructions: string[];
   preparation_time: number;
   servings: number;
   image?: string;
+  product_image?: string;
   tags?: string[];
+  difficulty?: string;
+  rating?: number;
 }
 
 const { currentLang, recipeId } = Astro.props;
@@ -47,129 +50,165 @@ function formatTime(minutes: number, locale: Locale): string {
       : `${mins}m`;
   }
 }
+
+// Generate star rating
+function generateStars(rating: number): string {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+  
+  return '★'.repeat(fullStars) + (hasHalfStar ? '☆' : '') + '☆'.repeat(emptyStars);
+}
 ---
-<div id="hero" class="flex flex-col pt-8 md:pt-12 md:flex-row justify-center items-center md:h-[43rem] pb-8" transition:animate="slide">
-  <div class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8">
-    {recipe.image && (
-      <div class="w-full md:w-1/2 flex justify-center">
-        <div class="relative rounded-lg overflow-hidden h-80 lg:h-96 w-80 max-w-lg">
-          <img 
-            src={recipe.image} 
-            alt={recipe.title}
-            class="w-full h-full object-cover"
-            onerror="this.onerror=null;this.src='/images/recipes/placeholder.jpg';"
-            transition:name={`recipe-image-${recipe.id}`}
-          />
-        </div>
-      </div>
-    )}
+<!-- Main Container with Blue Gradient Background -->
+<div class="bg-gradient-to-r from-blue-400 to-blue-500 py-12 min-h-screen">
+  <div class="max-w-7xl mx-auto px-4">
     
-    <div class="w-[80%] md:w-1/2 flex flex-col gap-4 bg-white md:p-8 p-4 rounded-lg">
-      <h1 class=" font-heading md:text-3xl text-2xl font-bold text-gray-800 mb-2 text-center md:text-left">{recipe.title}</h1>
-      <div class="flex items-center justify-center md:justify-start">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          class="h-5 w-5 md:h-6 md:w-6 text-gray-500" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            stroke-width="2" 
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
-          />
-        </svg>
-        <span class="ml-2 md:ml-5 text-gray-500 font-heading text-base md:text-xl">
-          {recipe.preparation_time} MINS
-        </span>
+    <!-- Recipe Title -->
+    <div class="text-left mb-8">
+      <h1 class="text-4xl md:text-5xl font-title font-bold text-white mb-2" style="font-weight: 700; line-height: 40px;">
+        {recipe.title}
+      </h1>
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="bg-white rounded-3xl p-8 md:p-12 shadow-lg mb-8">
+      <div class="w-full self-stretch">
+        <div class="rounded-2xl overflow-hidden w-full h-[35rem] self-stretch">
+          {recipe.image ? (
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              class="w-full h-full object-cover block"
+              onerror="this.onerror=null;this.src='/images/recipes/placeholder.jpg';"
+              transition:name={`recipe-image-${recipe.id}`}
+            />
+          ) : (
+            <div class="w-full h-[25rem] bg-gray-200 flex items-center justify-center">
+              <span class="text-gray-500">Recipe Image</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div id="ingredients" class=" flex flex-col justify-center items-center    mb-8 py-16 ">
-  <div class="w-full max-w-6xl px-4">
-    <h1 class="font-heading font-bold md:text-4xl text-2xl text-white text-center mb-8 ">
-      {recipesAssets.recipes}
-    </h1>
-    
-    <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-      {recipe.image && (
-        <div class="w-full md:w-1/2 flex justify-center">
-          <div class="relative rounded-lg overflow-hidden h-80 lg:h-96 w-80 max-w-lg">
-            <img 
-              src={recipe.product_image} 
-              alt={recipe.title}
-              class="w-full h-full object-cover"
-              onerror="this.onerror=null;this.src='/images/recipes/placeholder.jpg';"
-            />
-          </div>
+    <!-- Info Recipe - Figma "Info 2" Layout -->
+    <div class="flex gap-[25px] items-center justify-between w-full mb-12" data-name="Info 2">
+      <!-- Left side: Recipe info -->
+      <div class="flex gap-[25px] items-center justify-start">
+        <!-- Servings -->
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-white text-xl font-medium" style="font-family: 'Trois Mille TRIAL Medium', sans-serif; font-size: 20px; font-weight: 550; line-height: 24px;">
+            {recipe.servings} {currentLang === 'es' ? 'Personas' : 'Servings'}
+          </span>
         </div>
-      )}
-      
-      <div class="w-[80%] md:w-1/2 flex flex-col gap-4 md:p-8 p-4 rounded-lg text-white">
-       
-        <section class="mb-8 text-white">
-          <ul class="list-disc list-inside space-y-2 text-white">
+
+        <!-- Time -->
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span class="text-white text-xl font-medium" style="font-family: 'Trois Mille TRIAL Medium', sans-serif; font-size: 20px; font-weight: 550; line-height: 24px;">
+            {formatTime(recipe.preparation_time, currentLang as Locale)}
+          </span>
+        </div>
+
+        <!-- Difficulty -->
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          <span class="text-white text-xl font-medium" style="font-family: 'Trois Mille TRIAL Medium', sans-serif; font-size: 20px; font-weight: 550; line-height: 24px;">
+            {recipe.difficulty || (currentLang === 'es' ? 'Avanzado' : 'Advanced')}
+          </span>
+        </div>
+
+        <!-- Star Rating -->
+        <div class="flex items-center gap-1">
+          {Array.from({ length: 5 }, (_, index) => (
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right side: Social Media Share Button - Figma Design -->
+      <div class="flex gap-2 items-center justify-start" data-name="Social media">
+        <button class="flex gap-2 items-center justify-start hover:opacity-80 transition-opacity" onclick="shareRecipe()">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+          </svg>
+          <span class="text-white text-xl font-normal" style="font-family: 'Trois Mille TRIAL Regular', sans-serif; font-size: 20px; font-weight: 400; line-height: 28px;">
+            {currentLang === 'es' ? 'Comparte en redes' : 'Share on social'}
+          </span>
+        </button>
+      </div>
+    </div>
+    <!-- All Info Section - Figma "All Info" Layout -->
+    <div class="flex flex-col gap-10 items-start justify-start w-full mb-12" data-name="All info">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+        
+        <!-- Ingredients Column -->
+        <div class="flex flex-col gap-6">
+          <h2 class="text-white text-3xl font-normal" style="font-family: 'Trois Mille TRIAL Regular', sans-serif; font-size: 32px; font-weight: 400; line-height: 32px;">
+            {recipesAssets.ingredients || (currentLang === 'es' ? 'Ingredientes' : 'Ingredients')}
+          </h2>
+          
+          <ul class="flex flex-col gap-4">
             {recipe.ingredients.map((ingredient: string) => (
-              <li class="text-white">
-                {ingredient}
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 mt-1">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <span class="text-white text-xl font-normal" style="font-family: 'Trois Mille TRIAL Regular', sans-serif; font-size: 20px; font-weight: 400; line-height: 28px;">
+                  {ingredient}
+                </span>
               </li>
             ))}
           </ul>
-        </section>
+        </div>
+
+        <!-- Instructions Column -->
+        <div class="flex flex-col gap-6">
+          <h2 class="text-white text-3xl font-normal" style="font-family: 'Trois Mille TRIAL Regular', sans-serif; font-size: 32px; font-weight: 400; line-height: 32px;">
+            {recipesAssets.preparation || (currentLang === 'es' ? 'Instrucciones' : 'Instructions')}
+          </h2>
+          
+          <ol class="flex flex-col gap-4">
+            {recipe.instructions.map((instruction: string, index: number) => (
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <span class="text-blue-500 text-sm font-bold">{index + 1}</span>
+                  </div>
+                </div>
+                <p class="text-white text-xl font-normal" style="font-family: 'Trois Mille TRIAL Regular', sans-serif; font-size: 20px; font-weight: 400; line-height: 28px;">
+                  {instruction}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div id="instructions" class="mt-[-2rem]  md:mt-[-2rem] flex flex-col md:flex-row justify-center items-center md:h-[43rem] mb-8">
-
-  <div class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8">
-    <div class="w-[80%]  flex items-center justify-center flex-col gap-4  md:p-0 p-4 rounded-lg text-white">
-      <h1 class="font-heading font-bold md:text-4xl text-2xl text-gray-600 text-center mb-8">
-        {recipesAssets.preparation}
-      </h1>
-      <section class="mb-8 text-white">
-        <ul class="list-disc list-inside space-y-2 text-gray-600">
-          {recipe.instructions.map((instruction: string) => (
-            <li class="text-gray-600">
-              {instruction}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-  </div>
-</div>
-<div id="suggestions_related" class="mt-[-2rem] flex flex-col justify-center items-center py-12 bg-white" transition:animate="fade">
-  <div class="w-full max-w-6xl px-4">
-    <h2 class="pb-8 text-3xl md:text-4xl font-bold text-gray-600 mb-8 text-center font-heading">
-      {recipesAssets.related_recipes}
-    </h2>
     
-    <div class="w-full mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-16">
-      {relatedRecipes.map((related: RecipeItem) => (
-        <RecipeCard
-          image={related.image || '/images/recipes/placeholder.jpg'}
-          title={related.title}
-          time={`${related.preparation_time} ${currentLang === 'es' ? 'min' : 'mins'}`}
-          id={related.id}
-          textColor="text-gray-800"
-          iconColor="text-gray-500"
-        />
-      ))}
-    </div>
+
   </div>
 </div>
+
 
 
 <script>
-  // Este script se ejecuta solo en el navegador
+  // Enhanced script for recipe detail page
   document.addEventListener('DOMContentLoaded', () => {
-    // Manejo de imágenes que fallan al cargar
-    document.querySelectorAll('.recipe-detail img').forEach(img => {
+    // Handle image loading errors
+    document.querySelectorAll('img').forEach(img => {
       if (!img.hasAttribute('onerror')) {
         img.addEventListener('error', function(this: HTMLImageElement) {
           this.onerror = null;
@@ -177,5 +216,105 @@ function formatTime(minutes: number, locale: Locale): string {
         });
       }
     });
+
+    // Add fade-in animation for cards
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all main content cards
+    document.querySelectorAll('.bg-white.rounded-3xl').forEach(card => {
+      const element = card as HTMLElement;
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
   });
+
+  // Global share function for the social media button
+  async function shareRecipe() {
+    const title = document.querySelector('h1')?.textContent || 'Recipe';
+    const url = window.location.href;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: title,
+          url: url,
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      // Fallback to copying URL to clipboard
+      try {
+        await navigator.clipboard.writeText(url);
+        alert('Recipe URL copied to clipboard!');
+      } catch (err) {
+        console.log('Could not copy URL');
+      }
+    }
+  }
 </script>
+
+<style>
+  /* Custom fonts and styling to match Figma design */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  
+  /* Fallback font styles for Trois Mille fonts */
+  
+
+  /* Enhanced hover effects */
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  /* Responsive grid adjustments */
+  @media (max-width: 768px) {
+    .grid-cols-1.md\\:grid-cols-3 {
+      grid-template-columns: 1fr;
+    }
+    
+    .grid-cols-1.md\\:grid-cols-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Smooth transitions for all interactive elements */
+  * {
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Custom scrollbar for better UX */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #60a5fa;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
+  }
+</style>

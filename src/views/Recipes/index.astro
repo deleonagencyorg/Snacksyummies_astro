@@ -5,34 +5,209 @@ import type { Locale } from '../../i18n/i18n';
 import { getLocale } from '../../i18n/i18n';
 import './styles.css';
 import RecipeCard from '../../components/recipes/RecipeCard.astro';
+import Categories from '../../components/recipes/Categories.astro';
 import LazyImage from '../../components/common/LazyImage.astro';
+import banner from '../../assets/Banner recetas animado.png';
+import group from '../../assets/Group 40.png';
 
 const currentLang = getLocale();
 const recipes = t('items', { namespace: 'recipes', locale: currentLang });
+
 ---
-<div id="hero" class="w-full aspect-[4/3] md:h-[32rem] bg-cover bg-center" style="background-image: url('https://snack.yummiespromociones.com/taqueritos/banner_recetas.webp'); background-size: cover; background-position: center;" transition:animate="fade"></div>
-<div class="bg-white py-12">
+<div id="hero" class="relative w-full aspect-[4/3] md:h-[32rem] overflow-hidden" transition:animate="fade">
+  <img 
+    src={banner.src} 
+    alt="Recipes Banner" 
+    class="absolute inset-0 w-full h-full object-fill"
+    width={banner.width}
+    height={banner.height}
+  />
+
+  <!-- Overlay group image: slides in from right and stays aligned to the right on the banner -->
+  <img
+    src={group.src}
+    alt="Group overlay"
+    class="group-image"
+  />
+</div>
+
+<!-- Categories Section -->
+<Categories />
+
+<div class="bg-gradient-to-r from-blue-400 to-blue-500 py-12">
 
   <div class="container mx-auto px-4 mt-12">
 
     {recipes.length === 0 ? (
-      <p class="text-center text-gray-500">{t('page.no_recipes', { namespace: 'recipes' })}</p>
+      <p class="text-center text-white">{t('page.no_recipes', { namespace: 'recipes' })}</p>
     ) : (
-      <div class="md:w-[80%] w-full mx-auto grid grid-cols-2 md:grid-cols-3 md:gap-32 gap-6" transition:animate="slide">
-        {recipes.map((recipe: any) => (
-          <RecipeCard
-            image={recipe.image || '/images/recipes/placeholder.jpg'}
-            title={recipe.title}
-            time={`${recipe.preparation_time}MIN`}
-            id={recipe.id}
-            textColor="text-gray-800"
-            iconColor="text-gray-800"
-          />
-        ))}
+      <div class="max-w-[1028px] mx-auto flex flex-col gap-14 items-center">
+        <!-- Title -->
+        <h2 class="text-white font-title text-[40px] font-bold leading-[40px] text-center w-full">
+          Todas las recetas
+        </h2>
+        
+        <!-- Recipe Grid -->
+        {(() => {
+          const itemsPerPage = 9;
+          const totalPages = Math.max(1, Math.ceil(recipes.length / itemsPerPage));
+
+          return (
+            <div>
+              <div class="w-full">
+                <div id="recipes-grid" data-current-page="1" data-total-pages={totalPages} class="flex flex-wrap gap-10 justify-center">
+                  {recipes.map((recipe: any, index: number) => {
+                    const page = Math.floor(index / itemsPerPage) + 1;
+                    return (
+                      <div data-page={page} class={`${page === 1 ? 'block' : 'hidden'}`}>
+                        <RecipeCard
+                          image={recipe.image || '/images/recipes/placeholder.jpg'}
+                          title={recipe.title}
+                          time={`${recipe.preparation_time}MIN`}
+                          id={recipe.id}
+                          textColor="text-gray-800"
+                          iconColor="text-gray-800"
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Pagination Controls */}
+              <div id="recipes-pagination" class="flex gap-2 items-start justify-center mix-blend-luminosity mt-6" aria-label="Pagination">
+                <button data-action="first" class="bg-[#f7f7f7] rounded border border-[#d3d9df] size-8 flex items-center justify-center px-3 py-2" title="First">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 4.5L3 9L7.5 13.5M13.5 4.5L9 9L13.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                <button data-action="prev" class="bg-[#f7f7f7] rounded border border-[#d3d9df] size-8 flex items-center justify-center px-3 py-2" title="Previous">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.25 4.5L6.75 9L11.25 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button data-page={i + 1}
+                    class={`${i === 0 ? 'bg-[#00306f] border-2 border-[#00306f] text-white' : 'bg-[#f7f7f7] border border-[#d3d9df] text-[#202e6b]'} rounded size-8 flex items-center justify-center px-3 py-2`}
+                  >
+                    <span class="text-base font-medium leading-4">{i + 1}</span>
+                  </button>
+                ))}
+
+                <div class="bg-[#f7f7f7] rounded size-8 flex items-center justify-center px-3 py-2">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="4.5" cy="9" r="1" fill="currentColor"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="13.5" cy="9" r="1" fill="currentColor"/></svg>
+                </div>
+
+                <button data-action="next" class="bg-[#f7f7f7] rounded border border-[#d3d9df] size-8 flex items-center justify-center px-3 py-2" title="Next">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.75 4.5L11.25 9L6.75 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+
+                <button data-action="last" class="bg-[#f7f7f7] rounded border border-[#d3d9df] size-8 flex items-center justify-center px-3 py-2" title="Last">
+                  <svg class="w-[18px] h-[18px]" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 4.5L9 9L4.5 13.5M10.5 4.5L15 9L10.5 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+
+              <script>{`(function(){
+                const grid = document.getElementById('recipes-grid');
+                const pagination = document.getElementById('recipes-pagination');
+                if (!grid || !pagination) return;
+
+                const total = Number(grid.dataset.totalPages) || 1;
+
+                function update(current){
+                  grid.querySelectorAll('[data-page]').forEach(el => {
+                    el.classList.toggle('hidden', Number(el.getAttribute('data-page')) !== current);
+                  });
+
+                  pagination.querySelectorAll('[data-page]').forEach(pbtn => {
+                    const p = Number(pbtn.getAttribute('data-page'));
+                    if (p === current) {
+                      pbtn.classList.remove('bg-[#f7f7f7]', 'border', 'border-[#d3d9df]', 'text-[#202e6b]');
+                      pbtn.classList.add('bg-[#00306f]', 'border-2', 'border-[#00306f]', 'text-white');
+                    } else {
+                      pbtn.classList.remove('bg-[#00306f]', 'border-2', 'border-[#00306f]', 'text-white');
+                      pbtn.classList.add('bg-[#f7f7f7]', 'border', 'border-[#d3d9df]', 'text-[#202e6b]');
+                    }
+                  });
+
+                  grid.setAttribute('data-current-page', String(current));
+                }
+
+                // initialize
+                update(1);
+
+                pagination.addEventListener('click', function(e){
+                  const target = e.target;
+                  if (!(target instanceof Element)) return;
+                  const btn = target.closest('[data-action], [data-page]');
+                  if (!btn) return;
+
+                  let current = Number(grid.getAttribute('data-current-page') || '1');
+
+                  if (btn.hasAttribute('data-action')) {
+                    const action = btn.getAttribute('data-action');
+                    if (action === 'first') current = 1;
+                    if (action === 'last') current = total;
+                    if (action === 'prev') current = Math.max(1, current - 1);
+                    if (action === 'next') current = Math.min(total, current + 1);
+                  } else if (btn.hasAttribute('data-page')) {
+                    current = Number(btn.getAttribute('data-page')) || 1;
+                  }
+
+                  update(current);
+                });
+              })()`}</script>
+            </div>
+          );
+        })()}
       </div>
     )}
   </div>
 </div>
+
+<style>
+  /* Slide the group image from right into a right-aligned position and keep it above the banner */
+  .group-image {
+    position: absolute;
+    right: 6%;              /* aligned to the right side of the hero */
+    top: 50%;
+    z-index: 10;
+    width: 48.50475rem;     /* requested width */
+    height: 14.00113rem;    /* requested height */
+    flex-shrink: 0;
+    object-fit: contain;
+    transform: translate(100%, -50%); /* start off to the right */
+    opacity: 0;
+    animation: slideInToRight 800ms ease-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes slideInToRight {
+    from {
+      transform: translate(100%, -50%);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0, -50%); /* right-aligned position */
+      opacity: 1;
+    }
+  }
+
+  /* Responsive tweak: make overlay smaller on small screens */
+  @media (max-width: 768px) {
+    .group-image {
+      width: 65%;
+      height: auto;
+      right: 4%;
+      animation-duration: 700ms;
+    }
+  }
+
+  /* Fallback for very small screens */
+  @media (max-width: 500px) {
+    .group-image {
+      width: 55%;
+    }
+  }
+</style>
 
 <script>
   // This script runs only on the client side

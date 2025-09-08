@@ -292,7 +292,7 @@ html {
   
   .brand-card {
     overflow: visible;
-    margin-top: -5rem;
+    margin-top: 0; /* removed negative top margin for small screens */
   }
   
   .brand-card .chip-top-left {
@@ -338,7 +338,7 @@ html {
 
 .brand-card {
   position: relative;
-  margin-top: -5rem;
+  margin-top: 0; /* removed negative top margin to prevent cutoff */
   padding: 1rem;
   margin-bottom: 0rem;
   border-radius:3rem;

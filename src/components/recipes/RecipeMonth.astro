@@ -1,0 +1,62 @@
+---
+// src/components/recipes/RecipeMonth.astro
+// Tailwind-based implementation of the Figma "Card receta del mes" layout.
+const img = "http://localhost:3845/assets/7f12ea1300756f144a0fb5daaf68dbfc01103a46.png";
+const iconClock = "http://localhost:3845/assets/ec510c8a0b15fad2fc34a5a245a1a8759af63dca.svg";
+const iconUser = "http://localhost:3845/assets/285559b3901d540669c149968de4119eebbb0e8a.svg";
+const iconSliders = "http://localhost:3845/assets/f5a5f32a5e7a47401ab45fb8cf78723c27eb6559e.svg";
+
+export interface Props {
+  title?: string;
+  recipeTitle?: string;
+  time?: string;
+  servings?: string;
+  level?: string;
+  image?: string;
+}
+
+const {
+  title = 'La receta del mes',
+  recipeTitle = 'Título de la receta',
+  time = '40 Mins',
+  servings = '3 Personas',
+  level = 'Avanzado',
+  image = img,
+}: Props = Astro.props;
+---
+
+<div class="bg-[#faf1e9] rounded-[40px] p-10 flex flex-col gap-9 items-center w-full">
+  <h3 class="text-[#00306f] text-[40px] leading-[40px] font-title font-bold w-full">{title}</h3>
+
+  <div
+    class="w-full h-[360px] bg-center bg-cover bg-no-repeat rounded-lg overflow-hidden"
+    style={`background-image: url('${image}')`}
+    role="img"
+    aria-label={recipeTitle}
+  ></div>
+
+  <div class="w-full flex items-center justify-between">
+    <div class="flex flex-col gap-4">
+      <div class="text-[#202e6b] text-[20px] leading-[24px] ">{recipeTitle}</div>
+
+      <div class="flex flex-wrap gap-4 text-[#202e6b] text-[16px]">
+        <div class="flex items-center gap-1 whitespace-nowrap">
+          <img src={iconClock} alt="Tiempo" class="w-4 h-4" />
+          <span class="text-[16px]">{time}</span>
+        </div>
+
+        <div class="flex items-center gap-1 whitespace-nowrap">
+          <img src={iconUser} alt="Porciones" class="w-4 h-4" />
+          <span class="text-[16px]">{servings}</span>
+        </div>
+
+        <div class="flex items-center gap-1 whitespace-nowrap">
+          <img src={iconSliders} alt="Nivel" class="w-4 h-4" />
+          <span class="text-[16px]">{level}</span>
+        </div>
+      </div>
+    </div>
+
+    <button class="bg-[#00306f] text-white text-[20px] leading-[24px]  rounded-full px-8 py-3 transition-colors duration-200 hover:bg-[#52A4E0]">Ver receta</button>
+  </div>
+</div>
