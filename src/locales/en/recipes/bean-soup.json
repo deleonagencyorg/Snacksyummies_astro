@@ -1,0 +1,32 @@
+{
+  "date": "2025-09-11",
+  "id": "bean-soup",
+  "slug": "bean-soup",
+  "title": "Bean Soup",
+  "people": "3",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/sopa-de-frijoles.webp",
+  "gallery": [
+    "sopa-de-frijoles.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "2 cups whole beans.",
+    "2 cups blended beans.",
+    "2 cups chicken broth.",
+    "½ cup green chili peppers, chopped.",
+    "2 garlic cloves, chopped.",
+    "Culantro de castilla to taste.",
+    "2 hard-boiled eggs, halved.",
+    "Del Rancho Chicharrones to taste."
+  ],
+  "instructions": [
+    "Step 1. In a pot, place the cooked beans with the whole beans and add the chicken broth.",
+    "Step 2. Gently mix so they combine well to form the soup.",
+    "Step 3. Let it simmer, then add the onion, chili pepper, and garlic.",
+    "Step 4. Season with salt and pepper.",
+    "Step 5. When serving, garnish with cilantro, boiled egg, and Del Rancho Chicharrones from Snacks Yummies."
+  ],
+  "brand": ["delrancho"]
+}

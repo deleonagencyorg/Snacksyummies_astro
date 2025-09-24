@@ -1,0 +1,28 @@
+{
+  "date": "2025-09-11",
+  "id": "burritos-toreados",
+  "slug": "burritos-toreados",
+  "title": "Burritos Toreados",
+  "people": "4",
+  "difficulty": "Media",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/burritos-toreados.webp",
+  "gallery": [
+    "burritos-toreados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 30,
+  "ingredients": [
+    "4 tortillas de harina",
+    "2 libras de carne asada ya cocinada",
+    "2 tazas de guacamole",
+    "2 tazas de queso rallado para derretir",
+    "1 taza de salsa ranchera",
+    "1 bolsa familiar de cappy toreado"
+  ],
+  "instructions": [
+    "Paso 1: Colocar la tortilla, recalentada en la plancha previamente.",
+    "Paso 2: Agregar una porción de los siguiente: La carne asada, el guacamole, el queso rallado, la salsa ranchera y los cappy toreado.",
+    "Paso 3: Hacer el burrito, doblando la tortilla de la parte cercana a nuestro cuerpo. Después doblar los laterales y por último enrollar."
+  ],
+  "brand": ["cappy"]
+}

@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-11",
+  "id": "tacos-baked-bbq",
+  "slug": "tacos-baked-bbq",
+  "title": "Tacos Baked BBQ",
+  "people": "2",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tacos-barbacoa-horneados.webp",
+  "gallery": [
+    "tacos-barbacoa-horneados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "4 beaten eggs",
+    "Salt and pepper to taste",
+    "1 tablespoon butter",
+    "½ cup of grated cheese of your choice",
+    "Tacos Barbacoa",
+    "Chopped chives"
+  ],
+  "instructions": [
+    "Step 1: Heat in a non-stick skillet over medium heat. Add butter, when it melts pour in the beaten eggs.",
+    "Step 2: Let the eggs cook a little and pour them into an additional container. Add the cheese, salt and pepper, and mix.",
+    "Step 3: Finally, add Barbecue Taco along with the chopped Chives.",
+    "Step 4: Bake for 15 minutes and serve."
+  ],
+  "brand": ["taco"]
+}

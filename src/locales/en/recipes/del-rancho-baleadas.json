@@ -1,0 +1,30 @@
+{
+  "date": "2025-09-11",
+  "id": "del-rancho-baleadas",
+  "slug": "del-rancho-baleadas",
+  "title": "Del Rancho Baleadas",
+  "people": "7",
+  "difficulty": "Medium",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/baleadas-del-rancho.webp",
+  "gallery": [
+    "baleadas-del-rancho.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "4 flour tortillas.",
+    "1 cup refried beans.",
+    "8 eggs.",
+    "½ cup cream butter.",
+    "1 bag of Del Rancho Chicharrones."
+  ],
+  "instructions": [
+    "Step 1. Spread the beans on each tortilla.",
+    "Step 2. Add cream butter.",
+    "Step 3. In a skillet, cook the eggs and season with salt and pepper.",
+    "Step 4. Divide the eggs among the four tortillas.",
+    "Step 5. Add chicharrones to taste on each tortilla and fold in half.",
+    "Step 6. You can heat them in a skillet, then they’re ready to eat."
+  ],
+  "brand": ["delrancho"]
+}

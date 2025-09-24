@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-16",
+  "id": "zambos-with-cabbage-salad",
+  "slug": "zambos-with-cabbage-salad",
+  "title": "Zambos with Cabbage Salad",
+  "people": "2",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-con-ensalada-de-repollo.webp",
+  "gallery": [
+    "zambos-con-ensalada-de-repollo.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "1 bag of Zambos",
+    "2 cups shredded cabbage",
+    "1/2 cup chopped cilantro",
+    "1 Creole sofrito",
+    "1/2 cup mayonnaise",
+    "2 tablespoons lemon juice"
+  ],
+  "instructions": [
+    "Step 1. In a bowl, mix all the ingredients until smooth.",
+    "Step 2. Serve a portion of Zambos on a plate and top with a portion of the salad."
+  ],
+  "brand": [
+    "zambo"
+  ]
+}

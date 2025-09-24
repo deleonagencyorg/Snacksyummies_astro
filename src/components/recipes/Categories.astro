@@ -5,25 +5,48 @@ import type { Locale } from '../../i18n/i18n';
 import { getLocale } from '../../i18n/i18n';
 import RecipeMonth from './RecipeMonth.astro';
 
+export interface Props {
+  recipeTitle?: string;
+  time?: string;
+  image?: string;
+  id?: string;
+  servings?: number;
+  difficulty?: string;
+  slug?: string;
+}
+
 const currentLang = getLocale();
 const brands = t('brands', { namespace: 'brands', locale: currentLang });
+const { recipeTitle, time, image, id, servings, difficulty, slug }: Props = Astro.props;
 ---
 
 <div class="content-stretch flex flex-col gap-8 items-center justify-start w-full bg-gradient-to-r from-blue-400 to-blue-500 py-12">
   <!-- Header Title -->
   <div class="text-center">
     <h2 class="text-white text-2xl md:text-4xl font-bold font-['Trois_Mille_TRIAL_Bold'] leading-10">
-      Recetas con tus marcas favoritas
+     {currentLang === 'es' ? 'Recetas con tus marcas favoritas' : 'Recipes with your favorite brands'}
     </h2>
   </div>
 
   <!-- Brands Carousel -->
   <div class="w-full max-w-7xl mx-auto px-4">
-    <div class="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide pb-4" style="scroll-snap-type: x mandatory;">
+    <div class="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide pb-4 px-4 md:px-8" style="scroll-snap-type: x mandatory;">
+      <!-- All Brands Button -->
+      <div 
+        class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 active opacity-100" 
+        style="scroll-snap-align: center; --brand-color: #4B5563;"
+        data-brand="all"
+      >
+        <span class="text-white font-bold text-xs md:text-sm text-center px-2">
+          {currentLang === 'es' ? 'TODAS' : 'ALL'}
+        </span>
+      </div>
+      
       {brands.map((brand: any) => (
         <div 
-          class="brand-card flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer" 
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer" 
           style={`scroll-snap-align: center; background-color: ${brand.bgColor}; --brand-color: ${brand.bgColor};`}
+          data-brand={brand.slug}
         >
           <img 
             src={brand.logo} 
@@ -38,7 +61,7 @@ const brands = t('brands', { namespace: 'brands', locale: currentLang });
 
   <!-- Recipe of the Month -->
   <div class="w-full max-w-5xl px-5">
-    <RecipeMonth />
+    <RecipeMonth recipeTitle={recipeTitle} time={time} image={image} id={id} slug={slug} servings={servings} level={difficulty} />
   </div>
 </div>
 
@@ -70,4 +93,58 @@ const brands = t('brands', { namespace: 'brands', locale: currentLang });
     box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--brand-color) 30%, transparent);
     background-color: color-mix(in srgb, var(--brand-color) 80%, black 20%) !important;
   }
+
+  /* Active brand filter */
+  .brand-card.active {
+    border: 4px solid var(--brand-color);
+    box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--brand-color) 50%, transparent);
+    transform: scale(1.1);
+    opacity: 1; /* ensure fully opaque when active */
+  }
+
+  /* Inactive brand filters */
+  .brand-card:not(.active) {
+    opacity: 0.6;
+  }
+
+  /* Prevent clipping at the edges of the horizontal scroller */
+  .scrollbar-hide > .brand-filter-btn:first-child {
+    margin-left: 0.5rem; /* 8px */
+  }
+  .scrollbar-hide > .brand-filter-btn:last-child {
+    margin-right: 0.5rem; /* 8px */
+  }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const brandFilterBtns = document.querySelectorAll('.brand-filter-btn');
+    
+    brandFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedBrand = btn.getAttribute('data-brand');
+        
+        // Update active state
+        brandFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Dispatch custom event to communicate with recipes component
+        const filterEvent = new CustomEvent('brandFilterChange', {
+          detail: { brand: selectedBrand },
+          bubbles: true
+        });
+        
+        document.dispatchEvent(filterEvent);
+        
+        // Smooth scroll to recipes section
+        const recipesSection = document.querySelector('#recipes-grid');
+        if (recipesSection) {
+          recipesSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+      });
+    });
+  });
+</script>

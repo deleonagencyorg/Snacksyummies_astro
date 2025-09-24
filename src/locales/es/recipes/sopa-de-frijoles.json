@@ -1,0 +1,32 @@
+{
+      "date": "2025-09-11",
+      "id": "sopa-de-frijoles",
+      "slug": "sopa-de-frijoles",
+      "title": "Sopa de Frijoles",
+      "people": "3",
+      "difficulty": "Fácil",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/sopa-de-frijoles.webp",
+      "gallery": [
+         "sopa-de-frijoles.webp"
+      ],      
+      "type":"image",
+      "preparation_time": 20,
+      "ingredients": [
+        "2 tazas de frijoles enteros",
+        "2 tazas de frijoles licuados",
+        "2 tazas de caldo de pollo",
+        "½ taza de chiles verdes en trozos",
+        "2 dientes de ajo picado",
+        "Culantro de castilla al gusto",
+        "2 huevos cocidos a la mitad",
+        "Del Rancho Chicharrones al gusto"
+      ],
+      "instructions": [
+        "Paso 1. En una olla colocamos los frijoles cocidos con los enteros y agregamos el caldo de pollo.",
+        "Paso 2. Mezclamos con cuidado para que se mezclen bien y formen la sopa.",
+        "Paso 3. Dejamos que hierva suavemente para luego agregar la cebolla, el chile y el ajo.",
+        "Paso 4. Sazona con la sal y pimienta",
+        "Paso 5. Al momento de servir servimos con un poco de cilantro, huevo cocido y los Chicharrones Del Rancho de Snacks Yummies."
+      ],
+      "brand": ["delrancho"]
+    }

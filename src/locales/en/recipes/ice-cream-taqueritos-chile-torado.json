@@ -1,0 +1,30 @@
+{
+      "date": "2025-09-11",
+      "id": "ice cream tacotaqueritos chile toreado",
+      "slug": "ice-cream-taqueritos-chile-toreado",
+      "title": "ice cream taqueritos Chile Toreado",
+      "people": "2",
+      "difficulty": "Easy",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ice-cream-taqueritos-chile-toreado.webp",
+      "gallery": [
+         "pupusas-con-del-rancho.webp"
+      ],      
+      "type":"image",
+      "preparation_time": 10,
+      "ingredients": [
+        "1 container for Ice Cream",
+        "1 vanilla ice cream ball",
+        "1 strawberry ice cream ball",
+        "1 tablespoon of jelly your liking",
+        "1 tablespoon caramel or chocolate syrup",
+        "2 cherries to decorate",
+        "1 bag of 36g taqueritos torado chili or fusion cheese"
+      ],
+      "instructions": [
+        "Step 1. Place the ice cream balls.",
+        "Step 2. Add the jelly and syrup.",
+        "Step 3. Place one of the two types of taqueritos around the ice cream and decorate",
+        "Step 4. With cherries."
+      ],
+      "brand": ["taqueritos"]
+    }

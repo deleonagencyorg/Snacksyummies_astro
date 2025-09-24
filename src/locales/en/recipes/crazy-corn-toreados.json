@@ -1,0 +1,28 @@
+{
+  "date": "2025-09-11",
+  "id": "crazy-corn-toreados",
+  "slug": "crazy-corn-toreados",
+  "title": "Crazy Corn Toreados",
+  "people": "4",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/elotes-locos-toreados.webp",
+  "gallery": [
+    "elotes-locos-toreados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 30,
+  "ingredients": [
+    "4 ears of corn",
+    "4 wooden skewers",
+    "8 tablespoons of mayonnaise",
+    "1 piece of aluminum foil",
+    "1 bag of shredded Cappy Toreado",
+    "1 cup grated dry cheese"
+  ],
+  "instructions": [
+    "Step 1: Cook the corn cobs and cook for about 20 minutes. Insert the wooden skewers.",
+    "Step 2: Add two spoonfuls of Mayonnaise on the aluminum foil and then place the corn rotating it so that it is completely covered with Mayonnaise.",
+    "Step 3: Now cover with the crushed Cappy and finally sprinkle with cheese."
+  ],
+  "brand": ["cappy"]
+}

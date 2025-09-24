@@ -1,41 +1,40 @@
 ---
-// src/pages/[lang]/recipes/[recipeId].astro
-import { t, setLocale, type Locale } from '../../../i18n/i18n';
+// src/pages/[lang]/recipes/[recipeId].astro (SSR)
+import { setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
 
-export function getStaticPaths() {
-  // Incluir ambos idiomas
-  const locales = ['en', 'es'];
-  const paths = [];
+export const prerender = false; // SSR to allow redirect when recipe is missing in current language
 
-  for (const locale of locales) {
-    // Obtener recetas para este idioma
-    const recipes = t('items', { namespace: 'recipes', locale: locale as Locale }) || [];
-    console.log(`Found ${recipes.length} recipes for language ${locale}`);
-    
-    // Para cada receta, crear una ruta
-    for (const recipe of recipes) {
-      paths.push({
-        params: { lang: locale, recipeId: recipe.id },
-        props: { recipe, currentLang: locale }
-      });
-    }
-  }
-
-  console.log(`Generated ${paths.length} recipe routes`);
-  return paths;
-}
-
-const { recipe, currentLang } = Astro.props;
 const { lang, recipeId } = Astro.params;
-
-// Establecer el idioma para las traducciones
 setLocale(lang as Locale);
 
-console.log(`Rendering recipe: ${recipeId} in language: ${lang}`);
+function slugify(str: string): string {
+  return String(str || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// Load recipes for current language
+const modules = import.meta.glob<{ default: any }>('../../../locales/*/recipes/*.json');
+const all: any[] = [];
+for (const p in modules) {
+  const mod = await modules[p]();
+  const rec = mod.default || {};
+  const recLang = p.split('/')[4];
+  if (recLang === lang) all.push(rec);
+}
+
+const exists = all.some((r) => r.id === recipeId || r.slug === recipeId || slugify(r.title || '') === recipeId);
+if (!exists) {
+  const listing = `/${lang}/${lang === 'es' ? 'recetas' : 'recipes'}`;
+  return Astro.redirect(listing);
+}
 ---
 
-<MainLayout title={recipe.title} currentLang={currentLang}>
-  <RecipeDetail currentLang={currentLang} recipeId={recipeId} />
+<MainLayout title={''}>
+  <RecipeDetail currentLang={lang} recipeId={recipeId} />
 </MainLayout>

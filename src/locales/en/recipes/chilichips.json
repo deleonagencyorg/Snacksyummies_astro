@@ -1,0 +1,36 @@
+{
+  "date": "2025-09-11",
+  "id": "chilichips",
+  "slug": "chilichips",
+  "title": "Chilichips",
+  "people": "4",
+  "difficulty": "Intermediate",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chilichips.webp",
+  "gallery": [
+    "chilichips.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "1 teaspoon garlic powder",
+    "1 teaspoon cumin",
+    "1 teaspoon paprika",
+    "1 teaspoon salt",
+    "2 teaspoons black pepper",
+    "1 pound ground beef",
+    "1 can of diced tomatoes with water",
+    "2 cups cooked beans",
+    "1 cup grated cheese",
+    "Cream butter",
+    "1 bag of Zibas Ketchup potatoes",
+    "Oil"
+  ],
+  "instructions": [
+    "Step 1: Sauté the minced meat in a frying pan with the oil.",
+    "Step 2: Add the mentioned spices and the tomato and stir.",
+    "Step 3: Cover and boil for 10 minutes.",
+    "Step 4: Place the Zibas potatoes in the base of a plate and put the Chili on top.",
+    "Step 5: Sprinkle with the cheese and put a spoonful of butter on top. Ready to enjoy."
+  ],
+  "brand": ["zibas"]
+}

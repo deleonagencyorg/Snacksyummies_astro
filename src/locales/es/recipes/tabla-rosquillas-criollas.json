@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-11",
+  "id": "tabla-rosquillas-criollas",
+  "slug": "tabla-rosquillas-criollas",
+  "title": "Tabla de Rosquillas Criollas",
+  "people": "4",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tabla-rosquillas-criollas.webp",
+  "gallery": [
+    "tabla-rosquillas-criollas.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "Chocolate untable",
+    "Queso crema",
+    "Mermelada de tu elección",
+    "Queso",
+    "Fruta",
+    "Chips de chocolate",
+    "Rosquillas"
+  ],
+  "instructions": [
+    "Paso 1: En una tabla sirve en diferentes recipientes el chocolate, el queso crema, la mermelada, el queso, la fruta y los chips de chocolate.",
+    "Paso 2: Coloca las rosquillas al centro",
+    "Paso 3: Toma una rosquilla y vierte tu acompañamiento favorito.Y, comienza a disfrutar."
+  ],
+  "brand": ["delrancho"]
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2025-09-11",
+  "id": "veggie-sticks-with-taqueritos-chile-toreado",
+  "slug": "veggie-sticks-with-taqueritos-chile-toreado",
+  "title": "Veggie Sticks with Taqueritos Chile Toreado",
+  "people": "9",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/rajitas-con-taqueritos-chile-toreado.webp",
+  "gallery": [
+    "rajitas-con-taqueritos-chile-toreado.webp"
+  ],
+  "type": "image",
+  "preparation_time": 10,
+  "ingredients": [
+    "1 green mango.",
+    "1 red apple.",
+    "1 carrot.",
+    "1 cucumber.",
+    "1 bag of Taqueritos Chile Toreado."
+  ],
+  "instructions": [
+    "Step 1. Cut the fruits and vegetables into strips.",
+    "Step 2. Crush the Taqueritos into a powder and coat the fruits and vegetables with it.",
+    "Step 3. Add lime juice to taste and serve."
+  ],
+  "brand": ["taqueritos"]
+}

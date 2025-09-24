@@ -1,32 +1,50 @@
 ---
+import LazyImage from '../common/LazyImage.astro';
+import { getLocale } from '../../i18n/i18n';
+
 // src/components/recipes/RecipeMonth.astro
-// Tailwind-based implementation of the Figma "Card receta del mes" layout.
+// Card for the featured (month) recipe, mirroring RecipeCard info
+
 const img = "http://localhost:3845/assets/7f12ea1300756f144a0fb5daaf68dbfc01103a46.png";
 const iconClock = "http://localhost:3845/assets/ec510c8a0b15fad2fc34a5a245a1a8759af63dca.svg";
 const iconUser = "http://localhost:3845/assets/285559b3901d540669c149968de4119eebbb0e8a.svg";
 const iconSliders = "http://localhost:3845/assets/f5a5f32a5e7a47401ab45fb8cf78723c27eb6559e.svg";
 
 export interface Props {
-  title?: string;
+  id?: string;
+  title?: string; // section title (e.g., La receta del mes)
   recipeTitle?: string;
   time?: string;
-  servings?: string;
+  servings?: number; // align with RecipeCard where servings is number
   level?: string;
   image?: string;
+  slug?: string;
 }
 
+const currentLocale = getLocale();
 const {
-  title = 'La receta del mes',
+  id = '',
+  title = undefined,
   recipeTitle = 'Título de la receta',
-  time = '40 Mins',
-  servings = '3 Personas',
-  level = 'Avanzado',
+  time = '---',
+  servings = 0,
+  level = '---',
   image = img,
+  slug
 }: Props = Astro.props;
+const titleSlug = String(recipeTitle || '')
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+const recipeLink = `/${currentLocale}/${currentLocale === 'es' ? 'recetas' : 'recipes'}/${slug ?? titleSlug ?? id}`;
+const sectionTitle = title ?? (currentLocale === 'es' ? 'La receta del mes' : 'Recipe of the month');
+
 ---
 
 <div class="bg-[#faf1e9] rounded-[40px] p-10 flex flex-col gap-9 items-center w-full">
-  <h3 class="text-[#00306f] text-[40px] leading-[40px] font-title font-bold w-full">{title}</h3>
+  <h3 class="text-[#00306f] text-[40px] leading-[40px] font-title font-bold w-full">{sectionTitle}</h3>
 
   <div
     class="w-full h-[360px] bg-center bg-cover bg-no-repeat rounded-lg overflow-hidden"
@@ -41,22 +59,20 @@ const {
 
       <div class="flex flex-wrap gap-4 text-[#202e6b] text-[16px]">
         <div class="flex items-center gap-1 whitespace-nowrap">
-          <img src={iconClock} alt="Tiempo" class="w-4 h-4" />
+          <svg class="w-4 h-4 text-[#202e6b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           <span class="text-[16px]">{time}</span>
         </div>
 
-        <div class="flex items-center gap-1 whitespace-nowrap">
-          <img src={iconUser} alt="Porciones" class="w-4 h-4" />
-          <span class="text-[16px]">{servings}</span>
-        </div>
+        
 
-        <div class="flex items-center gap-1 whitespace-nowrap">
-          <img src={iconSliders} alt="Nivel" class="w-4 h-4" />
-          <span class="text-[16px]">{level}</span>
-        </div>
+      
       </div>
     </div>
 
-    <button class="bg-[#00306f] text-white text-[20px] leading-[24px]  rounded-full px-8 py-3 transition-colors duration-200 hover:bg-[#52A4E0]">Ver receta</button>
+    <a href={recipeLink} class="bg-[#00306f] text-white text-[20px] leading-[24px]  rounded-full px-8 py-3 transition-colors duration-200 hover:bg-[#52A4E0]">
+      {currentLocale === 'es' ? 'Ver receta' : 'View recipe'}
+    </a>
   </div>
 </div>

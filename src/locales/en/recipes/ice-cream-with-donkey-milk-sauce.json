@@ -1,0 +1,27 @@
+{
+  "date": "2025-09-11",
+  "id": "ice-cream-with-donkey-milk-sauce",
+  "slug": "ice-cream-with-donkey-milk-sauce",
+  "title": "Ice Cream with Donkey Milk Sauce",
+  "people": "9",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/salsa-de-leche-de-burra.webp",
+  "gallery": [
+    "salsa-de-leche-de-burra.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "Ice cream of your choice.",
+    "Wafer cones.",
+    "Donkey milk sauce."
+  ],
+  "instructions": [
+    "Step 1. Prepare the donkey milk sauce.",
+    "Step 2. Serve the ice cream in a wafer cone.",
+    "Step 3. Drizzle with the sauce and enjoy."
+  ],
+  "brand": [
+    "xixi"
+  ]
+}

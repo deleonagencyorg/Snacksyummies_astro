@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-11",
+  "id": "tacos-barbacoa-horneados",
+  "slug": "tacos-barbacoa-horneados",
+  "title": "Tacos Barbacoa Horneados",
+  "people": "2",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tacos-barbacoa-horneados.webp",
+  "gallery": [
+    "tacos-barbacoa-horneados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "4 huevos batidos",
+    "Sal y pimienta al gusto",
+    "1 cucharada de mantequilla",
+    "½ taza de queso rallado de tu elección",
+    "Taco BARBACOA",
+    "Cebollín picado"
+  ],
+  "instructions": [
+    "Paso 1: Calienta en un sartén antiadherente a fuego medio. Agrega mantequilla, cuando se derrita vierte los huevos batidos.",
+    "Paso 2: Deja cocer un poco los huevos y sobre un recipiente adicional viértelos. Agrega el queso, sal y pimienta, y mézclalo.",
+    "Paso 3: Por último, agrega Taco de Barbacoa junto con el Cebollín picado.",
+    "Paso 4: Hornéalo por 15 minutos y sírvelo."
+  ],
+  "brand": ["taco"]
+}

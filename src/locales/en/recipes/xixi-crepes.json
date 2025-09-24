@@ -1,0 +1,30 @@
+{
+  "date": "2025-09-11",
+  "id": "xixi-crepes",
+  "slug": "xixi-crepes",
+  "title": "XIXI Crepes",
+  "people": "6",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/crepas-xixi.webp",
+  "gallery": [
+    "crepas-xixi.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "2 cups regular wheat flour.",
+    "2 tablespoons sugar.",
+    "6 eggs.",
+    "1 teaspoon vanilla.",
+    "3 cups milk.",
+    "4 tablespoons yellow butter or oil."
+  ],
+  "instructions": [
+    "Step 1. Place the flour, eggs, sugar, vanilla, and 1 cup of milk in a large bowl.",
+    "Step 2. Use a hand whisk, electric mixer, or blender to combine all ingredients until you get a smooth batter.",
+    "Step 3. Add the remaining 2 cups of milk and the butter or oil, mixing until the batter is lump-free.",
+    "Step 4. In the pan you will use for the crepes, melt the butter over low heat and pour the necessary amount to cook each crepe.",
+    "Step 5. Fill each crepe with the fruit of your choice and diced Xixi."
+  ],
+  "brand": ["xixi"]
+}

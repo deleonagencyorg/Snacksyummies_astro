@@ -1,0 +1,25 @@
+{
+  "date": "2025-09-11",
+  "id": "take-out-a-la-cappy",
+  "slug": "take-out-a-la-cappy",
+  "title": "Take out a la Cappy",
+  "people": "2",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/take-out-a-la-cappy.webp",
+  "gallery": [
+    "take-out-a-la-cappy.webp"
+  ],
+  "type": "image",
+  "preparation_time": 5,
+  "ingredients": [
+    "1 pizza de Take Out de tu elección",
+    "Salsa Ranch",
+    "Cappy Chile Toreado"
+  ],
+  "instructions": [
+    "Paso 1: Elige una pizza Take Out de tu elección.",
+    "Paso 2: Colócale Cappy Chile Toreado alrededor.",
+    "Paso 3: Deja caerle Salsa Ranch a la pizza. Y, disfruta."
+  ],
+  "brand": ["cappy"]
+}
