@@ -3,8 +3,8 @@
 import { getLocale } from '../../../i18n/i18n';
 import './styles.css';
 import RecipeCard from '../../../components/recipes/RecipeCard.astro';
-import RelatedRecipesCarousel from '../../../components/recipes/RelatedRecipesCarousel.astro';
 import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
+import RelatedRecipesCarousel from '../../../components/recipes/RelatedRecipesCarousel.astro';
 import LazyImage from '../../../components/common/LazyImage.astro';
 import { div } from 'framer-motion/m';
 import ShareModal from '../../../components/common/ShareModal.astro';
@@ -91,6 +91,15 @@ function formatTime(minutes: number): string {
 <!-- Main Container with Blue Gradient Background -->
 <div class="bg-gradient-to-r from-blue-400 to-blue-500 py-12 min-h-screen">
   <div class="max-w-7xl mx-auto px-4">
+    <!-- Breadcrumbs -->
+    <Breadcrumb 
+      items={[
+        { label: 'Home', href: `/${currentLang}` },
+        { label: currentLang === 'es' ? 'Recetas' : 'Recipes', href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}` },
+        { label: recipe.title, href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}/${recipe.slug ?? recipe.id}` }
+      ]}
+      textColor="text-white"
+    />
     
     <!-- Recipe Title -->
     <div class="text-left mb-8">

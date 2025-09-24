@@ -28,7 +28,7 @@ const { recipeTitle, time, image, id, servings, difficulty, slug }: Props = Astr
     </h2>
   </div>
 
-  <!-- Brands Carousel -->
+  <!-- Brands: Horizontal slider (all breakpoints) -->
   <div class="w-full max-w-7xl mx-auto px-4">
     <div class="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide pb-4 px-4 md:px-8" style="scroll-snap-type: x mandatory;">
       <!-- All Brands Button -->
@@ -41,7 +41,7 @@ const { recipeTitle, time, image, id, servings, difficulty, slug }: Props = Astr
           {currentLang === 'es' ? 'TODAS' : 'ALL'}
         </span>
       </div>
-      
+
       {brands.map((brand: any) => (
         <div 
           class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer" 

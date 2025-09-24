@@ -7,6 +7,7 @@ import './styles.css';
 import RecipeCard from '../../components/recipes/RecipeCard.astro';
 import Categories from '../../components/recipes/Categories.astro';
 import LazyImage from '../../components/common/LazyImage.astro';
+import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import banner from '../../assets/Banner recetas animado.png';
 import group from '../../assets/Group 40.png';
 interface Recipe {
@@ -66,6 +67,15 @@ const featuredSlug = featured?.slug ?? '';
     class="group-image"
   />
 </div>
+
+<!-- Breadcrumbs -->
+<Breadcrumb 
+  items={[
+    { label: 'Home', href: `/${currentLang}` },
+    { label: currentLang === 'es' ? 'Recetas' : 'Recipes', href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}` },
+  ]}
+  textColor="text-white"
+/>
 
 <!-- Categories Section -->
 <Categories 
