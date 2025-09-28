@@ -1,67 +1,79 @@
 ---
 // src/components/recipes/Categories.astro
-import { t } from '../../i18n/i18n';
-import type { Locale } from '../../i18n/i18n';
-import { getLocale } from '../../i18n/i18n';
-import RecipeMonth from './RecipeMonth.astro';
+import { getLocale, t } from '../../i18n/i18n';
+
+export interface CategoryItem {
+  label: string;
+  slug: string;
+  logo?: string;
+  bgColor?: string;
+}
 
 export interface Props {
-  recipeTitle?: string;
-  time?: string;
-  image?: string;
-  id?: string;
-  servings?: number;
-  difficulty?: string;
-  slug?: string;
+  title?: string;
+  items?: CategoryItem[];
+  allLabel?: string;
+  queryKey?: string; // e.g. 'brand'
+  baseHref?: string; // defaults to current path
+  active?: string | null; // active slug
+  showArrows?: boolean;
 }
 
 const currentLang = getLocale();
-const brands = t('brands', { namespace: 'brands', locale: currentLang });
-const { recipeTitle, time, image, id, servings, difficulty, slug }: Props = Astro.props;
+const {
+  title = currentLang === 'es' ? 'Recetas con tus marcas favoritas' : 'Recipes with your favorite brands',
+  items = t('brands', { namespace: 'brands', locale: currentLang }) as unknown as CategoryItem[],
+  allLabel = currentLang === 'es' ? 'TODAS' : 'ALL',
+  queryKey = 'brand',
+  baseHref = Astro.url.pathname,
+  active = null,
+  showArrows = true,
+}: Props = Astro.props;
 ---
 
-<div class="content-stretch flex flex-col gap-8 items-center justify-start w-full bg-gradient-to-r from-blue-400 to-blue-500 py-12">
+<div class="content-stretch flex flex-col gap-8 items-center justify-start w-full py-12">
   <!-- Header Title -->
   <div class="text-center">
     <h2 class="text-white text-2xl md:text-4xl font-bold font-['Trois_Mille_TRIAL_Bold'] leading-10">
-     {currentLang === 'es' ? 'Recetas con tus marcas favoritas' : 'Recipes with your favorite brands'}
+      {title}
     </h2>
   </div>
 
-  <!-- Brands: Horizontal slider (all breakpoints) -->
-  <div class="w-full max-w-7xl mx-auto px-4">
-    <div class="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide pb-4 px-4 md:px-8" style="scroll-snap-type: x mandatory;">
-      <!-- All Brands Button -->
-      <div 
-        class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 active opacity-100" 
-        style="scroll-snap-align: center; --brand-color: #4B5563;"
-        data-brand="all"
-      >
-        <span class="text-white font-bold text-xs md:text-sm text-center px-2">
-          {currentLang === 'es' ? 'TODAS' : 'ALL'}
-        </span>
-      </div>
+  <!-- Generic Categories Slider -->
+  <div class="w-full max-w-7xl mx-auto px-4 relative" data-query-key={queryKey}>
+    {showArrows && (
+      <>
+        <button class="nav-btn left-2 md:left-4" type="button" aria-label="Prev" data-dir="-1">‹</button>
+        <button class="nav-btn right-2 md:right-4" type="button" aria-label="Next" data-dir="1">›</button>
+      </>
+    )}
 
-      {brands.map((brand: any) => (
-        <div 
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer" 
-          style={`scroll-snap-align: center; background-color: ${brand.bgColor}; --brand-color: ${brand.bgColor};`}
-          data-brand={brand.slug}
+    <div id="cat-scroll" class="flex gap-6 md:gap-8 overflow-x-auto scrollbar-hide pb-4 px-4 md:px-8" style="scroll-snap-type: x mandatory;">
+      <!-- All Button -->
+      <a
+        href={`${baseHref}?${queryKey}=all`}
+        class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+        style="scroll-snap-align: center; --brand-color: #4B5563;"
+        data-slug="all"
+      >
+        <span class="text-white font-bold text-xs md:text-sm text-center px-2">{allLabel}</span>
+      </a>
+
+      {items.map((it: CategoryItem) => (
+        <a
+          href={`${baseHref}?${queryKey}=${it.slug}`}
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+          style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
+          data-slug={it.slug}
         >
-          <img 
-            src={brand.logo} 
-            alt={brand.title}
-            class="w-16 h-16 md:w-20 md:h-20 object-contain rounded-full"
-            loading="lazy"
-          />
-        </div>
+          {it.logo ? (
+            <img src={it.logo} alt={it.label} class="w-16 h-16 md:w-20 md:h-20 object-contain rounded-full" loading="lazy" />
+          ) : (
+            <span class="text-white font-bold text-xs md:text-sm text-center px-2">{it.label}</span>
+          )}
+        </a>
       ))}
     </div>
-  </div>
-
-  <!-- Recipe of the Month -->
-  <div class="w-full max-w-5xl px-5">
-    <RecipeMonth recipeTitle={recipeTitle} time={time} image={image} id={id} slug={slug} servings={servings} level={difficulty} />
   </div>
 </div>
 
@@ -106,6 +118,8 @@ const { recipeTitle, time, image, id, servings, difficulty, slug }: Props = Astr
   .brand-card:not(.active) {
     opacity: 0.6;
   }
+  /* When "all" is selected, keep all items fully visible */
+  .all-active .brand-card { opacity: 1 !important; }
 
   /* Prevent clipping at the edges of the horizontal scroller */
   .scrollbar-hide > .brand-filter-btn:first-child {
@@ -114,37 +128,94 @@ const { recipeTitle, time, image, id, servings, difficulty, slug }: Props = Astr
   .scrollbar-hide > .brand-filter-btn:last-child {
     margin-right: 0.5rem; /* 8px */
   }
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255,255,255,0.9);
+    color: #111827;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    display: grid;
+    place-items: center;
+    font-size: 1.25rem;
+    line-height: 1;
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.2);
+  }
+  @media (max-width: 768px) {
+    .nav-btn { display: none; }
+  }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const brandFilterBtns = document.querySelectorAll('.brand-filter-btn');
-    
-    brandFilterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const selectedBrand = btn.getAttribute('data-brand');
-        
-        // Update active state
-        brandFilterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        // Dispatch custom event to communicate with recipes component
-        const filterEvent = new CustomEvent('brandFilterChange', {
-          detail: { brand: selectedBrand },
-          bubbles: true
-        });
-        
-        document.dispatchEvent(filterEvent);
-        
-        // Smooth scroll to recipes section
-        const recipesSection = document.querySelector('#recipes-grid');
-        if (recipesSection) {
-          recipesSection.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-          });
+  function initialize(){
+    const container = document.getElementById('cat-scroll');
+    if (!container) return;
+    const buttons = Array.from(document.querySelectorAll('.brand-filter-btn')) as HTMLElement[];
+
+    // Determine active from URL or server-provided prop (embedded as data-active on wrapper via vite replace below)
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
+    // Prefer explicit queryKey from server through data attribute when available
+    const wrapper = container.parentElement as HTMLElement;
+    const qKey = wrapper?.getAttribute('data-query-key') || 'brand';
+    const activeSlugFromUrl = params.get(qKey) || 'all';
+
+    // Visual state: if "all" -> show all fully visible and only mark the ALL pill as active
+    const allBtn = buttons.find(b => b.getAttribute('data-slug') === 'all');
+    if (activeSlugFromUrl === 'all') {
+      wrapper.classList.add('all-active');
+      buttons.forEach((el)=> el.classList.remove('active'));
+      if (allBtn) allBtn.classList.add('active');
+    } else {
+      wrapper.classList.remove('all-active');
+      buttons.forEach((el)=>{
+        const slug = el.getAttribute('data-slug');
+        if (slug === activeSlugFromUrl) el.classList.add('active');
+        else el.classList.remove('active');
+      });
+    }
+
+    // Arrow nav
+    document.querySelectorAll('.nav-btn').forEach((btn)=>{
+      btn.addEventListener('click', ()=>{
+        const dir = Number((btn as HTMLElement).getAttribute('data-dir') || '1');
+        container.scrollBy({ left: dir * 220, behavior: 'smooth' });
+      });
+    });
+
+    // Backward compatibility: dispatch brandFilterChange when qKey is 'brand'
+    buttons.forEach((btn)=>{
+      btn.addEventListener('click', (e)=>{
+        const slug = btn.getAttribute('data-slug') || 'all';
+        // Update visual state immediately for better UX
+        if (slug === 'all') {
+          wrapper.classList.add('all-active');
+          buttons.forEach((el)=> el.classList.remove('active'));
+          btn.classList.add('active');
+        } else {
+          wrapper.classList.remove('all-active');
+          buttons.forEach((el)=> el.classList.remove('active'));
+          btn.classList.add('active');
+        }
+        // Dispatch event for backward compatibility
+        if (qKey === 'brand') {
+          // prevent full navigation; update URL and filter in place
+          e.preventDefault();
+          const u = new URL(window.location.href);
+          u.searchParams.set(qKey, slug);
+          history.pushState({}, '', u.toString());
+          const evt = new CustomEvent('brandFilterChange', { detail: { brand: slug }, bubbles: true });
+          document.dispatchEvent(evt);
+          const grid = document.querySelector('#recipes-grid');
+          if (grid) (grid as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', initialize);
+  window.addEventListener('astro:page-load', initialize);
 </script>

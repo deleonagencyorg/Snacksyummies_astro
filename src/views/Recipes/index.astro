@@ -6,6 +6,7 @@ import { getLocale } from '../../i18n/i18n';
 import './styles.css';
 import RecipeCard from '../../components/recipes/RecipeCard.astro';
 import Categories from '../../components/recipes/Categories.astro';
+import RecipeMonth from '../../components/recipes/RecipeMonth.astro';
 import LazyImage from '../../components/common/LazyImage.astro';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import banner from '../../assets/Banner recetas animado.png';
@@ -69,38 +70,37 @@ const featuredSlug = featured?.slug ?? '';
 </div>
 
 <!-- Breadcrumbs -->
-<Breadcrumb 
+
+
+<div class="-mt-10 pt-12 pb-16 overflow-hidden" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgrecipes2.webp'); background-position: top center;">
+
+  <div class="container mx-auto px-4 mt-12 bg-transparent">
+    <Breadcrumb 
   items={[
     { label: 'Home', href: `/${currentLang}` },
     { label: currentLang === 'es' ? 'Recetas' : 'Recipes', href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}` },
   ]}
-  textColor="text-white"
+  textColor="text-white "
+ 
 />
 
-<!-- Categories Section -->
-<Categories 
-  recipeTitle={featuredTitle} 
-  time={featuredTime} 
-  image={featuredImage} 
-  id={featuredId}
-  servings={featuredServings}
-  difficulty={featuredDifficulty}
-  slug={featuredSlug}
-/>
+<!-- Categories Section (reusable slider) -->
+<Categories />
 
-<div class="bg-gradient-to-r from-blue-400 to-blue-500 py-12">
-
-  <div class="container mx-auto px-4 mt-12">
+<!-- Recipe of the Month -->
+<div class="w-full max-w-5xl px-5 mx-auto bg-white rounded-3xl ">
+  <RecipeMonth transparent={true} recipeTitle={featuredTitle} time={featuredTime} image={featuredImage} id={featuredId} slug={featuredSlug} servings={featuredServings} level={featuredDifficulty} />
+  </div>
 
     {allRecipes.length === 0 ? (
       <p class="text-center text-white">{t('page.no_recipes', { namespace: 'recipes' })}</p>
     ) : (
-      <div class="max-w-[1028px] mx-auto flex flex-col gap-14 items-center">
+      <div class="max-w-[1028px] mx-auto flex flex-col gap-14 items-center ">
         <!-- Title -->
         {(() => {
           const allTitle = currentLang === 'es' ? 'Todas las recetas' : 'All recipes';
           return (
-            <h2 class="text-white font-title text-[40px] font-bold leading-[40px] text-center w-full">
+            <h2 class="text-white font-title text-[40px] font-bold leading-[40px] text-center w-full mt-12">
               {allTitle}
             </h2>
           );
@@ -208,88 +208,96 @@ const featuredSlug = featured?.slug ?? '';
 </style>
 
 <script>
-  // This script runs only on the client side
-  document.addEventListener('DOMContentLoaded', () => {
-    // Fallback image handling
+  // Ensure the page initializes both on first load and after Astro client-side navigations (language switch)
+  function initializeRecipesPage() {
+    // Guard: if the grid is already initialized on this DOM, skip
+    const grid = document.getElementById('recipes-grid');
+    if (!grid || (grid as any)._initialized) return;
+
+    // Mark as initialized to prevent duplicate bindings on the same DOM
+    (grid as any)._initialized = true;
+
+    // Fallback image handling (bind on each page load to catch new images)
     const images = document.querySelectorAll('img');
-    images.forEach(img => {
-      img.addEventListener('error', function() {
+    images.forEach((img) => {
+      // To avoid stacking multiple error handlers across navigations, reset by cloning
+      const newImg = img.cloneNode(true) as HTMLImageElement;
+      newImg.addEventListener('error', function () {
         this.src = '/images/recipes/placeholder.jpg';
       });
+      if (img.parentNode) img.parentNode.replaceChild(newImg, img);
     });
 
-    // Brand filtering and infinite scroll functionality
-    const grid = document.getElementById('recipes-grid');
     const loadMoreBtn = document.getElementById('load-more-btn');
     const loadMoreText = document.getElementById('load-more-text');
     const loadingText = document.getElementById('loading-text');
     const noMoreRecipes = document.getElementById('no-more-recipes');
-    
+
     if (!grid || !loadMoreBtn || !loadMoreText || !loadingText || !noMoreRecipes) return;
 
     const itemsPerPage = parseInt(grid.dataset.itemsPerPage || '6');
     const totalRecipes = parseInt(grid.dataset.totalRecipes || '0');
     let loadedCount = parseInt(grid.dataset.loadedCount || itemsPerPage.toString());
     let currentBrandFilter = 'all';
-    
+
     // Get current language from URL
     const currentLang = window.location.pathname.includes('/es/') ? 'es' : 'en';
-    
+
     // Get all recipe items
     const allRecipeItems = Array.from(grid.querySelectorAll('.recipe-item'));
-    
+
     // Filter recipes by brand
     function getFilteredRecipes(brand: string) {
       if (brand === 'all') {
         return allRecipeItems;
       }
-      return allRecipeItems.filter(item => {
+      return allRecipeItems.filter((item) => {
         const recipeBrand = item.getAttribute('data-brand');
         return recipeBrand === brand;
       });
     }
-    
+
     // Reset and apply brand filter
     function applyBrandFilter(brand: string) {
       currentBrandFilter = brand;
       const filteredRecipes = getFilteredRecipes(brand);
-      
+
       // Hide all recipes first
-      allRecipeItems.forEach(item => {
+      allRecipeItems.forEach((item) => {
         item.classList.add('hidden');
         item.classList.remove('block');
       });
-      
+
       // Show filtered recipes (up to itemsPerPage)
       const recipesToShow = filteredRecipes.slice(0, itemsPerPage);
-      recipesToShow.forEach(item => {
+      recipesToShow.forEach((item) => {
         item.classList.remove('hidden');
         item.classList.add('block');
       });
-      
+
       // Update counters
       loadedCount = recipesToShow.length;
       if (grid) grid.dataset.loadedCount = loadedCount.toString();
-      
+
       // Update load more button visibility
       if (filteredRecipes.length <= itemsPerPage) {
-        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+        if (loadMoreBtn) (loadMoreBtn as HTMLElement).style.display = 'none';
         if (filteredRecipes.length === 0) {
           if (noMoreRecipes) {
             noMoreRecipes.classList.remove('hidden');
-            noMoreRecipes.textContent = currentLang === 'es' 
-              ? 'No hay recetas para esta marca' 
+            noMoreRecipes.textContent = currentLang === 'es'
+              ? 'No hay recetas para esta marca'
               : 'No recipes for this brand';
           }
         } else {
           if (noMoreRecipes) noMoreRecipes.classList.add('hidden');
         }
       } else {
-        if (loadMoreBtn) loadMoreBtn.style.display = 'block';
+        if (loadMoreBtn) (loadMoreBtn as HTMLElement).style.display = 'block';
         if (noMoreRecipes) noMoreRecipes.classList.add('hidden');
       }
     }
-    
+
     // Listen for brand filter changes
     document.addEventListener('brandFilterChange', (event) => {
       const customEvent = event as CustomEvent;
@@ -297,59 +305,76 @@ const featuredSlug = featured?.slug ?? '';
       applyBrandFilter(selectedBrand);
     });
 
-    loadMoreBtn.addEventListener('click', () => {
+    // To avoid stacking multiple click handlers in some transition edge-cases,
+    // replace the button with a clone before binding
+    const loadMoreBtnCloned = loadMoreBtn.cloneNode(true) as HTMLElement;
+    loadMoreBtn.parentNode?.replaceChild(loadMoreBtnCloned, loadMoreBtn);
+
+    loadMoreBtnCloned.addEventListener('click', () => {
       // Show loading state
       loadMoreText.classList.add('hidden');
       loadingText.classList.remove('hidden');
-      (loadMoreBtn as HTMLButtonElement).disabled = true;
-      loadMoreBtn.classList.add('opacity-75', 'cursor-not-allowed');
+      (loadMoreBtnCloned as HTMLButtonElement).disabled = true;
+      loadMoreBtnCloned.classList.add('opacity-75', 'cursor-not-allowed');
 
       // Simulate loading delay for better UX
       setTimeout(() => {
         const filteredRecipes = getFilteredRecipes(currentBrandFilter);
         const nextBatch = Math.min(itemsPerPage, filteredRecipes.length - loadedCount);
-        
+
         // Show next batch of filtered recipes
         const recipesToShow = filteredRecipes.slice(loadedCount, loadedCount + nextBatch);
         recipesToShow.forEach((recipeItem, index) => {
           const htmlElement = recipeItem as HTMLElement;
           htmlElement.classList.remove('hidden');
           htmlElement.classList.add('block');
-          
+
           // Add fade-in animation
           htmlElement.style.opacity = '0';
           htmlElement.style.transform = 'translateY(20px)';
           htmlElement.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          
+
           setTimeout(() => {
             htmlElement.style.opacity = '1';
             htmlElement.style.transform = 'translateY(0)';
           }, index * 100); // Staggered animation
         });
-        
+
         loadedCount += nextBatch;
         grid.dataset.loadedCount = loadedCount.toString();
-        
+
         // Reset button state
         loadMoreText.classList.remove('hidden');
         loadingText.classList.add('hidden');
-        (loadMoreBtn as HTMLButtonElement).disabled = false;
-        loadMoreBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-        
+        (loadMoreBtnCloned as HTMLButtonElement).disabled = false;
+        loadMoreBtnCloned.classList.remove('opacity-75', 'cursor-not-allowed');
+
         // Check if all filtered recipes are loaded
         if (loadedCount >= filteredRecipes.length) {
-          if (loadMoreBtn) loadMoreBtn.style.display = 'none';
+          (loadMoreBtnCloned as HTMLElement).style.display = 'none';
           if (noMoreRecipes) {
             noMoreRecipes.classList.remove('hidden');
-            noMoreRecipes.textContent = currentLang === 'es' 
-              ? 'No hay más recetas para mostrar' 
+            noMoreRecipes.textContent = currentLang === 'es'
+              ? 'No hay más recetas para mostrar'
               : 'No more recipes to show';
           }
         }
       }, 800); // 800ms loading delay
     });
-    
-    // Initialize with 'all' filter
-    applyBrandFilter('all');
-  });
+
+    // Initialize with URL brand param if present
+    const initialBrand = new URL(window.location.href).searchParams.get('brand') || 'all';
+    applyBrandFilter(initialBrand);
+
+    // Keep in sync with browser navigation
+    window.addEventListener('popstate', () => {
+      const b = new URL(window.location.href).searchParams.get('brand') || 'all';
+      applyBrandFilter(b);
+    });
+  }
+
+  // Run on first page load
+  document.addEventListener('DOMContentLoaded', initializeRecipesPage);
+  // Run after Astro client-side navigations (e.g., language switch)
+  window.addEventListener('astro:page-load', initializeRecipesPage);
 </script>

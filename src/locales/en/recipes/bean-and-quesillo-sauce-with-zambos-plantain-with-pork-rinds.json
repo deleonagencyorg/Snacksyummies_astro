@@ -1,30 +1,29 @@
 {
-  "date": "2025-09-16",
-  "id": "bean-and-quesillo-sauce-with-zambos-plantain-with-pork-rinds",
-  "slug": "bean-and-quesillo-sauce-with-zambos-plantain-with-pork-rinds",
-  "title": "Bean and Quesillo Sauce with Zambos Plantain with Pork Rinds",
-  "people": "2",
-  "difficulty": "Easy",
-  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/anafres-de-frijoles-con-quesillo-y-zambos-platano-con-chicharron.webp",
-  "gallery": [
-    "anafres-de-frijoles-con-quesillo-y-zambos-platano-con-chicharron.webp"
-  ],
-  "type": "image",
-  "preparation_time": 30,
-  "ingredients": [
+      "date": "2025-09-16",
+      "id": "bean-and-quesillo-sauce-with-zambos-plantain-with-pork-rinds",
+      "slug": "bean-and-quesillo-sauce-with-zambos-plantain-with-pork-rinds",
+      "title": "Bean and Quesillo Sauce with Zambos Plantain with Pork Rinds",
+      "people": "2",
+      "difficulty": "Easy",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/anafres-zambos-platanos-con-chicharron.webp",
+      "gallery": [
+         "anafres-zambos-platanos-con-chicharron.webp"
+      ],      
+      "type":"image",
+      "preparation_time":30,
+      "ingredients": [
     "1 cup of water",
     "2 cups of blended beans",
     "1 packet of Creole Sofrito",
     "1/4 cup of quesillo sauce",
     "1 bag of Zambos Plantain with Pork Rinds"
-  ],
-  "instructions": [
-    "Step 1. In a pot, place the cup of water and bring to a boil. Add the blended beans. Stir well.",
-    "Step 2. Add the Creole Sofrito and mix.",
-    "Step 3. Continue adding the quesillo sauce and stir gently until well combined.",
-    "Step 4. Serve with the Zambos Plantain with Pork Rinds. And enjoy!"
-  ],
-  "brand": [
-    "zambo"
-  ]
-}
+      ],
+      "instructions": [
+        "Step 1. In a pot, place the cup of water and bring to a boil. Add the blended beans. Stir well.",
+        "Step 2. Add the Creole Sofrito and mix.",
+        "Step 3. Continue adding the quesillo sauce and stir gently until well combined.",
+        "Step 4. Serve with the Zambos Plantain with Pork Rinds. And enjoy!"
+      ],
+      "brand": ["zambo"]
+    }
+

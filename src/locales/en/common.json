@@ -168,6 +168,11 @@
       "text": "Brands",
       "href": "/en/brands"
     },
+    {
+      "id": "recipes",
+      "text": "Recipes",
+      "href": "/en/recipes"
+    },
     
     {
       "id": "blog",

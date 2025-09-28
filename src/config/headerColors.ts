@@ -74,8 +74,8 @@ export const headerColors: HeaderColors = {
   
   // Configuración para la página de recetas
   recipes: {
-    textColor: 'text-primary',
-    backgroundColor: 'bg-white',
+    textColor: 'text-white',
+    backgroundColor: 'bg-tertiary',
     hoverTextColor: 'hover:text-primary',
     hoverBackgroundColor: 'hover:bg-primary',
     showMessageCarousel: false,
