@@ -89,7 +89,7 @@ for (const path in recipeModules) {
     allRecipes.push(mod.default);
   }
 }
-const topRecipes = allRecipes.slice(0, 4);
+const topRecipes = allRecipes.slice(0, 12);
 const listingPath = `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}`;
 
 
@@ -236,29 +236,47 @@ const slides = Array.isArray(commonAssets)
       </div>
     </section>
 
-    <!-- Sección de recetas: activada -->
+    <!-- Sección de recetas: Slider -->
     <section id="recipes" class="w-full py-12" transition:animate="slide">
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl md:text-6xl font-title font-semibold text-center md:text-left text-white mb-8">
+        <h2 class="text-4xl md:text-6xl font-title font-semibold text-center text-white mb-8">
           {currentLang === 'es' ? 'Recetas' : 'Recipes'}
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {topRecipes.map((recipe: RecipeItem) => (
-            <RecipeCard
-              image={recipe.image || '/images/recipes/placeholder.jpg'}
-              title={recipe.title}
-              time={`${recipe.preparation_time}MIN`}
-              id={recipe.id}
-              slug={recipe.slug}
-              textColor="text-white"
-              iconColor="text-white"
-            />
-          ))}
-        </div>
-        <div class="flex justify-center md:justify-end mt-8">
-          <a href={listingPath} class="px-6 py-3 bg-white text-blue-700 font-semibold rounded-full shadow hover:shadow-md">
-            {currentLang === 'es' ? 'Ver todas' : 'View all'}
-          </a>
+
+        <!-- Slider wrapper -->
+        <div class="relative max-w-6xl mx-auto">
+          <!-- Slides viewport -->
+          <div id="recipes-viewport" class="overflow-hidden rounded-2xl">
+            <div id="recipes-track" class="flex gap-12 transition-transform duration-500 ease-out" style="will-change: transform;">
+              {topRecipes.map((recipe: RecipeItem) => (
+                <div class="flex-shrink-0 box-border">
+                  <RecipeCard
+                    image={recipe.image || '/images/recipes/placeholder.jpg'}
+                    title={recipe.title}
+                    time={`${recipe.preparation_time}MIN`}
+                    id={recipe.id}
+                    slug={recipe.slug}
+                    textColor="text-white"
+                    iconColor="text-white"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Controls: centered, white -->
+          <div class="flex items-center justify-center gap-4 mt-6">
+            <button id="recipes-prev" class="w-10 h-10 rounded-full bg-white text-blue-700 font-bold grid place-items-center shadow hover:shadow-md" aria-label="Previous">‹</button>
+            <div id="recipes-dots" class="flex items-center gap-2"></div>
+            <button id="recipes-next" class="w-10 h-10 rounded-full bg-white text-blue-700 font-bold grid place-items-center shadow hover:shadow-md" aria-label="Next">›</button>
+          </div>
+
+          <!-- View all centered -->
+          <div class="flex justify-center mt-8">
+            <a href={listingPath} class="px-6 py-3 bg-white text-blue-700 font-semibold rounded-full shadow hover:shadow-md">
+              {currentLang === 'es' ? 'Ver todas' : 'View all'}
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -276,7 +294,7 @@ const slides = Array.isArray(commonAssets)
     <div class="md:flex md:items-center md:justify-between mt-[2rem]md:mt-[0rem] ">
       <div id="logosbrands" class="md:w-1/2 flex flex-col px-4 md:px-0 items-center justify-center md:order-2 ">
         <div class="grid grid-cols-4 md:grid-cols-4 gap-6">
-          {brands.map((brand, index) => (
+          {brands.map((brand: any, index: number) => (
             <div 
               class="logo-brand flex items-center justify-center cursor-pointer hover:scale-130 transition-all border-4 border-transparent hover:border-opacity-50 focus:border-opacity-50 shadow-md hover:shadow-xl"
               style={{ backgroundColor: brand.bgColor }}
@@ -563,27 +581,69 @@ const slides = Array.isArray(commonAssets)
         
     
     </div>
-  </section> -->
+    </section> -->
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const iframe = entry.target.querySelector('iframe');
-              if (iframe) {
-                iframe.src = iframe.dataset.src;
-                iframe.classList.remove('hidden');
-                entry.target.querySelector('.spotify-skeleton').remove();
-                observer.unobserve(entry.target);
-              }
-            }
+      // Simple slider for recipes
+      function initRecipesSlider(){
+        const viewport = document.getElementById('recipes-viewport');
+        const track = document.getElementById('recipes-track');
+        const prev = document.getElementById('recipes-prev');
+        const next = document.getElementById('recipes-next');
+        const dotsContainer = document.getElementById('recipes-dots');
+        if (!viewport || !track || !prev || !next || !dotsContainer) return;
+
+        const slides = Array.from(track.children);
+        let currentPage = 0;
+        let slidesPerView = 1;
+        let totalPages = 1;
+
+        // Create dots
+        function buildDots(){
+          dotsContainer.innerHTML = '';
+          for(let i=0;i<totalPages;i++){
+            const dot = document.createElement('button');
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-white/60 hover:bg-white transition-colors';
+            dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+          }
+        }
+
+        function updateDots() {
+          dotsContainer.querySelectorAll('button').forEach((el, idx) => {
+            el.style.opacity = idx === currentPage ? '1' : '0.6';
+            el.style.width = idx === currentPage ? '12px' : '10px';
+            el.style.height = idx === currentPage ? '12px' : '10px';
           });
-        }, { rootMargin: '200px' });
+        }
 
-        document.querySelectorAll('#spotify > div > div').forEach(container => {
-          observer.observe(container);
-        });
-      });
-    </script>
+        function goTo(pageIndex) {
+          currentPage = (pageIndex + totalPages) % totalPages;
+          const width = viewport.clientWidth;
+          track.style.transform = `translateX(${-currentPage * width}px)`;
+          updateDots();
+        }
 
-  </main>
+        function onResize() {
+          // Determine slides per view by breakpoint - max 3 per slide
+          const vw = window.innerWidth;
+          slidesPerView = vw >= 1024 ? 3 : vw >= 640 ? 2 : 1;
+          const styles = getComputedStyle(track);
+          const gapStr = styles.columnGap || styles.gap || '0';
+          const gapPx = parseFloat(gapStr) || 0;
+          const totalGap = gapPx * (slidesPerView - 1);
+          const slideWidth = (viewport.clientWidth - totalGap) / slidesPerView;
+          slides.forEach((slide) => (slide).style.width = `${slideWidth}px`);
+          totalPages = Math.max(1, Math.ceil(slides.length / slidesPerView));
+          buildDots();
+          goTo(currentPage);
+        }
+
+        prev.addEventListener('click', () => goTo(currentPage - 1));
+        next.addEventListener('click', () => goTo(currentPage + 1));
+        window.addEventListener('resize', onResize);
+        onResize();
+      }
+
+      document.addEventListener('DOMContentLoaded', initRecipesSlider);
+      window.addEventListener('astro:page-load', initRecipesSlider);
