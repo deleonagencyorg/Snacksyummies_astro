@@ -1,0 +1,61 @@
+---
+import { t } from '../../i18n/i18n';
+import type { Locale } from '../../i18n/i18n';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'recipe';
+  schemaData?: Record<string, any>;
+}
+
+const { 
+  title = 'Snacks Yummies',
+  description = 'Delicious snacks from Central America',
+  canonicalUrl = Astro.url.href,
+  image = 'https://snack.yummiespromociones.com/snacksyummies/og-image.jpg',
+  type = 'website',
+  schemaData = {}
+} = Astro.props;
+
+const currentLang = Astro.url.pathname.split('/')[1] as Locale || 'es';
+const siteName = t('site.name', { locale: currentLang }) || 'Snacks Yummies';
+---
+
+<!-- Primary Meta Tags -->
+<title>{title} | {siteName}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content={siteName} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+<!-- Language Alternates -->
+<link rel="alternate" hreflang="es" href={`${Astro.site}es${Astro.url.pathname.slice(3)}`} />
+<link rel="alternate" hreflang="en" href={`${Astro.site}en${Astro.url.pathname.slice(3)}`} />
+<link rel="alternate" hreflang="x-default" href={Astro.site} />
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{type === 'recipe' ? 'Recipe' : 'WebSite'}",
+    "name": "{title}",
+    "description": "{description}",
+    "url": "{canonicalUrl}",
+    ...schemaData
+  }
+</script>
