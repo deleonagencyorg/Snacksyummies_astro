@@ -30,6 +30,13 @@
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp"
                 },
                 {
+                    "id": "zibas-chile-toreado",
+                    "slug": "zibas-chile-toreado",
+                    "title": "Zibas Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp"
+                },
+                {
                     "id": "taqueritos-queso-fusion",
                     "slug": "taqueritos-queso-fusion",
                     "title": "Taqueritos Queso Fusion",
