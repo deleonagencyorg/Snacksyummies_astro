@@ -1,21 +1,37 @@
 ---
-// src/pages/[lang]/recipes/[recipeId].astro (SSR)
+// src/pages/[lang]/recipes/[recipeId].astro
 import { setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
 
-export const prerender = false; // SSR to allow redirect when recipe is missing in current language
+// Volvemos a usar SSR para que funcione como antes
+export const prerender = false;
 
 const { lang, recipeId } = Astro.params;
 setLocale(lang as Locale);
 
 function slugify(str: string): string {
-  return String(str || '')
-    .toLowerCase()
+  if (!str) return '';
+  
+  // Normalizar caracteres especiales primero
+  let text = String(str)
     .normalize('NFD')
+    .toLowerCase()
+    // Reemplazar caracteres acentuados
     .replace(/[\u0300-\u036f]/g, '')
+    // Reemplazar ñ con n
+    .replace(/\u00f1/g, 'n')
+    // Reemplazar espacios y caracteres especiales con guiones
     .replace(/[^a-z0-9]+/g, '-')
+    // Eliminar guiones al principio y al final
     .replace(/^-+|-+$/g, '');
+    
+  // Eliminar palabras comunes para acortar slugs
+  const commonWords = ['con', 'de', 'del', 'la', 'el', 'los', 'las', 'and', 'with', 'the', 'of', 'y'];
+  let parts = text.split('-');
+  parts = parts.filter(part => !commonWords.includes(part));
+  
+  return parts.join('-');
 }
 
 // Load recipes for current language
@@ -28,13 +44,71 @@ for (const p in modules) {
   if (recLang === lang) all.push(rec);
 }
 
-const exists = all.some((r) => r.id === recipeId || r.slug === recipeId || slugify(r.title || '') === recipeId);
+// Búsqueda exacta
+let exists = all.some((r) => r.id === recipeId || r.slug === recipeId || slugify(r.title || '') === recipeId);
+
+// Si no encontramos la receta, intentamos búsqueda flexible
+if (!exists) {
+  // Caso especial para anafres
+  if (recipeId.includes('anafres')) {
+    exists = all.some(r => r.id.includes('anafres') || (r.slug && r.slug.includes('anafres')));
+  } else {
+    // Búsqueda por palabras clave
+    const keywords = recipeId.split('-').filter(k => k.length > 3);
+    if (keywords.length > 0) {
+      exists = all.some(r => {
+        const idWords = r.id.split('-');
+        const slugWords = r.slug ? r.slug.split('-') : [];
+        const titleWords = slugify(r.title || '').split('-');
+        
+        // Verificar si hay suficientes palabras clave en común
+        const matchCount = keywords.filter(k => 
+          idWords.includes(k) || slugWords.includes(k) || titleWords.includes(k)
+        ).length;
+        
+        // Si hay al menos 3 palabras clave en común o más del 70% de coincidencia
+        return matchCount >= 3 || (matchCount / keywords.length) > 0.7;
+      });
+    }
+  }
+}
+
+// Si aún no encontramos la receta, redirigir a la lista
 if (!exists) {
   const listing = `/${lang}/${lang === 'es' ? 'recetas' : 'recipes'}`;
   return Astro.redirect(listing);
 }
+
+// Buscar la receta actual con la misma lógica flexible
+let recipe = all.find((r) => r.id === recipeId || r.slug === recipeId || slugify(r.title || '') === recipeId);
+
+// Si no encontramos la receta, intentamos búsqueda flexible
+if (!recipe) {
+  // Caso especial para anafres
+  if (recipeId.includes('anafres')) {
+    recipe = all.find(r => r.id.includes('anafres') || (r.slug && r.slug.includes('anafres')));
+  } else {
+    // Búsqueda por palabras clave
+    const keywords = recipeId.split('-').filter(k => k.length > 3);
+    if (keywords.length > 0) {
+      recipe = all.find(r => {
+        const idWords = r.id.split('-');
+        const slugWords = r.slug ? r.slug.split('-') : [];
+        const titleWords = slugify(r.title || '').split('-');
+        
+        // Verificar si hay suficientes palabras clave en común
+        const matchCount = keywords.filter(k => 
+          idWords.includes(k) || slugWords.includes(k) || titleWords.includes(k)
+        ).length;
+        
+        // Si hay al menos 3 palabras clave en común o más del 70% de coincidencia
+        return matchCount >= 3 || (matchCount / keywords.length) > 0.7;
+      });
+    }
+  }
+}
 ---
 
-<MainLayout title={''}>
-  <RecipeDetail currentLang={lang} recipeId={recipeId} />
+<MainLayout title={recipe?.title || ''}>
+  <RecipeDetail currentLang={lang} recipeId={recipeId} recipe={recipe} />
 </MainLayout>

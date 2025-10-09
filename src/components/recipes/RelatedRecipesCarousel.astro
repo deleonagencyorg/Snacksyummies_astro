@@ -33,7 +33,7 @@ const currentLang = getLocale();
           {items.map((recipe) => (
             <div class="w-[360px] flex-shrink-0">
               <RecipeCard
-                image={recipe.image || '/images/recipes/placeholder.jpg'}
+                image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
                 title={recipe.title}
                 time={`${recipe.preparation_time}MIN`}
                 id={recipe.id}
@@ -60,7 +60,7 @@ const currentLang = getLocale();
           {items.map((recipe) => (
             <div class="w-[85%] flex-shrink-0">
               <RecipeCard
-                image={recipe.image || '/images/recipes/placeholder.jpg'}
+                image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
                 title={recipe.title}
                 time={`${recipe.preparation_time}MIN`}
                 id={recipe.id}

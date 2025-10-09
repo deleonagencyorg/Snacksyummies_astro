@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { detectLocale } from '../../services/geoService';
 
+export const prerender = true;
+
 export const GET: APIRoute = async ({ request }) => {
   try {
     const { locale, ip, country } = detectLocale(request);

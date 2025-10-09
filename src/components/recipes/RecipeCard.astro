@@ -27,6 +27,67 @@ const {
 } = Astro.props;
 
 const currentLocale = getLocale();
+
+// Función avanzada para corregir problemas de codificación en títulos
+function normalizeTitle(input: string): string {
+  if (!input) return '';
+  
+  // Primero normalizamos a NFC para unificar caracteres compuestos
+  let text = input.normalize('NFC');
+  
+  // Método directo para casos específicos
+  text = text
+    // Vocales minúsculas con acento
+    .replace(/Ã¡/g, 'á')
+    .replace(/Ã©/g, 'é')
+    .replace(/Ã­/g, 'í')
+    .replace(/Ã³/g, 'ó')
+    .replace(/Ãº/g, 'ú')
+    // Vocales mayúsculas con acento
+    .replace(/Ã/g, 'Á')
+    .replace(/Ã‰/g, 'É')
+    .replace(/Ã/g, 'Í')
+    .replace(/Ã"/g, 'Ó')
+    .replace(/Ãš/g, 'Ú')
+    // Ñ y caracteres especiales
+    .replace(/Ã±/g, 'ñ')
+    .replace(/Ã'/g, 'Ñ')
+    .replace(/Â/g, '')
+    // Casos específicos observados
+    .replace(/manÃ/g, 'maní')
+    .replace(/japonÃ©s/g, 'japonés')
+    .replace(/PlÃ¡tano/g, 'Plátano')
+    .replace(/MaÃ­z/g, 'Maíz')
+    .replace(/PÃ¡caros/g, 'Pícaros')
+    .replace(/PÃ­caros/g, 'Pícaros')
+    .replace(/JalapeÃ±o/g, 'Jalapeño')
+    .replace(/ChicharrÃ³n/g, 'Chicharrón')
+    .replace(/FusiÃ³n/g, 'Fusión')
+    .replace(/ClÃ¡sicas/g, 'Clásicas')
+    .replace(/Ã³n/g, 'ón');
+  
+  // Intento de decodificación UTF-8 si aún detectamos patrones de mojibake
+  if (/Ã|Â/.test(text)) {
+    try {
+      // Reinterpreta como UTF-8 bytes
+      const bytes = new Uint8Array(Array.from(text).map(c => c.charCodeAt(0) & 0xff));
+      const decoded = new TextDecoder('utf-8').decode(bytes);
+      if (decoded && !/Ã|Â/.test(decoded)) {
+        text = decoded;
+      }
+    } catch (e) {
+      // Si falla, mantenemos el texto con los reemplazos ya aplicados
+    }
+  }
+  
+  // Limpieza final de espacios y caracteres invisibles
+  text = text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim();
+  
+  // Normalizar nuevamente para asegurar consistencia
+  return text.normalize('NFC');
+}
+
+const safeTitle = normalizeTitle(String(title || ''));
 const titleSlug = String(title || '')
   .toLowerCase()
   .normalize('NFD')
@@ -37,7 +98,7 @@ const recipeLink = `/${currentLocale}/${currentLocale === 'es' ? 'recetas' : 're
 const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
 ---
 
-<div class="flex flex-col items-start justify-start w-[19.75rem] h-[28.75rem] group">
+<div class="flex flex-col items-start justify-start w-full sm:w-[19.75rem] h-[28.75rem] group">
   <div class="bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 w-full h-full flex flex-col relative">
     <a href={recipeLink} class="h-full flex flex-col relative">
       <!-- Default State Layout (matching Figma) -->
@@ -46,7 +107,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
         <div class="aspect-square w-full overflow-hidden rounded-t-[40px]">
           <LazyImage
             src={image}
-            alt={title}
+            alt={safeTitle}
             class="w-full h-full object-cover transition-transform duration-300"
             transition:name={`recipe-image-${id}`}
           />
@@ -57,7 +118,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
           <!-- Recipe Title -->
           <div class="flex flex-col gap-1 items-start justify-center w-full">
             <h3 class="text-[#00306F] font-title text-lg leading-5 w-full">
-              {title}
+              {safeTitle}
             </h3>
           </div>
           
@@ -78,7 +139,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
       <div class="hidden group-hover:block w-full h-full relative overflow-hidden rounded-[40px]">
         <LazyImage
           src={image}
-          alt={title}
+          alt={safeTitle}
           class="w-full h-full object-cover transition-transform duration-300"
           transition:name={`recipe-image-${id}`}
         />
@@ -93,7 +154,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
             <!-- Recipe Title -->
             <div class="flex flex-col gap-1">
               <h3 class="font-title text-lg leading-5 text-white">
-                {title}
+                {safeTitle}
               </h3>
               
               <!-- Rating Stars -->

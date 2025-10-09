@@ -45,28 +45,32 @@ for (const path in recipeModules) {
 const featured = allRecipes[0];
 const featuredTitle = featured?.title ?? '';
 const featuredTime = featured ? `${featured.preparation_time}MIN` : '';
-const featuredImage = featured?.image || '/images/recipes/placeholder.jpg';
+const featuredImage = featured?.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
 const featuredId = featured?.id ?? '';
 const featuredServings = (featured as any)?.servings ?? 0;
 const featuredDifficulty = (featured as any)?.difficulty ?? '---';
 const featuredSlug = featured?.slug ?? '';
 
 ---
-<div id="hero" class="relative w-full aspect-[4/3] md:h-[32rem] overflow-hidden" transition:animate="fade">
-  <LazyImage 
-    src={banner.src} 
-    alt="Recipes Banner" 
-    class="absolute inset-0 w-full h-full object-fill"
-    width={banner.width}
-    height={banner.height}
-  />
-
-  <!-- Overlay group image: slides in from right and stays aligned to the right on the banner -->
-  <LazyImage
-    src={group.src}
-    alt="Group overlay"
-    class="group-image"
-  />
+<div id="hero" class="relative w-full aspect-[4/3] md:h-[32rem] overflow-hidden bg-cover bg-top" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/banerrecipes.jpg');" transition:animate="fade">
+  <div class="w-full md:w-[90%] mx-auto px-4 h-full">
+    <div class="flex flex-col md:flex-row items-center justify-center gap-6 h-full">
+      <div id="textshero" class="w-1/2 flex justify-center md:justify-start text-center md:text-left">
+        <div class="w-full">
+          <h1 class="text-[#FDC300] font-sans text-6xl font-bold  text-center w-full mt-12 leading-[10px]">{currentLang === 'es' ? 'Le damos' : 'Give'}</h1> 
+          <h1 class="text-white font-title text-8xl font-bold  text-center w-full mt-12 leading-[80px]">{currentLang === 'es' ? 'SABOR' : 'Flavor'}</h1> 
+          <h1 class="text-[#FDC300] font-sans text-6xl font-bold  text-center w-full mt-12 leading-[10px]">{currentLang === 'es' ? 'A LA VIDA' : 'To Life'}</h1> 
+        </div>
+      </div>
+      <div class="w-1/2 flex justify-center">
+        <LazyImage
+          src={group.src}
+          alt="Group overlay"
+          class="w-full h-auto"
+        />
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Breadcrumbs -->
@@ -114,7 +118,7 @@ const featuredSlug = featured?.slug ?? '';
           return (
             <div>
               <div class="w-full">
-                <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="flex flex-wrap gap-10 justify-center">
+                <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 place-items-center">
                   {allRecipes.map((recipe: any, index: number) => {
                     const isVisible = index < itemsPerPage;
                     return (
@@ -124,7 +128,7 @@ const featuredSlug = featured?.slug ?? '';
                         class={`recipe-item ${isVisible ? 'block' : 'hidden'}`}
                       >
                         <RecipeCard
-                          image={recipe.image || '/images/recipes/placeholder.jpg'}
+                          image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
                           title={recipe.title}
                           time={`${recipe.preparation_time}MIN`}
                           id={recipe.id}
@@ -212,10 +216,7 @@ const featuredSlug = featured?.slug ?? '';
   function initializeRecipesPage() {
     // Guard: if the grid is already initialized on this DOM, skip
     const grid = document.getElementById('recipes-grid');
-    if (!grid || (grid as any)._initialized) return;
-
-    // Mark as initialized to prevent duplicate bindings on the same DOM
-    (grid as any)._initialized = true;
+    if (!grid) return;
 
     // Fallback image handling (bind on each page load to catch new images)
     const images = document.querySelectorAll('img');
@@ -223,7 +224,7 @@ const featuredSlug = featured?.slug ?? '';
       // To avoid stacking multiple error handlers across navigations, reset by cloning
       const newImg = img.cloneNode(true) as HTMLImageElement;
       newImg.addEventListener('error', function () {
-        this.src = '/images/recipes/placeholder.jpg';
+        this.src = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
       });
       if (img.parentNode) img.parentNode.replaceChild(newImg, img);
     });
@@ -281,7 +282,7 @@ const featuredSlug = featured?.slug ?? '';
 
       // Update load more button visibility
       if (filteredRecipes.length <= itemsPerPage) {
-        if (loadMoreBtn) (loadMoreBtn as HTMLElement).style.display = 'none';
+        if (loadMoreBtn) loadMoreBtn.style.display = 'none';
         if (filteredRecipes.length === 0) {
           if (noMoreRecipes) {
             noMoreRecipes.classList.remove('hidden');
@@ -293,7 +294,7 @@ const featuredSlug = featured?.slug ?? '';
           if (noMoreRecipes) noMoreRecipes.classList.add('hidden');
         }
       } else {
-        if (loadMoreBtn) (loadMoreBtn as HTMLElement).style.display = 'block';
+        if (loadMoreBtn) loadMoreBtn.style.display = 'block';
         if (noMoreRecipes) noMoreRecipes.classList.add('hidden');
       }
     }
@@ -305,17 +306,13 @@ const featuredSlug = featured?.slug ?? '';
       applyBrandFilter(selectedBrand);
     });
 
-    // To avoid stacking multiple click handlers in some transition edge-cases,
-    // replace the button with a clone before binding
-    const loadMoreBtnCloned = loadMoreBtn.cloneNode(true) as HTMLElement;
-    loadMoreBtn.parentNode?.replaceChild(loadMoreBtnCloned, loadMoreBtn);
-
-    loadMoreBtnCloned.addEventListener('click', () => {
+    // Attach click handler directly to the button
+    loadMoreBtn.addEventListener('click', function() {
       // Show loading state
-      loadMoreText.classList.add('hidden');
-      loadingText.classList.remove('hidden');
-      (loadMoreBtnCloned as HTMLButtonElement).disabled = true;
-      loadMoreBtnCloned.classList.add('opacity-75', 'cursor-not-allowed');
+      if (loadMoreText) loadMoreText.classList.add('hidden');
+      if (loadingText) loadingText.classList.remove('hidden');
+      loadMoreBtn.disabled = true;
+      loadMoreBtn.classList.add('opacity-75', 'cursor-not-allowed');
 
       // Simulate loading delay for better UX
       setTimeout(() => {
@@ -344,14 +341,14 @@ const featuredSlug = featured?.slug ?? '';
         grid.dataset.loadedCount = loadedCount.toString();
 
         // Reset button state
-        loadMoreText.classList.remove('hidden');
-        loadingText.classList.add('hidden');
-        (loadMoreBtnCloned as HTMLButtonElement).disabled = false;
-        loadMoreBtnCloned.classList.remove('opacity-75', 'cursor-not-allowed');
+        if (loadMoreText) loadMoreText.classList.remove('hidden');
+        if (loadingText) loadingText.classList.add('hidden');
+        loadMoreBtn.disabled = false;
+        loadMoreBtn.classList.remove('opacity-75', 'cursor-not-allowed');
 
         // Check if all filtered recipes are loaded
         if (loadedCount >= filteredRecipes.length) {
-          (loadMoreBtnCloned as HTMLElement).style.display = 'none';
+          loadMoreBtn.style.display = 'none';
           if (noMoreRecipes) {
             noMoreRecipes.classList.remove('hidden');
             noMoreRecipes.textContent = currentLang === 'es'

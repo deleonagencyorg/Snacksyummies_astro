@@ -23,9 +23,80 @@ interface RecipeItem {
   product_image?: string;
 }
 
-const { currentLang, recipeId } = Astro.props;
+// Recibimos los parámetros de la página
+const { currentLang, recipeId, recipe: propRecipe } = Astro.props;
 
-// Import all recipe files with static glob and filter by language
+// Helper to slugify titles with improved handling (solo para URLs)
+function slugify(str: string): string {
+  if (!str) return '';
+  
+  // Normalizar caracteres especiales primero
+  let text = str
+    .normalize('NFD')
+    .toLowerCase()
+    // Reemplazar caracteres acentuados
+    .replace(/[\u0300-\u036f]/g, '')
+    // Reemplazar ñ con n
+    .replace(/\u00f1/g, 'n')
+    // Reemplazar espacios y caracteres especiales con guiones
+    .replace(/[^a-z0-9]+/g, '-')
+    // Eliminar guiones al principio y al final
+    .replace(/^-+|-+$/g, '');
+    
+  // Eliminar palabras comunes para acortar slugs
+  const commonWords = ['con', 'de', 'del', 'la', 'el', 'los', 'las', 'and', 'with', 'the', 'of', 'y'];
+  let parts = text.split('-');
+  parts = parts.filter(part => !commonWords.includes(part));
+  
+  return parts.join('-');
+}
+
+// Función para normalizar títulos con acentos (para mostrar al usuario)
+function normalizeTitle(input: string): string {
+  if (!input) return '';
+
+  // Primero normalizamos a NFC para unificar caracteres compuestos
+  let text = input.normalize('NFC');
+
+  // Método directo para casos específicos
+  text = text
+    // Vocales minúsculas con acento
+    .replace(/Ã¡/g, 'á')
+    .replace(/Ã©/g, 'é')
+    .replace(/Ã­/g, 'í')
+    .replace(/Ã³/g, 'ó')
+    .replace(/Ãº/g, 'ú')
+    // Vocales mayúsculas con acento
+    .replace(/Ã/g, 'Á')
+    .replace(/Ã‰/g, 'É')
+    .replace(/Ã/g, 'Í')
+    .replace(/Ã"/g, 'Ó')
+    .replace(/Ãš/g, 'Ú')
+    // Ñ y caracteres especiales
+    .replace(/Ã±/g, 'ñ')
+    .replace(/Ã'/g, 'Ñ')
+    .replace(/Â/g, '')
+    // Casos específicos observados
+    .replace(/manÃ/g, 'maní')
+    .replace(/japonÃ©s/g, 'japonés')
+    .replace(/PlÃ¡tano/g, 'Plátano')
+    .replace(/MaÃ­z/g, 'Maíz')
+    .replace(/PÃ¡caros/g, 'Pícaros')
+    .replace(/PÃ­caros/g, 'Pícaros')
+    .replace(/JalapeÃ±o/g, 'Jalapeño')
+    .replace(/ChicharrÃ³n/g, 'Chicharrón')
+    .replace(/FusiÃ³n/g, 'Fusión')
+    .replace(/ClÃ¡sicas/g, 'Clásicas')
+    .replace(/Ã³n/g, 'ón');
+
+  // Limpieza final de espacios y caracteres invisibles
+  text = text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim();
+
+  // Normalizar nuevamente para asegurar consistencia
+  return text.normalize('NFC');
+}
+
+// Import all recipe files with static glob and filter by language for related recipes
 const recipeModules = import.meta.glob<{ default: RecipeItem }>("../../../locales/*/recipes/*.json");
 const allRecipes: RecipeItem[] = [];
 for (const path in recipeModules) {
@@ -36,35 +107,90 @@ for (const path in recipeModules) {
   }
 }
 
-// Helper to slugify titles
-function slugify(str: string): string {
-  return str
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+// Buscar la receta si no viene como prop con búsqueda mejorada
+let currentRecipe = propRecipe;
+if (!currentRecipe) {
+  // Búsqueda exacta
+  currentRecipe = allRecipes.find((r) => 
+    r.id === recipeId || 
+    r.slug === recipeId || 
+    slugify(r.title || '') === recipeId
+  );
+  
+  // Si no encontramos la receta, intentamos búsqueda flexible
+  if (!currentRecipe) {
+    // Caso especial para anafres
+    if (recipeId.includes('anafres')) {
+      currentRecipe = allRecipes.find(r => r.id.includes('anafres') || (r.slug && r.slug.includes('anafres')));
+    } else {
+      // Búsqueda por palabras clave
+      const keywords = recipeId.split('-').filter(k => k.length > 3);
+      if (keywords.length > 0) {
+        currentRecipe = allRecipes.find(r => {
+          const idWords = r.id.split('-');
+          const slugWords = r.slug ? r.slug.split('-') : [];
+          const titleWords = slugify(r.title || '').split('-');
+          
+          // Verificar si hay suficientes palabras clave en común
+          const matchCount = keywords.filter(k => 
+            idWords.includes(k) || slugWords.includes(k) || titleWords.includes(k)
+          ).length;
+          
+          // Si hay al menos 3 palabras clave en común o más del 70% de coincidencia
+          return matchCount >= 3 || (matchCount / keywords.length) > 0.7;
+        });
+      }
+    }
+  }
 }
 
-// Find current recipe (by id, slug or slugified title)
-const recipe = allRecipes.find((item: RecipeItem) => {
-  if (item.id === recipeId) return true;
-  if (item.slug && item.slug === recipeId) return true;
-  const titleSlug = slugify(item.title || '');
-  return titleSlug === recipeId;
-});
+// Fallback recipe in case the requested one is not found
+const fallbackRecipe: RecipeItem = {
+  id: 'fallback',
+  title: currentLang === 'es' ? 'Receta no encontrada' : 'Recipe not found',
+  description: '',
+  ingredients: [],
+  instructions: [],
+  preparation_time: 0,
+  servings: 0,
+  image: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'
+};
+
+// Use the recipe or fallback
+let safeRecipe = currentRecipe || fallbackRecipe;
+
+// Normalizar el título para mostrar correctamente los acentos
+if (safeRecipe && safeRecipe.title) {
+  safeRecipe = {
+    ...safeRecipe,
+    title: normalizeTitle(safeRecipe.title)
+  };
+}
+
+// Normalizar ingredientes e instrucciones
+if (safeRecipe && safeRecipe.ingredients && safeRecipe.ingredients.length > 0) {
+  safeRecipe.ingredients = safeRecipe.ingredients.map(ingredient => normalizeTitle(ingredient));
+}
+
+if (safeRecipe && safeRecipe.instructions && safeRecipe.instructions.length > 0) {
+  safeRecipe.instructions = safeRecipe.instructions.map(instruction => normalizeTitle(instruction));
+}
 
 // Get related recipes (filter current and limit to 3)
 const relatedRecipes = allRecipes
   .filter((item: RecipeItem) => {
+    if (!item || !item.id) return false;
     const titleSlug = slugify(item.title || '');
     return item.id !== recipeId && item.slug !== recipeId && titleSlug !== recipeId;
   })
-  .slice(0, 3);
-
-if (!recipe) {
-  throw new Error(`Recipe with id ${recipeId} not found`);
-}
+  .slice(0, 3)
+  .map(recipe => {
+    // Normalizar títulos de recetas relacionadas
+    return {
+      ...recipe,
+      title: normalizeTitle(recipe.title)
+    };
+  });
 
 // Load shared recipe assets (titles, labels etc)
 const recipesAssets = {
@@ -73,11 +199,11 @@ const recipesAssets = {
   related_recipes: currentLang === 'es' ? 'Recetas relacionadas' : 'Related recipes'
 };
 
-function formatTime(minutes: number): string {
+function formatTime(minutes: number, lang: string = currentLang): string {
   const hours = Math.floor(minutes / 60);
   const mins = minutes % 60;
   
-  if (currentLang === 'es') {
+  if (lang === 'es') {
     return hours > 0 
       ? `${hours}h ${mins}min` 
       : `${mins}min`;
@@ -96,7 +222,7 @@ function formatTime(minutes: number): string {
       items={[
         { label: 'Home', href: `/${currentLang}` },
         { label: currentLang === 'es' ? 'Recetas' : 'Recipes', href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}` },
-        { label: recipe.title, href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}/${recipe.slug ?? recipe.id}` }
+        { label: safeRecipe.title, href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}/${safeRecipe.slug ?? safeRecipe.id}` }
       ]}
       textColor="text-white"
     />
@@ -104,7 +230,7 @@ function formatTime(minutes: number): string {
     <!-- Recipe Title -->
     <div class="text-left mb-8">
       <h1 class="text-4xl md:text-5xl font-title font-bold text-primary mb-2 mt-8" style="font-weight: 700; line-height: 40px;">
-        {recipe.title}
+        {safeRecipe.title}
       </h1>
     </div>
 
@@ -112,17 +238,17 @@ function formatTime(minutes: number): string {
     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-lg mb-8">
       <div class="w-full self-stretch">
         <div class="rounded-2xl overflow-hidden w-full h-[35rem] self-stretch">
-          {recipe.image ? (
+          {safeRecipe.image ? (
             <LazyImage
-              src={recipe.image}
-              alt={recipe.title}
+              src={safeRecipe.image}
+              alt={safeRecipe.title}
               class="w-full h-full object-cover block"
-              onerror="this.onerror=null;this.src='/images/recipes/placeholder.jpg';"
-              transition:name={`recipe-image-${recipe.id}`}
+              onerror="this.onerror=null;this.src='https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';"
+              transition:name={`recipe-image-${safeRecipe.id}`}
             />
           ) : (
             <div class="w-full h-[25rem] bg-gray-200 flex items-center justify-center">
-              <span class="text-gray-500">{recipe.title}</span>
+              <span class="text-gray-500">{safeRecipe.title}</span>
             </div>
           )}
         </div>
@@ -138,7 +264,7 @@ function formatTime(minutes: number): string {
             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
           </svg>
           <span class="text-white text-xl font-sans" >
-            {recipe.servings} {currentLang === 'es' ? 'Personas' : 'Servings'}
+            {safeRecipe.servings} {currentLang === 'es' ? 'Personas' : 'Servings'}
           </span>
         </div>
 
@@ -148,7 +274,7 @@ function formatTime(minutes: number): string {
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
           <span class="text-white text-xl font-sans" >
-            {formatTime(recipe.preparation_time,currentLang)}
+            {formatTime(safeRecipe.preparation_time)}
           </span>
         </div>
 
@@ -158,7 +284,7 @@ function formatTime(minutes: number): string {
             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
           </svg>
           <span class="text-white text-xl font-sans" >
-            {recipe.difficulty || (currentLang === 'es' ? 'Avanzado' : 'Advanced')}
+            {safeRecipe.difficulty || (currentLang === 'es' ? 'Avanzado' : 'Advanced')}
           </span>
         </div>
 
@@ -182,7 +308,7 @@ function formatTime(minutes: number): string {
             {currentLang === 'es' ? 'Comparte en redes' : 'Share on social'}
           </span>
         </button>
-        <ShareModal id="recipeShareModal" url={Astro.url.toString()} title={recipe.title} description={recipe.description} />
+        <ShareModal id="recipeShareModal" url={Astro.url.toString()} title={safeRecipe.title} description={safeRecipe.description} />
       </div>
     </div>
     <!-- All Info Section - Figma "All Info" Layout -->
@@ -196,7 +322,7 @@ function formatTime(minutes: number): string {
           </h2>
           
           <ul class="flex flex-col gap-4">
-            {recipe.ingredients.map((ingredient: string) => (
+            {safeRecipe.ingredients.map((ingredient: string) => (
               <li class="flex items-start gap-3">
                 <div class="flex-shrink-0 mt-1">
                   <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -218,7 +344,7 @@ function formatTime(minutes: number): string {
           </h2>
           
           <ol class="flex flex-col gap-4">
-            {recipe.instructions.map((instruction: string, index: number) => (
+            {safeRecipe.instructions.map((instruction: string, index: number) => (
               <li class="flex items-start gap-3">
                 <div class="flex-shrink-0 mt-1">
                   <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
@@ -250,7 +376,7 @@ function formatTime(minutes: number): string {
       if (!img.hasAttribute('onerror')) {
         img.addEventListener('error', function(this: HTMLImageElement) {
           this.onerror = null;
-          this.src = '/images/recipes/placeholder.jpg';
+          this.src = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
         });
       }
     });
