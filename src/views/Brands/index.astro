@@ -9,6 +9,7 @@ import SkeletonLoader from '../../components/common/SkeletonLoader.astro';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
 import FloatingChip from '../../components/common/FloatingChip/index.astro';
+import Categories from '../../components/recipes/Categories.astro';
 import { fade } from 'astro:transitions';
 import './styles.css';
 
@@ -45,10 +46,16 @@ try {
 
 // Número de skeletons a mostrar durante la carga
 const skeletonCount = 3;
+
+// SSR brand filter from URL param to reduce initial DOM and respect no-JS
+const brandParam = Astro.url.searchParams.get('brand') || 'all';
+const filteredBrands = brandParam === 'all'
+  ? brandsData
+  : (brandsData || []).filter((b:any) => (b?.slug || b?.id) === brandParam);
 ---
 
 <div class="brands-container bg-white" transition:name="brands-container" transition:animate={fade({ duration: '0.5s' })}>
-  <div class="container mx-auto px-4  py-0">
+  <div class="container mx-auto px-4">
     <Breadcrumb 
       items={[
         { label: 'Home', href: `/${currentLang}` },
@@ -57,58 +64,29 @@ const skeletonCount = 3;
       textColor="text-primary"
     />
   </div>
-  <header class="brands-header text-center -mt-16 py-0" transition:name="brands-header" transition:animate={fade({ duration: '0.7s' })}>
-    <CrownTitle text={pageTitle} transition:name="brands-title" transition:animate={fade({ duration: '0.8s' })} />
+ </div>
     
-    <div class="brands-carousel-container relative w-full my-8" transition:name="brands-carousel" transition:animate={fade({ duration: '0.8s' })}>
-      <!-- Botones de navegación -->
-      <button class="carousel-nav carousel-prev absolute left-0 top-[60%] transform -translate-y-[200px] z-10 bg-white/80 rounded-full shadow-md w-12 h-12 flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      
-      <div class="brands-icons-carousel overflow-x-auto hide-scrollbar bg-white" transition:name="brands-icons" transition:animate={fade({ duration: '0.6s' })}>
-        {isLoading ? (
-          <div class="brands-icons-row flex items-center gap-4 py-4">
-            {Array(6).fill(0).map((_, i) => (
-              <div class="brand-icon-circle flex-shrink-0 bg-gray-100">
-                <SkeletonLoader width="64px" height="64px" circle={true} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div class="brands-icons-row flex items-center gap-4 py-4">
-            {brandsData.map((brand: any, index: number) => (
-              <a 
-                href={`#${brand.slug}`} 
-                class="brand-icon-circle flex-shrink-0" 
-                style={`background-color: ${brand.bgColor || '#ffffff'}`}
-                aria-label={`Ir a ${brand.title}`}
-                transition:name={`brand-icon-${brand.id}`}
-                transition:animate={fade({ duration: '0.5s' })}
-              >
-                <LazyImage
-                  src={brand.logo} 
-                  alt={brand.title} 
-                  class="w-16 md:w-32 h-16 md:h-32 object-contain"
-                />
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-      
-      <button class="carousel-nav carousel-next absolute right-0 top-[60%] transform -translate-y-1/2 z-10 bg-white/80 rounded-full shadow-md w-12 h-12 flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+  <header class="brands-header text-center" transition:name="brands-header" transition:animate={fade({ duration: '0.7s' })}>
+    <div>
+      <CrownTitle
+        title={currentLang === 'es' ? 'Marcas' : 'Brands'}
+        subtitle={currentLang === 'es' ? '' : ''}
+        transition:animate={fade({ duration: '0.8s' })}
+      />
+      <Categories 
+        title=""
+        items={brandsData}
+        allLabel={currentLang === 'es' ? 'TODAS' : 'ALL'}
+        queryKey="brand"
+        baseHref={Astro.url.pathname}
+        showArrows={true}
+        hideTitle={true}
+      />
     </div>
   </header>
 </div>
 
-<div class="container mx-auto px-4 mt-[-2rem]">
+<div class="container mx-auto px-4 mt-4">
   <div class="brands-list" transition:name="brands-list" transition:animate={fade({ duration: '0.6s' })}>
     {isLoading ? (
       // Mostrar skeletons durante la carga
@@ -124,10 +102,11 @@ const skeletonCount = 3;
       </div>
     ) : (
       // Mostrar datos reales cuando estén disponibles
-      brandsData.map((brand: any, index: number) => (
+      filteredBrands.map((brand: any, index: number) => (
         <div 
           id={brand.slug} 
-          class="brand-card relative flex items-center mt-[-4rem]"
+          data-brand={brand.slug}
+          class="brand-card relative flex items-center"
           transition:name={`brand-card-${brand.id}`}
           transition:animate={fade({ duration: '0.6s' })}
         >
@@ -325,6 +304,32 @@ const skeletonCount = 3;
   </div> 
 </div>
 </div>
+
+<script>
+  function initBrandsFilter(){
+    const list = document.querySelector('.brands-list');
+    if (!list) return;
+    const cards = Array.from(list.querySelectorAll('[data-brand]')) as HTMLElement[];
+    function apply(slug){
+      cards.forEach((el)=>{
+        const b = el.getAttribute('data-brand');
+        if (!slug || slug === 'all' || b === slug) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    }
+    const u = new URL(window.location.href);
+    apply(u.searchParams.get('brand') || 'all');
+    document.addEventListener('brandFilterChange', (ev)=>{
+      const slug = (ev as CustomEvent).detail.brand;
+      apply(slug);
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initBrandsFilter);
+  window.addEventListener('astro:page-load', initBrandsFilter);
+</script>
 
 <!-- Cargar scripts para la funcionalidad de la página -->
 <script src="./scripts.js"></script>

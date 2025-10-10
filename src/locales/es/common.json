@@ -175,6 +175,11 @@
       "href": "/es/marcas"
     },
     {
+      "id": "products",
+      "text": "Productos",
+      "href": "/es/productos"
+    },
+    {
       "id": "recipes",
       "text": "Recetas",
       "href": "/es/recetas"

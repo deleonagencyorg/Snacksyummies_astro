@@ -5,29 +5,29 @@ import MainLayout from '../../../layouts/MainLayout.astro';
 import ProductDetail from '../../../views/Products/Detail/index.astro';
 
 export function getStaticPaths() {
-  // Obtener todos los idiomas y productos disponibles
+  // Solo español para /productos
   const locales = ['es'];
-  const paths = [];
+  const paths: Array<any> = [];
 
   for (const locale of locales) {
-    // Obtener productos para este idioma
-    const products = t('items', { namespace: 'products', locale: locale as Locale }) || [];
-    console.log(`Encontrados ${products.length} productos para idioma ${locale}`);
-    
-    // Para cada producto, crear una ruta
-    for (const product of products) {
-      paths.push({
-        params: { lang: locale, productId: product.id },
-        props: { product, currentLang: locale }
-      });
+    const brands = (t('brands', { namespace: 'brands', locale: locale as Locale }) as any[]) || [];
+    let count = 0;
+    for (const brand of brands) {
+      if (brand?.products && Array.isArray(brand.products)) {
+        for (const p of brand.products) {
+          const param = p.slug || p.id;
+          if (!param) continue;
+          paths.push({ params: { lang: locale, productId: String(param) } });
+          count++;
+        }
+      }
     }
+    console.log(`Generadas ${count} rutas de productos desde brands para idioma ${locale}`);
   }
 
-  console.log(`Generadas ${paths.length} rutas de productos en español`);
   return paths;
 }
 
-const { product, currentLang } = Astro.props;
 const { lang, productId } = Astro.params;
 
 // Establecer el idioma para las traducciones
@@ -36,6 +36,6 @@ setLocale(lang as Locale);
 console.log(`Renderizando producto: ${productId} en idioma: ${lang}`);
 ---
 
-<MainLayout title={product.name}>
-  <ProductDetail currentLang={currentLang} productId={productId} />
+<MainLayout title={lang === 'es' ? 'Producto' : 'Product'}>
+  <ProductDetail productId={productId} />
 </MainLayout>

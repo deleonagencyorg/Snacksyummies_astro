@@ -54,15 +54,15 @@ const featuredSlug = featured?.slug ?? '';
 ---
 <div id="hero" class="relative w-full aspect-[4/3] md:h-[32rem] overflow-hidden bg-cover bg-top" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/banerrecipes.jpg');" transition:animate="fade">
   <div class="w-full md:w-[90%] mx-auto px-4 h-full">
-    <div class="flex flex-col md:flex-row items-center justify-center gap-6 h-full">
-      <div id="textshero" class="w-1/2 flex justify-center md:justify-start text-center md:text-left">
+    <div class="flex flex-col lg:flex-row items-center justify-center gap-6 h-full">
+      <div id="textshero" class="w-full lg:w-1/2 flex justify-center md:justify-start text-center md:text-left">
         <div class="w-full">
-          <h1 class="text-[#FDC300] font-sans text-6xl font-bold  text-center w-full mt-12 leading-[10px]">{currentLang === 'es' ? 'Le damos' : 'Give'}</h1> 
-          <h1 class="text-white font-title text-8xl font-bold  text-center w-full mt-12 leading-[80px]">{currentLang === 'es' ? 'SABOR' : 'Flavor'}</h1> 
-          <h1 class="text-[#FDC300] font-sans text-6xl font-bold  text-center w-full mt-12 leading-[10px]">{currentLang === 'es' ? 'A LA VIDA' : 'To Life'}</h1> 
+          <h1 class="text-[#FDC300] font-sans text-4xl md:text-6xl lg:text-6xl font-bold  text-center w-full mt-12 leading-[5px] md:leading-[10px] lg:leading-[30px]">{currentLang === 'es' ? 'Le damos' : 'Give'}</h1> 
+          <h1 class="text-white font-title text-6xl  md:text-8xl lg:text-9xl font-bold  text-center w-full mt-12 leading-[5px] md:leading-[10px] lg:leading-[30px]">{currentLang === 'es' ? 'SABOR' : 'Flavor'}</h1> 
+          <h1 class="text-[#FDC300] font-sans text-4xl md:text-6xl lg:text-6xl font-bold  text-center w-full mt-12 leading-[5px] md:leading-[10px] lg:leading-[30px]">{currentLang === 'es' ? 'A LA VIDA' : 'To Life'}</h1> 
         </div>
       </div>
-      <div class="w-1/2 flex justify-center">
+      <div class="w-full lg:w-1/2 flex justify-center">
         <LazyImage
           src={group.src}
           alt="Group overlay"
@@ -118,7 +118,7 @@ const featuredSlug = featured?.slug ?? '';
           return (
             <div>
               <div class="w-full">
-                <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 place-items-center">
+                <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 place-items-center">
                   {allRecipes.map((recipe: any, index: number) => {
                     const isVisible = index < itemsPerPage;
                     return (
