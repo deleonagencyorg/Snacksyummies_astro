@@ -121,10 +121,11 @@ const featuredSlug = featured?.slug ?? '';
                 <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 place-items-center">
                   {allRecipes.map((recipe: any, index: number) => {
                     const isVisible = index < itemsPerPage;
+                    const brandAttr = Array.isArray(recipe.brand) ? recipe.brand.join(',') : (recipe.brand || 'unknown');
                     return (
                       <div 
                         data-recipe-index={index} 
-                        data-brand={recipe.brand || 'unknown'}
+                        data-brand={brandAttr}
                         class={`recipe-item ${isVisible ? 'block' : 'hidden'}`}
                       >
                         <RecipeCard
@@ -212,11 +213,15 @@ const featuredSlug = featured?.slug ?? '';
 </style>
 
 <script>
-  // Ensure the page initializes both on first load and after Astro client-side navigations (language switch)
+  // Ensure the page initializes on first load and after Astro client-side navigations
   function initializeRecipesPage() {
+    console.log('[RECIPES] 🚀 Inicializando página de recetas');
     // Guard: if the grid is already initialized on this DOM, skip
     const grid = document.getElementById('recipes-grid');
-    if (!grid) return;
+    if (!grid) {
+      console.warn('[RECIPES] ⚠️ No se encontró #recipes-grid');
+      return;
+    }
 
     // Fallback image handling (bind on each page load to catch new images)
     const images = document.querySelectorAll('img');
@@ -246,6 +251,7 @@ const featuredSlug = featured?.slug ?? '';
 
     // Get all recipe items
     const allRecipeItems = Array.from(grid.querySelectorAll('.recipe-item'));
+    console.log('[RECIPES] 📦 Items de recetas encontrados:', allRecipeItems.length);
 
     // Filter recipes by brand
     function getFilteredRecipes(brand: string) {
@@ -253,28 +259,37 @@ const featuredSlug = featured?.slug ?? '';
         return allRecipeItems;
       }
       return allRecipeItems.filter((item) => {
-        const recipeBrand = item.getAttribute('data-brand');
-        return recipeBrand === brand;
+        const recipeBrandAttr = item.getAttribute('data-brand') || '';
+        // Support multiple brands: attribute may be like "taqueritos,zambos"
+        const brandList = recipeBrandAttr.split(',').map((s) => s.trim()).filter(Boolean);
+        return brandList.includes(brand);
       });
     }
 
     // Reset and apply brand filter
     function applyBrandFilter(brand: string) {
+      console.log('[RECIPES] 🔍 Aplicando filtro de marca:', brand);
       currentBrandFilter = brand;
       const filteredRecipes = getFilteredRecipes(brand);
+      console.log(`[RECIPES] 📦 Recetas filtradas: ${filteredRecipes.length} de ${allRecipeItems.length}`);
 
-      // Hide all recipes first
+      // Hide all recipes first (and remove Tailwind classes that use !important)
       allRecipeItems.forEach((item) => {
-        item.classList.add('hidden');
-        item.classList.remove('block');
+        const el = item as HTMLElement;
+        el.classList.remove('hidden');
+        el.classList.remove('block');
+        el.style.display = 'none';
       });
 
       // Show filtered recipes (up to itemsPerPage)
       const recipesToShow = filteredRecipes.slice(0, itemsPerPage);
       recipesToShow.forEach((item) => {
-        item.classList.remove('hidden');
-        item.classList.add('block');
+        const el = item as HTMLElement;
+        el.classList.remove('hidden');
+        el.classList.add('block');
+        el.style.display = 'block';
       });
+      console.log(`[RECIPES] ✅ Mostrando ${recipesToShow.length} recetas inicialmente`);
 
       // Update counters
       loadedCount = recipesToShow.length;
@@ -301,9 +316,30 @@ const featuredSlug = featured?.slug ?? '';
 
     // Listen for brand filter changes
     document.addEventListener('brandFilterChange', (event) => {
-      const customEvent = event as CustomEvent;
-      const selectedBrand = customEvent.detail.brand;
+      console.log('[RECIPES] 📡 Evento brandFilterChange recibido:', event?.detail);
+      // @ts-ignore
+      const selectedBrand = event?.detail?.brand || 'all';
+      try { sessionStorage.setItem('selectedBrand', selectedBrand); } catch {}
       applyBrandFilter(selectedBrand);
+    });
+
+    // Fallback: intercept direct clicks on category pills in case component event is not caught
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      // @ts-ignore
+      const btn = target?.closest?.('.brand-filter-btn');
+      if (!btn) return;
+      const slug = btn.getAttribute('data-slug') || 'all';
+      console.log('[RECIPES] 🖱️ Click fallback en botón de marca:', slug);
+      e.preventDefault();
+      const u = new URL(window.location.href);
+      u.searchParams.set('brand', slug);
+      history.pushState({}, '', u.toString());
+      try { sessionStorage.setItem('selectedBrand', slug); } catch {}
+      applyBrandFilter(slug);
+      const grid = document.getElementById('recipes-grid');
+      // @ts-ignore
+      if (grid && grid.scrollIntoView) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     // Attach click handler directly to the button
@@ -311,7 +347,7 @@ const featuredSlug = featured?.slug ?? '';
       // Show loading state
       if (loadMoreText) loadMoreText.classList.add('hidden');
       if (loadingText) loadingText.classList.remove('hidden');
-      loadMoreBtn.disabled = true;
+      loadMoreBtn.setAttribute('disabled', 'true');
       loadMoreBtn.classList.add('opacity-75', 'cursor-not-allowed');
 
       // Simulate loading delay for better UX
@@ -323,8 +359,7 @@ const featuredSlug = featured?.slug ?? '';
         const recipesToShow = filteredRecipes.slice(loadedCount, loadedCount + nextBatch);
         recipesToShow.forEach((recipeItem, index) => {
           const htmlElement = recipeItem as HTMLElement;
-          htmlElement.classList.remove('hidden');
-          htmlElement.classList.add('block');
+          htmlElement.style.display = 'block';
 
           // Add fade-in animation
           htmlElement.style.opacity = '0';
@@ -343,7 +378,7 @@ const featuredSlug = featured?.slug ?? '';
         // Reset button state
         if (loadMoreText) loadMoreText.classList.remove('hidden');
         if (loadingText) loadingText.classList.add('hidden');
-        loadMoreBtn.disabled = false;
+        loadMoreBtn.removeAttribute('disabled');
         loadMoreBtn.classList.remove('opacity-75', 'cursor-not-allowed');
 
         // Check if all filtered recipes are loaded
@@ -359,8 +394,11 @@ const featuredSlug = featured?.slug ?? '';
       }, 800); // 800ms loading delay
     });
 
-    // Initialize with URL brand param if present
-    const initialBrand = new URL(window.location.href).searchParams.get('brand') || 'all';
+    // Initialize with URL brand param or session value if present
+    const urlBrand = new URL(window.location.href).searchParams.get('brand');
+    const sessionBrand = sessionStorage.getItem('selectedBrand');
+    const initialBrand = urlBrand || sessionBrand || 'all';
+    console.log('[RECIPES] 📍 Marca inicial:', { urlBrand, sessionBrand, initialBrand });
     applyBrandFilter(initialBrand);
 
     // Keep in sync with browser navigation
@@ -370,8 +408,8 @@ const featuredSlug = featured?.slug ?? '';
     });
   }
 
-  // Run on first page load
+  // Run on first page load and after navigations
   document.addEventListener('DOMContentLoaded', initializeRecipesPage);
-  // Run after Astro client-side navigations (e.g., language switch)
   window.addEventListener('astro:page-load', initializeRecipesPage);
+  window.addEventListener('astro:after-swap', initializeRecipesPage);
 </script>

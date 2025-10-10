@@ -47,11 +47,16 @@ try {
 // Número de skeletons a mostrar durante la carga
 const skeletonCount = 3;
 
-// SSR brand filter from URL param to reduce initial DOM and respect no-JS
-const brandParam = Astro.url.searchParams.get('brand') || 'all';
-const filteredBrands = brandParam === 'all'
-  ? brandsData
-  : (brandsData || []).filter((b:any) => (b?.slug || b?.id) === brandParam);
+// Client-side filtering only: render all brands and filter in browser
+const filteredBrands = brandsData;
+
+// Normalized category items for Categories component (use brand.id as slug)
+const categoryItems = (brandsData || []).map((b: any) => ({
+  label: b?.title || b?.id,
+  slug: b?.id,
+  logo: b?.logo,
+  bgColor: b?.bgColor || '#E5E7EB'
+}));
 ---
 
 <div class="brands-container bg-white" transition:name="brands-container" transition:animate={fade({ duration: '0.5s' })}>
@@ -75,7 +80,7 @@ const filteredBrands = brandParam === 'all'
       />
       <Categories 
         title=""
-        items={brandsData}
+        items={categoryItems}
         allLabel={currentLang === 'es' ? 'TODAS' : 'ALL'}
         queryKey="brand"
         baseHref={Astro.url.pathname}
@@ -104,8 +109,8 @@ const filteredBrands = brandParam === 'all'
       // Mostrar datos reales cuando estén disponibles
       filteredBrands.map((brand: any, index: number) => (
         <div 
-          id={brand.slug} 
-          data-brand={brand.slug}
+          id={brand.id} 
+          data-brand={brand.id}
           class="brand-card relative flex items-center"
           transition:name={`brand-card-${brand.id}`}
           transition:animate={fade({ duration: '0.6s' })}
@@ -306,29 +311,93 @@ const filteredBrands = brandParam === 'all'
 </div>
 
 <script>
+  /* @ts-nocheck */
   function initBrandsFilter(){
+    console.log('[BRANDS] 🚀 Inicializando filtro de marcas');
     const list = document.querySelector('.brands-list');
-    if (!list) return;
-    const cards = Array.from(list.querySelectorAll('[data-brand]')) as HTMLElement[];
+    if (!list) {
+      console.warn('[BRANDS] ⚠️ No se encontró .brands-list');
+      return;
+    }
+    /** @type {HTMLElement[]} */
+    const cards = Array.from(list.querySelectorAll('[data-brand]'));
+    console.log('[BRANDS] 📦 Tarjetas encontradas:', cards.length);
+    
+    // Debug: mostrar los primeros 3 data-brand para verificar valores
+    if (cards.length > 0) {
+      console.log('[BRANDS] 🔍 Primeros data-brand:', 
+        cards.slice(0, 3).map(c => c.getAttribute('data-brand'))
+      );
+    }
+    
+    /**
+     * @param {string} slug
+     */
     function apply(slug){
+      console.log('[BRANDS] 🔍 Aplicando filtro:', slug);
+      let visibleCount = 0;
+      const matches = [];
       cards.forEach((el)=>{
         const b = el.getAttribute('data-brand');
-        if (!slug || slug === 'all' || b === slug) {
-          el.style.display = '';
+        const match = !slug || slug === 'all' || b === slug;
+        if (match) {
+          visibleCount++;
+          matches.push(b);
+          el.style.display = 'flex'; // Restaurar display flex original
         } else {
-          el.style.display = 'none';
+          el.style.display = 'none'; // Ocultar con display none
         }
       });
+      console.log(`[BRANDS] ✅ Filtrado: ${visibleCount} marcas visibles de ${cards.length}`);
+      if (slug !== 'all' && visibleCount === 0) {
+        console.warn(`[BRANDS] ⚠️ No se encontraron marcas con data-brand="${slug}"`);
+        console.log('[BRANDS] 📋 Todas las marcas disponibles:', 
+          cards.map(c => c.getAttribute('data-brand'))
+        );
+      } else if (slug !== 'all') {
+        console.log('[BRANDS] ✅ Marcas que coinciden:', matches);
+      }
     }
     const u = new URL(window.location.href);
-    apply(u.searchParams.get('brand') || 'all');
+    const urlBrand = u.searchParams.get('brand');
+    const sessionBrand = sessionStorage.getItem('selectedBrand');
+    const initial = urlBrand || sessionBrand || 'all';
+    console.log('[BRANDS] 📍 Marca inicial:', { urlBrand, sessionBrand, initial });
+    apply(initial);
     document.addEventListener('brandFilterChange', (ev)=>{
-      const slug = (ev as CustomEvent).detail.brand;
+      console.log('[BRANDS] 📡 Evento brandFilterChange recibido:', ev?.detail);
+      // @ts-ignore
+      const slug = ev?.detail?.brand || 'all';
+      try { sessionStorage.setItem('selectedBrand', slug); } catch {}
       apply(slug);
+    });
+    // Fallback: intercept direct clicks on category pills in case component event is not caught
+    document.addEventListener('click', (e)=>{
+      const target = e.target;
+      // @ts-ignore
+      const btn = target?.closest?.('.brand-filter-btn');
+      if (!btn) return;
+      const slug = btn.getAttribute('data-slug') || 'all';
+      console.log('[BRANDS] 🖱️ Click fallback en botón de marca:', slug);
+      // only handle if query param is brand
+      e.preventDefault();
+      const url = new URL(window.location.href);
+      url.searchParams.set('brand', slug);
+      history.pushState({}, '', url.toString());
+      try { sessionStorage.setItem('selectedBrand', slug); } catch {}
+      apply(slug);
+      const evt = new CustomEvent('brandFilterChange', { detail: { brand: slug }, bubbles: true });
+      document.dispatchEvent(evt);
+    });
+    // Sync with browser navigation
+    window.addEventListener('popstate', ()=>{
+      const b = new URL(window.location.href).searchParams.get('brand') || 'all';
+      apply(b);
     });
   }
   document.addEventListener('DOMContentLoaded', initBrandsFilter);
   window.addEventListener('astro:page-load', initBrandsFilter);
+  window.addEventListener('astro:after-swap', initBrandsFilter);
 </script>
 
 <!-- Cargar scripts para la funcionalidad de la página -->
