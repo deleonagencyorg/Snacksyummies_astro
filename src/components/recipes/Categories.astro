@@ -17,6 +17,7 @@ export interface Props {
   baseHref?: string; // defaults to current path
   active?: string | null; // active slug
   showArrows?: boolean;
+  hideTitle?: boolean;
 }
 
 const currentLang = getLocale();
@@ -28,17 +29,19 @@ const {
   baseHref = Astro.url.pathname,
   active = null,
   showArrows = true,
+  hideTitle = false,
 }: Props = Astro.props;
 ---
 
 <div class="content-stretch flex flex-col gap-8 items-center justify-start w-full py-12">
   <!-- Header Title -->
-  <div class="text-center">
-    <h2 class="text-white text-2xl md:text-4xl font-bold font-['Trois_Mille_TRIAL_Bold'] leading-10">
-      {title}
-    </h2>
-  </div>
-
+  {!hideTitle && (
+    <div class="text-center">
+      <h2 class="text-white text-2xl md:text-4xl font-bold font-['Trois_Mille_TRIAL_Bold'] leading-10">
+        {title}
+      </h2>
+    </div>
+  )}
   <!-- Generic Categories Slider -->
   <div class="w-full max-w-[1400px] mx-auto px-4 relative" data-query-key={queryKey}>
     {showArrows && (

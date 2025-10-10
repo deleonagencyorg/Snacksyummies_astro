@@ -11,7 +11,17 @@
     "https://snack.yummiespromociones.com/snacksyummies/ranchitas-chip1.webp",
         "https://snack.yummiespromociones.com/snacksyummies/yummimix-chip1.webp"
   ],
-  "products": [{
+  "products": [
+    {
+      "id": "yummipops-dragon-hielo",
+      "title": "Yummipops Dragon Hielo",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png"
+  },
+    {
+      "id": "zibas-chile-toreado",
+      "title": "Zibas Chile Toreado",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp"
+  },{
     "id": "product1",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
     "alt": "Ranchitas Buffalo Ranch",

@@ -4,99 +4,216 @@ import { t } from '../../i18n/i18n';
 import type { Locale } from '../../i18n/i18n';
 import { getLocale } from '../../i18n/i18n';
 import './styles.css';
+import Categories from '../../components/recipes/Categories.astro';
+import ProductCard from '../../components/products/ProductCard.astro';
+import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
+import DeliveryAppsCarousel from '../../components/common/DeliveryAppsCarousel.astro';
 
 const currentLang = getLocale();
-const products = t('items', { namespace: 'products', locale: currentLang });
-const categories = t('categories', { namespace: 'products', locale: currentLang });
 
-// Obtener categorías únicas de los productos
-const uniqueCategories = Object.keys(categories);
+// Obtener las marcas desde los archivos de localización
+interface Brand {
+  id: string;
+  title?: string;
+  logo?: string;
+  bgColor?: string;
+  products?: Array<{
+    id: string;
+    slug?: string;
+    title: string;
+    image: string;
+    imageMobile?: string;
+  }>;
+}
+
+const brandsData = t('brands', { namespace: 'brands', locale: currentLang }) as Brand[] || [];
+
+// Función para normalizar títulos con acentos
+function normalizeTitle(input: string): string {
+  if (!input) return '';
+
+  // Primero normalizamos a NFC para unificar caracteres compuestos
+  let text = input.normalize('NFC');
+
+  // Método directo para casos específicos
+  text = text
+    // Vocales minúsculas con acento
+    .replace(/Ã¡/g, 'á')
+    .replace(/Ã©/g, 'é')
+    .replace(/Ã­/g, 'í')
+    .replace(/Ã³/g, 'ó')
+    .replace(/Ãº/g, 'ú')
+    // Vocales mayúsculas con acento
+    .replace(/Ã/g, 'Á')
+    .replace(/Ã‰/g, 'É')
+    .replace(/Ã/g, 'Í')
+    .replace(/Ã"/g, 'Ó')
+    .replace(/Ãš/g, 'Ú')
+    // Ñ y caracteres especiales
+    .replace(/Ã±/g, 'ñ')
+    .replace(/Ã'/g, 'Ñ')
+    .replace(/Â/g, '')
+    // Casos específicos observados
+    .replace(/manÃ/g, 'maní')
+    .replace(/japonÃ©s/g, 'japonés')
+    .replace(/PlÃ¡tano/g, 'Plátano')
+    .replace(/MaÃ­z/g, 'Maíz')
+    .replace(/PÃ¡caros/g, 'Pícaros')
+    .replace(/PÃ­caros/g, 'Pícaros')
+    .replace(/JalapeÃ±o/g, 'Jalapeño')
+    .replace(/ChicharrÃ³n/g, 'Chicharrón')
+    .replace(/FusiÃ³n/g, 'Fusión')
+    .replace(/ClÃ¡sicas/g, 'Clásicas')
+    .replace(/Ã³n/g, 'ón');
+
+  // Limpieza final de espacios y caracteres invisibles
+  text = text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim();
+
+  // Normalizar nuevamente para asegurar consistencia
+  return text.normalize('NFC');
+}
+
+// Definir la interfaz para los productos
+interface Product {
+  id: string;
+  slug?: string;
+  title: string;
+  image: string;
+  imageMobile?: string;
+  brand?: string;
+  brandId?: string;
+}
+
+// Extraer todos los productos de todas las marcas
+const allProducts: Product[] = [];
+for (const brand of brandsData) {
+  if (brand.products && Array.isArray(brand.products)) {
+    for (const product of brand.products) {
+      // Crear una copia del producto para no modificar el original
+      const productCopy = { ...product };
+      
+      // Normalizar el título
+      if (productCopy.title) {
+        productCopy.title = normalizeTitle(productCopy.title);
+      }
+      // Agregar la marca al producto (también normalizada)
+      productCopy.brand = normalizeTitle(brand.title || brand.id);
+      productCopy.brandId = brand.id;
+      allProducts.push(productCopy);
+    }
+  }
+}
+
+// Crear las categorías para el filtro (basadas en las marcas)
+const categoryItems = brandsData.map((brand: Brand) => ({
+  label: normalizeTitle(brand.title || brand.id),
+  slug: brand.id,
+  logo: brand.logo,
+  bgColor: brand.bgColor || '#E5E7EB'
+}));
+
+// Pasar el idioma actual al script del cliente
+const clientLang = currentLang;
 ---
 
-<div class="bg-white py-12">
-  
-  <div class="container mx-auto px-4">
-    <h1 class="text-4xl font-bold text-center mb-4">{t('page.title', { namespace: 'products' })}</h1>
-    <p class="text-lg text-gray-600 text-center mb-10 max-w-3xl mx-auto">{t('page.description', { namespace: 'products' })}</p>
-    
-    <!-- Filtro de categorías -->
-    <div class="flex flex-wrap justify-center mb-8 gap-2">
-      <button class="category-filter active" data-category="all">
-        {categories.all}
-      </button>
-      {uniqueCategories.filter(cat => cat !== 'all').map((category) => (
-        <button class="category-filter" data-category={category}>
-          {categories[category]}
-        </button>
-      ))}
-    </div>
-    
-    {products.length === 0 ? (
-      <p class="text-center text-gray-500">{t('page.no_products', { namespace: 'products' })}</p>
-    ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
-        {products.map((product: any) => (
-          <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300" data-category={product.category} transition:animate="fade">
-            <div class="relative h-48 overflow-hidden">
-              <img 
-                src={product.image || '/images/products/placeholder.jpg'} 
-                alt={product.title} 
-                class="w-full h-full object-cover"
-                transition:name={`product-image-${product.id}`}
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2">{product.title}</h3>
-              <p class="text-gray-600 mb-4 line-clamp-2">{product.short_description}</p>
-              <div class="flex justify-between items-center">
-                <div class="text-sm text-gray-500 capitalize">{categories[product.category]}</div>
-                <a 
-                  href={`/${currentLang}/productos/${product.id}`} 
-                  class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-md transition-colors duration-300"
-                >
-                  {t('page.view_details', { namespace: 'products' })}
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
+<div>
+  <!-- Hero Banner con fondo primary -->
+  <div class="bg-white py-8">
+  <!-- Hero Banner -->
+
+  <!-- Breadcrumbs -->
+  <div class="container mx-auto px-4 mt-12 bg-transparent">
+    <Breadcrumb 
+      items={[
+        { label: 'Home', href: `/${currentLang}` },
+        { label: currentLang === 'es' ? 'Productos' : 'Products', href: `/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}` },
+      ]}
+      textColor="text-primary"
+    />
+
+    <!-- Categories Section (reusable slider) -->
+    <Categories 
+      title={currentLang === 'es' ? 'Productos por marca' : 'Products by brand'}
+      items={categoryItems}
+      allLabel={currentLang === 'es' ? 'TODAS' : 'ALL'}
+      queryKey="brand"
+      baseHref={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}`}
+      showArrows={true}
+      hideTitle={true}
+    />
   </div>
 </div>
 
-<script>
-  // Fix para las imágenes que no cargan
-document.addEventListener('DOMContentLoaded', () => {
-  const images = document.querySelectorAll('img');
-  images.forEach(img => {
-    img.addEventListener('error', function() {
-      this.src = '/images/products/placeholder.jpg';
-    });
-  });
-  
-  // Filtro de categorías
-  const filterButtons = document.querySelectorAll('.category-filter');
-  const productCards = document.querySelectorAll('.product-card');
-  
-  filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Actualizar estado activo de los botones
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      const category = button.getAttribute('data-category');
-      
-      // Filtrar productos
-      productCards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
+<!-- Sección de productos con fondo blanco -->
+<div class="bg-white py-8">
+
+    {allProducts.length === 0 ? (
+      <p class="text-center text-primary">{currentLang === 'es' ? 'No hay productos disponibles' : 'No products available'}</p>
+    ) : (
+      <div class="max-w-[1400px] mx-auto flex flex-col gap-14 items-center">
+        <!-- Title -->
+        <h2 class="text-primary font-title text-xl md:text-8xl font-bold leading-[40px] text-center w-full mt-4 mb-12">
+          {currentLang === 'es' ? 'Todos nuestros productos' : 'All our products'}
+        </h2>
+        
+        <!-- Products Grid -->
+        <div class="w-full">
+          <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-center">
+            {allProducts.map((product: Product) => (
+              <div 
+                data-brand={product.brandId || 'unknown'}
+                class="product-item w-full"
+              >
+                <ProductCard
+                  image={product.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
+                  title={product.title}
+                  id={product.id}
+                  slug={product.slug}
+                  textColor="text-primary"
+                />
+              </div>
+            ))}
+          
+          </div>
+        </div>
+      </div>
+    )}
+</div>
+
+{currentLang === 'es' && (
+  <DeliveryAppsCarousel />
+)}
+
+<script define:vars={{ clientLang }}>
+  // Filtrado de productos por marca
+  document.addEventListener('brandFilterChange', (event) => {
+    const brand = event.detail.brand;
+    const productItems = document.querySelectorAll('.product-item');
+    
+    if (brand === 'all') {
+      // Mostrar todos los productos
+      productItems.forEach(item => {
+        item.style.display = 'block';
+      });
+    } else {
+      // Filtrar por marca
+      productItems.forEach(item => {
+        if (item.getAttribute('data-brand') === brand) {
+          item.style.display = 'block';
         } else {
-          card.style.display = 'none';
+          item.style.display = 'none';
         }
+      });
+    }
+  });
+
+  // Fix para las imágenes que no cargan
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.addEventListener('error', function() {
+        this.src = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
       });
     });
   });
-});
 </script>
-

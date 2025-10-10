@@ -35,7 +35,13 @@ const metaDescription = contact.description;
 
 <MainLayout title={title} class="bg-white" description={metaDescription} headerColorConfig={headerColorConfig}>
   <div class="container mx-auto px-4 pt-6">
-    <Breadcrumb textColor="text-gray-600" hoverColor="hover:text-primary" />
+    <Breadcrumb 
+      items={[
+        { label: 'Home', href: `/${locale}` },
+        { label: title, href: Astro.url.pathname },
+      ]}
+      textColor="text-primary"
+    />
 
     <!-- Main Contact Section -->
     <div class="flex flex-col justify-center items-start lg:flex-row gap-12 py-12">

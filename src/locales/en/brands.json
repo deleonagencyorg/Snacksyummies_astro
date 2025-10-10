@@ -403,6 +403,13 @@
             "alt": "Yummi Pops",
             "products": [
                 {
+                    "id": "yummipops-dragon-hielo",
+                    "slug": "yummipops-dragon-hielo",
+                    "title": "Yummipops Dragon Hielo",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png"
+                },
+                {
                     "id": "yummipops-nacho-jalapeno-cream",
                     "slug": "yummipops-nacho-jalapeno-cream",
                     "title": "Yummipops Nacho Jalapeño Cream",
