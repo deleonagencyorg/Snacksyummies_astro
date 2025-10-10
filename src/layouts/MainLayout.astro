@@ -33,12 +33,17 @@ const headerColorConfig = getHeaderColors(pathname);
 <html lang={currentLang}>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <GoogleTagManager />
     <Favicon />
     <SEOHead 
       title={title} 
       description={description}
     />
+    <!-- Performance hints: preconnect to critical origins -->
+    <link rel="preconnect" href="https://snack.yummiespromociones.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
     <ViewTransitions />
     <slot name="head" />
   </head>

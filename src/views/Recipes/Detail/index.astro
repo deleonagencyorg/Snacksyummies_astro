@@ -245,6 +245,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
               class="w-full h-full object-cover block"
               onerror="this.onerror=null;this.src='https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';"
               transition:name={`recipe-image-${safeRecipe.id}`}
+              priority={true}
             />
           ) : (
             <div class="w-full h-[25rem] bg-gray-200 flex items-center justify-center">
