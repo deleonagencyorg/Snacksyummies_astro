@@ -4,6 +4,7 @@ import { t } from '../../../i18n/i18n';
 import type { Locale } from '../../../i18n/i18n';
 import { getLocale } from '../../../i18n/i18n';
 import './styles.css';
+import LazyImage from '../../components/common/LazyImage.astro';
 
 const { brandData, brandId } = Astro.props;
 const currentLang = getLocale();
@@ -19,7 +20,7 @@ if (!brandData) {
     <div class="container mx-auto px-4 py-12">
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-8 md:mb-0">
-          <img 
+          <LazyImage
             src={brandData.logo} 
             alt={brandData.title} 
             class="brand-logo mx-auto md:mx-0"

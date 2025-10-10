@@ -98,11 +98,11 @@ const recipeLink = `/${currentLocale}/${currentLocale === 'es' ? 'recetas' : 're
 const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
 ---
 
-<div class="flex flex-col items-start justify-start w-full sm:w-[19.75rem] h-[28.75rem] md:h-[28.75rem] group">
+<div class="flex flex-col items-start justify-start w-full sm:w-[19.75rem] h-[24rem] md:h-[28.75rem] group">
   <div class="bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 w-full h-full flex flex-col relative">
     <a href={recipeLink} class="h-full flex flex-col relative">
       <!-- Default State Layout (mobile always, desktop when not hovering) -->
-      <div class="md:group-hover:hidden w-full h-full flex flex-col">
+      <div class="md:group-hover:hidden w-full h-full flex flex-col justify-between md:justify-start">
         <!-- Recipe Image (Square aspect ratio) -->
         <div class="aspect-square w-full overflow-hidden rounded-t-[40px]">
           <LazyImage
@@ -114,7 +114,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
         </div>
         
         <!-- Content Area -->
-        <div class="flex flex-col gap-4 items-center justify-start p-3 md:p-4 w-full">
+        <div class="flex flex-col gap-4 items-center justify-center h-full p-3 md:p-4 w-full">
           <!-- Recipe Title -->
           <div class="flex flex-col gap-1 items-start justify-center w-full">
             <h3 class="text-[#00306F] font-title text-lg leading-5 w-full title-clamp">
@@ -123,7 +123,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
           </div>
           
           <!-- CTA Button -->
-          <div class="flex flex-col gap-2 items-center justify-center w-full pt-2">
+          <div class="flex flex-col gap-2 items-center justify-center w-full">
             <div class="bg-white h-12 rounded-full w-full border border-[#2E5DAB]">
               <div class="flex gap-2 h-12 items-center justify-center px-6 py-3">
                 <span class="text-[#2E5DAB] text-base font-medium leading-4">
@@ -217,7 +217,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
             <div class="flex flex-col gap-2 items-center justify-center w-full pt-2">
               <div class="bg-white h-12 rounded-full w-full border border-[#2E5DAB]">
                 <div class="flex gap-2 h-12 items-center justify-center px-6 py-3">
-                  <span class="text-[#2E5DAB] text-base font-medium leading-4">
+                  <span class="text-[#2E5DAB] text-base font-medium leading-4 text-center">
                     {viewRecipeText}
                   </span>
                 </div>
