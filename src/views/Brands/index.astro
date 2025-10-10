@@ -57,10 +57,19 @@ const skeletonCount = 3;
       textColor="text-primary"
     />
   </div>
-  <header class="brands-header text-center -mt-16 py-0" transition:name="brands-header" transition:animate={fade({ duration: '0.7s' })}>
-    <CrownTitle text={pageTitle} transition:name="brands-title" transition:animate={fade({ duration: '0.8s' })} />
+
+ </div>
     
-    <div class="brands-carousel-container relative w-full my-8" transition:name="brands-carousel" transition:animate={fade({ duration: '0.8s' })}>
+  <header class="brands-header text-center py-0 " transition:name="brands-header" transition:animate={fade({ duration: '0.7s' })}>
+    <div>
+      <CrownTitle
+      title={currentLang === 'es' ? 'Marcas' : 'Brands'}
+      subtitle={currentLang === 'es' ? '' : ''}
+      transition:animate={fade({ duration: '0.8s' })}
+    />
+    <div class="brands-carousel-container relative w-full my-4 md:my-0  " transition:name="brands-carousel" transition:animate={fade({ duration: '0.8s' })}>
+
+      
       <!-- Botones de navegación -->
       <button class="carousel-nav carousel-prev absolute left-0 top-[60%] transform -translate-y-[200px] z-10 bg-white/80 rounded-full shadow-md w-12 h-12 flex items-center justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="nav-arrow w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -75,7 +84,7 @@ const skeletonCount = 3;
               <div class="brand-icon-circle flex-shrink-0 bg-gray-100">
                 <SkeletonLoader width="64px" height="64px" circle={true} />
               </div>
-            ))}
+            ))} 
           </div>
         ) : (
           <div class="brands-icons-row flex items-center gap-4 py-4">
@@ -108,7 +117,7 @@ const skeletonCount = 3;
   </header>
 </div>
 
-<div class="container mx-auto px-4 mt-[-2rem]">
+<div class="container mx-auto px-4 lg:-mt-[28rem] md:-mt-[24rem] -mt-[18rem]">
   <div class="brands-list" transition:name="brands-list" transition:animate={fade({ duration: '0.6s' })}>
     {isLoading ? (
       // Mostrar skeletons durante la carga
@@ -127,7 +136,7 @@ const skeletonCount = 3;
       brandsData.map((brand: any, index: number) => (
         <div 
           id={brand.slug} 
-          class="brand-card relative flex items-center mt-[-4rem]"
+          class="brand-card relative flex items-center mt-[-8rem] md:mt-[-12rem] lg:mt-[-14rem]"
           transition:name={`brand-card-${brand.id}`}
           transition:animate={fade({ duration: '0.6s' })}
         >
