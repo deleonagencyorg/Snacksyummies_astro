@@ -17,6 +17,7 @@ interface Props {
 }
 
 const { items = [], bgColor, textColor = 'text-white' } = Astro.props;
+const textClass = textColor || '';
 
 // Convert Tailwind classes to actual colors for inline styles
 let backgroundColor = 'transparent';
@@ -26,23 +27,26 @@ else if (bgColor === 'bg-white') backgroundColor = 'white';
 else if (bgColor === 'bg-gray-100') backgroundColor = '#f3f4f6';
 
 // Convert text color classes to actual colors
-let textColorValue = '#FFFFFF'; // Default white
+let textColorValue: string | null = '#FFFFFF'; // Default white
 if (textColor === 'text-white') textColorValue = 'white';
-else if (textColor === 'text-gray-600') textColorValue = '#4b5563';
+else if (textColor && textColor.startsWith('text-')) {
+  // Use Tailwind class color; do not set inline color
+  textColorValue = null;
+} else if (textColor === 'text-gray-600') textColorValue = '#4b5563';
 else if (textColor === 'text-gray-500') textColorValue = '#6b7280';
 
 ---
 
-<nav class="breadcrumb-container pt-8 mt-[2rem]" style={`background-color: ${backgroundColor};`} aria-label="Breadcrumb">
+<nav class={`breadcrumb-container pt-8 mt-[2rem] ${textClass}`} style={`background-color: ${backgroundColor};`} aria-label="Breadcrumb">
   <div class="breadcrumb-wrapper">
     <ol class="breadcrumb-list">
       {Array.isArray(items) && items.map((item, index) => (
-        <li class="breadcrumb-item" style={`color: ${textColorValue};`}>
+        <li class={`breadcrumb-item ${textClass}`} style={textColorValue ? `color: ${textColorValue};` : undefined}>
           {index > 0 && <span class="breadcrumb-separator" aria-hidden="true">/</span>}
           <a 
-            href={item.href} 
-            class={`breadcrumb-link ${index === items.length - 1 ? 'current' : ''}`}
-            style={`color: ${textColorValue};`}
+            href={index === 0 ? '/' : item.href} 
+            class={`breadcrumb-link ${index === items.length - 1 ? 'current' : ''} ${textClass}`}
+            style={textColorValue ? `color: ${textColorValue};` : undefined}
             aria-current={index === items.length - 1 ? 'page' : undefined}
           >
             {index === 0 ? (

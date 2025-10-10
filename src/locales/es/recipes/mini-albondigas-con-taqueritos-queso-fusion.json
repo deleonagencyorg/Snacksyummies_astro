@@ -1,0 +1,34 @@
+{
+  "date": "2025-09-11",
+  "id": "mini-albondigas-con-taqueritos-queso-fusion",
+  "slug": "mini-albondigas-con-taqueritos-queso-fusion",
+  "title": "Mini Albóndigas con Taqueritos Queso Fusión",
+  "people": "6",
+  "difficulty": "Media",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/mini-albondigas-con-taqueritos-queso-fusion.webp",
+  "gallery": [
+    "mini-albondigas-con-taqueritos-queso-fusion.webp"
+  ],
+  "type": "image",
+  "preparation_time": 40,
+  "ingredients": [
+    "2 libras de carne molida",
+    "1 taza de cebolla en trozos",
+    "1 taza de chile dulce picada",
+    "1 taza de zanahoria picada",
+    "Salpimentar al gusto",
+    "1 a 2 tazas de agua",
+    "1 taza de harina",
+    "2 huevos, batir",
+    "2 tazas de Taqueritos Queso Fusión triturados",
+    "Aceite para freír"
+  ],
+  "instructions": [
+    "Paso 1: En una licuadora colocar la cebolla, el chile, la zanahoria y el agua. Licuar y luego mezclar con la carne molida. Salpimentar al gusto y dejar reposar.",
+    "Paso 2: Hacer las mini albóndigas y pasar por harina, el huevo y los Taqueritos.",
+    "Paso 3: Estos se pueden triturar en un procesador o en una bolsa con la mano.",
+    "Paso 4: Calentar el aceite y una vez que esté listo, freír las albóndigas.",
+    "Paso 5: Sírvalo con un poco de salsa ranch."
+  ],
+  "brand": ["taqueritos"]
+}

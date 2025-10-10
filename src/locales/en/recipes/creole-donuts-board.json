@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-11",
+  "id": "creole-donuts-board",
+  "slug": "creole-donuts-board",
+  "title": "Creole Donuts Board",
+  "people": "4",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tabla-rosquillas-criollas.webp",
+  "gallery": [
+    "tabla-rosquillas-criollas.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "Spreadable chocolate",
+    "Cream cheese",
+    "Jam of your choice",
+    "Cheese",
+    "Fruit",
+    "Chocolate chips",
+    "Donuts"
+  ],
+  "instructions": [
+    "Step 1: On a board, serve the chocolate, cream cheese, jam, cheese, fruit and chocolate chips in different containers.",
+    "Step 2: Place the donuts in the center",
+    "Step 3: Take a donut and pour your favorite toppings. And, start enjoying."
+  ],
+  "brand": ["delrancho"]
+}

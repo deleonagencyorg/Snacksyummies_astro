@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-11",
+  "id": "toreado-burritos",
+  "slug": "toreado-burritos",
+  "title": "Toreado Burritos",
+  "people": "4",
+  "difficulty": "Intermediate",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/burritos-toreados.webp",
+  "gallery": [
+    "burritos-toreados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 30,
+  "ingredients": [
+    "4 flour tortillas",
+    "2 pounds of cooked carne asada",
+    "2 cups guacamole",
+    "2 cups shredded melting cheese",
+    "1 cup ranchero sauce",
+    "1 family bag of Cappy Toreado"
+  ],
+  "instructions": [
+    "Step 1: Place the tortilla, previously reheated on the griddle.",
+    "Step 2: Add a portion of the following: Carne asada, guacamole, grated cheese, ranchera sauce and Cappy Toreado.",
+    "Step 3: Make the burrito, folding the tortilla from the side close to our body.",
+    "Step 4: Then fold the sides and finally roll up."
+  ],
+  "brand": ["cappy"]
+}

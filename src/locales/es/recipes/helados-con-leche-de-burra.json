@@ -1,0 +1,27 @@
+{
+  "date": "2025-09-11",
+  "id": "helados-con-leche-de-burra",
+  "slug": "helados-con-leche-de-burra",
+  "title": "Helados con Leche de Burra",
+  "people": "9",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/salsa-de-leche-de-burra.webp",
+  "gallery": [
+    "salsa-de-leche-de-burra.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "Helado de tu gusto",
+    "Barquillos de galleta",
+    "Salsa de leche de burra"
+  ],
+  "instructions": [
+    "Paso 1. Prepara la salsa de leche de burra",
+    "Paso 2. Sirve el helado en un barquillo de galletas",
+    "Paso 3. Baña con la salsa y disfruta"
+  ],
+  "brand": [
+    "xixi"
+  ]
+}

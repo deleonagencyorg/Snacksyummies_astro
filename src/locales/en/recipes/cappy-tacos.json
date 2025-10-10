@@ -1,0 +1,37 @@
+{
+  "date": "2025-09-11",
+  "id": "cappy-tacos",
+  "slug": "cappy-tacos",
+  "title": "Cappy Tacos",
+  "people": "4",
+  "difficulty": "Intermediate",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tacos-a-la-cappy.webp",
+  "gallery": [
+    "tacos-a-la-cappy.webp"
+  ],
+  "type": "image",
+  "preparation_time": 50,
+  "ingredients": [
+    "1 pound rump steak",
+    "2 tablespoons of olive oil",
+    "1 teaspoon salt",
+    "1 teaspoon black pepper",
+    "1 teaspoon paprika",
+    "1 teaspoon garlic powder",
+    "1 tablespoon dried thyme",
+    "1 tablespoon dried oregano",
+    "1 tablespoon dried basil",
+    "Corn tortillas",
+    "Ranch sauce",
+    "Pickled onions",
+    "Cappys Chile Toreado"
+  ],
+  "instructions": [
+    "Step 1: In a bowl, mix the oil with the salt and spices. Season the meat with the mixture.",
+    "Step 2: Place the meat in an oven and bake at 400º F for 40 minutes.",
+    "Step 3: When ready, crumble it and place it on a container.",
+    "Step 4: Place the corn tortillas, drop the meat, add the pickled onions, add Ranch Sauce.",
+    "Step 5: Lastly, add Cappy Chile Toreado to your tacos and enjoy them."
+  ],
+  "brand": ["cappy"]
+}

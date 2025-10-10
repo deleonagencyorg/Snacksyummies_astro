@@ -1,0 +1,37 @@
+{
+  "date": "2025-09-11",
+  "id": "tacos-a-la-cappy",
+  "slug": "tacos-a-la-cappy",
+  "title": "Tacos a la Cappy",
+  "people": "4",
+  "difficulty": "Media",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tacos-a-la-cappy.webp",
+  "gallery": [
+    "tacos-a-la-cappy.webp"
+  ],
+  "type": "image",
+  "preparation_time": 50,
+  "ingredients": [
+    "1 libra de filete de cuadril",
+    "2 cucharadas de aceite de oliva",
+    "1 cucharadita de sal",
+    "1 cucharadita de pimienta negra",
+    "1 cucharadita de páprika",
+    "1 cucharadita de ajo en polvo",
+    "1 cucharada de tomillo seco",
+    "1 cucharada de orégano seco",
+    "1 cucharada de albahaca seca",
+    "Tortillas de maíz",
+    "Salsa ranch",
+    "Cebollas curtidas",
+    "Cappys Chile Toreado"
+  ],
+  "instructions": [
+    "Paso 1: En un reciente, mezcla el aceite con la sal y las especias. Sazona el pollo con la mezcla.",
+    "Paso 2: En un horno coloca el pollo y hornéalo a 400ª F durante 40 minutos.",
+    "Paso 3: Cuando esté listo, desmenúzalo y colócalo sobre un recipiente.",
+    "Paso 4: Coloca las tortillas de maíz, deja caer el pollo, echa las cebollas curtidas, coloca Salsa Ranch.",
+    "Paso 5: Por último, agrégale Cappy Chile Toreado a tus tacos y disfrútalos."
+  ],
+  "brand": ["cappy"]
+}

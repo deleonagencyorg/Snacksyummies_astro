@@ -1,0 +1,40 @@
+{
+  "date": "2025-09-11",
+  "id": "crunchy-sandwich-con-zibas-clasicas",
+  "slug": "crunchy-sandwich-con-zibas-clasicas",
+  "title": "Crunchy Sandwich con Zibas Clásicas",
+  "people": "7",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/crunchy-sandwich-con-zibas-clasicas.webp",
+  "gallery": [
+    "crunchy-sandwich-con-zibas-clasicas.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "Ingredientes para armar 1 sándwich:",
+    "2 rodajas de pan de tu elección",
+    "Mayonesa y mostaza al gusto",
+    "Jamón tipo Virginia",
+    "Jamón de pavo",
+    "Queso mozarella",
+    "Queso cheddar",
+    "Ziba’s Clásicas",
+    "Ensalada de aceitunas",
+    "Ingredientes para la ensalada de aceitunas:",
+    "½ taza de aceitunas negras picadas",
+    "½ taza de chile pimiento rojo de lata picado",
+    "1 diente de ajo finamente picado",
+    "½ de taza de apio finamente picado",
+    "¼ de taza de aceite de oliva",
+    "2 cucharadas de vinagre rojo",
+    "½ cucharadita de orégano seco",
+    "sal y pimienta"
+  ],
+  "instructions": [
+    "Paso 1. Unta mayonesa y mostaza en cada rodaja de pan. Coloca 2 rodajas de embutidos, luego 2 de queso y continúa el proceso hasta usar todo. Agrega la ensalada de aceitunas arriba, y termina con una capa de Ziba’s Clásicas. Tapa con la rodaja de pan y sirve."
+  ],
+  "brand": [
+    "zibas"
+  ]
+}

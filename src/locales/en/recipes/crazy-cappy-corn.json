@@ -1,0 +1,27 @@
+{
+  "date": "2025-09-11",
+  "id": "crazy-cappy-corn",
+  "slug": "crazy-cappy-corn",
+  "title": "Crazy Cappy Corn",
+  "people": "6",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/elotes-cappy-locos.webp",
+  "gallery": [
+    "elotes-cappy-locos.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "6 corn kernels",
+    "¼ cup cream",
+    "¼ cup mayonnaise",
+    "1 teaspoon garlic powder",
+    "1 cup of crushed Cappy"
+  ],
+  "instructions": [
+    "Step 1: Steam the corn for 4 minutes and let cool to room temperature.",
+    "Step 2: Mix the cream, mayonnaise and garlic together and spread on each corn.",
+    "Step 3: Dip them in the Cappy® and serve."
+  ],
+  "brand": ["cappy"]
+}

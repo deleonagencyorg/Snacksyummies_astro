@@ -1,0 +1,28 @@
+{
+  "date": "2025-09-11",
+  "id": "choripan-with-ranchitas-nacho-cheese",
+  "slug": "choripan-with-ranchitas-nacho-cheese",
+  "title": "Choripan with Ranchitas Nacho Cheese",
+  "people": "23",
+  "difficulty": "Medium",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/choripan-con-ranchitas-nacho-queso.webp",
+  "gallery": [
+    "choripan-con-ranchitas-nacho-queso.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "2 tablespoons oil.",
+    "4 hot dog buns.",
+    "4 tablespoons mustard.",
+    "4 Spanish chorizos or sausages of your choice.",
+    "1 cup guacamole.",
+    "1 family-size bag Ranchitas Nacho Cheese."
+  ],
+  "instructions": [
+    "Step 1. Place the oil in a skillet and cook the chorizos or sausages.",
+    "Step 2. Spread mustard on each bun as desired.",
+    "Step 3. Place three Ranchitas Nacho Cheese chips in each bun, then add the chorizos and a portion of guacamole."
+  ],
+  "brand": ["ranchitas"]
+}

@@ -1,0 +1,27 @@
+{
+      "date": "2025-09-11",
+      "id": "rajitas-con-taqueritos-chile-toreado",
+      "slug": "rajitas-con-taqueritos-chile-toreado",
+      "title": "Rajitas con Taqueritos Chile Toreado",
+      "people": "9",
+      "difficulty": "Fácil",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/rajitas-con-taqueritos-chile-toreado.webp",
+      "gallery": [
+         "rajitas-con-taqueritos-chile-toreado.webp"
+      ],      
+      "type":"image",
+      "preparation_time": 10,
+      "ingredients": [
+        "1 mango verde",
+        "1 manzana roja",
+        "1 zanahoria",
+        "1 pepino",
+        "1 bolsa de Taqueritos Chile Toreado"
+      ],
+      "instructions": [
+        "Paso 1. Corta las frutas y vegetales en tiras.",
+        "Paso 2. Tritura los Taqueritos hasta volverlos polvo y cubre las frutas y vegetales con este polvo.",
+        "Paso 3. Agrega limón al gusto y sirve."
+      ],
+      "brand": ["taqueritos"]
+    }

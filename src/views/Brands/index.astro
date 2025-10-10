@@ -48,10 +48,16 @@ const skeletonCount = 3;
 ---
 
 <div class="brands-container bg-white" transition:name="brands-container" transition:animate={fade({ duration: '0.5s' })}>
-  <div class="container mx-auto px-4 md:py-8 py-0">
-    <Breadcrumb bgColor="bg-primary" textColor="text-gray-900" hoverColor="hover:text-gray-900" />
+  <div class="container mx-auto px-4  py-0">
+    <Breadcrumb 
+      items={[
+        { label: 'Home', href: `/${currentLang}` },
+        { label: currentLang === 'es' ? 'Marcas' : 'Brands', href: Astro.url.pathname },
+      ]}
+      textColor="text-primary"
+    />
   </div>
-  <header class="brands-header text-center md:py-8 py-0" transition:name="brands-header" transition:animate={fade({ duration: '0.7s' })}>
+  <header class="brands-header text-center -mt-16 py-0" transition:name="brands-header" transition:animate={fade({ duration: '0.7s' })}>
     <CrownTitle text={pageTitle} transition:name="brands-title" transition:animate={fade({ duration: '0.8s' })} />
     
     <div class="brands-carousel-container relative w-full my-8" transition:name="brands-carousel" transition:animate={fade({ duration: '0.8s' })}>
@@ -121,7 +127,7 @@ const skeletonCount = 3;
       brandsData.map((brand: any, index: number) => (
         <div 
           id={brand.slug} 
-          class="brand-card relative flex items-center mt-[-2rem]"
+          class="brand-card relative flex items-center mt-[-4rem]"
           transition:name={`brand-card-${brand.id}`}
           transition:animate={fade({ duration: '0.6s' })}
         >

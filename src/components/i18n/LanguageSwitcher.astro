@@ -67,14 +67,28 @@ const hoverTextColor = headerColorConfig?.hoverTextColor || 'hover:text-yellow-3
   <div class="flex items-center space-x-2">
     <a href={esUrl} class={`language-link flex items-center ${activeLocale === 'es' ? 'font-bold text-yellow-500' : `${textColor} ${hoverTextColor}`}`} title="Español" data-lang="es">
       <span class="flag-icon mr-1">
-        🇭🇳
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" class="inline-block">
+          <rect width="16" height="12" fill="#0051BA"/>
+          <rect y="4" width="16" height="4" fill="#FFFFFF"/>
+          <circle cx="8" cy="6" r="1.5" fill="#0051BA"/>
+          <path d="M8 7.5L8.5 8.5L7.5 8.5L8 7.5Z" fill="#0051BA"/>
+        </svg>
       </span>
       <span class={textColor}>ES</span>
     </a>
     <span class="divider text-gray-400">|</span>
     <a href={enUrl} class={`language-link flex items-center ${activeLocale === 'en' ? 'font-bold text-yellow-500' : `${textColor} ${hoverTextColor}`}`} title="English" data-lang="en">
       <span class="flag-icon mr-1">
-        🇺🇸
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" class="inline-block">
+          <rect width="16" height="12" fill="#FFFFFF"/>
+          <rect y="0" width="16" height="1" fill="#B22234"/>
+          <rect y="2" width="16" height="1" fill="#B22234"/>
+          <rect y="4" width="16" height="1" fill="#B22234"/>
+          <rect y="6" width="16" height="1" fill="#B22234"/>
+          <rect y="8" width="16" height="1" fill="#B22234"/>
+          <rect y="10" width="16" height="1" fill="#B22234"/>
+          <rect width="7" height="7" fill="#3C3B6E"/>
+        </svg>
       </span>
       <span class={textColor}>EN</span>
     </a>

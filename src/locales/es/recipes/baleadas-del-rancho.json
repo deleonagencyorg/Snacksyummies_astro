@@ -1,0 +1,30 @@
+{
+      "date": "2025-09-11",
+      "id": "baleadas-del-rancho",
+      "slug": "baleadas-del-rancho",
+      "title": "Baleadas del Rancho",
+      "people": "7",
+      "difficulty": "Medio",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/baleadas-del-rancho.webp",
+      "gallery": [
+         "baleadas-del-rancho.webp"
+      ],      
+      "type":"image",
+      "preparation_time": 25,
+      "ingredients": [
+        "4 tortillas de harina",
+        "1 taza de frijoles refritos",
+        "8 huevos",
+        "½ taza de mantequilla crema",
+        "1 bolsa Del Rancho Chicharrones"
+      ],
+      "instructions": [
+        "Paso 1. Untar de los frijoles cada una de las tortillas.",
+        "Paso 2. Agregar mantequilla crema.",
+        "Paso 3. En una sartén cocinar los huevos y salpimentar.",
+        "Paso 4. Luego dividirlos en cada una de las cuatro tortillas.",
+        "Paso 5. Coloque tanto a su gusto de los chicharrones en cada una de las tortillas y luego doble por la mitad.",
+        "Paso 6. Puede calentarla en un sartén y luego listas para comer"
+      ],
+      "brand": ["delrancho"]
+    }

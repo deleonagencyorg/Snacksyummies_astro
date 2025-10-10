@@ -1,43 +1,209 @@
 ---
 // src/views/Recipes/Detail/index.astro
-import { t } from '../../../i18n/i18n';
-import type { Locale } from '../../../i18n/i18n';
+import { getLocale } from '../../../i18n/i18n';
 import './styles.css';
 import RecipeCard from '../../../components/recipes/RecipeCard.astro';
+import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
+import RelatedRecipesCarousel from '../../../components/recipes/RelatedRecipesCarousel.astro';
+import LazyImage from '../../../components/common/LazyImage.astro';
+import { div } from 'framer-motion/m';
+import ShareModal from '../../../components/common/ShareModal.astro';
 
 interface RecipeItem {
   id: string;
+  slug?: string;
   title: string;
   description: string;
   ingredients: string[];
-  instructions: string;
+  instructions: string[];
   preparation_time: number;
   servings: number;
   image?: string;
   tags?: string[];
+  product_image?: string;
 }
 
-const { currentLang, recipeId } = Astro.props;
+// Recibimos los parámetros de la página
+const { currentLang, recipeId, recipe: propRecipe } = Astro.props;
 
-// Obtener datos desde traducciones
-const recipesAssets = t('home', { namespace: 'recipes', locale: currentLang }) || {};
-const recipes = t('items', { namespace: 'recipes', locale: currentLang as Locale }) || [];
-const recipe = recipes.find((item: RecipeItem) => item.id === recipeId);
-
-// Obtener recetas relacionadas
-const relatedRecipes = recipes
-  .filter((item: RecipeItem) => item.id !== recipeId)
-  .slice(0, 3);
-
-if (!recipe) {
-  throw new Error(`Recipe with id ${recipeId} not found`);
+// Helper to slugify titles with improved handling (solo para URLs)
+function slugify(str: string): string {
+  if (!str) return '';
+  
+  // Normalizar caracteres especiales primero
+  let text = str
+    .normalize('NFD')
+    .toLowerCase()
+    // Reemplazar caracteres acentuados
+    .replace(/[\u0300-\u036f]/g, '')
+    // Reemplazar ñ con n
+    .replace(/\u00f1/g, 'n')
+    // Reemplazar espacios y caracteres especiales con guiones
+    .replace(/[^a-z0-9]+/g, '-')
+    // Eliminar guiones al principio y al final
+    .replace(/^-+|-+$/g, '');
+    
+  // Eliminar palabras comunes para acortar slugs
+  const commonWords = ['con', 'de', 'del', 'la', 'el', 'los', 'las', 'and', 'with', 'the', 'of', 'y'];
+  let parts = text.split('-');
+  parts = parts.filter(part => !commonWords.includes(part));
+  
+  return parts.join('-');
 }
 
-function formatTime(minutes: number, locale: Locale): string {
+// Función para normalizar títulos con acentos (para mostrar al usuario)
+function normalizeTitle(input: string): string {
+  if (!input) return '';
+
+  // Primero normalizamos a NFC para unificar caracteres compuestos
+  let text = input.normalize('NFC');
+
+  // Método directo para casos específicos
+  text = text
+    // Vocales minúsculas con acento
+    .replace(/Ã¡/g, 'á')
+    .replace(/Ã©/g, 'é')
+    .replace(/Ã­/g, 'í')
+    .replace(/Ã³/g, 'ó')
+    .replace(/Ãº/g, 'ú')
+    // Vocales mayúsculas con acento
+    .replace(/Ã/g, 'Á')
+    .replace(/Ã‰/g, 'É')
+    .replace(/Ã/g, 'Í')
+    .replace(/Ã"/g, 'Ó')
+    .replace(/Ãš/g, 'Ú')
+    // Ñ y caracteres especiales
+    .replace(/Ã±/g, 'ñ')
+    .replace(/Ã'/g, 'Ñ')
+    .replace(/Â/g, '')
+    // Casos específicos observados
+    .replace(/manÃ/g, 'maní')
+    .replace(/japonÃ©s/g, 'japonés')
+    .replace(/PlÃ¡tano/g, 'Plátano')
+    .replace(/MaÃ­z/g, 'Maíz')
+    .replace(/PÃ¡caros/g, 'Pícaros')
+    .replace(/PÃ­caros/g, 'Pícaros')
+    .replace(/JalapeÃ±o/g, 'Jalapeño')
+    .replace(/ChicharrÃ³n/g, 'Chicharrón')
+    .replace(/FusiÃ³n/g, 'Fusión')
+    .replace(/ClÃ¡sicas/g, 'Clásicas')
+    .replace(/Ã³n/g, 'ón');
+
+  // Limpieza final de espacios y caracteres invisibles
+  text = text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim();
+
+  // Normalizar nuevamente para asegurar consistencia
+  return text.normalize('NFC');
+}
+
+// Import all recipe files with static glob and filter by language for related recipes
+const recipeModules = import.meta.glob<{ default: RecipeItem }>("../../../locales/*/recipes/*.json");
+const allRecipes: RecipeItem[] = [];
+for (const path in recipeModules) {
+  const lang = path.split('/') [4];
+  if (lang === currentLang) {
+    const mod = await recipeModules[path]();
+    allRecipes.push(mod.default);
+  }
+}
+
+// Buscar la receta si no viene como prop con búsqueda mejorada
+let currentRecipe = propRecipe;
+if (!currentRecipe) {
+  // Búsqueda exacta
+  currentRecipe = allRecipes.find((r) => 
+    r.id === recipeId || 
+    r.slug === recipeId || 
+    slugify(r.title || '') === recipeId
+  );
+  
+  // Si no encontramos la receta, intentamos búsqueda flexible
+  if (!currentRecipe) {
+    // Caso especial para anafres
+    if (recipeId.includes('anafres')) {
+      currentRecipe = allRecipes.find(r => r.id.includes('anafres') || (r.slug && r.slug.includes('anafres')));
+    } else {
+      // Búsqueda por palabras clave
+      const keywords = recipeId.split('-').filter(k => k.length > 3);
+      if (keywords.length > 0) {
+        currentRecipe = allRecipes.find(r => {
+          const idWords = r.id.split('-');
+          const slugWords = r.slug ? r.slug.split('-') : [];
+          const titleWords = slugify(r.title || '').split('-');
+          
+          // Verificar si hay suficientes palabras clave en común
+          const matchCount = keywords.filter(k => 
+            idWords.includes(k) || slugWords.includes(k) || titleWords.includes(k)
+          ).length;
+          
+          // Si hay al menos 3 palabras clave en común o más del 70% de coincidencia
+          return matchCount >= 3 || (matchCount / keywords.length) > 0.7;
+        });
+      }
+    }
+  }
+}
+
+// Fallback recipe in case the requested one is not found
+const fallbackRecipe: RecipeItem = {
+  id: 'fallback',
+  title: currentLang === 'es' ? 'Receta no encontrada' : 'Recipe not found',
+  description: '',
+  ingredients: [],
+  instructions: [],
+  preparation_time: 0,
+  servings: 0,
+  image: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'
+};
+
+// Use the recipe or fallback
+let safeRecipe = currentRecipe || fallbackRecipe;
+
+// Normalizar el título para mostrar correctamente los acentos
+if (safeRecipe && safeRecipe.title) {
+  safeRecipe = {
+    ...safeRecipe,
+    title: normalizeTitle(safeRecipe.title)
+  };
+}
+
+// Normalizar ingredientes e instrucciones
+if (safeRecipe && safeRecipe.ingredients && safeRecipe.ingredients.length > 0) {
+  safeRecipe.ingredients = safeRecipe.ingredients.map(ingredient => normalizeTitle(ingredient));
+}
+
+if (safeRecipe && safeRecipe.instructions && safeRecipe.instructions.length > 0) {
+  safeRecipe.instructions = safeRecipe.instructions.map(instruction => normalizeTitle(instruction));
+}
+
+// Get related recipes (filter current and limit to 3)
+const relatedRecipes = allRecipes
+  .filter((item: RecipeItem) => {
+    if (!item || !item.id) return false;
+    const titleSlug = slugify(item.title || '');
+    return item.id !== recipeId && item.slug !== recipeId && titleSlug !== recipeId;
+  })
+  .slice(0, 3)
+  .map(recipe => {
+    // Normalizar títulos de recetas relacionadas
+    return {
+      ...recipe,
+      title: normalizeTitle(recipe.title)
+    };
+  });
+
+// Load shared recipe assets (titles, labels etc)
+const recipesAssets = {
+  recipes: currentLang === 'es' ? 'Ingredientes' : 'Ingredients',
+  preparation: currentLang === 'es' ? 'Preparación' : 'Preparation',
+  related_recipes: currentLang === 'es' ? 'Recetas relacionadas' : 'Related recipes'
+};
+
+function formatTime(minutes: number, lang: string = currentLang): string {
   const hours = Math.floor(minutes / 60);
   const mins = minutes % 60;
   
-  if (locale === 'es') {
+  if (lang === 'es') {
     return hours > 0 
       ? `${hours}h ${mins}min` 
       : `${mins}min`;
@@ -48,134 +214,271 @@ function formatTime(minutes: number, locale: Locale): string {
   }
 }
 ---
-<div id="hero" class="flex flex-col pt-8 md:pt-12 md:flex-row justify-center items-center md:h-[43rem] pb-8" transition:animate="slide">
-  <div class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8">
-    {recipe.image && (
-      <div class="w-full md:w-1/2 flex justify-center">
-        <div class="relative rounded-lg overflow-hidden h-80 lg:h-96 w-80 max-w-lg">
-          <img 
-            src={recipe.image} 
-            alt={recipe.title}
-            class="w-full h-full object-cover"
-            onerror="this.onerror=null;this.src='/images/recipes/placeholder.jpg';"
-            transition:name={`recipe-image-${recipe.id}`}
-          />
-        </div>
-      </div>
-    )}
+<!-- Main Container with repeating-x background image -->
+<div class="py-12 min-h-screen" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgrecipes2.webp');  background-position: top center;">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Breadcrumbs -->
+    <Breadcrumb 
+      items={[
+        { label: 'Home', href: `/${currentLang}` },
+        { label: currentLang === 'es' ? 'Recetas' : 'Recipes', href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}` },
+        { label: safeRecipe.title, href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}/${safeRecipe.slug ?? safeRecipe.id}` }
+      ]}
+      textColor="text-white"
+    />
     
-    <div class="w-[80%] md:w-1/2 flex flex-col gap-4 bg-white md:p-8 p-4 rounded-lg">
-      <h1 class=" font-heading md:text-3xl text-2xl font-bold text-gray-800 mb-2 text-center md:text-left">{recipe.title}</h1>
-      <div class="flex items-center justify-center md:justify-start">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          class="h-5 w-5 md:h-6 md:w-6 text-gray-500" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path 
-            stroke-linecap="round" 
-            stroke-linejoin="round" 
-            stroke-width="2" 
-            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
-          />
-        </svg>
-        <span class="ml-2 md:ml-5 text-gray-500 font-heading text-base md:text-xl">
-          {recipe.preparation_time} MINS
-        </span>
+    <!-- Recipe Title -->
+    <div class="text-left mb-8">
+      <h1 class="text-4xl md:text-5xl font-title font-bold text-primary mb-2 mt-8" style="font-weight: 700; line-height: 40px;">
+        {safeRecipe.title}
+      </h1>
+    </div>
+
+    <!-- Main Content Card -->
+    <div class="bg-white rounded-3xl p-8 md:p-12 shadow-lg mb-8">
+      <div class="w-full self-stretch">
+        <div class="rounded-2xl overflow-hidden w-full h-[35rem] self-stretch">
+          {safeRecipe.image ? (
+            <LazyImage
+              src={safeRecipe.image}
+              alt={safeRecipe.title}
+              class="w-full h-full object-cover block"
+              onerror="this.onerror=null;this.src='https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';"
+              transition:name={`recipe-image-${safeRecipe.id}`}
+            />
+          ) : (
+            <div class="w-full h-[25rem] bg-gray-200 flex items-center justify-center">
+              <span class="text-gray-500">{safeRecipe.title}</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div id="ingredients" class=" flex flex-col justify-center items-center    mb-8 py-16 ">
-  <div class="w-full max-w-6xl px-4">
-    <h1 class="font-heading font-bold md:text-4xl text-2xl text-white text-center mb-8 ">
-      {recipesAssets.recipes}
-    </h1>
-    
-    <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-      {recipe.image && (
-        <div class="w-full md:w-1/2 flex justify-center">
-          <div class="relative rounded-lg overflow-hidden h-80 lg:h-96 w-80 max-w-lg">
-            <img 
-              src={recipe.product_image} 
-              alt={recipe.title}
-              class="w-full h-full object-cover"
-              onerror="this.onerror=null;this.src='/images/recipes/placeholder.jpg';"
-            />
-          </div>
+    <!-- Info Recipe - Figma "Info 2" Layout -->
+    <div class="flex flex-col md:flex-row gap-6 md:gap-[25px] items-start md:items-center justify-between w-full mb-12" data-name="Info 2">
+      <!-- Left side: Recipe info -->
+      <div class="hidden md:flex flex-wrap gap-4 md:gap-[25px] items-start md:items-center justify-start">
+        <!-- Servings -->
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-white text-xl font-sans" >
+            {safeRecipe.servings} {currentLang === 'es' ? 'Personas' : 'Servings'}
+          </span>
         </div>
-      )}
-      
-      <div class="w-[80%] md:w-1/2 flex flex-col gap-4 md:p-8 p-4 rounded-lg text-white">
-       
-        <section class="mb-8 text-white">
-          <ul class="list-disc list-inside space-y-2 text-white">
-            {recipe.ingredients.map((ingredient: string) => (
-              <li class="text-white">
-                {ingredient}
+
+        <!-- Time -->
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span class="text-white text-xl font-sans" >
+            {formatTime(safeRecipe.preparation_time)}
+          </span>
+        </div>
+
+        <!-- Difficulty -->
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          <span class="text-white text-xl font-sans" >
+            {safeRecipe.difficulty || (currentLang === 'es' ? 'Avanzado' : 'Advanced')}
+          </span>
+        </div>
+
+        <!-- Star Rating -->
+        <div class="flex items-center gap-1">
+          {Array.from({ length: 5 }, (_, index) => (
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right side: Social Media Share Modal -->
+      <div class="flex gap-2 items-center justify-between md:justify-start w-full md:w-auto mt-4 md:mt-0" data-name="Social media">
+        <button class="flex gap-2 items-center justify-start hover:opacity-80 transition-opacity" onclick="window.showShareModal && window.showShareModal('recipeShareModal')">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"/>
+          </svg>
+          <span class="text-white text-xl font-sans" >
+            {currentLang === 'es' ? 'Comparte en redes' : 'Share on social'}
+          </span>
+        </button>
+        <ShareModal id="recipeShareModal" url={Astro.url.toString()} title={safeRecipe.title} description={safeRecipe.description} />
+      </div>
+    </div>
+    <!-- All Info Section - Figma "All Info" Layout -->
+    <div class="flex flex-col gap-10 items-start justify-start w-full mb-12" data-name="All info">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+        
+        <!-- Ingredients Column -->
+        <div class="flex flex-col gap-6">
+          <h2 class="text-xl md:text-3xl font-sans text-primary" >
+            {recipesAssets.ingredients || (currentLang === 'es' ? 'Ingredientes' : 'Ingredients')}
+          </h2>
+          
+          <ul class="flex flex-col gap-4">
+            {safeRecipe.ingredients.map((ingredient: string) => (
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 mt-1">
+                  <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <span class="text-primary text-md md:text-xl font-sans">
+                  {ingredient}
+                </span>
               </li>
             ))}
           </ul>
-        </section>
+        </div>
+
+        <!-- Instructions Column -->
+        <div class="flex flex-col gap-6">
+          <h2 class="text-primary text-xl md:text-3xl font-sans" >
+            {recipesAssets.preparation || (currentLang === 'es' ? 'Instrucciones' : 'Instructions')}
+          </h2>
+          
+          <ol class="flex flex-col gap-4">
+            {safeRecipe.instructions.map((instruction: string, index: number) => (
+              <li class="flex items-start gap-3">
+                <div class="flex-shrink-0 mt-1">
+                  <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                    <span class="text-primary text-sm font-bold">{index + 1}</span>
+                  </div>
+                </div>
+                <p class="text-primary text-md md:text-xl font-sans">
+                  {instruction}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div id="instructions" class="mt-[-2rem]  md:mt-[-2rem] flex flex-col md:flex-row justify-center items-center md:h-[43rem] mb-8">
-
-  <div class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8">
-    <div class="w-[80%]  flex items-center justify-center flex-col gap-4  md:p-0 p-4 rounded-lg text-white">
-      <h1 class="font-heading font-bold md:text-4xl text-2xl text-gray-600 text-center mb-8">
-        {recipesAssets.preparation}
-      </h1>
-      <section class="mb-8 text-white">
-        <ul class="list-disc list-inside space-y-2 text-gray-600">
-          {recipe.instructions.map((instruction: string) => (
-            <li class="text-gray-600">
-              {instruction}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-  </div>
-</div>
-<div id="suggestions_related" class="mt-[-2rem] flex flex-col justify-center items-center py-12 bg-white" transition:animate="fade">
-  <div class="w-full max-w-6xl px-4">
-    <h2 class="pb-8 text-3xl md:text-4xl font-bold text-gray-600 mb-8 text-center font-heading">
-      {recipesAssets.related_recipes}
-    </h2>
     
-    <div class="w-full mx-auto grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-16">
-      {relatedRecipes.map((related: RecipeItem) => (
-        <RecipeCard
-          image={related.image || '/images/recipes/placeholder.jpg'}
-          title={related.title}
-          time={`${related.preparation_time} ${currentLang === 'es' ? 'min' : 'mins'}`}
-          id={related.id}
-          textColor="text-gray-800"
-          iconColor="text-gray-500"
-        />
-      ))}
-    </div>
+
   </div>
 </div>
+
 
 
 <script>
-  // Este script se ejecuta solo en el navegador
+  // Enhanced script for recipe detail page
   document.addEventListener('DOMContentLoaded', () => {
-    // Manejo de imágenes que fallan al cargar
-    document.querySelectorAll('.recipe-detail img').forEach(img => {
+    // Handle image loading errors
+    document.querySelectorAll('img').forEach(img => {
       if (!img.hasAttribute('onerror')) {
         img.addEventListener('error', function(this: HTMLImageElement) {
           this.onerror = null;
-          this.src = '/images/recipes/placeholder.jpg';
+          this.src = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
         });
       }
     });
+
+    // Add fade-in animation for cards
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all main content cards
+    document.querySelectorAll('.bg-white.rounded-3xl').forEach(card => {
+      const element = card as HTMLElement;
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
   });
+
+  // Global share function for the social media button
+  async function shareRecipe() {
+    const title = document.querySelector('h1')?.textContent || 'Recipe';
+    const url = window.location.href;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: title,
+          url: url,
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+      }
+    } else {
+      // Fallback to copying URL to clipboard
+      try {
+        await navigator.clipboard.writeText(url);
+        alert('Recipe URL copied to clipboard!');
+      } catch (err) {
+        console.log('Could not copy URL');
+      }
+    }
+  }
 </script>
+
+<style>
+  /* Custom fonts and styling to match Figma design */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  
+  /* Fallback font styles for Trois Mille fonts */
+  
+
+  /* Enhanced hover effects */
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  /* Responsive grid adjustments */
+  @media (max-width: 768px) {
+    .grid-cols-1.md\\:grid-cols-3 {
+      grid-template-columns: 1fr;
+    }
+    
+    .grid-cols-1.md\\:grid-cols-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Smooth transitions for all interactive elements */
+  * {
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Custom scrollbar for better UX */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #60a5fa;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
+  }
+</style>

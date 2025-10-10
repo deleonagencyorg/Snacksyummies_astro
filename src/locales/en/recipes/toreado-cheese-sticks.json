@@ -1,0 +1,28 @@
+{
+  "date": "2025-09-11",
+  "id": "toreado-cheese-sticks",
+  "slug": "toreado-cheese-sticks",
+  "title": "Toreado Cheese Sticks",
+  "people": "4",
+  "difficulty": "Intermediate",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/bastones-de-queso-toreados.webp",
+  "gallery": [
+    "bastones-de-queso-toreados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "2 pounds mozzarella cheese",
+    "1 cup flour",
+    "3 beaten eggs",
+    "1 bag of crushed Cappy Toreado",
+    "Oil for frying quantity needed"
+  ],
+  "instructions": [
+    "Step 1: Cut the mozzarella cheese into sticks.",
+    "Step 2: Then dip them in the flour, then in the egg and finally in the Cappy Toreado.",
+    "Step 3: Heat the oil to 180 degrees Celsius.",
+    "Step 4: Remove after frying and dry them on paper towels."
+  ],
+  "brand": ["cappy"]
+}

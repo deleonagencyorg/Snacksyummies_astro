@@ -1,0 +1,145 @@
+---
+// src/components/common/DeliveryAppsCarousel.astro
+import { getLocale, t } from '../../i18n/i18n';
+
+interface AppItem {
+  app_icon: string;
+  app_name: string;
+  app_url: string;
+  country?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  items?: AppItem[];
+}
+
+const currentLang = getLocale();
+const {
+  title = currentLang === 'es' ? 'Encuéntralos en tiendas y en línea:' : 'Find them in stores and online:',
+  subtitle = '',
+  items = (t('home.delivery.delivery_apps', { namespace: 'common', locale: 'es' }) as unknown as AppItem[]) || [],
+}: Props = Astro.props;
+
+// Only render for Spanish as requested
+const shouldRender = currentLang === 'es' && Array.isArray(items) && items.length > 0;
+const smallCount = shouldRender ? items.length <= 2 : false;
+---
+
+{shouldRender && (
+  <section class="delivery-apps-section content-stretch w-full bg-white">
+    <div class="container mx-auto px-4 py-10">
+      <h3 class="text-primary text-center font-title font-bold text-2xl md:text-3xl mb-6">
+        {title}
+      </h3>
+
+      <div class="relative max-w-6xl mx-auto">
+        {!smallCount && (
+        <button class="apps-nav left" type="button" aria-label="Anterior" data-dir="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        )}
+        {!smallCount && (
+        <button class="apps-nav right" type="button" aria-label="Siguiente" data-dir="1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        )}
+
+        <div id="apps-track" class={`apps-track ${smallCount ? 'centered' : ''}`} data-small={smallCount ? '1' : '0'}>
+          {items.map((app) => (
+            <a href={app.app_url} target="_blank" rel="noopener noreferrer" class="app-pill" aria-label={app.app_name} title={app.app_name}>
+              <img src={app.app_icon} alt={app.app_name} class="app-icon" loading="lazy" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .delivery-apps-section { overflow: hidden; }
+  .apps-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0.75rem 3.25rem; /* room for larger arrows */
+  }
+  .apps-track.centered {
+    justify-content: center;
+    overflow: visible;
+    padding: 0.5rem 0;
+  }
+  .apps-track::-webkit-scrollbar { display: none; }
+  .apps-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: white;
+    color: #0A3D7E; /* primary */
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 9999px;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.15);
+  }
+  .apps-nav.left { left: 0; }
+  .apps-nav.right { right: 0; }
+  @media (max-width: 768px) { .apps-nav { display: none; } }
+
+  .app-pill {
+    flex: 0 0 auto;
+    width: 112px; height: 112px;
+    border-radius: 9999px;
+    display: grid; place-items: center;
+    background: #ffffff;
+    border: 2px solid rgba(10,61,126,0.15);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .app-pill:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 24px -8px rgba(10,61,126,0.3); }
+  .app-icon { width: 96px; height: 96px; object-fit: contain; border-radius: 9999px; }
+</style>
+
+<script>
+  function initAppsCarousel(){
+    const node = document.getElementById('apps-track');
+    if (!(node instanceof HTMLElement)) return;
+    const el: HTMLElement = node;
+
+    // If small set (1-2 items), no controls or autoplay
+    if (el.classList.contains('centered')) {
+      return;
+    }
+
+    // Arrow buttons
+    document.querySelectorAll('.apps-nav').forEach((btn)=>{
+      btn.addEventListener('click', ()=>{
+        const dir = Number((btn as HTMLElement).getAttribute('data-dir') || '1');
+        el.scrollBy({ left: dir * 240, behavior: 'smooth' });
+      });
+    });
+
+    // Simple autoplay for subtle motion
+    let autoplay: number | null = null;
+    function start(){
+      if (autoplay) return;
+      autoplay = window.setInterval(()=>{
+        el.scrollBy({ left: 160, behavior: 'smooth' });
+      }, 3000);
+    }
+    function stop(){ if (autoplay){ window.clearInterval(autoplay); autoplay = null; } }
+
+    // Pause on hover (desktop only)
+    el.addEventListener('mouseenter', stop);
+    el.addEventListener('mouseleave', start);
+
+    start();
+  }
+
+  document.addEventListener('DOMContentLoaded', initAppsCarousel);
+  window.addEventListener('astro:page-load', initAppsCarousel);
+</script>

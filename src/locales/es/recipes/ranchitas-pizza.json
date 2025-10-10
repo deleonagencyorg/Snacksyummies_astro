@@ -1,0 +1,26 @@
+{
+  "date": "2025-09-11",
+  "id": "ranchitas-pizza",
+  "slug": "ranchitas-pizza",
+  "title": "Ranchitas Pizza",
+  "people": "19",
+  "difficulty": "Media",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-pizza.webp",
+  "gallery": [
+    "ranchitas-pizza.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "instructions": [
+    "Paso 1. Con una batidora manual, mezcla una taza de harina con el resto de ingredientes. Cuando esté mezclado, agrega poco a poco la harina hasta que se forme una textura arenosa.",
+    "Paso 2. Termina de amasar con la mano sin sobre amasar.",
+    "Paso 3. Tapa y deja que crezca por 30 minutos.",
+    "Paso 4. Luego divide la masa en dos, agrega las Ranchitas, aplana y coloca en una bandeja para pizza con papel pergamino.",
+    "Paso 5. Agrega salsa de tomate y hornea 8 minutos a 475 F.",
+    "Paso 6. Saca del horno, agrega el resto de toppings y hornea otros 8 minutos."
+  ],
+  "brand": [
+    "ranchitas"
+  ],
+  "ingredients": []
+}

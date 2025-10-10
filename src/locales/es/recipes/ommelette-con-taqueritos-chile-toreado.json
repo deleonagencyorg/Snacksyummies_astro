@@ -1,0 +1,30 @@
+{
+      "date": "2025-09-11",
+      "id": "ommelette-con-taqueritos-chile-toreado",
+      "slug": "ommelette-con-taqueritos-chile-toreado",
+      "title": "Ommelette Con Taqueritos Chile Toreado",
+      "people": "19",
+      "difficulty": "Fácil",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ommelette-con-taqueritos-chile-toreado.webp",
+      "gallery": [
+         "ommelette-con-taqueritos-chile-toreado.webp"
+      ],      
+      "type":"image", 
+      "preparation_time": 15,
+      "ingredients": [
+        "2 huevos",
+        "Sal y pimienta al gusto",
+        "2 cucharadas de aceite divididas",
+        "1 cucharada de cebolla picada",
+        "Queso mozarella rallado",
+        "¼ de taza de Taqueritos Chile Toreado"
+      ],
+      "instructions": [
+        "Paso 1. Bate los huevos y agrégales sal y pimienta al gusto.",
+        "Paso 2. Calienta una cucharada de aceite en un sartén antiadherente y fríe la cebolla a fuego medio hasta que esté transparente y agrégasela al huevo.",
+        "Paso 3. En el mismo sartén agrega la otra cucharada de aceite y sube la temperatura a fuego medio alto. Agrega el huevo y cocina hasta que cuaje.",
+        "Paso 4. Dale vuelta con la ayuda de una espátula o tapa. Agrega el queso y los Taqueritos y cierra el omelette.",
+        "Paso 5. Reduce la temperatura a fuego medio bajo y cocina hasta que el queso esté derretido."
+      ],
+      "brand": ["taqueritos"]
+    }

@@ -1,0 +1,33 @@
+{
+  "date": "2025-09-11",
+  "id": "yuca-con-chicharron",
+  "slug": "yuca-con-chicharron",
+  "title": "Yuca con Chicharrón",
+  "people": "6",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yuca-con-chicharron.webp",
+  "gallery": [
+    "yuca-con-chicharron.webp"
+  ],
+  "type": "image",
+  "preparation_time": 30,
+  "ingredients": [
+    "2 libras de yuca cocida",
+    "Chismol de su gusto",
+    "2 tazas de Repollo rallado",
+    "2 Limones",
+    "1/2 libra de chicharrón",
+    "Media libra de manteca"
+  ],
+  "instructions": [
+    "Paso 1. En una sartén colocar una cucharada de aceite y sofreír la cebolla el tomate y el ajo por un par de minutos.",
+    "Paso 2. Luego colocar el sofrito en una licuadora y agregue el caldo de pollo y la pasta de tomate y licue hasta que todo esté bien mezclado.",
+    "Paso 3. Regreso a la sartén y deje que hierva suavemente. Sazone con la sal y pimienta, la paprika, el laurel y el comino.",
+    "Paso 4. Cocine la salsa por unos 7 minutos. Reserve.",
+    "Paso 5. El repollo colóquelo en un cuenco con agua y jugo de limón. Déjelo reposar por una media hora.",
+    "Paso 6. Sirva la yuca en un plato, bañe con la salsa, el repollo, encima el chirmol y coloca los Chicharrones."
+  ],
+  "brand": [
+    "zambos"
+  ]
+}

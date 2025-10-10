@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-11",
+  "id": "queso-frito-con-taqueritos",
+  "slug": "queso-frito-con-taqueritos",
+  "title": "Queso Frito con Taqueritos",
+  "people": "4",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/queso-frito-con-taqueritos.webp",
+  "gallery": [
+    "queso-frito-con-taqueritos.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "1 libra de queso para freír",
+    "½ taza de harina",
+    "1 huevo",
+    "Abundante aceite",
+    "1 Taqueritos Chile Toreado (o el de tu preferencia)"
+  ],
+  "instructions": [
+    "Paso 1: Triturar los Taqueritos.",
+    "Paso 2: Cortar el queso en lascas.",
+    "Paso 3: Sumergir las lascas de queso en la harina, luego en el huevo y por último en los Taqueritos triturados.",
+    "Paso 4: Calentar el aceite en una olla y sumergir el queso hasta que se dore.",
+    "Paso 5: Servir y acompañar con aderezo y chiles jalapeños."
+  ],
+  "brand": ["taqueritos"]
+}

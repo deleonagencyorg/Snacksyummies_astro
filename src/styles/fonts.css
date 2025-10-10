@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'TroisMille';
-  src: url('../assets/fonts/TroisMilleTRIALRglr23.otf') format('truetype');
+  src: url('../assets/fonts/TroisMilleTRIALRglr23.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: 'TroisMille Bold';
-  src: url('../assets/fonts/TroisMilleBold.otf') format('truetype');
+  src: url('../assets/fonts/TroisMilleBold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -21,10 +21,10 @@
 
 /* Variables CSS para compatibilidad con código existente */
 :root {
-  --font-title: 'TroisMille  Bold', serif;
-  --font-heading: 'TroisMille', serif;
-  --font-text: 'TroisMille', serif;
-  --font-sans: 'TroisMille', serif;
+  --font-title: 'TroisMille Bold', 'TroisMille', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  --font-heading: 'TroisMille', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  --font-text: 'TroisMille', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  --font-sans: 'TroisMille', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
 }
 
 /* Clases de utilidad para usar directamente en HTML */

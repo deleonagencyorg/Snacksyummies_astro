@@ -1,0 +1,42 @@
+{
+  "date": "2025-09-11",
+  "id": "taquedogs",
+  "slug": "taquedogs",
+  "title": "TaqueDogs",
+  "people": "3",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taquedogs.webp",
+  "gallery": [
+    "taquedogs.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "Ingredientes Hot Dog 1:",
+    "Pan para Hot Dog",
+    "Salchichas",
+    "Queso",
+    "Mayonesa de cilantro y limón",
+    "Taqueritos®",
+    "Ingredientes Hot Dog 2:",
+    "Pan para Hot Dog",
+    "Salchichas",
+    "Mayonesa",
+    "Mostaza",
+    "Queso",
+    "Chili",
+    "Taqueritos®",
+    "Ingredientes Hot Dog 3:",
+    "Pan para Hot Dog",
+    "Salchichas",
+    "Mayonesa",
+    "Mostaza",
+    "Ketchup",
+    "Coleslaw",
+    "Taqueritos®"
+  ],
+  "instructions": [
+    "Arma tus TaqueDogs y disfruta"
+  ],
+  "brand": ["taqueritos"]
+}

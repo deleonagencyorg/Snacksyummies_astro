@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import config from '../i18n/config';
 import { t } from '../i18n/i18n';
 
+export const prerender = true;
+
 const staticPages = ['/', '/menu', '/nosotros', '/contacto'];
 
 // Menu URLs from both languages

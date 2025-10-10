@@ -4,26 +4,55 @@ import { t, setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
 
-export function getStaticPaths() {
-  // Obtener todos los idiomas y recetas disponibles
-  const locales = ['es'];
-  const paths = [];
+export async function getStaticPaths() {
+  // Leer todos los JSON de recetas (archivos) y también desde i18n (recipes.json) para ES
+  const modules = import.meta.glob<{ default: any }>('../../../locales/*/recipes/*.json');
+  const paths: any[] = [];
 
-  for (const locale of locales) {
-    // Obtener recetas para este idioma
-    const recipes = t('items', { namespace: 'recipes', locale: locale as Locale }) || [];
-    console.log(`Encontradas ${recipes.length} recetas para idioma ${locale}`);
-    
-    // Para cada receta, crear una ruta
-    for (const recipe of recipes) {
+  const slugify = (str: string) =>
+    String(str || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+  // 1) Aportar rutas desde archivos individuales (si existen) para ES
+  for (const path in modules) {
+    const mod = await modules[path]();
+    const recipe = mod.default || {};
+    const lang = path.split('/')[4]; // locales/<lang>/recipes/file.json
+    if (lang !== 'es') continue;
+
+    const slugClean = slugify(recipe.slug || recipe.title || recipe.id);
+    const id = String(recipe.id || '');
+
+    // Ruta principal con slug limpio (o id si faltara todo)
+    paths.push({
+      params: { lang, recipeId: slugClean || id },
+      props: { recipe, currentLang: lang }
+    });
+
+    // Fallback con id si difiere
+    if (id && id !== slugClean) {
       paths.push({
-        params: { lang: locale, recipeId: recipe.id },
-        props: { recipe, currentLang: locale }
+        params: { lang, recipeId: id },
+        props: { recipe, currentLang: lang }
       });
     }
   }
 
-  console.log(`Generadas ${paths.length} rutas de recetas en español`);
+  // 2) Aportar rutas desde recipes.json (i18n) para ES
+  const items = (t('items', { namespace: 'recipes', locale: 'es' as Locale }) as any[]) || [];
+  for (const recipe of items) {
+    const id = String(recipe.id || '');
+    const slugClean = slugify(recipe.slug || recipe.title || id);
+    paths.push({ params: { lang: 'es', recipeId: slugClean || id }, props: { recipe, currentLang: 'es' } });
+    if (id && id !== slugClean) {
+      paths.push({ params: { lang: 'es', recipeId: id }, props: { recipe, currentLang: 'es' } });
+    }
+  }
+
   return paths;
 }
 
@@ -33,9 +62,8 @@ const { lang, recipeId } = Astro.params;
 // Establecer el idioma para las traducciones
 setLocale(lang as Locale);
 
-console.log(`Renderizando receta: ${recipeId} en idioma: ${lang}`);
 ---
 
-<MainLayout title={recipe.title} currentLang={currentLang}>
-  <RecipeDetail currentLang={currentLang} recipeId={recipeId} />
+<MainLayout title={''}>
+  <RecipeDetail currentLang={lang} recipeId={recipeId} />
 </MainLayout>

@@ -1,0 +1,28 @@
+{
+  "date": "2025-09-11",
+  "id": "elotes-locos-toreados",
+  "slug": "elotes-locos-toreados",
+  "title": "Elotes Locos Toreados",
+  "people": "4",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/elotes-locos-toreados.webp",
+  "gallery": [
+    "elotes-locos-toreados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 30,
+  "ingredients": [
+    "4 mazorcas de maíz",
+    "4 pinchos de madera",
+    "8 cucharadas de Mayonesa",
+    "1 pedazo de papel aluminio",
+    "1 bolsa de cappy toreado triturado",
+    "1 taza de queso seco rallado"
+  ],
+  "instructions": [
+    "Paso 1: Cocer las mazorcas de maíz y cocinar por unos 20 minutos. Insertar los pinchos de madera.",
+    "Paso 2: Agregar una dos cucharadas de Mayonesa en el papel aluminio y luego colocar el maíz rotando para que se cubra completamente de Mayonesa.",
+    "Paso 3: Ahora cubrir con los cappys triturados y por último espolvorear del queso."
+  ],
+  "brand": ["cappy"]
+}

@@ -1,0 +1,28 @@
+{
+  "date": "2025-09-11",
+  "id": "vasos-de-manzana-con-nueces",
+  "slug": "vasos-de-manzana-con-nueces",
+  "title": "Vasos de Manzana con Nueces",
+  "people": "4",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/vasos-de-manzana-con-nueces.webp",
+  "gallery": [
+    "vasos-de-manzana-con-nueces.webp"
+  ],
+  "type": "image",
+  "preparation_time": 10,
+  "ingredients": [
+    "4 vasos plásticos",
+    "12 galletas maría trituradas",
+    "2 manzanas rojas picadas finamente",
+    "Canela en polvo al gusto",
+    "2 bolsas de Yummi Nuts Maní con Sal"
+  ],
+  "instructions": [
+    "Paso 1: Colocar las galletas marías bien trituradas en la base del vaso.",
+    "Paso 2: En un tazón mezclar la manzana con las nueces mixtas y la canela.",
+    "Paso 3: Ahora agregar la mezcla de las manzanas en el vaso.",
+    "Paso 4: Colocar una cucharada de yogurt encima y nuestro vaso de Snack saludable está listo."
+  ],
+  "brand": ["yumminuts"]
+}
