@@ -21,8 +21,8 @@ const socialMedia = t('social_media', { namespace: 'common', locale: currentLang
 const menuItems = t('menu_items', { namespace: 'common', locale: currentLang }) as any[];
 ---
 
-<!-- Desktop Navigation -->
-<nav class={`hidden md:flex items-center justify-between w-full py-3 px-6 ${headerColorConfig.backgroundColor}`} data-current-lang={currentLang}>
+<!-- Desktop Navigation (visible from lg and up) -->
+<nav class={`hidden lg:flex items-center justify-between w-full py-3 px-6 ${headerColorConfig.backgroundColor}`} data-current-lang={currentLang}>
   <!-- Logo -->
   <div class="flex-shrink-0">
     <a href="/" class="block">

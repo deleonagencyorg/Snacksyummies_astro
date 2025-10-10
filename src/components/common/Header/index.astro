@@ -30,13 +30,13 @@ const headerColorConfig = getHeaderColors(pathname);
   
   <!-- Navbar principal - ocupa el 100% del ancho -->
   <div class={`w-full ${headerColorConfig.backgroundColor}`}>
-    <!-- Navbar de Desktop -->
-    <div class="hidden md:block">
+    <!-- Navbar de Desktop (solo desde lg) -->
+    <div class="hidden lg:block">
       <DesktopNavbar currentLang={currentLang} headerColorConfig={headerColorConfig} />
     </div>
 
-    <!-- Navegación Móvil -->
-    <nav class={`mobile-nav md:hidden w-full py-2 px-4 flex justify-between items-center ${headerColorConfig.backgroundColor}`}>
+    <!-- Navegación Móvil (visible hasta lg) -->
+    <nav class={`mobile-nav lg:hidden w-full py-2 px-4 flex justify-between items-center ${headerColorConfig.backgroundColor}`}>
       <!-- Logo para Móvil -->
       <div class="logo-container">
         <a href="/" class="flex-shrink-0">

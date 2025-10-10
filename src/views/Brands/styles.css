@@ -31,7 +31,7 @@ html {
 /* Header styles */
 .brands-header {
   width: 100%;
-  padding: 2rem 0;
+  padding: 0;
 }
 
 .brands-header h1 {
@@ -68,7 +68,7 @@ html {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 10px 0;
+  padding: 0;
 }
 
 /* Hide scrollbar but keep functionality */
@@ -84,7 +84,7 @@ html {
 .brands-icons-row {
   display: flex;
   gap: 1rem;
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 /* Brand icon circles in the header */
@@ -202,8 +202,28 @@ html {
 .brands-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 2rem 0;
+  gap: 1rem; /* Mobile default spacing: 1rem */
+  padding: 0;
+}
+
+/* Tablet: tighter spacing */
+@media (min-width: 768px) {
+  .brands-list {
+    gap: 0.25rem; /* 0.25rem on tablet */
+  }
+  .brand-card {
+    padding: 0.25rem; /* reduce vertical padding on tablet */
+  }
+}
+
+/* Desktop: extra tight spacing */
+@media (min-width: 1024px) {
+  .brands-list {
+    gap: 0.10rem; /* 0.10rem on desktop */
+  }
+  .brand-card {
+    padding: 0.125rem; /* ultra-compact padding on desktop */
+  }
 }
 
 .brand-logo-container {
@@ -292,7 +312,7 @@ html {
   
   .brand-card {
     overflow: visible;
-    margin-top: 0; /* removed negative top margin for small screens */
+    margin-top: 0; /* spacing handled by .brands-list gap */
   }
   
   .brand-card .chip-top-left {
@@ -338,9 +358,9 @@ html {
 
 .brand-card {
   position: relative;
-  margin-top: 0; /* removed negative top margin to prevent cutoff */
-  padding: 1rem;
-  margin-bottom: 0rem;
+  margin-top: 0;
+  padding: 0.5rem;
+  margin-bottom: 0;
   border-radius:3rem;
   transition: transform 0.3s ease;
   display: flex;
@@ -407,8 +427,8 @@ html {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .brand-card {
-    padding: 1rem;
-    margin-top: 2rem;
+    padding: 0.5rem; /* match base card padding */
+    margin-top: 0; /* spacing handled by .brands-list gap */
   }
   
   .brand-info-grid {

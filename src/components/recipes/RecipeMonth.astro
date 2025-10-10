@@ -45,8 +45,8 @@ const sectionTitle = title ?? (currentLocale === 'es' ? 'La receta del mes' : 'R
 
 ---
 
-<div class={`${transparent ? '' : 'bg-[#faf1e9]'} rounded-[40px] p-10 flex flex-col gap-9 items-center w-full`}> 
-  <h3 class="text-[#00306f] text-[40px] leading-[40px] font-title font-bold w-full">{sectionTitle}</h3>
+<div class={`${transparent ? '' : 'bg-[#faf1e9]'} rounded-[40px] p-2 md:p-10 flex flex-col gap-9 items-center w-full`}> 
+  <h3 class="text-[#00306f] text-[40px] leading-[40px] font-title font-bold w-full mt-4">{sectionTitle}</h3>
 
   <div
     class="w-full h-[360px] bg-center bg-cover bg-no-repeat rounded-lg overflow-hidden"
@@ -55,7 +55,7 @@ const sectionTitle = title ?? (currentLocale === 'es' ? 'La receta del mes' : 'R
     aria-label={recipeTitle}
   ></div>
 
-  <div class="w-full flex items-center justify-between">
+  <div class="w-full flex flex-col md:flex-row items-center justify-between">
     <div class="flex flex-col gap-4">
       <div class="text-[#202e6b] text-[20px] leading-[24px] ">{recipeTitle}</div>
 
@@ -73,7 +73,7 @@ const sectionTitle = title ?? (currentLocale === 'es' ? 'La receta del mes' : 'R
       </div>
     </div>
 
-    <a href={recipeLink} class="bg-[#00306f] text-white text-[20px] leading-[24px]  rounded-full px-8 py-3 transition-colors duration-200 hover:bg-[#52A4E0]">
+    <a href={recipeLink} class="bg-[#00306f] text-center  my-4 text-white text-[20px] leading-[24px]  rounded-full px-8 py-3 transition-colors duration-200 hover:bg-[#52A4E0]">
       {currentLocale === 'es' ? 'Ver receta' : 'View recipe'}
     </a>
   </div>

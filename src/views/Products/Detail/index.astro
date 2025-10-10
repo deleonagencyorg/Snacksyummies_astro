@@ -164,9 +164,11 @@ if (currentBrand && currentBrand.products) {
 
 
 ---
+<div class="w-full" >
+<!-- Page background wrapper -->
 
-<!-- Hero Banner con fondo primary -->
-<div class="bg-white py-2">
+  <!-- Hero Banner con fondo primary -->
+  <div class="bg-white py-2">
   <!-- Breadcrumbs -->
   <div class="container mx-auto px-4">
     <Breadcrumb 
@@ -177,13 +179,13 @@ if (currentBrand && currentBrand.products) {
       ]}
       textColor="text-primary"
     />
-  </div>
+    </div>
 </div>
 
 
 
-<!-- Detalle del producto con fondo blanco -->
-<div class="bg-white py-8 md:py-12">
+  <!-- Detalle del producto con fondo blanco -->
+  <div class="bg-white py-8 md:py-12">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
       <!-- Columna izquierda: Imagen y presentaciones -->
@@ -193,7 +195,7 @@ if (currentBrand && currentBrand.products) {
           <LazyImage
             src={currentProduct.image}
             alt={productTitle}
-            class="w-full max-w-md h-auto object-contain"
+            class="w-[300px] max-w-md h-auto object-contain"
             transition:name={`product-image-${currentProduct.id}`}
           />
         </div>
@@ -323,4 +325,5 @@ if (currentBrand && currentBrand.products) {
       </a>
     </div>
   </div>
+</div>
 </div>
