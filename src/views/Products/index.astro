@@ -90,7 +90,7 @@ for (const brand of brandsData) {
   if (brand.products && Array.isArray(brand.products)) {
     for (const product of brand.products) {
       // Crear una copia del producto para no modificar el original
-      const productCopy = { ...product };
+      const productCopy: Product = { ...(product as any) } as Product;
       
       // Normalizar el título
       if (productCopy.title) {
@@ -186,35 +186,93 @@ const clientLang = currentLang;
 )}
 
 <script define:vars={{ clientLang }}>
-  // Filtrado de productos por marca
-  document.addEventListener('brandFilterChange', (event) => {
-    const brand = event.detail.brand;
+  function applyBrandFilter(brand) {
+    console.log('[PRODUCTS] 🔍 Aplicando filtro de marca:', brand);
     const productItems = document.querySelectorAll('.product-item');
+    console.log('[PRODUCTS] 📦 Items encontrados:', productItems.length);
     
+    if (!productItems || productItems.length === 0) {
+      console.warn('[PRODUCTS] ⚠️ No se encontraron items para filtrar');
+      return;
+    }
+
     if (brand === 'all') {
-      // Mostrar todos los productos
-      productItems.forEach(item => {
-        item.style.display = 'block';
+      console.log('[PRODUCTS] ✅ Mostrando todos los productos');
+      productItems.forEach((item) => {
+        item.style.display = '';
       });
     } else {
-      // Filtrar por marca
-      productItems.forEach(item => {
-        if (item.getAttribute('data-brand') === brand) {
-          item.style.display = 'block';
+      let visibleCount = 0;
+      productItems.forEach((item) => {
+        const itemBrand = item.getAttribute('data-brand');
+        const match = itemBrand === brand;
+        if (match) {
+          visibleCount++;
+          item.style.display = '';
         } else {
           item.style.display = 'none';
         }
       });
+      console.log(`[PRODUCTS] ✅ Filtrado por "${brand}": ${visibleCount} productos visibles de ${productItems.length}`);
+      if (visibleCount === 0) {
+        console.warn(`[PRODUCTS] ⚠️ No se encontraron productos con data-brand="${brand}"`);
+        console.log('[PRODUCTS] 📋 Primeros 5 data-brand:', 
+          Array.from(productItems).slice(0, 5).map(p => p.getAttribute('data-brand'))
+        );
+      }
     }
-  });
+  }
 
-  // Fix para las imágenes que no cargan
-  document.addEventListener('DOMContentLoaded', () => {
+  function initializeProductsPage() {
+    console.log('[PRODUCTS] 🚀 Inicializando página de productos');
+    // Inicializar filtro desde la URL si existe ?brand=
+    const urlBrand = new URL(window.location.href).searchParams.get('brand');
+    const sessionBrand = sessionStorage.getItem('selectedBrand');
+    const initialBrand = urlBrand || sessionBrand || 'all';
+    console.log('[PRODUCTS] 📍 Marca inicial:', { urlBrand, sessionBrand, initialBrand });
+    applyBrandFilter(initialBrand);
+
+    // Mantener sincronía con navegación del navegador
+    window.addEventListener('popstate', () => {
+      const b = new URL(window.location.href).searchParams.get('brand') || 'all';
+      applyBrandFilter(b);
+    });
+
+    // Fix para las imágenes que no cargan
     const images = document.querySelectorAll('img');
-    images.forEach(img => {
-      img.addEventListener('error', function() {
+    images.forEach((img) => {
+      img.addEventListener('error', function () {
         this.src = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
       });
     });
+  }
+
+  // Escuchar cambios del filtro desde Categories
+  document.addEventListener('brandFilterChange', (event) => {
+    console.log('[PRODUCTS] 📡 Evento brandFilterChange recibido:', event.detail);
+    const brand = event.detail.brand;
+    try { sessionStorage.setItem('selectedBrand', brand); } catch {}
+    applyBrandFilter(brand);
   });
-</script>
+
+  // Fallback: intercept clicks on category pills if event isn't caught
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    const btn = (target && target.closest) ? target.closest('.brand-filter-btn') : null;
+    if (!btn) return;
+    const slug = btn.getAttribute('data-slug') || 'all';
+    console.log('[PRODUCTS] 🖱️ Click fallback en botón de marca:', slug);
+    e.preventDefault();
+    const u = new URL(window.location.href);
+    u.searchParams.set('brand', slug);
+    history.pushState({}, '', u.toString());
+    try { sessionStorage.setItem('selectedBrand', slug); } catch {}
+    applyBrandFilter(slug);
+    const event = new CustomEvent('brandFilterChange', { detail: { brand: slug } });
+    document.dispatchEvent(event);
+  });
+
+  // Inicializar en carga inicial y navegaciones de Astro
+  document.addEventListener('DOMContentLoaded', initializeProductsPage);
+  window.addEventListener('astro:page-load', initializeProductsPage);
+  window.addEventListener('astro:after-swap', initializeProductsPage);

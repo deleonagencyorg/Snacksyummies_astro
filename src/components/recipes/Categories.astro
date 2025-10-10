@@ -61,28 +61,56 @@ const {
 
     <div id="cat-scroll" class="flex gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible lg:flex-wrap lg:justify-center scrollbar-hide pb-4 px-4 lg:px-8" style="scroll-snap-type: x mandatory;">
       <!-- All Button -->
-      <a
-        href={`${baseHref}?${queryKey}=all`}
-        class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
-        style="scroll-snap-align: center; --brand-color: #4B5563;"
-        data-slug="all"
-      >
-        <span class="text-white font-bold text-xs md:text-base text-center px-2">{allLabel}</span>
-      </a>
+      {queryKey === 'brand' ? (
+        <button
+          type="button"
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          style="scroll-snap-align: center; --brand-color: #4B5563;"
+          data-slug="all"
+          aria-label={allLabel}
+        >
+          <span class="text-white font-bold text-xs md:text-base text-center px-2">{allLabel}</span>
+        </button>
+      ) : (
+        <a
+          href={`${baseHref}?${queryKey}=all`}
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          style="scroll-snap-align: center; --brand-color: #4B5563;"
+          data-slug="all"
+        >
+          <span class="text-white font-bold text-xs md:text-base text-center px-2">{allLabel}</span>
+        </a>
+      )}
 
       {items.map((it: CategoryItem) => (
-        <a
-          href={`${baseHref}?${queryKey}=${it.slug}`}
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
-          style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
-          data-slug={it.slug}
-        >
-          {it.logo ? (
-            <img src={it.logo} alt={it.label} class="w-16 h-16 md:w-24 md:h-24 object-contain rounded-full" loading="lazy" />
-          ) : (
-            <span class="text-white font-bold text-xs md:text-base text-center px-2">{it.label}</span>
-          )}
-        </a>
+        queryKey === 'brand' ? (
+          <button
+            type="button"
+            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
+            data-slug={it.slug}
+            aria-label={it.label}
+          >
+            {it.logo ? (
+              <img src={it.logo} alt={it.label} class="w-16 h-16 md:w-24 md:h-24 object-contain rounded-full" loading="lazy" />
+            ) : (
+              <span class="text-white font-bold text-xs md:text-base text-center px-2">{it.label}</span>
+            )}
+          </button>
+        ) : (
+          <a
+            href={`${baseHref}?${queryKey}=${it.slug}`}
+            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
+            data-slug={it.slug}
+          >
+            {it.logo ? (
+              <img src={it.logo} alt={it.label} class="w-16 h-16 md:w-24 md:h-24 object-contain rounded-full" loading="lazy" />
+            ) : (
+              <span class="text-white font-bold text-xs md:text-base text-center px-2">{it.label}</span>
+            )}
+          </a>
+        )
       ))}
     </div>
   </div>
@@ -166,9 +194,14 @@ const {
 
 <script>
   function initialize(){
+    console.log('[CATEGORIES] 🚀 Inicializando componente Categories');
     const container = document.getElementById('cat-scroll');
-    if (!container) return;
+    if (!container) {
+      console.warn('[CATEGORIES] ⚠️ No se encontró #cat-scroll');
+      return;
+    }
     const buttons = Array.from(document.querySelectorAll('.brand-filter-btn')) as HTMLElement[];
+    console.log('[CATEGORIES] 🔘 Botones de filtro encontrados:', buttons.length);
 
     // Determine active from URL or server-provided prop (embedded as data-active on wrapper via vite replace below)
     const url = new URL(window.location.href);
@@ -176,7 +209,10 @@ const {
     // Prefer explicit queryKey from server through data attribute when available
     const wrapper = container.parentElement as HTMLElement;
     const qKey = wrapper?.getAttribute('data-query-key') || 'brand';
-    const activeSlugFromUrl = params.get(qKey) || 'all';
+    const urlBrand = params.get(qKey);
+    const sessionBrand = sessionStorage.getItem('selectedBrand');
+    const activeSlugFromUrl = urlBrand || sessionBrand || 'all';
+    console.log('[CATEGORIES] 📍 Marca activa:', { qKey, urlBrand, sessionBrand, activeSlugFromUrl });
 
     // Visual state: if "all" -> show all fully visible and only mark the ALL pill as active
     const allBtn = buttons.find(b => b.getAttribute('data-slug') === 'all');
@@ -205,6 +241,8 @@ const {
     buttons.forEach((btn)=>{
       btn.addEventListener('click', (e)=>{
         const slug = btn.getAttribute('data-slug') || 'all';
+        console.log('[CATEGORIES] 🖱️ Click en botón:', { slug, qKey });
+        try { sessionStorage.setItem('selectedBrand', slug); } catch {}
         // Update visual state immediately for better UX
         if (slug === 'all') {
           wrapper.classList.add('all-active');
@@ -217,15 +255,20 @@ const {
         }
         // Dispatch event for backward compatibility
         if (qKey === 'brand') {
+          console.log('[CATEGORIES] 📡 Despachando evento brandFilterChange:', slug);
           // prevent full navigation; update URL and filter in place
           e.preventDefault();
           const u = new URL(window.location.href);
           u.searchParams.set(qKey, slug);
           history.pushState({}, '', u.toString());
+          console.log('[CATEGORIES] 🔗 URL actualizada:', u.toString());
           const evt = new CustomEvent('brandFilterChange', { detail: { brand: slug }, bubbles: true });
           document.dispatchEvent(evt);
+          console.log('[CATEGORIES] ✅ Evento despachado');
           const grid = document.querySelector('#recipes-grid');
           if (grid) (grid as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          console.log('[CATEGORIES] ⚠️ qKey no es "brand", permitiendo navegación normal');
         }
       });
     });
@@ -233,4 +276,5 @@ const {
 
   document.addEventListener('DOMContentLoaded', initialize);
   window.addEventListener('astro:page-load', initialize);
+  window.addEventListener('astro:after-swap', initialize);
 </script>
