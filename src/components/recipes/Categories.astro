@@ -145,26 +145,16 @@ const {
     background-color: color-mix(in srgb, var(--brand-color) 80%, black 20%) !important;
   }
 
-  /* Active brand filter */
+  /* SOLO el activo se hace más grande - SIN transparencias */
   .brand-card.active {
     border: 4px solid var(--brand-color);
     box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--brand-color) 50%, transparent);
-    transform: scale(1.1);
-    opacity: 1 !important; /* ensure fully opaque when active */
-  }
-
-  /* Inactive brand filters */
-  .brand-card:not(.active) {
-    opacity: 0.6;
-  }
-  /* When "all" is selected, keep all items fully visible */
-  .all-active .brand-card { 
-    opacity: 1 !important; 
+    transform: scale(1.15);
   }
   
-  /* Force active state to override */
-  .all-active .brand-card.active {
-    opacity: 1 !important;
+  /* Los demás sin cambios - mantienen su apariencia normal */
+  .brand-card:not(.active) {
+    /* Sin cambios de opacidad - se ven normales */
   }
 
   /* Prevent clipping at the edges of the horizontal scroller */

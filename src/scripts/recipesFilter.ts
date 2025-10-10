@@ -46,27 +46,35 @@ export function initRecipesFilter() {
     const totalRecipes = parseInt(grid.dataset.totalRecipes || '0');
     let loadedCount = parseInt(grid.dataset.loadedCount || itemsPerPage.toString());
     let currentBrandFilter = 'all';
-
+    
+    // Detectar idioma desde la URL
     const currentLang = window.location.pathname.includes('/es/') ? 'es' : 'en';
+
     const allRecipeItems = Array.from(grid.querySelectorAll('.recipe-item'));
     console.log('[RECIPES] 📦 Items de recetas encontrados:', allRecipeItems.length);
 
     // Filtrar recetas por marca
     function getFilteredRecipes(brand: string) {
+      console.log('[RECIPES] 🔍 getFilteredRecipes llamado con brand:', brand);
       if (brand === 'all') {
+        console.log('[RECIPES] ✅ Mostrando todas las recetas:', allRecipeItems.length);
         return allRecipeItems;
       }
-      return allRecipeItems.filter((item) => {
+      const filtered = allRecipeItems.filter((item) => {
         const recipeBrandAttr = item.getAttribute('data-brand') || '';
+        // Support multiple brands: attribute may be like "taqueritos,zambos"
         const brandList = recipeBrandAttr.split(',').map((s) => s.trim()).filter(Boolean);
-        return brandList.includes(brand);
+        const matches = brandList.includes(brand);
+        console.log(`[RECIPES] 🔍 Receta data-brand="${recipeBrandAttr}" → brandList=[${brandList.join(',')}] → matches ${brand}? ${matches}`);
+        return matches;
       });
+      console.log(`[RECIPES] ✅ Recetas filtradas para "${brand}": ${filtered.length} de ${allRecipeItems.length}`);
+      return filtered;
     }
 
     // Aplicar filtro de marca
     function applyBrandFilter(brand: string) {
       console.log('[RECIPES] 🔍 Aplicando filtro de marca:', brand);
-      currentBrandFilter = brand;
       const filteredRecipes = getFilteredRecipes(brand);
       console.log(`[RECIPES] 📦 Recetas filtradas: ${filteredRecipes.length} de ${allRecipeItems.length}`);
 
