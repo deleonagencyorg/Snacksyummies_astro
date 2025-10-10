@@ -1,8 +1,15 @@
 // src/scripts/productsFilter.ts
 // Módulo para gestionar el filtrado de productos por marca
 
+// Variable global para almacenar cleanup functions
+let cleanupFunctions: (() => void)[] = [];
+
 export function initProductsFilter() {
   console.log('[PRODUCTS] 🚀 Inicializando filtro de productos');
+  
+  // Limpiar listeners anteriores si existen
+  cleanupFunctions.forEach(cleanup => cleanup());
+  cleanupFunctions = [];
 
   const productItems = document.querySelectorAll('.product-item');
   console.log('[PRODUCTS] 📦 Items encontrados:', productItems.length);
@@ -22,10 +29,15 @@ export function initProductsFilter() {
         (item as HTMLElement).style.display = '';
       });
     } else {
+      // Normalizar a minúsculas para comparación case-insensitive
+      const normalizedBrand = brand.toLowerCase();
       let visibleCount = 0;
+      
       productItems.forEach((item) => {
         const itemBrand = item.getAttribute('data-brand');
-        const match = itemBrand === brand;
+        const normalizedItemBrand = itemBrand ? itemBrand.toLowerCase() : '';
+        const match = normalizedItemBrand === normalizedBrand;
+        
         if (match) {
           visibleCount++;
           (item as HTMLElement).style.display = '';
@@ -33,6 +45,7 @@ export function initProductsFilter() {
           (item as HTMLElement).style.display = 'none';
         }
       });
+      
       console.log(`[PRODUCTS] ✅ Filtrado por "${brand}": ${visibleCount} productos visibles de ${productItems.length}`);
       if (visibleCount === 0) {
         console.warn(`[PRODUCTS] ⚠️ No se encontraron productos con data-brand="${brand}"`);
@@ -87,6 +100,14 @@ export function initProductsFilter() {
   console.log('[PRODUCTS] 📍 Marca inicial:', { urlBrand, sessionBrand, initialBrand });
   applyBrandFilter(initialBrand);
 
+  // Registrar cleanup functions
+  cleanupFunctions.push(() => {
+    document.removeEventListener('brandFilterChange', handleBrandFilterChange);
+    document.removeEventListener('click', handleCategoryClick);
+    window.removeEventListener('popstate', handlePopState);
+    console.log('[PRODUCTS] 🧹 Cleanup ejecutado');
+  });
+
   // Manejo de errores de imágenes
   const images = document.querySelectorAll('img');
   images.forEach((img) => {
@@ -95,11 +116,4 @@ export function initProductsFilter() {
     };
     img.addEventListener('error', handleError);
   });
-
-  // Cleanup al salir de la página
-  return () => {
-    document.removeEventListener('brandFilterChange', handleBrandFilterChange);
-    document.removeEventListener('click', handleCategoryClick);
-    window.removeEventListener('popstate', handlePopState);
-  };
 }

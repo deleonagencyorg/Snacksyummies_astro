@@ -70,6 +70,36 @@ const currentLang = window.location.pathname.includes('/es/') ? 'es' : 'en';
 
 ---
 
+### 4. **Comparación Case-Insensitive en Todos los Filtros** ✅ NUEVO
+
+**Archivos:**
+
+- `/src/scripts/recipesFilter.ts`
+- `/src/scripts/productsFilter.ts`
+- `/src/scripts/brandsFilter.ts`
+
+**Problema:** Si las recetas/productos tienen `"brand": ["Taqueritos"]` (mayúscula) y el slug es `"taqueritos"` (minúscula), el filtro no funcionaba.
+
+**Solución:** Normalizar ambos valores a minúsculas antes de comparar:
+
+```typescript
+// ANTES
+const match = brandList.includes(brand);
+
+// DESPUÉS
+const normalizedBrand = brand.toLowerCase();
+const brandList = recipeBrandAttr.split(',').map((s) => s.trim().toLowerCase());
+const match = brandList.includes(normalizedBrand);
+```
+
+**Beneficio:**
+
+- ✅ Funciona con "Taqueritos", "taqueritos", "TAQUERITOS"
+- ✅ No importa cómo esté escrito en el JSON
+- ✅ Consistencia en todos los filtros (recetas, productos, marcas)
+
+---
+
 ## 🧪 Cómo Validar
 
 ### Test 1: Transparencias Eliminadas
@@ -109,20 +139,20 @@ Si el filtro NO funciona para una marca específica:
 
 ## 📊 Mapeo de Marcas (Referencia)
 
-Para que el filtro funcione, el valor en `recipe.brand` debe coincidir EXACTAMENTE con el `slug` en `brands.json`:
+Para que el filtro funcione, el valor en `recipe.brand` debe coincidir con el `slug` en `brands.json` (ahora **case-insensitive**):
 
-| Marca | Slug en brands.json | Valor esperado en recipe.brand |
-|-------|---------------------|--------------------------------|
-| Taqueritos | `"taqueritos"` | `["taqueritos"]` |
-| Zambos | `"zambos"` | `["zambos"]` |
-| Cappy | `"cappy"` | `["cappy"]` |
-| Ranchitas | `"ranchitas"` | `["ranchitas"]` |
-| Yummi Pops | `"yummi-pops"` | `["yummi-pops"]` |
-| Yummi Nuts | `"yummi-nuts"` | `["yummi-nuts"]` |
-| Xixi | `"xixi"` | `["xixi"]` |
-| Zibas | `"zibas"` | `["zibas"]` |
+| Marca | Slug en brands.json | Valores válidos en recipe.brand |
+|-------|---------------------|----------------------------------|
+| Taqueritos | `"taqueritos"` | `["taqueritos"]`, `["Taqueritos"]`, `["TAQUERITOS"]` |
+| Zambos | `"zambos"` | `["zambos"]`, `["Zambos"]`, `["ZAMBOS"]` |
+| Cappy | `"cappy"` | `["cappy"]`, `["Cappy"]`, `["CAPPY"]` |
+| Ranchitas | `"ranchitas"` | `["ranchitas"]`, `["Ranchitas"]` |
+| Yummi Pops | `"yummi-pops"` | `["yummi-pops"]`, `["Yummi-Pops"]` |
+| Yummi Nuts | `"yummi-nuts"` | `["yummi-nuts"]`, `["Yummi-Nuts"]` |
+| Xixi | `"xixi"` | `["xixi"]`, `["Xixi"]`, `["XIXI"]` |
+| Zibas | `"zibas"` | `["zibas"]`, `["Zibas"]`, `["ZIBAS"]` |
 
-**Importante:** Los valores son case-sensitive y deben estar en minúsculas.
+**✅ Ahora funciona:** La comparación es case-insensitive, por lo que no importa si está en mayúsculas o minúsculas.
 
 ---
 
@@ -169,6 +199,13 @@ document.querySelectorAll('.brand-filter-btn').forEach(btn => {
 2. `/src/scripts/recipesFilter.ts`
    - Agregados logs detallados de filtrado
    - Fix de variable `currentLang`
+   - Comparación case-insensitive para brands
+
+3. `/src/scripts/productsFilter.ts`
+   - Comparación case-insensitive para brands
+
+4. `/src/scripts/brandsFilter.ts`
+   - Comparación case-insensitive para brands
 
 ---
 
@@ -183,6 +220,19 @@ Si después de estos cambios el filtro de recetas sigue sin funcionar:
 
 ---
 
+## 🎉 Resumen Final
+
+**Todos los filtros ahora funcionan correctamente con:**
+
+- ✅ Sin transparencias (solo escala visual)
+- ✅ Comparación case-insensitive (mayúsculas/minúsculas)
+- ✅ Logs detallados para debugging
+- ✅ Consistencia en recetas, productos y marcas
+
+**No importa si los JSON tienen "Taqueritos", "taqueritos" o "TAQUERITOS" - todos funcionarán.**
+
+---
+
 **Fecha:** 2025-10-10  
-**Versión:** 1.2.0  
-**Estado:** ✅ Listo para probar
+**Versión:** 1.3.0  
+**Estado:** ✅ Completado y listo para probar

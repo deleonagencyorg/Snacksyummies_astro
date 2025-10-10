@@ -1,8 +1,15 @@
 // src/scripts/recipesFilter.ts
 // Módulo para gestionar el filtrado de recetas por marca
 
+// Variable global para almacenar cleanup functions
+let cleanupFunctions: (() => void)[] = [];
+
 export function initRecipesFilter() {
   console.log('[RECIPES] 🚀 Inicializando filtro de recetas');
+  
+  // Limpiar listeners anteriores si existen
+  cleanupFunctions.forEach(cleanup => cleanup());
+  cleanupFunctions = [];
 
   // Esperar a que el DOM esté listo
   const waitForElements = (): Promise<{
@@ -60,12 +67,16 @@ export function initRecipesFilter() {
         console.log('[RECIPES] ✅ Mostrando todas las recetas:', allRecipeItems.length);
         return allRecipeItems;
       }
+      
+      // Normalizar el brand a minúsculas para comparación case-insensitive
+      const normalizedBrand = brand.toLowerCase();
+      
       const filtered = allRecipeItems.filter((item) => {
         const recipeBrandAttr = item.getAttribute('data-brand') || '';
-        // Support multiple brands: attribute may be like "taqueritos,zambos"
-        const brandList = recipeBrandAttr.split(',').map((s) => s.trim()).filter(Boolean);
-        const matches = brandList.includes(brand);
-        console.log(`[RECIPES] 🔍 Receta data-brand="${recipeBrandAttr}" → brandList=[${brandList.join(',')}] → matches ${brand}? ${matches}`);
+        // Support multiple brands: attribute may be like "taqueritos,zambos" or "Taqueritos,Zambos"
+        const brandList = recipeBrandAttr.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean);
+        const matches = brandList.includes(normalizedBrand);
+        console.log(`[RECIPES] 🔍 Receta data-brand="${recipeBrandAttr}" → normalized=[${brandList.join(',')}] → matches ${normalizedBrand}? ${matches}`);
         return matches;
       });
       console.log(`[RECIPES] ✅ Recetas filtradas para "${brand}": ${filtered.length} de ${allRecipeItems.length}`);
@@ -204,13 +215,16 @@ export function initRecipesFilter() {
     console.log('[RECIPES] 📍 Marca inicial:', { urlBrand, sessionBrand, initialBrand });
     applyBrandFilter(initialBrand);
 
-    // Cleanup al salir de la página
-    return () => {
+    // Registrar cleanup functions
+    cleanupFunctions.push(() => {
       document.removeEventListener('brandFilterChange', handleBrandFilterChange);
       document.removeEventListener('click', handleCategoryClick);
       loadMoreBtn.removeEventListener('click', handleLoadMore);
       window.removeEventListener('popstate', handlePopState);
-    };
+      console.log('[RECIPES] 🧹 Cleanup ejecutado');
+    });
+  }).catch(err => {
+    console.error('[RECIPES] ❌ Error al inicializar:', err);
   });
 
   // Manejo de errores de imágenes

@@ -1,8 +1,15 @@
 // src/scripts/brandsFilter.ts
 // Módulo para gestionar el filtrado de marcas en la página de Brands
 
+// Variable global para almacenar cleanup functions
+let cleanupFunctions: (() => void)[] = [];
+
 export function initBrandsFilter() {
   console.log('[BRANDS] 🚀 Inicializando filtro de marcas');
+  
+  // Limpiar listeners anteriores si existen
+  cleanupFunctions.forEach(cleanup => cleanup());
+  cleanupFunctions = [];
   
   const list = document.querySelector('.brands-list');
   if (!list) {
@@ -26,9 +33,14 @@ export function initBrandsFilter() {
     let visibleCount = 0;
     const matches: (string | null)[] = [];
     
+    // Normalizar a minúsculas para comparación case-insensitive
+    const normalizedSlug = slug.toLowerCase();
+    
     cards.forEach((el) => {
       const b = el.getAttribute('data-brand');
-      const match = !slug || slug === 'all' || b === slug;
+      const normalizedB = b ? b.toLowerCase() : '';
+      const match = !slug || slug === 'all' || normalizedB === normalizedSlug;
+      
       if (match) {
         visibleCount++;
         matches.push(b);
@@ -94,10 +106,11 @@ export function initBrandsFilter() {
   console.log('[BRANDS] 📍 Marca inicial:', { urlBrand, sessionBrand, initial });
   apply(initial);
 
-  // Cleanup al salir de la página
-  return () => {
+  // Registrar cleanup functions
+  cleanupFunctions.push(() => {
     document.removeEventListener('brandFilterChange', handleBrandFilterChange);
     document.removeEventListener('click', handleCategoryClick);
     window.removeEventListener('popstate', handlePopState);
-  };
+    console.log('[BRANDS] 🧹 Cleanup ejecutado');
+  });
 }
