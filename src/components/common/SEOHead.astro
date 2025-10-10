@@ -7,32 +7,77 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   image?: string;
-  type?: 'website' | 'article' | 'recipe';
-  schemaData?: Record<string, any>;
+  type?: 'website' | 'article' | 'recipe' | 'product';
+  schemaData?: Record<string, any> | Array<Record<string, any>>;
 }
 
-const { 
+const {
   title = 'Snacks Yummies',
   description = 'Delicious snacks from Central America',
-  canonicalUrl = Astro.url.href,
+  canonicalUrl,
   image = 'https://snack.yummiespromociones.com/snacksyummies/og-image.jpg',
   type = 'website',
   schemaData = {}
-} = Astro.props;
+} = Astro.props as Props;
 
-const currentLang = Astro.url.pathname.split('/')[1] as Locale || 'es';
+const path = Astro.url.pathname;
+const currentLang = (path.split('/')[1] as Locale) || 'es';
 const siteName = t('site.name', { locale: currentLang }) || 'Snacks Yummies';
+
+// Base URL precedence: env > Astro.site > Astro.url.origin
+const ENV_BASE = import.meta.env.PUBLIC_SITE_URL as string | undefined;
+const SITE_BASE = (Astro.site ? String(Astro.site) : '') as string;
+const ORIGIN = (Astro.url?.origin ? String(Astro.url.origin) : '') as string;
+const baseUrl = (ENV_BASE && ENV_BASE.trim()) || (SITE_BASE && SITE_BASE.trim()) || (ORIGIN && ORIGIN.trim()) || '';
+
+// Ensure baseUrl ends with '/'
+const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+// Build canonical (avoid query/hash). Fallback to normalizedBase + path
+const absoluteCanonical = canonicalUrl
+  ? canonicalUrl
+  : `${normalizedBase.replace(/\/$/, '')}${path}`;
+
+// Map localized segment between languages
+function mapSecondSegment(seg: string, toLang: Locale) {
+  const map: Record<string, Record<Locale, string>> = {
+    'productos': { es: 'productos', en: 'products' },
+    'products': { es: 'productos', en: 'products' },
+    'recetas': { es: 'recetas', en: 'recipes' },
+    'recipes': { es: 'recetas', en: 'recipes' },
+  };
+  const key = seg in map ? seg : '';
+  if (!key) return seg;
+  return map[key][toLang] || seg;
+}
+
+// Build alternate URLs for es/en
+function buildAlternate(target: Locale) {
+  const parts = path.split('/').filter(Boolean); // [lang, seg2, ...]
+  const rest = parts.slice(2);
+  const second = parts[1] || '';
+  const mappedSecond = mapSecondSegment(second, target);
+  const rebuilt = ['' + target, mappedSecond, ...rest].filter(Boolean).join('/');
+  return `${normalizedBase.replace(/\/$/, '')}/${rebuilt}${path.endsWith('/') ? '/' : ''}`;
+}
+
+const altEs = buildAlternate('es');
+const altEn = buildAlternate('en');
+
+// Normalize schema data into an array and serialize
+const schemaArray = Array.isArray(schemaData) ? schemaData : (Object.keys(schemaData || {}).length ? [schemaData] : []);
+const schemaString = schemaArray.length ? JSON.stringify(schemaArray.length === 1 ? schemaArray[0] : { '@graph': schemaArray }) : '';
 ---
 
 <!-- Primary Meta Tags -->
 <title>{title} | {siteName}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonicalUrl} />
+<link rel="canonical" href={absoluteCanonical} />
 <meta name="algolia-site-verification" content="475A813C49A826D5" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
-<meta property="og:url" content={canonicalUrl} />
+<meta property="og:url" content={absoluteCanonical} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={image} />
@@ -45,18 +90,11 @@ const siteName = t('site.name', { locale: currentLang }) || 'Snacks Yummies';
 <meta name="twitter:image" content={image} />
 
 <!-- Language Alternates -->
-<link rel="alternate" hreflang="es" href={`${Astro.site}es${Astro.url.pathname.slice(3)}`} />
-<link rel="alternate" hreflang="en" href={`${Astro.site}en${Astro.url.pathname.slice(3)}`} />
-<link rel="alternate" hreflang="x-default" href={Astro.site} />
+<link rel="alternate" hreflang="es" href={altEs} />
+<link rel="alternate" hreflang="en" href={altEn} />
+<link rel="alternate" hreflang="x-default" href={normalizedBase} />
 
 <!-- Schema.org -->
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "{type === 'recipe' ? 'Recipe' : 'WebSite'}",
-    "name": "{title}",
-    "description": "{description}",
-    "url": "{canonicalUrl}",
-    ...schemaData
-  }
-</script>
+{schemaString && (
+  <script type="application/ld+json">{schemaString}</script>
+)}
