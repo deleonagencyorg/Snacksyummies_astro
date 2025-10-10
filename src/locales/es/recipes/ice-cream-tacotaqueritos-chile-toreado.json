@@ -1,0 +1,32 @@
+{
+  "date": "2025-09-11",
+  "id": "ice-cream-tacotaqueritos-chile-toreado",
+  "slug": "ice-cream-tacotaqueritos-chile-toreado",
+  "title": "Ice Cream Tacotaqueritos Chile Toreado",
+  "people": "2",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ice-cream-taqueritos-chile-toreado.webp",
+  "gallery": [
+    "pupusas-con-del-rancho.webp"
+  ],
+  "type": "image",
+  "preparation_time": 10,
+  "ingredients": [
+    "1 recipiente para ice cream",
+    "1 bola de helado de vainilla",
+    "1 bola de helado de fresa",
+    "1 cucharada de jalea de su gusto",
+    "1 cucharada de sirope de caramelo o chocolate",
+    "2 cerezas para decorar",
+    "1 bolsa de 36g Taqueritos Chile Toreado o Queso Fusión"
+  ],
+  "instructions": [
+    "Paso 1. Colocar las bolas de helado.",
+    "Paso 2. Agregar la jalea y sirope.",
+    "Paso 3. Colocar uno de los dos tipos de Taqueritos alrededor del helado y decorar",
+    "Paso 4. con unas cerezas."
+  ],
+  "brand": [
+    "taqueritos"
+  ]
+}

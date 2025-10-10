@@ -1,0 +1,41 @@
+{
+  "date": "2025-09-11",
+  "id": "tacos-del-rancho",
+  "slug": "tacos-del-rancho",
+  "title": "Tacos Del Rancho",
+  "people": "4",
+  "difficulty": "Media",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tacos-del-rancho1.webp",
+  "gallery": [
+    "tacos-del-rancho1.webp",
+    "tacos-del-rancho2.webp"
+  ],
+  "type": "image",
+  "preparation_time": 45,
+  "ingredients": [
+    "Ingredientes para los tacos:",
+    "10 tortillas de maíz",
+    "1 bolsa de Chicharrón Del Rancho®",
+    "Queso fresco picado",
+    "Unta las tortillas con la salsa de aguacate, agrega los chicharrones, corona con las cebollas y sirve.",
+    "Para las cebollas curtidas:",
+    "1 cebolla morada cortada en juliana",
+    "¼ de taza de vinagre blanco",
+    "Jugo de 1 limón",
+    "Sal y pimienta al gusto",
+    "Mezcla todos los ingredientes en un recipiente y deja macerar por 30 minutos.",
+    "Para la salsa de aguacate:",
+    "2 aguacates",
+    "1 diente de ajo",
+    "1/3 de taza de cilantro",
+    "2 cucharadas de mayonesa",
+    "Jugo de 2 limones",
+    "Coloca todos los ingredientes en un procesador y procesa hasta obtener una mezcla homogénea."
+  ],
+  "instructions": [
+    "Paso 1: Une todos los ingredientes en la tortilla y disfruta."
+  ],
+  "brand": [
+    "delrancho"
+  ]
+}

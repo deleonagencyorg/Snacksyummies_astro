@@ -1,0 +1,40 @@
+{
+  "date": "2025-09-11",
+  "id": "tacos-del-rancho",
+  "slug": "tacos-del-rancho",
+  "title": "Tacos del Rancho",
+  "people": "4",
+  "difficulty": "Intermediate",
+   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tacos-del-rancho1.webp",
+  "gallery": [
+    "tacos-del-rancho1.webp",
+    "tacos-del-rancho2.webp"
+  ],
+  "type": "image",
+  "preparation_time": 45,
+  "ingredients": [
+    "Ingredients for the tacos:",
+    "10 corn tortillas",
+    "1 bag of Del Rancho® Chicharrón® (pork rinds)",
+    "Chopped fresh cheese",
+    "Spread the tortillas with the avocado sauce, add the chicharrones, crown with the onions and serve.",
+    "For the cured onions:",
+    "1 red onion, julienned",
+    "¼ cup white vinegar",
+    "Juice of 1 lemon",
+    "Salt and pepper to taste",
+    "Mix all ingredients in a bowl and let macerate for 30 minutes.",
+    "For the avocado sauce:",
+    "2 avocados",
+    "1 garlic clove",
+    "1/3 cup cilantro",
+    "2 tablespoons mayonnaise",
+    "Juice of 2 lemons",
+    "Salt and pepper to taste",
+    "Place all ingredients in a food processor and process until smooth."
+  ],
+  "instructions": [
+    "Step 1: Join all the ingredients in the tortilla and enjoy."
+  ],
+  "brand": ["delrancho"]
+}

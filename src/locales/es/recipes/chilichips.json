@@ -1,0 +1,36 @@
+{
+  "date": "2025-09-11",
+  "id": "chilichips",
+  "slug": "chilichips",
+  "title": "Chilichips",
+  "people": "4",
+  "difficulty": "Media",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chilichips.webp",
+  "gallery": [
+    "chilichips.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "1 cucharadita de Ajo en polvo",
+    "1 cucharadita de comino",
+    "1 cucharadita de paprika",
+    "1 cucharadita de sal",
+    "2 cucharaditas de pimienta negra",
+    "1 libra de carne molida",
+    "1 unidad Lata de Tomates en trozos con su agua",
+    "2 tazas frijoles cocidos",
+    "1 taza de queso rallado",
+    "Mantequilla crema",
+    "1 bolsa de papas Zibas Ketchup",
+    "Aceite"
+  ],
+  "instructions": [
+    "Paso 1: Sofreir la carne molida en una sartén con el aceite",
+    "Paso 2: Agregar las especias mencionadas y el tomate. Revolver.",
+    "Paso 3: Tapar y dejar hervir por 10 minutos",
+    "Paso 4: Colocar las papas Zibas en la base de un plato y encima poner del Chili.",
+    "Paso 5: Espolvorear con el queso y luego Colocar una cucharada de mantequilla encima. Listo para disfrutar."
+  ],
+  "brand": ["zibas"]
+}

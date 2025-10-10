@@ -1,0 +1,29 @@
+{
+  "date": "2025-09-11",
+  "id": "zambos-con-enasalada-de-repollo",
+  "slug": "zambos-con-enasalada-de-repollo",
+  "title": "Zambos con Ensalada de Repollo",
+  "people": "13",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-con-enasalada-de-repollo.webp",
+  "gallery": [
+    "zambos-con-enasalada-de-repollo.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "1 bolsa de Zambos",
+    "2 tazas de repollo rallado",
+    "1/2 taza de culantro picado",
+    "1 sofrito criollo",
+    "1/2 taza de mayonesa",
+    "2 cucharadas de jugo de limón"
+  ],
+  "instructions": [
+    "Paso 1. En un tazón mezclamos todos los ingredientes hasta tener una mezcla homogénea",
+    "Paso 2. Servir en un plato una porción de Zambos y encima una porción de la ensalada."
+  ],
+  "brand": [
+    "zambos"
+  ]
+}

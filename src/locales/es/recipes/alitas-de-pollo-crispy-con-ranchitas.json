@@ -1,0 +1,32 @@
+{
+  "date": "2025-09-11",
+  "id": "alitas-de-pollo-crispy-con-ranchitas",
+  "slug": "alitas-de-pollo-crispy-con-ranchitas",
+  "title": "Alitas de pollo crispy con Ranchitas",
+  "people": 5,
+  "difficulty": "Avanzado",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/alitas-de-pollo-crispy-con-ranchitas.webp",
+  "gallery": ["alitas-de-pollo-crispy-con-ranchitas.webp"],
+  "type": "image",
+  "preparation_time": 45,
+  "ingredients": [
+    "8 alitas de pollo",
+    "4 bolsas de Ranchitas Nacho Excitante (o el sabor de su elección)",
+    "1 cucharadita de ajo en polvo",
+    "1/2 cucharadita de comino",
+    "1/2 cucharadita de pimienta cayena",
+    "1/2 cucharada de sal",
+    "2 tazas de harina",
+    "4 huevos",
+    "1 botella de aceite mazola"
+  ],
+  "instructions": [
+    "Paso 1. Coloque las alitas en un bowl y agregue las especias y revuelva hasta que todo esté completamente mezclado. Tape el bowl y colóquelo en la nevera por 1 hora.",
+    "Paso 2. Pasada la hora coloque la mitad de harina a las alitas.",
+    "Paso 3. Triture las Ranchitas para que tengan una textura similar al panko o pan molido. Ponga en bowl.",
+    "Paso 4. Bata los huevos y la otra mitad de harina y incorpore las Ranchitas molidas hasta que todo se mezcle formando una mezcla densa.",
+    "Paso 5. Precaliente el aceite a 180°C.",
+    "Paso 6. Sumerja las alitas en la mezcla y ponga a cocinar en el aceite aproximadamente por 15 a 20 minutos o hasta que alcance la temperatura interna de 74°C. Deje escurrir en papel toalla y sirva con su salsa ranchera o su salsa favorita."
+  ],
+  "brand": ["ranchitas"]
+}

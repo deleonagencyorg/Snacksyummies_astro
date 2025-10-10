@@ -1,0 +1,26 @@
+{
+      "date": "2025-09-11",
+      "id": "malteada-mix-con-yummi-nuts",
+      "slug": "malteada-mix-con-yummi-nuts",
+      "title": "Malteada Mix con Yummi Nuts",
+      "people": "9",
+      "difficulty": "Fácil",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/malteada-mix-con-yummi-nuts.webp",
+      "gallery": [
+         "malteada-mix-con-yummi-nuts.webp"
+      ],      
+      "type":"image",
+      "preparation_time": 10,
+      "ingredients": [
+        "2 tazas de helado de vainilla o de tu gusto",
+        "½ taza de leche",
+        "Canela al gusto",
+        "1 taza con mix de Yummi Nuts Maní con Limón / Maní Chile Toreado / Maní con Sal"
+      ],
+      "instructions": [
+        "Paso 1. Colocar todos los ingredientes, menos la Canela, en una licuadora.",
+        "Paso 2. Licuar hasta tener la malteada.",
+        "Paso 3. Servir en un vaso y espolvorear un poco de Canela."
+      ],
+      "brand": ["yumminuts"]
+    }

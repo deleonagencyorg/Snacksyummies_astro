@@ -1,41 +1,80 @@
 ---
 // src/pages/[lang]/recipes/[recipeId].astro
-import { t, setLocale, type Locale } from '../../../i18n/i18n';
+import { setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
 
-export function getStaticPaths() {
-  // Incluir ambos idiomas
-  const locales = ['en', 'es'];
-  const paths = [];
+// Usamos generación estática para Vercel
+export const prerender = true;
 
-  for (const locale of locales) {
-    // Obtener recetas para este idioma
-    const recipes = t('items', { namespace: 'recipes', locale: locale as Locale }) || [];
-    console.log(`Found ${recipes.length} recipes for language ${locale}`);
+// Interfaz para la receta
+interface Recipe {
+  id: string;
+  slug?: string;
+  title: string;
+  ingredients: string[];
+  instructions: string[];
+  preparation_time: number;
+  servings: number;
+  image?: string;
+  brand?: string[];
+  difficulty?: string;
+}
+
+// Esta función es requerida para rutas dinámicas con prerender=true
+export async function getStaticPaths() {
+  // Importar todos los archivos de recetas
+  const recipeModules = import.meta.glob<{default: Recipe}>('../../../locales/*/recipes/*.json');
+  const paths = [];
+  
+  // Obtener idiomas disponibles
+  const languages = new Set<string>();
+  for (const path in recipeModules) {
+    const lang = path.split('/')[4]; // Extraer idioma de la ruta
+    languages.add(lang);
+  }
+  
+  // Para cada idioma, procesar todas las recetas
+  for (const lang of languages) {
+    const recipesForLang: Recipe[] = [];
     
-    // Para cada receta, crear una ruta
-    for (const recipe of recipes) {
+    // Cargar todas las recetas para este idioma
+    for (const path in recipeModules) {
+      if (path.includes(`/${lang}/`)) {
+        const mod = await recipeModules[path]();
+        recipesForLang.push(mod.default);
+      }
+    }
+    
+    // Generar rutas para cada receta
+    for (const recipe of recipesForLang) {
+      // Ruta principal por ID
       paths.push({
-        params: { lang: locale, recipeId: recipe.id },
-        props: { recipe, currentLang: locale }
+        params: { lang, recipeId: recipe.id },
+        props: { recipe }
       });
+      
+      // Si hay un slug diferente al ID, generar otra ruta
+      if (recipe.slug && recipe.slug !== recipe.id) {
+        paths.push({
+          params: { lang, recipeId: recipe.slug },
+          props: { recipe }
+        });
+      }
     }
   }
-
-  console.log(`Generated ${paths.length} recipe routes`);
+  
   return paths;
 }
 
-const { recipe, currentLang } = Astro.props;
+// Obtener parámetros y props de getStaticPaths
 const { lang, recipeId } = Astro.params;
-
-// Establecer el idioma para las traducciones
+const { recipe } = Astro.props;
 setLocale(lang as Locale);
 
-console.log(`Rendering recipe: ${recipeId} in language: ${lang}`);
+// Ya no necesitamos buscar la receta porque la recibimos como prop desde getStaticPaths
 ---
 
-<MainLayout title={recipe.title} currentLang={currentLang}>
-  <RecipeDetail currentLang={currentLang} recipeId={recipeId} />
+<MainLayout title={recipe?.title || ''}>
+  <RecipeDetail currentLang={lang} recipeId={recipeId} recipe={recipe} />
 </MainLayout>

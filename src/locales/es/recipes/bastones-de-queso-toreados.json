@@ -1,0 +1,28 @@
+{
+  "date": "2025-09-11",
+  "id": "bastones-de-queso-toreados",
+  "slug": "bastones-de-queso-toreados",
+  "title": "Bastones de queso toreados",
+  "people": "4",
+  "difficulty": "Media",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/bastones-de-queso-toreados.webp",
+  "gallery": [
+    "bastones-de-queso-toreados.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "2 libras de queso mozzarella",
+    "1 taza de harina",
+    "3 huevos batidos",
+    "1 bolsa de cappy toreado triturado",
+    "Aceite para freír cantidad necesaria"
+  ],
+  "instructions": [
+    "Paso 1: Parta el queso mozzarella en bastones.",
+    "Paso 2: Luego pase cubriendolos por la harina, después por el huevo y por último los cappy toreados.",
+    "Paso 3: Caliente el aceite a unos 180 grados Celsius.",
+    "Paso 4: Retira después de freír y secalos en papel toalla."
+  ],
+  "brand": ["cappy"]
+}

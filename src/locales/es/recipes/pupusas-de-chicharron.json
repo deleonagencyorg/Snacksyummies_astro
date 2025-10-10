@@ -1,0 +1,36 @@
+{
+      "date": "2025-09-11",
+      "id": "pupusas-de-chicharron",
+      "slug": "pupusas-de-chicharron",
+      "title": "Pupusas de Chicharrón",
+      "people": "7",
+      "difficulty": "Medio",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/pupusas-de-chicharron.webp",
+      "gallery": [
+         "pupusas-de-chicharron.webp"
+      ],      
+      "type":"image",
+      "preparation_time": 30,
+      "ingredients": [
+        "2 bolsas Del Rancho Chicharrones Yummies",
+        "4 tazas de agua tibia",
+        "4 tazas de harina de maíz",
+        "1 ½ cucharadas de sal",
+        "1 cebolla",
+        "1 chile",
+        "2 dientes de ajo machacados",
+        "2 cucharadas de aceite",
+        "Sal y pimienta al gusto"
+      ],
+      "instructions": [
+        "Paso 1. Triture los chicharrones un poco con la mano o un martillo de cocina. Que no queden polvo.",
+        "Paso 2. En una sartén con aceite. Sofría la cebolla, ajo, el chile, Del Rancho Chicharrones, el quesillo sal y pimienta y mezcle bien, reserve",
+        "Paso 3. En otro recipiente proceda a preparar la masa, para ello agregue la harina, la sal junto con las 3 tazas restantes de agua y comience a amasar hasta que este firme, suave y no se quede adherida a las manos",
+        "Paso 4. Seguidamente tome una porción y forme una bolita con la masa luego haga un agujero en el interior",
+        "Paso 5. Añada una cucharada y media del relleno de chicharrón con queso y dele forma ovalada con la palma de las manos",
+        "Paso 6. Coloque la pupusa sobre un comal previamente calentado a fuego medio y ase por ambos lados",
+        "Paso 7. Repita el procedimiento con el resto de la masa",
+        "Paso 8. Sirva calientes con cualquier salsa."        
+      ],
+      "brand": ["delrancho"]
+    }

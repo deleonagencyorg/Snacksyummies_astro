@@ -1,0 +1,26 @@
+{
+  "date": "2025-09-11",
+  "id": "milkshake-mix-with-yummi-nuts",
+  "slug": "milkshake-mix-with-yummi-nuts",
+  "title": "Milkshake Mix with Yummi Nuts",
+  "people": "9",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/malteada-mix-con-yummi-nuts.webp",
+  "gallery": [
+    "malteada-mix-con-yummi-nuts.webp"
+  ],
+  "type": "image",
+  "preparation_time": 10,
+  "ingredients": [
+    "2 cups vanilla ice cream (or flavor of your choice).",
+    "½ cup milk.",
+    "Cinnamon to taste.",
+    "1 cup mix of Yummi Nuts: Lemon Peanuts / Chile Toreado Peanuts / Salted Peanuts."
+  ],
+  "instructions": [
+    "Step 1. Place all ingredients, except cinnamon, in a blender.",
+    "Step 2. Blend until smooth to form the milkshake.",
+    "Step 3. Serve in a glass and sprinkle with a bit of cinnamon."
+  ],
+  "brand": ["yumminuts"]
+}

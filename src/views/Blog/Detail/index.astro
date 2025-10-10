@@ -68,7 +68,14 @@ const readMoreTitle = currentLang === 'es' ? 'Otras Noticias' : 'Other News';
     {isLoading
       ? <BlogDetailSkeleton />
       : <>
-          <Breadcrumb bgColor="bg-white" textColor="text-gray-500" hoverColor="hover:text-primary" />
+          <Breadcrumb 
+            items={[
+              { label: 'Home', href: `/${currentLang}` },
+              { label: 'Blog', href: `/${currentLang}/blog` },
+              { label: blogPost.title, href: `#` },
+            ]}
+            textColor="text-primary"
+          />
           <div class="w-full mx-auto my-6">
             <div class="mb-8">
             

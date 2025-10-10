@@ -12,6 +12,7 @@
     "lint:fix": "eslint --ext .js,.astro src --fix"
   },
   "dependencies": {
+    "@astrojs/node": "^9.4.4",
     "@astrojs/react": "^4.3.0",
     "@astrojs/starlight": "^0.34.3",
     "@formkit/auto-animate": "^0.8.2",

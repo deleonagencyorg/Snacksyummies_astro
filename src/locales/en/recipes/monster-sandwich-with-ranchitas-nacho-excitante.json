@@ -1,0 +1,32 @@
+{
+  "date": "2025-09-11",
+  "id": "monster-sandwich-with-ranchitas-nacho-excitante",
+  "slug": "monster-sandwich-with-ranchitas-nacho-excitante",
+  "title": "Monster Sandwich with Ranchitas Nacho Excitante",
+  "people": "1",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/monster-sandwich-con-ranchitas-nacho-excitante.webp",
+  "gallery": [
+    "monster-sandwich-con-ranchitas-nacho-excitante.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "1 serving of Sandwich Bread",
+    "1 serving of ham",
+    "1 serving of cheese",
+    "1 avocado",
+    "Lettuce",
+    "1 sliced tomato",
+    "Ketchup, Mustard, Mayonnaise, or other sauce of choice",
+    "Exciting Nacho Ranch Chips"
+  ],
+  "instructions": [
+    "Step 1: Take a sandwich and spread mayonnaise, mustard, and ketchup (or other sauce of choice) on it.",
+    "Step 2: Rinse the lettuce in a bowl with salt and let it sit for 5 minutes. Then, tear the lettuce into small pieces.",
+    "Step 3: Place a small piece of lettuce on the bread. Then, add a couple of sliced tomatoes.",
+    "Step 4: Add ham and cheese. And place Exciting Nacho Ranch Chips on top.",
+    "Step 5: Repeat the same process to create a Monster Sandwich."
+  ],
+  "brand": ["ranchitas"]
+}

@@ -71,7 +71,26 @@ const deliveryData = homeAssets.delivery || {};
 const sliderMask = t('assets.slidermask', { namespace: 'common', locale: currentLang }) || 'https://snack.yummiespromociones.com/snacksyummies/bg-front.webp';
 const sliderMaskMobile = t('assets.slidermaskmobile', { namespace: 'common', locale: currentLang }) || 'https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp';
 
-// Obtener productos para el ca rusel orbital
+// Cargar recetas usando el mismo patrón que la página de Recetas
+interface RecipeItem {
+  id: string;
+  title: string;
+  image?: string;
+  preparation_time: number;
+  slug?: string;
+}
+
+const recipeModules = import.meta.glob<{default: RecipeItem}>("../../locales/*/recipes/*.json");
+const allRecipes: RecipeItem[] = [];
+for (const path in recipeModules) {
+  const lang = path.split('/')[3];
+  if (lang === currentLang) {
+    const mod = await recipeModules[path]();
+    allRecipes.push(mod.default);
+  }
+}
+const topRecipes = allRecipes.slice(0, 12);
+const listingPath = `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}`;
 
 
 const commonAssets = t('assets.slider', { namespace: 'common', locale: currentLang }) || [];
@@ -217,17 +236,52 @@ const slides = Array.isArray(commonAssets)
       </div>
     </section>
 
-    <!-- Sección de recetas con carrusel -->
-    <!-- <section id="recipes" class="w-full py-12" transition:animate="slide">
-     <div class="container mx-auto px-4">
-        <h2 class="text-6xl  font-sans font-semibold text-center md:text-left text-white mb-8">{recipesAssets.title}</h2>
-        <div class=" mx-auto md:w-[70%]">
-          <RecipesCarousel recipes={recipeItems} textButton={recipesAssets.view_more} />
+    <!-- Sección de recetas: Slider -->
+    <section id="recipes" class="w-full py-12 mb-8" transition:animate="slide">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl md:text-6xl font-title font-semibold text-center text-white mb-8">
+          {currentLang === 'es' ? 'Recetas' : 'Recipes'}
+        </h2>
+
+        <!-- Slider wrapper -->
+        <div class="relative max-w-6xl mx-auto">
+          <!-- Slides viewport -->
+          <div id="recipes-viewport" class="overflow-hidden rounded-2xl">
+            <div id="recipes-track" class="flex gap-12 transition-transform duration-500 ease-out" style="will-change: transform;">
+              {topRecipes.map((recipe: RecipeItem) => (
+                <div class="flex-shrink-0 box-border">
+                  <RecipeCard
+                    image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
+                    title={recipe.title}
+                    time={`${recipe.preparation_time}MIN`}
+                    id={recipe.id}
+                    slug={recipe.slug}
+                    textColor="text-white"
+                    iconColor="text-white"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Controls: centered, white -->
+          <div class="flex items-center justify-center gap-4 mt-6">
+            <button id="recipes-prev" class="w-10 h-10 rounded-full bg-white text-blue-700 font-bold grid place-items-center shadow hover:shadow-md" aria-label="Previous">‹</button>
+            <div id="recipes-dots" class="flex items-center gap-2"></div>
+            <button id="recipes-next" class="w-10 h-10 rounded-full bg-white text-blue-700 font-bold grid place-items-center shadow hover:shadow-md" aria-label="Next">›</button>
+          </div>
+
+          <!-- View all centered -->
+          <div class="flex justify-center mt-8">
+            <a href={listingPath} class="px-6 py-3 bg-white text-blue-700 font-semibold rounded-full shadow hover:shadow-md">
+              {currentLang === 'es' ? 'Ver todas' : 'View all'}
+            </a>
+          </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
-    <div class="w-full  bg-blue-700 border-b-5 border-blue-700 -mt-[0.1rem]">
+    <div class="w-full ">
       <svg width="100%" height="87" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1442 57" preserveAspectRatio="none">
         <path d="M1442 57H0C99.3333 38 380 0 708 0C1036 0 1334 38 1442 57Z"/>
       </svg>
@@ -240,7 +294,7 @@ const slides = Array.isArray(commonAssets)
     <div class="md:flex md:items-center md:justify-between mt-[2rem]md:mt-[0rem] ">
       <div id="logosbrands" class="md:w-1/2 flex flex-col px-4 md:px-0 items-center justify-center md:order-2 ">
         <div class="grid grid-cols-4 md:grid-cols-4 gap-6">
-          {brands.map((brand, index) => (
+          {brands.map((brand: any, index: number) => (
             <div 
               class="logo-brand flex items-center justify-center cursor-pointer hover:scale-130 transition-all border-4 border-transparent hover:border-opacity-50 focus:border-opacity-50 shadow-md hover:shadow-xl"
               style={{ backgroundColor: brand.bgColor }}
@@ -527,27 +581,69 @@ const slides = Array.isArray(commonAssets)
         
     
     </div>
-  </section> -->
+    </section> -->
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const iframe = entry.target.querySelector('iframe');
-              if (iframe) {
-                iframe.src = iframe.dataset.src;
-                iframe.classList.remove('hidden');
-                entry.target.querySelector('.spotify-skeleton').remove();
-                observer.unobserve(entry.target);
-              }
-            }
+      // Simple slider for recipes
+      function initRecipesSlider(){
+        const viewport = document.getElementById('recipes-viewport');
+        const track = document.getElementById('recipes-track');
+        const prev = document.getElementById('recipes-prev');
+        const next = document.getElementById('recipes-next');
+        const dotsContainer = document.getElementById('recipes-dots');
+        if (!viewport || !track || !prev || !next || !dotsContainer) return;
+
+        const slides = Array.from(track.children);
+        let currentPage = 0;
+        let slidesPerView = 1;
+        let totalPages = 1;
+
+        // Create dots
+        function buildDots(){
+          dotsContainer.innerHTML = '';
+          for(let i=0;i<totalPages;i++){
+            const dot = document.createElement('button');
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-white/60 hover:bg-white transition-colors';
+            dot.setAttribute('aria-label', `Go to page ${i + 1}`);
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+          }
+        }
+
+        function updateDots() {
+          dotsContainer.querySelectorAll('button').forEach((el, idx) => {
+            el.style.opacity = idx === currentPage ? '1' : '0.6';
+            el.style.width = idx === currentPage ? '12px' : '10px';
+            el.style.height = idx === currentPage ? '12px' : '10px';
           });
-        }, { rootMargin: '200px' });
+        }
 
-        document.querySelectorAll('#spotify > div > div').forEach(container => {
-          observer.observe(container);
-        });
-      });
-    </script>
+        function goTo(pageIndex) {
+          currentPage = (pageIndex + totalPages) % totalPages;
+          const width = viewport.clientWidth;
+          track.style.transform = `translateX(${-currentPage * width}px)`;
+          updateDots();
+        }
 
-  </main>
+        function onResize() {
+          // Determine slides per view by breakpoint - max 3 per slide
+          const vw = window.innerWidth;
+          slidesPerView = vw >= 1024 ? 3 : vw >= 640 ? 2 : 1;
+          const styles = getComputedStyle(track);
+          const gapStr = styles.columnGap || styles.gap || '0';
+          const gapPx = parseFloat(gapStr) || 0;
+          const totalGap = gapPx * (slidesPerView - 1);
+          const slideWidth = (viewport.clientWidth - totalGap) / slidesPerView;
+          slides.forEach((slide) => (slide).style.width = `${slideWidth}px`);
+          totalPages = Math.max(1, Math.ceil(slides.length / slidesPerView));
+          buildDots();
+          goTo(currentPage);
+        }
+
+        prev.addEventListener('click', () => goTo(currentPage - 1));
+        next.addEventListener('click', () => goTo(currentPage + 1));
+        window.addEventListener('resize', onResize);
+        onResize();
+      }
+
+      document.addEventListener('DOMContentLoaded', initRecipesSlider);
+      window.addEventListener('astro:page-load', initRecipesSlider);

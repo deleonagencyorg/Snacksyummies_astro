@@ -1,0 +1,28 @@
+{
+      "date": "2025-09-11",
+      "id": "huevos-rotos-con-zibas-papitas-clasicas",
+      "slug": "huevos-rotos-con-zibas-papitas-clasicas",
+      "title": "Huevos Rotos con Zibas y Papitas Clásicas",
+      "people": "9",
+      "difficulty": "Fácil",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/huevos-rotos-con-zibas-papitas-clasicas.webp",
+      "gallery": [
+         "huevos-rotos-con-zibas-papitas-clasicas.webp"               
+      ],      
+      "type":"image",
+      "preparation_time": 10,
+      "ingredients": [
+        "2 huevos",
+        "2 cucharadas de aceite vegetal",
+        "Sal y pimienta",
+        "1 bolsa de Ziba’s Papitas Clásicas"
+      ],
+      "instructions": [
+        "Paso 1. Calienta el aceite en un sartén a fuego alto y deja caer los huevos.",
+        "Paso 2. Reduce la temperatura a fuego medio y tapa.",
+        "Paso 3. Sazona con sal y pimienta al gusto.",
+        "Paso 4. Cocina hasta tener el término de la yema deseado y retira del sartén.",
+        "Paso 5. Coloca en un plato y sirve con las Ziba’s por encima."
+      ],
+      "brand": ["zibas"]
+    }

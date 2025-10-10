@@ -1,0 +1,27 @@
+{
+      "date": "2025-09-11",
+      "id": "elotes-locos-con-taqueritos-chile-toreado",
+      "slug": "elotes-locos-con-taqueritos-chile-toreado",
+      "title": "Elotes Locos con Taqueritos Chile Toreado",
+      "people": "8",
+      "difficulty": "Fácil",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/elotes-locos-con-taqueritos-chile-toreado.webp",
+      "gallery": [
+         "elotes-locos-con-taqueritos-chile-toreado.webp",
+         "elotes-locos-con-taqueritos-chile-toreado2.webp"
+      ],      
+      "type":"image", 
+      "preparation_time": 15,
+      "ingredients": [
+        "2 elotes de maíz",
+        "1 bolsa de Taqueritos Chile Toreado",
+        "1 taza de mayonesa",
+        "2 limones en cuartos"
+      ],
+      "instructions": [
+        "Paso 1. Para cada uno de los elotes y después los coloca en una olla con agua caliente.",
+        "Paso 2. Cuando estén listos los retira y botar el exceso de agua. Los pasa por la mayonesa cubriéndolos totalmente.",
+        "Paso 3. Los Taqueritos, colocarlos en un procesador de alimentos y los tritura. Una vez triturados, cubra los elotes y servir con un poco de limón."
+      ],
+      "brand": ["taqueritos"]
+    }

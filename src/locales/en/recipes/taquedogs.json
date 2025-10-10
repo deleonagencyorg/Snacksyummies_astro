@@ -1,0 +1,41 @@
+{
+  "date": "2025-09-11",
+  "id": "taquedogs",
+  "slug": "taquedogs",
+  "title": "TaqueDogs",
+  "people": "3",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taquedogs.webp",
+  "gallery": [
+    "taquedogs.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "1. Hot Dog Ingredients:",
+    "Hot Dog Bread",
+    "Sausages",
+    "Cheese",
+    "Cilantro and lime mayonnaise",
+    "Taqueritos®",
+    "2. Hot Dog Ingredients:",
+    "Hot Dog Bread",
+    "Sausages",
+    "Mayonnaise",
+    "Mustard",
+    "Chili",
+    "Taqueritos®",
+    "3. Hot Dog Ingredients:",
+    "Hot Dog Bread",
+    "Sausages",
+    "Mayonnaise",
+    "Mustard",
+    "Ketchup",
+    "Coleslaw",
+    "Taqueritos®"
+  ],
+  "instructions": [
+    "Step 1: Arm your TaqueDogs and enjoy"
+  ],
+  "brand": ["taqueritos"]
+}

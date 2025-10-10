@@ -1,9 +1,8 @@
 ---
+import SEOHead from '../components/common/SEOHead.astro';
 import GoogleTagManager from '../components/common/GoogleTagManager.astro';
 import Favicon from '../components/Favicon.astro';
-// import GoogleTagManager from './i18n/GoogleTagManager.astro';
-// import GoogleTagManagerNoScript from './i18n/GoogleTagManagerNoScript.astro';
-import { type Locale } from '../i18n/i18n'; // t is not used, Locale type might be needed
+import { type Locale } from '../i18n/i18n';
 import Header from '../components/common/Header/index.astro';
 import Footer from '../components/common/Footer/index.astro';
 import MobileMenu from '../components/common/MobileMenu/index.astro';
@@ -24,36 +23,30 @@ const { title, description, class: className } = Astro.props;
 const pathSegments = Astro.url.pathname.split('/');
 const langFromUrl = pathSegments[1] as Locale;
 const validLocales: Locale[] = ['es', 'en'];
-const currentLang = validLocales.includes(langFromUrl) ? langFromUrl : 'es'; // Default to 'es'
+const currentLang = validLocales.includes(langFromUrl) ? langFromUrl : 'es';
 
-// Obtener configuración de colores basada en la ruta actual
+// Get header color config based on current route
 const { pathname } = Astro.url;
 const headerColorConfig = getHeaderColors(pathname);
 ---
+
 <html lang={currentLang}>
   <head>
+    <meta charset="utf-8" />
     <GoogleTagManager />
     <Favicon />
-    
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {title && <title> Snacks Yummies -  {title}</title>}
-    {description && <meta name="description" content={description} />}
+    <SEOHead 
+      title={title} 
+      description={description}
+    />
     <ViewTransitions />
     <slot name="head" />
-    {/* <GoogleTagManager /> */}
   </head>
-  <body class={`font-sans ${className || ''}`}>
-    {/* <GoogleTagManagerNoScript /> */}
-    <I18nProvider>
-      <Header currentLang={currentLang} />
-      <main transition:animate="slide">
-        <slot />
-      </main>
-      <Footer currentLang={currentLang} />
+  <body class={className}>
+    <I18nProvider locale={currentLang}>
+      <Header colors={headerColorConfig} />
+      <MobileMenu />
+      <slot />
+      <Footer />
     </I18nProvider>
-    
-    <!-- Menú móvil al final del body para máximo z-index -->
-    <MobileMenu currentLang={currentLang} headerColorConfig={headerColorConfig} />
   </body>
-</html>

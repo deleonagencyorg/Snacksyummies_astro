@@ -1,0 +1,31 @@
+{
+      "date": "2025-09-11",
+      "id": "mini-bolitas-de-queso-cubierta-de-zibas-con-taqueritos",
+      "slug": "mini-bolitas-de-queso-cubierta-de-zibas-con-taqueritos",
+      "title": "Mini Bolitas de Queso Cubierta de Zibas con Taqueritos",
+      "people": "7",
+      "difficulty": "Medio",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/mini-bolitas-de-queso-cubierta-de-zibas-con-taqueritos.webp",
+      "gallery": [
+         "mini-bolitas-de-queso-cubierta-de-zibas-con-taqueritos.webp"
+      ],      
+      "type":"image",
+      "preparation_time": 30,
+      "ingredients": [
+        "1 bolsa de Ziba’s Papitas Cremas y Especias trituradas",
+        "1 Bolsa de Taqueritos Chile Toreado",
+        "1 paquete de queso crema suavizado",
+        "1 taza de queso cheddar rallado",
+        "1 cucharadita de sal de ajo",
+        "4 lascas de tocino frito picado",
+        "½ de taza de cebollín picado",
+        "1 cucharada de páprika"
+      ],
+      "instructions": [
+        "Paso 1. En un recipiente mezcla el queso crema con el queso cheddar, la sal de ajo, el tocino, el cebollín y la páprika.",
+        "Paso 2. Forma bolitas con esta mezcla y cúbrelas con las Ziba’s trituradas.",
+        "Paso 3. Coloca las bolitas en una bandeja y deja que se enfríen por 1 hora",
+        "Paso 4. Antes de servir, coloca un Taqueritos en el entro de cada bolita y sirve."
+      ],
+      "brand": ["taqueritos", "zibas"]
+    }

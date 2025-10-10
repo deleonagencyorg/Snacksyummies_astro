@@ -1,0 +1,31 @@
+{
+  "date": "2025-09-11",
+  "id": "shuco-with-ranchitas-nacho-cheese",
+  "slug": "shuco-with-ranchitas-nacho-cheese",
+  "title": "Shuco with Ranchitas Nacho Cheese",
+  "people": "4",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/shucos-con-ranchitas-nacho-queso.webp",
+  "gallery": [
+    "shucos-con-ranchitas-nacho-queso.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "ingredients": [
+    "Hot dog bread",
+    "Guacamole",
+    "Chopped cabbage",
+    "Chopped onion and parsley",
+    "Sausages",
+    "Ketchup",
+    "Mustard",
+    "Mayonnaise",
+    "Ranchitas Nacho Cheese"
+  ],
+  "instructions": [
+    "Step 1: On a grill, toast the hot dog bun and halved sausages.",
+    "Step 2: Spread the bread with guacamole, place the cabbage, add Ranchitas to taste, sausage, and finally the mayonnaise, ketchup, and mustard.",
+    "Step 3: Accompany by diced onion with parsley."
+  ],
+  "brand": ["ranchitas"]
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2025-09-11",
+  "id": "elotes-cappy-locos",
+  "slug": "elotes-cappy-locos",
+  "title": "Elotes Cappy Locos",
+  "people": "6",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/elotes-cappy-locos.webp",
+  "gallery": [
+    "elotes-cappy-locos.webp"
+  ],
+  "type": "image",
+  "preparation_time": 15,
+  "ingredients": [
+    "6 elotes",
+    "¼ de taza de crema",
+    "¼ de taza de mayonesa",
+    "1 cucharadita de ajo en polvo",
+    "1 taza de Cappy triturados"
+  ],
+  "instructions": [
+    "Paso 1: Cocina los elotes al vapor por 4 minutos y deja que se enfríen a temperatura ambiente.",
+    "Paso 2: Mezcla la crema, la mayonesa y el ajo y unta cada uno de los elotes.",
+    "Paso 3: Pásalos por los Cappy® y sirve."
+  ],
+  "brand": ["cappy"]
+}

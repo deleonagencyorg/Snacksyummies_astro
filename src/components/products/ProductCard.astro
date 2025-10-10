@@ -1,0 +1,91 @@
+---
+import LazyImage from '../common/LazyImage.astro';
+import { getLocale } from '../../i18n/i18n';
+
+interface Props {
+  image: string;
+  title: string;
+  id: string;
+  brand?: string;
+  slug?: string;
+  textColor?: string;
+}
+
+const { 
+  image, 
+  title, 
+  id,
+  brand = '',
+  slug,
+  textColor = 'text-blue-900'
+} = Astro.props;
+
+const currentLocale = getLocale();
+const productLink = `/${currentLocale}/${currentLocale === 'es' ? 'productos' : 'products'}/${slug ?? id}`;
+
+// Función para normalizar títulos con acentos
+function normalizeTitle(input: string): string {
+  if (!input) return '';
+
+  // Primero normalizamos a NFC para unificar caracteres compuestos
+  let text = input.normalize('NFC');
+
+  // Método directo para casos específicos
+  text = text
+    // Vocales minúsculas con acento
+    .replace(/Ã¡/g, 'á')
+    .replace(/Ã©/g, 'é')
+    .replace(/Ã­/g, 'í')
+    .replace(/Ã³/g, 'ó')
+    .replace(/Ãº/g, 'ú')
+    // Vocales mayúsculas con acento
+    .replace(/Ã/g, 'Á')
+    .replace(/Ã‰/g, 'É')
+    .replace(/Ã/g, 'Í')
+    .replace(/Ã"/g, 'Ó')
+    .replace(/Ãš/g, 'Ú')
+    // Ñ y caracteres especiales
+    .replace(/Ã±/g, 'ñ')
+    .replace(/Ã'/g, 'Ñ')
+    .replace(/Â/g, '')
+    // Casos específicos observados
+    .replace(/manÃ/g, 'maní')
+    .replace(/japonÃ©s/g, 'japonés')
+    .replace(/PlÃ¡tano/g, 'Plátano')
+    .replace(/MaÃ­z/g, 'Maíz')
+    .replace(/PÃ¡caros/g, 'Pícaros')
+    .replace(/PÃ­caros/g, 'Pícaros')
+    .replace(/JalapeÃ±o/g, 'Jalapeño')
+    .replace(/ChicharrÃ³n/g, 'Chicharrón')
+    .replace(/FusiÃ³n/g, 'Fusión')
+    .replace(/ClÃ¡sicas/g, 'Clásicas')
+    .replace(/Ã³n/g, 'ón');
+
+  // Limpieza final de espacios y caracteres invisibles
+  text = text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim();
+
+  // Normalizar nuevamente para asegurar consistencia
+  return text.normalize('NFC');
+}
+
+const safeTitle = normalizeTitle(String(title || ''));
+---
+
+<div class="flex flex-col items-center w-full">
+  <a href={productLink} class="w-full flex flex-col items-center">
+    <div class="w-full flex justify-center">
+      <div class="overflow-hidden mb-2 hover:scale-105 transition-transform duration-300 w-full max-w-[110px] sm:max-w-[120px] md:max-w-[130px] lg:max-w-[140px] xl:max-w-[150px]">
+        <LazyImage
+          src={image}
+          alt={safeTitle}
+          class="w-full h-auto object-contain"
+          transition:name={`product-image-${id}`}
+        />
+      </div>
+    </div>
+    
+    <h3 class="text-center font-title text-sm sm:text-base leading-tight text-primary">
+      {safeTitle}
+    </h3>
+  </a>
+</div>
