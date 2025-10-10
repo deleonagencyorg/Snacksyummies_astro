@@ -116,7 +116,7 @@ const categoryItems = brandsData.map((brand: Brand) => ({
 const clientLang = currentLang;
 ---
 
-<div>
+<div style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgproducts.jpg'); background-size: cover; background-position: center;">
   <!-- Hero Banner con fondo primary -->
   <div class="bg-white py-8">
   <!-- Hero Banner -->
@@ -132,7 +132,8 @@ const clientLang = currentLang;
     />
 
     <!-- Categories Section (reusable slider) -->
-    <Categories 
+     <div class="w-full mx-auto px-4 mt-12 bg-transparent">
+      <Categories 
       title={currentLang === 'es' ? 'Productos por marca' : 'Products by brand'}
       items={categoryItems}
       allLabel={currentLang === 'es' ? 'TODAS' : 'ALL'}
@@ -141,6 +142,8 @@ const clientLang = currentLang;
       showArrows={true}
       hideTitle={true}
     />
+     </div>
+
   </div>
 </div>
 

@@ -98,11 +98,11 @@ const recipeLink = `/${currentLocale}/${currentLocale === 'es' ? 'recetas' : 're
 const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
 ---
 
-<div class="flex flex-col items-start justify-start w-full sm:w-[19.75rem] h-[28.75rem] group">
+<div class="flex flex-col items-start justify-start w-full sm:w-[19.75rem] h-[28.75rem] md:h-[28.75rem] group">
   <div class="bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 w-full h-full flex flex-col relative">
     <a href={recipeLink} class="h-full flex flex-col relative">
-      <!-- Default State Layout (matching Figma) -->
-      <div class="group-hover:hidden w-full h-full flex flex-col">
+      <!-- Default State Layout (mobile always, desktop when not hovering) -->
+      <div class="md:group-hover:hidden w-full h-full flex flex-col">
         <!-- Recipe Image (Square aspect ratio) -->
         <div class="aspect-square w-full overflow-hidden rounded-t-[40px]">
           <LazyImage
@@ -114,17 +114,17 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
         </div>
         
         <!-- Content Area -->
-        <div class="flex-1 flex flex-col gap-4 items-center justify-end p-4 w-full">
+        <div class="flex flex-col gap-4 items-center justify-start p-3 md:p-4 w-full">
           <!-- Recipe Title -->
           <div class="flex flex-col gap-1 items-start justify-center w-full">
-            <h3 class="text-[#00306F] font-title text-lg leading-5 w-full">
+            <h3 class="text-[#00306F] font-title text-lg leading-5 w-full title-clamp">
               {safeTitle}
             </h3>
           </div>
           
           <!-- CTA Button -->
-          <div class="flex flex-col gap-2 items-center justify-center w-full">
-            <div class="bg-white h-12 rounded-full border border-[#2E5DAB] w-full">
+          <div class="flex flex-col gap-2 items-center justify-center w-full pt-2">
+            <div class="bg-white h-12 rounded-full w-full border border-[#2E5DAB]">
               <div class="flex gap-2 h-12 items-center justify-center px-6 py-3">
                 <span class="text-[#2E5DAB] text-base font-medium leading-4">
                   {viewRecipeText}
@@ -134,16 +134,15 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
           </div>
         </div>
       </div>
-      
-      <!-- Hover State Layout (full image with overlay) -->
-      <div class="hidden group-hover:block w-full h-full relative overflow-hidden rounded-[40px]">
+      <!-- Hover State Layout (enable only on md+ to avoid mobile hover issues) -->
+      <div class="hidden md:group-hover:block w-full h-full relative overflow-hidden rounded-[40px]">
         <LazyImage
           src={image}
           alt={safeTitle}
           class="w-full h-full object-cover transition-transform duration-300"
           transition:name={`recipe-image-${id}`}
         />
-        
+
         <!-- Dark overlay for hover state -->
         <div class="absolute inset-0 bg-black bg-opacity-40 transition-all duration-300 rounded-[40px]"></div>
         
@@ -152,13 +151,11 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
           <!-- Recipe Details -->
           <div class="flex flex-col gap-4 text-white">
             <!-- Recipe Title -->
-            <div class="flex flex-col gap-1">
-              <h3 class="font-title text-lg leading-5 text-white">
-                {safeTitle}
-              </h3>
+            <h3 class="font-title text-lg leading-5 text-white">
+              {safeTitle}
+            </h3>
               
               <!-- Rating Stars -->
-              <div class="flex gap-2 items-center">
                 <div class="flex gap-1">
                   <svg class="w-[18px] h-[18px] text-yellow-400" viewBox="0 0 18 18" fill="currentColor">
                     <path d="M9 1.5l2.25 4.5 4.95.75-3.6 3.6.85 4.95L9 13.05l-4.45 2.25.85-4.95-3.6-3.6 4.95-.75L9 1.5z"/>
@@ -232,3 +229,13 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
     </a>
   </div>
 </div>
+
+<style>
+  /* Clamp title to 3 lines to keep consistent layout heights */
+  .title-clamp{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

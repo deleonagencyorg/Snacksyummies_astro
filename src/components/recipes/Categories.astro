@@ -37,7 +37,7 @@ const {
   <!-- Header Title -->
   {!hideTitle && (
     <div class="text-center">
-      <h2 class="text-white text-2xl md:text-4xl font-bold font-['Trois_Mille_TRIAL_Bold'] leading-10">
+      <h2 class="text-white text-4xl md:text-6xl font-bold font-['Trois_Mille_TRIAL_Bold'] leading-10">
         {title}
       </h2>
     </div>
@@ -59,7 +59,7 @@ const {
       </>
     )}
 
-    <div id="cat-scroll" class="flex gap-6 md:gap-8 overflow-x-auto md:overflow-visible md:flex-wrap md:justify-center scrollbar-hide pb-4 px-4 md:px-8" style="scroll-snap-type: x mandatory;">
+    <div id="cat-scroll" class="flex gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible lg:flex-wrap lg:justify-center scrollbar-hide pb-4 px-4 lg:px-8" style="scroll-snap-type: x mandatory;">
       <!-- All Button -->
       <a
         href={`${baseHref}?${queryKey}=all`}
@@ -155,8 +155,12 @@ const {
     line-height: 1;
     box-shadow: 0 8px 25px -5px rgba(0,0,0,0.2);
   }
-  @media (max-width: 768px) {
-    .nav-btn { display: none; }
+  /* Arrows visible on mobile & tablet; adjust position slightly */
+  .nav-btn.left-2 { left: .5rem; }
+  .nav-btn.right-2 { right: .5rem; }
+  @media (min-width: 1024px) {
+    .nav-btn.left-2 { left: 1rem; }
+    .nav-btn.right-2 { right: 1rem; }
   }
 </style>
 
