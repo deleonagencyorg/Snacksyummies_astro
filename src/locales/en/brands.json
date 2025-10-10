@@ -85,6 +85,13 @@
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-ceviche-2.webp"
                 },
                 {
+                    "id": "zambos-salsa-verde-fam",
+                    "slug": "zambos-salsa-verde-fam",
+                    "title": "Zambos Salsa Verde Fam",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos%2BSalsa%2BVerde%2BFam.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos%2BSalsa%2BVerde%2BFam.webp"
+                },
+                {
                     "id": "zambos-con-chicharron-del-rancho",
                     "slug": "zambos-con-chicharron-del-rancho",
                     "title": "Zambos Con Chicharron Del Rancho",
@@ -124,12 +131,6 @@
                     "title": "Zambos Yuquitas Originales",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-originales-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-originales-2.webp"
-                },{
-                    "id": "zambos-yuquitas-tostones",
-                    "slug": "zambos-yuquitas-tostones",
-                    "title": "Zambos Yuquitas Tostones",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-tostones-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-tostones-2.webp"
                 }
             ]
         },
@@ -544,13 +545,6 @@
                     "title": "Cappy Tornitos Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/cappy-tornitos-chile-toreado-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/cappy-tornitos-chile-toreado-2.webp"
-                },
-                {
-                    "id": "cappy-tornitos-queso-y-mantequilla",
-                    "slug": "cappy-tornitos-queso-y-mantequilla",
-                    "title": "Cappy Tornitos Queso y Mantequilla",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/cappy-tornitos-queso-y-mantequilla-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/cappy-tornitos-queso-y-mantequilla-2.webp"
                 }
             ]
         },
