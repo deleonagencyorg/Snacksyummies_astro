@@ -150,7 +150,7 @@ const {
     border: 4px solid var(--brand-color);
     box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--brand-color) 50%, transparent);
     transform: scale(1.1);
-    opacity: 1; /* ensure fully opaque when active */
+    opacity: 1 !important; /* ensure fully opaque when active */
   }
 
   /* Inactive brand filters */
@@ -158,7 +158,14 @@ const {
     opacity: 0.6;
   }
   /* When "all" is selected, keep all items fully visible */
-  .all-active .brand-card { opacity: 1 !important; }
+  .all-active .brand-card { 
+    opacity: 1 !important; 
+  }
+  
+  /* Force active state to override */
+  .all-active .brand-card.active {
+    opacity: 1 !important;
+  }
 
   /* Prevent clipping at the edges of the horizontal scroller */
   .scrollbar-hide > .brand-filter-btn:first-child {
@@ -203,18 +210,16 @@ const {
     const buttons = Array.from(document.querySelectorAll('.brand-filter-btn')) as HTMLElement[];
     console.log('[CATEGORIES] 🔘 Botones de filtro encontrados:', buttons.length);
 
-    // Determine active from URL or server-provided prop (embedded as data-active on wrapper via vite replace below)
     const url = new URL(window.location.href);
     const params = url.searchParams;
-    // Prefer explicit queryKey from server through data attribute when available
     const wrapper = container.parentElement as HTMLElement;
     const qKey = wrapper?.getAttribute('data-query-key') || 'brand';
     const urlBrand = params.get(qKey);
-    const sessionBrand = sessionStorage.getItem('selectedBrand');
+    let sessionBrand: string | null = null;
+    try { sessionBrand = sessionStorage.getItem('selectedBrand'); } catch {}
     const activeSlugFromUrl = urlBrand || sessionBrand || 'all';
     console.log('[CATEGORIES] 📍 Marca activa:', { qKey, urlBrand, sessionBrand, activeSlugFromUrl });
 
-    // Visual state: if "all" -> show all fully visible and only mark the ALL pill as active
     const allBtn = buttons.find(b => b.getAttribute('data-slug') === 'all');
     if (activeSlugFromUrl === 'all') {
       wrapper.classList.add('all-active');
@@ -229,7 +234,13 @@ const {
       });
     }
 
-    // Arrow nav
+    // Dispatch inicial después de un pequeño delay para asegurar que los listeners estén listos
+    setTimeout(() => {
+      const initialEvt = new CustomEvent('brandFilterChange', { detail: { brand: activeSlugFromUrl }, bubbles: true, composed: true });
+      document.dispatchEvent(initialEvt);
+      console.log('[CATEGORIES] 📡 Evento inicial despachado:', activeSlugFromUrl);
+    }, 50);
+
     document.querySelectorAll('.nav-btn').forEach((btn)=>{
       btn.addEventListener('click', ()=>{
         const dir = Number((btn as HTMLElement).getAttribute('data-dir') || '1');
@@ -237,13 +248,12 @@ const {
       });
     });
 
-    // Backward compatibility: dispatch brandFilterChange when qKey is 'brand'
     buttons.forEach((btn)=>{
       btn.addEventListener('click', (e)=>{
         const slug = btn.getAttribute('data-slug') || 'all';
         console.log('[CATEGORIES] 🖱️ Click en botón:', { slug, qKey });
         try { sessionStorage.setItem('selectedBrand', slug); } catch {}
-        // Update visual state immediately for better UX
+        
         if (slug === 'all') {
           wrapper.classList.add('all-active');
           buttons.forEach((el)=> el.classList.remove('active'));
@@ -253,28 +263,29 @@ const {
           buttons.forEach((el)=> el.classList.remove('active'));
           btn.classList.add('active');
         }
-        // Dispatch event for backward compatibility
+        
         if (qKey === 'brand') {
           console.log('[CATEGORIES] 📡 Despachando evento brandFilterChange:', slug);
-          // prevent full navigation; update URL and filter in place
           e.preventDefault();
           const u = new URL(window.location.href);
           u.searchParams.set(qKey, slug);
           history.pushState({}, '', u.toString());
           console.log('[CATEGORIES] 🔗 URL actualizada:', u.toString());
-          const evt = new CustomEvent('brandFilterChange', { detail: { brand: slug }, bubbles: true });
+          const evt = new CustomEvent('brandFilterChange', { detail: { brand: slug }, bubbles: true, composed: true });
           document.dispatchEvent(evt);
           console.log('[CATEGORIES] ✅ Evento despachado');
           const grid = document.querySelector('#recipes-grid');
           if (grid) (grid as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          console.log('[CATEGORIES] ⚠️ qKey no es "brand", permitiendo navegación normal');
         }
       });
     });
   }
 
-  document.addEventListener('DOMContentLoaded', initialize);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+  } else {
+    initialize();
+  }
   window.addEventListener('astro:page-load', initialize);
   window.addEventListener('astro:after-swap', initialize);
 </script>
