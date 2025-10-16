@@ -22,7 +22,7 @@
     },
     "brands": {
       "title": "Our Snack Brands",
-      "description": "Discover Taqueritos, Zambos, Ranchitas and Superman. Each brand with unique and authentic flavors that conquer Central America."
+      "description": "Discover Taqueritos, Zambos, Ranchitas. Each brand with unique and authentic flavors that conquer Central America."
     },
     "about_us": {
       "title": "About Us - History and Values",
@@ -102,15 +102,6 @@
     "slidermask": "https://snack.yummiespromociones.com/snacksyummies/BGHeader_1_.webp",
     "slidermaskmobile": "https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp",
     "slider": [
-      {
-        "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-m.webp",
-        "alt": "Superman",
-        "title": "",
-        "description": "",
-        "link": "http://www.yummiessuperman.com/?utm_source=WebYummies&utm_medium=WebYummies&utm_campaign=WebYummies&utm_id=WebYummies"
-      },
       {
         "id": "slide2",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas.webp",
@@ -202,7 +193,7 @@
     "content": [
       "Snacks Yummies is the leading snack brand in Central America, dedicated to offering products of the highest quality and unmatched flavor. Since our beginnings, we have been committed to innovation and excellence in each of our products.",
       "Our mission is to create moments of happiness through delicious snacks that bring people together. We believe in the importance of small moments of enjoyment that make life more flavorful.",
-      "With a wide variety of recognized brands such as Superman, Zambos, Taqueritos, and Ranchitas, we offer options for all tastes and occasions. Each product is made with carefully selected ingredients and processes that guarantee the best experience for our consumers.",
+      "With a wide variety of recognized brands such as  Zambos, Taqueritos, and Ranchitas, we offer options for all tastes and occasions. Each product is made with carefully selected ingredients and processes that guarantee the best experience for our consumers.",
       "At Snacks Yummies, we also care about our community and the environment. We constantly work on sustainable initiatives and social responsibility programs that generate a positive impact in the communities where we operate."
     ]
   },
@@ -229,16 +220,16 @@
       "newsletter":"Stay up to date with all our news and promotions",
       "instagramLinks":[
         {
-          "url":"https://www.instagram.com/reel/DLYiMsKtKon/?igsh=MXRza3ByZmlxbmtndw=="
+          "url":"https://www.instagram.com/reel/DP2PzC_k6SA/?igsh=amxyMnBpYmhtdnJ1"
         },
         {
-          "url":"https://www.instagram.com/reel/DLTEEQXvxkG/?igsh=MTQ4MzVkMnQxNWRrZA=="
+          "url":"https://www.instagram.com/reel/DPM8AvyjybG/?igsh=MXhzZmxianZiMGJkdg=="
         },
         {
-          "url":"https://www.instagram.com/reel/DKiDRYgtggB/?igsh=Ym9yNHdtbzJhczdi"
+          "url":"https://www.instagram.com/reel/DO9mCg2EXzs/?igsh=ZTZhcmRqc2Zzdm53"
         },
         {
-          "url":"https://www.instagram.com/p/DKaTrbKRfmO/?igsh=bTIyMGd5Y3kxYzY0"
+          "url":"https://www.instagram.com/reel/DOe0Ti9jnWJ/?igsh=NTU2bDlyZWowdmky"
         }
       ]
     },

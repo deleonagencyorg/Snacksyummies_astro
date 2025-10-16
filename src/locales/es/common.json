@@ -22,7 +22,7 @@
     },
     "brands": {
       "title": "Nuestras Marcas de Snacks",
-      "description": "Descubre Taqueritos, Zambos, Ranchitas y Superman. Cada marca con sabores únicos y auténticos que conquistan Centroamérica."
+      "description": "Descubre Taqueritos, Zambos, Ranchitas, y muchas más. Cada marca con sabores únicos y auténticos que conquistan Centroamérica."
     },
     "about_us": {
       "title": "Nosotros - Historia y Valores",
@@ -85,15 +85,6 @@
     "slidermaskmobile": "https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp",
     "slider": [
       {
-        "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-m.webp",
-        "alt": "Superman",
-        "title": "",
-        "description": "",
-        "link": "http://www.yummiessuperman.com/?utm_source=WebYummies&utm_medium=WebYummies&utm_campaign=WebYummies&utm_id=WebYummies"
-      },
-      {
         "id": "slide2",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-m.webp",
@@ -120,24 +111,6 @@
         "title": "",
         "description": "",
         "link": "https://www.zambos.com"
-      },
-      {
-        "id": "slide-promotion1",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman-m.webp",
-        "alt": "Superman",
-        "title": "",
-        "description": "",
-        "link": "http://www.yummiessuperman.com/?utm_source=WebYummies&utm_medium=WebYummies&utm_campaign=WebYummies&utm_id=WebYummies"
-      },
-      {
-        "id": "slide-promotion2",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-m.webp",
-        "alt": "Ranchitas Buffalo Ranch",
-        "title": "",
-        "description": "",
-        "link": "https://ranchitas.com"
       }
     ],
     "products": [
@@ -163,12 +136,7 @@
     "home": "Inicio"
   },
   "menu_items": [
-    {
-      "text": "Superman",
-      "href": "https://www.yummiessuperman.com/?utm_source=WebYummies&utm_medium=WebYummies&utm_campaign=WebYummies&utm_id=WebYummies",
-      "target": "_blank",
-      "special": true
-    },
+
     {
       "id": "brands",
       "text": "Marcas",
@@ -207,7 +175,7 @@
     "content": [
       "Snacks Yummies es la marca líder de snacks en Centroamérica, dedicada a ofrecer productos de la más alta calidad y sabor inigualable. Desde nuestros inicios, nos hemos comprometido con la innovación y excelencia en cada uno de nuestros productos.",
       "Nuestra misión es crear momentos de felicidad a través de snacks deliciosos que unen a las personas. Creemos en la importancia de los pequeños momentos de disfrute que hacen la vida más sabrosa.",
-      "Con una amplia variedad de marcas reconocidas como Superman, Zambos, Taqueritos y Ranchitas, ofrecemos opciones para todos los gustos y ocasiones. Cada producto es elaborado con ingredientes cuidadosamente seleccionados y procesos que garantizan la mejor experiencia para nuestros consumidores.",
+      "Con una amplia variedad de marcas reconocidas como Zambos, Taqueritos y Ranchitas, ofrecemos opciones para todos los gustos y ocasiones. Cada producto es elaborado con ingredientes cuidadosamente seleccionados y procesos que garantizan la mejor experiencia para nuestros consumidores.",
       "En Snacks Yummies, también nos preocupamos por nuestra comunidad y el medio ambiente. Trabajamos constantemente en iniciativas sostenibles y programas de responsabilidad social que generan un impacto positivo en las comunidades donde operamos."
     ]
   },
@@ -232,18 +200,18 @@
       "tagtitle":"en redes",
       "description":"Síguenos en nuestras redes sociales - Snacks Yummies",
       "newsletter":"Entérate de las noticias y promociones",
-      "instagramLinks":[
+     "instagramLinks":[
         {
-          "url":"https://www.instagram.com/reel/DNT6raEoqzD/?igsh=MXJsdmh4YWxpMGZseA=="
+          "url":"https://www.instagram.com/reel/DP2PzC_k6SA/?igsh=amxyMnBpYmhtdnJ1"
         },
         {
-          "url":"https://www.instagram.com/reel/DNL-gGZOW09/?igsh=MTY4eDVzazc5YTliaA=="
+          "url":"https://www.instagram.com/reel/DPM8AvyjybG/?igsh=MXhzZmxianZiMGJkdg=="
         },
         {
-          "url":"https://www.instagram.com/reel/DNHd_ltM-pc/?igsh=OWpnamQ4Y3FmN3Vz"
+          "url":"https://www.instagram.com/reel/DO9mCg2EXzs/?igsh=ZTZhcmRqc2Zzdm53"
         },
         {
-          "url":"https://www.instagram.com/reel/DNEaatBuSfZ/?igsh=MTZuZjgzZnZ4dzg0dw=="
+          "url":"https://www.instagram.com/reel/DOe0Ti9jnWJ/?igsh=NTU2bDlyZWowdmky"
         }
       ]
     },

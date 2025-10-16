@@ -41,15 +41,23 @@ const socialMedia = socialMediaObj ? Object.values(socialMediaObj) as SocialMedi
     >
       <span class="sr-only">{sm.name}</span>
       {sm.iconUrl && (
-        <LazyImage
-          src={sm.iconUrl}
-          alt={sm.alt || sm.name}
-          style={`height: ${iconSize}px; width: ${iconSize}px;`}
-          color={iconColor}
-          width={iconSize}
-          height={iconSize}
-          loading="lazy"
-        />
+        (() => {
+          const isSvg = sm.iconUrl.toLowerCase().endsWith('.svg');
+          const displaySize = iconSize;
+          const intrinsicSize = isSvg ? iconSize : iconSize * 2; // 2x for raster for retina crispness
+          return (
+            <LazyImage
+              src={sm.iconUrl}
+              alt={sm.alt || sm.name}
+              style={`height: ${displaySize}px; width: ${displaySize}px;`}
+              color={iconColor}
+              width={intrinsicSize}
+              height={intrinsicSize}
+              sizes={`${displaySize}px`}
+              loading="lazy"
+            />
+          );
+        })()
       )}
     </a>
   ))}
