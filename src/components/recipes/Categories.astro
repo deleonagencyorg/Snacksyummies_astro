@@ -59,12 +59,12 @@ const {
       </>
     )}
 
-    <div id="cat-scroll" class="flex gap-6 lg:gap-8 overflow-x-auto lg:overflow-visible lg:flex-wrap lg:justify-center scrollbar-hide pb-4 px-4 lg:px-8" style="scroll-snap-type: x mandatory;">
+    <div id="cat-scroll" class="flex flex-nowrap gap-6 lg:gap-8 overflow-x-auto scrollbar-hide pb-4 px-4 lg:px-8" style="scroll-snap-type: x mandatory;">
       <!-- All Button -->
       {queryKey === 'brand' ? (
         <button
           type="button"
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
           style="scroll-snap-align: center; --brand-color: #4B5563;"
           data-slug="all"
           aria-label={allLabel}
@@ -74,7 +74,7 @@ const {
       ) : (
         <a
           href={`${baseHref}?${queryKey}=all`}
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
           style="scroll-snap-align: center; --brand-color: #4B5563;"
           data-slug="all"
         >
@@ -86,13 +86,13 @@ const {
         queryKey === 'brand' ? (
           <button
             type="button"
-            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
             style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
             data-slug={it.slug}
             aria-label={it.label}
           >
             {it.logo ? (
-              <img src={it.logo} alt={it.label} class="w-16 h-16 md:w-24 md:h-24 object-contain rounded-full" loading="lazy" />
+              <img src={it.logo} alt={it.label} class="w-[80%] h-[80%] object-contain mx-auto my-auto" loading="lazy" />
             ) : (
               <span class="text-white font-bold text-xs md:text-base text-center px-2">{it.label}</span>
             )}
@@ -100,12 +100,12 @@ const {
         ) : (
           <a
             href={`${baseHref}?${queryKey}=${it.slug}`}
-            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
             style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
             data-slug={it.slug}
           >
             {it.logo ? (
-              <img src={it.logo} alt={it.label} class="w-16 h-16 md:w-24 md:h-24 object-contain rounded-full" loading="lazy" />
+              <img src={it.logo} alt={it.label} class="w-[80%] h-[80%] object-contain mx-auto my-auto" loading="lazy" />
             ) : (
               <span class="text-white font-bold text-xs md:text-base text-center px-2">{it.label}</span>
             )}
@@ -131,6 +131,18 @@ const {
   /* Smooth scrolling behavior */
   .scrollbar-hide {
     scroll-behavior: smooth;
+  }
+
+  /* Enhance touch scrolling on iOS and modern browsers */
+  #cat-scroll {
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    cursor: grab;
+  }
+  #cat-scroll.dragging {
+    cursor: grabbing;
+    user-select: none;
   }
 
   .brand-card{
@@ -197,6 +209,12 @@ const {
       console.warn('[CATEGORIES] ⚠️ No se encontró #cat-scroll');
       return;
     }
+    // Guardar para evitar inicialización duplicada en navegaciones Astro
+    if ((container as HTMLElement).dataset.init === '1') {
+      console.log('[CATEGORIES] ⛔ Ya inicializado, skip');
+      return;
+    }
+    (container as HTMLElement).dataset.init = '1';
     const buttons = Array.from(document.querySelectorAll('.brand-filter-btn')) as HTMLElement[];
     console.log('[CATEGORIES] 🔘 Botones de filtro encontrados:', buttons.length);
 
@@ -269,6 +287,67 @@ const {
         }
       });
     });
+
+    // Soporte para drag/swipe en desktop y mobile
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let dragged = false;
+
+    const startDrag = (clientX: number) => {
+      isDown = true;
+      dragged = false;
+      startX = clientX;
+      scrollLeft = container.scrollLeft;
+      (container as HTMLElement).classList.add('dragging');
+    };
+    const moveDrag = (clientX: number) => {
+      if (!isDown) return;
+      const dx = clientX - startX;
+      if (Math.abs(dx) > 5) dragged = true;
+      container.scrollLeft = scrollLeft - dx;
+    };
+    const endDrag = () => {
+      isDown = false;
+      setTimeout(()=>{ dragged = false; }, 50);
+      (container as HTMLElement).classList.remove('dragging');
+    };
+
+    // Mouse events
+    container.addEventListener('mousedown', (e: MouseEvent) => {
+      if ((e.target as HTMLElement).closest('.brand-filter-btn')) {
+        // allow drag even when starting on a button
+      }
+      startDrag(e.clientX);
+    });
+    container.addEventListener('mousemove', (e: MouseEvent) => moveDrag(e.clientX));
+    container.addEventListener('mouseleave', () => endDrag());
+    container.addEventListener('mouseup', () => endDrag());
+
+    // Prevent click activation when user was dragging
+    container.addEventListener('click', (e: MouseEvent) => {
+      if (dragged) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+
+    // Touch events
+    container.addEventListener('touchstart', (e: TouchEvent) => {
+      if (e.touches && e.touches[0]) startDrag(e.touches[0].clientX);
+    }, { passive: true });
+    container.addEventListener('touchmove', (e: TouchEvent) => {
+      if (e.touches && e.touches[0]) moveDrag(e.touches[0].clientX);
+    }, { passive: true });
+    container.addEventListener('touchend', () => endDrag(), { passive: true });
+
+    // Scroll con rueda vertical -> horizontal
+    container.addEventListener('wheel', (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        container.scrollBy({ left: e.deltaY, behavior: 'auto' });
+        e.preventDefault();
+      }
+    }, { passive: false });
   }
 
   if (document.readyState === 'loading') {
