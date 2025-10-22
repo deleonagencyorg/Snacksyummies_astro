@@ -184,16 +184,24 @@ const metaDescription = contact.description;
                     data-map-country={countryCode}
                     style={`width: 100%; height: 100%; ${index === 0 ? 'display: block;' : 'display: none;'}`}
                   >
-                    <iframe
-                      src={location.mapEmbed}
-                      width="100%"
-                      height="100%"
-                      frameborder="0"
-                      allowfullscreen="allowfullscreen"
-                      aria-hidden="false"
-                      style="width: 100%; height: 100%; border: 0;"
-                      title={`${location.name} Map`}
-                    ></iframe>
+                    {location.mapEmbed ? (
+                      <iframe
+                        src={location.mapEmbed}
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen="allowfullscreen"
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        referrerpolicy="no-referrer-when-downgrade"
+                        aria-hidden="false"
+                        style="width: 100%; height: 100%; border: 0;"
+                        title={`${location.name} Map`}
+                      ></iframe>
+                    ) : (
+                      <div class="w-full h-full grid place-items-center text-gray-500 text-sm">
+                        Mapa no disponible para esta ubicación
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -336,16 +344,14 @@ const metaDescription = contact.description;
       
       // Intentar inicializar inmediatamente
       if (document.readyState === 'loading') {
-        // Si el documento aún se está cargando, esperar al evento DOMContentLoaded
         document.addEventListener('DOMContentLoaded', initializeCountryTabs);
       } else {
-        // Si el documento ya está cargado, ejecutar inmediatamente
         initializeCountryTabs();
       }
-      
-      // Como respaldo, intentar inicializar después de un breve retraso
-      // para asegurarnos de que todo esté correctamente cargado
-      setTimeout(initializeCountryTabs, 500);
+
+      // Inicializar también en navegaciones de Astro
+      document.addEventListener('astro:page-load', initializeCountryTabs);
+      document.addEventListener('astro:after-swap', initializeCountryTabs);
     </script>
   </div>
 </MainLayout>

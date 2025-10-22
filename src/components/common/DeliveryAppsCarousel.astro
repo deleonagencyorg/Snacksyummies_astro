@@ -141,5 +141,6 @@ const smallCount = shouldRender ? items.length <= 2 : false;
   }
 
   document.addEventListener('DOMContentLoaded', initAppsCarousel);
-  window.addEventListener('astro:page-load', initAppsCarousel);
+  document.addEventListener('astro:page-load', initAppsCarousel);
+  document.addEventListener('astro:after-swap', initAppsCarousel);
 </script>

@@ -200,5 +200,6 @@ const clientLang = currentLang;
     init();
   }
   
-  window.addEventListener('astro:page-load', init);
-  window.addEventListener('astro:after-swap', init);
+  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:after-swap', init);
+</script>

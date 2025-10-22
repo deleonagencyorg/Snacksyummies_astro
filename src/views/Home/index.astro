@@ -658,4 +658,5 @@ const slides = Array.isArray(commonAssets)
       }
 
       document.addEventListener('DOMContentLoaded', initRecipesSlider);
-      window.addEventListener('astro:page-load', initRecipesSlider);
+      document.addEventListener('astro:page-load', initRecipesSlider);
+      document.addEventListener('astro:after-swap', initRecipesSlider);
