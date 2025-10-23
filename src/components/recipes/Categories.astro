@@ -294,14 +294,14 @@ const {
     let scrollLeft = 0;
     let dragged = false;
 
-    const startDrag = (clientX: number) => {
+    const startDrag = (clientX) => {
       isDown = true;
       dragged = false;
       startX = clientX;
       scrollLeft = container.scrollLeft;
       (container as HTMLElement).classList.add('dragging');
     };
-    const moveDrag = (clientX: number) => {
+    const moveDrag = (clientX) => {
       if (!isDown) return;
       const dx = clientX - startX;
       if (Math.abs(dx) > 5) dragged = true;
@@ -310,44 +310,60 @@ const {
     const endDrag = () => {
       isDown = false;
       setTimeout(()=>{ dragged = false; }, 50);
-      (container as HTMLElement).classList.remove('dragging');
+      container.classList.remove('dragging');
     };
 
-    // Mouse events
-    container.addEventListener('mousedown', (e: MouseEvent) => {
-      if ((e.target as HTMLElement).closest('.brand-filter-btn')) {
+    const cleanupFns = [];
+
+    const onMouseDown = (e) => {
+      if ((e.target.closest('.brand-filter-btn'))) {
         // allow drag even when starting on a button
       }
       startDrag(e.clientX);
-    });
-    container.addEventListener('mousemove', (e: MouseEvent) => moveDrag(e.clientX));
-    container.addEventListener('mouseleave', () => endDrag());
-    container.addEventListener('mouseup', () => endDrag());
+    };
+    const onMouseMove = (e) => moveDrag(e.clientX);
+    const onMouseLeave = () => endDrag();
+    const onMouseUp = () => endDrag();
 
-    // Prevent click activation when user was dragging
-    container.addEventListener('click', (e: MouseEvent) => {
+    const onClickCapture = (e) => {
       if (dragged) {
         e.preventDefault();
         e.stopPropagation();
       }
-    }, true);
+    };
 
-    // Touch events
-    container.addEventListener('touchstart', (e: TouchEvent) => {
-      if (e.touches && e.touches[0]) startDrag(e.touches[0].clientX);
-    }, { passive: true });
-    container.addEventListener('touchmove', (e: TouchEvent) => {
-      if (e.touches && e.touches[0]) moveDrag(e.touches[0].clientX);
-    }, { passive: true });
-    container.addEventListener('touchend', () => endDrag(), { passive: true });
+    const onTouchStart = (e) => { if (e.touches && e.touches[0]) startDrag(e.touches[0].clientX); };
+    const onTouchMove = (e) => { if (e.touches && e.touches[0]) moveDrag(e.touches[0].clientX); };
+    const onTouchEnd = () => endDrag();
 
-    // Scroll con rueda vertical -> horizontal
-    container.addEventListener('wheel', (e: WheelEvent) => {
+    const onWheel = (e) => {
       if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
         container.scrollBy({ left: e.deltaY, behavior: 'auto' });
         e.preventDefault();
       }
-    }, { passive: false });
+    };
+
+    container.addEventListener('mousedown', onMouseDown);
+    container.addEventListener('mousemove', onMouseMove);
+    container.addEventListener('mouseleave', onMouseLeave);
+    container.addEventListener('mouseup', onMouseUp);
+    container.addEventListener('click', onClickCapture, true);
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchmove', onTouchMove, { passive: true });
+    container.addEventListener('touchend', onTouchEnd, { passive: true });
+    container.addEventListener('wheel', onWheel, { passive: false });
+
+    cleanupFns.push(() => {
+      container.removeEventListener('mousedown', onMouseDown);
+      container.removeEventListener('mousemove', onMouseMove);
+      container.removeEventListener('mouseleave', onMouseLeave);
+      container.removeEventListener('mouseup', onMouseUp);
+      container.removeEventListener('click', onClickCapture, true);
+      container.removeEventListener('touchstart', onTouchStart, { passive: true });
+      container.removeEventListener('touchmove', onTouchMove, { passive: true });
+      container.removeEventListener('touchend', onTouchEnd, { passive: true });
+      container.removeEventListener('wheel', onWheel, { passive: false });
+    });
   }
 
   if (document.readyState === 'loading') {
@@ -355,6 +371,6 @@ const {
   } else {
     initialize();
   }
-  window.addEventListener('astro:page-load', initialize);
-  window.addEventListener('astro:after-swap', initialize);
+  document.addEventListener('astro:page-load', initialize);
+  document.addEventListener('astro:after-swap', initialize);
 </script>

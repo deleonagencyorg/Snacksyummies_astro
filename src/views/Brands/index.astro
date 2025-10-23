@@ -325,8 +325,8 @@ const categoryItems = (brandsData || []).map((b: any) => ({
     init();
   }
   
-  window.addEventListener('astro:page-load', init);
-  window.addEventListener('astro:after-swap', init);
+  document.addEventListener('astro:page-load', init);
+  document.addEventListener('astro:after-swap', init);
 </script>
 
 <!-- Cargar scripts para la funcionalidad de la página -->

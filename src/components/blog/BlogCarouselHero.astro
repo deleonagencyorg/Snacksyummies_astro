@@ -18,16 +18,8 @@ interface Props {
 
 const { news = [], currentLang = getLocale() } = Astro.props;
 
-// Normalize and get the 3 most recent news items
-const latestNews = [...news]
-  .map(item => {
-    let date = item.published_date;
-    if (typeof date === 'string') date = new Date(date);
-    return { ...item, date };
-  })
-  .filter(item => item.date instanceof Date && !isNaN(item.date.getTime()))
-  .sort((a, b) => (b.date as Date).getTime() - (a.date as Date).getTime())
-  .slice(0, 3);
+// Show the first 3 news items as provided (no sorting)
+const latestNews = Array.isArray(news) ? news.slice(0, 3) : [];
 
 const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
 ---
@@ -117,6 +109,7 @@ class BlogCarouselHero {
     this.init();
   }
   init() {
+    if (!this.slides || this.slides.length === 0) return;
     this.showSlide(0);
     this.bindEvents();
     this.startAutoPlay();
@@ -164,6 +157,8 @@ class BlogCarouselHero {
 
 function initAllCarousels() {
   document.querySelectorAll('.blog-hero-carousel').forEach(container => {
+    const slides = container.querySelectorAll('[data-slide]');
+    if (!slides || slides.length === 0) return;
     if (container.__carouselInstance) {
       container.__carouselInstance.stopAutoPlay();
       container.__carouselInstance = null;
@@ -172,7 +167,20 @@ function initAllCarousels() {
   });
 }
 
+// Cleanup antes del DOM swap de Astro
+document.addEventListener('astro:before-swap', () => {
+  document.querySelectorAll('.blog-hero-carousel').forEach(container => {
+    if (container.__carouselInstance) {
+      container.__carouselInstance.stopAutoPlay();
+      container.__carouselInstance = null;
+    }
+  });
+});
+
 document.addEventListener('astro:after-swap', () => {
+  setTimeout(initAllCarousels, 0);
+});
+document.addEventListener('astro:page-load', () => {
   setTimeout(initAllCarousels, 0);
 });
 document.addEventListener('DOMContentLoaded', () => {
