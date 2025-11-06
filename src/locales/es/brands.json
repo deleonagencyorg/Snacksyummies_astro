@@ -287,6 +287,18 @@
                     "title": "Ranchitas Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp"
+                },                {
+                    "id": "ranchitas-chile-toreado",
+                    "slug": "ranchitas-chile-toreado",
+                    "title": "Ranchitas Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreano.webp"
+                },                {
+                    "id": "ranchitas-naturales",
+                    "slug": "ranchitas-naturales",
+                    "title": "Ranchitas Naturales",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas-Naturales.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas-Naturales.webp"
                 }
                 
             ]
@@ -419,6 +431,20 @@
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-jalapeno-cream-2.webp"
                 },
                 {
+                    "id": "yummipops-nacho-queso-blanco",
+                    "slug": "yummipops-nacho-queso-blanco",
+                    "title": "Yummipops Nacho Queso Blanco",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-queso-blanco.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-queso-blanco.webp"
+                },
+                                {
+                    "id": "yummipops-mix",
+                    "slug": "yummipops-mix",
+                    "title": "Yummipops Mix",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-mix-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-mix-2.webp"
+                },
+                {
                     "id": "yummipops-palomitas-de-maiz-sal-marina",
                     "slug": "yummipops-palomitas-de-maiz-sal-marina",
                     "title": "Yummipops Palomitas de Maíz Sal Marina",
@@ -492,6 +518,29 @@
                     "title": "Yummi Nut Omega Mix",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-omega-mix-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-omega-mix-2.webp"
+                },
+                {
+                    "id": "barra-fresa",
+                    "slug": "barra-fresa",
+                    "title": "Barra Fresa",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa.webp"
+                }
+                ,
+                {
+                    "id": "barra-arandano",
+                    "slug": "barra-arandano",
+                    "title": "Barra Arandano",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-arandano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-arandano.webp"
+                }
+                ,
+                {
+                    "id": "barra-coco",
+                    "slug": "barra-coco",
+                    "title": "Barra Coco",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-coco.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-coco.webp"
                 }
                 
             ]
