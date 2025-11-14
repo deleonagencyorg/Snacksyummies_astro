@@ -33,6 +33,14 @@ export const logos = {
   principal: {
     url: `${S3_BASE_URL}/Logo_SnacksYummies.svg`,
     alt: 'Snacks Yummies'
+  },
+  yummiPops: {
+    url: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/Yummi-pops-3.webp',
+    alt: 'YummiPops'
+  },
+  operacionSonrisa: {
+    url: `${S3_BASE_URL}/operacion-sonrisa-logo.svg`,
+    alt: 'Operación Sonrisa Honduras'
   }
 };
 

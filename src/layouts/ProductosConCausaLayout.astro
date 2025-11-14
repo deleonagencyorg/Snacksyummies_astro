@@ -1,0 +1,51 @@
+---
+import SEOHead from '../components/common/SEOHead.astro';
+import GoogleTagManager from '../components/common/GoogleTagManager.astro';
+import Favicon from '../components/Favicon.astro';
+import { type Locale } from '../i18n/i18n';
+import PCCNavigation from '../components/productosconcausa/Navigation/index.astro';
+import PCCFooter from '../components/productosconcausa/Footer/index.astro';
+import I18nProvider from '../components/i18n/I18nProvider.astro';
+import { ViewTransitions } from 'astro:transitions';
+import "../styles/global.css";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  class?: string;
+}
+const { title, description, class: className } = Astro.props;
+
+// Force Spanish for productosconcausa routes (no /[lang] validation here)
+const currentLang: Locale = 'es';
+---
+
+<html lang={currentLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <GoogleTagManager />
+    <Favicon />
+    <SEOHead 
+      title={title} 
+      description={description}
+    />
+    <!-- Performance hints: preconnect to critical origins -->
+    <link rel="preconnect" href="https://snack.yummiespromociones.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://maxcdn.bootstrapcdn.com" crossorigin>
+    <link rel="preconnect" href="https://www.google.com" crossorigin>
+    <link rel="preconnect" href="https://maps.google.com" crossorigin>
+    <link rel="preconnect" href="https://www.google.com/maps" crossorigin>
+    <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
+    <ViewTransitions />
+    <slot name="head" />
+  </head>
+  <body class={className}>
+    <I18nProvider locale={currentLang}>
+      <PCCNavigation />
+      <slot />
+      <PCCFooter />
+    </I18nProvider>
+  </body>
+</html>

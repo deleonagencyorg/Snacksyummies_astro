@@ -1,0 +1,8 @@
+/* Scoped styles for Productos con Causa header */
+.pcc-header .pcc-link { @apply text-gray-700 hover:text-primary transition-colors; }
+.pcc-menu-btn { @apply h-10 w-10 inline-flex items-center justify-center rounded-md border border-gray-300; }
+.pcc-menu-icon { position: relative; display: block; width: 22px; height: 2px; background: #111; }
+.pcc-menu-icon::before, .pcc-menu-icon::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; background: #111; }
+.pcc-menu-icon::before { top: -6px; }
+.pcc-menu-icon::after { top: 6px; }
+.pcc-mobile-menu { @apply bg-white border-t border-gray-200; }

@@ -1,0 +1,85 @@
+/* Estilos para la navegación de Productos con Causa */
+
+.pcc-navigation {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Enlaces de navegación */
+.pcc-nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.pcc-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary, #00601b);
+  transition: width 0.3s ease;
+}
+
+.pcc-nav-link:hover::after,
+.pcc-nav-link.text-primary::after {
+  width: 100%;
+}
+
+/* Enlaces móviles */
+.pcc-nav-link-mobile {
+  border-left: 3px solid transparent;
+  padding-left: 1rem;
+}
+
+.pcc-nav-link-mobile.text-primary {
+  border-left-color: var(--color-primary, #00601b);
+  background-color: rgba(0, 96, 27, 0.05);
+}
+
+/* Menú móvil */
+.pcc-mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.pcc-mobile-menu.active {
+  max-height: 500px;
+}
+
+/* Botón del menú móvil */
+.pcc-mobile-menu-btn .menu-icon-close {
+  display: none;
+}
+
+.pcc-mobile-menu-btn[aria-expanded="true"] .menu-icon-open {
+  display: none;
+}
+
+.pcc-mobile-menu-btn[aria-expanded="true"] .menu-icon-close {
+  display: block;
+}
+
+/* Animaciones */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pcc-mobile-menu.active {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 1023px) {
+  .pcc-nav-link {
+    font-size: 0.875rem;
+  }
+}

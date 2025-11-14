@@ -1,0 +1,737 @@
+---
+import Layout from '../../layouts/ProductosConCausaLayout.astro';
+import LazyImage from '../../components/common/LazyImage.astro';
+import { ViewTransitions } from 'astro:transitions';
+---
+
+<!-- Google Fonts - Digital Counter Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<Layout 
+  title="Productos con Causa Yummi Pops | Operación Sonrisa Honduras" 
+  description="Descubre la alianza de Yummi Pops y Operación Sonrisa Honduras: productos con causa que financian cirugías, clínicas y miles de sonrisas transformadas.">
+  <ViewTransitions slot="head" />
+  <main class="container mx-auto ">
+    <article class="w-full">
+       <LazyImage id="inicio" src="https://snack.yummiespromociones.com/SnacksyummiesAssets/portadahomemini.webp" alt="Operación Sonrisas Honduras" width={400} height={300} class="w-full" />
+      
+        <section id="sobre-la-causa" class="container sm:flex-col md:flex-row  items-center justify-center text-center p-8 lg:p-0 my-8 grid-rows-1 grid-cols-2 justify-items-center gap-x-12 sm:flex animate-slide-up">
+          <div class="sm:w-full md:w-1/2 ">
+            <p class="text-red font-title text-2xl md:text-4xl text-left">Cada vez que disfrutas tus Yummi Pops favoritos, estás contribuyendo a cambiar vidas.</p>
+            <p class="text-primary text-justify mt-8 break-words text-lg md:text-2xl">
+              Por cada producto que compras, Yummi Pops apoya a
+              Operación Sonrisa Honduras, una fundación que brinda
+              cirugías y tratamientos gratuitos para niños y niñas con
+              labio y paladar hendido.</p>
+          </div>
+          <div class="sm:w-full md:w-1/2 text-center sm:mt-8">
+            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ninosmini.webp" alt="Operación Sonrisas Honduras"  class="md:w-[80%] w-[90%] p-8 md:p-0" />
+          </div>
+      </section>
+
+      <!-- Sección del Contador -->
+      <section id="counter" class="container mx-auto px-4 py-8 md:py-12">
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 lg:gap-16">
+          <!-- Texto Izquierdo -->
+          <div class="text-center md:text-center">
+            <p class="text-[#1652a7] font-title font-bold text-lg md:text-2xl lg:text-5xl">
+              Llevamos <br/>en estacampaña
+            </p>
+          </div>
+
+          <!-- Contador Digital -->
+          <div class="counter-display py-8">
+            <div class="counter-wrapper">
+              <span class="counter-ghost">88.888</span>
+              <span class="counter-digit">1</span>
+              <span class="counter-digit">2</span>
+              <span class="counter-separator">.</span>
+              <span class="counter-digit">3</span>
+              <span class="counter-digit">3</span>
+              <span class="counter-digit">4</span>
+            </div>
+          </div>
+
+          <!-- Texto Derecho -->
+          <div class="text-center md:text-left">
+            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisasgeneradas.webp" alt="Operación Sonrisas Honduras" class="md:w-[80%] w-[90%] p-8 md:p-0" />
+          </div>
+        </div>
+      </section>
+
+        <section class="bg-[#1652a7] container py-8 my-8 sm:flex sm:flex-col rounded-t-2xl md:rounded-t-[5%]">
+          <div class="w-full py-8 flex justify-center">
+            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logosonrisasblanco.webp" alt="Operación Sonrisas Honduras" class="w-[500px] p-8 md:p-0 mt-8" />
+          </div>
+          <div class="w-full py-8 flex justify-center">
+            <h1 class="text-white font-title text-2xl md:text-4xl lg:text-6xl">Conoce más sobre la causa</h1>
+          </div>
+          <div class="w-full px-8 pb-8 flex items-center justify-center text-center ">
+            <p class="text-white text-justify text-lg md:text-2xl break-words">
+              <span class="font-bold font-title text-red">1 de cada 500 niños</span> nace con labio y/o paladar hendido, una condición que impacta
+              no solo su sonrisa, sino también su capacidad para alimentarse, hablar y oír con
+              normalidad.<br/><br/>
+              Aun así, con una cirugía a tiempo y el acompañamiento adecuado, pueden recuperar
+              su salud, su desarrollo y su confianza.<br/><br/>
+              <span class="font-bold font-title text-red">Snacks Yummies y tú</span> pueden crear sonrisas que transforman vidas.
+            </p>
+            </div>
+            <div class="px-8 flex flex-col sm:flex-row sm:justify-center sm:gap-x-4 sm:gap-y-4">
+              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto1mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full sm:w-1/3" />
+              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto2mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full sm:w-1/3" />
+              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto3mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full sm:w-1/3" />
+            </div>
+            <div class="flex justify-center mt-8">
+            <a href="/productosconcausa/historia" class="bg-yellow-400 text-primary text-center font-bold font-title py-2 px-4 rounded-full mt-4 w-[300px] mb-8">Conoce nuestra historia</a>
+          </div>
+          </div>
+          
+      </section>
+
+      <!-- Sección de Impacto -->
+      <section id="impacto" class="container mx-auto px-4 py-12 md:py-16 animate-slide-up">
+        <!-- Título Principal -->
+        <div class="text-center mb-8 md:mb-12">
+          <h2 class="text-primary font-title font-bold text-3xl md:text-5xl lg:text-6xl mb-2 md:mb-4">
+            Nuestro impacto<br/>trabajando juntos
+          </h2>
+          <p class="text-red font-bold text-base md:text-xl lg:text-2xl">
+            sonrisas que transforman vidas
+          </p>
+        </div>
+
+        <!-- Indicadores -->
+        <div class="mb-8 md:mb-12">
+          <div class="w-full flex justify-center items-center mb-6 md:mb-8">
+            <div class="flex flex-col items-center">
+              <h4 class="font-title font-bold text-sky-400 text-3xl md:text-4xl lg:text-8xl">Indicadores</h4>
+              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 md:p-0" />
+            </div>
+          </div>
+          
+          <!-- Grid de Indicadores - 3 columnas en desktop, filas en mobile -->
+          <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10">
+            <div class="flex flex-col md:flex-row md:divide-x md:divide-gray-300 gap-6 md:gap-0">
+              <!-- Indicador 1 -->
+              <div class="flex-1 text-center px-4 animate-item">
+                <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                  13 eventos
+                </p>
+                <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
+                  de recaudación de<br/>fondos en conjunto.
+                </p>
+              </div>
+
+              <!-- Indicador 2 -->
+              <div class="flex-1 text-center px-4 animate-item">
+                <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                  9 años
+                </p>
+                <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
+                  trabajando en conjunto<br/>en el área de la salud,<br/>transformando sonrisas
+                </p>
+              </div>
+
+              <!-- Indicador 3 -->
+              <div class="flex-1 text-center px-4 animate-item">
+                <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                  12 misiones
+                </p>
+                <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
+                  apoyadas desde el 2016
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Donativos -->
+        <div class="flex flex-col items-center justify-center md:flex-row gap-6 md:gap-8">
+          <!-- Columna Izquierda - Info de Niños -->
+          <div class="flex-1 flex flex-col justify-center">
+            <div class="flex flex-col items-center">
+              <h3 class="font-title font-bold text-primary text-3xl md:text-4xl lg:text-8xl text-center">
+              Donativos
+              </h3>
+              <p class="text-red font-bold text-base md:text-lg lg:text-xl mb-2 text-center">
+              2018- actualidad
+              </p>
+              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 md:p-0 mx-auto" />
+            </div>
+            
+            <div class="flex-1 flex flex-col items-center justify-center text-center bg-white rounded-2xl p-6 md:p-8">
+              <p class="text-sky-400 font-semibold text-base md:text-lg lg:text-xl mb-4">
+                Este apoyo ha transformado<br/>la sonrisa y la vida de
+              </p>
+              <p class="text-primary font-title font-bold text-6xl md:text-7xl lg:text-8xl mb-4">
+                167
+              </p>
+              <p class="text-sky-400 font-semibold text-base md:text-lg lg:text-xl">
+                176 niños y niñas
+              </p>
+            </div>
+          </div>
+
+          <!-- Columna Derecha - Montos -->
+          <div class="flex-1 bg-sky-400 rounded-3xl p-6 md:p-8 lg:p-10 flex flex-col justify-center gap-6 md:gap-8">
+            <!-- Monto 1 -->
+            <div class="text-center">
+              <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                L 316,496.36
+              </p>
+              <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
+                en especie
+              </p>
+            </div>
+
+            <!-- Monto 2 -->
+            <div class="text-center">
+              <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                L 3,007,150
+              </p>
+              <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
+                en efectivo
+              </p>
+            </div>
+
+            <!-- Monto 3 -->
+            <div class="text-center">
+              <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                L 253,174.64
+              </p>
+              <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
+                en infraestructura
+              </p>
+            </div>
+          </div>
+          
+        </div>
+        <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10 mt-8">
+            <div class="flex flex-col md:flex-row  gap-6 md:gap-0">
+              <!-- Indicador 1 -->
+              <div class="flex-1 text-center px-4 animate-item">
+                 <p class="text-sky-400 font-semibold text-xl md:text-base lg:text-2xl">
+                  Este monto se invirtio en
+                </p>
+                <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                  Clínica Dental
+                </p>
+               
+              </div>
+              <!-- Flecha 1 (solo desktop) -->
+              <div class="hidden md:flex items-center justify-center px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400">
+                  <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+                </svg>
+              </div>
+
+              <!-- Indicador 2 -->
+              <div class="flex-1 text-center px-4 animate-item">
+                 <p class="text-sky-400 font-semibold text-xl md:text-base lg:text-2xl">
+                  La cual se aperturó
+                </p>
+                <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                  Mayo<br/>2022
+                </p>
+               
+              </div>
+              <!-- Flecha 2 (solo desktop) -->
+              <div class="hidden md:flex items-center justify-center px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400">
+                  <path fill="currentColor" d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+                </svg>
+              </div>
+
+              <!-- Indicador 3 -->
+              <div class="flex-1 text-center px-4 animate-item">
+                 <p class="text-sky-400 font-semibold text-xl md:text-base lg:text-2xl">
+                  y ha brindado más de
+                </p>
+                <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+                 4,350 <br/>consultas
+                </p>
+               
+              </div>
+            </div>
+          </div>
+      </section>
+
+      <!-- Sección de Productos Participantes -->
+      <section id="productos-participantes" class="container mx-auto px-4 py-12 md:py-16 animate-slide-up relative bg-cover bg-center bg-no-repeat" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgmini.webp');">
+      
+        <div class="relative z-10">
+        <!-- Título -->
+        <div class="text-left mb-8 md:mb-12 p-8 md:p-0">
+          <h2 class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+            Productos<br/>participantes
+          </h2><LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 md:p-0" />
+        </div>
+
+        <!-- Grid de Productos -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+          <!-- Producto 1: Yummi Pops Nacho Jalapeño Cream -->
+          <div class="flex flex-col items-center text-center animate-item">
+            <div class="w-full aspect-square flex items-center justify-center mb-4">
+              <LazyImage 
+                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-mini.webp" 
+                alt="Yummi Pops Nacho Jalapeño Cream" 
+                width={300} 
+                height={300} 
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <h3 class="font-bold text-sm md:text-base lg:text-lg" style="color: #7CB342;">
+              Yummi Pops Nacho<br/>Jalapeño Cream
+            </h3>
+          </div>
+
+          <!-- Producto 2: Yummi Pops Nacho Queso Blanco -->
+          <div class="flex flex-col items-center text-center animate-item">
+            <div class="w-full aspect-square flex items-center justify-center mb-4">
+              <LazyImage 
+                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-quesoblanco-mini.webp" 
+                alt="Yummi Pops Nacho Queso Blanco" 
+                width={300} 
+                height={300} 
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <h3 class="font-bold text-sm md:text-base lg:text-lg text-sky-400">
+              Yummi Pops Nacho<br/>Queso Blanco
+            </h3>
+          </div>
+
+          <!-- Producto 3: Yummi Pops Queso -->
+          <div class="flex flex-col items-center text-center animate-item">
+            <div class="w-full aspect-square flex items-center justify-center mb-4">
+              <LazyImage 
+                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-queso-mini.webp" 
+                alt="Yummi Pops Queso" 
+                width={300} 
+                height={300} 
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <h3 class="font-bold text-sm md:text-base lg:text-lg" style="color: #FF9800;">
+              Yummi Pops<br/>Queso
+            </h3>
+          </div>
+
+          <!-- Producto 4: Yummi Pops Sal Marina -->
+          <div class="flex flex-col items-center text-center animate-item">
+            <div class="w-full aspect-square flex items-center justify-center mb-4">
+              <LazyImage 
+                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-sal-mini.webp" 
+                alt="Yummi Pops Sal Marina" 
+                width={300} 
+                height={300} 
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <h3 class="font-bold text-sm md:text-base lg:text-lg" style="color: #1976D2;">
+              Yummi Pops<br/>Sal Marina
+            </h3>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <!-- Sección Súmate a esta causa (Azul) -->
+      <section class="bg-sky-400 py-12 md:py-16 lg:py-20">
+        <div class="container mx-auto px-4">
+          <div class="bg-white rounded-3xl md:rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-2xl">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+              <!-- Personaje Izquierdo -->
+              <div class="w-32 md:w-40 lg:w-48 flex-shrink-0">
+                <LazyImage 
+                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ninomini.webp" alt="Operación Sonrisa Honduras" 
+                  alt="Niño Yummi Pops" 
+                  width={200} 
+                  height={300} 
+                  class="w-full h-auto"
+                />
+              </div>
+
+              <!-- Contenido Central -->
+              <div class="flex-1 text-center">
+                <h2 class="text-primary font-bold text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6">
+                  Súmate a esta causa y ayúdanos<br/>
+                  a transformar más vidas con
+                </h2>
+                
+                <!-- Logo Yummi Pops -->
+                <div class="flex justify-center md:justify-between items-center gap-2 mb-4 md:mb-4">
+                  <div>
+                    <LazyImage 
+                      src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Yummi-pops-3.webp" 
+                      alt="Yummi Pops" 
+                      width={150} 
+                      class="w-28 md:w-36 h-auto"
+                    />
+                  </div>
+                  <div class="border-l border-gray-300 h-12"></div>
+                  <div>
+                    <LazyImage 
+                      src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logooperacionsonrisas.webp" 
+                      alt="Operación Sonrisa Honduras" 
+                      width={300} 
+                      height={64} 
+                      class="w-56 h-auto"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Personaje Derecho -->
+              <div class="w-32 md:w-40 lg:w-48 flex-shrink-0">
+                <LazyImage 
+                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ninamini.webp" alt="Operación Sonrisa Honduras" 
+                  alt="Niña Yummi Pops" 
+                  width={200} 
+                  height={300} 
+                  class="w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección Testimonios (Blanca) -->
+      <section id="testimonios" class="bg-gray-50 py-12 md:py-16 lg:py-20 animate-slide-up">
+        <div class="container mx-auto px-4">
+          <!-- Título -->
+          <h2 class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-10 md:mb-14 lg:mb-16">
+            Testimonios
+          </h2>
+
+          <!-- Grid de Videos -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+            <!-- Testimonio 1 -->
+            <div class="bg-white rounded-2xl p-4 md:p-5 shadow-lg animate-item">
+              <!-- Avatar y Nombre -->
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 md:w-7 md:h-7 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-sm md:text-base">@lachofis</p>
+                  <p class="text-xs md:text-sm text-gray-600">San Pedro Sula</p>
+                </div>
+              </div>
+
+              <!-- Video Placeholder -->
+              <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
+                
+                <!-- Play Button -->
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all">
+                  <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonio 2 -->
+            <div class="bg-white rounded-2xl p-4 md:p-5 shadow-lg animate-item">
+              <!-- Avatar y Nombre -->
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 md:w-7 md:h-7 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-sm md:text-base">@chepito</p>
+                  <p class="text-xs md:text-sm text-gray-600">Tegucigalpa</p>
+                </div>
+              </div>
+
+              <!-- Video Placeholder -->
+              <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
+                
+                <!-- Play Button -->
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all">
+                  <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonio 3 -->
+            <div class="bg-white rounded-2xl p-4 md:p-5 shadow-lg animate-item">
+              <!-- Avatar y Nombre -->
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 md:w-7 md:h-7 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-sm md:text-base">@ramingoy</p>
+                  <p class="text-xs md:text-sm text-gray-600">Tegucigalpa</p>
+                </div>
+              </div>
+
+              <!-- Video Placeholder -->
+              <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
+               
+                <!-- Play Button -->
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all">
+                  <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+    </article>
+  </main>
+</Layout>
+
+<style>
+  /* Estilos del Contador Digital */
+  .counter-display {
+    position: relative;
+    display: inline-block;
+    padding: 0.4rem;
+    border-radius: 1.25rem;
+    background: #f7f9fc;
+    box-shadow:
+      0 4px 10px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid #d9e2ee;
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .counter-display::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 1rem;
+    background: linear-gradient(180deg, #d4e0ee 0%, #7791aa 45%, #536c85 100%);
+    box-shadow:
+      inset 0 1px 2px rgba(255, 255, 255, 0.7),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .counter-display::after {
+    content: '';
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 5%;
+    height: 40%;
+    border-radius: 50% / 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    opacity: 0.85;
+  }
+
+  .counter-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    padding: 0.4rem 1.4rem;
+    z-index: 1;
+  }
+
+  .counter-ghost {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.22);
+    letter-spacing: 0.08em;
+  }
+
+  .counter-digit {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1;
+    text-shadow:
+      0 0 3px rgba(255, 255, 255, 0.9),
+      0 0 6px rgba(255, 255, 255, 0.7);
+  }
+
+  .counter-separator {
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin: 0 0.1rem;
+    line-height: 1;
+    text-shadow:
+      0 0 3px rgba(255, 255, 255, 0.9),
+      0 0 6px rgba(255, 255, 255, 0.7);
+  }
+
+  /* Responsive - Mobile */
+  @media (max-width: 768px) {
+    .counter-display {
+      padding: 0.3rem;
+      border-radius: 0.9rem;
+      width: 90vw;
+      max-width: 90vw;
+    }
+
+    .counter-wrapper {
+      padding: 0.3rem 1rem;
+      gap: 0.08rem;
+    }
+
+    .counter-ghost {
+      font-size: 1.9rem;
+    }
+
+    .counter-digit,
+    .counter-separator {
+      font-size: 1.9rem;
+    }
+  }
+
+  /* Responsive - Tablet */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .counter-ghost {
+      font-size: 2.2rem;
+    }
+
+    .counter-digit,
+    .counter-separator {
+      font-size: 2.2rem;
+    }
+  }
+
+  /* Animaciones de entrada */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  /* Animación escalonada para elementos */
+  .animate-slide-up:nth-of-type(1) {
+    animation-delay: 0.1s;
+  }
+
+  .animate-slide-up:nth-of-type(2) {
+    animation-delay: 0.2s;
+  }
+
+  .animate-slide-up:nth-of-type(3) {
+    animation-delay: 0.3s;
+  }
+
+  .animate-slide-up:nth-of-type(4) {
+    animation-delay: 0.4s;
+  }
+
+  /* Scroll suave para toda la página */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Intersection Observer para animaciones al hacer scroll */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animaciones para items individuales */
+  .animate-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Delays escalonados para items */
+  .animate-item:nth-child(1) { transition-delay: 0.1s; }
+  .animate-item:nth-child(2) { transition-delay: 0.2s; }
+  .animate-item:nth-child(3) { transition-delay: 0.3s; }
+  .animate-item:nth-child(4) { transition-delay: 0.4s; }
+  .animate-item:nth-child(5) { transition-delay: 0.5s; }
+  .animate-item:nth-child(6) { transition-delay: 0.6s; }
+</style>
+
+<script>
+  // Intersection Observer para animar elementos al hacer scroll
+  document.addEventListener('astro:page-load', () => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observar todas las secciones con animación
+    const animatedSections = document.querySelectorAll('.animate-slide-up');
+    animatedSections.forEach(section => {
+      section.classList.add('animate-on-scroll');
+      observer.observe(section);
+    });
+
+    // Observar items individuales
+    const animatedItems = document.querySelectorAll('.animate-item');
+    animatedItems.forEach(item => {
+      observer.observe(item);
+    });
+  });
+</script>

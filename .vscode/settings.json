@@ -1,5 +1,30 @@
 {
     "files.associations": {
         "plyconfig.json": "jsonc"
+    },
+    "terminal.integrated.accessibleViewFocusOnCommandExecution": false,
+    "terminal.integrated.accessibleViewPreserveCursorPosition": false,
+    "piny.project_settings": {
+        "open-pages": [
+            "pinyfakepage.html"
+        ],
+        "tw-external-config": {
+            "external_config_url": null,
+            "external_source_url": null
+        },
+        "source-folders": null,
+        "preview-url": "http://localhost:4321",
+        "app-routes": {
+            "routes": [
+                "/",
+                "/api/detect-locale",
+                "/api/geo-headers",
+                "/es/",
+                "/productosconcausa",
+                "/productosconcausa/historia",
+                "/sitemap.xml"
+            ],
+            "current_route": "/productosconcausa"
+        }
     }
 }
