@@ -1,10 +1,12 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import PinyAstro from "@pinegrow/piny-astro";
 import react from '@astrojs/react';
 
 export default defineConfig({
   integrations: [
     react(),
+    PinyAstro(),
     tailwind({
       // Configuración explícita de Tailwind
       config: { path: './tailwind.config.js' },

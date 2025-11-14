@@ -1,0 +1,172 @@
+---
+import './styles.css';
+import { logos } from '../../../config/assets';
+import LazyImage from '../../common/LazyImage.astro';
+
+// Enlaces de navegación
+const navLinks = [
+  { href: '/productosconcausa#inicio', label: 'Inicio', key: 'inicio' },
+  { href: '/productosconcausa#sobre-la-causa', label: 'Sobre la causa', key: 'sobre-la-causa' },
+  { href: '/productosconcausa/historia', label: 'Historia', key: 'historia' },
+  { href: '/productosconcausa#impacto', label: 'Impacto', key: 'impacto' },
+  { href: '/productosconcausa#productos-participantes', label: 'Productos participantes', key: 'productos-participantes' },
+  { href: '/productosconcausa#testimonios', label: 'Testimonios', key: 'testimonios' },
+];
+
+// Obtener la ruta actual para marcar el enlace activo
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="pcc-navigation bg-white border-b border-gray-200 sticky top-0 z-[1000]">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logos -->
+      <div class="flex items-center gap-4">
+        <a href="/productosconcausa" class="flex items-center" aria-label="YummiPops">
+          <LazyImage 
+            src={logos.yummiPops.url} 
+            alt={logos.yummiPops.alt} 
+            class="h-10 w-auto"
+          />
+        </a>
+        <div class="flex items-center gap-2">
+          <div class="h-8 w-[1px] bg-gray-300"></div>
+          <LazyImage 
+            src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logooperacionsonrisas.webp" 
+            alt="Operación Sonrisas"
+            class="h-8 w-auto"
+          />
+        </div>
+      </div>
+
+      <!-- Navigation Links - Desktop -->
+      <div class="hidden lg:flex items-center gap-6">
+        {navLinks.map((link) => (
+          <a 
+            href={link.href}
+            class:list={[
+              'pcc-nav-link text-sm font-medium transition-colors hover:text-red',
+              currentPath === link.href ? 'text-red' : 'text-secondary'
+            ]}
+            data-key={link.key}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        class="lg:hidden pcc-mobile-menu-btn p-2 rounded-md hover:bg-gray-100 transition-colors"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path class="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path class="menu-icon-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="pcc-mobile-menu hidden lg:hidden border-t border-gray-200">
+    <div class="container mx-auto px-4 py-4">
+      <!-- Operación Sonrisa Logo - Mobile -->
+   
+      
+      <!-- Navigation Links - Mobile -->
+      <nav class="flex flex-col gap-3">
+        {navLinks.map((link) => (
+          <a 
+            href={link.href}
+            class:list={[
+              'pcc-nav-link-mobile text-base font-medium py-2 transition-colors hover:text-primary',
+              currentPath === link.href ? 'text-primary' : 'text-gray-700'
+            ]}
+            data-key={link.key}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Script para manejar el menú móvil de la navegación de Productos con Causa
+  document.addEventListener('astro:page-load', () => {
+    const mobileMenuBtn = document.querySelector('.pcc-mobile-menu-btn');
+    const mobileMenu = document.querySelector('.pcc-mobile-menu');
+    
+    if (!mobileMenuBtn || !mobileMenu) return;
+
+    // Toggle del menú móvil
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      
+      mobileMenuBtn.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenu.classList.toggle('active');
+      mobileMenu.classList.toggle('hidden');
+      
+      // Prevenir scroll cuando el menú está abierto
+      if (!isExpanded) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    const mobileLinks = mobileMenu.querySelectorAll('.pcc-nav-link-mobile');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('active');
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Cerrar menú al cambiar el tamaño de la ventana a desktop
+    let resizeTimer: number | undefined;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        if (window.innerWidth >= 1024) {
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          mobileMenu.classList.remove('active');
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      }, 250);
+    });
+
+    // Smooth scroll para anclas
+    const allLinks = document.querySelectorAll('.pcc-nav-link, .pcc-nav-link-mobile');
+    allLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href.includes('#')) {
+          const [path, hash] = href.split('#');
+          const currentPath = window.location.pathname;
+          
+          // Si estamos en la misma página, hacer smooth scroll
+          if (path === currentPath || path === '/productosconcausa' && currentPath === '/productosconcausa/') {
+            e.preventDefault();
+            const target = document.getElementById(hash);
+            if (target) {
+              const navHeight = document.querySelector('.pcc-navigation')?.clientHeight || 64;
+              const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }
+        }
+      });
+    });
+  });
+</script>

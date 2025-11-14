@@ -1,0 +1,494 @@
+---
+import Layout from '../../../layouts/ProductosConCausaLayout.astro';
+import LazyImage from '../../../components/common/LazyImage.astro';
+import { ViewTransitions } from 'astro:transitions';
+---
+<Layout title="Historia - Productos con Causa" description="Conoce la historia de nuestra iniciativa.">
+  <ViewTransitions slot="head" />
+  <main class="relative overflow-hidden">
+    <!-- Fondo decorativo superior (rojo) -->
+          <LazyImage id="inicio" src="https://snack.yummiespromociones.com/SnacksyummiesAssets/portadahistoriamini.webp" alt="Operación Sonrisas Honduras" width={400} height={300} class="w-full" />
+      
+
+    <div class="container mx-auto px-4 pt-0 pb-12  relative z-10 margin-top-[-200px] ">
+      <!-- Línea de tiempo vertical -->
+      <div class="relative max-w-7xl mx-auto animate-fade-in">
+        <!-- Línea vertical central (solo visible en desktop) -->
+        <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-48 lg:w-56 xl:w-64 bg-sky-400 transform -translate-x-1/2 "></div>
+
+        <!-- Timeline Items -->
+        <div class="space-y-16 lg:space-y-20 xl:space-y-24">
+          
+          <!-- Item 1: 1996 - El comienzo de una misión -->
+          <div class="relative animate-timeline-item">
+            <div class="lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-16 xl:gap-20 items-start pt-16">
+              <!-- Año (Mobile primero) / Centro (Desktop) -->
+              <div class="relative flex flex-col items-center mb-4 lg:mb-0 lg:order-2 lg:min-w-[160px]">
+                <div class="text-sky-400 lg:text-white font-bold text-center z-10">
+                  <!-- Mobile: año en una sola línea, más grande y con font-title -->
+                  <span class="block font-title text-5xl sm:text-6xl lg:hidden leading-tight">1996</span>
+                  <!-- Desktop: versión apilada original -->
+                  <span class="hidden lg:block ml-[-70px]">
+                    <span class="text-4xl font-title lg:text-8xl  block leading-tight">19</span>
+                    <span class="text-4xl font-title lg:text-8xl  block leading-tight">96</span>
+                  </span>
+                </div>
+                <!-- Triángulo rojo DENTRO de la línea apuntando a la derecha -->
+                <div class="hidden lg:block absolute bottom-32 right-1">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-red">
+                    <path d="M15 2 L2 10 L15 18 Z" fill="currentColor"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Contenido (subtítulo + párrafo) -->
+              <div class="mb-6 lg:mb-0 lg:text-right lg:order-1 lg:pr-12 lg:pt-8">
+                <h3 class="text-primary font-title font-bold text-2xl lg:text-3xl xl:text-4xl mb-3 lg:mb-4">
+                  El comienzo de<br/>una misión
+                </h3>
+                <p class="text-primary text-sm lg:text-base xl:text-lg leading-relaxed">
+                  Todo inició con un sueño compartido: asegurar que ningún
+                  niño en Honduras creciera con una malformación facial
+                  corregida. De ahí, médicos y empresarios visionarios de
+                  Honduras se unieron con Operación Sonrisa para crear un
+                  poderoso en nuestra casa que cambiaria vidas para
+                  siempre.
+                </p>
+              </div>
+
+              <!-- Imagen (al final en mobile, derecha en desktop) -->
+              <div class="lg:pl-12 lg:order-3">
+                <div class="relative">
+                  <LazyImage 
+                    src="https://snack.yummiespromociones.com/SnacksyummiesAssets/1996-inicio.webp" 
+                    alt="Operación Sonrisa 1996" 
+                    width={500} 
+                    height={350} 
+                    class="w-full rounded-xl shadow-xl transform lg:rotate-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: 1997 - La primera esperanza hecha realidad -->
+          <div class="relative animate-timeline-item">
+            <div class="lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-16 xl:gap-20 items-start">
+              <!-- Año (Mobile primero) / Centro (Desktop) -->
+              <div class="relative flex flex-col items-center mb-4 lg:mb-0 lg:order-2 lg:min-w-[160px] lg:pt-24">
+                <div class="text-sky-400 lg:text-white font-bold text-center z-10">
+                  <!-- Mobile: año en una sola línea, más grande y con font-title -->
+                  <span class="block font-title text-5xl sm:text-6xl lg:hidden leading-tight">1997</span>
+                  <!-- Desktop: versión apilada original -->
+                  <span class="hidden lg:block ml-[70px]">
+                    <span class="text-4xl font-title lg:text-8xl block leading-tight">19</span>
+                    <span class="text-4xl font-title lg:text-8xl block leading-tight">97</span>
+                  </span>
+                </div>
+                <!-- Triángulo rojo DENTRO de la línea apuntando a la izquierda -->
+                <div class="hidden lg:block absolute top-1/2 -translate-y-4 left-10">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-red">
+                    <path d="M5 2 L18 10 L5 18 Z" fill="currentColor"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Contenido (subtítulo + párrafo) -->
+              <div class="mb-6 lg:mb-0 lg:text-left lg:order-3 lg:pl-12 lg:pt-8">
+                <h3 class="text-primary font-title font-bold text-2xl lg:text-3xl xl:text-4xl mb-3 lg:mb-4">
+                  La primera esperanza<br/>hecha realidad
+                </h3>
+                <p class="text-primary text-sm lg:text-base xl:text-lg leading-relaxed">
+                  Un año después, la misión tomó forma en el Hospital
+                  San Felipe. Fue la primera misión médica, el primer
+                  encuentro entre voluntarios y familias que
+                  esperaban una oportunidad. Aquí comenzó una
+                  historia de transformación, resiliencia y esperanza.
+                </p>
+              </div>
+
+              <!-- Imagen (al final en mobile, izquierda en desktop) -->
+              <div class="lg:pr-12 lg:order-1 mb-6 lg:mb-0">
+                <div class="relative">
+                  <LazyImage 
+                    src="https://snack.yummiespromociones.com/SnacksyummiesAssets/1997Primera.webp" 
+                    alt="Primera cirugía 1997" 
+                    width={500} 
+                    height={350} 
+                    class="w-full rounded-xl shadow-xl transform lg:-rotate-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: 1997-2024 - Una cadena de sonrisas -->
+          <div class="relative animate-timeline-item">
+            <div class="lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-16 xl:gap-20 items-start">
+              <!-- Año (Mobile primero) / Centro (Desktop) -->
+              <div class="relative flex flex-col items-center mb-4 lg:mb-0 lg:order-2 lg:min-w-[160px] lg:pt-32">
+                <div class="text-sky-400 lg:text-white font-bold text-center z-10">
+                  <!-- Mobile: año en una sola línea, más grande y con font-title -->
+                  <span class="block font-title text-4xl sm:text-5xl lg:hidden leading-tight">1997 - 2024</span>
+                  <!-- Desktop: versión apilada original -->
+                  <span class="hidden lg:block ml-[-60px]">
+                    <span class="text-3xl font-title lg:text-6xl  block leading-tight">1997</span>
+                    <span class="text-3xl font-title lg:text-6xl  block leading-tight">2024</span>
+                  </span>
+                </div>
+                <!-- Triángulo rojo DENTRO de la línea apuntando hacia el año (desde la derecha)-->
+                <div class="hidden lg:block absolute top-1/2 translate-y-1/3 right-2 ">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-red">
+                    <path d="M15 2 L2 10 L15 18 Z" fill="currentColor"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Contenido (subtítulo + párrafo) -->
+              <div class="mb-6 lg:mb-0 lg:text-right lg:order-1 lg:pr-12 lg:pt-8">
+                <h3 class="text-primary font-title font-bold text-2xl lg:text-3xl xl:text-4xl mb-3 lg:mb-4">
+                  Una cadena<br/>de sonrisas
+                </h3>
+                <p class="text-primary text-sm lg:text-base xl:text-lg leading-relaxed">
+                  Desde entonces, cada año Operación Sonrisa Honduras
+                  ha realizado misiones médicas transformadoras a
+                  nivel nacional, brindando cirugías gratuitas y un
+                  apoyo de voluntarios locales e internacionales.
+                </p>
+              </div>
+
+              <!-- Imagen (al final en mobile, derecha en desktop) -->
+              <div class="lg:pl-12 lg:order-3">
+                <div class="relative">
+                  <LazyImage 
+                    src="https://snack.yummiespromociones.com/SnacksyummiesAssets/1997-2024.webp" 
+                    alt="Voluntarios Operación Sonrisa" 
+                    width={500} 
+                    height={350} 
+                    class="w-full rounded-xl shadow-xl transform lg:rotate-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4: HOY - Una misión que sigue creciendo -->
+          <div class="relative animate-timeline-item">
+            <div class="lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-16 xl:gap-20 items-start">
+              <!-- Año (Mobile primero) / Centro (Desktop) -->
+              <div class="relative flex flex-col items-center mb-4 lg:mb-0 lg:order-2 lg:min-w-[160px] lg:pt-40">
+                <div class="text-sky-400 lg:text-white font-bold text-center z-10">
+                  <!-- Mobile: año en una sola línea, más grande y con font-title -->
+                  <span class="block font-title text-5xl sm:text-6xl lg:hidden leading-tight">Hoy</span>
+                  <!-- Desktop: versión original -->
+                  <span class="hidden lg:block font-title text-4xl lg:text-8xl  leading-tight">Hoy</span>
+                </div>
+                <!-- Triángulo rojo DENTRO de la línea apuntando hacia el año (desde la izquierda) -->
+                <div class="hidden lg:block absolute -left-6 bottom-12">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-red">
+                    <path d="M5 2 L18 10 L5 18 Z" fill="currentColor"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Contenido (subtítulo + párrafo) -->
+              <div class="mb-6 lg:mb-0 lg:text-left lg:order-3 lg:pl-12 lg:pt-8">
+                <h3 class="text-primary font-title font-bold text-2xl lg:text-3xl xl:text-4xl mb-3 lg:mb-4">
+                  Una misión que<br/>sigue creciendo
+                </h3>
+                <p class="text-primary text-sm lg:text-base xl:text-lg leading-relaxed">
+                  Hoy, Operación Sonrisa Honduras es una institución
+                  sólida y humanitaria, cuenta con el respaldo de
+                  empresas como Yummies que creen en su misión y
+                  tienen su propósito: ningún niño debe vivir con una
+                  malformación facial que pueda ser corregida.
+                </p>
+              </div>
+
+              <!-- Imagen (al final en mobile, izquierda en desktop) -->
+              <div class="lg:pr-12 lg:order-1 mb-6 lg:mb-0">
+                <div class="relative">
+                  <LazyImage 
+                    src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Hoy.webp" 
+                    alt="Misión actual Operación Sonrisa" 
+                    width={500} 
+                    height={350} 
+                    class="w-full rounded-xl shadow-xl transform lg:-rotate-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+    </div>
+    <!-- Sección de Especialidades -->
+      <section class="py-12 lg:py-16 xl:py-20 animate-slide-up relative bg-cover bg-center bg-no-repeat" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgmini.webp');">
+        <!-- Overlay opcional para mejorar legibilidad -->
+        
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-5xl mx-auto">
+            <!-- Título -->
+            <div class="text-center mb-8 lg:mb-12">
+              <h2 class="text-primary font-title font-bold text-3xl lg:text-4xl xl:text-6xl mb-2">
+                Se brinda atención
+              </h2>
+              <p class="text-sky-400 font-semibold text-lg lg:text-4xl">
+                en más de <span class="text-2xl lg:text-4xl xl:text-5xl">10 especialidades</span>
+              </p>
+              <!-- Línea decorativa roja -->
+              <div class="flex justify-center mt-4">
+               <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 md:p-0" />
+              </div>
+            </div>
+
+            <!-- Grid de Especialidades -->
+            <div class="grid grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-8">
+              
+              <!-- Especialidad 1: Cirugía Plástica -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/psicologia.webp" width={120} height={120} alt="Psicología"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Psicología</p>
+              </div>
+
+              <!-- Especialidad 2: Nutrición -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/alimentacion.webp" width={120} height={120} alt="Alimentación"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Alimentación</p>
+              </div>
+
+              <!-- Especialidad 3: Otorrinolaringología -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/terapiadelenguaje.webp" width={120} height={120} alt="Terapia del Lenguaje"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Terapia del Lenguaje</p>
+              </div>
+
+              <!-- Especialidad 4: Odontología -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                 <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/dental.webp" width={120} height={120} alt="Dental"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Dental</p>
+              </div>
+
+              <!-- Especialidad 5: Anestesiología -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/cirugia.webp" width={120} height={120} alt="Cirugía Plástica"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Cirugía Plástica</p>
+              </div>
+
+              <!-- Especialidad 6: Pediatría -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/pedriatria.webp" width={120} height={120} alt="Pediatría"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Pediatría</p>
+              </div>
+
+              <!-- Especialidad 7: Ortodoncia -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ortodoncia.webp" width={120} height={120} alt="Ortodoncia"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Ortodoncia</p>
+              </div>
+
+              <!-- Especialidad 8: Enfermería -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/enfermeria.webp" width={120} height={120} alt="Enfermería"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Enfermería</p>
+              </div>
+
+              <!-- Especialidad 9: Fonoaudiología -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/otorrinolaringolofia.webp" width={120} height={120} alt="Otorrinolaringología"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Otorrinolaringología</p>
+              </div>
+
+              <!-- Especialidad 10: Psicología -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/nutricion.webp" width={120} height={120} alt="Nutrición"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Nutrición</p>
+              </div>
+
+              <!-- Especialidad 11: Genética -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+                  <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/anestesia.webp" width={120} height={120} alt="Anestesia"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Anestesia</p>
+              </div>
+
+              <!-- Especialidad 12: Audiología -->
+              <div class="flex flex-col items-center text-center animate-specialty">
+                <div class="w-16 h-16 lg:w-20 lg:h-20 mb-3">
+               <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/audiologia.webp" width={120} height={120} alt="Audiología"  />
+                </div>
+                <p class="text-primary font-semibold text-xs lg:text-sm">Audiología</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+  </main>
+</Layout>
+
+<style>
+  /* Animaciones de entrada */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+
+  .animate-slide-up {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  /* Animaciones para items del timeline */
+  .animate-timeline-item {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .animate-timeline-item.visible {
+    opacity: 1;
+  }
+
+  /* Alternar animaciones izquierda/derecha */
+  .animate-timeline-item:nth-child(odd).visible {
+    animation: slideInLeft 0.8s ease-out forwards;
+  }
+
+  .animate-timeline-item:nth-child(even).visible {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  /* Animaciones para especialidades */
+  .animate-specialty {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-specialty.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Delays escalonados para especialidades */
+  .animate-specialty:nth-child(1) { transition-delay: 0.1s; }
+  .animate-specialty:nth-child(2) { transition-delay: 0.15s; }
+  .animate-specialty:nth-child(3) { transition-delay: 0.2s; }
+  .animate-specialty:nth-child(4) { transition-delay: 0.25s; }
+  .animate-specialty:nth-child(5) { transition-delay: 0.3s; }
+  .animate-specialty:nth-child(6) { transition-delay: 0.35s; }
+  .animate-specialty:nth-child(7) { transition-delay: 0.4s; }
+  .animate-specialty:nth-child(8) { transition-delay: 0.45s; }
+  .animate-specialty:nth-child(9) { transition-delay: 0.5s; }
+  .animate-specialty:nth-child(10) { transition-delay: 0.55s; }
+  .animate-specialty:nth-child(11) { transition-delay: 0.6s; }
+  .animate-specialty:nth-child(12) { transition-delay: 0.65s; }
+
+  /* Scroll suave */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  // Intersection Observer para animar elementos al hacer scroll
+  document.addEventListener('astro:page-load', () => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observar items del timeline
+    const timelineItems = document.querySelectorAll('.animate-timeline-item');
+    timelineItems.forEach(item => {
+      observer.observe(item);
+    });
+
+    // Observar especialidades
+    const specialties = document.querySelectorAll('.animate-specialty');
+    specialties.forEach(specialty => {
+      observer.observe(specialty);
+    });
+
+    // Observar secciones con slide-up
+    const slideSections = document.querySelectorAll('.animate-slide-up');
+    slideSections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>

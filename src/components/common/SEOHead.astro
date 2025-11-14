@@ -21,7 +21,10 @@ const {
 } = Astro.props as Props;
 
 const path = Astro.url.pathname;
-const currentLang = (path.split('/')[1] as Locale) || 'es';
+const parts = path.split('/').filter(Boolean);
+const first = parts[0] as string | undefined;
+const validLocales: Locale[] = ['es', 'en'];
+const currentLang: Locale = validLocales.includes(first as Locale) ? (first as Locale) : 'es';
 const siteName = t('site.name', { locale: currentLang }) || 'Snacks Yummies';
 
 // Base URL precedence: env > Astro.site > Astro.url.origin

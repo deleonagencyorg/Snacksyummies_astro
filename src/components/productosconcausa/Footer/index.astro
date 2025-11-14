@@ -1,0 +1,60 @@
+---
+import './styles.css';
+import { logos, generalAssets } from '../../../config/assets';
+import SocialMediaIcons from '../../common/SocialMediaIcons/index.astro';
+
+const currentYear = new Date().getFullYear();
+const currentLang = 'es'; // Productos con causa siempre en español
+---
+
+<footer class="pcc-footer bg-primary text-white py-8 px-4">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+      <!-- Columna 1: Información de contacto -->
+      <div class="flex flex-col space-y-3 text-sm md:text-base">
+        <div class="flex items-start space-x-2">
+          <svg class="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+          </svg>
+          <span>Barrio Morazán, Frente a Plantas Tropicales,<br />Bulevar Suyapa, Tegucigalpa, Honduras</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+          </svg>
+          <span>(504) 2275-3370</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+          </svg>
+          <span>8:00 a.m. - 5:00 p.m.</span>
+        </div>
+      </div>
+
+      <!-- Columna 2: Logo y Copyright -->
+      <div class="flex flex-col items-center space-y-4">
+        <a href="/productosconcausa" class="block">
+          <img 
+            src={logos.principal.url} 
+            alt={logos.principal.alt || 'Yummies Logo'} 
+            class="h-16 w-auto"
+          />
+        </a>
+        <div class="text-center">
+          <a href="#" class="text-sm hover:underline block mb-2">Política de Privacidad</a>
+          <p class="text-xs opacity-90">Yummies {currentYear}. Todos los Derechos Reservados</p>
+        </div>
+      </div>
+
+      <!-- Columna 3: Redes Sociales -->
+      <div class="flex justify-center md:justify-end">
+        <SocialMediaIcons 
+          currentLang={currentLang}
+          iconColor="white"
+          centered={false}
+        />
+      </div>
+    </div>
+  </div>
+</footer>
