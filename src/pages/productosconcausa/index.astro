@@ -418,17 +418,21 @@ import { ViewTransitions } from 'astro:transitions';
                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                   </svg>
                 </div>
-                <div>
-                  <p class="font-bold text-sm md:text-base">@lachofis</p>
+                <div class="overflow-hidden">
+                  <p
+                    title="@SnacksYummies"
+                    class="font-bold text-ellipsis overflow-hidden whitespace-nowrap text-sm md:text-base">
+                    @SnacksYummies
+                  </p>
                   <p class="text-xs md:text-sm text-gray-600">San Pedro Sula</p>
                 </div>
               </div>
 
               <!-- Video Placeholder -->
               <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
-                
+                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-01(2).webm" class="w-auto h-auto md:p-0" />
                 <!-- Play Button -->
-                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all testimonial-video-overlay">
                   <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
                   </svg>
@@ -445,51 +449,27 @@ import { ViewTransitions } from 'astro:transitions';
                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                   </svg>
                 </div>
-                <div>
-                  <p class="font-bold text-sm md:text-base">@chepito</p>
+                <div class="overflow-hidden">
+                  <p
+                    title="@SnacksYummies"
+                    class="font-bold text-ellipsis overflow-hidden whitespace-nowrap text-sm md:text-base">
+                    @SnacksYummies
+                  </p>
                   <p class="text-xs md:text-sm text-gray-600">Tegucigalpa</p>
                 </div>
               </div>
 
               <!-- Video Placeholder -->
               <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
-                
+                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-02(2).webm" class="w-auto h-auto md:p-0" />
                 <!-- Play Button -->
-                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all">
+                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all testimonial-video-overlay">
                   <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
                   </svg>
                 </div>
               </div>
             </div>
-
-            <!-- Testimonio 3 -->
-            <div class="bg-white rounded-2xl p-4 md:p-5 shadow-lg animate-item">
-              <!-- Avatar y Nombre -->
-              <div class="flex items-center gap-3 mb-4">
-                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-6 h-6 md:w-7 md:h-7 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
-                  </svg>
-                </div>
-                <div>
-                  <p class="font-bold text-sm md:text-base">@ramingoy</p>
-                  <p class="text-xs md:text-sm text-gray-600">Tegucigalpa</p>
-                </div>
-              </div>
-
-              <!-- Video Placeholder -->
-              <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
-               
-                <!-- Play Button -->
-                <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all">
-                  <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       
@@ -733,6 +713,19 @@ import { ViewTransitions } from 'astro:transitions';
     const animatedItems = document.querySelectorAll('.animate-item');
     animatedItems.forEach(item => {
       observer.observe(item);
+    });
+
+    const testimonialOverlays = document.querySelectorAll('.testimonial-video-overlay');
+    testimonialOverlays.forEach((overlay) => {
+      overlay.addEventListener('click', () => {
+        const container = overlay.closest('.relative');
+        if (!container) return;
+        const video = container.querySelector('video');
+        if (!video) return;
+        video.play();
+        video.setAttribute('controls', 'controls');
+        overlay.classList.add('hidden');
+      });
     });
   });
 </script>
