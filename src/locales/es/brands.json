@@ -78,6 +78,13 @@
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-picositas-con-chile-limon-y-sal-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-picositas-con-chile-limon-y-sal-2.webp"
                 },
+                  {
+                    "id": "zambos-yuquitas-con-ajo-parmesano",
+                    "slug": "zambos-yuquitas-con-ajo-parmesano",
+                    "title": "Zambos Yuquitas Con Ajo Parmesano",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp"
+                },
                 {
                     "id": "zambos-ceviche",
                     "slug": "zambos-ceviche",
@@ -206,6 +213,7 @@
             "url": "#",
             "alt": "Del Rancho",
             "products": [
+                
                 {
                     "id": "delrancho-autenticos",
                     "slug": "delrancho-autenticos",
@@ -219,6 +227,13 @@
                     "title": "Del Rancho Picositos",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/delrancho-picositos-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/delrancho-picositos-2.webp"
+                },
+                {
+                    "id": "delrancho-salsa-verde",
+                    "slug": "delrancho-salsa-verde",
+                    "title": "Del Rancho Salsa Verde",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp"
                 }
             ]
         },
@@ -436,13 +451,6 @@
                     "title": "Yummipops Nacho Queso Blanco",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-queso-blanco.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-queso-blanco.webp"
-                },
-                                {
-                    "id": "yummipops-mix",
-                    "slug": "yummipops-mix",
-                    "title": "Yummipops Mix",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-mix-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-mix-2.webp"
                 },
                 {
                     "id": "yummipops-palomitas-de-maiz-sal-marina",
