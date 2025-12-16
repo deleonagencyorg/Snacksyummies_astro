@@ -12,6 +12,9 @@ import { getLocale, setLocale } from '../../i18n/i18n';
     return localStorage.getItem('locale') !== null;
   }
 
+  // Rutas que no deben ser afectadas por redirecciones de i18n
+  const I18N_BYPASS_ROUTES = ['/productosconcausa'];
+
   // Función para detectar y establecer el idioma basado en la geolocalización
   async function detectAndSetLocale() {
     // Si ya hay un idioma guardado en localStorage, respetarlo
@@ -26,6 +29,12 @@ import { getLocale, setLocale } from '../../i18n/i18n';
         // Establecer el idioma detectado
         localStorage.setItem('locale', data.defaultLocale);
         
+        // Si la ruta actual está en la lista de bypass, no redirigir
+        const pathname = window.location.pathname;
+        if (I18N_BYPASS_ROUTES.some((route) => pathname === route || pathname.startsWith(route + '/'))) {
+          return;
+        }
+
         // Si el idioma detectado es diferente al actual, redirigir a la versión correcta
         const currentLocale = window.location.pathname.split('/')[1] || 'es';
         if (data.defaultLocale !== currentLocale) {
