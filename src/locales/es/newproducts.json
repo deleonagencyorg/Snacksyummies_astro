@@ -51,6 +51,13 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp",
       "alt": "Taqueritos Dragón de Fuego",
       "link": "#"
-    }
+    },
+    
+      {
+                    "id": "yummi-nut-sabor-a-chile-toreado",
+                    "alt": "Yummi Nut Sabor A Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp"
+                }
   ]
 }

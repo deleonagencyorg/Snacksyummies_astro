@@ -201,7 +201,7 @@ const {
   }
 </style>
 
-<script>
+<script lang="ts">
   function initialize(){
     console.log('[CATEGORIES] 🚀 Inicializando componente Categories');
     const container = document.getElementById('cat-scroll');
@@ -224,7 +224,7 @@ const {
     const qKey = wrapper?.getAttribute('data-query-key') || 'brand';
     const urlBrand = params.get(qKey);
     let sessionBrand: string | null = null;
-    try { sessionBrand = sessionStorage.getItem('selectedBrand'); } catch {}
+    try { sessionBrand = sessionStorage.getItem('selectedBrand'); } catch (e) {}
     const activeSlugFromUrl = urlBrand || sessionBrand || 'all';
     console.log('[CATEGORIES] 📍 Marca activa:', { qKey, urlBrand, sessionBrand, activeSlugFromUrl });
 
@@ -260,7 +260,7 @@ const {
       btn.addEventListener('click', (e)=>{
         const slug = btn.getAttribute('data-slug') || 'all';
         console.log('[CATEGORIES] 🖱️ Click en botón:', { slug, qKey });
-        try { sessionStorage.setItem('selectedBrand', slug); } catch {}
+        try { sessionStorage.setItem('selectedBrand', slug); } catch (e) {}
         
         if (slug === 'all') {
           wrapper.classList.add('all-active');

@@ -21,36 +21,81 @@
             "title": "Taqueritos",
             "url": "https://taqueritos.com",
             "alt": "Taqueritos",
-            "products": [
+             "products": [
                 {
-                    "id": "taqueritos-chile-toreado",
-                    "slug": "taqueritos-chile-toreado",
-                    "title": "Taqueritos Chile Toreado",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp"
+                    "id": "yummi-nut-mani-con-sal",
+                    "slug": "yummi-nut-mani-con-sal",
+                    "title": "Yummi Nut Maní con Sal",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mani-con-sal-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mani-con-sal-2.webp"
                 },
                 {
-                    "id": "taqueritos-queso-fusion",
-                    "slug": "taqueritos-queso-fusion",
-                    "title": "Taqueritos Queso Fusion",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-queso-fusion-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-queso-fusion-2.webp"
+                    "id": "yummi-nut-sabor-a-chile-toreado",
+                    "slug": "yummi-nut-sabor-a-chile-toreado",
+                    "title": "Yummi Nut Sabor A Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp"
+                },
+                {
+                    "id": "yummi-nut-mani-con-limon",
+                    "slug": "yummi-nut-mani-con-limon",
+                    "title": "Yummi Nut Maní con Limón",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mani-con-limon-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mani-con-limon-2.webp"
+                },
+                {
+                    "id": "yummi-nut-mani-japones",
+                    "slug": "yummi-nut-mani-japones",
+                    "title": "Yummi Nut Maní Japones",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mani-japones-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mani-japones-2.webp"
+                },
+                {
+                    "id": "yummi-nut-maranon-con-sal",
+                    "slug": "yummi-nut-maranon-con-sal",
+                    "title": "Yummi Nut Marañón con Sal",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-maranon-con-sal-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-maranon-con-sal-2.webp"
+                },
+                {
+                    "id": "yummi-nut-mix-almendras",
+                    "slug": "yummi-nut-mix-almendras",
+                    "title": "Yummi Nut Mix Almendras",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mix-almendras-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mix-almendras-2.webp"
+                },
+                {
+                    "id": "yummi-nut-omega-mix",
+                    "slug": "yummi-nut-omega-mix",
+                    "title": "Yummi Nut Omega Mix",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-omega-mix-2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-omega-mix-2.webp"
+                },
+                
+                {
+                    "id": "barra-fresa",
+                    "slug": "barra-fresa",
+                    "title": "Barra Fresa",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa2.webp"
                 }
                 ,
                 {
-                    "id": "taqueritos-dragon-de-hielo",
-                    "slug": "taqueritos-dragon-de-hielo",
-                    "title": "Taqueritos Dragón de Hielo",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-hielo-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-hielo-2.webp"
-                },
-                {
-                    "id": "taqueritos-dragon-de-fuego",
-                    "slug": "taqueritos-dragon-de-fuego",
-                    "title": "Taqueritos Dragón de Fuego",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp"
+                    "id": "barra-arandano",
+                    "slug": "barra-arandano",
+                    "title": "Barra Arandano",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-arandano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-arandano.webp"
                 }
+                ,
+                {
+                    "id": "barra-coco",
+                    "slug": "barra-coco",
+                    "title": "Barra Coco",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-coco.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-coco.webp"
+                }
+                
             ]
         },
         {
