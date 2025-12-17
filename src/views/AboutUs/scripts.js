@@ -139,6 +139,16 @@
   // Inicializar inmediatamente
   initWithStrategy();
 
+  // Re-inicializar cuando Astro navega sin recargar (cambio de idioma / secciones)
+  const reInitOnAstroNav = () => {
+    // Permitir re-intentos limpios tras swaps
+    retryCount = 0;
+    initWithStrategy();
+  };
+
+  document.addEventListener('astro:page-load', reInitOnAstroNav);
+  document.addEventListener('astro:after-swap', reInitOnAstroNav);
+
   // Soporte para hot reload en desarrollo
   if (process.env.NODE_ENV === 'development') {
     window.reinitializeTimeline = () => {
