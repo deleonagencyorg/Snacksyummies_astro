@@ -5,7 +5,10 @@ import { t } from '../i18n/i18n';
 
 export const prerender = true;
 
-const staticPages = ['/', '/menu', '/nosotros', '/contacto'];
+const staticPagesByLang: Record<string, string[]> = {
+  es: ['/', '/menu', '/nosotros', '/contacto'],
+  en: ['/', '/menu', '/about-us', '/contact'],
+};
 
 // Menu URLs from both languages
 const menuUrls = [
@@ -29,9 +32,13 @@ export const GET: APIRoute = async () => {
   const enPromotions: any[] = t('promotions', { namespace: 'promotions', locale: 'en' }) || [];
   
   // Generate language versions of static pages
-  const staticPagesWithLang = staticPages.flatMap(page => 
-    config.supportedLocales.map(lang => `/${lang}${page}`)
-  );
+  const staticPagesWithLang = config.supportedLocales.flatMap((lang) => {
+    const pages = staticPagesByLang[lang] ?? [];
+    return pages.map((page) => {
+      if (page === '/') return `/${lang}`;
+      return `/${lang}${page}`;
+    });
+  });
 
   // Generate language versions of menu URLs
   const menuUrlsWithLang = menuUrls.flatMap(url => {

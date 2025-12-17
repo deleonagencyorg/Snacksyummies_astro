@@ -1,6 +1,6 @@
 // src/middleware.ts
 import { defineMiddleware } from 'astro:middleware';
-import { routesConfig, findRouteBySlug } from './config/routes';
+import { findRouteBySlug } from './config/routes';
 
 // Mapeo de rutas que necesitan redirección
 const routeMappings = {
@@ -10,7 +10,8 @@ const routeMappings = {
   'yummiesone': { es: 'yummiesone', en: 'yummiesone' },
   'promotions': { es: 'promociones', en: 'promotions' },
   'winners': { es: 'ganadores', en: 'winners' },
-  'contact': { es: 'contacto', en: 'contact' }
+  'contact': { es: 'contacto', en: 'contact' },
+  'about_us': { es: 'nosotros', en: 'about-us' }
 };
 
 export const onRequest = defineMiddleware(async ({ request, redirect }, next) => {
@@ -38,9 +39,9 @@ export const onRequest = defineMiddleware(async ({ request, redirect }, next) =>
   // Verificar si la ruta existe en la configuración
   const routeExists = findRouteBySlug(lang, section);
   
-  // Si la ruta no existe, redirigir al home
+  // Si la ruta no existe, dejar que el enrutador resuelva (404)
   if (!routeExists) {
-    return redirect(`/${lang}`);
+    return next();
   }
 
   // Verificar si hay una discrepancia entre el idioma y la sección
