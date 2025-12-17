@@ -19,7 +19,7 @@ interface Product {
   brandId?: string;
 }
 
-const { productId } = Astro.props;
+const { productId, product } = Astro.props;
 const currentLang = getLocale();
 
 // Obtener las marcas desde los archivos de localización
@@ -43,17 +43,23 @@ const brandsData = t('brands', { namespace: 'brands', locale: currentLang }) as 
 let currentProduct: Product | null = null;
 let currentBrand: Brand | null = null;
 
-for (const brand of brandsData) {
-  if (brand.products && Array.isArray(brand.products)) {
-    const foundProduct = brand.products.find(p => p.id === productId || p.slug === productId);
-    if (foundProduct) {
-      currentProduct = {
-        ...foundProduct,
-        brand: brand.title || brand.id,
-        brandId: brand.id
-      };
-      currentBrand = brand;
-      break;
+if (product && typeof product === 'object') {
+  currentProduct = product as Product;
+}
+
+if (!currentProduct) {
+  for (const brand of brandsData) {
+    if (brand.products && Array.isArray(brand.products)) {
+      const foundProduct = brand.products.find(p => p.id === productId || p.slug === productId);
+      if (foundProduct) {
+        currentProduct = {
+          ...foundProduct,
+          brand: brand.title || brand.id,
+          brandId: brand.id
+        };
+        currentBrand = brand;
+        break;
+      }
     }
   }
 }

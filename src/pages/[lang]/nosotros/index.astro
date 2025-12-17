@@ -4,11 +4,11 @@ import { type Locale } from '../../../i18n/i18n';
 import { getHeaderColors } from '../../../config/headerColors';
 
 export async function getStaticPaths() {
-  const locales = ['en', 'es'];
-  return locales.map((locale) => ({
+  const locale = 'es';
+  return [{
     params: { lang: locale },
     props: { currentLang: locale as Locale }
-  }));
+  }];
 }
 
 const { currentLang } = Astro.props;
