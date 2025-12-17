@@ -30,6 +30,12 @@ export function getStaticPaths() {
 const { product, currentLang } = Astro.props;
 const { lang, productId } = Astro.params;
 
+const productForDetail = {
+  id: product.id,
+  title: product.name,
+  image: product.image,
+};
+
 // Establecer el idioma para las traducciones
 setLocale(lang as Locale);
 
@@ -37,5 +43,5 @@ console.log(`Rendering product: ${productId} in language: ${lang}`);
 ---
 
 <MainLayout title={product.name}>
-  <ProductDetail currentLang={currentLang} productId={productId} />
+  <ProductDetail currentLang={currentLang} productId={productId} product={productForDetail} />
 </MainLayout>
