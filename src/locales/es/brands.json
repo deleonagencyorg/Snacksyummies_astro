@@ -300,8 +300,8 @@
                     "id": "ranchitas-buffalo-ranch",
                     "slug": "ranchitas-buffalo-ranch",
                     "title": "Ranchitas Buffalo Ranch",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp"
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo.webp"
                 },                {
                     "id": "ranchitas-chile-toreado",
                     "slug": "ranchitas-chile-toreado",
@@ -493,6 +493,13 @@
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-mani-con-sal-2.webp"
                 },
                 {
+                    "id": "yummi-nut-sabor-a-chile-toreado",
+                    "slug": "yummi-nut-sabor-a-chile-toreado",
+                    "title": "Yummi Nut Sabor A Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp"
+                },
+                {
                     "id": "yummi-nut-mani-con-limon",
                     "slug": "yummi-nut-mani-con-limon",
                     "title": "Yummi Nut Maní con Limón",
@@ -527,12 +534,13 @@
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-omega-mix-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nut-omega-mix-2.webp"
                 },
+                
                 {
                     "id": "barra-fresa",
                     "slug": "barra-fresa",
                     "title": "Barra Fresa",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa.webp"
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa2.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/barra-fresa2.webp"
                 }
                 ,
                 {
