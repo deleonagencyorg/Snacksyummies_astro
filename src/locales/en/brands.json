@@ -26,23 +26,30 @@
                     "id": "taqueritos-chile-toreado",
                     "slug": "taqueritos-chile-toreado",
                     "title": "Taqueritos Chile Toreado",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp"
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp?w=1280&q=80",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp?w=1280&q=80"
                 },
 
                 {
                     "id": "taqueritos-dragon-de-hielo",
                     "slug": "taqueritos-dragon-de-hielo",
                     "title": "Taqueritos Dragon Ice",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-hielo-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-hielo-2.webp"
+                    "image": "https://snack.yummiespromociones.com/taqueritos/dragonhielousa.webp?w=1280&q=80",
+                    "imageMobile": "https://snack.yummiespromociones.com/taqueritos/dragonhielousa.webp?w=1280&q=80"
                 },
                 {
                     "id": "taqueritos-dragon-de-fuego",
                     "slug": "taqueritos-dragon-de-fuego",
                     "title": "Taqueritos Dragon Fire",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp"
+                    "image": "https://snack.yummiespromociones.com/taqueritos/taqueritodragonfuegousa.webp?w=1280&q=80",
+                    "imageMobile": "https://snack.yummiespromociones.com/taqueritos/taqueritodragonfuegousa.webp?w=1280&q=80"
+                },
+                {
+                    "id": "taqueritos-chili-pack",
+                    "slug": "taqueritos-chili-pack",
+                    "title": "Taqueritos Chili Pack",
+                    "image": "https://snack.yummiespromociones.com/taqueritos/taqueritos-chili-pack.webp?w=1280&q=80",
+                    "imageMobile": "https://snack.yummiespromociones.com/taqueritos/taqueritos-chili-pack.webp?w=1280&q=80"
                 }
             ]
         },
