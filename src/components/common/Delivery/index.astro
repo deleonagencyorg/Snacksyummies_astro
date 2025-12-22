@@ -216,16 +216,18 @@ const { deliveryTitle, deliverySubTitle, deliveryApps } = Astro.props;
     appsToShow.forEach(app => {
       const appCard = document.createElement('div');
       appCard.className = `text-center transition-all duration-300 hover:scale-105`;
-      
+
       appCard.innerHTML = `
         <div class="relative">
           <a href="${app.app_url}" target="_blank" rel="noopener noreferrer" class="block">
-            <LazyImage src="${app.app_icon}" alt="Logo de ${app.app_name}" class="w-40 h-40 bg-white mx-auto mb-4 font-sans rounded-full object-cover shadow-lg p-8 hover:shadow-xl transition-shadow">
-            ${showCountryIndicator ? `<p class="text-sm text-gray-200 mb-4">Disponible en <span class="font-semibold text-yellow-300">${app.country}</span></p>` : ''}
+            <div class="w-32 h-32 md:w-40 md:h-40 bg-white mx-auto mb-4 rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center overflow-hidden">
+              <img src="${app.app_icon}" alt="Logo de ${app.app_name}" class="max-w-[70%] max-h-[70%] object-contain" loading="lazy" />
+            </div>
           </a>
+          ${showCountryIndicator ? `<p class="text-sm text-gray-200 mb-4">Disponible en <span class="font-semibold text-yellow-300">${app.country}</span></p>` : ''}
         </div>
       `;
-      
+
       contentElement.appendChild(appCard);
     });
 
