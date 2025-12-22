@@ -160,10 +160,12 @@ const clientLang = currentLang;
         <!-- Products Grid -->
         <div class="w-full">
           <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-center">
-            {allProducts.map((product: Product) => (
+            {allProducts.map((product: Product, index: number) => (
               <div 
                 data-brand={product.brandId || 'unknown'}
-                class="product-item w-full"
+                class="product-item w-full animate-on-scroll"
+                data-animate-direction="up"
+                data-animate-delay={index * 50}
               >
                 <ProductCard
                   image={product.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
@@ -175,6 +177,24 @@ const clientLang = currentLang;
               </div>
             ))}
           
+          </div>
+          
+          <!-- Botón para cargar más productos -->
+          <div id="scroll-indicator" class="text-center py-8 hidden">
+            <button 
+              id="load-more-btn"
+              class="inline-flex items-center gap-2 text-white bg-primary hover:bg-secondary px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+              <span>
+                {currentLang === 'es' ? 'Cargar más productos' : 'Load more products'}
+              </span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -191,6 +211,107 @@ const clientLang = currentLang;
   // Inicializar en carga y navegaciones
   function init() {
     initProductsFilter();
+    initProductsLazyLoad();
+  }
+
+  function initProductsLazyLoad() {
+    if (typeof window === 'undefined') return;
+
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+
+    const items = Array.from(grid.querySelectorAll('.product-item')) as HTMLElement[];
+    if (!items || items.length === 0) return;
+
+    const scrollIndicator = document.getElementById('scroll-indicator');
+
+    const isMobile = window.innerWidth < 768;
+    const INITIAL_COUNT = isMobile ? 6 : 12;
+    const LOAD_MORE_COUNT = isMobile ? 2 : 6;
+
+    let visibleCount = INITIAL_COUNT;
+
+    function updateScrollIndicator() {
+      if (!scrollIndicator) return;
+      
+      if (visibleCount < items.length) {
+        scrollIndicator.classList.remove('hidden');
+      } else {
+        scrollIndicator.classList.add('hidden');
+      }
+    }
+
+    function applyVisibility() {
+      items.forEach((item, index) => {
+        if (index < visibleCount) {
+          if (item.style.display === 'none') {
+            // Elemento que se está mostrando por primera vez
+            item.style.display = '';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            
+            // Trigger reflow para que la transición funcione
+            void item.offsetHeight;
+            
+            // Aplicar la animación
+            requestAnimationFrame(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            });
+          }
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      updateScrollIndicator();
+    }
+
+    applyVisibility();
+
+    let loadingMore = false;
+
+    function loadMoreProducts() {
+      if (loadingMore || visibleCount >= items.length) return;
+      
+      loadingMore = true;
+      visibleCount = Math.min(visibleCount + LOAD_MORE_COUNT, items.length);
+      applyVisibility();
+      setTimeout(() => {
+        loadingMore = false;
+      }, 200);
+    }
+
+    function handleScroll() {
+      if (loadingMore) return;
+
+      const scrollPosition = window.innerHeight + window.scrollY;
+      const threshold = document.body.offsetHeight - 300;
+
+      if (scrollPosition >= threshold && visibleCount < items.length) {
+        loadMoreProducts();
+      }
+    }
+
+    // Event listener para el botón
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        loadMoreProducts();
+        
+        // Scroll suave hacia los nuevos productos después de cargarlos
+        setTimeout(() => {
+          const lastVisibleItem = items[visibleCount - 1];
+          if (lastVisibleItem) {
+            lastVisibleItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 300);
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll);
   }
 
   // Ejecutar en diferentes eventos del ciclo de vida

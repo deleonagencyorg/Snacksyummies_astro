@@ -30,19 +30,20 @@ const socialMediaObj = t('social_media', { namespace: 'common', locale: currentL
 const socialMedia = socialMediaObj ? Object.values(socialMediaObj) as SocialMedia[] : [];
 ---
 
-<div class={`flex flex-row space-x-4 ${alignmentClasses} ${className}`}>
+<div class={`flex flex-row space-x-2 md:space-x-4 ${alignmentClasses} ${className}`}>
   {socialMedia.map((sm: SocialMedia) => (
     <a 
       href={sm.url} 
       target="_blank" 
       rel="noopener noreferrer" 
       title={sm.name} 
-      class={`hover:text-gray-300 transition-colors`}
+      class={`hover:opacity-80 transition-opacity p-2 md:p-0 rounded-full bg-white md:bg-transparent`}
     >
       <span class="sr-only">{sm.name}</span>
       {sm.iconUrl && (
         (() => {
           const isSvg = sm.iconUrl.toLowerCase().endsWith('.svg');
+          const mobileSize = Math.round(iconSize * 0.7); // 70% del tamaño en mobile
           const displaySize = iconSize;
           const intrinsicSize = isSvg ? iconSize : iconSize * 2; // 2x for raster for retina crispness
           return (
@@ -50,6 +51,7 @@ const socialMedia = socialMediaObj ? Object.values(socialMediaObj) as SocialMedi
               src={sm.iconUrl}
               alt={sm.alt || sm.name}
               style={`height: ${displaySize}px; width: ${displaySize}px;`}
+              class="md:w-auto md:h-auto w-[28px] h-[28px]"
               color={iconColor}
               width={intrinsicSize}
               height={intrinsicSize}

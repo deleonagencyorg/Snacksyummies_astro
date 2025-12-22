@@ -3,6 +3,10 @@
   // Flag to track initialization status
   let initialized = false;
 
+  // Storage for product carousels autoplay controls
+  let productCarouselsConfig = [];
+  let productsIntersectionObserver = null;
+
   // Function to initialize all functionality
   function initializeFunctionality() {
     // Prevent multiple initializations
@@ -53,6 +57,10 @@
       // Calcular el ancho de desplazamiento (aproximadamente 2-3 íconos)
       const scrollAmount = brandIcons[0].offsetWidth * 2 + 16; // Ancho de 2 íconos + gap
       
+      // Timer para autoplay del carrusel de marcas
+      const autoplayInterval = 3000; // 3 segundos
+      let autoplayTimer = null;
+      
       // Función para desplazar a la izquierda
       const scrollLeft = () => {
         carousel.scrollBy({
@@ -68,18 +76,51 @@
           behavior: 'smooth'
         });
       };
+
+      // Autoplay del carrusel de marcas (scroll automático hacia la derecha)
+      function startBrandsAutoplay() {
+        // Respetar preferencia de reducción de movimiento
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          return;
+        }
+        stopBrandsAutoplay();
+        autoplayTimer = setInterval(() => {
+          // Si estamos muy cerca del final, volver al inicio para efecto de loop
+          const isAtEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10;
+          if (isAtEnd) {
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            scrollRight();
+          }
+        }, autoplayInterval);
+      }
+
+      function stopBrandsAutoplay() {
+        if (autoplayTimer !== null) {
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
+        }
+      }
       
       // Añadir eventos de click y touch para el botón previo
-      prevBtn.addEventListener('click', scrollLeft);
+      prevBtn.addEventListener('click', (e) => {
+        stopBrandsAutoplay();
+        scrollLeft();
+      });
       prevBtn.addEventListener('touchstart', (e) => {
         e.preventDefault(); // Prevenir comportamiento por defecto
+        stopBrandsAutoplay();
         scrollLeft();
       }, { passive: false });
       
       // Añadir eventos de click y touch para el botón siguiente
-      nextBtn.addEventListener('click', scrollRight);
+      nextBtn.addEventListener('click', (e) => {
+        stopBrandsAutoplay();
+        scrollRight();
+      });
       nextBtn.addEventListener('touchstart', (e) => {
         e.preventDefault(); // Prevenir comportamiento por defecto
+        stopBrandsAutoplay();
         scrollRight();
       }, { passive: false });
       
@@ -97,6 +138,13 @@
       updateNavButtonsVisibility();
       carousel.addEventListener('scroll', updateNavButtonsVisibility);
       window.addEventListener('resize', updateNavButtonsVisibility);
+
+      // Pausar autoplay cuando el usuario interactúa con el carrusel
+      carousel.addEventListener('mouseenter', stopBrandsAutoplay);
+      carousel.addEventListener('mouseleave', startBrandsAutoplay);
+      carousel.addEventListener('touchstart', stopBrandsAutoplay, { passive: true });
+      carousel.addEventListener('focusin', stopBrandsAutoplay);
+      carousel.addEventListener('focusout', startBrandsAutoplay);
       
       // Asegurar que los íconos de marca sean accesibles con teclado
       brandIcons.forEach(icon => {
@@ -114,6 +162,9 @@
       nextBtn.style.zIndex = '20';
       prevBtn.style.pointerEvents = 'auto';
       nextBtn.style.pointerEvents = 'auto';
+
+      // Iniciar autoplay del carrusel de marcas al cargar
+      startBrandsAutoplay();
     }
     
     // Funcionalidad para los carruseles de productos
@@ -124,6 +175,13 @@
   function initProductsCarousels() {
     if (typeof window === 'undefined') return; // Skip during SSR
     
+    // Reset previous observer and config on re-init
+    if (productsIntersectionObserver) {
+      productsIntersectionObserver.disconnect();
+      productsIntersectionObserver = null;
+    }
+    productCarouselsConfig = [];
+
     const productCarousels = document.querySelectorAll('.products-carousel');
     if (!productCarousels || productCarousels.length === 0) return;
     
@@ -253,7 +311,7 @@
         });
       });
       
-      // Configuración para cambiar automáticamente las diapositivas solo en hover
+      // Configuración para cambiar automáticamente las diapositivas
       const autoplayInterval = 3000; // 3 segundos
       let autoplayTimer = null;
       
@@ -273,8 +331,7 @@
         }
       }
       
-      // No iniciar autoplay por defecto
-      // Solo iniciar cuando el usuario hace hover
+      // Desktop: autoplay por hover/focus como antes
       carousel.addEventListener('mouseenter', startAutoplay);
       carousel.addEventListener('mouseleave', stopAutoplay);
       
@@ -288,7 +345,55 @@
       
       // Inicializar la posición del carrusel
       updateCarouselPosition();
+
+      // Iniciar autoplay automáticamente en desktop
+      if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+        startAutoplay();
+      }
+
+      // Registrar controles de autoplay para uso global (mobile)
+      productCarouselsConfig.push({
+        carousel,
+        startAutoplay,
+        stopAutoplay
+      });
     });
+
+    // Mobile: solo el carrusel visible debe tener autoplay activo
+    if (!productsIntersectionObserver && productCarouselsConfig.length > 0) {
+      productsIntersectionObserver = new IntersectionObserver((entries) => {
+        // Solo aplicar esta lógica en mobile
+        if (window.innerWidth >= 768) {
+          return;
+        }
+
+        entries.forEach(entry => {
+          const config = productCarouselsConfig.find(c => c.carousel === entry.target);
+          if (!config) return;
+
+          if (entry.isIntersecting) {
+            // Activar autoplay solo en el carrusel visible y detener los demás
+            productCarouselsConfig.forEach(c => {
+              if (c === config) {
+                c.startAutoplay();
+              } else {
+                c.stopAutoplay();
+              }
+            });
+          } else {
+            // Si deja de ser visible, detener su autoplay
+            config.stopAutoplay();
+          }
+        });
+      }, {
+        threshold: 0.4
+      });
+
+      // Observar todos los carruseles de productos
+      productCarouselsConfig.forEach(cfg => {
+        productsIntersectionObserver.observe(cfg.carousel);
+      });
+    }
   }
 
   // Optimized initialization for all scenarios
