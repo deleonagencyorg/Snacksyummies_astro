@@ -10,11 +10,10 @@
   top: 1rem;
   left: -1.4rem;
   width: 2.4rem;
-  height: 2.4rem;
+  height: auto;
   z-index: 10;
   transform: rotate(-15deg);
   transition: transform 0.3s ease;
-  aspect-ratio: 1;
 }
 
 .crown-title-container:hover .crown-icon {
@@ -24,7 +23,7 @@
 @media (max-width: 768px) {
   .crown-icon {
     width: 2.2rem;
-    height: 2.2rem;
+    height: auto;
     top: 1rem;
   }
 }
