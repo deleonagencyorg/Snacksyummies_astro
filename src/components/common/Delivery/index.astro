@@ -220,7 +220,7 @@ const { deliveryTitle, deliverySubTitle, deliveryApps } = Astro.props;
       appCard.innerHTML = `
         <div class="relative">
           <a href="${app.app_url}" target="_blank" rel="noopener noreferrer" class="block">
-            <img src="${app.app_icon}" alt="Logo de ${app.app_name}" class="w-40 h-40 bg-white mx-auto mb-4 font-sans rounded-full object-cover shadow-lg p-4 hover:shadow-xl transition-shadow">
+            <LazyImage src="${app.app_icon}" alt="Logo de ${app.app_name}" class="w-40 h-40 bg-white mx-auto mb-4 font-sans rounded-full object-cover shadow-lg p-8 hover:shadow-xl transition-shadow">
             ${showCountryIndicator ? `<p class="text-sm text-gray-200 mb-4">Disponible en <span class="font-semibold text-yellow-300">${app.country}</span></p>` : ''}
           </a>
         </div>
