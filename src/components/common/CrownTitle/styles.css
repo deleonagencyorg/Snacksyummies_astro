@@ -1,29 +1,54 @@
-/* CrownTitle styles */
+/* CrownTitle styles - Reingeniería completa */
+
+/* Variables CSS para fácil mantenimiento */
+:root {
+  --crown-size-desktop: 2rem;
+  --crown-size-mobile: 1.75rem;
+  --crown-top-offset: 0.2rem;
+  --crown-left-offset: -1.4rem;
+  --crown-rotation: -15deg;
+  --crown-hover-rotation: -5deg;
+  --crown-hover-scale: 1.1;
+}
+
+/* Contenedor principal */
 .crown-title-container {
   padding-top: 0.5rem;
   position: relative;
   display: inline-block;
 }
 
+/* Icono de corona - Posicionamiento absoluto sin interferencia de Tailwind */
 .crown-icon {
+  /* Posicionamiento */
   position: absolute;
-  top: 1rem;
-  left: -1.4rem;
-  width: 2.4rem;
-  height: auto;
+  top: var(--crown-top-offset);
+  left: var(--crown-left-offset);
   z-index: 10;
-  transform: rotate(-15deg);
+  
+  /* Dimensiones - Forzar override de Tailwind */
+  width: var(--crown-size-desktop) !important;
+  height: auto !important;
+  max-width: none !important;
+  
+  /* Transformaciones */
+  transform: rotate(var(--crown-rotation));
   transition: transform 0.3s ease;
+  
+  /* Optimización de renderizado */
+  will-change: transform;
 }
 
+/* Efecto hover en la corona */
 .crown-title-container:hover .crown-icon {
-  transform: rotate(-5deg) scale(1.1);
+  transform: rotate(var(--crown-hover-rotation)) scale(var(--crown-hover-scale));
 }
 
+/* Responsive - Mobile */
 @media (max-width: 768px) {
   .crown-icon {
-    width: 2.2rem;
-    height: auto;
-    top: 1rem;
+    width: var(--crown-size-mobile) !important;
+    top: var(--crown-top-offset);
+    left: var(--crown-left-offset);
   }
 }
