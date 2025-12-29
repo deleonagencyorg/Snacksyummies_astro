@@ -11,7 +11,14 @@
     "https://snack.yummiespromociones.com/snacksyummies/ranchitas-chip1.webp",
     "https://snack.yummiespromociones.com/snacksyummies/yummimix-chip1.webp"
   ],
-  "products": [
+"products": [
+    {
+                    "id": "zambos-yuquitas-con-ajo-parmesano",
+                    "slug": "zambos-yuquitas-con-ajo-parmesano",
+                    "title": "Zambos Yuquitas Con Ajo Parmesano",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp"
+                },
     {
       "id": "yummipops-dragon-hielo",
       "title": "Yummipops Dragon Hielo",
@@ -27,6 +34,13 @@
     "alt": "Ranchitas Buffalo Ranch",
     "link": "#"
   },
+     {
+                    "id": "delrancho-salsa-verde",
+                    "slug": "delrancho-salsa-verde",
+                    "title": "Del Rancho Salsa Verde",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp"
+                },
     {
       "id": "product2",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-tajin-2.webp",
@@ -44,6 +58,13 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp",
       "alt": "Taqueritos Dragón de Fuego",
       "link": "#"
-    }
+    },
+    
+      {
+                    "id": "yummi-nut-sabor-a-chile-toreado",
+                    "alt": "Yummi Nut Sabor A Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp"
+                }
   ]
 }
