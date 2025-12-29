@@ -13,6 +13,13 @@
   ],
   "products": [
     {
+                    "id": "zambos-yuquitas-con-ajo-parmesano",
+                    "slug": "zambos-yuquitas-con-ajo-parmesano",
+                    "title": "Zambos Yuquitas Con Ajo Parmesano",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp"
+                },
+    {
       "id": "yummipops-dragon-hielo",
       "title": "Yummipops Dragon Hielo",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png"
