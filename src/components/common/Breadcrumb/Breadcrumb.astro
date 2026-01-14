@@ -44,7 +44,7 @@ else if (textColor === 'text-gray-500') textColorValue = '#6b7280';
         <li class={`breadcrumb-item ${textClass}`} style={textColorValue ? `color: ${textColorValue};` : undefined}>
           {index > 0 && <span class="breadcrumb-separator" aria-hidden="true">/</span>}
           <a 
-            href={index === 0 ? '/' : item.href} 
+            href={index === 0 ? '/' : (item?.href || '/')} 
             class={`breadcrumb-link ${index === items.length - 1 ? 'current' : ''} ${textClass}`}
             style={textColorValue ? `color: ${textColorValue};` : undefined}
             aria-current={index === items.length - 1 ? 'page' : undefined}
@@ -55,7 +55,7 @@ else if (textColor === 'text-gray-500') textColorValue = '#6b7280';
                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
               </svg>
             ) : (
-              item.label.toUpperCase()
+              String(item?.label ?? '').toUpperCase()
             )}
           </a>
         </li>
