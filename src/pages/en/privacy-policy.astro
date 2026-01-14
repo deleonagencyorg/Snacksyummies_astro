@@ -1,0 +1,29 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const title = "Privacy Policy";
+const description = "Information about data usage, cookies, and tracking pixels";
+---
+
+<MainLayout title={title} description={description}>
+  <div slot="head"></div>
+  <main class="min-h-[60vh] flex items-center">
+    <section class="container mx-auto max-w-3xl px-4 py-16 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-primary mb-6">Privacy Policy</h1>
+      <p class="text-base md:text-lg text-gray-700 mb-4">
+        At Yummies we value your privacy. This site uses cookies and similar technologies, including
+        tracking pixels, to improve your experience, analyze site performance and measure the effectiveness
+        of our campaigns.
+      </p>
+      <p class="text-base md:text-lg text-gray-700 mb-4">
+        Pixels help us collect anonymous information about site interactions such as page views and clicks,
+        which may be associated with advertising identifiers when you have provided consent. You can manage or
+        withdraw your consent at any time through your browser's cookie settings.
+      </p>
+      <p class="text-base md:text-lg text-gray-700">
+        By continuing to browse, you agree to the use of these technologies as set out in this policy. If you
+        have any questions, please visit our contact section.
+      </p>
+    </section>
+  </main>
+</MainLayout>
