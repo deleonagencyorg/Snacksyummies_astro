@@ -316,6 +316,15 @@ const options = dynamicOptions[locale];
 
       // Add template field based on contact reason
       const template = getTemplateByContactReason(formData.contactReason);
+      // Winner-specific prefixes before appending to multipart data
+      if (template === 'ganador') {
+        if (typeof formData.dynamicOrPromotion === 'string' && formData.dynamicOrPromotion.trim() !== '') {
+          formData.dynamicOrPromotion = `Dinámica o promoción: ${formData.dynamicOrPromotion}`;
+        }
+        if (typeof formData.award === 'string' && formData.award.trim() !== '') {
+          formData.award = `Premio adjudicado: ${formData.award}`;
+        }
+      }
       multipartData.append('template', template);
       multipartData.append('site', 'snacksyummies');
       // Add all form fields according to the API structure
@@ -540,6 +549,16 @@ const options = dynamicOptions[locale];
     
     console.log('Updating dynamic fields for reason:', contactReason);
     
+    // Toggle phone requirement based on contact reason
+    const phoneInput = document.querySelector('input[name="phone"]');
+    if (phoneInput) {
+      if (contactReason === 'Soy un ganador') {
+        phoneInput.setAttribute('required', 'true');
+      } else {
+        phoneInput.removeAttribute('required');
+      }
+    }
+
     // Clear existing dynamic fields
     dynamicFields.innerHTML = '';
     
@@ -735,6 +754,15 @@ const options = dynamicOptions[locale];
       <div>
         <label class="block text-gray-700 font-medium mb-2">Premio adjudicado *</label>
         <input type="text" name="award" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">${labels.message}</label>
+        <textarea name="message" rows="4" placeholder="Escribe la promoción en la que ganaste o detalla el premio que ganaste. Ej, PS5, giftcards, etc" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"></textarea>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-2">${labels.file}</label>
+        <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+        <p class="text-sm text-gray-500 mt-1">${labels.fileHelp}</p>
       </div>
     `;
   }
