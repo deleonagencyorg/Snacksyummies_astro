@@ -81,25 +81,24 @@ export default function SimpleProductCarousel({ products = [] }) {
     >
       <div className="carousel-viewport">
         {products.map((product, index) => {
-          // Calculate position: -1 = left, 0 = center, 1 = right
+          // Calculate shortest signed distance from activeIndex to this index
+          const total = products.length;
           let position = index - activeIndex;
-          
-          // Handle wrapping for continuous carousel effect
-          if (position < -1) {
-            position += products.length;
-          } else if (position > 1) {
-            position -= products.length;
-          }
-          
+          const half = Math.floor(total / 2);
+          if (position > half) position -= total;
+          if (position < -half) position += total;
+
           return (
             <div 
               key={product.id || index}
               className={`carousel-slide ${position === 0 ? 'active' : ''}`}
               style={{
-                transform: `translateX(${position * 100}%) scale(${position === 0 ? 1 : 0.8})`,
+                transform: `translate(calc(${position * 100}% - 50%), -50%) scale(${position === 0 ? 1 : 0.85})`,
                 zIndex: position === 0 ? 2 : 1,
-                opacity: Math.abs(position) > 1 ? 0 : 1
+                opacity: Math.abs(position) > 1 ? 0 : 1,
+                pointerEvents: Math.abs(position) > 1 ? 'none' : 'auto'
               }}
+              aria-hidden={Math.abs(position) > 1}
             >
               <div 
                 className="product-card"
