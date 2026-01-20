@@ -89,7 +89,7 @@ for (const path in recipeModules) {
     allRecipes.push(mod.default);
   }
 }
-const topRecipes = allRecipes.slice(0, 12);
+const topRecipes = allRecipes.slice(0, 9);
 const listingPath = `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}`;
 
 
@@ -797,8 +797,13 @@ const slides = Array.isArray(commonAssets)
 
         function goTo(pageIndex) {
           currentPage = (pageIndex + totalPages) % totalPages;
-          const width = viewport.clientWidth;
-          track.style.transform = `translateX(${-currentPage * width}px)`;
+          // Calcular el desplazamiento basado en el ancho de las tarjetas + gap
+          const styles = getComputedStyle(track);
+          const gapStr = styles.columnGap || styles.gap || '0';
+          const gapPx = parseFloat(gapStr) || 0;
+          const slideWidth = slides[0] ? parseFloat(slides[0].style.width) || 0 : 0;
+          const offset = currentPage * slidesPerView * (slideWidth + gapPx);
+          track.style.transform = `translateX(${-offset}px)`;
           updateDots();
         }
 
@@ -812,7 +817,10 @@ const slides = Array.isArray(commonAssets)
           const totalGap = gapPx * (slidesPerView - 1);
           const slideWidth = (viewport.clientWidth - totalGap) / slidesPerView;
           slides.forEach((slide) => (slide).style.width = `${slideWidth}px`);
+          // Calcular páginas exactas (9 recetas / 3 por vista = 3 páginas)
           totalPages = Math.max(1, Math.ceil(slides.length / slidesPerView));
+          // Asegurar que currentPage no exceda el máximo
+          if (currentPage >= totalPages) currentPage = totalPages - 1;
           buildDots();
           goTo(currentPage);
         }
