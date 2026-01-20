@@ -200,3 +200,113 @@ const {
     .nav-btn.right-2 { right: 1rem; }
   }
 </style>
+
+<script>
+  function initCategoriesCarousel() {
+    const container = document.querySelector('[data-query-key]');
+    if (!container) return;
+
+    const queryKey = container.getAttribute('data-query-key') || 'brand';
+    const scroll = container.querySelector('#cat-scroll');
+    const buttons = container.querySelectorAll('.brand-filter-btn');
+    const navBtns = container.querySelectorAll('.nav-btn');
+
+    if (!scroll || !buttons.length) return;
+
+    // Navegación con flechas
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dir = parseInt(btn.getAttribute('data-dir') || '1');
+        const scrollAmount = scroll.clientWidth * 0.6;
+        scroll.scrollBy({ left: dir * scrollAmount, behavior: 'smooth' });
+      });
+    });
+
+    // Drag to scroll
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    scroll.addEventListener('mousedown', (e: Event) => {
+      const me = e as MouseEvent;
+      isDown = true;
+      scroll.classList.add('dragging');
+      startX = me.pageX - (scroll as HTMLElement).offsetLeft;
+      scrollLeft = scroll.scrollLeft;
+    });
+
+    scroll.addEventListener('mouseleave', () => {
+      isDown = false;
+      scroll.classList.remove('dragging');
+    });
+
+    scroll.addEventListener('mouseup', () => {
+      isDown = false;
+      scroll.classList.remove('dragging');
+    });
+
+    scroll.addEventListener('mousemove', (e: Event) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const me = e as MouseEvent;
+      const x = me.pageX - (scroll as HTMLElement).offsetLeft;
+      const walk = (x - startX) * 2;
+      scroll.scrollLeft = scrollLeft - walk;
+    });
+
+    // Click en botones de filtro
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const slug = btn.getAttribute('data-slug') || 'all';
+        
+        // Actualizar clase activa
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Actualizar URL
+        const url = new URL(window.location.href);
+        if (slug === 'all') {
+          url.searchParams.delete(queryKey);
+        } else {
+          url.searchParams.set(queryKey, slug);
+        }
+        history.pushState({}, '', url.toString());
+
+        // Disparar evento de filtro
+        const event = new CustomEvent('brandFilterChange', { 
+          detail: { brand: slug, queryKey } 
+        });
+        document.dispatchEvent(event);
+
+        // Guardar en sessionStorage
+        try { 
+          sessionStorage.setItem('selectedBrand', slug); 
+        } catch {}
+      });
+    });
+
+    // Aplicar estado inicial desde URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeBrand = urlParams.get(queryKey) || 'all';
+    
+    buttons.forEach(btn => {
+      const slug = btn.getAttribute('data-slug');
+      if (slug === activeBrand) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  // Inicializar en diferentes eventos
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCategoriesCarousel);
+  } else {
+    initCategoriesCarousel();
+  }
+  
+  document.addEventListener('astro:page-load', initCategoriesCarousel);
+  document.addEventListener('astro:after-swap', initCategoriesCarousel);
+</script>
