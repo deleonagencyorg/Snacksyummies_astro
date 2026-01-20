@@ -159,7 +159,7 @@ const clientLang = currentLang;
         
         <!-- Products Grid -->
         <div class="w-full">
-          <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-center">
+          <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-start">
             {allProducts.map((product: Product, index: number) => (
               <div 
                 data-brand={product.brandId || 'unknown'}
