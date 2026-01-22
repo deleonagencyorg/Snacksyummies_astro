@@ -17,6 +17,14 @@ interface Product {
   imageMobile?: string;
   brand?: string;
   brandId?: string;
+  nutritional_info?: {
+    serving_size?: string;
+    calories?: number;
+    fat?: string;
+    carbs?: string;
+    protein?: string;
+    sodium?: string;
+  };
 }
 
 const { productId, product } = Astro.props;
@@ -131,6 +139,28 @@ if (currentProduct && currentProduct.title) {
 // Obtener el título normalizado
 const productTitle = currentProduct.title;
 
+const nutritionFacts = {
+  servingsPerContainer: currentLang === 'es' ? '8 Porciones Por Envase' : '8 Servings Per Container',
+  servingSizeLabel: currentLang === 'es' ? 'Tamaño de la Porción' : 'Serving Size',
+  servingSizeValue: currentLang === 'es' ? 'Aproximadamente 15 Chips (38g)' : 'About 15 Chips (38g)',
+  amountPerServing: currentLang === 'es' ? 'Cantidad Por Porción' : 'Amount Per Serving',
+  caloriesLabel: currentLang === 'es' ? 'Calorías' : 'Calories',
+  caloriesValue: typeof currentProduct.nutritional_info?.calories === 'number' ? currentProduct.nutritional_info.calories : 160,
+  dailyValueLabel: currentLang === 'es' ? 'Valor Diario' : 'Daily Value',
+  totalFatLabel: currentLang === 'es' ? 'Grasa Total' : 'Total Fat',
+  totalFatValue: currentProduct.nutritional_info?.fat || '10 g',
+  totalFatDaily: '13%',
+  saturatedFatLabel: currentLang === 'es' ? 'Grasa Saturada' : 'Saturated Fat',
+  saturatedFatValue: '1.5 g',
+  saturatedFatDaily: '7%',
+  transFatLabel: currentLang === 'es' ? 'Grasa Trans' : 'Trans Fat',
+  transFatValue: '0 g',
+  transFatDaily: '0%',
+  cholesterolLabel: currentLang === 'es' ? 'Colesterol' : 'Cholesterol',
+  cholesterolValue: '0 mg',
+  cholesterolDaily: '0%'
+};
+
 // Textos según el idioma (ya normalizados)
 const texts = {
   description: tr('Descripción', 'Description'),
@@ -212,18 +242,26 @@ if (currentBrand && currentBrand.products) {
           <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{currentLang === 'es' ? 'Presentación:' : 'Presentation:'}</h2>
           <div class="flex gap-6 items-end justify-center">
             <div class="text-center">
-              <div class="w-20 h-24 border-2 border-gray-300 rounded-lg mb-2 flex items-center justify-center">
-                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
+              <div class="w-20 h-24 border-2 border-gray-300 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+                <img
+                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/gramajes.png"
+                  alt={currentLang === 'es' ? 'Presentación 140 g' : '140 g presentation'}
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <p class="text-sm font-semibold text-gray-700">140 g</p>
             </div>
             <div class="text-center">
-              <div class="w-16 h-20 border-2 border-gray-300 rounded-lg mb-2 flex items-center justify-center">
-                <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
+              <div class="w-16 h-20 border-2 border-gray-300 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
+                <img
+                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/gramajes.png"
+                  alt={currentLang === 'es' ? 'Presentación 70 g' : '70 g presentation'}
+                  class="w-full h-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <p class="text-sm font-semibold text-gray-700">70 g</p>
             </div>
@@ -258,38 +296,38 @@ if (currentBrand && currentBrand.products) {
         
         <!-- Información Nutricional -->
         <div class="mb-8">
-          <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{currentLang === 'es' ? 'Nutrional Facts' : 'Nutritional Facts'}</h2>
+          <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{currentLang === 'es' ? 'Información Nutricional' : 'Nutritional Facts'}</h2>
           <div class="border border-gray-300 rounded-lg overflow-hidden">
             <div class="bg-gray-50 px-4 py-2 border-b border-gray-300">
-              <p class="text-sm font-semibold text-gray-700">{currentLang === 'es' ? '8 Porciones Por Envase' : '8 Servings Per Container'}</p>
-              <p class="text-sm text-gray-600">{currentLang === 'es' ? 'Tamaño de la Porción' : 'Serving Size'} <span class="float-right">{currentLang === 'es' ? 'Aproximadamente 15 Chips (38g)' : 'About 15 Chips (38g)'}</span></p>
+              <p class="text-sm font-semibold text-gray-700">{nutritionFacts.servingsPerContainer}</p>
+              <p class="text-sm text-gray-600">{nutritionFacts.servingSizeLabel} <span class="float-right">{nutritionFacts.servingSizeValue}</span></p>
             </div>
             <div class="px-4 py-2">
               <div class="border-b border-gray-200 py-2">
-                <p class="text-sm font-semibold text-gray-700">{currentLang === 'es' ? 'Cantidad Por Porción' : 'Amount Per Serving'}</p>
+                <p class="text-sm font-semibold text-gray-700">{nutritionFacts.amountPerServing}</p>
               </div>
               <div class="border-b border-gray-200 py-2 flex justify-between">
-                <span class="text-sm text-gray-700">{currentLang === 'es' ? 'Calorías' : 'Calories'}</span>
-                <span class="text-sm font-bold text-gray-900">160</span>
+                <span class="text-sm text-gray-700">{nutritionFacts.caloriesLabel}</span>
+                <span class="text-sm font-bold text-gray-900">{nutritionFacts.caloriesValue}</span>
               </div>
               <div class="py-1">
-                <p class="text-xs text-right text-gray-600">% {currentLang === 'es' ? 'Valor Diario' : 'Daily Value'} *</p>
+                <p class="text-xs text-right text-gray-600">% {nutritionFacts.dailyValueLabel} *</p>
               </div>
               <div class="border-b border-gray-200 py-2 flex justify-between">
-                <span class="text-sm text-gray-700">{currentLang === 'es' ? 'Grasa Total' : 'Total Fat'} 10 g</span>
-                <span class="text-sm font-bold text-gray-900">13%</span>
+                <span class="text-sm text-gray-700">{nutritionFacts.totalFatLabel} {nutritionFacts.totalFatValue}</span>
+                <span class="text-sm font-bold text-gray-900">{nutritionFacts.totalFatDaily}</span>
               </div>
               <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
-                <span class="text-sm text-gray-700">{currentLang === 'es' ? 'Grasa Saturada' : 'Saturated Fat'} 1.5 g7</span>
-                <span class="text-sm font-bold text-gray-900">7%</span>
+                <span class="text-sm text-gray-700">{nutritionFacts.saturatedFatLabel} {nutritionFacts.saturatedFatValue}</span>
+                <span class="text-sm font-bold text-gray-900">{nutritionFacts.saturatedFatDaily}</span>
               </div>
               <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
-                <span class="text-sm text-gray-700">{currentLang === 'es' ? 'Grasa Trans' : 'Trans Fat'} 0 g</span>
-                <span class="text-sm font-bold text-gray-900">0%</span>
+                <span class="text-sm text-gray-700">{nutritionFacts.transFatLabel} {nutritionFacts.transFatValue}</span>
+                <span class="text-sm font-bold text-gray-900">{nutritionFacts.transFatDaily}</span>
               </div>
               <div class="border-b border-gray-200 py-2 flex justify-between">
-                <span class="text-sm text-gray-700">{currentLang === 'es' ? 'Colesterol' : 'Cholesterol'} 0 mg</span>
-                <span class="text-sm font-bold text-gray-900">0%</span>
+                <span class="text-sm text-gray-700">{nutritionFacts.cholesterolLabel} {nutritionFacts.cholesterolValue}</span>
+                <span class="text-sm font-bold text-gray-900">{nutritionFacts.cholesterolDaily}</span>
               </div>
             </div>
           </div>
@@ -306,7 +344,7 @@ if (currentBrand && currentBrand.products) {
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-center">
           {relatedProducts.map(product => (
             <div class="product-item w-full">
-              <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`} class="w-full flex flex-col items-center">
+              <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.slug || product.id}`} class="w-full flex flex-col items-center">
                 <div class="w-full overflow-hidden mb-3 hover:scale-105 transition-transform duration-300">
                   <LazyImage
                     src={product.image}

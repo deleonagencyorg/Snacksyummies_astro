@@ -4,9 +4,9 @@ import supermanSixFlags2024 from './superman-six-flags-2024.json';
 
 // Exportar todos los ganadores organizados por promoción
 export const winners_promotions = {
-  'superman-six-flags-2024': supermanSixFlags2024,
+  'superman-six-flags-mexico': supermanSixFlags2024,
   'guardianes-sabor-punta-cana': guardianesSaborPuntaCana
-};
+} as WinnersPromotions;
 
 // Exportar tipos para TypeScript
 export interface Winner {
