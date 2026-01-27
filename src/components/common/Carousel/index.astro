@@ -16,12 +16,26 @@ export interface Props {
 }
 
 const { slides = [], loading = false } = Astro.props;
+const slideCount = Array.isArray(slides) ? slides.length : 0;
+const showControls = slideCount > 1;
+const safeSlides = slideCount > 0
+  ? slides
+  : [
+      {
+        desktop: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+        mobile: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+        alt: 'Snacks Yummies',
+        title: '',
+        subtitle: '',
+        link: ''
+      }
+    ];
 
 // Log de depuración
 
 
 // Identificar la primera imagen para cargarla con prioridad
-const firstSlide = slides[0] || {};
+const firstSlide = safeSlides[0] || {};
 
 // Log del primer slide
 
@@ -36,24 +50,36 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
 <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <!-- Cargar scripts del carrusel solo en el cliente -->
-<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel' }}>
+<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel', slideCount, showControls }}>
   document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       try {
+        if (!showControls) {
+          const root = document.querySelector(carouselSelector);
+          root?.querySelector('.swiper-button-next')?.setAttribute('style', 'display:none');
+          root?.querySelector('.swiper-button-prev')?.setAttribute('style', 'display:none');
+          root?.querySelector('.swiper-pagination')?.setAttribute('style', 'display:none');
+        }
         const swiper = new Swiper(carouselSelector, {
-          loop: true,
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
+          loop: showControls,
+          autoplay: showControls
+            ? {
+                delay: 5000,
+                disableOnInteraction: false,
+              }
+            : false,
+          navigation: showControls
+            ? {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }
+            : false,
+          pagination: showControls
+            ? {
+                el: '.swiper-pagination',
+                clickable: true,
+              }
+            : false,
           // Mejorar la respuesta táctil en móviles
           touchRatio: 1.5,
           touchAngle: 45,
@@ -100,7 +126,7 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
     <!-- Swiper container -->
     <div class="swiper-container main-carousel">
       <div class="swiper-wrapper">
-        {slides.map((slide, index) => (
+        {safeSlides.map((slide, index) => (
           <CarouselSlide 
             slide={{
               desktop: slide.desktop,
@@ -116,9 +142,9 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
       </div>
       
       <!-- Controles de navegación -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+      {showControls && <div class="swiper-button-next"></div>}
+      {showControls && <div class="swiper-button-prev"></div>}
+      {showControls && <div class="swiper-pagination"></div>}
     </div>
   </div>
 )}

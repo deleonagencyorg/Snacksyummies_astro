@@ -44,6 +44,16 @@ if (!recipeItems.length) {
   }
 }
 
+const recipeCount = Array.isArray(recipeItems) ? recipeItems.length : 0;
+const safeRecipeItems: Recipe[] = recipeCount > 0
+  ? recipeItems
+  : ([{
+      id: 'placeholder',
+      title: '',
+      image: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+      preparation_time: 0
+    }] as unknown as Recipe[]);
+
 // Determine if we are in provided-items mode (hide filters/CTA)
 const providedMode = Array.isArray(items) && items.length > 0;
 
@@ -73,8 +83,8 @@ const filterLabels = currentLang === 'es'
 // Para desktop: mostrar 4 tarjetas por vista, avanzar de 1 en 1
 // Para mobile: 1 por slide (agrupadas de a 1)
 const mobileGroups = [] as any[];
-for (let i = 0; i < recipeItems.length; i += 1) {
-  mobileGroups.push([recipeItems[i]].filter(Boolean));
+for (let i = 0; i < safeRecipeItems.length; i += 1) {
+  mobileGroups.push([safeRecipeItems[i]].filter(Boolean));
 }
 
 ---
@@ -151,7 +161,7 @@ for (let i = 0; i < recipeItems.length; i += 1) {
     <div class="recipes-carousel relative hidden md:block">
       <div class="recipes-carousel-container overflow-visible ">
         <div class="recipes-carousel-track flex items-start justify-center w-full gap-4 md:gap-6 transition-transform duration-300" id="recipesTrackDesktop" style="transform: translateX(0);">
-          {recipeItems.map((recipe, index) => (
+          {safeRecipeItems.map((recipe, index) => (
             <div class="recipe-slide flex-shrink-0 group-hover-container" data-index={index} data-category={getCategoryKey(recipe)}>
               <RecipeCardCarousel
                 image={recipe.image}
@@ -257,6 +267,20 @@ for (let i = 0; i < recipeItems.length; i += 1) {
       const visibleGroups = allGroups.filter(g => g.style.display !== 'none');
       let currentGroup = 0;
 
+      // Si hay 0/1 slides visibles, ocultar controles
+      if (visibleGroups.length <= 1) {
+        (prevBtn as HTMLElement).style.display = 'none';
+        (nextBtn as HTMLElement).style.display = 'none';
+        (dotsContainer as HTMLElement).style.display = 'none';
+        // asegurar posición
+        track.style.transform = 'translateX(0)';
+        return;
+      }
+
+      (prevBtn as HTMLElement).style.display = '';
+      (nextBtn as HTMLElement).style.display = '';
+      (dotsContainer as HTMLElement).style.display = '';
+
       // Handlers prev/next: reset listeners para evitar acumulación
       const prevClone = prevBtn.cloneNode(true);
       const nextClone = nextBtn.cloneNode(true);
@@ -341,6 +365,22 @@ for (let i = 0; i < recipeItems.length; i += 1) {
 
       const visibleSlides = allSlides.filter(s => s.style.display !== 'none');
       let currentSlide = 0;
+
+      // Si hay 0/1 slides visibles, ocultar controles
+      if (visibleSlides.length <= 1) {
+        (prevBtn as HTMLElement).style.display = 'none';
+        (nextBtn as HTMLElement).style.display = 'none';
+        (dotsContainer as HTMLElement).style.display = 'none';
+        // asegurarse de que el único slide visible se muestre
+        visibleSlides.forEach((slide, index) => {
+          slide.style.display = index === 0 ? 'block' : 'none';
+        });
+        return;
+      }
+
+      (prevBtn as HTMLElement).style.display = '';
+      (nextBtn as HTMLElement).style.display = '';
+      (dotsContainer as HTMLElement).style.display = '';
 
       // Resetear listeners para evitar acumulación
       const prevClone = prevBtn.cloneNode(true);
