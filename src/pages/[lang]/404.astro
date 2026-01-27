@@ -1,0 +1,126 @@
+---
+import { setLocale, t, type Locale } from '../../i18n/i18n';
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+setLocale(lang);
+
+type BrandProduct = {
+  id: string;
+  slug?: string;
+  title: string;
+  image: string;
+  imageMobile?: string;
+};
+
+type Brand = {
+  id: string;
+  title?: string;
+  products?: BrandProduct[];
+};
+
+const brands = (t('brands', { namespace: 'brands', locale: lang }) as Brand[]) || [];
+
+const allProducts: Array<BrandProduct & { brandId: string }> = [];
+for (const brand of brands) {
+  if (brand?.products && Array.isArray(brand.products)) {
+    for (const p of brand.products) {
+      allProducts.push({ ...p, brandId: brand.id });
+    }
+  }
+}
+
+function seededShuffle<T>(items: T[], seedStr: string): T[] {
+  let seed = 0;
+  for (let i = 0; i < seedStr.length; i++) seed = (seed * 31 + seedStr.charCodeAt(i)) >>> 0;
+
+  const arr = [...items];
+  for (let i = arr.length - 1; i > 0; i--) {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    const j = seed % (i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+const shuffled = seededShuffle(allProducts, `${lang}:${Astro.url.pathname}`);
+const count = Math.min(Math.max(4, Math.min(6, shuffled.length)), shuffled.length);
+const suggested = shuffled.slice(0, count);
+
+const title = lang === 'es' ? 'Página no encontrada' : 'Page not found';
+const description = lang === 'es'
+  ? 'Ups… esta ruta se perdió en la bolsa de snacks. Pero aquí tienes opciones deliciosas para seguir navegando.'
+  : "Oops… this route got lost in the snack bag. Here are some tasty picks to keep browsing.";
+
+const homeHref = `/${lang}`;
+const productsHref = `/${lang}/${lang === 'es' ? 'productos' : 'products'}`;
+---
+
+<MainLayout title={title} description={description}>
+  <main class="bg-white min-h-[70vh]">
+    <section class="container mx-auto px-4 py-12 md:py-16">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-primary font-title font-bold text-6xl md:text-7xl">404</p>
+        <h1 class="text-3xl md:text-5xl font-title font-bold text-primary mt-4">{title}</h1>
+        <p class="text-gray-600 mt-4 text-base md:text-lg">{description}</p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          <a
+            href={homeHref}
+            class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-semibold hover:bg-opacity-90 transition"
+          >
+            {lang === 'es' ? 'Volver al inicio' : 'Back to home'}
+          </a>
+          <a
+            href={productsHref}
+            class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-[#00306f] text-white font-semibold hover:bg-blue-900 transition"
+          >
+            {lang === 'es' ? 'Ver productos' : 'Browse products'}
+          </a>
+        </div>
+      </div>
+
+      {suggested.length > 0 && (
+        <div class="max-w-6xl mx-auto mt-12 md:mt-16">
+          <h2 class="text-2xl md:text-3xl font-title font-bold text-primary text-center">
+            {lang === 'es' ? 'Productos recomendados' : 'Recommended products'}
+          </h2>
+          <p class="text-center text-gray-600 mt-2">
+            {lang === 'es' ? 'Mientras tanto… prueba alguno de estos favoritos.' : 'Meanwhile… try one of these favorites.'}
+          </p>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-start mt-8">
+            {suggested.map((p) => (
+              <a
+                href={`/${lang}/${lang === 'es' ? 'productos' : 'products'}/${p.slug || p.id}`}
+                class="w-full bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition overflow-hidden"
+              >
+                <div class="w-full aspect-[1/1] bg-gray-50 flex items-center justify-center p-3">
+                  <img
+                    src={p.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
+                    alt={p.title}
+                    class="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="p-3">
+                  <p class="text-sm font-title font-semibold text-primary text-center leading-tight">
+                    {p.title}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  </main>
+</MainLayout>
