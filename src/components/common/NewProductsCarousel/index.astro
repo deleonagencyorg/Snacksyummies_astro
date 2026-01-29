@@ -25,11 +25,23 @@ const {
   className = ''
 } = Astro.props;
 
-
+---
 const currentLang = Astro.url.pathname.split('/')[1] === 'es' ? 'es' : 'en';
 
 // Asegurarse de que products es un array
 const productsItems = Array.isArray(products) ? products : [];
+const productCount = productsItems.length;
+const showControls = productCount > 1;
+const safeProducts = productCount > 0
+  ? productsItems
+  : [
+      {
+        id: 'placeholder',
+        image: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+        alt: 'Snacks Yummies',
+        link: '#'
+      }
+    ];
 
 // Verificar estructura de cada producto
 productsItems.forEach((product, index) => {
@@ -45,7 +57,7 @@ import './styles.css';
 <div class={`products-carousel-3d ${className}`} data-autoplay={autoplay} data-speed={speed}>
   <div id="carousel" class="carousel-container">
     <div class="carousel-stage">
-      {productsItems.map((product, index) => (
+      {safeProducts.map((product, index) => (
         <div class="carousel-item" data-position={index}>
           <a href={product.link || '#'} class="product-link">
             <LazyImage 
@@ -60,21 +72,23 @@ import './styles.css';
       ))}
     </div>
   </div>
-  <div class="carousel-controls">
-    <div class="controls-container">
-      <button class="carousel-button prev" aria-label="Previous">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-      </button>
-      <button class="carousel-button next" aria-label="Next">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </button>
-    </div>
+  {showControls && (
+    <div class="carousel-controls">
+      <div class="controls-container">
+        <button class="carousel-button prev" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="carousel-button next" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="arrow-icon">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
 
-  </div>
+    </div>
+  )}
   <div id="base"class="w-full flex items-center justify-center">
     <div class="md:w-[60%] w-full z-0 mx-auto">
       <LazyImage src="https://snack.yummiespromociones.com/snacksyummies/basenewproducts.webp" alt="Base de productos nuevos" 
@@ -111,7 +125,7 @@ import './styles.css';
       this.nextBtn = container.querySelector('.carousel-button.next') as HTMLElement;
       this.totalItems = this.items.length;
       this.currentIndex = 0;
-      this.autoplay = options.autoplay ?? true;
+      this.autoplay = (options.autoplay ?? true) && this.totalItems > 1;
       this.speed = options.speed ?? parseInt(container.dataset.speed || '5000', 10);
       this.interval = null;
 
@@ -146,8 +160,9 @@ import './styles.css';
     }
 
     private setupEventListeners(): void {
-      this.prevBtn.addEventListener('click', () => this.prev());
-      this.nextBtn.addEventListener('click', () => this.next());
+      if (this.totalItems <= 1) return;
+      if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prev());
+      if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.next());
 
       this.dots.forEach((dot: HTMLElement, index: number) => {
         dot.addEventListener('click', () => this.goTo(index));

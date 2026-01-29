@@ -166,6 +166,25 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
       </div>
     </div>
   </section>
+
+  {promotion.winners && (
+    <section class="winners-section py-16 bg-gradient-to-r from-primary to-secondary">
+      <div class="container mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-white mb-6">
+          {currentLang === 'es' ? '¿Quieres ver los ganadores?' : 'Want to see the winners?'}
+        </h3>
+        <p class="text-white/90 mb-8">
+          {currentLang === 'es' ? 'Descubre quiénes se llevaron los increíbles premios de esta promoción' : 'Discover who took home the amazing prizes from this promotion'}
+        </p>
+        <a 
+          href={currentLang === 'es' ? `/es/ganadores/${promotionSlug}` : `/en/winners/${promotionSlug}`}
+          class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-blue-800 hover:text-white transition-colors text-lg"
+        >
+          {currentLang === 'es' ? 'Ver Ganadores' : 'View Winners'}
+        </a>
+      </div>
+    </section>
+  )}
   <!-- Winners Section 
   {promotion.winners && (
    

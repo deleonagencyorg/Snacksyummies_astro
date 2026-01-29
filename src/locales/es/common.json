@@ -84,16 +84,15 @@
     "slidermask": "https://snack.yummiespromociones.com/snacksyummies/BGHeader_1_.webp",
     "slidermaskmobile": "https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp",
     "slider": [
-      {
-        "id": "slide2",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-m.webp",
+  {
+        "id": "slide1",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_banner-1.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_banner-1.webp",
         "alt": "Ranchitas Buffalo Ranch",
         "title": "",
         "description": "",
         "link": "https://ranchitas.com"
       },
-
       {
         "id": "slide3",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos.webp",
@@ -202,16 +201,16 @@
       "newsletter":"Entérate de las noticias y promociones",
      "instagramLinks":[
         {
-          "url":"https://www.instagram.com/reel/DP2PzC_k6SA/?igsh=amxyMnBpYmhtdnJ1"
+          "url":"https://www.instagram.com/p/DQVWUkfjRLm/"
         },
         {
-          "url":"https://www.instagram.com/reel/DPM8AvyjybG/?igsh=MXhzZmxianZiMGJkdg=="
+          "url":"https://www.instagram.com/p/DRUrfAMCKPA/"
         },
         {
-          "url":"https://www.instagram.com/reel/DO9mCg2EXzs/?igsh=ZTZhcmRqc2Zzdm53"
+          "url":"https://www.instagram.com/p/DSIt3D0ATMj/"
         },
         {
-          "url":"https://www.instagram.com/reel/DOe0Ti9jnWJ/?igsh=NTU2bDlyZWowdmky"
+          "url":"https://www.instagram.com/p/DS5OSnPDhiJ/"
         }
       ]
     },

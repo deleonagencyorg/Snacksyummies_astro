@@ -48,15 +48,18 @@ const { blogPosts, currentLang, isLoading = false } = Astro.props;
       {isLoading
         ? [...Array(8)].map((_, i) => <BlogCardSkeleton key={i} />)
         : blogPosts.map((post, index) => (
-            <BlogCard 
-              image={post.image}
-              title={post.title}
-              summary={post.summary}
-              date={post.published_date}
-              slug={post.slug || post.id}
+            <div 
               class="transition-all duration-500 ease-out"
               style={`opacity: 0; transform: translateY(20px); animation: fadeInUp 0.5s ease-out forwards ${index * 0.1}s`}
-            />
+            >
+              <BlogCard 
+                image={post.image}
+                title={post.title}
+                slug={post.slug || post.id}
+                id={post.id}
+                currentLang={currentLang}
+              />
+            </div>
           ))
       }
     </div>

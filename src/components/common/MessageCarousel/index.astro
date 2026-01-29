@@ -14,12 +14,16 @@ const { currentLang } = Astro.props;
 
 // Obtener los mensajes del archivo de traducción
 const messages = t('messagetop', { namespace: 'common', locale: currentLang }) as Message[] || [];
+const messageCount = Array.isArray(messages) ? messages.length : 0;
+const showControls = messageCount > 1;
+const safeMessages = messageCount > 0 ? messages : [{ title: '' }];
+
 ---
 
 <div id="message-carousel" class="w-full bg-tertiary text-white py-8 md:py-4  relative overflow-hidden z-10">
   <div class="container mx-auto px-4">
     <div class="message-slider flex items-center justify-center min-h-[1.5rem] md:min-h-[2rem] relative">
-      {messages.map((message: Message, index: number) => (
+      {safeMessages.map((message: Message, index: number) => (
         <div class="message-slide absolute w-full text-center transition-all duration-700 transform" 
              data-index={index} 
              style={index === 0 ? "opacity: 1; transform: translateY(0)" : "opacity: 0; transform: translateY(20px)"}>
@@ -34,20 +38,24 @@ const messages = t('messagetop', { namespace: 'common', locale: currentLang }) a
       ))}
     </div>
   </div>
-  <div class="absolute top-0 bottom-0 left-4 flex items-center">
-    <button id="prev-message" class="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full transition-all duration-300" aria-label="Mensaje anterior">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
-    </button>
-  </div>
-  <div class="absolute top-0 bottom-0 right-4 flex items-center">
-    <button id="next-message" class="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full transition-all duration-300" aria-label="Siguiente mensaje">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-  </div>
+  {showControls && (
+    <div class="absolute top-0 bottom-0 left-4 flex items-center">
+      <button id="prev-message" class="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full transition-all duration-300" aria-label="Mensaje anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+    </div>
+  )}
+  {showControls && (
+    <div class="absolute top-0 bottom-0 right-4 flex items-center">
+      <button id="next-message" class="text-white p-1 hover:bg-white hover:bg-opacity-20 rounded-full transition-all duration-300" aria-label="Siguiente mensaje">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  )}
 </div>
 
 <script>
@@ -60,6 +68,12 @@ const messages = t('messagetop', { namespace: 'common', locale: currentLang }) a
     // Define button references at the top level
     const prevButton: HTMLElement | null = document.getElementById('prev-message');
     const nextButton: HTMLElement | null = document.getElementById('next-message');
+
+    if (totalSlides <= 1) {
+      if (prevButton) prevButton.style.display = 'none';
+      if (nextButton) nextButton.style.display = 'none';
+      return;
+    }
 
     function showSlide(index: number) {
       slides.forEach((slide, i: number) => {
