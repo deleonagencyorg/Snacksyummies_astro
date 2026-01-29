@@ -1,4 +1,23 @@
 ---
+export async function getStaticPaths() {
+  const locales = ['es', 'en'];
+  const slugs = new Set<string>();
+
+  for (const locale of locales) {
+    try {
+      const mod = await import(`../../locales/${locale}/news.json`);
+      const items = (mod as any).items || [];
+      for (const item of items) {
+        const slug = item?.slug || item?.id;
+        if (typeof slug === 'string' && slug.trim().length > 0) slugs.add(slug);
+      }
+    } catch {
+    }
+  }
+
+  return Array.from(slugs).map((slug) => ({ params: { slug } }));
+}
+
 const { slug } = Astro.params;
 const target = `/es/blog/${slug}`;
 ---
