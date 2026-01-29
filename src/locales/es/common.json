@@ -84,15 +84,6 @@
     "slidermask": "https://snack.yummiespromociones.com/snacksyummies/BGHeader_1_.webp",
     "slidermaskmobile": "https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp",
     "slider": [
-      {
-        "id": "slide2",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-m.webp",
-        "alt": "Ranchitas Buffalo Ranch",
-        "title": "",
-        "description": "",
-        "link": "https://ranchitas.com"
-      },
 
       {
         "id": "slide3",
