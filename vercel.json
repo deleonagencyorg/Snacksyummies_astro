@@ -1,8 +1,4 @@
 {
-  "redirects": [
-    { "source": "/productosconcausa", "destination": "/", "permanent": true },
-    { "source": "/productosconcausa/:path*", "destination": "/", "permanent": true }
-  ],
   "headers": [
     {
       "source": "/assets/(.*)",
