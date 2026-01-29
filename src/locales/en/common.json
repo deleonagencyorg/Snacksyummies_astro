@@ -104,12 +104,12 @@
     "slider": [
       {
         "id": "slide2",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-m.webp",
-        "alt": "Ranchitas Buffalo Ranch",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-tajin-banner.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-tajin-banner.webp",
+        "alt": "Zambos Tajin",
         "title": "",
         "description": "",
-        "link": "https://ranchitas.com"
+        "link": "https://zambos.com"
       },
 
       {
