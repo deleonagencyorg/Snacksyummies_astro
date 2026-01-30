@@ -15,7 +15,7 @@ export interface Props {
   title?: string; // section title (e.g., La receta del mes)
   recipeTitle?: string;
   time?: string;
-  servings?: number; // align with RecipeCard where servings is number
+  people?: number | string; // align with RecipeCard where people can be number or string
   level?: string;
   image?: string;
   slug?: string;
@@ -28,7 +28,7 @@ const {
   title = undefined,
   recipeTitle = 'Título de la receta',
   time = '---',
-  servings = 0,
+  people = 0,
   level = '---',
   image = img,
   slug,

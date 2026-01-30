@@ -17,7 +17,7 @@ interface RecipeItem {
   ingredients: string[];
   instructions: string[];
   preparation_time: number;
-  servings: number;
+  people: number | string;
   image?: string;
   tags?: string[];
   product_image?: string;
@@ -152,7 +152,7 @@ const fallbackRecipe: RecipeItem = {
   ingredients: [],
   instructions: [],
   preparation_time: 0,
-  servings: 0,
+  people: 0,
   image: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'
 };
 
@@ -265,7 +265,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
           </svg>
           <span class="text-white text-xl font-sans" >
-            {safeRecipe.servings} {currentLang === 'es' ? 'Personas' : 'Servings'}
+            {safeRecipe.people} {currentLang === 'es' ? 'Personas' : 'Servings'}
           </span>
         </div>
 

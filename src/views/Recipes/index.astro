@@ -18,7 +18,7 @@ interface Recipe {
   preparation_time: number;
   type?: string;
   brand?: string;
-  servings?: number;
+  people?: number | string;
   difficulty?: string;
   slug?: string;
 }
@@ -47,7 +47,7 @@ const featuredTitle = featured?.title ?? '';
 const featuredTime = featured ? `${featured.preparation_time}MIN` : '';
 const featuredImage = featured?.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
 const featuredId = featured?.id ?? '';
-const featuredServings = (featured as any)?.servings ?? 0;
+const featuredPeople = (featured as any)?.people ?? 0;
 const featuredDifficulty = (featured as any)?.difficulty ?? '---';
 const featuredSlug = featured?.slug ?? '';
 
@@ -93,7 +93,7 @@ const featuredSlug = featured?.slug ?? '';
 
 <!-- Recipe of the Month -->
 <div class="w-full max-w-5xl px-5 mx-auto bg-white rounded-3xl ">
-  <RecipeMonth transparent={true} recipeTitle={featuredTitle} time={featuredTime} image={featuredImage} id={featuredId} slug={featuredSlug} servings={featuredServings} level={featuredDifficulty} />
+  <RecipeMonth transparent={true} recipeTitle={featuredTitle} time={featuredTime} image={featuredImage} id={featuredId} slug={featuredSlug} people={featuredPeople} level={featuredDifficulty} />
   </div>
 
     {allRecipes.length === 0 ? (
