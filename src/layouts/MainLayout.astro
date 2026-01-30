@@ -53,7 +53,7 @@ const headerColorConfig = getHeaderColors(pathname);
   </head>
   <body class={className}>
     <I18nProvider locale={currentLang}>
-      <Header colors={headerColorConfig} />
+      <Header currentLang={currentLang} />
       <MobileMenu currentLang={currentLang} headerColorConfig={headerColorConfig} />
       <slot />
       <Footer currentLang={currentLang} />
