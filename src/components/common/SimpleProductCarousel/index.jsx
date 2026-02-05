@@ -85,11 +85,16 @@ export default function SimpleProductCarousel({ products = [] }) {
           let position = index - activeIndex;
           
           // Handle wrapping for continuous carousel effect
-          if (position < -1) {
-            position += products.length;
-          } else if (position > 1) {
+          // Normalizar la posición para que esté siempre en el rango correcto
+          const halfLength = Math.floor(products.length / 2);
+          if (position > halfLength) {
             position -= products.length;
+          } else if (position < -halfLength) {
+            position += products.length;
           }
+          
+          // Solo renderizar slides visibles (-1, 0, 1)
+          const isVisible = Math.abs(position) <= 1;
           
           return (
             <div 
@@ -98,7 +103,9 @@ export default function SimpleProductCarousel({ products = [] }) {
               style={{
                 transform: `translateX(${position * 100}%) scale(${position === 0 ? 1 : 0.8})`,
                 zIndex: position === 0 ? 2 : 1,
-                opacity: Math.abs(position) > 1 ? 0 : 1
+                opacity: isVisible ? 1 : 0,
+                visibility: isVisible ? 'visible' : 'hidden',
+                pointerEvents: isVisible ? 'auto' : 'none'
               }}
             >
               <div 

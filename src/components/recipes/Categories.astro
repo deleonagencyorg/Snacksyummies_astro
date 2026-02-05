@@ -59,26 +59,26 @@ const {
       </>
     )}
 
-    <div id="cat-scroll" class="flex flex-nowrap gap-6 lg:gap-8 overflow-x-auto scrollbar-hide pb-4 px-4 lg:px-8" style="scroll-snap-type: x mandatory;">
+    <div id="cat-scroll" class="flex flex-nowrap gap-3 md:gap-4 lg:gap-5 overflow-x-auto scrollbar-hide pb-6 px-10 md:px-12 lg:px-14" style="scroll-snap-type: x mandatory;">
       <!-- All Button -->
       {queryKey === 'brand' ? (
         <button
           type="button"
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
-          style="scroll-snap-align: center; --brand-color: #4B5563;"
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          style="scroll-snap-align: start; aspect-ratio: 1/1; --brand-color: #4B5563;"
           data-slug="all"
           aria-label={allLabel}
         >
-          <span class="text-white font-bold text-xs md:text-base text-center px-2">{allLabel}</span>
+          <span class="text-white font-bold text-xs md:text-sm lg:text-base text-center">{allLabel}</span>
         </button>
       ) : (
         <a
           href={`${baseHref}?${queryKey}=all`}
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
-          style="scroll-snap-align: center; --brand-color: #4B5563;"
+          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          style="scroll-snap-align: start; aspect-ratio: 1/1; --brand-color: #4B5563;"
           data-slug="all"
         >
-          <span class="text-white font-bold text-xs md:text-base text-center px-2">{allLabel}</span>
+          <span class="text-white font-bold text-xs md:text-sm lg:text-base text-center">{allLabel}</span>
         </a>
       )}
 
@@ -86,28 +86,28 @@ const {
         queryKey === 'brand' ? (
           <button
             type="button"
-            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
-            style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
+            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            style={`scroll-snap-align: start; aspect-ratio: 1/1; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
             data-slug={it.slug}
             aria-label={it.label}
           >
             {it.logo ? (
-              <img src={it.logo} alt={it.label} class="w-[80%] h-[80%] object-contain mx-auto my-auto" loading="lazy" />
+              <img src={it.logo} alt={it.label} class="w-[65%] h-[65%] md:w-[68%] md:h-[68%] lg:w-[70%] lg:h-[70%] object-contain" loading="lazy" />
             ) : (
-              <span class="text-white font-bold text-xs md:text-base text-center px-2">{it.label}</span>
+              <span class="text-white font-bold text-xs md:text-sm lg:text-base text-center px-2">{it.label}</span>
             )}
           </button>
         ) : (
           <a
             href={`${baseHref}?${queryKey}=${it.slug}`}
-            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden p-1 md:p-2 shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
-            style={`scroll-snap-align: center; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
+            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            style={`scroll-snap-align: start; aspect-ratio: 1/1; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
             data-slug={it.slug}
           >
             {it.logo ? (
-              <img src={it.logo} alt={it.label} class="w-[80%] h-[80%] object-contain mx-auto my-auto" loading="lazy" />
+              <img src={it.logo} alt={it.label} class="w-[65%] h-[65%] md:w-[68%] md:h-[68%] lg:w-[70%] lg:h-[70%] object-contain" loading="lazy" />
             ) : (
-              <span class="text-white font-bold text-xs md:text-base text-center px-2">{it.label}</span>
+              <span class="text-white font-bold text-xs md:text-sm lg:text-base text-center px-2">{it.label}</span>
             )}
           </a>
         )
@@ -147,11 +147,12 @@ const {
 
   .brand-card{
     margin-top: 12px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50% !important;
   }
 
   /* Brand card hover effect */
   .brand-card:hover {
-    border-radius: 62.5rem;
     border: 4px solid var(--brand-color);
     box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--brand-color) 30%, transparent);
     background-color: color-mix(in srgb, var(--brand-color) 80%, black 20%) !important;
@@ -168,20 +169,12 @@ const {
   .brand-card:not(.active) {
     /* Sin cambios de opacidad - se ven normales */
   }
-
-  /* Prevent clipping at the edges of the horizontal scroller */
-  .scrollbar-hide > .brand-filter-btn:first-child {
-    margin-left: 0.5rem; /* 8px */
-  }
-  .scrollbar-hide > .brand-filter-btn:last-child {
-    margin-right: 0.5rem; /* 8px */
-  }
   .nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     color: #111827;
     width: 2.25rem;
     height: 2.25rem;
@@ -190,11 +183,25 @@ const {
     place-items: center;
     font-size: 1.25rem;
     line-height: 1;
-    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 25px -5px rgba(0,0,0,0.25);
+    transition: all 0.2s ease;
   }
-  /* Arrows visible on mobile & tablet; adjust position slightly */
-  .nav-btn.left-2 { left: .5rem; }
-  .nav-btn.right-2 { right: .5rem; }
+  .nav-btn:hover {
+    background: rgba(255,255,255,1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 12px 30px -5px rgba(0,0,0,0.35);
+  }
+  /* Posición ajustada para diferentes breakpoints */
+  .nav-btn.left-2 { left: 0.5rem; }
+  .nav-btn.right-2 { right: 0.5rem; }
+  @media (min-width: 768px) {
+    .nav-btn {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    .nav-btn.left-2 { left: 0.75rem; }
+    .nav-btn.right-2 { right: 0.75rem; }
+  }
   @media (min-width: 1024px) {
     .nav-btn.left-2 { left: 1rem; }
     .nav-btn.right-2 { right: 1rem; }
