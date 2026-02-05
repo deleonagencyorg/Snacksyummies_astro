@@ -35,14 +35,6 @@ try {
   progress = quizData.progress;
   personalities = quizData.personalities;
   resultsText = quizData.results;
-  
-  console.log('Quiz loaded successfully:', {
-    questionsCount: questions.length,
-    hasNavigation: !!navigation,
-    hasProgress: !!progress,
-    personalities: personalities,
-    resultsText: resultsText
-  });
 } catch (error) {
   console.error('Error loading quiz data:', error);
   questions = [];
@@ -466,8 +458,6 @@ const breadcrumbItems = [
         quizSection.classList.remove('bg-cover', 'bg-center', 'bg-no-repeat');
         quizSection.classList.add('bg-quinary');
       }
-
-      console.log('Mostrando resultados:', { personalities, resultsText });
       
       // Verificar que tenemos personalidades disponibles
       if (!personalities || personalities.length === 0) {
@@ -478,8 +468,6 @@ const breadcrumbItems = [
       // Seleccionar una personalidad aleatoria
       const randomIndex = Math.floor(Math.random() * personalities.length);
       const personality = personalities[randomIndex];
-      
-      console.log('Personalidad seleccionada:', personality);
       
       // Actualizar elementos de la UI con la personalidad seleccionada
       const resultsTitle = document.getElementById('results-title');
