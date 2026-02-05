@@ -35,14 +35,6 @@ try {
   progress = quizData.progress;
   personalities = quizData.personalities;
   resultsText = quizData.results;
-  
-  console.log('Quiz loaded successfully:', {
-    questionsCount: questions.length,
-    hasNavigation: !!navigation,
-    hasProgress: !!progress,
-    personalities: personalities,
-    resultsText: resultsText
-  });
 } catch (error) {
   console.error('Error loading quiz data:', error);
   questions = [];
@@ -106,9 +98,9 @@ const breadcrumbItems = [
                         value={option.id}
                         class="hidden option-input"
                       />
-                      <div class="p-4 bg-white border-4 border-gray-200 rounded-xl transition-all duration-300 hover:border-quinary hover:bg-gray-200 group-hover:shadow-md">
-                        <div class="flex items-center space-x-3">
-                          <div class="w-6 h-6 border-2 border-gray-300 rounded-md flex items-center justify-center transition-all duration-300 checkbox-indicator">
+                      <div class="p-4 bg-white border-4 border-gray-200 rounded-xl transition-all duration-300 hover:border-quinary hover:bg-gray-200 group-hover:shadow-md min-h-[60px] flex items-center">
+                        <div class="flex items-center space-x-3 w-full">
+                          <div class="w-6 h-6 border-2 border-gray-300 rounded-md flex items-center justify-center transition-all duration-300 checkbox-indicator flex-shrink-0">
                             <svg class="w-4 h-4 text-white hidden checkmark" fill="currentColor" viewBox="0 0 20 20">
                               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                             </svg>
@@ -466,8 +458,6 @@ const breadcrumbItems = [
         quizSection.classList.remove('bg-cover', 'bg-center', 'bg-no-repeat');
         quizSection.classList.add('bg-quinary');
       }
-
-      console.log('Mostrando resultados:', { personalities, resultsText });
       
       // Verificar que tenemos personalidades disponibles
       if (!personalities || personalities.length === 0) {
@@ -478,8 +468,6 @@ const breadcrumbItems = [
       // Seleccionar una personalidad aleatoria
       const randomIndex = Math.floor(Math.random() * personalities.length);
       const personality = personalities[randomIndex];
-      
-      console.log('Personalidad seleccionada:', personality);
       
       // Actualizar elementos de la UI con la personalidad seleccionada
       const resultsTitle = document.getElementById('results-title');
