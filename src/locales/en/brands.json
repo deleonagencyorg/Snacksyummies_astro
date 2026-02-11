@@ -138,6 +138,18 @@
                     "title": "Zambos Yuquitas Originales",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-originales-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-originales-2.webp"
+                },{
+                    "id": "zambos-pack-classic",
+                    "slug": "zambos-pack-classic",
+                    "title": "Zambos Pack Classic",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack_Classic.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack_Classic.webp"
+                },{
+                    "id": "zambos-pack-chile-limon",
+                    "slug": "zambos-pack-chile-limon",
+                    "title": "Zambos Pack Chile Limon",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack%20_Chile_limon.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack%20_Chile_limon.webp"
                 }
             ]
         },

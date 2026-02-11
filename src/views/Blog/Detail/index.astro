@@ -108,6 +108,7 @@ const readMoreTitle = currentLang === 'es' ? 'Otras Noticias' : 'Other News';
                     title={post.title}
                     id={post.id}
                     slug={post.slug || post.id}
+                    currentLang={currentLang}
                   />
                 ))}
               </div>
