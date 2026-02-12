@@ -50,6 +50,13 @@
                     "title": "Taqueritos Chili Pack",
                     "image": "https://snack.yummiespromociones.com/taqueritos/taqueritos-chili-pack.webp?w=1280&q=80",
                     "imageMobile": "https://snack.yummiespromociones.com/taqueritos/taqueritos-chili-pack.webp?w=1280&q=80"
+                },
+                {    
+                    "id": "taqueritos-buffalo-ranch",
+                    "slug": "taqueritos-buffalo-ranch",
+                    "title": "Taqueritos Buffalo Ranch",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp"
                 }
             ]
         },
@@ -476,6 +483,13 @@
                     "title": "Yummipops Palomitas de Maíz Queso",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-queso-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-queso-2.webp"
+                },
+                {
+                    "id": "yummipops-palomitas-de-maiz-chile-toreado",
+                    "slug": "yummipops-palomitas-de-maiz-chile-toreado",
+                    "title": "Yummipops Palomitas de Maíz Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp"
                 }
             ]
         },
