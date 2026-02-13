@@ -636,14 +636,39 @@ const slides = Array.isArray(commonAssets)
 
     /*
      * Mobile: ocupa el 100% del ancho de la celda del grid.
-     * Chrome visible: header (~56px) + "Ver más en Instagram" (~36px) = 92px
-     * Aspect ratio 9/17 ≈ height = ancho × 1.889, lo cual cubre
-     * el video 9:16 (1.778) + 92px de chrome, cortando limpio
-     * justo después de "Ver más en Instagram".
+     * Ajustado para mostrar el contenido completo sin cortar
+     * incluyendo header, video/imagen, "Ver más en Instagram" y action bar (likes, comments)
+     * Aspect ratio ajustado para dispositivos móviles
      */
     .insta-wrap--mobile {
       width: 100%;
-      aspect-ratio: 9 / 19;
+      height: auto;
+      min-height: 450px;
+      max-height: 600px;
+    }
+
+    /* Para pantallas muy pequeñas (< 380px) */
+    @media (max-width: 380px) {
+      .insta-wrap--mobile {
+        min-height: 420px;
+        max-height: 550px;
+      }
+    }
+
+    /* Para pantallas pequeñas a medianas (380px - 480px) */
+    @media (min-width: 380px) and (max-width: 480px) {
+      .insta-wrap--mobile {
+        min-height: 460px;
+        max-height: 580px;
+      }
+    }
+
+    /* Para pantallas más grandes en móvil (> 480px) */
+    @media (min-width: 480px) and (max-width: 767px) {
+      .insta-wrap--mobile {
+        min-height: 500px;
+        max-height: 620px;
+      }
     }
   </style>
   
