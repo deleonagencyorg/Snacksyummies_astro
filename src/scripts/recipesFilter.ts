@@ -5,7 +5,6 @@
 let cleanupFunctions: (() => void)[] = [];
 
 export function initRecipesFilter() {
-  console.log('[RECIPES] 🚀 Inicializando filtro de recetas');
   
   // Limpiar listeners anteriores si existen
   cleanupFunctions.forEach(cleanup => cleanup());

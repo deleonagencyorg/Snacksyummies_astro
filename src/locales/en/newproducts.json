@@ -13,12 +13,26 @@
   ],
 "products": [
     {
+                    "id": "yummipops-palomitas-de-maiz-chile-toreado",
+                    "slug": "yummipops-palomitas-de-maiz-chile-toreado",
+                    "title": "Yummipops Palomitas de Maíz Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp"
+                },
+     {    
+                    "id": "taqueritos-buffalo-ranch",
+                    "slug": "taqueritos-buffalo-ranch",
+                    "title": "Taqueritos Buffalo Ranch",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp"
+                },
+     {
                     "id": "zambos-yuquitas-con-ajo-parmesano",
                     "slug": "zambos-yuquitas-con-ajo-parmesano",
                     "title": "Zambos Yuquitas Con Ajo Parmesano",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp"
-                },
+                },                               
     {
       "id": "yummipops-dragon-hielo",
       "title": "Yummipops Dragon Hielo",

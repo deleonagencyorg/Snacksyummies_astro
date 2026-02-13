@@ -50,6 +50,13 @@
                     "title": "Taqueritos Chili Pack",
                     "image": "https://snack.yummiespromociones.com/taqueritos/taqueritos-chili-pack.webp?w=1280&q=80",
                     "imageMobile": "https://snack.yummiespromociones.com/taqueritos/taqueritos-chili-pack.webp?w=1280&q=80"
+                },
+                {    
+                    "id": "taqueritos-buffalo-ranch",
+                    "slug": "taqueritos-buffalo-ranch",
+                    "title": "Taqueritos Buffalo Ranch",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp"
                 }
             ]
         },
@@ -138,6 +145,18 @@
                     "title": "Zambos Yuquitas Originales",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-originales-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-yuquitas-originales-2.webp"
+                },{
+                    "id": "zambos-pack-classic",
+                    "slug": "zambos-pack-classic",
+                    "title": "Zambos Pack Classic",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack_Classic.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack_Classic.webp"
+                },{
+                    "id": "zambos-pack-chile-limon",
+                    "slug": "zambos-pack-chile-limon",
+                    "title": "Zambos Pack Chile Limon",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack%20_Chile_limon.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Pack%20_Chile_limon.webp"
                 }
             ]
         },
@@ -464,6 +483,13 @@
                     "title": "Yummipops Palomitas de Maíz Queso",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-queso-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-queso-2.webp"
+                },
+                {
+                    "id": "yummipops-palomitas-de-maiz-chile-toreado",
+                    "slug": "yummipops-palomitas-de-maiz-chile-toreado",
+                    "title": "Yummipops Palomitas de Maíz Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp"
                 }
             ]
         },
@@ -665,7 +691,7 @@
             "imagePreview": "https://snack.yummiespromociones.com/snacksyummies/xixi-marca.webp",
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/xixi-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/xixi-grande2.webp",
-            "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/xixi-peque.webp",
+            "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/xixi_peque.webp",
             "bgColor": "#91CAE9",
             "title": "Xixi",
             "url": "#",
