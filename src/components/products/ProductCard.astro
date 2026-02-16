@@ -75,11 +75,13 @@ const safeTitle = normalizeTitle(String(title || ''));
   <a href="#" class="w-full flex flex-col items-center">
   <!-- <a href={productLink} class="w-full flex flex-col items-center"> -->
     <div class="w-full flex justify-center">
-      <div class="overflow-hidden mb-2 hover:scale-105 transition-transform duration-300 w-full max-w-[110px] sm:max-w-[120px] md:max-w-[130px] lg:max-w-[140px] xl:max-w-[150px]">
+      <div class="product-image-container overflow-hidden mb-2 hover:scale-105 transition-transform duration-300 flex items-center justify-center flex-shrink-0">
         <LazyImage
           src={image}
           alt={safeTitle}
-          class="w-full h-auto object-contain"
+          width="200"
+          height="200"
+          class="product-image object-contain"
           transition:name={`product-image-${id}`}
         />
       </div>
@@ -90,3 +92,21 @@ const safeTitle = normalizeTitle(String(title || ''));
     </h3>
   </a>
 </div>
+
+<style>
+  .product-image-container {
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+  }
+
+  .product-image-container :global(.product-image) {
+    width: 200px !important;
+    height: 200px !important;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+  }
+</style>
