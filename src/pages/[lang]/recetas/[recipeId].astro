@@ -64,6 +64,6 @@ setLocale(lang as Locale);
 
 ---
 
-<MainLayout title={''}>
+<MainLayout title={recipe?.title || ''}>
   <RecipeDetail currentLang={lang} recipeId={recipeId} />
 </MainLayout>

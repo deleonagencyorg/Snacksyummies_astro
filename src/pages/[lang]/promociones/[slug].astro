@@ -2,7 +2,6 @@
 // src/pages/[lang]/promociones/[slug].astro
 import { setLocale, t, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
-import SEO from '../../../components/SEO.astro';
 import PromotionDetailView from '../../../views/Promotions/Detail/index.astro';
 
 export async function getStaticPaths() {
@@ -55,7 +54,6 @@ const metaImage = promotion?.image?.desktop || promotion?.image?.mobile || '';
 
 ---
 
-<MainLayout>
-  <SEO slot="head" currentLang={lang} title={metaTitle} description={metaDescription} canonicalUrl={'https://snacksyummies.com/' + lang + '/promociones/' + promotionSlug} imageUrl={metaImage} />
+<MainLayout title={metaTitle} description={metaDescription}>
   <PromotionDetailView currentLang={lang} promotionSlug={promotionSlug} />
 </MainLayout>
