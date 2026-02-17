@@ -1,5 +1,6 @@
 ---
 import NewProductsCarousel3DReact from './index.jsx';
+import { getLocale } from '../../../i18n/i18n';
 
 export interface Props {
   products: Array<{
@@ -21,6 +22,8 @@ const {
   arrows = true,
   class: className = ''
 } = Astro.props;
+
+const currentLocale = getLocale();
 ---
 
 <div class={className}>
@@ -30,6 +33,7 @@ const {
     autoplay={autoplay} 
     interval={interval} 
     arrows={arrows}
+    locale={currentLocale}
     onSlideChange={() => {}}
   />
 </div>

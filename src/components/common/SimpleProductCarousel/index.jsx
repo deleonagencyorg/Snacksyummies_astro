@@ -4,7 +4,7 @@ import './styles.css';
 /**
  * A simple 3D-like carousel for products with enhanced mobile touch support
  */
-export default function SimpleProductCarousel({ products = [] }) {
+export default function SimpleProductCarousel({ products = [], locale = 'es' }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
@@ -123,6 +123,13 @@ export default function SimpleProductCarousel({ products = [] }) {
                     alt={product.title || product.alt || 'Product'} 
                     className="product-image"
                   />
+                  {product.isNew === true && (
+                    <img 
+                      src={locale === 'es' ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp' : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NEW.webp'}
+                      alt={locale === 'es' ? 'Nuevo' : 'New'}
+                      className="product-new-badge"
+                    />
+                  )}
                 </div>
               </div>
             </div>
