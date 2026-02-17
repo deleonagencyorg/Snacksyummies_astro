@@ -1,5 +1,7 @@
 ---
 // Componente de carrusel 3D para nuevos productos
+import { getLocale } from '../../../i18n/i18n';
+
 interface Product {
   id: string;
   image: string;
@@ -15,6 +17,8 @@ export interface Props {
   speed?: number;
   className?: string;
 }
+
+const currentLocale = getLocale();
 
 const {
   products = [],
@@ -60,13 +64,22 @@ import './styles.css';
       {safeProducts.map((product, index) => (
         <div class="carousel-item" data-position={index}>
           <a href={product.link || '#'} class="product-link">
-            <LazyImage 
-              src={product.image} 
-              alt={product.alt}
-              class="product-image"
-              width={imageWidth}
-              height={imageHeight}
-            />
+            <div class="carousel-item-wrapper">
+              <LazyImage 
+                src={product.image} 
+                alt={product.alt}
+                class="product-image"
+                width={imageWidth}
+                height={imageHeight}
+              />
+              {product.isNew === true && (
+                <img 
+                  src={currentLocale === 'es' ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp' : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NEW.webp'}
+                  alt={currentLocale === 'es' ? 'Nuevo' : 'New'}
+                  class="product-new-badge"
+                />
+              )}
+            </div>
           </a>
         </div>
       ))}

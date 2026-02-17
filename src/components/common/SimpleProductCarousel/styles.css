@@ -60,6 +60,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+  position: relative;
 }
 
 .product-image {
@@ -67,6 +68,43 @@
   height: 100%;
   object-fit: contain;
   transition: transform 0.5s ease;
+}
+
+/* NEW badge positioned at top-right corner */
+.product-new-badge {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  z-index: 10;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+  animation: pulse-badge-carousel 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge-carousel {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 640px) {
+  .product-new-badge {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .product-new-badge {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 .product-card:hover .product-image {
