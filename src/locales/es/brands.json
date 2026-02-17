@@ -57,7 +57,8 @@
                     "slug": "taqueritos-buffalo-ranch",
                     "title": "Taqueritos Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "isNew": true
                 }
             ]
         },
@@ -90,7 +91,8 @@
                     "slug": "zambos-yuquitas-con-ajo-parmesano",
                     "title": "Zambos Yuquitas Con Ajo Parmesano",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "isNew": true
                 },
                 {
                     "id": "zambos-ceviche",
@@ -178,7 +180,8 @@
                     "slug": "zibas-chile-toreado",
                     "title": "Zibas Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
+                    "isNew": true
                 },
                 {
                     "id": "zibas-crema-y-especias",
@@ -240,7 +243,8 @@
                     "slug": "delrancho-salsa-verde",
                     "title": "Del Rancho Salsa Verde",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
+                    "isNew": true
                 }
             ]
         },
@@ -308,7 +312,8 @@
                     "slug": "ranchitas-buffalo-ranch",
                     "title": "Ranchitas Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
+                    "isNew": true
                 },                {
                     "id": "ranchitas-chile-toreado",
                     "slug": "ranchitas-chile-toreado",
@@ -443,7 +448,8 @@
                     "slug": "yummipops-dragon-hielo",
                     "title": "Yummipops Dragon Hielo",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
+                    "isNew": true
                 },
                 {
                     "id": "yummipops-nacho-jalapeno-cream",
@@ -478,7 +484,8 @@
                     "slug": "yummipops-palomitas-de-maiz-chile-toreado",
                     "title": "Yummipops Palomitas de Maíz Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
+                    "isNew": true
                 }
             ]
         },
@@ -511,7 +518,8 @@
                     "slug": "yummi-nuts-sabor-a-chile-toreado",
                     "title": "Yummi Nuts Sabor A Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp"
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+                    "isNew": true
                 },
                 {
                     "id": "yummi-nuts-mani-con-limon",

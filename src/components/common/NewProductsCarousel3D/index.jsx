@@ -16,7 +16,8 @@ export default function NewProductsCarousel3D({
   autoplay = true, 
   interval = 3000, 
   arrows = true,
-  onSlideChange = () => {}
+  onSlideChange = () => {},
+  locale = 'es'
 }) {
   if (!products || products.length === 0) {
     return <div className="no-products">No products available</div>;
@@ -32,6 +33,13 @@ export default function NewProductsCarousel3D({
             alt={product.title || 'Product'} 
             className="product-image"
           />
+          {product.isNew === true && (
+            <img 
+              src={locale === 'es' ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp' : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NEW.webp'}
+              alt={locale === 'es' ? 'Nuevo' : 'New'}
+              className="product-new-badge"
+            />
+          )}
         </div>
      
       </div>

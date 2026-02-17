@@ -230,14 +230,24 @@ const categoryItems = (brandsData || []).map((b: any) => ({
                     {brand.products && brand.products.length > 0 ? (
                       brand.products.map((product: any, productIndex: number) => (
                         <div class="product-slide" id={`${brand.id}-product-${productIndex}`} data-valid="true">
-                          <LazyImage 
-                          id={`product-${brand.id}-${productIndex}`}
-                            src={product.image} 
-                            alt={product.title} 
-                            class="product-preview-image"
-                            onload="this.parentNode.dataset.loaded = 'true'"
-                            onerror="this.parentNode.dataset.valid = 'false'; this.parentNode.style.display = 'none';"
-                          />
+                          <div class="product-image-wrapper">
+                            <LazyImage 
+                            id={`product-${brand.id}-${productIndex}`}
+                              src={product.image} 
+                              alt={product.title} 
+                              class="product-preview-image"
+                              onload="this.parentNode.parentNode.dataset.loaded = 'true'"
+                              onerror="this.parentNode.parentNode.dataset.valid = 'false'; this.parentNode.parentNode.style.display = 'none';"
+                            />
+                            {product.isNew === true && (
+                              <img 
+                                src={currentLang === 'es' ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp' : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NEW.webp'}
+                                alt={currentLang === 'es' ? 'Nuevo' : 'New'}
+                                class="product-new-badge"
+                                loading="eager"
+                              />
+                            )}
+                          </div>
                         </div>
                       ))
                     ) : (

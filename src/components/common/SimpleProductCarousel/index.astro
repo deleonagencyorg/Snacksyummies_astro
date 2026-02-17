@@ -1,5 +1,6 @@
 ---
 import SimpleProductCarouselReact from './index.jsx';
+import { getLocale } from '../../../i18n/i18n';
 
 export interface Props {
   products: Array<{
@@ -17,12 +18,15 @@ const {
   products, 
   class: className = ''
 } = Astro.props;
+
+const currentLocale = getLocale();
 ---
 
 <div class={className}>
   <SimpleProductCarouselReact 
     client:only="react"
-    products={products} 
+    products={products}
+    locale={currentLocale}
   />
 </div>
 
