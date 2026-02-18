@@ -34,25 +34,25 @@
                     "title": "Zambos Yuquitas Con Ajo Parmesano",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
-                    "isNew": true
+                    "isNew": false
                 },                               
     {
       "id": "yummipops-dragon-hielo",
       "title": "Yummipops Dragon Hielo",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
-      "isNew": true
+      "isNew": false
   },
     {
       "id": "zibas-chile-toreado",
       "title": "Zibas Chile Toreado",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
-      "isNew": true
+      "isNew": false
   },{
     "id": "product1",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
     "alt": "Ranchitas Buffalo Ranch",
     "link": "#",
-    "isNew": true
+    "isNew": false
   },
      {
                     "id": "delrancho-salsa-verde",
@@ -60,7 +60,7 @@
                     "title": "Del Rancho Salsa Verde",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
-                    "isNew": true
+                    "isNew": false
                 },
     
       {
@@ -68,7 +68,7 @@
                     "alt": "Yummi Nut Sabor A Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
-                    "isNew": true
+                    "isNew": false
                 }
   ]
 }
