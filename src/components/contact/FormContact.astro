@@ -188,7 +188,8 @@ const options = dynamicOptions[locale];
       </label>
       <input 
         type="number" 
-        name="phone" 
+        name="phone"
+        id="phoneInput"
         placeholder={contact.form.phone.placeholder}
         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
       />
@@ -310,24 +311,23 @@ const options = dynamicOptions[locale];
         };
         const template = templateMap[formData.contactReason] || 'otros';
 
-        if (formData.file && formData.file instanceof File && formData.file.size > 0) {
-          const fv = validateFile(formData.file);
-          if (!fv.valid) return { success: false, message: fv.error || 'Invalid file' };
+        if (Array.isArray(formData.files)) {
+          for (var i = 0; i < formData.files.length; i++) {
+            var fv = validateFile(formData.files[i]);
+            if (!fv.valid) return { success: false, message: fv.error || 'Invalid file' };
+          }
         }
 
         const multipartData = new FormData();
-        if (template === 'ganador') {
-          if (typeof formData.dynamicOrPromotion === 'string' && formData.dynamicOrPromotion.trim())
-            formData.dynamicOrPromotion = `Dinámica o promoción: ${formData.dynamicOrPromotion}`;
-          if (typeof formData.award === 'string' && formData.award.trim())
-            formData.award = `Premio adjudicado: ${formData.award}`;
-        }
         multipartData.append('template', template);
         multipartData.append('site', 'snacksyummies');
         Object.entries(formData).forEach(([key, value]) => {
           if (value !== undefined && value !== null && value !== '') {
-            if (key === 'file' && value instanceof File) multipartData.append('attachments', value);
-            else multipartData.append(key, String(value));
+            if (key === 'files' && Array.isArray(value)) {
+              value.forEach(function(f) { if (f instanceof File) multipartData.append('attachments', f); });
+            } else if (key !== 'files') {
+              multipartData.append(key, String(value));
+            }
           }
         });
 
@@ -423,11 +423,13 @@ const options = dynamicOptions[locale];
           data.phone = Number(data.phone);
         }
         
-        // Handle file upload
-        const fileInput = document.querySelector('input[type="file"]');
-        if (fileInput && fileInput.files[0]) {
-          data.file = fileInput.files[0];
-        }
+        // Handle multiple file uploads from all file inputs
+        var allFiles = [];
+        document.querySelectorAll('input[type="file"]').forEach(function(fi) {
+          Array.from(fi.files).forEach(function(f) { allFiles.push(f); });
+        });
+        if (allFiles.length > 0) data.files = allFiles;
+        delete data.file;
         
         console.log('Form data to submit:', data);
         
@@ -475,12 +477,15 @@ const options = dynamicOptions[locale];
     // Function to update dynamic fields based on contact reason
     function updateDynamicFields(contactReason) {
       // Toggle phone requirement based on contact reason
-      const phoneInput = document.querySelector('input[name="phone"]');
+      const phoneInput = document.getElementById('phoneInput');
       if (phoneInput) {
         if (contactReason === 'Soy un ganador') {
-          phoneInput.setAttribute('required', 'true');
+          phoneInput.setAttribute('required', 'required');
+          phoneInput.closest('div').querySelector('label').textContent = (phoneInput.closest('div').querySelector('label').textContent || '').replace(' *', '') + ' *';
         } else {
           phoneInput.removeAttribute('required');
+          const lbl = phoneInput.closest('div').querySelector('label');
+          if (lbl) lbl.textContent = lbl.textContent.replace(' *', '');
         }
       }
 
@@ -523,7 +528,7 @@ const options = dynamicOptions[locale];
         </div>
         <div>
           <label class="block text-gray-700 font-medium mb-2">${labels.file}</label>
-          <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          <input type="file" name="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
           <p class="text-sm text-gray-500 mt-1">${labels.fileHelp}</p>
         </div>`;
     }
@@ -539,7 +544,7 @@ const options = dynamicOptions[locale];
         </div>
         <div>
           <label class="block text-gray-700 font-medium mb-2">${labels.file}</label>
-          <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          <input type="file" name="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
           <p class="text-sm text-gray-500 mt-1">${labels.fileHelp}</p>
         </div>`;
     }
@@ -563,7 +568,7 @@ const options = dynamicOptions[locale];
         </div>
         <div>
           <label class="block text-gray-700 font-medium mb-2">${labels.file}</label>
-          <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          <input type="file" name="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
           <p class="text-sm text-gray-500 mt-1">${labels.fileHelp}</p>
         </div>`;
     }
@@ -576,7 +581,7 @@ const options = dynamicOptions[locale];
         </div>
         <div>
           <label class="block text-gray-700 font-medium mb-2">${labels.file}</label>
-          <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          <input type="file" name="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
           <p class="text-sm text-gray-500 mt-1">${labels.fileHelp}</p>
         </div>`;
     }
@@ -605,7 +610,7 @@ const options = dynamicOptions[locale];
         </div>
         <div>
           <label class="block text-gray-700 font-medium mb-2">${labels.file || 'Adjuntar archivo'}</label>
-          <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          <input type="file" name="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
           <p class="text-sm text-gray-500 mt-1">${labels.fileHelp || 'Formatos permitidos: PDF, JPG, PNG (max 10MB)'}</p>
         </div>`;
     }
@@ -630,7 +635,7 @@ const options = dynamicOptions[locale];
         </div>
         <div>
           <label class="block text-gray-700 font-medium mb-2">${labels.file}</label>
-          <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          <input type="file" name="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
           <p class="text-sm text-gray-500 mt-1">${labels.fileHelp}</p>
         </div>`;
     }
@@ -643,7 +648,7 @@ const options = dynamicOptions[locale];
         </div>
         <div>
           <label class="block text-gray-700 font-medium mb-2">${labels.file}</label>
-          <input type="file" name="file" accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          <input type="file" name="file" multiple accept=".pdf,.jpg,.jpeg,.png" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
           <p class="text-sm text-gray-500 mt-1">${labels.fileHelp}</p>
         </div>`;
     }
