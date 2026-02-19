@@ -225,6 +225,19 @@ const options = dynamicOptions[locale];
 
 <script is:inline>
 (function() {
+  // Geo cookie → country name mapping
+  var ISO_TO_COUNTRY = {
+    'HN': 'Honduras', 'GT': 'Guatemala', 'SV': 'El Salvador',
+    'NI': 'Nicaragua', 'CR': 'Costa Rica', 'DO': 'Rep\u00fablica Dominicana'
+  };
+
+  function getGeoCookie() {
+    var m1 = document.cookie.match(/(?:^|; )yummies_geo_v2=([^;]*)/);
+    if (m1) return decodeURIComponent(m1[1]);
+    var m2 = document.cookie.match(/(?:^|; )yummies_country_code=([^;]*)/);
+    return m2 ? decodeURIComponent(m2[1]) : null;
+  }
+
   // Countries data
   const countriesData = {
     'Guatemala': [
@@ -367,11 +380,39 @@ const options = dynamicOptions[locale];
       countrySelect.appendChild(option);
     });
 
+    // Auto-select country and first city from geo cookie
+    function applyGeoToForm() {
+      var geoCode = getGeoCookie();
+      if (!geoCode) return;
+      var countryName = ISO_TO_COUNTRY[geoCode.toUpperCase()];
+      if (!countryName || !countriesData[countryName]) return;
+
+      // Select country
+      countrySelect.value = countryName;
+
+      // Populate and enable city select
+      citySelect.innerHTML = '<option value="">' + departmentPlaceholder + '</option>';
+      countriesData[countryName].forEach(function(city) {
+        var opt = document.createElement('option');
+        opt.value = city;
+        opt.textContent = city;
+        citySelect.appendChild(opt);
+      });
+      citySelect.disabled = false;
+      citySelect.classList.remove('disabled:bg-gray-100', 'disabled:cursor-not-allowed');
+
+      // Pre-select first city
+      if (citySelect.options.length > 1) {
+        citySelect.selectedIndex = 1;
+      }
+    }
+
     // Handle contact reason change
     contactReasonSelect.onchange = function() {
       const selectedReason = this.value;
       console.log('Contact reason changed to:', selectedReason);
       updateDynamicFields(selectedReason);
+      if (selectedReason) applyGeoToForm();
     };
 
     // Handle country change
