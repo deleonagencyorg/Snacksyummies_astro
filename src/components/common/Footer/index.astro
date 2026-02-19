@@ -7,6 +7,8 @@ import Skeleton from './Skeleton.astro';
 import LazyImage from '../LazyImage.astro';
 import Newsletter from '../Newsletter/index.astro';
 import SocialMediaIcons from '../SocialMediaIcons/index.astro';
+import contactEs from '../../../locales/es/contact.json';
+import contactEn from '../../../locales/en/contact.json';
 
 export interface Props {
   currentLang: Locale;
@@ -27,6 +29,10 @@ const hours = t('footer.hours', { namespace: 'common', locale: currentLang });
 const newsletterTitle = t('footer.newsletter_title', { namespace: 'common', locale: currentLang });
 const newsletterPlaceholder = t('footer.newsletter_placeholder', { namespace: 'common', locale: currentLang });
 const newsletterButton = t('footer.newsletter_button', { namespace: 'common', locale: currentLang });
+
+// Datos de oficinas por país para detección geo
+const contactData = currentLang === 'en' ? contactEn : contactEs;
+const officesData = contactData.offices.locations;
 ---
 
 {loading ? (
@@ -47,7 +53,7 @@ const newsletterButton = t('footer.newsletter_button', { namespace: 'common', lo
               width={20}
               height={20}
             />
-            <span>{address}</span>
+            <span id="footer-address">{address}</span>
           </div>
           <div class="flex items-center space-x-2 justify-center md:justify-start">
             <LazyImage
@@ -58,7 +64,7 @@ const newsletterButton = t('footer.newsletter_button', { namespace: 'common', lo
               width={20}
               height={20}
             />
-            <span>{phone}</span>
+            <span id="footer-phone">{phone}</span>
           </div>
           <div class="flex items-center space-x-2 justify-center md:justify-start">
             <LazyImage
@@ -151,3 +157,119 @@ const newsletterButton = t('footer.newsletter_button', { namespace: 'common', lo
 )}
 
 <script src="./scripts.js"></script>
+
+<script define:vars={{ officesData }}>
+  const COUNTRY_CODE_TO_OFFICE_KEY = {
+    'HN': '+504',
+    'GT': '+502',
+    'SV': '+503',
+    'NI': '+505',
+    'CR': '+506',
+    'DO': '+1809'
+  };
+
+  const DEFAULT_OFFICE_KEY = '+504';
+  const GEO_COOKIE_NAME = 'yummies_geo_v2';
+  const GEO_COOKIE_DAYS = 7;
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  function getGeoCookieValue() {
+    return getCookie('yummies_geo_v2') || getCookie('yummies_country_code') || null;
+  }
+
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax';
+  }
+
+  function setLoadingState() {
+    const addressEl = document.getElementById('footer-address');
+    const phoneEl = document.getElementById('footer-phone');
+    if (addressEl) {
+      addressEl.innerHTML = '<span class="inline-block bg-white/20 rounded animate-pulse w-48 h-4">&nbsp;</span>';
+    }
+    if (phoneEl) {
+      phoneEl.innerHTML = '<span class="inline-block bg-white/20 rounded animate-pulse w-28 h-4">&nbsp;</span>';
+    }
+  }
+
+  function updateFooterContact(officeKey) {
+    const office = officesData[officeKey] || officesData[DEFAULT_OFFICE_KEY];
+    if (!office) return;
+
+    const addressEl = document.getElementById('footer-address');
+    const phoneEl = document.getElementById('footer-phone');
+
+    if (addressEl && office.address) {
+      addressEl.textContent = office.address;
+    }
+    if (phoneEl && office.phones && office.phones.length > 0) {
+      phoneEl.textContent = office.phones[0];
+    }
+  }
+
+  async function detectCountryCode() {
+    // Método 1: API del servidor (Cloudflare headers)
+    try {
+      const response = await fetch('/api/geo-headers');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.country) return data.country;
+      }
+    } catch (_) {}
+
+    // Método 2: ipapi.co
+    try {
+      const response = await fetch('https://ipapi.co/json/');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.country_code) return data.country_code;
+      }
+    } catch (_) {}
+
+    // Método 3: api.country.is
+    try {
+      const response = await fetch('https://api.country.is/');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.country) return data.country;
+      }
+    } catch (_) {}
+
+    return null;
+  }
+
+  async function initFooterGeo() {
+    // Mostrar estado de carga inmediatamente
+    setLoadingState();
+
+    // Leer cookie primero
+    const cached = getGeoCookieValue();
+    if (cached) {
+      const officeKey = COUNTRY_CODE_TO_OFFICE_KEY[cached] || DEFAULT_OFFICE_KEY;
+      updateFooterContact(officeKey);
+      return;
+    }
+
+    // Detectar país via APIs
+    const countryCode = await detectCountryCode();
+
+    // Guardar en cookie (incluso si es null guardamos 'HN' para no volver a detectar)
+    setCookie(GEO_COOKIE_NAME, countryCode || 'HN', GEO_COOKIE_DAYS);
+
+    const officeKey = countryCode ? (COUNTRY_CODE_TO_OFFICE_KEY[countryCode] || DEFAULT_OFFICE_KEY) : DEFAULT_OFFICE_KEY;
+    updateFooterContact(officeKey);
+  }
+
+  // Astro View Transitions + fallback DOMContentLoaded
+  document.addEventListener('astro:page-load', initFooterGeo);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFooterGeo);
+  } else {
+    initFooterGeo();
+  }
+</script>

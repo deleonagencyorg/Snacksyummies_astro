@@ -135,6 +135,18 @@ export default function SimpleProductCarousel({ products = [], locale = 'es' }) 
             </div>
           );
         })}
+        <img
+          src="https://snack.yummiespromociones.com/snacksyummies/basenewproducts.webp"
+          alt="Base de productos nuevos"
+          style={{
+            position: 'absolute',
+            bottom: '-2rem',
+            left: 0,
+            width: '100%',
+            pointerEvents: 'none',
+            zIndex: 0
+          }}
+        />
       </div>
       
       <div className="carousel-controls">

@@ -211,145 +211,123 @@ const metaDescription = contact.description;
       </div>
     </div>
 
-    <script define:vars={{ contactLocations: contact.offices.locations }}>
-      // Función que se ejecutará cuando el DOM esté listo o cuando se llame manualmente
+    <!-- Datos de oficinas embebidos como JSON para evitar deduplicación de módulos -->
+    <script id="contact-locations-data" type="application/json" set:html={JSON.stringify(contact.offices.locations)}></script>
+
+    <script is:inline>
+    (function() {
+      // ISO country code → office key mapping
+      var ISO_TO_OFFICE_KEY = {
+        'HN': '+504', 'GT': '+502', 'SV': '+503',
+        'NI': '+505', 'CR': '+506', 'DO': '+1-809'
+      };
+
+      function getGeoCookie() {
+        var m1 = document.cookie.match(/(?:^|; )yummies_geo_v2=([^;]*)/);
+        if (m1) return decodeURIComponent(m1[1]);
+        var m2 = document.cookie.match(/(?:^|; )yummies_country_code=([^;]*)/);
+        return m2 ? decodeURIComponent(m2[1]) : null;
+      }
+
       function initializeCountryTabs() {
-        // Get references to all elements that need to be updated
-        const tabs = document.querySelectorAll('.country-tab');
-        const officeName = document.getElementById('officeName');
-        const officeAddress = document.getElementById('officeAddress');
-        const officePhones = document.getElementById('officePhones');
-        const officeEmail = document.getElementById('officeEmail');
-        const officeImage = document.getElementById('officeImage');
-        
-        // Get all map containers
-        const mapContainers = document.querySelectorAll('[data-map-country]');
-        
-        // Contact data is directly available from Astro's define:vars
-        const contactData = contactLocations;
-        
-        // For debugging
-        console.log('Contact locations:', contactData);
-        console.log('Tabs found:', tabs.length);
-        console.log('Map containers found:', mapContainers.length);
-        
-        // Function to update office information
+        var configEl = document.getElementById('contact-locations-data');
+        if (!configEl) return;
+        var contactData;
+        try { contactData = JSON.parse(configEl.textContent || '{}'); } catch(_) { return; }
+
+        var tabs = document.querySelectorAll('.country-tab');
+        var officeName = document.getElementById('officeName');
+        var officeAddress = document.getElementById('officeAddress');
+        var officePhones = document.getElementById('officePhones');
+        var officeEmail = document.getElementById('officeEmail');
+        var officeImage = document.getElementById('officeImage');
+        var mapContainers = document.querySelectorAll('[data-map-country]');
+
+        if (!tabs.length) return;
+
         function updateOfficeInfo(countryCode) {
-          console.log('Updating office for:', countryCode);
-          const office = contactData[countryCode];
-          
-          if (!office) {
-            console.error('No office data found for', countryCode);
-            return;
-          }
-          
-          // Update text content and attributes
+          var office = contactData[countryCode];
+          if (!office) return;
+
           if (officeName) officeName.textContent = office.name;
           if (officeAddress) officeAddress.textContent = office.address;
-          
-          // Update phone numbers
+
           if (officePhones) {
             officePhones.innerHTML = '';
-            // Primero añadir el título
-            const phoneTitle = document.createElement('div');
+            var phoneTitle = document.createElement('div');
             phoneTitle.className = 'text-primary font-title text-2xl font-bold mb-4';
             phoneTitle.textContent = 'Telefonos';
             officePhones.appendChild(phoneTitle);
-            
-            // Luego añadir los teléfonos
-            office.phones.forEach(phone => {
-              const phoneContainer = document.createElement('div');
-              const phoneLink = document.createElement('a');
-              phoneLink.href = `tel:${phone}`;
-              phoneLink.textContent = phone;
-              phoneLink.className = 'text-primary hover:text-secondary transition-colors';
-              phoneContainer.appendChild(phoneLink);
-              officePhones.appendChild(phoneContainer);
+            (office.phones || []).forEach(function(phone) {
+              var div = document.createElement('div');
+              var a = document.createElement('a');
+              a.href = 'tel:' + phone;
+              a.textContent = phone;
+              a.className = 'text-primary hover:text-secondary transition-colors';
+              div.appendChild(a);
+              officePhones.appendChild(div);
             });
           }
-          
-          // Update email
+
           if (officeEmail) {
-            officeEmail.href = `mailto:${office.email}`;
+            officeEmail.href = 'mailto:' + office.email;
             officeEmail.textContent = office.email;
           }
-          
-          // Update image
+
           if (officeImage instanceof HTMLImageElement) {
             officeImage.src = office.image;
             officeImage.alt = office.name;
           }
-          
-          // Update map iframe visibility
-          console.log('Updating map visibility for country:', countryCode);
-          
-          // First hide all maps
-          mapContainers.forEach(container => {
-            container.style.display = 'none';
-          });
-          
-          // Then show the selected one
-          const selectedMap = document.querySelector(`[data-map-country="${countryCode}"]`);
-          if (selectedMap) {
-            selectedMap.style.display = 'block';
-            console.log('Showing map container:', countryCode);
-          } else {
-            console.error('No map container found for country code:', countryCode);
-          }
+
+          mapContainers.forEach(function(c) { c.style.display = 'none'; });
+          var selectedMap = document.querySelector('[data-map-country="' + countryCode + '"]');
+          if (selectedMap) selectedMap.style.display = 'block';
         }
-        
-        // Function to handle tab selection
+
         function handleTabSelection(tab) {
-          // Remove active class from all tabs
-          tabs.forEach(t => {
+          tabs.forEach(function(t) {
             t.classList.remove('bg-primary', 'text-white');
             t.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
           });
-          
-          // Add active class to clicked tab
           tab.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
           tab.classList.add('bg-primary', 'text-white');
-          
-          // Update office info based on country code
-          const countryCode = tab.getAttribute('data-country-code');
-          if (countryCode) {
-            updateOfficeInfo(countryCode);
-          }
+          var countryCode = tab.getAttribute('data-country-code');
+          if (countryCode) updateOfficeInfo(countryCode);
         }
-        
-        // Add click and touch event listeners to tabs for better mobile compatibility
-        tabs.forEach(tab => {
-          // Función para manejar ambos tipos de eventos
-          const handleEvent = (e) => {
+
+        tabs.forEach(function(tab) {
+          var handler = function(e) {
             e.preventDefault();
-            console.log('Tab interaction:', tab.getAttribute('data-country-code'));
             handleTabSelection(tab);
           };
-          
-          // Agregar múltiples listeners para mayor compatibilidad
-          tab.addEventListener('click', handleEvent);
-          tab.addEventListener('touchend', handleEvent);
+          tab.addEventListener('click', handler);
+          tab.addEventListener('touchend', handler);
         });
-        
-        // Initialize with first country
-        if (tabs.length > 0) {
-          const firstTabCountry = tabs[0].getAttribute('data-country-code');
-          if (firstTabCountry) {
-            updateOfficeInfo(firstTabCountry);
-          }
+
+        // Auto-select tab based on geo cookie
+        var geoVal = getGeoCookie();
+        var targetKey = geoVal ? (ISO_TO_OFFICE_KEY[geoVal.toUpperCase()] || null) : null;
+        var targetTab = null;
+
+        if (targetKey) {
+          tabs.forEach(function(t) {
+            if (t.getAttribute('data-country-code') === targetKey) targetTab = t;
+          });
         }
+
+        // Fallback to first tab if no match
+        if (!targetTab) targetTab = tabs[0];
+        if (targetTab) handleTabSelection(targetTab);
       }
-      
-      // Intentar inicializar inmediatamente
+
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeCountryTabs);
       } else {
         initializeCountryTabs();
       }
-
-      // Inicializar también en navegaciones de Astro
       document.addEventListener('astro:page-load', initializeCountryTabs);
       document.addEventListener('astro:after-swap', initializeCountryTabs);
+    })();
     </script>
   </div>
 </MainLayout>
