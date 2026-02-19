@@ -24,7 +24,6 @@ const {
 
 // Only render for Spanish as requested
 const shouldRender = currentLang === 'es' && Array.isArray(items) && items.length > 0;
-const smallCount = shouldRender ? items.length <= 2 : false;
 ---
 
 {shouldRender && (
@@ -34,24 +33,19 @@ const smallCount = shouldRender ? items.length <= 2 : false;
         {title}
       </h3>
 
-      <div class="relative max-w-6xl mx-auto">
-        {!smallCount && (
-        <button class="apps-nav left" type="button" aria-label="Anterior" data-dir="-1">
+      <div class="relative max-w-6xl mx-auto" id="apps-carousel-wrapper">
+        <button class="apps-nav left hidden" type="button" aria-label="Anterior" data-dir="-1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        )}
-        {!smallCount && (
-        <button class="apps-nav right" type="button" aria-label="Siguiente" data-dir="1">
+        <button class="apps-nav right hidden" type="button" aria-label="Siguiente" data-dir="1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
-        )}
 
-        <div id="apps-track" class={`apps-track ${smallCount ? 'centered' : ''}`} data-small={smallCount ? '1' : '0'}>
-          {items.map((app) => (
-            <a href={app.app_url} target="_blank" rel="noopener noreferrer" class="app-pill" aria-label={app.app_name} title={app.app_name}>
-              <img src={app.app_icon} alt={app.app_name} class="app-icon" loading="lazy" />
-            </a>
-          ))}
+        <!-- JSON data para geo-detection (set:html evita escaping de comillas) -->
+        <script id="carousel-apps-data" type="application/json" set:html={JSON.stringify(items)}></script>
+
+        <!-- Contenedor dinámico: oculto hasta que geo-detection lo rellene -->
+        <div id="apps-track" class="apps-track centered" data-small="1">
         </div>
       </div>
     </div>
@@ -104,43 +98,138 @@ const smallCount = shouldRender ? items.length <= 2 : false;
   .app-icon { width: 96px; height: 96px; object-fit: contain; border-radius: 9999px; }
 </style>
 
-<script>
-  function initAppsCarousel(){
-    const node = document.getElementById('apps-track');
-    if (!(node instanceof HTMLElement)) return;
-    const el: HTMLElement = node;
+<script is:inline>
+  (function () {
+    const COUNTRY_MAPPINGS = {
+      'HN': 'Honduras',
+      'GT': 'Guatemala',
+      'SV': 'El Salvador',
+      'NI': 'Nicaragua',
+      'CR': 'Costa Rica',
+      'DO': 'República Dominicana'
+    };
 
-    // If small set (1-2 items), no controls or autoplay
-    if (el.classList.contains('centered')) {
-      return;
+    const GEO_COOKIE_NAME = 'yummies_geo_v2';
+    const GEO_COOKIE_DAYS = 7;
+
+    function getCookie(name) {
+      const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
     }
 
-    // Arrow buttons
-    document.querySelectorAll('.apps-nav').forEach((btn)=>{
-      btn.addEventListener('click', ()=>{
-        const dir = Number((btn as HTMLElement).getAttribute('data-dir') || '1');
-        el.scrollBy({ left: dir * 240, behavior: 'smooth' });
+    function getGeoCookieValue() {
+      return getCookie('yummies_geo_v2') || getCookie('yummies_country_code') || null;
+    }
+
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax';
+    }
+
+    async function resolveCountryCode() {
+      const cached = getGeoCookieValue();
+      if (cached) return cached;
+
+      try {
+        const r = await fetch('/api/geo-headers');
+        if (r.ok) { const d = await r.json(); if (d.country) { setCookie(GEO_COOKIE_NAME, d.country, GEO_COOKIE_DAYS); return d.country; } }
+      } catch (_) {}
+
+      try {
+        const r = await fetch('https://ipapi.co/json/');
+        if (r.ok) { const d = await r.json(); if (d.country_code) { setCookie(GEO_COOKIE_NAME, d.country_code, GEO_COOKIE_DAYS); return d.country_code; } }
+      } catch (_) {}
+
+      try {
+        const r = await fetch('https://api.country.is/');
+        if (r.ok) { const d = await r.json(); if (d.country) { setCookie(GEO_COOKIE_NAME, d.country, GEO_COOKIE_DAYS); return d.country; } }
+      } catch (_) {}
+
+      setCookie(GEO_COOKIE_NAME, 'HN', GEO_COOKIE_DAYS);
+      return 'HN';
+    }
+
+    function renderCarousel(countryCode) {
+      const track = document.getElementById('apps-track');
+      const dataEl = document.getElementById('carousel-apps-data');
+      if (!track || !dataEl) return;
+
+      let allApps = [];
+      try { allApps = JSON.parse(dataEl.textContent || '[]'); } catch (_) {}
+      if (!allApps.length) return;
+
+      const mapped = COUNTRY_MAPPINGS[countryCode];
+      const matchedApp = mapped
+        ? allApps.find(app => app.country && app.country.toLowerCase() === mapped.toLowerCase())
+        : null;
+
+      const appsToShow = matchedApp ? [matchedApp] : allApps;
+      const isSmall = appsToShow.length <= 2;
+
+      track.innerHTML = '';
+      appsToShow.forEach(app => {
+        const a = document.createElement('a');
+        a.href = app.app_url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'app-pill';
+        a.setAttribute('aria-label', app.app_name);
+        a.title = app.app_name;
+        a.innerHTML = `<img src="${app.app_icon}" alt="${app.app_name}" class="app-icon" loading="lazy" />`;
+        track.appendChild(a);
       });
-    });
 
-    // Simple autoplay for subtle motion
-    let autoplay: number | null = null;
-    function start(){
-      if (autoplay) return;
-      autoplay = window.setInterval(()=>{
-        el.scrollBy({ left: 160, behavior: 'smooth' });
-      }, 3000);
+      // Centrar si hay 1-2 apps, carrusel si hay más
+      if (isSmall) {
+        track.className = 'apps-track centered';
+        track.setAttribute('data-small', '1');
+        document.querySelectorAll('.apps-nav').forEach(btn => btn.classList.add('hidden'));
+      } else {
+        track.className = 'apps-track';
+        track.setAttribute('data-small', '0');
+        document.querySelectorAll('.apps-nav').forEach(btn => btn.classList.remove('hidden'));
+        initCarouselControls(track);
+      }
     }
-    function stop(){ if (autoplay){ window.clearInterval(autoplay); autoplay = null; } }
 
-    // Pause on hover (desktop only)
-    el.addEventListener('mouseenter', stop);
-    el.addEventListener('mouseleave', start);
+    function initCarouselControls(track) {
+      document.querySelectorAll('.apps-nav').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const dir = Number(btn.getAttribute('data-dir') || '1');
+          track.scrollBy({ left: dir * 240, behavior: 'smooth' });
+        });
+      });
 
-    start();
-  }
+      let autoplay = null;
+      function start() {
+        if (autoplay) return;
+        autoplay = window.setInterval(() => { track.scrollBy({ left: 160, behavior: 'smooth' }); }, 3000);
+      }
+      function stop() { if (autoplay) { window.clearInterval(autoplay); autoplay = null; } }
+      track.addEventListener('mouseenter', stop);
+      track.addEventListener('mouseleave', start);
+      start();
+    }
 
-  document.addEventListener('DOMContentLoaded', initAppsCarousel);
-  document.addEventListener('astro:page-load', initAppsCarousel);
-  document.addEventListener('astro:after-swap', initAppsCarousel);
+    async function initCarousel() {
+      if (!document.getElementById('apps-track')) return;
+      const cached = getGeoCookieValue();
+      if (cached) {
+        renderCarousel(cached);
+      } else {
+        const code = await resolveCountryCode();
+        renderCarousel(code);
+      }
+    }
+
+    // Ejecutar inmediatamente (is:inline, elementos ya en DOM)
+    initCarousel();
+
+    // View Transitions: registrar solo una vez
+    if (!window.__carouselPageLoadRegistered) {
+      window.__carouselPageLoadRegistered = true;
+      document.addEventListener('astro:page-load', initCarousel);
+      document.addEventListener('astro:after-swap', initCarousel);
+    }
+  })();
 </script>
