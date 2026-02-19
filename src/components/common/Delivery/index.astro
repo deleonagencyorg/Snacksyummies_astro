@@ -44,7 +44,8 @@ const { deliveryTitle, deliverySubTitle, deliveryApps } = Astro.props;
 
     <!-- Contenedor para las apps de delivery -->
     <div id="delivery-app-container" class="flex justify-center items-center">
-      <div id="delivery-loading" class="text-center p-8 max-w-sm animate-pulse">
+      <script id="delivery-apps-data" type="application/json" set:html={JSON.stringify(deliveryApps)}></script>
+      <div id="delivery-loading" class="hidden text-center p-8 max-w-sm animate-pulse">
         <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
         <div class="h-4 bg-gray-300 rounded w-3/4 mx-auto mb-2"></div>
         <div class="h-8 bg-gray-300 rounded w-full"></div>
@@ -63,193 +64,138 @@ const { deliveryTitle, deliverySubTitle, deliveryApps } = Astro.props;
   </div>
 </section>
 
-<script define:vars={{ deliveryApps }}>
-  // Funciones de detección de país integradas
+<script is:inline>
   const COUNTRY_MAPPINGS = {
     'HN': 'Honduras',
-    'GT': 'Guatemala', 
+    'GT': 'Guatemala',
     'SV': 'El Salvador',
     'NI': 'Nicaragua',
     'CR': 'Costa Rica',
     'DO': 'República Dominicana'
   };
 
-  // Función principal de detección de país
-  async function detectUserCountry() {
-    try {
-      // Intentar con API de headers del servidor
-      try {
-        const response = await fetch('/api/geo-headers');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.country) {
-            return {
-              country: COUNTRY_MAPPINGS[data.country] || data.country,
-              countryCode: data.country,
-              source: 'server',
-              success: true
-            };
-          }
-        }
-      } catch (error) {
-        // Silent fail
-      }
-      
-      // Fallback a ipapi.co
-      try {
-        const response = await fetch('https://ipapi.co/json/');
-        if (response.ok) {
-          const data = await response.json();
-          return {
-            country: data.country_name,
-            countryCode: data.country_code,
-            source: 'ipapi',
-            success: true
-          };
-        }
-      } catch (error) {
-        // Silent fail
-      }
-      
-      // Fallback a api.country.is
-      try {
-        const response = await fetch('https://api.country.is/');
-        if (response.ok) {
-          const data = await response.json();
-          return {
-            country: COUNTRY_MAPPINGS[data.country] || data.country,
-            countryCode: data.country,
-            source: 'country-is',
-            success: true
-          };
-        }
-      } catch (error) {
-        // Silent fail
-      }
-      
-      return {
-        country: null,
-        countryCode: null,
-        source: 'fallback',
-        success: false
-      };
-      
-    } catch (error) {
-      console.error('💥 Error general en detección:', error);
-      return {
-        country: null,
-        countryCode: null,
-        source: 'error',
-        success: false
-      };
-    }
+  const GEO_COOKIE_NAME = 'yummies_geo_v2';
+  const GEO_COOKIE_DAYS = 7;
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
   }
 
-  // Función para mostrar apps de delivery según el país detectado
-  function showDeliveryApps(geoResult) {
-    const loadingElement = document.getElementById('delivery-loading');
-    const contentElement = document.getElementById('delivery-content');
-    
-    // Verificar que los elementos existen
-    if (!loadingElement || !contentElement) {
-      console.error('Elementos del DOM no encontrados');
+  function getGeoCookieValue() {
+    return getCookie('yummies_geo_v2') || getCookie('yummies_country_code') || null;
+  }
+
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax';
+  }
+
+  async function resolveCountryCode() {
+    // 1. Cookie (soporta nombre nuevo y legacy)
+    const cached = getGeoCookieValue();
+    if (cached) return cached;
+
+    // 2. API del servidor
+    try {
+      const r = await fetch('/api/geo-headers');
+      if (r.ok) { const d = await r.json(); if (d.country) { setCookie(GEO_COOKIE_NAME, d.country, GEO_COOKIE_DAYS); return d.country; } }
+    } catch (_) {}
+
+    // 3. ipapi.co
+    try {
+      const r = await fetch('https://ipapi.co/json/');
+      if (r.ok) { const d = await r.json(); if (d.country_code) { setCookie(GEO_COOKIE_NAME, d.country_code, GEO_COOKIE_DAYS); return d.country_code; } }
+    } catch (_) {}
+
+    // 4. api.country.is
+    try {
+      const r = await fetch('https://api.country.is/');
+      if (r.ok) { const d = await r.json(); if (d.country) { setCookie(GEO_COOKIE_NAME, d.country, GEO_COOKIE_DAYS); return d.country; } }
+    } catch (_) {}
+
+    // Fallback Honduras
+    setCookie(GEO_COOKIE_NAME, 'HN', GEO_COOKIE_DAYS);
+    return 'HN';
+  }
+
+  function renderApps(countryCode) {
+    const loadingEl = document.getElementById('delivery-loading');
+    const contentEl = document.getElementById('delivery-content');
+    const container = document.getElementById('delivery-app-container');
+    if (!contentEl || !container) return;
+
+    // Leer apps desde el script JSON embebido en el DOM (siempre fresco)
+    let deliveryApps = [];
+    try {
+      const dataEl = document.getElementById('delivery-apps-data');
+      deliveryApps = dataEl ? JSON.parse(dataEl.textContent || '[]') : [];
+    } catch (_) {}
+
+    // Si no hay apps configuradas, no mostrar nada
+    if (!deliveryApps || deliveryApps.length === 0) {
+      if (loadingEl) loadingEl.classList.add('hidden');
       return;
     }
 
-    // Limpiar contenido anterior
-    contentElement.innerHTML = '';
+    // Buscar app del país detectado
+    const mapped = COUNTRY_MAPPINGS[countryCode];
+    const matchedApp = mapped
+      ? deliveryApps.find(app => app.country.toLowerCase() === mapped.toLowerCase())
+      : null;
 
-    const detectedCountry = geoResult?.country;
-    const countryCode = geoResult?.countryCode;
+    const appsToShow = matchedApp ? [matchedApp] : deliveryApps;
+    const showIndicator = !matchedApp;
 
-    // Buscar app por nombre de país o código de país
-    const userCountryApp = deliveryApps.find(app => {
-      if (!detectedCountry && !countryCode) return false;
-      
-      // Comparar por nombre completo
-      if (detectedCountry && app.country.toLowerCase() === detectedCountry.toLowerCase()) {
-        return true;
-      }
-      
-      // Comparar por código de país (para casos como HN -> Honduras)
-      if (countryCode) {
-        const countryMappings = {
-          'HN': 'Honduras',
-          'GT': 'Guatemala',
-          'SV': 'El Salvador',
-          'NI': 'Nicaragua',
-          'CR': 'Costa Rica',
-          'DO': 'República Dominicana'
-        };
-        
-        const mappedCountry = countryMappings[countryCode];
-        if (mappedCountry && app.country.toLowerCase() === mappedCountry.toLowerCase()) {
-          return true;
-        }
-      }
-      
-      return false;
-    });
+    contentEl.innerHTML = '';
 
-    let appsToShow = [];
-    let showCountryIndicator = true;
-
-    if (userCountryApp) {
-      // Si hay app para el país del usuario, solo mostrar esa
-      appsToShow = [userCountryApp];
-      showCountryIndicator = false;
-    } else {
-      // Si no hay app para el país o no se detectó país, mostrar todas
-      appsToShow = deliveryApps;
-      showCountryIndicator = true;
-    }
-
-    // Crear una tarjeta para cada app a mostrar
     appsToShow.forEach(app => {
-      const appCard = document.createElement('div');
-      appCard.className = `text-center transition-all duration-300 hover:scale-105`;
-
-      appCard.innerHTML = `
+      const card = document.createElement('div');
+      card.className = 'text-center transition-all duration-300 hover:scale-105';
+      card.innerHTML = `
         <div class="relative">
           <a href="${app.app_url}" target="_blank" rel="noopener noreferrer" class="block">
             <div class="w-32 h-32 md:w-40 md:h-40 bg-white mx-auto mb-4 rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center overflow-hidden">
-              <img src="${app.app_icon}" alt="Logo de ${app.app_name}" class="max-w-[70%] max-h-[70%] object-contain" loading="lazy" />
+              <img src="${app.app_icon}" alt="${app.app_name}" class="max-w-[70%] max-h-[70%] object-contain" loading="lazy" />
             </div>
+            <p class="text-white font-bold text-lg">${app.app_name}</p>
           </a>
-          ${showCountryIndicator ? `<p class="text-sm text-gray-200 mb-4">Disponible en <span class="font-semibold text-yellow-300">${app.country}</span></p>` : ''}
-        </div>
-      `;
-
-      contentElement.appendChild(appCard);
+          ${showIndicator ? `<p class="text-sm text-gray-200 mt-1">Disponible en <span class="font-semibold text-yellow-300">${app.country}</span></p>` : ''}
+        </div>`;
+      contentEl.appendChild(card);
     });
 
-    // Ajustar el grid según la cantidad de apps
-    if (appsToShow.length === 1) {
-      contentElement.className = 'flex justify-center max-w-sm mx-auto';
-    } else {
-      contentElement.className = 'grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto';
-    }
+    contentEl.className = appsToShow.length === 1
+      ? 'flex justify-center max-w-sm mx-auto'
+      : 'grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto';
 
-    // Ocultar loading y mostrar contenido
-    loadingElement.classList.add('hidden');
-    contentElement.classList.remove('hidden');
-    
-    console.log(`📱 Mostrando ${appsToShow.length} app(s) de delivery. País: ${detectedCountry || 'No detectado'} (${countryCode || 'Sin código'})`);
+    if (loadingEl) loadingEl.classList.add('hidden');
+    contentEl.classList.remove('hidden');
   }
 
-  // Inicializar detección cuando se carga el DOM
-  document.addEventListener('DOMContentLoaded', async () => {
-    console.log('🚀 DOM cargado, iniciando detección de país para delivery...');
-    
-    try {
-      const geoResult = await detectUserCountry();
-      showDeliveryApps(geoResult);
-    } catch (error) {
-      console.error('💥 Error en detección de país:', error);
-      // Mostrar todas las apps si hay error
-      showDeliveryApps({ country: null, countryCode: null, success: false });
+  async function initDelivery() {
+    const cached = getGeoCookieValue();
+
+    if (cached) {
+      // Cookie disponible: renderizar inmediatamente
+      renderApps(cached);
+    } else {
+      // Sin cookie: mostrar loading mientras detectamos
+      const loadingEl = document.getElementById('delivery-loading');
+      if (loadingEl) loadingEl.classList.remove('hidden');
+      const code = await resolveCountryCode();
+      renderApps(code);
     }
-  });
+  }
+
+  // Ejecutar inmediatamente (is:inline corre después del HTML, elementos ya existen)
+  initDelivery();
+
+  // View Transitions: registrar solo una vez
+  if (!window.__deliveryPageLoadRegistered) {
+    window.__deliveryPageLoadRegistered = true;
+    document.addEventListener('astro:page-load', initDelivery);
+  }
 </script>
 
 <style>
