@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/verano/",
+      "destination": "/verano",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
@@ -34,6 +41,12 @@
           "value": "nosniff"
         }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/verano/:path*",
+      "destination": "https://verano2026-qa.vercel.app/:path*"
     }
   ]
 }
