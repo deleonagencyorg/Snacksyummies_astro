@@ -1,6 +1,8 @@
 ---
 import SEOHead from '../components/common/SEOHead.astro';
 import GoogleTagManager from '../components/common/GoogleTagManager.astro';
+import MetaPixel from '../components/common/MetaPixel.astro';
+import TikTokPixel from '../components/common/TikTokPixel.astro';
 import Favicon from '../components/Favicon.astro';
 import { type Locale } from '../i18n/i18n';
 import Header from '../components/common/Header/index.astro';
@@ -35,6 +37,8 @@ const headerColorConfig = getHeaderColors(pathname);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <GoogleTagManager />
+    <MetaPixel />
+    <TikTokPixel />
     <Favicon />
     <SEOHead 
       title={title} 
@@ -50,6 +54,12 @@ const headerColorConfig = getHeaderColors(pathname);
     <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
     <ViewTransitions />
     <slot name="head" />
+    <script is:inline>
+      document.addEventListener('astro:page-load', () => {
+        if (window.fbq) fbq('track', 'PageView');
+        if (window.ttq) ttq.page();
+      });
+    </script>
   </head>
   <body class={className}>
     <I18nProvider locale={currentLang}>
