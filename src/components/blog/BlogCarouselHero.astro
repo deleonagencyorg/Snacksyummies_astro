@@ -19,7 +19,7 @@ interface Props {
 const { news = [], currentLang = getLocale() } = Astro.props;
 
 // Show the first 3 news items as provided (no sorting)
-const latestNews = Array.isArray(news) ? news.slice(0, 3) : [];
+const latestNews = Array.isArray(news) ? news.slice(0, 4) : [];
 
 const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
 ---
