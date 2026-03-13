@@ -94,6 +94,14 @@
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
                     "isNew": true
                 },
+                  {
+                    "id": "zambos-camote-con-sal-marina",
+                    "slug": "zambos-camote-con-sal-marina",
+                    "title": "Zambos Camote Con Sal Marina",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "isNew": true
+                },
                 {
                     "id": "zambos-ceviche",
                     "slug": "zambos-ceviche",

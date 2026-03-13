@@ -177,10 +177,11 @@ html {
 /* Etiqueta Nuevo */
 .product-new-badge {
   position: absolute !important;
-  top: -5% !important;
-  right: -5% !important;
-  width: 110px !important;
-  height: 110px !important;
+  top: 4% !important;
+  right: 16% !important;
+  width: clamp(84px, 8vw, 110px) !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1;
   max-width: 110px;
   max-height: 110px;
   object-fit: contain;
@@ -191,41 +192,42 @@ html {
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  transform: translateX(-5%) translateY(-30%) rotate(18deg);
+  transform: translate(8%, -18%) rotate(18deg);
+  transform-origin: center;
 }
 
 @keyframes pulse-badge {
   0%, 100% {
-    transform: scale(1) rotate(18deg);
+    transform: translate(8%, -18%) scale(1) rotate(18deg);
   }
   50% {
-    transform: scale(1.08) rotate(18deg);
+    transform: translate(8%, -18%) scale(1.08) rotate(18deg);
   }
 }
 
 /* Tablet styles */
 @media (max-width: 1024px) and (min-width: 768px) {
   .product-new-badge {
-    width: 90px !important;
-    height: 90px !important;
+    width: clamp(78px, 8.5vw, 92px) !important;
+    height: auto !important;
     max-width: 90px;
     max-height: 90px;
-    top: -5% !important;
-    right: 14% !important;
-    transform: translateX(-5%) translateY(-30%) rotate(18deg);
+    top: 3% !important;
+    right: 18% !important;
+    transform: translate(6%, -16%) rotate(18deg);
   }
 }
 
 /* Mobile styles */
 @media (max-width: 767px) {
   .product-new-badge {
-    width: 75px !important;
-    height: 75px !important;
+    width: clamp(64px, 18vw, 76px) !important;
+    height: auto !important;
     max-width: 75px;
     max-height: 75px;
-    top: -5% !important;
-    right: 8% !important;
-    transform: translateX(0) translateY(-30%) rotate(18deg);
+    top: 2% !important;
+    right: 15% !important;
+    transform: translate(4%, -12%) rotate(18deg);
   }
   
   .product-image-wrapper {

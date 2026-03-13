@@ -46,7 +46,7 @@
   "rewrites": [
     {
       "source": "/verano/:path*",
-      "destination": "https://verano2026-qa.vercel.app/:path*"
+      "destination": "https://verano.vercel.app/:path*"
     }
-  ]
+  ] 
 }
