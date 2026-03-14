@@ -48,5 +48,5 @@
       "source": "/verano/:path*",
       "destination": "https://verano.vercel.app/:path*"
     }
-  ]
+  ] 
 }

@@ -28,7 +28,15 @@
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
                     "isNew": true
                 },
-     {
+     {    
+                    "id": "zambos-camote-con-sal-marina",
+                    "slug": "zambos-camote-con-sal-marina",
+                    "title": "Zambos Camote Con Sal Marina",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "isNew": true
+                },
+      {          
                     "id": "zambos-yuquitas-con-ajo-parmesano",
                     "slug": "zambos-yuquitas-con-ajo-parmesano",
                     "title": "Zambos Yuquitas Con Ajo Parmesano",
