@@ -20,9 +20,11 @@ interface Brand {
   products?: Array<{
     id: string;
     slug?: string;
+    pagina?: string;
     title: string;
     image: string;
     imageMobile?: string;
+    isNew?: boolean;
   }>;
 }
 
@@ -77,6 +79,7 @@ function normalizeTitle(input: string): string {
 interface Product {
   id: string;
   slug?: string;
+  pagina?: string;
   title: string;
   image: string;
   imageMobile?: string;
@@ -91,6 +94,7 @@ for (const brand of brandsData) {
     for (const product of brand.products) {
       // Crear una copia del producto para no modificar el original
       const productCopy: Product = { ...(product as any) } as Product;
+      productCopy.pagina = productCopy.pagina || '#';
       
       // Normalizar el título
       if (productCopy.title) {
@@ -172,6 +176,7 @@ const clientLang = currentLang;
                   title={product.title}
                   id={product.id}
                   slug={product.slug}
+                  pagina={product.pagina}
                   textColor="text-primary"
                   isNew={product.isNew === true}
                 />

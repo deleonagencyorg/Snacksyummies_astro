@@ -26,7 +26,8 @@
                     "title": "Taqueritos Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
-                    "isNew": true
+                    "isNew": true,
+                    "pagina": "https://www.taqueritos.com/es/productos/taqueritos-buffalo-ranch"
                 },
      {    
                     "id": "zambos-camote-con-sal-marina",
@@ -34,7 +35,8 @@
                     "title": "Zambos Camote Con Sal Marina",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
-                    "isNew": true
+                    "isNew": true,
+                    "pagina": "https://www.zambos.com/es/productos/zambos-camote-con-sal-marina?count=6"
                 },
       {          
                     "id": "zambos-yuquitas-con-ajo-parmesano",
@@ -42,7 +44,8 @@
                     "title": "Zambos Yuquitas Con Ajo Parmesano",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
-                    "isNew": false
+                    "isNew": false,
+                    "pagina": "https://www.zambos.com/es/productos/zambos-yuquitas-con-ajo-parmesano?count=6"
                 },                               
     {
       "id": "yummipops-dragon-hielo",
@@ -54,13 +57,15 @@
       "id": "zibas-chile-toreado",
       "title": "Zibas Chile Toreado",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
-      "isNew": false
+      "isNew": false,
+      "pagina": "https://www.zibaspapas.com/es/productos/zibas-chile-toreado"
   },{
     "id": "product1",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
     "alt": "Ranchitas Buffalo Ranch",
     "link": "#",
-    "isNew": false
+    "isNew": false,
+    "pagina": "https://ranchitas.com/"
   },
      {
                     "id": "delrancho-salsa-verde",
@@ -76,7 +81,8 @@
                     "alt": "Yummi Nut Sabor A Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
-                    "isNew": false
+                    "isNew": false,
+                    "pagina": "https://www.yumminuts.com/es/productos/yummi-nut-mani-japones-con-sabor-a-chile-toreado"
                 }
   ]
 }
