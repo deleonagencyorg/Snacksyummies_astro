@@ -110,10 +110,11 @@ export default function SimpleProductCarousel({ products = [], locale = 'es' }) 
             >
               <div 
                 className="product-card"
+                style={{ cursor: (product.pagina && product.pagina !== '#') || (product.link && product.link !== '#') ? 'pointer' : 'default' }}
                 onClick={() => {
-                  // Si hay un enlace, navegar a él al hacer clic/tap en el producto
-                  if (product.link) {
-                    window.location.href = product.link;
+                  const url = product.pagina || product.link;
+                  if (url && url !== '#') {
+                    window.open(url, '_blank', 'noopener,noreferrer');
                   }
                 }}
               >
