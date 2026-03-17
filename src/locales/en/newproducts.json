@@ -26,16 +26,9 @@
                     "title": "Taqueritos Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
-                    "isNew": true
-                },
-     {
-                    "id": "zambos-yuquitas-con-ajo-parmesano",
-                    "slug": "zambos-yuquitas-con-ajo-parmesano",
-                    "title": "Zambos Yuquitas Con Ajo Parmesano",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
-                    "imageMobile":"https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
-                    "isNew": false
-                },                               
+                    "isNew": true,
+                    "pagina": "https://www.taqueritos.com/en/products/taqueritos-buffalo-ranch"
+                },                             
     {
       "id": "yummipops-dragon-hielo",
       "title": "Yummipops Dragon Hielo",
@@ -46,13 +39,15 @@
       "id": "zibas-chile-toreado",
       "title": "Zibas Chile Toreado",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
-      "isNew": false
+      "isNew": false,
+      "pagina": "https://www.zibaspapas.com/en/products/zibas-chile-toreado"
   },{
     "id": "product1",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
     "alt": "Ranchitas Buffalo Ranch",
     "link": "#",
-    "isNew": false
+    "isNew": false,
+    "pagina": "https://ranchitas.com/en/home/"
   },
      {
                     "id": "delrancho-salsa-verde",
@@ -68,7 +63,8 @@
                     "alt": "Yummi Nut Sabor A Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
-                    "isNew": false
+                    "isNew": false,
+                    "pagina": "https://www.yumminuts.com/en/products/yummi-nut-mani-japones-con-sabor-a-chile-toreado"
                 }
   ]
 }
