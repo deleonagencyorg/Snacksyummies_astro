@@ -9,6 +9,7 @@ export default function SimpleProductCarousel({ products = [], locale = 'es' }) 
   const [isAnimating, setIsAnimating] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const carouselRef = useRef(null);
   
   // Auto-rotate the carousel, but pause on touch
@@ -21,6 +22,17 @@ export default function SimpleProductCarousel({ products = [], locale = 'es' }) 
     
     return () => clearInterval(interval);
   }, [activeIndex, touchStart]);
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    updateIsMobile();
+    window.addEventListener('resize', updateIsMobile);
+
+    return () => window.removeEventListener('resize', updateIsMobile);
+  }, []);
   
   // Funciones para manejar eventos táctiles
   const handleTouchStart = (e) => {
@@ -93,15 +105,17 @@ export default function SimpleProductCarousel({ products = [], locale = 'es' }) 
             position += products.length;
           }
           
-          // Solo renderizar slides visibles (-1, 0, 1)
-          const isVisible = Math.abs(position) <= 1;
+          // En mobile solo mostrar el activo; en desktop mantener vecinos visibles
+          const isVisible = isMobile ? position === 0 : Math.abs(position) <= 1;
           
           return (
             <div 
               key={product.id || index}
               className={`carousel-slide ${position === 0 ? 'active' : ''}`}
               style={{
-                transform: `translateX(${position * 100}%) scale(${position === 0 ? 1 : 0.8})`,
+                transform: isMobile
+                  ? `translateX(0) scale(${position === 0 ? 1 : 0.8})`
+                  : `translateX(${position * 100}%) scale(${position === 0 ? 1 : 0.8})`,
                 zIndex: position === 0 ? 2 : 1,
                 opacity: isVisible ? 1 : 0,
                 visibility: isVisible ? 'visible' : 'hidden',
@@ -138,14 +152,15 @@ export default function SimpleProductCarousel({ products = [], locale = 'es' }) 
         })}
         <img
           src="https://snack.yummiespromociones.com/snacksyummies/basenewproducts.webp"
-          alt="Base de productos nuevos"
+          alt="Productos nuevos"
           style={{
             position: 'absolute',
-            bottom: '-2rem',
+            bottom: '-0.5rem',
             left: 0,
             width: '100%',
             pointerEvents: 'none',
-            zIndex: 0
+            zIndex: 0,
+         
           }}
         />
       </div>

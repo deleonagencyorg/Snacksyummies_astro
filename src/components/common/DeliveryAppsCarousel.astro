@@ -65,6 +65,7 @@ const shouldRender = currentLang === 'es' && Array.isArray(items) && items.lengt
     justify-content: center;
     overflow: visible;
     padding: 0.5rem 0;
+    gap: 1rem;
   }
   .apps-track::-webkit-scrollbar { display: none; }
   .apps-nav {
@@ -87,15 +88,26 @@ const shouldRender = currentLang === 'es' && Array.isArray(items) && items.lengt
 
   .app-pill {
     flex: 0 0 auto;
-    width: 112px; height: 112px;
-    border-radius: 9999px;
+    width: 190px;
+    height: 110px;
+    border-radius: 24px;
     display: grid; place-items: center;
     background: #ffffff;
     border: 2px solid rgba(10,61,126,0.15);
     transition: transform .25s ease, box-shadow .25s ease;
+    padding: 12px;
+    box-sizing: border-box;
   }
   .app-pill:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 24px -8px rgba(10,61,126,0.3); }
-  .app-icon { width: 96px; height: 96px; object-fit: contain; border-radius: 9999px; }
+  .app-icon {
+    width: var(--app-width, 140px);
+    height: var(--app-height, 72px);
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    transform: scale(var(--app-scale, 1));
+    transform-origin: center;
+  }
 </style>
 
 <script is:inline>
@@ -107,6 +119,20 @@ const shouldRender = currentLang === 'es' && Array.isArray(items) && items.lengt
       'NI': 'Nicaragua',
       'CR': 'Costa Rica',
       'DO': 'República Dominicana'
+    };
+
+    const APP_SCALE_MAP = {
+      'sompopo app': 1,
+      sompopo: 1,
+      latorre: 1,
+      'la torre': 1.08
+    };
+
+    const APP_SIZE_MAP = {
+      'sompopo app': { width: 120, height: 84 },
+      sompopo: { width: 120, height: 84 },
+      latorre: { width: 138, height: 78 },
+      'la torre': { width: 138, height: 78 }
     };
 
     const GEO_COOKIE_NAME = 'yummies_geo_v2';
@@ -168,6 +194,13 @@ const shouldRender = currentLang === 'es' && Array.isArray(items) && items.lengt
 
       track.innerHTML = '';
       appsToShow.forEach(app => {
+        const normalizedName = String(app.app_name || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+        const scale = APP_SCALE_MAP[normalizedName] || 1;
+        const size = APP_SIZE_MAP[normalizedName] || { width: 140, height: 72 };
         const a = document.createElement('a');
         a.href = app.app_url;
         a.target = '_blank';
@@ -175,7 +208,23 @@ const shouldRender = currentLang === 'es' && Array.isArray(items) && items.lengt
         a.className = 'app-pill';
         a.setAttribute('aria-label', app.app_name);
         a.title = app.app_name;
-        a.innerHTML = `<img src="${app.app_icon}" alt="${app.app_name}" class="app-icon" loading="lazy" />`;
+        a.style.setProperty('--app-scale', String(scale));
+        a.style.setProperty('--app-width', `${size.width}px`);
+        a.style.setProperty('--app-height', `${size.height}px`);
+        const img = document.createElement('img');
+        img.src = app.app_icon;
+        img.alt = app.app_name;
+        img.loading = 'lazy';
+        img.className = 'app-icon';
+        img.width = size.width;
+        img.height = size.height;
+        img.style.width = `${size.width}px`;
+        img.style.height = `${size.height}px`;
+        img.style.objectFit = 'contain';
+        img.style.objectPosition = 'center';
+        img.style.transform = `scale(${scale})`;
+        img.style.transformOrigin = 'center';
+        a.appendChild(img);
         track.appendChild(a);
       });
 
