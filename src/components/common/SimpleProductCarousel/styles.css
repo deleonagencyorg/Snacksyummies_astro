@@ -16,6 +16,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .carousel-slide {
@@ -159,20 +160,22 @@
 @media (max-width: 768px) {
   .simple-carousel-container {
     padding: 10px 0;
+    overflow: hidden;
   }
   
   .carousel-viewport {
-    min-height: 300px;
+    min-height: 280px;
+    overflow: hidden;
   }
   
   .carousel-slide {
-    width: 200px;
-    min-height: 250px;
+    width: 180px;
+    min-height: 220px;
   }
   
   .carousel-slide.active {
-    width: 220px;
-    min-height: 270px;
+    width: 200px;
+    min-height: 240px;
   }
   
   .carousel-controls {
@@ -182,5 +185,28 @@
   .carousel-arrow {
     width: 35px;
     height: 35px;
+  }
+}
+
+/* Extra small screens - prevent overflow */
+@media (max-width: 400px) {
+  .simple-carousel-container {
+    overflow: hidden;
+    padding: 5px 0;
+  }
+  
+  .carousel-viewport {
+    min-height: 240px;
+    overflow: hidden;
+  }
+  
+  .carousel-slide {
+    width: 160px;
+    min-height: 180px;
+  }
+  
+  .carousel-slide.active {
+    width: 180px;
+    min-height: 200px;
   }
 }
