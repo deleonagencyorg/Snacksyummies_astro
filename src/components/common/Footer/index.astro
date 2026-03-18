@@ -43,44 +43,39 @@ const officesData = contactData.offices.locations;
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
         <!-- Orden de columnas en mobile controlado con order-* -->
         <!-- Columna 1: Información de contacto (segundo en mobile) -->
-        <div class="flex flex-col items-start md:items-start items-center space-y-4 order-2 md:order-1">
-          <div class="flex items-center md:items-start space-x-2 justify-center md:justify-start">
+        <div class="flex flex-col items-center md:items-start space-y-3 order-2 md:order-1 w-full">
+          <div class="flex items-start justify-center md:justify-start space-x-2 w-full">
             <LazyImage
               src={generalAssets.locationIcon}
               alt="Ubicación"
-              class="h-5 w-5 flex-shrink-0 mt-0.5"
+              class="h-4 w-4 flex-shrink-0 mt-0.5"
               color="white"
-              width={20}
-              height={20}
+              width={16}
+              height={16}
             />
-            <span id="footer-address">{address}</span>
+            <span id="footer-address" class="text-xs md:text-sm leading-snug text-center md:text-left inline-block">{address}</span>
           </div>
-          <div class="flex items-center space-x-2 justify-center md:justify-start">
+          <div class="flex items-center justify-center md:justify-start space-x-2 w-full">
             <LazyImage
               src={generalAssets.phoneIcon}
               alt="Teléfono"
-              class="h-5 w-5 flex-shrink-0"
+              class="h-4 w-4 flex-shrink-0"
               color="white"
-              width={20}
-              height={20}
+              width={16}
+              height={16}
             />
-            <span id="footer-phone">{phone}</span>
+            <span id="footer-phone" class="text-xs md:text-sm whitespace-nowrap">{phone}</span>
           </div>
-          <div class="flex items-center space-x-2 justify-center md:justify-start">
-            <LazyImage
-              src={generalAssets.timeIcon}
-              alt="Horario"
-              class="h-5 w-5 flex-shrink-0"
-              color="white"
-              width={20}
-              height={20}
-            />
-            <span>{hours}</span>
+          <div class="flex items-center justify-center md:justify-start space-x-2 w-full">
+            <svg class="h-4 w-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-xs md:text-sm whitespace-nowrap">{hours}</span>
           </div>
         </div>
 
         <!-- Columna 2: Logo, política de privacidad y copyright (tercero en mobile) -->
-        <div class="flex flex-col items-center space-y-4 order-3 md:order-2">
+        <div class="flex flex-col items-center text-center space-y-4 order-3 md:order-2">
           <a href={`/${currentLang}/`} class="mb-2">
             <img src={logos.principal.url} alt={logos.principal.alt || 'Yummies Logo'} class="h-16 w-auto mx-auto" />
           </a>
@@ -93,13 +88,13 @@ const officesData = contactData.offices.locations;
         </div>
 
         <!-- Columna 3: Newsletter y redes sociales (primero en mobile) -->
-        <div class="flex flex-col items-center md:items-start w-full order-1 md:order-3">
+        <div class="flex flex-col items-center md:items-start w-full order-1 md:order-3 text-center md:text-left">
           <!-- Redes Sociales -->
           <div class="mb-4">
             <SocialMediaIcons 
               currentLang={currentLang} 
               iconColor="white"
-              centered={false} 
+              centered={true} 
             />
           </div>
           <!-- Newsletter -->
@@ -107,7 +102,7 @@ const officesData = contactData.offices.locations;
             title={newsletterTitle}
             placeholder={newsletterPlaceholder} 
             buttonText={newsletterButton}
-            centered={false}
+            centered={true}
           />
         </div>
       </div>
@@ -118,36 +113,36 @@ const officesData = contactData.offices.locations;
           <div class="text-center mb-4">
             <h3 class="text-white  font-sans text-xl font-medium">DINANT - Contacto</h3>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 justify-items-center">
             <!-- Guatemala -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Guatemala">🇬🇹</span>
-              <span>(+502) 2502-7050</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-lg" role="img" aria-label="Guatemala">🇬🇹</span>
+              <span class="text-xs whitespace-nowrap">(+502) 2502-7050</span>
             </div>
             <!-- El Salvador -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="El Salvador">🇸🇻</span>
-              <span>(+503) 2510-8300</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-lg" role="img" aria-label="El Salvador">🇸🇻</span>
+              <span class="text-xs whitespace-nowrap">(+503) 2510-8300</span>
             </div>
             <!-- Costa Rica -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Costa Rica">🇨🇷</span>
-              <span>(+506) 2271-0665</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-lg" role="img" aria-label="Costa Rica">🇨🇷</span>
+              <span class="text-xs whitespace-nowrap">(+506) 2271-0665</span>
             </div>
             <!-- República Dominicana -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="República Dominicana">🇩🇴</span>
-              <span>(+001) 809-2731042</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-lg" role="img" aria-label="República Dominicana">🇩🇴</span>
+              <span class="text-xs whitespace-nowrap">(+001) 809-2731042</span>
             </div>
             <!-- Nicaragua -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Nicaragua">🇳🇮</span>
-              <span>(+505) 2255-7480</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-lg" role="img" aria-label="Nicaragua">🇳🇮</span>
+              <span class="text-xs whitespace-nowrap">(+505) 2255-7480</span>
             </div>
             <!-- Honduras -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Honduras">🇭🇳</span>
-              <span>(+504) 2275-3370</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-lg" role="img" aria-label="Honduras">🇭🇳</span>
+              <span class="text-xs whitespace-nowrap">(+504) 2275-3370</span>
             </div>
           </div>
         </div>

@@ -48,6 +48,7 @@
     "axios": "^1.8.2",
     "axios-logger": "^2.8.1",
     "axios-retry": "^4.5.0",
+    "baseline-browser-mapping": "^2.10.8",
     "dompurify": "^3.2.4",
     "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
