@@ -232,14 +232,17 @@ html {
   
   .product-image-wrapper {
     max-width: 100%;
+    height: 250px;
     min-height: 250px;
   }
   
   .product-preview-image {
-    max-width: 80%;
-    width: 80%;
+    width: 200px !important;
+    height: 200px !important;
+    max-width: 200px !important;
+    max-height: 200px !important;
+    object-fit: contain;
     transform: translateX(-2px);
-    max-height: 300px; /* Limit height on mobile */
   }
   
   #brand-logo {
