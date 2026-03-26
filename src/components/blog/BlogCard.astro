@@ -50,7 +50,7 @@ const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
   
   <!-- Información en estado normal -->
   <div class="absolute bottom-0 left-0 right-0 p-4 bg-white bg-opacity-90 group-hover:opacity-0 transition-opacity duration-300">
-    <h3 class="font-sans text-sm md:text-lg font-bold text-primary text-center mb-3">{title}</h3>
+    <h3 class="font-sans text-sm md:text-lg font-bold text-primary text-center mb-3 clamped-title">{title}</h3>
     <div class="flex justify-center">
       <div class="border-2 border-primary bg-white text-primary py-2 px-8 rounded-full text-center text-sm font-medium">
         {viewBlogText}
@@ -66,7 +66,7 @@ const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
     <!-- Toda la información en la parte inferior -->
     <div class="p-5 flex flex-col gap-3">
       <!-- Título en hover (al inicio de la información) -->
-      <h3 class="font-sans text-lg font-bold text-white text-center mb-3">{title}</h3>
+      <h3 class="font-sans text-lg font-bold text-white text-center mb-3 clamped-title">{title}</h3>
       
       <!-- Botón de leer más -->
       <div class="flex justify-center mt-4">
@@ -79,5 +79,21 @@ const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
 </a>
 
 <style>
-  /* Mantener los mismos estilos que RecipeCard */
+  /* Limitar títulos a máximo 4 líneas con puntos suspensivos (desktop y mobile, ES/EN) */
+  .clamped-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+    max-height: calc(1.2em * 4); /* fallback to ensure consistent height */
+    display: block;
+    word-break: break-word;
+  }
+
+  /* Asegurar que centrado y márgenes no interfieran con el recorte */
+  .clamped-title.text-center {
+    display: -webkit-box;
+  }
 </style>
