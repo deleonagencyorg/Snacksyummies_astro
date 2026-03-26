@@ -163,7 +163,7 @@ const clientLang = currentLang;
         
         <!-- Products Grid -->
         <div class="w-full">
-          <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-start">
+          <div id="products-grid" class="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-start">
             {allProducts.map((product: Product, index: number) => (
               <div 
                 data-brand={product.brandId || 'unknown'}
@@ -232,8 +232,8 @@ const clientLang = currentLang;
     const scrollIndicator = document.getElementById('scroll-indicator');
 
     const isMobile = window.innerWidth < 768;
-    const INITIAL_COUNT = isMobile ? 6 : 12;
-    const LOAD_MORE_COUNT = isMobile ? 2 : 6;
+    const INITIAL_COUNT = isMobile ? 9 : 12; // mobile: 3 columns -> show 9 (3x3) initially
+    const LOAD_MORE_COUNT = isMobile ? 3 : 6; // mobile: load by rows of 3 to keep grid aligned
 
     let visibleCount = INITIAL_COUNT;
 
