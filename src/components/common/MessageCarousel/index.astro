@@ -58,6 +58,20 @@ const safeMessages = messageCount > 0 ? messages : [{ title: '' }];
   )}
 </div>
 
+<style>
+  @media (max-width: 767px) {
+    #message-carousel .message-slide {
+      padding-left: 50px;
+      padding-right: 50px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    #message-carousel > .absolute {
+      z-index: 30;
+    }
+  }
+</style>
+
 <script>
   // Variables globales para gestionar el carrusel
   window.messageCarouselState = window.messageCarouselState || {
