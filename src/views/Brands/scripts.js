@@ -238,6 +238,7 @@
           if (e) e.preventDefault();
           stopAutoplay(); // Detener autoplay al usar navegación manual
           goToPrevSlide();
+          scheduleAutoplayRestart();
         };
         
         prevButton.addEventListener('click', handlePrevClick);
@@ -253,6 +254,7 @@
           if (e) e.preventDefault();
           stopAutoplay(); // Detener autoplay al usar navegación manual
           goToNextSlide();
+          scheduleAutoplayRestart();
         };
         
         nextButton.addEventListener('click', handleNextClick);
@@ -314,6 +316,7 @@
       // Configuración para cambiar automáticamente las diapositivas
       const autoplayInterval = 3000; // 3 segundos
       let autoplayTimer = null;
+      let autoplayRestartTimer = null;
       
       function startAutoplay() {
         stopAutoplay();
@@ -330,26 +333,25 @@
           autoplayTimer = null;
         }
       }
+
+      // Reinicia el autoplay 4 s después de la última acción manual
+      function scheduleAutoplayRestart() {
+        if (autoplayRestartTimer !== null) clearTimeout(autoplayRestartTimer);
+        autoplayRestartTimer = setTimeout(() => {
+          autoplayRestartTimer = null;
+          startAutoplay();
+        }, 4000);
+      }
       
-      // Desktop: autoplay por hover/focus como antes
-      carousel.addEventListener('mouseenter', startAutoplay);
-      carousel.addEventListener('mouseleave', stopAutoplay);
-      
-      // Para dispositivos táctiles, iniciar autoplay al tocar y detener al soltar
-      carousel.addEventListener('touchstart', startAutoplay, { passive: true });
-      carousel.addEventListener('touchend', stopAutoplay);
-      
-      // Iniciar autoplay cuando se hace focus en algún elemento del carrusel
-      carousel.addEventListener('focusin', startAutoplay);
-      carousel.addEventListener('focusout', stopAutoplay);
+      // Pausa al hacer hover (el autoplay corre por defecto)
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
       
       // Inicializar la posición del carrusel
       updateCarouselPosition();
 
-      // Iniciar autoplay automáticamente en desktop
-      if (typeof window !== 'undefined' && window.innerWidth >= 768) {
-        startAutoplay();
-      }
+      // Iniciar autoplay automáticamente en todos los dispositivos
+      startAutoplay();
 
       // Registrar controles de autoplay para uso global (mobile)
       productCarouselsConfig.push({
@@ -359,14 +361,9 @@
       });
     });
 
-    // Mobile: solo el carrusel visible debe tener autoplay activo
+    // Gestionar autoplay según visibilidad en todos los dispositivos
     if (!productsIntersectionObserver && productCarouselsConfig.length > 0) {
       productsIntersectionObserver = new IntersectionObserver((entries) => {
-        // Solo aplicar esta lógica en mobile
-        if (window.innerWidth >= 768) {
-          return;
-        }
-
         entries.forEach(entry => {
           const config = productCarouselsConfig.find(c => c.carousel === entry.target);
           if (!config) return;

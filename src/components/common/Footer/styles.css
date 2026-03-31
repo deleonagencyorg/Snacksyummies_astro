@@ -37,3 +37,13 @@ footer .copyright {
   color: #9ca3af; /* text-gray-400 */
   font-size: 0.875rem;
 }
+
+@media (max-width: 767px) {
+  footer .border-t > .container > .grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem 3rem !important;
+    column-gap: 3rem !important;
+    justify-items: center;
+  }
+}
