@@ -22,11 +22,6 @@ html {
   .brand-card-bg {
     height: 100%;
   }
-  #brand-logo img {
-    width: 500px !important;
-    height: auto;
-  }
-
 }
 /* Header styles */
 .brands-header {
@@ -251,6 +246,14 @@ html {
   
   #brand-logo {
     margin-top: -2rem;
+  }
+
+  /* Tamaño logos mobile */
+  #brand-logo img {
+    max-width: 250px !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
   }
   
   /* Position carousel navigation at the sides of the product image on mobile — same as desktop */
