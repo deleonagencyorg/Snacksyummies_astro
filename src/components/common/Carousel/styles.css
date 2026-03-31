@@ -32,9 +32,8 @@
   .swiper-container.main-carousel .swiper-button-next,
   .swiper-container.main-carousel .swiper-button-prev {
     position: absolute;
-    top: auto !important;
-    transform: none !important;
-    bottom: 4px;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
     width: 36px;
     height: 36px;
     background: rgba(0,0,0,0.35);
