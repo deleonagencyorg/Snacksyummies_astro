@@ -145,10 +145,10 @@ html {
 }
 
 .product-preview-image {
-  width: 50%;
-  height: auto;
-  max-width: 450px;
-  max-height: 450px;
+  width: auto;
+  height: 300px;
+  max-width: 100%;
+  max-height: 300px;
   object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
   transform: translateX(10%);
@@ -161,8 +161,8 @@ html {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: auto;
-  min-height: 300px;
+  height: 330px;
+  min-height: 330px;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -170,8 +170,10 @@ html {
 .product-image-wrapper .product-preview-image {
   position: relative;
   z-index: 1;
-  width: 50%;
-  max-width: 450px;
+  width: auto;
+  height: 300px;
+  max-width: 100%;
+  max-height: 300px;
 }
 
 /* Etiqueta Nuevo */
@@ -232,53 +234,73 @@ html {
   
   .product-image-wrapper {
     max-width: 100%;
-    height: 250px;
-    min-height: 250px;
+    /* Fixed height — Ranchitas mobile standard */
+    height: 270px;
+    min-height: 270px;
   }
   
   .product-preview-image {
-    width: 200px !important;
-    height: 200px !important;
-    max-width: 200px !important;
-    max-height: 200px !important;
+    /* Ranchitas mobile standard — all brands same height on mobile */
+    width: auto !important;
+    height: 230px !important;
+    max-width: 100% !important;
+    max-height: 230px !important;
     object-fit: contain;
-    transform: translateX(-2px);
+    transform: none;
   }
   
   #brand-logo {
     margin-top: -2rem;
   }
   
-  /* Position carousel navigation below products on mobile */
+  /* Position carousel navigation at the sides of the product image on mobile — same as desktop */
   .products-carousel {
     position: relative;
-    padding-bottom: 50px; /* Add space for navigation buttons */
   }
   
   .products-carousel-nav {
     position: absolute;
-    bottom: 0;
+    top: 50%;
     left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 15px;
+    width: 100%;
+    transform: translateY(-50%);
+    display: block;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
     z-index: 50;
+    pointer-events: none; /* container ignores events, buttons opt-in */
   }
-  
-  .prev-product,
-  .next-product {
-    position: relative;
+
+  .products-carousel-nav .prev-product,
+  .products-carousel-nav .next-product {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     width: 36px;
     height: 36px;
-    z-index: 50 !important;
-    background-color: rgba(255, 255, 255, 0.8);
+    flex-shrink: 0;
+    z-index: 60 !important;
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+    pointer-events: auto; /* enable clicks */
+  }
+
+  :root {
+    --mobile-image-half: 115px;
+    --mobile-arrow-gap: 10px;
+  }
+
+  .products-carousel-nav .prev-product {
+    left: calc(50% - var(--mobile-image-half) - var(--mobile-arrow-gap) - 18px);
+  }
+
+  .products-carousel-nav .next-product {
+    right: calc(50% - var(--mobile-image-half) - var(--mobile-arrow-gap) - 18px);
   }
 }
 
