@@ -193,8 +193,8 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
           // Centrar chips en un rango más estrecho en mobile (20-60%)
           const newX = 20 + Math.random() * 40;
           chip.style.left = newX + '%';
-          // TODOS empiezan en el mismo punto Y (bottom 10%)
-          chip.style.bottom = '10%';
+          // TODOS empiezan en el mismo punto Y (bottom 5%)
+          chip.style.bottom = '7%';
           // Reducir duración de animación en mobile (1-2s)
           const mobileDuration = 1 + Math.random() * 1;
           chip.style.animationDuration = mobileDuration + 's';
@@ -291,7 +291,7 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
   
   .chip {
     position: absolute;
-    bottom: 20%; /* Empezar más arriba */
+    bottom: 5%; /* Empezar desde abajo */
     left: var(--x-pos);
     width: var(--size);
     height: var(--size);
@@ -326,23 +326,23 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
       transform: translateY(0) rotate(var(--rotation));
       opacity: 0;
     }
-    8% {
+    5% {
       opacity: 0.8;
     }
-    15% {
+    12% {
       opacity: 1;
     }
-    40% {
-      opacity: 0.7;
+    30% {
+      opacity: 0.6;
     }
-    55% {
-      opacity: 0.3;
+    45% {
+      opacity: 0.15;
     }
-    70% {
+    60% {
       opacity: 0;
     }
     100% {
-      transform: translateY(-25vh) rotate(calc(var(--rotation) * 1.5));
+      transform: translateY(-15vh) rotate(calc(var(--rotation) * 1.5));
       opacity: 0;
     }
   }
@@ -352,17 +352,17 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
       transform: translateY(0) rotate(var(--rotation));
       opacity: 0;
     }
-    10% {
+    8% {
       opacity: 1;
     }
-    40% {
-      opacity: 0.5;
+    30% {
+      opacity: 0.4;
     }
-    65% {
+    50% {
       opacity: 0;
     }
     100% {
-      transform: translateY(-20vh) rotate(calc(var(--rotation) * 2));
+      transform: translateY(-12vh) rotate(calc(var(--rotation) * 2));
       opacity: 0;
     }
   }
@@ -373,20 +373,20 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
         transform: translateY(0) rotate(var(--rotation));
         opacity: 0;
       }
-      8% {
+      5% {
         opacity: 0.8;
       }
-      15% {
+      10% {
         opacity: 1;
       }
-      35% {
-        opacity: 0.5;
+      25% {
+        opacity: 0.4;
       }
-      50% {
+      40% {
         opacity: 0;
       }
       100% {
-        transform: translateY(-8vh) rotate(calc(var(--rotation) * 1.5));
+        transform: translateY(-5vh) rotate(calc(var(--rotation) * 1.5));
         opacity: 0;
       }
     }
@@ -396,17 +396,17 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
         transform: translateY(0) rotate(var(--rotation));
         opacity: 0;
       }
-      10% {
+      8% {
         opacity: 1;
       }
-      35% {
+      25% {
         opacity: 0.3;
       }
-      50% {
+      40% {
         opacity: 0;
       }
       100% {
-        transform: translateY(-6vh) rotate(calc(var(--rotation) * 2));
+        transform: translateY(-4vh) rotate(calc(var(--rotation) * 2));
         opacity: 0;
       }
     }
