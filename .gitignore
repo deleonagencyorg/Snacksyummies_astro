@@ -31,3 +31,7 @@ pnpm-debug.log*
 **/.*/._*
 **/.*/.*/._*
 **/.*/.*/.*/._*
+
+.vercel
+/vercel/*
+vercel/
