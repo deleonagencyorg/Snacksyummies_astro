@@ -193,8 +193,10 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
           // Centrar chips en un rango más estrecho en mobile (20-60%)
           const newX = 20 + Math.random() * 40;
           chip.style.left = newX + '%';
-          // Reducir duración de animación para fade-out más rápido en mobile
-          const mobileDuration = 1.5 + Math.random() * 1.5;
+          // TODOS empiezan en el mismo punto Y (bottom 10%)
+          chip.style.bottom = '10%';
+          // Reducir duración de animación en mobile (1-2s)
+          const mobileDuration = 1 + Math.random() * 1;
           chip.style.animationDuration = mobileDuration + 's';
           const img = chip.querySelector('img');
           if (img) {
