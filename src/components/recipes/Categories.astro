@@ -144,13 +144,13 @@ const {
       </>
     )}
 
-    <div id="cat-scroll" class="flex flex-nowrap gap-3 md:gap-4 lg:gap-5 overflow-x-auto scrollbar-hide pb-6 px-10 md:px-12 lg:px-14" style="scroll-snap-type: x mandatory;">
+    <div id="cat-scroll" class="flex flex-wrap justify-center pb-6 px-10 md:px-12 lg:px-14" style="gap: clamp(0.4rem, 0.8vw, 1.25rem);">
       <!-- All Button -->
       {queryKey === 'brand' ? (
         <button
           type="button"
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
-          style="scroll-snap-align: start; aspect-ratio: 1/1; --brand-color: #4B5563;"
+          class="brand-card brand-filter-btn cat-desktop-circle rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          style="--brand-color: #4B5563;"
           data-slug="all"
           aria-label={allLabel}
         >
@@ -159,8 +159,8 @@ const {
       ) : (
         <a
           href={`${baseHref}?${queryKey}=all`}
-          class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
-          style="scroll-snap-align: start; aspect-ratio: 1/1; --brand-color: #4B5563;"
+          class="brand-card brand-filter-btn cat-desktop-circle rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer bg-gray-600 opacity-100"
+          style="--brand-color: #4B5563;"
           data-slug="all"
         >
           <span class="text-white font-bold text-xs md:text-sm lg:text-base text-center">{allLabel}</span>
@@ -171,13 +171,13 @@ const {
         queryKey === 'brand' ? (
           <button
             type="button"
-            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
-            style={`scroll-snap-align: start; aspect-ratio: 1/1; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
+            class="brand-card brand-filter-btn cat-desktop-circle rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            style={`background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
             data-slug={it.slug}
             aria-label={it.label}
           >
             {it.logo ? (
-              <img src={it.logo} alt={it.label} class="w-[65%] h-[65%] md:w-[68%] md:h-[68%] lg:w-[70%] lg:h-[70%] object-contain" loading="lazy" />
+              <img src={it.logo} alt={it.label} class="w-[65%] h-[65%] object-contain" loading="lazy" />
             ) : (
               <span class="text-white font-bold text-xs md:text-sm lg:text-base text-center px-2">{it.label}</span>
             )}
@@ -185,12 +185,12 @@ const {
         ) : (
           <a
             href={`${baseHref}?${queryKey}=${it.slug}`}
-            class="brand-card brand-filter-btn flex-shrink-0 w-20 h-20 md:w-24 md:h-24 lg:w-[110px] lg:h-[110px] rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
-            style={`scroll-snap-align: start; aspect-ratio: 1/1; background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
+            class="brand-card brand-filter-btn cat-desktop-circle rounded-full overflow-hidden shadow-lg flex items-center justify-center hover:scale-105 transition-all duration-300 cursor-pointer"
+            style={`background-color: ${it.bgColor ?? '#E5E7EB'}; --brand-color: ${it.bgColor ?? '#E5E7EB'};`}
             data-slug={it.slug}
           >
             {it.logo ? (
-              <img src={it.logo} alt={it.label} class="w-[65%] h-[65%] md:w-[68%] md:h-[68%] lg:w-[70%] lg:h-[70%] object-contain" loading="lazy" />
+              <img src={it.logo} alt={it.label} class="w-[65%] h-[65%] object-contain" loading="lazy" />
             ) : (
               <span class="text-white font-bold text-xs md:text-sm lg:text-base text-center px-2">{it.label}</span>
             )}
@@ -254,6 +254,14 @@ const {
   .brand-card:not(.active) {
     /* Sin cambios de opacidad - se ven normales */
   }
+  /* Desktop circles: responsive sizing with clamp */
+  .cat-desktop-circle {
+    width: clamp(60px, 6.5vw, 110px);
+    height: clamp(60px, 6.5vw, 110px);
+    aspect-ratio: 1 / 1;
+    flex-shrink: 1;
+  }
+
   .nav-btn {
     display: none;
   }
@@ -400,6 +408,16 @@ const {
     const navBtns = container.querySelectorAll('.nav-btn');
 
     if (!scroll || !buttons.length) return;
+
+    // Ocultar flechas si todo el contenido cabe sin scroll
+    function updateNavVisibility() {
+      const needsScroll = scroll.scrollWidth > scroll.clientWidth + 2;
+      navBtns.forEach(btn => {
+        (btn as HTMLElement).style.display = needsScroll ? '' : 'none';
+      });
+    }
+    updateNavVisibility();
+    window.addEventListener('resize', updateNavVisibility);
 
     // Desktop/Tablet: navegación con flechas absolutas
     navBtns.forEach(btn => {
