@@ -369,21 +369,21 @@ const slides = Array.isArray(commonAssets)
         </div>
       </div>
       <div id="previewbrand" class="mt-6 md:w-1/2 flex items-center justify-center md:order-1 relative md:mt-[2rem]">
-        <div id="floating-images-container" class="absolute inset-0 z-10 pointer-events-none overflow-visible md:mt-[-4rem]">
+        <div id="floating-images-container" class="absolute inset-0 z-10 pointer-events-none overflow-hidden md:mt-[-4rem]">
           <ChipsFromBag 
             imageUrl={brands[0].imageChip1}
             count={20}
-            baseSize={100}
+            baseSize={130}
             sizeVariation={40}
             containerWidth="80%"
             containerHeight="60%"
             alt="Chips de marca premium flotando - experiencia interactiva"
             burstOnHover={true}
             burstCount={8}
-            mobileCount={10}
-            mobileBaseSize={3}
-            mobileContainerWidth="90vw"
-            mobileContainerHeight="50vh"
+            mobileCount={8}
+            mobileBaseSize={45}
+            mobileContainerWidth="100%"
+            mobileContainerHeight="100%"
           />
         </div>
         <LazyImage
