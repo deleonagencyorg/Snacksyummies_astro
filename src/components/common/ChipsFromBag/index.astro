@@ -56,7 +56,7 @@ const mobileContainerHeightValue = mobileContainerHeight || containerHeight;
 // Crear array para los chips iniciales (usamos el count para desktop por defecto)
 const chips = Array.from({ length: desktopCount }).map((_, i) => {
   const size = desktopBaseSize * (1 - sizeVariation / 100 * random(0, 1));
-  const xPos = random(10, 90); // Posición horizontal (%)
+  const xPos = random(5, 70); // Posición horizontal (%)
   const delay = random(0, 3); // Retraso aleatorio para la animación
   const duration = random(2, 5); // Duración de la animación
   const rotation = random(-30, 30); // Rotación inicial
@@ -74,7 +74,7 @@ const chips = Array.from({ length: desktopCount }).map((_, i) => {
 // Crear array para los chips que aparecen al pasar el mouse (burst)
 const burstChips = Array.from({ length: burstCount }).map((_, i) => {
   const size = desktopBaseSize * (1 - sizeVariation / 100 * random(0, 1));
-  const xPos = random(10, 90);
+  const xPos = random(5, 70);
   const delay = random(0, 1);
   const duration = random(1.5, 3);
   const rotation = random(-45, 45);
@@ -91,6 +91,7 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
 ---
 
 <div 
+  id="chips-container"
   class="chips-container"
   style={`width: ${containerWidth}; height: ${containerHeight};`}
 >
@@ -189,6 +190,12 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
           chip.style.display = 'none'; // Ocultar chips extras en móvil
         } else {
           chip.style.display = 'block';
+          // Centrar chips en un rango más estrecho en mobile (20-60%)
+          const newX = 20 + Math.random() * 40;
+          chip.style.left = newX + '%';
+          // Reducir duración de animación para fade-out más rápido en mobile
+          const mobileDuration = 1.5 + Math.random() * 1.5;
+          chip.style.animationDuration = mobileDuration + 's';
           const img = chip.querySelector('img');
           if (img) {
             // Usar el tamaño base móvil directamente
@@ -282,7 +289,7 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
   
   .chip {
     position: absolute;
-    bottom: 0; /* Empezar desde el fondo */
+    bottom: 20%; /* Empezar más arriba */
     left: var(--x-pos);
     width: var(--size);
     height: var(--size);
@@ -317,23 +324,23 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
       transform: translateY(0) rotate(var(--rotation));
       opacity: 0;
     }
-    10% {
+    8% {
       opacity: 0.8;
     }
-    20% {
+    15% {
       opacity: 1;
     }
-    55% {
-      opacity: 0.8;
+    40% {
+      opacity: 0.7;
     }
-    75% {
+    55% {
       opacity: 0.3;
     }
-    90% {
-      opacity: 0.05;
+    70% {
+      opacity: 0;
     }
     100% {
-      transform: translateY(-45vh) rotate(calc(var(--rotation) * 1.5));
+      transform: translateY(-25vh) rotate(calc(var(--rotation) * 1.5));
       opacity: 0;
     }
   }
@@ -343,18 +350,63 @@ const burstChips = Array.from({ length: burstCount }).map((_, i) => {
       transform: translateY(0) rotate(var(--rotation));
       opacity: 0;
     }
-    15% {
+    10% {
       opacity: 1;
     }
-    55% {
-      opacity: 0.6;
+    40% {
+      opacity: 0.5;
     }
-    80% {
-      opacity: 0.1;
+    65% {
+      opacity: 0;
     }
     100% {
-      transform: translateY(-35vh) rotate(calc(var(--rotation) * 2));
+      transform: translateY(-20vh) rotate(calc(var(--rotation) * 2));
       opacity: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(var(--rotation));
+        opacity: 0;
+      }
+      8% {
+        opacity: 0.8;
+      }
+      15% {
+        opacity: 1;
+      }
+      35% {
+        opacity: 0.5;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(-8vh) rotate(calc(var(--rotation) * 1.5));
+        opacity: 0;
+      }
+    }
+
+    @keyframes burstUp {
+      0% {
+        transform: translateY(0) rotate(var(--rotation));
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      35% {
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(-6vh) rotate(calc(var(--rotation) * 2));
+        opacity: 0;
+      }
     }
   }
 </style>
