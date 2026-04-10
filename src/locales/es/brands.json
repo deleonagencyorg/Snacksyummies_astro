@@ -61,6 +61,15 @@
                     "title": "Taqueritos Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "isNew": false
+                },
+                {
+                    "id": "taqueritos-lava",
+                    "slug": "taqueritos-lava",
+                    "pagina": "https://www.taqueritos.com/es/productos/taqueritos-lava",
+                    "title": "Taqueritos Lava",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
                     "isNew": true
                 }
             ]

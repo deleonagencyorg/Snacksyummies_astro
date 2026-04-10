@@ -21,13 +21,13 @@
                     "isNew": true
                 },
      {    
-                    "id": "taqueritos-buffalo-ranch",
-                    "slug": "taqueritos-buffalo-ranch",
-                    "title": "Taqueritos Buffalo Ranch",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "id": "taqueritos-lava",
+                    "slug": "taqueritos-lava",
+                    "title": "Taqueritos Lava",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
                     "isNew": true,
-                    "pagina": "https://www.taqueritos.com/es/productos/taqueritos-buffalo-ranch"
+                    "pagina": "https://www.taqueritos.com/es/productos/taqueritos-lava"
                 },
      {    
                     "id": "zambos-camote-con-sal-marina",
@@ -39,6 +39,15 @@
                     "pagina": "https://www.zambos.com/es/productos/zambos-camote-con-sal-marina?count=6"
                 },
       {          
+                    "id": "taqueritos-buffalo-ranch",
+                    "slug": "taqueritos-buffalo-ranch",
+                    "title": "Taqueritos Buffalo Ranch",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "isNew": false,
+                    "pagina": "https://www.taqueritos.com/es/productos/taqueritos-buffalo-ranch"
+                },
+      {
                     "id": "zambos-yuquitas-con-ajo-parmesano",
                     "slug": "zambos-yuquitas-con-ajo-parmesano",
                     "title": "Zambos Yuquitas Con Ajo Parmesano",
