@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 5% 0 20px;
   overflow: hidden;
 }
 
@@ -16,7 +16,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .carousel-slide {
@@ -159,13 +159,13 @@
 /* Responsive styles */
 @media (max-width: 768px) {
   .simple-carousel-container {
-    padding: 10px 0;
+    padding: 5% 0 10px;
     overflow: hidden;
   }
   
   .carousel-viewport {
     min-height: 280px;
-    overflow: hidden;
+    overflow: visible;
   }
   
   .carousel-slide {
@@ -192,12 +192,12 @@
 @media (max-width: 400px) {
   .simple-carousel-container {
     overflow: hidden;
-    padding: 5px 0;
+    padding: 5% 0 5px;
   }
   
   .carousel-viewport {
     min-height: 240px;
-    overflow: hidden;
+    overflow: visible;
   }
   
   .carousel-slide {
