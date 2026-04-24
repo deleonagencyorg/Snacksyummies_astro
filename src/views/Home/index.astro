@@ -530,20 +530,113 @@ const slides = Array.isArray(commonAssets)
           />
         </div>
 
-        <!-- All 4 posts below in 1 column -->
-        <div class="grid grid-cols-1 gap-4">
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[0].url} width="100%" height="100%" />
+        <!-- Mobile reels en carrusel -->
+        <div class="w-full md:hidden">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+          <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+          <div class="relative">
+            <div class="swiper-container insta-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="insta-wrap insta-wrap--mobile">
+                    <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[0].url} width="100%" height="100%" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="insta-wrap insta-wrap--mobile">
+                    <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[1].url} width="100%" height="100%" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="insta-wrap insta-wrap--mobile">
+                    <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[2].url} width="100%" height="100%" />
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="insta-wrap insta-wrap--mobile">
+                    <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[3].url} width="100%" height="100%" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Flechas laterales -->
+              <button class="swiper-button-prev insta-prev" aria-label="Anterior" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 18l-6-6 6-6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button class="swiper-button-next insta-next" aria-label="Siguiente" type="button">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M9 6l6 6-6 6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="swiper-pagination insta-pagination"></div>
+            </div>
           </div>
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[1].url} width="100%" height="100%" />
-          </div>
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[2].url} width="100%" height="100%" />
-          </div>
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[3].url} width="100%" height="100%" />
-          </div>
+
+          <script is:inline>
+            (function initInstaSwiper(){
+              const attempt = () => {
+                if (typeof Swiper === 'undefined') return setTimeout(attempt, 100);
+                const el = document.querySelector('.insta-swiper');
+                if (!el) return;
+                try {
+                  new Swiper('.insta-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 12,
+                    loop: false,
+                    navigation: {
+                      nextEl: '.insta-next',
+                      prevEl: '.insta-prev'
+                    },
+                    pagination: {
+                      el: '.insta-pagination',
+                      clickable: true
+                    },
+                    touchRatio: 1,
+                    speed: 400,
+                    observer: true,
+                    observeParents: true,
+                    breakpoints: {
+                      768: {
+                        slidesPerView: 1,
+                        enabled: false
+                      }
+                    }
+                  });
+                } catch (e) {
+                  console.warn('Swiper init error for insta-swiper', e);
+                }
+              };
+              if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attempt); else attempt();
+              document.addEventListener('astro:page-load', attempt);
+            })();
+          </script>
+
+          <style>
+            .insta-prev, .insta-next {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 44px;
+              height: 44px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 30;
+              border: none;
+              background: transparent;
+              box-shadow: none;
+              -webkit-tap-highlight-color: transparent;
+            }
+            .insta-prev svg path, .insta-next svg path { stroke: #FFFFFF }
+            .insta-prev:focus, .insta-next:focus { outline: 2px solid rgba(255,255,255,0.15); outline-offset: 2px }
+            .insta-prev { left: 8px; }
+            .insta-next { right: 8px; }
+            .insta-prev::after, .insta-next::after { /* Swiper añade pseudo-elementos por defecto; ocultamos los nulos */ content: '' }
+            .insta-pagination { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; z-index: 25 }
+          </style>
         </div>
       </div>
 

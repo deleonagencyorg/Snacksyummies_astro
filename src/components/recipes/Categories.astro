@@ -349,6 +349,19 @@ const {
     box-shadow: none !important;
   }
 
+  /* contenido de los botones centrado */
+  .brand-card > span,
+  .cat-circle-btn > span,
+  .cat-desktop-circle > span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+  }
+
   .cat-nav-mobile {
     min-width: 2rem;
     width: 2rem;
@@ -370,22 +383,52 @@ const {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   }
 
-  /* Mobile-only: evitar que los botones cambien de tamaño al activarse.
-     En móvil mostramos una orilla del mismo color usando `outline` para
-     no alterar el tamaño del botón (outline no afecta box-sizing). */
+  /* Botones de recetas a dos columnas en mobile*/
   @media (max-width: 767px) {
+    #cat-scroll {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px !important;
+      justify-items: center;
+      align-items: center;
+      padding: 12px 6px;
+      width: 100% !important;
+      flex: none !important;
+      grid-auto-flow: row;
+      cursor: default;
+    }
 
-    .brand-card,
-    .brand-card:hover,
+    .cat-desktop-circle,
     .cat-circle-btn,
-    .cat-circle-btn:hover {
-      transform: scale(0.85) !important;
+    .brand-card {
+      width: 110px !important;
+      height: 110px !important;
+      max-width: 110px !important;
+      aspect-ratio: 1/1 !important;
+      border-radius: 50% !important;
+      margin: 6px 0 !important;
+      box-shadow: none !important;
+    }
+
+    .cat-desktop-circle img,
+    .cat-circle-btn img,
+    .cat-desktop-circle span,
+    .cat-circle-btn span {
+      width: 70% !important;
+      height: 70% !important;
+      object-fit: contain;
+      font-size: 0.9rem;
+    }
+
+    #cat-scroll > *:nth-child(2n+1):last-child {
+      grid-column: 1 / -1;
+      justify-self: center;
     }
 
     .brand-card.active {
-      transform: scale(0.85) !important;
       outline: 4px solid var(--brand-color);
       outline-offset: 0px;
+      transform: none !important;
       box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--brand-color) 50%, transparent) !important;
       background-color: color-mix(in srgb, var(--brand-color) 80%, black 20%) !important;
     }
@@ -394,6 +437,12 @@ const {
       border: none !important;
       box-shadow: none !important;
     }
+  }
+
+  /* linea negra para que se vea bien xixi */
+  .brand-card[data-slug="xixi"] {
+    outline: 1px solid rgba(0,0,0,0.6);
+    outline-offset: 0px;
   }
 </style>
 
