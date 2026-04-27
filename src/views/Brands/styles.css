@@ -255,10 +255,13 @@ html {
     height: auto !important;
     object-fit: contain !important;
   }
-  
-  /* Position carousel navigation at the sides of the product image on mobile — same as desktop */
-  .products-carousel {
+
+  .products-carousel-wrapper {
     position: relative;
+  }
+
+  .products-carousel {
+    overflow: hidden;
   }
   
   .products-carousel-nav {
@@ -543,6 +546,11 @@ html {
   .brand-info-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.products-carousel-wrapper {
+  position: relative;
+  width: 100%;
 }
 
 /* Productos carousel */
