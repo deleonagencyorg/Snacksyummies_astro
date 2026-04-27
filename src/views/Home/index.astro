@@ -530,20 +530,38 @@ const slides = Array.isArray(commonAssets)
           />
         </div>
 
-        <!-- All 4 posts below in 1 column -->
-        <div class="grid grid-cols-1 gap-4">
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[0].url} width="100%" height="100%" />
+        <!-- Reels en carrusel -->
+        <div class="reels-carousel-mobile relative w-full">
+          <button id="reels-prev" type="button" aria-label="Anterior" class="reels-arrow reels-arrow--prev">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+          </button>
+
+          <div id="reels-track" class="reels-track">
+            <div class="reels-slide">
+              <div class="insta-wrap insta-wrap--mobile">
+                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[0].url} width="100%" height="100%" />
+              </div>
+            </div>
+            <div class="reels-slide">
+              <div class="insta-wrap insta-wrap--mobile">
+                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[1].url} width="100%" height="100%" />
+              </div>
+            </div>
+            <div class="reels-slide">
+              <div class="insta-wrap insta-wrap--mobile">
+                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[2].url} width="100%" height="100%" />
+              </div>
+            </div>
+            <div class="reels-slide">
+              <div class="insta-wrap insta-wrap--mobile">
+                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[3].url} width="100%" height="100%" />
+              </div>
+            </div>
           </div>
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[1].url} width="100%" height="100%" />
-          </div>
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[2].url} width="100%" height="100%" />
-          </div>
-          <div class="insta-wrap insta-wrap--mobile">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[3].url} width="100%" height="100%" />
-          </div>
+
+          <button id="reels-next" type="button" aria-label="Siguiente" class="reels-arrow reels-arrow--next">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+          </button>
         </div>
       </div>
 
@@ -636,6 +654,41 @@ const slides = Array.isArray(commonAssets)
       height: 780px;
       min-height: 780px;
     }
+
+    .reels-carousel-mobile {
+      overflow: hidden;
+    }
+    .reels-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+    .reels-slide {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+    .reels-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111827;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .reels-arrow:hover {
+      background: rgba(255,255,255,1);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .reels-arrow--prev { left: 0.5rem; }
+    .reels-arrow--next { right: 0.5rem; }
 
     /* Para pantallas muy pequeñas (< 380px) */
     @media (max-width: 380px) {
@@ -942,3 +995,36 @@ const slides = Array.isArray(commonAssets)
       document.addEventListener('DOMContentLoaded', initRecipesSlider);
       document.addEventListener('astro:page-load', initRecipesSlider);
       document.addEventListener('astro:after-swap', initRecipesSlider);
+
+      // Carrusel de reels en mobile
+      function initReelsCarousel() {
+        const track = document.getElementById('reels-track');
+        const prev  = document.getElementById('reels-prev');
+        const next  = document.getElementById('reels-next');
+        if (!track || !prev || !next) return;
+
+        const slides = Array.from(track.children);
+        let current = 0;
+
+        function goTo(idx) {
+          current = (idx + slides.length) % slides.length;
+          track.style.transform = `translateX(-${current * 100}%)`;
+        }
+
+        prev.addEventListener('click', () => goTo(current - 1));
+        next.addEventListener('click', () => goTo(current + 1));
+
+        // Touch / swipe support
+        let startX = 0;
+        track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend', (e) => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        }, { passive: true });
+
+        goTo(0);
+      }
+
+      document.addEventListener('DOMContentLoaded', initReelsCarousel);
+      document.addEventListener('astro:page-load', initReelsCarousel);
+      document.addEventListener('astro:after-swap', initReelsCarousel);

@@ -188,8 +188,9 @@
     productCarousels.forEach(carousel => {
       const slidesContainer = carousel.querySelector('.products-carousel-inner');
       const slides = carousel.querySelectorAll('.product-slide');
-      const prevButton = carousel.querySelector('.prev-product');
-      const nextButton = carousel.querySelector('.next-product');
+      const navRoot = carousel.closest('.products-carousel-wrapper') || carousel;
+      const prevButton = navRoot.querySelector('.prev-product');
+      const nextButton = navRoot.querySelector('.next-product');
       
       // Filtrar slides válidos (con imágenes que se cargan correctamente)
       const validSlides = Array.from(slides).filter(slide => slide.dataset.valid !== 'false');

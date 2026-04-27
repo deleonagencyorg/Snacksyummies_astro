@@ -226,42 +226,44 @@ const categoryItems = (brandsData || []).map((b: any) => ({
               </div>
               
               <div id="product-image-brand" class={`md:w-1/2 order-1 md:order-${index % 2 === 0 ? '2' : '1'} mb-6 md:mb-0 flex items-center justify-center product-preview-container`}>
-                <div class="products-carousel" id={`products-carousel-${brand.id}`}>
-                  <div class="products-carousel-inner">
-                    {brand.products && brand.products.length > 0 ? (
-                      brand.products.map((product: any, productIndex: number) => (
-                        <div class="product-slide" id={`${brand.id}-product-${productIndex}`} data-valid="true">
-                          <div class="product-image-wrapper">
-                            <LazyImage 
-                            id={`product-${brand.id}-${productIndex}`}
-                              src={product.image} 
-                              alt={product.title} 
-                              class="product-preview-image"
-                              onload="this.parentNode.parentNode.dataset.loaded = 'true'"
-                              onerror="this.parentNode.parentNode.dataset.valid = 'false'; this.parentNode.parentNode.style.display = 'none';"
-                            />
-                            {product.isNew === true && (
-                              <img 
-                                src={currentLang === 'es' ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp' : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NEW.webp'}
-                                alt={currentLang === 'es' ? 'Nuevo' : 'New'}
-                                class="product-new-badge"
-                                loading="eager"
+                <div class="products-carousel-wrapper">
+                  <div class="products-carousel" id={`products-carousel-${brand.id}`}>
+                    <div class="products-carousel-inner">
+                      {brand.products && brand.products.length > 0 ? (
+                        brand.products.map((product: any, productIndex: number) => (
+                          <div class="product-slide" id={`${brand.id}-product-${productIndex}`} data-valid="true">
+                            <div class="product-image-wrapper">
+                              <LazyImage 
+                              id={`product-${brand.id}-${productIndex}`}
+                                src={product.image} 
+                                alt={product.title} 
+                                class="product-preview-image"
+                                onload="this.parentNode.parentNode.dataset.loaded = 'true'"
+                                onerror="this.parentNode.parentNode.dataset.valid = 'false'; this.parentNode.parentNode.style.display = 'none';"
                               />
-                            )}
+                              {product.isNew === true && (
+                                <img 
+                                  src={currentLang === 'es' ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp' : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NEW.webp'}
+                                  alt={currentLang === 'es' ? 'Nuevo' : 'New'}
+                                  class="product-new-badge"
+                                  loading="eager"
+                                />
+                              )}
+                            </div>
                           </div>
+                        ))
+                      ) : (
+                        <div class="product-slide" data-valid="true">
+                          <LazyImage 
+                            src={brand.imageProductPreview || brand.image} 
+                            alt={brand.title} 
+                            class="product-preview-image"
+                            transition:name={`brand-image-${brand.id}`}
+                            transition:animate={fade({ duration: '0.5s' })}
+                          />
                         </div>
-                      ))
-                    ) : (
-                      <div class="product-slide" data-valid="true">
-                        <LazyImage 
-                          src={brand.imageProductPreview || brand.image} 
-                          alt={brand.title} 
-                          class="product-preview-image"
-                          transition:name={`brand-image-${brand.id}`}
-                          transition:animate={fade({ duration: '0.5s' })}
-                        />
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                   {brand.products && brand.products.length > 1 && (
                     <div class="products-carousel-nav">
