@@ -1,0 +1,35 @@
+{
+    "date": "30/04/2026",
+    "id": "elote-callejero-con-taqueritos-chile-toreado",
+    "slug": "elote-callejero-con-taqueritos-chile-toreado",
+    "title": "Elote Callejero",
+    "people": "6",
+    "difficulty": "Fácil",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/elote-new.webp",
+    "video": "https://youtu.be/i6xS4fL2kRo?si=ouVyQVRBZFHaX1z9",
+    "gallery": [
+        "elote-callejero-con-taqueritos-chile-toreado.webp"
+    ],
+    "type": "image",
+    "preparation_time": 15,
+    "category": "snack",
+    "ingredients": [
+        "2 tazas de granos de elote cocidos",
+        "1/4 de taza de mayones",
+        "Jugo de 1 limón",
+        "1/4 de taza de queso seco rallado",
+        "Sal al gusto",
+        "Taqueritos Chile Toreado para servir"
+    ],
+    "instructions": [
+        "Paso 1. Coloca los granos de elote en una sartén o cacerola pequeña y caliéntalos a fuego medio hasta que estén bien calientes. ",
+        "Paso 2. Retira del fuego y mezcla con la mayonesa y el jugo de limón hasta integrar. Sazona con sal al gusto.",
+        "Paso 3. Sirve el elote caliente en vasitos, espolvorea con el queso seco rallado y termina coronando con Taqueritos Chile Toreado justo antes de servir para aportar crunch y un toque picante."
+    ],
+    "brand": [
+        "Taqueritos"
+    ],
+    "product": [
+        "Taqueritos Chile Toreado"
+    ]
+}

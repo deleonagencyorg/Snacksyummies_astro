@@ -1,0 +1,38 @@
+{
+    "date": "30/04/2026",
+    "id": "taqueritos-fiesta-con-carne-asada",
+    "slug": "taqueritos-fiesta-con-carne-asada",
+    "title": "Taqueritos Fiesta con Carne Asada",
+    "people": "4",
+    "difficulty": "Media",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/carne-asada.webp",
+    "video": "https://youtu.be/i6xS4fL2kRo?si=ouVyQVRBZFHaX1z9",
+    "gallery": [
+        "taqueritos-fiesta-con-carne-asada.webp"
+    ],
+    "type": "image",
+    "preparation_time": 20,
+    "category": "almuerzo",
+    "ingredients": [
+        "Taqueritos Chile Toreado",
+        "1/2 taza de sofrito criollo",
+        "2 tazas de carne asada cocida y picada",
+        "Guacamole al gusto",
+        "Crema agria al gusto",
+        "Cebollín picado al gusto",
+        "Taqueritos Chile Toreado triturado"
+    ],
+    "instructions": [
+        "Paso 1. Coloca una capa de Taqueritos Chile Toreado enteros en un plato o charola formando la base.",
+        "Paso 2. En una sartén calienta el sofrito criollo a fuego medio y viértelo sobre los Taqueritos, distribuyéndolo de manera uniforme.",
+        "Paso 3. En la misma sartén calienta la carne asada hasta que esté bien caliente y colócala encima de la salsa.",
+        "Paso 4. Agrega un scoop de guacamole sobre la carne y acompaña con crema agria al gusto.",
+        "Paso 5. Termina con cebollín picado y espolvorea Taqueritos Chile Toreado triturados por encima para aportar más crunch y picor antes de servir."
+    ],
+    "brand": [
+        "Taqueritos"
+    ],
+    "product": [
+        "Taqueritos Chile Toreado"
+    ]
+}
