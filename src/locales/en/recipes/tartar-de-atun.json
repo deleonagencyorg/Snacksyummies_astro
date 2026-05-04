@@ -1,18 +1,18 @@
 {
-    "date": "30/04/2026",
+    "date": "2026-04-30",
     "id": "tartar-de-atun",
     "slug": "tartar-de-atun",
     "title": "Tuna Tartare",
     "people": "4",
     "difficulty": "Easy",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tartar-de-atun.webp",
-    "video": "https://youtu.be/i6xS4fL2kRo?si=ouVyQVRBZFHaX1z9",
+    "video": "https://www.youtube.com/shorts/njD7tGpHJzA",
     "gallery": [
         "tartar-de-atun.webp"
     ],
     "type": "image",
     "preparation_time": 15,
-    "category": "Dessert",
+    "category": "nacho",
     "ingredients": [
         "300 g fresh tuna",
         "1 tablespoon olive oil",
@@ -29,10 +29,8 @@
         "Step 2. Stir in the red onion and chives, season with salt and pepper, and mix carefully.",
         "Step 3. Serve the tartare immediately, keeping it cold, and accompany with Yummi Pops Nacho Queso Blanco for dipping and adding a crunchy texture."
     ],
-    "brand": [
-        "Yummi Pops"
-    ],
-    "product": [
-        "Yummi Pops Nacho Queso Blanco"
-    ]
+  "brand": ["yummipops"],
+  "product": [
+    "yummi-pops-nacho-queso-blanco"
+  ]
 }

@@ -1,18 +1,18 @@
 {
-    "date": "30/04/2026",
+    "date": "2026-04-30",
     "id": "tartar-de-atun",
     "slug": "tartar-de-atun",
     "title": "Tartar de Atún",
     "people": "4",
-    "difficulty": "Facil",
+    "difficulty": "Fácil",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tartar-de-atun.webp",
-    "video": "https://youtu.be/i6xS4fL2kRo?si=ouVyQVRBZFHaX1z9",
+    "video": "https://www.youtube.com/shorts/njD7tGpHJzA",
     "gallery": [
         "tartar-de-atun.webp"
     ],
     "type": "image",
     "preparation_time": 15,
-    "category": "Postre",
+    "category": "nacho",
     "ingredients": [
         "300 g de atún fresco",
         "1 cucharada de aceite de oliva",
@@ -27,12 +27,10 @@
     "instructions": [
         "Paso 1. Coloca el atún en un recipiente frío y agrega el aceite de oliva, el aceite de ajonjolí y el jugo de limón; mezcla suavemente para cubrir el pescado sin romperlo.",
         "Paso 2. Incorpora la cebolla morada y el cebollín, sazona con sal y pimienta y mezcla con cuidado.",
-        "Paso 3. Sirve el tartar de inmediato, manteniéndolo frío, y acompaña con Yummi Pops Nacho Queso Blanco para dippear y aportar textura crujiente."
+        "Paso 3. Sirve el tartar de inmediato, manteniéndolo frío, y acompaña con Yummi Pops Nacho Queso Blanco para mojar y aportar textura crujiente."
     ],
-    "brand": [
-        "Yummi Pops"
-    ],
-    "product": [
-        "Yummi Pops Nacho Queso Blanco"
-    ]
+  "brand": ["yummipops"],
+  "product": [
+    "yummi-pops-nacho-queso-blanco"
+  ]
 }

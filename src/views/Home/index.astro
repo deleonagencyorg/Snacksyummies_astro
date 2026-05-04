@@ -13,6 +13,7 @@ import SocialMediaIcons from '../../components/common/SocialMediaIcons/index.ast
 import './styles.css';
 import NewProductsCarousel from '../../components/common/NewProductsCarousel/index.astro';
 import SimpleProductCarousel from '../../components/common/SimpleProductCarousel/index.astro';
+import VideoModal from '../../components/common/VideoModal.astro';
 import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
 import AnimHeart from '../../components/common/AnimHeart/index.astro';
 import ChipsFromBag from '../../components/common/ChipsFromBag/index.astro';
@@ -87,6 +88,7 @@ interface RecipeItem {
   image?: string;
   preparation_time: number;
   slug?: string;
+  video?: string;
 }
 
 const recipeModules = import.meta.glob<{default: RecipeItem}>("../../locales/*/recipes/*.json");
@@ -98,6 +100,11 @@ for (const path in recipeModules) {
     allRecipes.push(mod.default);
   }
 }
+allRecipes.sort((a, b) => {
+  const dateA = (a as any).date ? new Date((a as any).date).getTime() : 0;
+  const dateB = (b as any).date ? new Date((b as any).date).getTime() : 0;
+  return dateB - dateA;
+});
 const topRecipes = allRecipes.slice(0, 9);
 const listingPath = `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}`;
 
@@ -318,6 +325,7 @@ const slides = Array.isArray(commonAssets)
                     slug={recipe.slug}
                     textColor="text-white"
                     iconColor="text-white"
+                    video={recipe.video}
                   />
                 </div>
               ))}

@@ -1,18 +1,18 @@
 {
-    "date": "30/04/2026",
-    "id": "tabla-de-quesos",
-    "slug": "tabla-de-quesos",
-    "title": "Tabla de Quesos",
+    "date": "2026-04-30",
+    "id": "fondue-de-queso-con-taqueritos-queso-fusion",
+    "slug": "fondue-de-queso-con-taqueritos-queso-fusion",
+    "title": "Fondue de queso con Taqueritos Queso Fusión",
     "people": "4",
     "difficulty": "Fácil",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tabla-de-quesos.webp",
-    "video": "https://youtu.be/i6xS4fL2kRo?si=ouVyQVRBZFHaX1z9",
+    "video": "https://www.youtube.com/shorts/9-Nee2IyMak",
     "gallery": [
         "tabla-de-quesos.webp"
     ],
     "type": "image",
     "preparation_time": 15,
-    "category": "",
+    "category": "snack",
     "ingredients": [
         "1 ½ tazas de queso para fundir (mezcla de mozzarella y queso tipo suizo o gouda)",
         "½ taza de crema",
@@ -28,6 +28,6 @@
         "Taqueritos"
     ],
     "product": [
-        "Taqueritos Queso Fusion"
+        "Taqueritos Queso Fusión"
     ]
 }

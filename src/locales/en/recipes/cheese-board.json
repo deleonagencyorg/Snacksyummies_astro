@@ -1,18 +1,18 @@
 {
-    "date": "30/04/2026",
+    "date": "2026-04-30",
     "id": "tabla-de-quesos",
     "slug": "tabla-de-quesos",
     "title": "Cheese Board",
     "people": "4",
     "difficulty": "Easy",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/tabla-de-quesos.webp",
-    "video": "https://youtu.be/i6xS4fL2kRo?si=ouVyQVRBZFHaX1z9",
+       "video": "https://www.youtube.com/shorts/9-Nee2IyMak",
     "gallery": [
         "tabla-de-quesos.webp"
     ],
     "type": "image",
     "preparation_time": 15,
-    "category": "",
+    "category": "snack",
     "ingredients": [
         "1 ½ cups melting cheese (blend of mozzarella and Swiss-type or gouda cheese)",
         "½ cup cream",
@@ -28,6 +28,6 @@
         "Taqueritos"
     ],
     "product": [
-        "Taqueritos Queso Fusion"
+        "Taqueritos Queso Fusión"
     ]
 }

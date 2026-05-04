@@ -8,6 +8,7 @@ import { type Locale } from '../i18n/i18n';
 import Header from '../components/common/Header/index.astro';
 import Footer from '../components/common/Footer/index.astro';
 import MobileMenu from '../components/common/MobileMenu/index.astro';
+import VideoModal from '../components/common/VideoModal.astro';
 import I18nProvider from '../components/i18n/I18nProvider.astro';
 import { routesConfig } from '../config/routes';
 import { getHeaderColors } from '../config/headerColors';
@@ -68,4 +69,5 @@ const headerColorConfig = getHeaderColors(pathname);
       <slot />
       <Footer currentLang={currentLang} />
     </I18nProvider>
+    <VideoModal />
   </body>

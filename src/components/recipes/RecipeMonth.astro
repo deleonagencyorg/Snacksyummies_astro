@@ -20,6 +20,7 @@ export interface Props {
   image?: string;
   slug?: string;
   transparent?: boolean;
+  video?: string;
 }
 
 const currentLocale = getLocale();
@@ -32,7 +33,8 @@ const {
   level = '---',
   image = img,
   slug,
-  transparent = false
+  transparent = false,
+  video
 }: Props = Astro.props;
 const titleSlug = String(recipeTitle || '')
   .toLowerCase()
@@ -49,11 +51,26 @@ const sectionTitle = title ?? (currentLocale === 'es' ? 'La receta del mes' : 'R
   <h3 class="text-[#00306f] text-[40px] leading-[40px] font-title font-bold w-full mt-4">{sectionTitle}</h3>
 
   <div
-    class="w-full h-[360px] bg-center bg-cover bg-no-repeat rounded-lg overflow-hidden"
+    class="relative w-full h-[360px] bg-center bg-cover bg-no-repeat rounded-lg overflow-hidden"
     style={`background-image: url('${image}')`}
     role="img"
     aria-label={recipeTitle}
-  ></div>
+  >
+    {video && (
+      <button
+        type="button"
+        onclick={`window.openVideoModal(${JSON.stringify(video)});`}
+        class="absolute inset-0 flex items-center justify-center z-10 bg-black/20 hover:bg-black/30 transition-colors cursor-pointer"
+        aria-label="Play video"
+      >
+        <div class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary ml-1" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </button>
+    )}
+  </div>
 
   <div class="w-full flex flex-col md:flex-row items-center justify-between">
     <div class="flex flex-col gap-4">
