@@ -1,0 +1,38 @@
+{
+    "date": "30/04/2026",
+    "id": "taqueritos-party-with-carne-asada",
+    "slug": "taqueritos-party-with-carne-asada",
+    "title": "Taqueritos Party with Carne Asada",
+    "people": "4",
+    "difficulty": "Medium",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/carne-asada.webp",
+    "video": "https://youtu.be/i6xS4fL2kRo?si=ouVyQVRBZFHaX1z9",
+    "gallery": [
+        "taqueritos-party-with-carne-asada.webp"
+    ],
+    "type": "image",
+    "preparation_time": 20,
+    "category": "lunch",
+    "ingredients": [
+        "Taqueritos Chile Toreado",
+        "1/2 cup creole sofrito",
+        "2 cups cooked, chopped carne asada (grilled steak)",
+        "Guacamole to taste",
+        "Sour cream to taste",
+        "Chopped scallions to taste",
+        "Crushed Taqueritos Chile Toreado"
+    ],
+    "instructions": [
+        "Step 1. Place a layer of whole Taqueritos Chile Toreado on a plate or tray to form the base.",
+        "Step 2. In a skillet, heat the creole sofrito over medium heat and pour it over the Taqueritos, spreading it evenly.",
+        "Step 3. In the same skillet, warm the carne asada until hot and place it on top of the sauce.",
+        "Step 4. Add a scoop of guacamole over the meat and serve with sour cream to taste.",
+        "Step 5. Finish with chopped scallions and sprinkle crushed Taqueritos Chile Toreado on top for extra crunch and heat before serving."
+    ],
+    "brand": [
+        "Taqueritos"
+    ],
+    "product": [
+        "Taqueritos Chile Toreado"
+    ]
+}
