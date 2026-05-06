@@ -7,10 +7,11 @@
     "title": "Street Corn",
     "people": "6",
     "difficulty": "Easy",
-    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/elote-new.webp",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/05-taqueritos-chile-toreado-elote-callejero1920x840.webp",
+    "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/05-taqueritos-chile-toreado-elote-callejero800x800.webp",
     "video": "https://www.youtube.com/shorts/Cn4xKNPvBTM",
     "gallery": [
-        "elote-callejero-con-taqueritos-chile-toreado.webp"
+        "elote-callejero-con-taqueritos-chile-toreado-1920.jpg"
     ],
     "type": "image",
     "preparation_time": 15,
@@ -19,7 +20,7 @@
         "2 cups cooked corn kernels",
         "1/4 cup mayonnaise",
         "Juice of 1 lime",
-        "1/4 cup grated dry cheese",
+        "1/2 cup grated dry cheese",
         "Salt to taste",
         "Taqueritos Chile Toreado to serve"
     ],
