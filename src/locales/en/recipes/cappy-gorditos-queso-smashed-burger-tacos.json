@@ -31,7 +31,7 @@
     "Step 5. Place Cappy Gorditos Queso chips on top of the meat and cook for a few more seconds until they slightly melt.",
     "Step 6. Remove from heat and add pickled onions, crema, and fresh cilantro."
   ],
-  "brand": ["cappy"],
+  "brand": "cappy",
   "product": ["cappy-gorditos-queso"],
   "category": "snack",
   "servings": 4,

@@ -30,7 +30,7 @@
     "Step 4. Add the avocado and cucumber.",
     "Step 5. Finish by drizzling with the yogurt sauce and serve immediately to keep the Tornitos crunchy."
   ],
-  "brand": ["cappy"],
+  "brand": "cappy",
   "product": ["cappy-tornitos-chile-toreado"],
   "category": "snack",
   "servings": 4,

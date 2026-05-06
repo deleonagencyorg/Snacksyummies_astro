@@ -1,13 +1,12 @@
 {
     "date": "2026-04-30",
-    "brannd":["taqueritos"],
     "id": "mac-and-cheese-crunch",
     "slug": "mac-and-cheese-crunch",
     "title": "Mac and Cheese Crunch",
     
     "people": "4",
     "difficulty": "Media",
-    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch1920x840.webp",
     "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
     "video": "https://www.youtube.com/shorts/GrVNGapcMUc",
     "gallery": [
@@ -33,7 +32,7 @@
         "Paso 4. Incorpora la pasta cocida y mezcla hasta que quede bien cubierta con la salsa.",
         "Sirve caliente y termina espolvoreando Taqueritos Queso Fusión triturados por encima para aportar textura crujiente y sabor intenso."
     ],
-   
+    "brand": "Taqueritos",
     "product": [
         "Taqueritos Queso Fusión"
     ]

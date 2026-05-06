@@ -35,7 +35,7 @@
     "Paso:  Rellena el pan con el dip caliente, espolvorea el queso para gratinar por encima y hornea durante 8 a 10 minutos o hasta que el queso esté derretido y dorado.",
     "Paso:  Retira del horno, termina con cebollín picado y sirve de inmediato acompañado de Ranchitas Excitante para dipear."
   ],
-  "brand": ["ranchitas"],
+  "brand": "ranchitas",
   "product": ["ranchitas-nacho-excitante"],
   "category": "snack",
   "servings": 6,

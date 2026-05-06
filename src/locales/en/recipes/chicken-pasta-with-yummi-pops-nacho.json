@@ -30,7 +30,7 @@
     "Step 3: Take our pasta or chicken salad to the refrigerator for half an hour.",
     "Step 4: Serve it with Yummi Pops Nacho."
   ],
-  "brand": ["yummipops"],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-jalapeno-cream"
   ]

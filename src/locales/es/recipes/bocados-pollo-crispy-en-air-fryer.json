@@ -40,7 +40,7 @@
     "Paso 6. Una vez listos, mezcla ligeramente los bites con la salsa BBQ suave o sírvela aparte.",
     "Paso 7. Sirve calientes acompañados de Ziba's Miel y Mostaza para dipear."
   ],
-  "brand": ["zibas"],
+  "brand": "zibas",
   "product": ["zibas-miel-mostaza"],
   "category": "brunch"
 }

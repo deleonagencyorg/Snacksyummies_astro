@@ -28,7 +28,7 @@
       "Agrega el aceite de oliva, las especias secas, la sal y la pimienta y vuelve a procesar hasta integrar.",
       "Sirve el dip en un bol, termina con un chorrito de aceite de oliva por encima y acompaña con Yummi Pops Nacho Jalapeño Cream para mojar."
     ],
-  "brand": ["yummipops"],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-jalapeno-cream"
   ],

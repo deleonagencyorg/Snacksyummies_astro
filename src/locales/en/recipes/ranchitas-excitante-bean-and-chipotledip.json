@@ -35,7 +35,7 @@
     "Step: Fill the bread bol with the hot dip, sprinkle the remaining shredded cheese on top, and bake for 8 to 10 minutes until the cheese is melted and golden.",
     "Step: Remove from the oven, finish with chopped chives, and serve immediately with Ranchitas Excitante chips for dipping."
   ],
-  "brand": ["ranchitas"],
+  "brand": "ranchitas",
   "product": ["ranchitas-nacho-excitante"],
   "category": "snack",
   "servings": 6,

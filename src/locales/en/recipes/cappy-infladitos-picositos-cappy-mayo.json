@@ -29,7 +29,7 @@
     "Step 4. Finish by sprinkling more crushed Cappy Infladitos Picositos chips to reinforce the crunch and spiciness.",
     "Step 5. Serve immediately."
   ],
-  "brand": ["cappy"],
+  "brand": "cappy",
   "product": ["cappy-infladitos-picositos"],
   "category": "snack",
   "servings": 4,

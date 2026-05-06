@@ -31,9 +31,7 @@
         "Add the Worcestershire sauce and ketchup.",
         "Serve the ceviche cold, accompanied by Zambos Ceviche to use as a spoon when eating."
     ],
-    "brand": [
-        "zambos"
-    ],
+    "brand": "zambos",
     "products": [
         "zambos-ceviche"
     ],
