@@ -1,12 +1,13 @@
 {
     "date": "2026-04-30",
+    "brannd":["taqueritos"],
     "id": "mac-and-cheese-crunch",
     "slug": "mac-and-cheese-crunch",
     "title": "Mac and Cheese Crunch",
     
     "people": "4",
     "difficulty": "Media",
-    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch1920x840.webp",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
     "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
     "video": "https://www.youtube.com/shorts/GrVNGapcMUc",
     "gallery": [
