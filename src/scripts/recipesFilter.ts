@@ -85,6 +85,7 @@ export function initRecipesFilter() {
     // Aplicar filtro de marca
     function applyBrandFilter(brand: string) {
       console.log('[RECIPES] 🔍 Aplicando filtro de marca:', brand);
+      currentBrandFilter = brand;
       const filteredRecipes = getFilteredRecipes(brand);
       console.log(`[RECIPES] 📦 Recetas filtradas: ${filteredRecipes.length} de ${allRecipeItems.length}`);
 

@@ -4,6 +4,7 @@ import { getLocale } from '../../i18n/i18n';
 
 interface Props {
   image: string;
+  previewImage?: string;
   title: string;
   time?: string;
   id: string;
@@ -16,6 +17,7 @@ interface Props {
 
 const { 
   image, 
+  previewImage,
   title, 
   time = "---", 
   id,
@@ -25,6 +27,10 @@ const {
   difficulty = '',
   slug
 } = Astro.props;
+
+// Grid usa image  y  hover usa previewImage
+const gridImage = image;
+const hoverImage = (previewImage && previewImage.trim() !== '') ? previewImage : image;
 
 const currentLocale = getLocale();
 
@@ -106,7 +112,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
         <!-- Recipe Image (Square aspect ratio) -->
         <div class="aspect-square w-full overflow-hidden rounded-t-[40px]">
           <LazyImage
-            src={image}
+            src={gridImage}
             alt={safeTitle}
             class="w-full h-full object-cover transition-transform duration-300"
             transition:name={`recipe-image-${id}`}
@@ -137,7 +143,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
       <!-- Hover State Layout (enable only on md+ to avoid mobile hover issues) -->
       <div class="hidden md:group-hover:block w-full h-full relative overflow-hidden rounded-[40px]">
         <LazyImage
-          src={image}
+          src={hoverImage}
           alt={safeTitle}
           class="w-full h-full object-cover transition-transform duration-300"
           transition:name={`recipe-image-${id}`}
