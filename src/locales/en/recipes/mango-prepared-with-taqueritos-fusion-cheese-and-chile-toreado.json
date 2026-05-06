@@ -10,7 +10,8 @@
     "mango-preparado-con-taqueritos-queso-fusion-y-chile-toreado.webp"
   ],
   "type": "image",
-  "preparation_time": 15,
+  "preparation_time": 10,
+  "category": "snack",
   "ingredients": [
     "1 handle in pieces",
     "Salt to taste",
@@ -25,5 +26,9 @@
   ],
   "brand": [
     "taqueritos"
+  ],
+  "product": [
+    "Taqueritos Chile Toreado",
+    "Taqueritos Queso Fusión"
   ]
 }

@@ -15,6 +15,7 @@ interface Recipe {
   id: string;
   title: string;
   image?: string;
+  'preview-image'?: string;
   preparation_time: number;
   type?: string;
   brand?: string;
@@ -139,6 +140,7 @@ const featuredVideo = (featured as any)?.video ?? '';
                       >
                         <RecipeCard
                           image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
+                          previewImage={recipe['preview-image']}
                           title={recipe.title}
                           time={`${recipe.preparation_time}MIN`}
                           id={recipe.id}

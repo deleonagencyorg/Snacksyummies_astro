@@ -1,0 +1,39 @@
+{
+    
+    "date": "2026-04-30",
+    "id": "mac-and-cheese-crunch",
+    "slug": "mac-and-cheese-crunch",
+    "title": "Mac and Cheese Crunch",
+    "people": "4",
+    "difficulty": "Medium",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
+    "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
+      "video": "https://www.youtube.com/shorts/GrVNGapcMUc",
+    "gallery": [
+        "mac-and-cheese-crunch-1920.jpg"
+    ],
+    "type": "image",
+    "preparation_time": 30,
+    "category": "lunch",
+    "ingredients": [
+        "2 cups short pasta (elbow macaroni)",
+        "2 tablespoons butter",
+        "2 tablespoons flour",
+        "2 cups milk",
+        "1 ½ cups grated cheese (cheddar or mac and cheese blend)",
+        "Salt to taste",
+        "Pepper to taste",
+        "Crushed Taqueritos Queso Fusión to finish"
+    ],
+    "instructions": [
+        "Step 1. Cook the pasta in plenty of salted water until al dente and drain.",
+        "Step 2. In a saucepan, melt the butter over medium heat, add the flour and cook for 1 minute, stirring constantly; gradually incorporate the milk while stirring until you get a thick and smooth sauce.",
+        "Step 3. Add the grated cheese and mix until completely melted and the sauce is creamy, season with salt and pepper.",
+        "Step 4. Fold in the cooked pasta and mix until well coated with the sauce.",
+        "Serve hot and finish by sprinkling crushed Taqueritos Queso Fusión on top to add a crunchy texture and intense flavor."
+    ],
+   
+    "product": [
+        "Taqueritos Queso Fusión"
+    ]
+}
