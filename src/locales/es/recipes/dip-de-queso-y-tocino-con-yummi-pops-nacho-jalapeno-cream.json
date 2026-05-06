@@ -26,9 +26,7 @@
     "Paso 3. Agregar leche de ser necesario para obtener la consistencia deseada.",
     "Paso 4. Servir con los deliciosos Yummi Pops Nacho."
   ],
-  "brand": [
-    "yummipops"
-  ],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-jalapeno-cream"
   ]

@@ -28,7 +28,7 @@
     "Step: Bake for 8 to 10 minutes until the cheese is completely melted and lightly golden.",
     "Step: Remove from the oven and serve immediately, finishing with a drizzle of crema and chopped chives before bringing to the table."
   ],
-  "brand": ["ranchitas"],
+  "brand": "ranchitas",
   "product": ["ranchitas-nacho-queso"],
   "category": "snack",
   "servings": 4,

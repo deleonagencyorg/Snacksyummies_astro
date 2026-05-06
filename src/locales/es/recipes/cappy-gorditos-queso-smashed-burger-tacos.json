@@ -31,7 +31,7 @@
     "Paso 5. Coloca los Cappy Gorditos Queso encima de la carne y cocina unos segundos más hasta que se derritan ligeramente.",
     "Paso 6. Retira del fuego y agrega las cebollas curtidas, la crema y el cilantro fresco."
   ],
-  "brand": ["cappy"],
+  "brand": "cappy",
   "product": ["cappy-gorditos-queso"],
   "category": "snack",
   "servings": 4,

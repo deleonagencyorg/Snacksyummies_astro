@@ -109,8 +109,8 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
 <div class="flex flex-col items-start justify-start w-full h-[24rem] md:h-[28.75rem] group">
   <div class="bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 w-full h-full flex flex-col relative">
     <a href={recipeLink} class="h-full flex flex-col relative">
-      <!-- Default State Layout (mobile always, desktop when not hovering) -->
-      <div class="md:group-hover:hidden w-full h-full flex flex-col justify-between md:justify-start">
+      <!-- Default State Layout (always in flow to maintain card height) -->
+      <div class="w-full h-full flex flex-col justify-between md:justify-start">
         <!-- Recipe Image (Square aspect ratio) -->
         <div class="relative aspect-square w-full overflow-hidden rounded-t-[40px]">
           <LazyImage
@@ -123,7 +123,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
             <button
               type="button"
               onclick={`event.preventDefault(); event.stopPropagation(); window.openVideoModal(${JSON.stringify(video)});`}
-              class="absolute inset-0 flex items-center justify-center z-10 bg-black/20 hover:bg-black/30 transition-colors cursor-pointer rounded-t-[40px]"
+              class="absolute inset-0 flex items-center justify-center z-10 bg-black/20 hover:bg-black/30 transition-colors cursor-pointer rounded-t-[40px] md:group-hover:hidden"
               aria-label="Play video"
             >
               <div class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
@@ -157,7 +157,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
         </div>
       </div>
       <!-- Hover State Layout (enable only on md+ to avoid mobile hover issues) -->
-      <div class="hidden md:group-hover:flex w-full h-full relative overflow-hidden rounded-[40px] flex-col">
+      <div class="hidden md:group-hover:flex absolute inset-0 overflow-hidden rounded-[40px] flex-col">
         <LazyImage
           src={hoverImage}
           alt={safeTitle}

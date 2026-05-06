@@ -1,9 +1,9 @@
 {
     "date": "2026-04-30",
-    "brannd":["taqueritos"],
-    "id": "taqueritos-fiesta-con-carne-asada",
-    "slug": "taqueritos-fiesta-con-carne-asada",
-    "title": "Taqueritos Party with Carne Asada",
+    "brand": "taqueritos",
+    "id": "carne-asada-with-taqueritos-chile-toreado",
+    "slug": "carne-asada-with-taqueritos-chile-toreado",
+    "title": "Carne asada with Taqueritos Chile Toreado",
     "people": "4",
     "difficulty": "Medium",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/06-taqueritos-fiesta-con-carne-asada800x800.webp",
@@ -30,9 +30,5 @@
         "Step 3. In the same skillet, heat the carne asada until very hot and place it on top of the sauce.",
         "Step 4. Add a scoop of guacamole over the meat and serve with sour cream to taste.",
         "Step 5. Finish with chopped chives and sprinkle crushed Taqueritos Chile Toreado on top to add more crunch and spiciness before serving."
-    ],
-   
-    "product": [
-        "Taqueritos Chile Toreado"
     ]
 }

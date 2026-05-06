@@ -28,7 +28,7 @@
     "Step 4. Add the shredded cheese and mix until completely melted and the dip is creamy.",
     "Step 5. Adjust salt to taste and serve hot with Ziba's Queso chips for diping."
   ],
-  "brand": ["zibas"],
+  "brand": "zibas",
   "product": ["zibas-queso"],
   "category": "brunch",
   "servings": 6

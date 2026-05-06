@@ -30,7 +30,7 @@
       "Incorpora la cebolla morada y el cebollín, sazona con sal y pimienta y mezcla con cuidado.",
       "Sirve el tartar de inmediato, manteniéndolo frío, y acompaña con Yummi Pops Nacho Queso Blanco para mojar y aportar textura crujiente."
     ],
-  "brand": ["yummipops"],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-queso-blanco"
   ],

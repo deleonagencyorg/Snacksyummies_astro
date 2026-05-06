@@ -27,9 +27,7 @@
         "Heat the oil and fry each piece until golden",
         "Serve with BBQ sauce to taste or drizzle with additional sauce"
     ],
-    "brand": [
-        "zambos"
-    ],
+    "brand": "zambos",
     "products": [
         "zambos-chile-limon"
     ]

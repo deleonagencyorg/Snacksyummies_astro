@@ -30,7 +30,7 @@
     "Paso 3: Llevamos nuestra pasta o ensalada de pollo a la refrigeradora por una media hora.",
     "Paso 4: La servimos con Yummi Pops Nacho."
   ],
-  "brand": ["yummipops"],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-jalapeno-cream"
   ]

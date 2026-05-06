@@ -24,7 +24,7 @@
     "Paso 3. Sazona con sal al gusto y retira del fuego.",
     "Paso 4. Sirve los edamames calientes y termina espolvoreando Cappy Infladitos Queso triturados por encima para aportar textura crujiente y sabor intenso antes de servir."
   ],
-  "brand": ["cappy"],
+  "brand": "cappy",
   "product": ["cappy-infladitos-queso"],
   "category": "snack",
   "servings": 4,

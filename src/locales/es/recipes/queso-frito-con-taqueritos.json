@@ -27,6 +27,6 @@
     "Paso 4: Calentar el aceite en una olla y sumergir el queso hasta que se dore.",
     "Paso 5: Servir y acompañar con aderezo y chiles jalapeños."
   ],
-  "brand": ["taqueritos"],
+  "brand": "taqueritos",
   "product": ["Taqueritos Chile Toreado"]
 }

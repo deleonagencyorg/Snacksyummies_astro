@@ -27,6 +27,6 @@
         "Paso 4. Dale vuelta con la ayuda de una espátula o tapa. Agrega el queso y los Taqueritos y cierra el omelette.",
         "Paso 5. Reduce la temperatura a fuego medio bajo y cocina hasta que el queso esté derretido."
       ],
-      "brand": ["taqueritos"],
+      "brand": "taqueritos",
       "product": ["Taqueritos Chile Toreado"]
     }

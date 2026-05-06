@@ -28,7 +28,7 @@
     "Paso 4. Añade el queso rallado y mezcla hasta que se derrita por completo y el dip esté cremoso.",
     "Paso 5. Ajusta de sal al gusto y sirve caliente acompañado de Ziba's Queso para dipear."
   ],
-  "brand": ["zibas"],
+  "brand": "zibas",
   "product": ["zibas-queso"],
   "category": "brunch",
   "servings": 6

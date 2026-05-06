@@ -26,7 +26,7 @@
     "Step 1. Mix all the ingredients in a bowl.",
     "Step 2. Let it rest, then enjoy with Yummi Pops Nacho Cheese."
   ],
-  "brand": ["yummipops"],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-queso-blanco"
   ]

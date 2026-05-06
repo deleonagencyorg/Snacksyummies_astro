@@ -28,7 +28,7 @@
     "Paso:  Hornea de 8 a 10 minutos o hasta que el queso esté completamente derretido y ligeramente dorado.",
     "Paso:  Retira del horno y sirve de inmediato, terminando con crema por encima y cebollín picado antes de llevar a la mesa."
   ],
-  "brand": ["ranchitas"],
+  "brand": "ranchitas",
   "product": ["ranchitas-nacho-queso"],
   "category": "snack",
   "servings": 4,

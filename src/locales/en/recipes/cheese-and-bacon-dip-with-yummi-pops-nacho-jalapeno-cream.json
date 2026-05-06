@@ -26,7 +26,7 @@
     "Step 3. Add milk if needed to achieve the desired consistency.",
     "Step 4. Serve with the delicious Yummi Pops Nacho."
   ],
-  "brand": ["yummipops"],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-jalapeno-cream"
   ]

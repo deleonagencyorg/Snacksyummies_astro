@@ -30,7 +30,7 @@
     "Step: Season with salt and chili powder to taste.",
     "Step: Serve the warm casserole with Ranchitas Queso chips to use as scoops."
   ],
-  "brand": ["ranchitas"],
+  "brand": "ranchitas",
   "product": ["ranchitas-nacho-queso"],
   "category": "snack",
   "servings": 4,

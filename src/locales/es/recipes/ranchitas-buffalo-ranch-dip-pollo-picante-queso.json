@@ -29,7 +29,7 @@
     "Paso:  Retira del fuego y añade la crema, mezclando suavemente para balancear el picor.",
     "Paso:  Sirve caliente con Ranchitas Buffalo Ranch y termina con cebollín o perejil picado antes de servir."
   ],
-  "brand": ["ranchitas"],
+  "brand": "ranchitas",
   "product": ["ranchitas-buffalo-ranch"],
   "category": "snack",
   "servings": 4,

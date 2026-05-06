@@ -27,7 +27,7 @@
     "Paso 2. Ajusta la sal al gusto y refrigera por unos minutos para que los sabores se asienten.",
     "Paso 3. Sirve el dip frío acompañado de Ziba's Crema y Especias para dipear."
   ],
-  "brand": ["zibas"],
+  "brand": "zibas",
   "product": ["zibas-crema-especias"],
   "category": "brunch",
   "servings": 6

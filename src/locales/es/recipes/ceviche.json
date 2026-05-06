@@ -31,9 +31,7 @@
     "Paso 3. Agrega la salsa inglesa y la salsa kétchup.",
     "Paso 4. Sirve el ceviche frío acompañado de Zambos Ceviche para usar como scoop al momento de comer."
   ],
-  "brand": [
-    "zambos"
-  ],
+  "brand": "zambos",
   "products": [
     "zambos-ceviche"
   ],

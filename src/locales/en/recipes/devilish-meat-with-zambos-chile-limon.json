@@ -30,9 +30,7 @@
         "Place all ingredients in a bowl and chill in the refrigerator for at least 24 hours.",
         "Serve with Zambos Chile Limón"
     ],
-    "brand": [
-        "zambos"
-    ],
+    "brand": "zambos",
     "products": [
         "zambos-chile-limon"
     ]
