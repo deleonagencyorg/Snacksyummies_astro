@@ -1,0 +1,39 @@
+{
+    "date": "2026-04-30",
+    "id": "mac-and-cheese-crunch",
+    "slug": "mac-and-cheese-crunch",
+    "title": "Mac and Cheese Crunch",
+    
+    "people": "4",
+    "difficulty": "Media",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch1920x840.webp",
+    "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
+    "video": "https://www.youtube.com/shorts/GrVNGapcMUc",
+    "gallery": [
+        "mac-and-cheese-crunch.webp"
+    ],
+    "type": "image",
+    "preparation_time": 30,
+    "category": "almuerzo",
+    "ingredients": [
+        "2 tazas de pasta corta tipo codito",
+        "2 cucharadas de mantequilla",
+        "2 cucharadas de harina",
+        "2 tazas de leche",
+        "1 ½ tazas de queso rallado (cheddar o mezcla para mac and cheese)",
+        "Sal al gusto",
+        "Pimienta al gusto",
+        "Taqueritos Queso Fusión triturados para terminar"
+    ],
+    "instructions": [
+        "Paso 1. Cocina la pasta en abundante agua con sal hasta que esté al dente y escurre.",
+        "Paso 2. En una cacerola derrite la mantequilla a fuego medio, agrega la harina y cocina por 1 minuto moviendo constantemente; incorpora la leche poco a poco sin dejar de mover hasta obtener una salsa espesa y suave.",
+        "Paso 3. Añade el queso rallado y mezcla hasta que se derrita por completo y la salsa esté cremosa, sazona con sal y pimienta.",
+        "Paso 4. Incorpora la pasta cocida y mezcla hasta que quede bien cubierta con la salsa.",
+        "Sirve caliente y termina espolvoreando Taqueritos Queso Fusión triturados por encima para aportar textura crujiente y sabor intenso."
+    ],
+    "brand": "Taqueritos",
+    "product": [
+        "Taqueritos Queso Fusión"
+    ]
+}

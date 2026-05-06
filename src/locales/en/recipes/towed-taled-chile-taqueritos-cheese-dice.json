@@ -2,7 +2,7 @@
   "date": "2025-09-11",
   "id": "towed-taled-chile-taqueritos-cheese-dice",
   "slug": "towed-taled-chile-taqueritos-cheese-dice",
-  "title": "Towed -taled chile taqueritos cheese dice",
+  "title": "Towed taled chile taqueritos cheese dice",
   "people": "2",
   "difficulty": "Easy",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/dados-de-queso-toreados-con-taqueritos-chile-toreado.webp",
@@ -11,6 +11,7 @@
   ],
   "type": "image",
   "preparation_time": 15,
+  "category": "snack",
   "ingredients": [
     "1 Cream cheese pound or cheese in dice.",
     "1 cup of flour",
@@ -24,7 +25,8 @@
     "Step 3. Hot the oil to fry each of cubes or cheese dice.",
     "Step 4. Remove them and remove excess oil and enjoy."
   ],
-  "brand": [
-    "taqueritos"
+  "brand": "taqueritos",
+  "product": [
+    "Taqueritos Chile Toreado"
   ]
 }

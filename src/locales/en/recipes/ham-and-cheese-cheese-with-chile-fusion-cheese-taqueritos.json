@@ -5,12 +5,13 @@
   "title": "Ham and cheese cheese with chile fusion cheese taqueritos",
   "people": "2",
   "difficulty": "Easy",
-  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/quesadilla-de jamon-y-queso-con-taqueritos-chile-queso-fusion.webp",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/quesadilla-de-jamon-y-queso-con-taqueritos-chile-queso-fusion.webp",
   "gallery": [
     "quesadilla-de-jamon-y-queso-con-taqueritos-chile-queso-fusion.webp"
   ],
   "type": "image",
-  "preparation_time": 20,
+  "preparation_time": 15,
+  "category": "lunch",
   "ingredients": [
     "2 Flour tortillas",
     "2 Cream butter tablespoons",
@@ -27,7 +28,8 @@
     "Step 5. Finally we will use the flour tortilla on top and then we take a pan and brown it on both sides.",
     "Step 6. Cut by halves and serve your taste of ranch sauce."
   ],
-  "brand": [
-    "Taqueritos"
+  "brand": "Taqueritos",
+  "product": [
+    "Taqueritos Queso Fusión"
   ]
 }

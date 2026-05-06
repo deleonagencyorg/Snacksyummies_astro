@@ -1,0 +1,34 @@
+{
+  "date": "2025-09-11",
+  "id": "fired-cheese-with-taqueritos",
+  "slug": "fired-cheese-with-taqueritos",
+  "title": "Fired Cheede with Taqueritos",
+  "people": "4",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/queso-frito-con-taqueritos.webp",
+  "gallery": [
+    "queso-frito-con-taqueritos.webp"
+  ],
+  "type": "image",
+  "preparation_time": 20,
+  "category": "snack",
+  "ingredients": [
+    "1 pound of cheese for frying",
+    "½ cup of flour",
+    "1 egg",
+    "Abundant oil",
+    "1 Taqueritos Chile Toreado (or the flavor of your preference)"
+  ],
+  "instructions": [
+    "Step 1. Blend the Taqueritos.",
+    "Step 2. Cut the cheese into flakes.",
+    "Step 3. Place the egg in separate containers and the flour in another.",
+    "Step 4. Dip the cheese flakes in the flour, then in the egg, and finally in the crushed Taqueritos.",
+    "Step 5. Heat the oil in a pot and dip the cheese until golden brown.",
+    "Step 6. Serve and garnish with dressing and jalapeño peppers."
+  ],
+  "brand": "taqueritos",
+  "product": [
+    "Taqueritos Chile Toreado"
+  ]
+}

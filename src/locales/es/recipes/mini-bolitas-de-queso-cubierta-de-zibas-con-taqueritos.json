@@ -10,7 +10,8 @@
          "mini-bolitas-de-queso-cubierta-de-zibas-con-taqueritos.webp"
       ],      
       "type":"image",
-      "preparation_time": 30,
+      "preparation_time": 20,
+      "category": "snack",
       "ingredients": [
         "1 bolsa de Ziba’s Papitas Cremas y Especias trituradas",
         "1 Bolsa de Taqueritos Chile Toreado",
@@ -27,5 +28,6 @@
         "Paso 3. Coloca las bolitas en una bandeja y deja que se enfríen por 1 hora",
         "Paso 4. Antes de servir, coloca un Taqueritos en el entro de cada bolita y sirve."
       ],
-      "brand": ["taqueritos", "zibas"]
+      "brand": ["taqueritos", "zibas"],
+      "product": ["Taqueritos Chile Toreado"]
     }

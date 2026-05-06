@@ -15,19 +15,21 @@ interface Props {
   difficulty?: string;
   servings?: number;
   rating?: number;
+  video?: string;
 }
 
-const { 
-  image, 
-  title, 
-  time = "---", 
+const {
+  image,
+  title,
+  time = "---",
   id,
   textColor = 'text-blue-900',
   iconColor = 'text-blue-900',
   hoverImage = image,
   difficulty = "---",
   servings = 0,
-  rating = 0
+  rating = 0,
+  video
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -49,7 +51,22 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
       transition:name={`recipe-image-${id}`}
     />
   </div>
-  
+
+  {video && (
+    <button
+      type="button"
+      onclick={`event.preventDefault(); event.stopPropagation(); window.openVideoModal(${JSON.stringify(video)});`}
+      class="absolute inset-0 flex items-center justify-center z-20 bg-black/20 hover:bg-black/30 transition-colors cursor-pointer"
+      aria-label="Play video"
+    >
+      <div class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary ml-1" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </div>
+    </button>
+  )}
+
   <!-- Overlay con gradiente para el estado normal -->
   <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300"></div>
   

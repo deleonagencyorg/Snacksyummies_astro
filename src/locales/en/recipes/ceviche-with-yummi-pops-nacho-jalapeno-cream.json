@@ -37,7 +37,7 @@
     "Step 4: On a flat plate, place Yummi Pops Nacho Jalapeño Cream.",
     "Step 5: Place the ceviche in the center of the plate and take a nacho, add a little ceviche on top. Then, enjoy the flavor of the Pop."
   ],
-  "brand": ["yummipops"],
+  "brand": "yummipops",
   "product": [
     "yummi-pops-nacho-jalapeno-cream"
   ]

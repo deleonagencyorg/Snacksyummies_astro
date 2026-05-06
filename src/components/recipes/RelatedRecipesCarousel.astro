@@ -10,6 +10,7 @@ interface RecipeItem {
   difficulty?: string;
   servings?: number;
   rating?: number;
+  video?: string;
 }
 
 export interface Props {
@@ -25,127 +26,102 @@ const currentLang = getLocale();
     {currentLang === 'es' ? 'No hay recetas relacionadas.' : 'No related recipes.'}
   </div>
 ) : (
-  <div class="w-full" data-related-recipes-carousel>
-    <!-- Desktop carousel -->
-    <div class="hidden md:block relative">
-      <div class="overflow-hidden relative">
-        <div id="relatedTrackDesktop" class="flex gap-6 transition-transform duration-300 will-change-transform">
-          {items.map((recipe) => (
-            <div class="w-[360px] flex-shrink-0">
-              <RecipeCard
-                image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
-                title={recipe.title}
-                time={`${recipe.preparation_time}MIN`}
-                id={recipe.id}
-                textColor="text-white"
-                iconColor="text-white"
-              />
-            </div>
-          ))}
-        </div>
-        <!-- Overlaid nav buttons -->
-        <button id="relPrevDesktop" class="hidden md:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow z-10" aria-label="Prev">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button id="relNextDesktop" class="hidden md:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow z-10" aria-label="Next">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
+  <div class="w-full relative" data-related-recipes-carousel>
+    <!-- Margin creates space for buttons; overflow-hidden has NO padding -->
+    <div class="overflow-hidden relative mx-10 md:mx-12 lg:mx-14">
+      <div id="relatedTrack" class="flex gap-4 md:gap-6 transition-transform duration-300 will-change-transform">
+        {items.map((recipe) => (
+          <div class="w-full md:w-[calc((100%-16px)/2)] lg:w-[calc((100%-48px)/3)] flex-shrink-0 min-w-0">
+            <RecipeCard
+              image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
+              title={recipe.title}
+              time={`${recipe.preparation_time}MIN`}
+              id={recipe.id}
+              textColor="text-white"
+              iconColor="text-white"
+              video={recipe.video}
+            />
+          </div>
+        ))}
       </div>
     </div>
-
-    <!-- Mobile carousel -->
-    <div class="md:hidden relative">
-      <div class="overflow-hidden relative">
-        <div id="relatedTrackMobile" class="flex gap-4 transition-transform duration-300 will-change-transform">
-          {items.map((recipe) => (
-            <div class="w-[85%] flex-shrink-0">
-              <RecipeCard
-                image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
-                title={recipe.title}
-                time={`${recipe.preparation_time}MIN`}
-                id={recipe.id}
-                textColor="text-white"
-                iconColor="text-white"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <!-- Overlaid nav buttons on mobile -->
-      <button id="relPrevMobile" class="md:hidden flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow z-10" aria-label="Prev">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-      </button>
-      <button id="relNextMobile" class="md:hidden flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow z-10" aria-label="Next">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-      </button>
-    </div>
+    <!-- Nav buttons sit in the margin space, slightly overlapping the track edge -->
+    <button id="relPrev" class="flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow z-10 transition-opacity duration-200" aria-label="Prev">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+    </button>
+    <button id="relNext" class="flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow z-10 transition-opacity duration-200" aria-label="Next">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+    </button>
   </div>
 )}
 
 <script>
-  // Initialize carousel (no TS types to avoid lint issues in Astro script)
   function initRelatedCarousel(root: any) {
     if (!root || root._relInit) return;
     root._relInit = true;
 
-    // Desktop
-    const trackD = root.querySelector('#relatedTrackDesktop');
-    const prevD = root.querySelector('#relPrevDesktop');
-    const nextD = root.querySelector('#relNextDesktop');
+    const track = root.querySelector('#relatedTrack');
+    const prev = root.querySelector('#relPrev');
+    const next = root.querySelector('#relNext');
 
-    let indexD = 0;
-    function getStepD() {
-      // Card width 360 + gap 24 (gap-6)
-      return 384;
+    let index = 0;
+
+    function getStep() {
+      const firstCard = track?.firstElementChild;
+      if (!firstCard) return 400;
+      const style = window.getComputedStyle(track);
+      const gap = parseInt(style.gap) || 16;
+      return firstCard.getBoundingClientRect().width + gap;
     }
+
     function getVisibleCount() {
-      const container = trackD?.parentElement;
-      if (!container) return 3;
-      return Math.max(1, Math.floor(container.clientWidth / getStepD()));
-    }
-    function updateDesktop() {
-      if (!trackD) return;
-      trackD.style.transform = `translateX(-${indexD * getStepD()}px)`;
-      const maxIndex = Math.max(0, trackD.children.length - getVisibleCount());
-      // clamp indexD
-      if (indexD > maxIndex) indexD = maxIndex;
-    }
-    if (trackD && prevD && nextD) {
-      prevD.addEventListener('click', () => {
-        indexD = Math.max(0, indexD - 1);
-        updateDesktop();
-      });
-      nextD.addEventListener('click', () => {
-        const maxIndex = Math.max(0, trackD.children.length - getVisibleCount());
-        indexD = Math.min(maxIndex, indexD + 1);
-        updateDesktop();
-      });
-      window.addEventListener('resize', updateDesktop);
-      updateDesktop();
+      const step = getStep();
+      if (!step) return 1;
+      const container = track?.parentElement;
+      if (!container) return 1;
+      return Math.max(1, Math.floor(container.clientWidth / step));
     }
 
-    // Mobile
-    const trackM = root.querySelector('#relatedTrackMobile');
-    const prevM = root.querySelector('#relPrevMobile');
-    const nextM = root.querySelector('#relNextMobile');
+    function update() {
+      if (!track) return;
+      const step = getStep();
+      const visibleCount = getVisibleCount();
+      const maxIndex = Math.max(0, track.children.length - visibleCount);
 
-    let indexM = 0;
-    function updateMobile() {
-      if (!trackM) return;
-      // translate by 100% of slide width + gap approximate (85% width + ~15% gap area)
-      trackM.style.transform = `translateX(-${indexM * 100}%)`;
+      if (index > maxIndex) index = maxIndex;
+
+      // Center when all items fit; otherwise scroll normally
+      if (track.children.length <= visibleCount) {
+        track.style.transform = 'translateX(0)';
+        track.style.justifyContent = 'center';
+      } else {
+        track.style.justifyContent = 'flex-start';
+        track.style.transform = `translateX(-${index * step}px)`;
+      }
+
+      // Dim buttons when disabled instead of hiding them
+      if (prev) {
+        prev.style.opacity = index <= 0 ? '0.4' : '1';
+        prev.style.pointerEvents = index <= 0 ? 'none' : 'auto';
+      }
+      if (next) {
+        next.style.opacity = index >= maxIndex ? '0.4' : '1';
+        next.style.pointerEvents = index >= maxIndex ? 'none' : 'auto';
+      }
     }
-    if (trackM && prevM && nextM) {
-      prevM.addEventListener('click', () => {
-        indexM = Math.max(0, indexM - 1);
-        updateMobile();
+
+    if (track && prev && next) {
+      prev.addEventListener('click', () => {
+        index = Math.max(0, index - 1);
+        update();
       });
-      nextM.addEventListener('click', () => {
-        const maxIndex = Math.max(0, trackM.children.length - 1);
-        indexM = Math.min(maxIndex, indexM + 1);
-        updateMobile();
+      next.addEventListener('click', () => {
+        const maxIndex = Math.max(0, track.children.length - getVisibleCount());
+        index = Math.min(maxIndex, index + 1);
+        update();
       });
-      updateMobile();
+      window.addEventListener('resize', update);
+      update();
     }
   }
 

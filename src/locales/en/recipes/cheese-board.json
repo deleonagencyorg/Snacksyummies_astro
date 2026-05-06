@@ -1,0 +1,33 @@
+{
+    "date": "2026-04-30",
+    "brand": "taqueritos",
+    "id": "tabla-de-quesos",
+    "slug": "tabla-de-quesos",
+    "title": "Cheese Board",
+    "people": "4",
+    "difficulty": "Easy",
+    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/07-taqueritos-queso-fusion-tabla-de-quesos1920x840.webp",
+    "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/07-taqueritos-queso-fusion-tabla-de-quesos800x800.webp",
+    "video": "https://www.youtube.com/shorts/9-Nee2IyMak",
+    "gallery": [
+        "tabla-de-quesos-1920.jpg"
+    ],
+    "type": "image",
+    "preparation_time": 18,
+    "category": "snack",
+    "ingredients": [
+        "1 ½ cups melting cheese (blend of mozzarella and Swiss-type or gouda cheese)",
+        "½ cup cream",
+        "Taqueritos Queso Fusión",
+        "Olives, fruits, vegetables, and crudités to taste"
+    ],
+    "instructions": [
+        "Step 1. In a small saucepan or deep skillet, heat the cream over medium-low heat until hot, gradually add the cheese and mix constantly until completely melted and you get a creamy and homogeneous texture.",
+        "Step 2. Serve the hot melted cheese in the center of a tray or table.",
+        "Step 3. Serve with Taqueritos Queso Fusión as the main dip and place olives, pickles, and crudités around to complement and balance flavors and textures."
+    ],
+   
+    "product": [
+        "Taqueritos Queso Fusión"
+    ]
+}
