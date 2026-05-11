@@ -277,7 +277,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
       <button
         id="prevRecipeBtn"
         class="recipe-prev-btn hidden md:flex absolute -left-14 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg z-20 transition-all duration-300 items-center justify-center"
-        aria-label="Receta anterior"
+        aria-label={currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
@@ -286,7 +286,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
       <button
         id="nextRecipeBtn"
         class="recipe-next-btn hidden md:flex absolute -right-14 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg z-20 transition-all duration-300 items-center justify-center"
-        aria-label="Siguiente receta"
+        aria-label={currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
@@ -314,7 +314,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
               type="button"
               onclick={`window.openVideoModal(${JSON.stringify((safeRecipe as any).video)});`}
               class="absolute inset-0 flex items-center justify-center z-10 bg-black/20 hover:bg-black/30 transition-colors cursor-pointer"
-              aria-label="Play video"
+              aria-label={currentLang === 'es' ? 'Reproducir vídeo' : 'Play video'}
             >
               <div class="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary ml-1" viewBox="0 0 24 24" fill="currentColor">
@@ -334,7 +334,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
       <button
         id="prevRecipeBtnMobile"
         class="recipe-prev-btn bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-        aria-label="Receta anterior"
+        aria-label={currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
@@ -343,7 +343,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
       <button
         id="nextRecipeBtnMobile"
         class="recipe-next-btn bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-        aria-label="Siguiente receta"
+        aria-label={currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
@@ -539,7 +539,6 @@ function formatTime(minutes: number, lang: string = currentLang): string {
     }
   }
 </script>
-  // Recetas que se mantengan en el prev y next
 <script is:inline>
   (function () {
     // Limpia listeners previos para evitar duplicados en View Transitions
