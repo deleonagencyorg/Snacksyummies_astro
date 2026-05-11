@@ -105,10 +105,13 @@ const currentLang = getLocale();
     }
     function updateDesktop() {
       if (!trackD) return;
-      trackD.style.transform = `translateX(-${indexD * getStepD()}px)`;
-      const maxIndex = Math.max(0, trackD.children.length - getVisibleCount());
-      // clamp indexD
+      const container = trackD.parentElement;
+      const step = getStepD();
+      const maxTranslate = Math.max(0, trackD.scrollWidth - (container ? container.clientWidth : 0));
+      const maxIndex = Math.max(0, Math.ceil(maxTranslate / step));
       if (indexD > maxIndex) indexD = maxIndex;
+      const translate = Math.min(indexD * step, maxTranslate);
+      trackD.style.transform = `translateX(-${translate}px)`;
     }
     if (trackD && prevD && nextD) {
       prevD.addEventListener('click', () => {
@@ -132,8 +135,16 @@ const currentLang = getLocale();
     let indexM = 0;
     function updateMobile() {
       if (!trackM) return;
-      // translate by 100% of slide width + gap approximate (85% width + ~15% gap area)
-      trackM.style.transform = `translateX(-${indexM * 100}%)`;
+      const container = trackM.parentElement;
+      const gap = parseFloat(getComputedStyle(trackM).gap) || 0;
+      const firstChild = trackM.children[0];
+      if (!firstChild || !container) return;
+      const stepM = firstChild.getBoundingClientRect().width + gap;
+      const maxTranslateM = Math.max(0, trackM.scrollWidth - container.clientWidth);
+      const maxIndexM = Math.max(0, Math.ceil(maxTranslateM / stepM));
+      if (indexM > maxIndexM) indexM = maxIndexM;
+      const translateM = Math.min(indexM * stepM, maxTranslateM);
+      trackM.style.transform = `translateX(-${translateM}px)`;
     }
     if (trackM && prevM && nextM) {
       prevM.addEventListener('click', () => {
@@ -141,8 +152,15 @@ const currentLang = getLocale();
         updateMobile();
       });
       nextM.addEventListener('click', () => {
-        const maxIndex = Math.max(0, trackM.children.length - 1);
-        indexM = Math.min(maxIndex, indexM + 1);
+        // compute limits based on actual scroll width to avoid empty space
+        const container = trackM.parentElement;
+        const gap = parseFloat(getComputedStyle(trackM).gap) || 0;
+        const firstChild = trackM.children[0];
+        if (!firstChild || !container) return;
+        const stepM = firstChild.getBoundingClientRect().width + gap;
+        const maxTranslateM = Math.max(0, trackM.scrollWidth - container.clientWidth);
+        const maxIndexM = Math.max(0, Math.ceil(maxTranslateM / stepM));
+        indexM = Math.min(maxIndexM, indexM + 1);
         updateMobile();
       });
       updateMobile();

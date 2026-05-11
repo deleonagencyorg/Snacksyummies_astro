@@ -176,19 +176,30 @@ if (safeRecipe && safeRecipe.instructions && safeRecipe.instructions.length > 0)
   safeRecipe.instructions = safeRecipe.instructions.map(instruction => normalizeTitle(instruction));
 }
 
-// Get related recipes (sort newest first, filter current, limit to 3)
+// Recetas relacionadas segun la marca
 allRecipes.sort((a: any, b: any) => {
   const dateA = a.date ? new Date(a.date).getTime() : 0;
   const dateB = b.date ? new Date(b.date).getTime() : 0;
   return dateB - dateA;
 });
-const relatedRecipes = allRecipes
-  .filter((item: RecipeItem) => {
+
+// Normalize brand to a single string (accepts string or array)
+const rawBrand = (safeRecipe as any).brand;
+const currentBrand = Array.isArray(rawBrand) ? String(rawBrand[0]) : (rawBrand ?? '');
+
+// Filtrar recetas por marca
+let relatedRecipes = allRecipes
+  .filter((item: any) => {
     if (!item || !item.id) return false;
     const titleSlug = slugify(item.title || '');
-    return item.id !== recipeId && item.slug !== recipeId && titleSlug !== recipeId;
+    const isCurrentRecipe = item.id === recipeId || item.slug === recipeId || titleSlug === recipeId;
+    
+    const itemBrand = Array.isArray(item.brand) ? item.brand[0] : item.brand;
+    const normalizedItemBrand = itemBrand ? itemBrand.toLowerCase().trim() : '';
+    const normalizedCurrentBrand = currentBrand ? currentBrand.toLowerCase().trim() : '';
+    
+    return !isCurrentRecipe && normalizedItemBrand === normalizedCurrentBrand && normalizedCurrentBrand !== '';
   })
-  .slice(0, 3)
   .map(recipe => {
     // Normalizar títulos de recetas relacionadas
     return {
@@ -196,6 +207,28 @@ const relatedRecipes = allRecipes
       title: normalizeTitle(recipe.title)
     };
   });
+
+// si una marca tiene solo una receta, muestra la de otras marcas
+if (relatedRecipes.length === 0 && currentBrand) {
+  relatedRecipes = allRecipes
+    .filter((item: any) => {
+      if (!item || !item.id) return false;
+      const titleSlug = slugify(item.title || '');
+      const isCurrentRecipe = item.id === recipeId || item.slug === recipeId || titleSlug === recipeId;
+      
+      const itemCategory = Array.isArray(item.category) ? item.category[0] : item.category;
+      const normalizedCategory = itemCategory ? itemCategory.toLowerCase().trim() : '';
+
+      return !isCurrentRecipe && normalizedCategory === 'snack';
+    })
+    .slice(0, 6)
+    .map(recipe => {
+      return {
+        ...recipe,
+        title: normalizeTitle(recipe.title)
+      };
+    });
+}
 
 // Load shared recipe assets (titles, labels etc)
 const recipesAssets = {
@@ -221,7 +254,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
 ---
 <!-- Main Container with repeating-x background image -->
 <div class="py-12 min-h-screen" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgrecipes2.webp');  background-position: top center;">
-  <div class="max-w-7xl mx-auto px-4">
+  <div class="max-w-7xl mx-auto px-4 md:px-16">
     <!-- Breadcrumbs -->
     <Breadcrumb 
       items={[
@@ -240,9 +273,28 @@ function formatTime(minutes: number, lang: string = currentLang): string {
     </div>
 
     <!-- Main Content Card -->
+    <div class="relative">
+      <button
+        id="prevRecipeBtn"
+        class="recipe-prev-btn hidden md:flex absolute -left-14 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg z-20 transition-all duration-300 items-center justify-center"
+        aria-label={currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        id="nextRecipeBtn"
+        class="recipe-next-btn hidden md:flex absolute -right-14 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg z-20 transition-all duration-300 items-center justify-center"
+        aria-label={currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-lg mb-8">
       <div class="w-full self-stretch">
-        <div class="relative rounded-2xl overflow-hidden w-full h-[35rem] self-stretch">
+        <div class="relative rounded-2xl overflow-hidden w-full h-[35rem] self-stretch group">
           {safeRecipe.image ? (
             <LazyImage
               src={safeRecipe.image}
@@ -262,7 +314,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
               type="button"
               onclick={`window.openVideoModal(${JSON.stringify((safeRecipe as any).video)});`}
               class="absolute inset-0 flex items-center justify-center z-10 bg-black/20 hover:bg-black/30 transition-colors cursor-pointer"
-              aria-label="Play video"
+              aria-label={currentLang === 'es' ? 'Reproducir vídeo' : 'Play video'}
             >
               <div class="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary ml-1" viewBox="0 0 24 24" fill="currentColor">
@@ -271,9 +323,34 @@ function formatTime(minutes: number, lang: string = currentLang): string {
               </div>
             </button>
           )}
+          
         </div>
       </div>
     </div>
+    </div>
+
+          <!-- Flechas de navegación en recetas -->
+    <div class="flex md:hidden justify-center gap-6 mb-6">
+      <button
+        id="prevRecipeBtnMobile"
+        class="recipe-prev-btn bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        aria-label={currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        id="nextRecipeBtnMobile"
+        class="recipe-next-btn bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        aria-label={currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
     <!-- Info Recipe - Figma "Info 2" Layout -->
     <div class="flex flex-col md:flex-row gap-6 md:gap-[25px] items-start md:items-center justify-between w-full mb-12" data-name="Info 2">
       <!-- Left side: Recipe info -->
@@ -395,13 +472,17 @@ function formatTime(minutes: number, lang: string = currentLang): string {
 
 
 
+<script define:vars={{ _recipeNavData: { allRecipes: allRecipes.map(r => ({ id: r.id, slug: r.slug, title: r.title })), currentRecipeId: safeRecipe.id, currentLang } }}>
+  window.recipeNavigationData = _recipeNavData;
+</script>
+
 <script>
   // Enhanced script for recipe detail page
   document.addEventListener('DOMContentLoaded', () => {
     // Handle image loading errors
     document.querySelectorAll('img').forEach(img => {
       if (!img.hasAttribute('onerror')) {
-        img.addEventListener('error', function(this: HTMLImageElement) {
+        img.addEventListener('error', function() {
           this.onerror = null;
           this.src = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
         });
@@ -417,7 +498,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const element = entry.target as HTMLElement;
+          const element = entry.target;
           element.style.opacity = '1';
           element.style.transform = 'translateY(0)';
         }
@@ -426,10 +507,9 @@ function formatTime(minutes: number, lang: string = currentLang): string {
 
     // Observe all main content cards
     document.querySelectorAll('.bg-white.rounded-3xl').forEach(card => {
-      const element = card as HTMLElement;
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(20px)';
-      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(card);
     });
   });
@@ -459,6 +539,155 @@ function formatTime(minutes: number, lang: string = currentLang): string {
     }
   }
 </script>
+<script is:inline>
+  (function () {
+    // Limpia listeners previos para evitar duplicados en View Transitions
+    if (window.__recipeNavCleanup) {
+      window.__recipeNavCleanup();
+      window.__recipeNavCleanup = null;
+    }
+
+    function initRecipeNav() {
+      if (!window.recipeNavigationData) return;
+      const { allRecipes, currentRecipeId, currentLang } = window.recipeNavigationData;
+
+      const idToRecipe = {};
+      allRecipes.forEach(r => { idToRecipe[r.id] = r; });
+
+      const sessionKey = `recipeNav_${currentLang}`;
+      let state = null;
+      try { state = JSON.parse(sessionStorage.getItem(sessionKey) || 'null'); } catch (e) { state = null; }
+
+      function shuffle(array) {
+        const a = [...array];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      if (!state || !Array.isArray(state.history) || typeof state.pointer !== 'number' || !Array.isArray(state.pool)) {
+        const otherIds = allRecipes.map(r => r.id).filter(id => id !== currentRecipeId);
+        state = {
+          history: [currentRecipeId],
+          pointer: 0,
+          pool: shuffle(otherIds)
+        };
+        sessionStorage.setItem(sessionKey, JSON.stringify(state));
+      } else {
+        const currentAtPointer = state.history[state.pointer];
+        if (currentAtPointer !== currentRecipeId) {
+          state.history = state.history.slice(0, state.pointer + 1);
+          state.history.push(currentRecipeId);
+          state.pointer = state.history.length - 1;
+
+          const visited = new Set(state.history);
+          const poolFiltered = state.pool.filter(id => !visited.has(id) && id !== currentRecipeId);
+          if (poolFiltered.length === 0) {
+            const refill = allRecipes.map(r => r.id).filter(id => !visited.has(id) && id !== currentRecipeId);
+            state.pool = shuffle(refill);
+          } else {
+            state.pool = poolFiltered;
+          }
+
+          sessionStorage.setItem(sessionKey, JSON.stringify(state));
+        }
+      }
+
+      function saveState() { sessionStorage.setItem(sessionKey, JSON.stringify(state)); }
+
+      function getNextIdFromPool() {
+        if (!state.pool || state.pool.length === 0) {
+          const visited = new Set(state.history);
+          const refill = allRecipes.map(r => r.id).filter(id => !visited.has(id) && id !== currentRecipeId);
+          state.pool = shuffle(refill);
+        }
+        return state.pool.shift();
+      }
+
+      function navigateToId(id) {
+        const recipe = idToRecipe[id];
+        if (!recipe) return;
+        const recipePath = currentLang === 'es' ? 'recetas' : 'recipes';
+        const slug = recipe.slug || recipe.id;
+        window.location.href = `/${currentLang}/${recipePath}/${slug}`;
+      }
+
+      const prevBtns = document.querySelectorAll('.recipe-prev-btn');
+      const nextBtns = document.querySelectorAll('.recipe-next-btn');
+
+      function onPrevClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (state.pointer > 0) {
+          state.pointer = state.pointer - 1;
+          saveState();
+          navigateToId(state.history[state.pointer]);
+        }
+      }
+
+      function onNextClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (state.pointer < state.history.length - 1) {
+          state.pointer = state.pointer + 1;
+          saveState();
+          navigateToId(state.history[state.pointer]);
+          return;
+        }
+        const nextId = getNextIdFromPool();
+        if (nextId) {
+          state.history.push(nextId);
+          state.pointer = state.history.length - 1;
+          saveState();
+          navigateToId(nextId);
+        }
+      }
+
+      function onKeyDown(e) {
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          if (state.pointer > 0) {
+            state.pointer = state.pointer - 1;
+            saveState();
+            navigateToId(state.history[state.pointer]);
+          }
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          if (state.pointer < state.history.length - 1) {
+            state.pointer = state.pointer + 1;
+            saveState();
+            navigateToId(state.history[state.pointer]);
+          } else {
+            const nextId = getNextIdFromPool();
+            if (nextId) {
+              state.history.push(nextId);
+              state.pointer = state.history.length - 1;
+              saveState();
+              navigateToId(nextId);
+            }
+          }
+        }
+      }
+
+      prevBtns.forEach(btn => btn.addEventListener('click', onPrevClick));
+      nextBtns.forEach(btn => btn.addEventListener('click', onNextClick));
+      document.addEventListener('keydown', onKeyDown);
+
+      // Registrar función de limpieza para la próxima navegación
+      window.__recipeNavCleanup = function () {
+        prevBtns.forEach(btn => btn.removeEventListener('click', onPrevClick));
+        nextBtns.forEach(btn => btn.removeEventListener('click', onNextClick));
+        document.removeEventListener('keydown', onKeyDown);
+      };
+    }
+
+    // Soporta tanto carga inicial como navegación por View Transitions de Astro
+    document.addEventListener('astro:page-load', initRecipeNav);
+    document.addEventListener('DOMContentLoaded', initRecipeNav);
+  })();
+</script>
 
 <style>
   /* Custom fonts and styling to match Figma design */
@@ -472,6 +701,17 @@ function formatTime(minutes: number, lang: string = currentLang): string {
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+  }
+
+  /* Efectos sobre las flechas */
+  .recipe-prev-btn:hover,
+  .recipe-next-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .recipe-prev-btn:active,
+  .recipe-next-btn:active {
+    transform: translateY(-50%) scale(0.95);
   }
 
   /* Responsive grid adjustments */

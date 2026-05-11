@@ -86,17 +86,21 @@ const currentLang = getLocale();
       if (!track) return;
       const step = getStep();
       const visibleCount = getVisibleCount();
-      const maxIndex = Math.max(0, track.children.length - visibleCount);
+
+      const container = track.parentElement;
+      const maxTranslate = Math.max(0, track.scrollWidth - (container ? container.clientWidth : 0));
+      const maxIndex = Math.max(0, Math.ceil(maxTranslate / (step || 1)));
 
       if (index > maxIndex) index = maxIndex;
 
-      // Center when all items fit; otherwise scroll normally
+      // Center when all items fit; otherwise scroll normally but never beyond maxTranslate
       if (track.children.length <= visibleCount) {
         track.style.transform = 'translateX(0)';
         track.style.justifyContent = 'center';
       } else {
         track.style.justifyContent = 'flex-start';
-        track.style.transform = `translateX(-${index * step}px)`;
+        const translate = Math.min(index * step, maxTranslate);
+        track.style.transform = `translateX(-${translate}px)`;
       }
 
       // Dim buttons when disabled instead of hiding them
@@ -116,7 +120,11 @@ const currentLang = getLocale();
         update();
       });
       next.addEventListener('click', () => {
-        const maxIndex = Math.max(0, track.children.length - getVisibleCount());
+        // compute limits based on actual scroll width to avoid empty space
+        const step = getStep();
+        const container = track.parentElement;
+        const maxTranslate = Math.max(0, track.scrollWidth - (container ? container.clientWidth : 0));
+        const maxIndex = Math.max(0, Math.ceil(maxTranslate / (step || 1)));
         index = Math.min(maxIndex, index + 1);
         update();
       });
