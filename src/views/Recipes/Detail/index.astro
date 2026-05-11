@@ -254,7 +254,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
 ---
 <!-- Main Container with repeating-x background image -->
 <div class="py-12 min-h-screen" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgrecipes2.webp');  background-position: top center;">
-  <div class="max-w-7xl mx-auto px-4">
+  <div class="max-w-7xl mx-auto px-4 md:px-16">
     <!-- Breadcrumbs -->
     <Breadcrumb 
       items={[
@@ -273,6 +273,25 @@ function formatTime(minutes: number, lang: string = currentLang): string {
     </div>
 
     <!-- Main Content Card -->
+    <div class="relative">
+      <button
+        id="prevRecipeBtn"
+        class="recipe-prev-btn hidden md:flex absolute -left-14 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg z-20 transition-all duration-300 items-center justify-center"
+        aria-label="Receta anterior"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        id="nextRecipeBtn"
+        class="recipe-next-btn hidden md:flex absolute -right-14 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg z-20 transition-all duration-300 items-center justify-center"
+        aria-label="Siguiente receta"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-lg mb-8">
       <div class="w-full self-stretch">
         <div class="relative rounded-2xl overflow-hidden w-full h-[35rem] self-stretch group">
@@ -305,29 +324,33 @@ function formatTime(minutes: number, lang: string = currentLang): string {
             </button>
           )}
           
-          <!-- Flechas de navegación en recetas -->
-          <button
-            id="prevRecipeBtn"
-            class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-2 md:p-3 rounded-full shadow-lg z-20 transition-all duration-300 hover:scale-110"
-            aria-label="Receta anterior"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button
-            id="nextRecipeBtn"
-            class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary p-2 md:p-3 rounded-full shadow-lg z-20 transition-all duration-300 hover:scale-110"
-            aria-label="Siguiente receta"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
       </div>
     </div>
+    </div>
+
+          <!-- Flechas de navegación en recetas -->
+    <div class="flex md:hidden justify-center gap-6 mb-6">
+      <button
+        id="prevRecipeBtnMobile"
+        class="recipe-prev-btn bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        aria-label="Receta anterior"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        id="nextRecipeBtnMobile"
+        class="recipe-next-btn bg-white/90 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+        aria-label="Siguiente receta"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
     <!-- Info Recipe - Figma "Info 2" Layout -->
     <div class="flex flex-col md:flex-row gap-6 md:gap-[25px] items-start md:items-center justify-between w-full mb-12" data-name="Info 2">
       <!-- Left side: Recipe info -->
@@ -592,8 +615,8 @@ function formatTime(minutes: number, lang: string = currentLang): string {
         window.location.href = `/${currentLang}/${recipePath}/${slug}`;
       }
 
-      const prevBtn = document.getElementById('prevRecipeBtn');
-      const nextBtn = document.getElementById('nextRecipeBtn');
+      const prevBtns = document.querySelectorAll('.recipe-prev-btn');
+      const nextBtns = document.querySelectorAll('.recipe-next-btn');
 
       function onPrevClick(e) {
         e.preventDefault();
@@ -649,14 +672,14 @@ function formatTime(minutes: number, lang: string = currentLang): string {
         }
       }
 
-      if (prevBtn) prevBtn.addEventListener('click', onPrevClick);
-      if (nextBtn) nextBtn.addEventListener('click', onNextClick);
+      prevBtns.forEach(btn => btn.addEventListener('click', onPrevClick));
+      nextBtns.forEach(btn => btn.addEventListener('click', onNextClick));
       document.addEventListener('keydown', onKeyDown);
 
       // Registrar función de limpieza para la próxima navegación
       window.__recipeNavCleanup = function () {
-        if (prevBtn) prevBtn.removeEventListener('click', onPrevClick);
-        if (nextBtn) nextBtn.removeEventListener('click', onNextClick);
+        prevBtns.forEach(btn => btn.removeEventListener('click', onPrevClick));
+        nextBtns.forEach(btn => btn.removeEventListener('click', onNextClick));
         document.removeEventListener('keydown', onKeyDown);
       };
     }
@@ -682,13 +705,13 @@ function formatTime(minutes: number, lang: string = currentLang): string {
   }
 
   /* Efectos sobre las flechas */
-  #prevRecipeBtn:hover,
-  #nextRecipeBtn:hover {
+  .recipe-prev-btn:hover,
+  .recipe-next-btn:hover {
     transform: translateY(-50%) scale(1.1);
   }
 
-  #prevRecipeBtn:active,
-  #nextRecipeBtn:active {
+  .recipe-prev-btn:active,
+  .recipe-next-btn:active {
     transform: translateY(-50%) scale(0.95);
   }
 
