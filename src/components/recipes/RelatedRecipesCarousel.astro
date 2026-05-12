@@ -64,7 +64,7 @@ const currentLang = getLocale();
     const prev = root.querySelector('#relPrev');
     const next = root.querySelector('#relNext');
 
-    let index = 0;
+    let currentTranslate = 0;
 
     function getStep() {
       const firstCard = track?.firstElementChild;
@@ -72,6 +72,12 @@ const currentLang = getLocale();
       const style = window.getComputedStyle(track);
       const gap = parseInt(style.gap) || 16;
       return firstCard.getBoundingClientRect().width + gap;
+    }
+
+    function getMaxTranslate() {
+      const container = track?.parentElement;
+      if (!container) return 0;
+      return Math.max(0, track.scrollWidth - container.clientWidth);
     }
 
     function getVisibleCount() {
@@ -84,51 +90,48 @@ const currentLang = getLocale();
 
     function update() {
       if (!track) return;
-      const step = getStep();
+      const maxTranslate = getMaxTranslate();
       const visibleCount = getVisibleCount();
 
-      const container = track.parentElement;
-      const maxTranslate = Math.max(0, track.scrollWidth - (container ? container.clientWidth : 0));
-      const maxIndex = Math.max(0, Math.ceil(maxTranslate / (step || 1)));
+      currentTranslate = Math.min(currentTranslate, maxTranslate);
+      currentTranslate = Math.max(0, currentTranslate);
 
-      if (index > maxIndex) index = maxIndex;
-
-      // Center when all items fit; otherwise scroll normally but never beyond maxTranslate
       if (track.children.length <= visibleCount) {
         track.style.transform = 'translateX(0)';
         track.style.justifyContent = 'center';
       } else {
         track.style.justifyContent = 'flex-start';
-        const translate = Math.min(index * step, maxTranslate);
-        track.style.transform = `translateX(-${translate}px)`;
+        track.style.transform = `translateX(-${currentTranslate}px)`;
       }
 
-      // Dim buttons when disabled instead of hiding them
+      const atStart = currentTranslate <= 0;
+      const atEnd = currentTranslate >= maxTranslate - 1;
+
       if (prev) {
-        prev.style.opacity = index <= 0 ? '0.4' : '1';
-        prev.style.pointerEvents = index <= 0 ? 'none' : 'auto';
+        prev.style.opacity = atStart ? '0.4' : '1';
+        prev.style.pointerEvents = atStart ? 'none' : 'auto';
       }
       if (next) {
-        next.style.opacity = index >= maxIndex ? '0.4' : '1';
-        next.style.pointerEvents = index >= maxIndex ? 'none' : 'auto';
+        next.style.opacity = atEnd ? '0.4' : '1';
+        next.style.pointerEvents = atEnd ? 'none' : 'auto';
       }
     }
 
     if (track && prev && next) {
       prev.addEventListener('click', () => {
-        index = Math.max(0, index - 1);
+        const step = getStep();
+        currentTranslate = Math.max(0, currentTranslate - step);
         update();
       });
       next.addEventListener('click', () => {
-        // compute limits based on actual scroll width to avoid empty space
         const step = getStep();
-        const container = track.parentElement;
-        const maxTranslate = Math.max(0, track.scrollWidth - (container ? container.clientWidth : 0));
-        const maxIndex = Math.max(0, Math.ceil(maxTranslate / (step || 1)));
-        index = Math.min(maxIndex, index + 1);
+        const maxTranslate = getMaxTranslate();
+        currentTranslate = Math.min(maxTranslate, currentTranslate + step);
         update();
       });
-      window.addEventListener('resize', update);
+      window.addEventListener('resize', () => {
+        update();
+      });
       update();
     }
   }
