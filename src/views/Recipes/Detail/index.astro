@@ -301,7 +301,6 @@ function formatTime(minutes: number, lang: string = currentLang): string {
               alt={safeRecipe.title}
               class="w-full h-full object-cover block"
               onerror="this.onerror=null;this.src='https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';"
-              transition:name={`recipe-image-${safeRecipe.id}`}
               priority={true}
             />
           ) : (
@@ -470,223 +469,161 @@ function formatTime(minutes: number, lang: string = currentLang): string {
   </div>
 </div>
 
-
-
-<script define:vars={{ _recipeNavData: { allRecipes: allRecipes.map(r => ({ id: r.id, slug: r.slug, title: r.title })), currentRecipeId: safeRecipe.id, currentLang } }}>
-  window.recipeNavigationData = _recipeNavData;
-</script>
+<div
+  id="recipe-nav-data"
+  style="display:none"
+  data-current-id={safeRecipe.id}
+  data-lang={currentLang}
+  data-recipes={JSON.stringify(allRecipes.map(r => ({ id: r.id, slug: r.slug })))}
+></div>
 
 <script>
-  // Enhanced script for recipe detail page
-  document.addEventListener('DOMContentLoaded', () => {
-    // Handle image loading errors
-    document.querySelectorAll('img').forEach(img => {
+  import { navigate } from 'astro:transitions/client';
+
+  let btnCleanup: (() => void) | null = null;
+  let isNavigating = false;
+  function shuffle<T>(arr: T[]): T[] {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  interface NavState {
+    stack: string[];
+    cursor: number;
+    pool: string[];
+  }
+
+  interface RecipeRef { id: string; slug?: string; }
+  function initRecipeNav() {
+    if (btnCleanup) { btnCleanup(); btnCleanup = null; }
+
+    const navEl = document.getElementById('recipe-nav-data');
+    if (!navEl) return;
+
+    const currentId  = navEl.dataset.currentId!;
+    const currentLang = navEl.dataset.lang!;
+    const allRecipes: RecipeRef[] = JSON.parse(navEl.dataset.recipes || '[]');
+
+    if (!currentId || !currentLang || !allRecipes.length) return;
+
+    const byId: Record<string, RecipeRef> = {};
+    allRecipes.forEach(r => { byId[r.id] = r; });
+
+    const SESSION_KEY = `recipeNav2_${currentLang}`;
+
+    function loadState(): NavState | null {
+      try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || 'null'); }
+      catch { return null; }
+    }
+    function saveState(s: NavState) {
+      sessionStorage.setItem(SESSION_KEY, JSON.stringify(s));
+    }
+
+    let s = loadState();
+    const valid = s && Array.isArray(s.stack) && typeof s.cursor === 'number' && Array.isArray(s.pool);
+
+    if (!valid) {
+      const pool = shuffle(allRecipes.map(r => r.id).filter(id => id !== currentId));
+      s = { stack: [currentId], cursor: 0, pool };
+      saveState(s);
+    } else {
+      if (s!.stack[s!.cursor] === currentId) {
+      }
+      else {
+        const existingIdx = s!.stack.lastIndexOf(currentId);
+
+        if (existingIdx !== -1) {
+          s!.cursor = existingIdx;
+        } else {
+          s!.stack = s!.stack.slice(0, s!.cursor + 1);
+          s!.stack.push(currentId);
+          s!.cursor = s!.stack.length - 1;
+          const inStack = new Set<string>(s!.stack);
+          s!.pool = s!.pool.filter(id => !inStack.has(id));
+          if (s!.pool.length === 0) {
+            s!.pool = shuffle(allRecipes.map(r => r.id).filter(id => !inStack.has(id)));
+          }
+        }
+        saveState(s!);
+      }
+    }
+
+    let state = s as NavState;
+
+    function poolNext(): string | undefined {
+      if (!state.pool.length) {
+        const inStack = new Set<string>(state.stack);
+        state.pool = shuffle(allRecipes.map(r => r.id).filter(id => !inStack.has(id)));
+      }
+      return state.pool.shift();
+    }
+
+    function goTo(id: string) {
+      if (isNavigating) return;
+      const recipe = byId[id];
+      if (!recipe) return;
+      const section = currentLang === 'es' ? 'recetas' : 'recipes';
+      const slug = recipe.slug || recipe.id;
+      isNavigating = true;
+      navigate(`/${currentLang}/${section}/${slug}`).finally(() => { isNavigating = false; });
+    }
+
+    function onPrev(e: Event) {
+      e.preventDefault(); e.stopPropagation();
+      if (isNavigating || state.cursor <= 0) return;
+      state.cursor--;
+      saveState(state);
+      goTo(state.stack[state.cursor]);
+    }
+
+    function onNext(e: Event) {
+      e.preventDefault(); e.stopPropagation();
+      if (isNavigating) return;
+      if (state.cursor < state.stack.length - 1) {
+        state.cursor++;
+        saveState(state);
+        goTo(state.stack[state.cursor]);
+      } else {
+        const nextId = poolNext();
+        if (nextId) {
+          state.stack.push(nextId);
+          state.cursor = state.stack.length - 1;
+          saveState(state);
+          goTo(nextId);
+        }
+      }
+    }
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); onPrev(e); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); onNext(e); }
+    }
+    const prevBtns = Array.from(document.querySelectorAll<HTMLElement>('.recipe-prev-btn'));
+    const nextBtns = Array.from(document.querySelectorAll<HTMLElement>('.recipe-next-btn'));
+
+    prevBtns.forEach(btn => btn.addEventListener('click', onPrev));
+    nextBtns.forEach(btn => btn.addEventListener('click', onNext));
+    document.addEventListener('keydown', onKeyDown);
+
+    btnCleanup = () => {
+      prevBtns.forEach(btn => btn.removeEventListener('click', onPrev));
+      nextBtns.forEach(btn => btn.removeEventListener('click', onNext));
+      document.removeEventListener('keydown', onKeyDown);
+    };
+    document.querySelectorAll<HTMLImageElement>('img').forEach(img => {
       if (!img.hasAttribute('onerror')) {
-        img.addEventListener('error', function() {
+        img.addEventListener('error', function(this: HTMLImageElement) {
           this.onerror = null;
           this.src = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
         });
       }
     });
-
-    // Add fade-in animation for cards
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target;
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // Observe all main content cards
-    document.querySelectorAll('.bg-white.rounded-3xl').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(card);
-    });
-  });
-
-  // Global share function for the social media button
-  async function shareRecipe() {
-    const title = document.querySelector('h1')?.textContent || 'Recipe';
-    const url = window.location.href;
-    
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: title,
-          url: url,
-        });
-      } catch (err) {
-        console.log('Error sharing:', err);
-      }
-    } else {
-      // Fallback to copying URL to clipboard
-      try {
-        await navigator.clipboard.writeText(url);
-        alert('Recipe URL copied to clipboard!');
-      } catch (err) {
-        console.log('Could not copy URL');
-      }
-    }
   }
-</script>
-<script is:inline>
-  (function () {
-    // Limpia listeners previos para evitar duplicados en View Transitions
-    if (window.__recipeNavCleanup) {
-      window.__recipeNavCleanup();
-      window.__recipeNavCleanup = null;
-    }
-
-    function initRecipeNav() {
-      if (!window.recipeNavigationData) return;
-      const { allRecipes, currentRecipeId, currentLang } = window.recipeNavigationData;
-
-      const idToRecipe = {};
-      allRecipes.forEach(r => { idToRecipe[r.id] = r; });
-
-      const sessionKey = `recipeNav_${currentLang}`;
-      let state = null;
-      try { state = JSON.parse(sessionStorage.getItem(sessionKey) || 'null'); } catch (e) { state = null; }
-
-      function shuffle(array) {
-        const a = [...array];
-        for (let i = a.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [a[i], a[j]] = [a[j], a[i]];
-        }
-        return a;
-      }
-
-      if (!state || !Array.isArray(state.history) || typeof state.pointer !== 'number' || !Array.isArray(state.pool)) {
-        const otherIds = allRecipes.map(r => r.id).filter(id => id !== currentRecipeId);
-        state = {
-          history: [currentRecipeId],
-          pointer: 0,
-          pool: shuffle(otherIds)
-        };
-        sessionStorage.setItem(sessionKey, JSON.stringify(state));
-      } else {
-        const currentAtPointer = state.history[state.pointer];
-        if (currentAtPointer !== currentRecipeId) {
-          state.history = state.history.slice(0, state.pointer + 1);
-          state.history.push(currentRecipeId);
-          state.pointer = state.history.length - 1;
-
-          const visited = new Set(state.history);
-          const poolFiltered = state.pool.filter(id => !visited.has(id) && id !== currentRecipeId);
-          if (poolFiltered.length === 0) {
-            const refill = allRecipes.map(r => r.id).filter(id => !visited.has(id) && id !== currentRecipeId);
-            state.pool = shuffle(refill);
-          } else {
-            state.pool = poolFiltered;
-          }
-
-          sessionStorage.setItem(sessionKey, JSON.stringify(state));
-        }
-      }
-
-      function saveState() { sessionStorage.setItem(sessionKey, JSON.stringify(state)); }
-
-      function getNextIdFromPool() {
-        if (!state.pool || state.pool.length === 0) {
-          const visited = new Set(state.history);
-          const refill = allRecipes.map(r => r.id).filter(id => !visited.has(id) && id !== currentRecipeId);
-          state.pool = shuffle(refill);
-        }
-        return state.pool.shift();
-      }
-
-      function navigateToId(id) {
-        const recipe = idToRecipe[id];
-        if (!recipe) return;
-        const recipePath = currentLang === 'es' ? 'recetas' : 'recipes';
-        const slug = recipe.slug || recipe.id;
-        window.location.href = `/${currentLang}/${recipePath}/${slug}`;
-      }
-
-      const prevBtns = document.querySelectorAll('.recipe-prev-btn');
-      const nextBtns = document.querySelectorAll('.recipe-next-btn');
-
-      function onPrevClick(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (state.pointer > 0) {
-          state.pointer = state.pointer - 1;
-          saveState();
-          navigateToId(state.history[state.pointer]);
-        }
-      }
-
-      function onNextClick(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (state.pointer < state.history.length - 1) {
-          state.pointer = state.pointer + 1;
-          saveState();
-          navigateToId(state.history[state.pointer]);
-          return;
-        }
-        const nextId = getNextIdFromPool();
-        if (nextId) {
-          state.history.push(nextId);
-          state.pointer = state.history.length - 1;
-          saveState();
-          navigateToId(nextId);
-        }
-      }
-
-      function onKeyDown(e) {
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          if (state.pointer > 0) {
-            state.pointer = state.pointer - 1;
-            saveState();
-            navigateToId(state.history[state.pointer]);
-          }
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          if (state.pointer < state.history.length - 1) {
-            state.pointer = state.pointer + 1;
-            saveState();
-            navigateToId(state.history[state.pointer]);
-          } else {
-            const nextId = getNextIdFromPool();
-            if (nextId) {
-              state.history.push(nextId);
-              state.pointer = state.history.length - 1;
-              saveState();
-              navigateToId(nextId);
-            }
-          }
-        }
-      }
-
-      prevBtns.forEach(btn => btn.addEventListener('click', onPrevClick));
-      nextBtns.forEach(btn => btn.addEventListener('click', onNextClick));
-      document.addEventListener('keydown', onKeyDown);
-
-      // Registrar función de limpieza para la próxima navegación
-      window.__recipeNavCleanup = function () {
-        prevBtns.forEach(btn => btn.removeEventListener('click', onPrevClick));
-        nextBtns.forEach(btn => btn.removeEventListener('click', onNextClick));
-        document.removeEventListener('keydown', onKeyDown);
-      };
-    }
-
-    // Soporta tanto carga inicial como navegación por View Transitions de Astro
-    document.addEventListener('astro:page-load', initRecipeNav);
-    document.addEventListener('DOMContentLoaded', initRecipeNav);
-  })();
+  document.addEventListener('astro:page-load', initRecipeNav);
 </script>
 
 <style>
