@@ -48,7 +48,12 @@ try {
 const skeletonCount = 3;
 
 // Client-side filtering only: render all brands and filter in browser
-const filteredBrands = brandsData;
+// Prioritzar recetas con pagina web en marcas
+const filteredBrands = [...(brandsData as any[])].sort((a: any, b: any) => {
+  const aHasUrl = a?.url && a.url !== '#' ? 1 : 0;
+  const bHasUrl = b?.url && b.url !== '#' ? 1 : 0;
+  return bHasUrl - aHasUrl;
+});
 
 // Normalized category items for Categories component (use brand.id as slug)
 const categoryItems = (brandsData || []).map((b: any) => ({
