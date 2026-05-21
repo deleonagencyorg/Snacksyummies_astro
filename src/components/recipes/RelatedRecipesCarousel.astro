@@ -45,13 +45,17 @@ const currentLang = getLocale();
         ))}
       </div>
     </div>
-    <!-- Nav buttons sit in the margin space, slightly overlapping the track edge -->
-    <button id="relPrev" class="flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow z-10 transition-opacity duration-200" aria-label="Prev">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-    </button>
-    <button id="relNext" class="flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary w-10 h-10 rounded-full shadow z-10 transition-opacity duration-200" aria-label="Next">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-    </button>
+    <!-- Bottones de navecacion para recetas -->
+    <div class="w-full mx-10 md:mx-12 lg:mx-14 mt-6">
+      <div class="flex justify-between items-center">
+        <button id="relPrev" class="rel-nav-btn text-white font-bold bg-transparent hover:opacity-90 px-4 py-2 rounded-full shadow transition-colors duration-150" aria-label={currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}>
+          {currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}
+        </button>
+        <button id="relNext" class="rel-nav-btn text-white font-bold bg-transparent hover:opacity-90 px-4 py-2 rounded-full shadow transition-colors duration-150" aria-label={currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}>
+          {currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}
+        </button>
+      </div>
+    </div>
   </div>
 )}
 
@@ -148,3 +152,51 @@ const currentLang = getLocale();
   document.addEventListener('astro:page-load', initAll);
   document.addEventListener('astro:after-swap', initAll);
 </script>
+    <!-- estilo para botones de las recetas -->
+<style>
+  .rel-nav-btn {
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .rel-nav-btn {
+    min-width: 160px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    white-space: nowrap;
+    font-size: 0.95rem;
+  }
+
+  @media (min-width: 768px) {
+    .rel-nav-btn {
+      transform: none !important;
+    }
+    .rel-nav-btn:hover {
+      transform: none !important;
+      background: rgba(255,255,255,0.12);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .rel-nav-btn {
+      min-width: 140px;
+      height: 40px;
+      font-size: 0.9rem;
+      padding: 0 12px;
+    }
+  }
+
+  .rel-nav-btn:focus,
+  .rel-nav-btn.active {
+    outline: none;
+    background: #ffffff;
+    color: #0A3D7E;
+    border-color: #0A3D7E;
+    box-shadow: 0 8px 24px rgba(10,61,126,0.12);
+  }
+</style>
