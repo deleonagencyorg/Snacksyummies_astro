@@ -1,0 +1,29 @@
+{
+  "source": "Honduras.xlsx; Nicaragua.xlsx",
+  "points": [
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "direccion": "Calle prinsip a",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "direccion": "Bo. Cruz De Guadalupe, Escuelita Cr",
+      "latitud": "11.8548191",
+      "longitud": "86.1914999"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "direccion": "Calle nueva granada Iglesia nasaren",
+      "latitud": "11.92704",
+      "longitud": "85.96428"
+    }
+  ]
+}

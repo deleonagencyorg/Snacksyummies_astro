@@ -1,0 +1,15 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import SEO from "../../components/SEO.astro";
+import StoreLocatorView from "../../views/StoreLocator/index.astro";
+
+const title = "Centros de Canje";
+const description = "Encuentra los centros de canje Snacks Yummies más cercanos en Centroamérica.";
+const canonicalUrl = "https://snacksyummies.com/es/centros-de-canje";
+---
+
+<MainLayout title={title} description={description}>
+  <SEO slot="head" currentLang="es" title={title} description={description} canonicalUrl={canonicalUrl} />
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" slot="head" />
+  <StoreLocatorView />
+</MainLayout>
