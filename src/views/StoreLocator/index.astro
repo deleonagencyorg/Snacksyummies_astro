@@ -1,0 +1,835 @@
+---
+import "./styles.css";
+import { MapPin, Navigation, Map } from "lucide-astro";
+import { siWaze } from "simple-icons";
+
+const wazeSvgPath = siWaze ? siWaze.path : "";
+const wazeTitle = siWaze ? siWaze.title : "Waze";
+
+const mapsApiKey = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY || "";
+
+const pointsModules = await Astro.glob("../../locales/es/points/*.json");
+const allPoints = pointsModules.flatMap((m) => m.points || []);
+const countrySet = new Set(
+  allPoints
+    .map((p: any) => p.pais)
+    .filter(Boolean)
+    .sort(),
+);
+const countries = Array.from(countrySet);
+
+// Geo cookie ISO → country name
+const ISO_TO_COUNTRY: Record<string, string> = {
+  HN: "Honduras",
+  SV: "El Salvador",
+  NI: "Nicaragua",
+  GT: "Guatemala",
+  CR: "Costa Rica",
+  DO: "República Dominicana",
+};
+
+const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
+  "El Salvador": { lat: 13.7942, lng: -88.8965 },
+  Honduras: { lat: 14.0723, lng: -87.1921 },
+  Nicaragua: { lat: 12.8654, lng: -85.2072 },
+  España: { lat: 40.4168, lng: -3.7038 },
+  India: { lat: 20.5937, lng: 78.9629 },
+  unknown: { lat: 14.5, lng: -87.0 },
+};
+---
+
+<div class="sl-page" id="store-locator-page">
+  <section
+    style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgmundial2.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;"
+  >
+  <div id="encabezado" class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 py-12 px-4">
+    <div class="flex-shrink-0"><img width="300" height="100" src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logomundial.webp" alt="Logo"></div>
+    <div class="text-center flex flex-col gap-2">
+      <h1 class="text-white md:text-8xl text-5xl">Encuentra</h1>
+      <h2 class="text-yellow md:text-6xl text-4xl">TU PUNTO DE CANJE</h2>
+      <h1 class="text-white md:text-8xl text-5xl">más cercano</h1>
+    </div>
+  </div>
+   
+
+    <div id="sl-status" class="sl-status sl-status--loading" style="display:block;">
+      Cargando...
+    </div>
+
+    <div class="sl-main">
+      <div class="sl-form-col">
+        <div class="sl-field">
+          <label class="sl-label" for="sl-country">País</label>
+          <select id="sl-country" class="sl-input sl-select">
+            <option value="">Seleccionar país</option>
+            {countries.map((c: string) => (
+              <option value={c}>{c}</option>
+            ))}
+          </select>
+        </div>
+
+        <div class="sl-field">
+          <label class="sl-label" for="sl-search">Buscar ciudad o dirección</label>
+          <input
+            id="sl-search"
+            type="text"
+            class="sl-input"
+            placeholder="ej. San Salvador, Tegucigalpa..."
+            autocomplete="off"
+          />
+        </div>
+
+        <button id="sl-find-btn" class="sl-find-btn">
+          Buscar
+        </button>
+
+        <button id="sl-locate-btn" class="sl-locate-btn">
+          <MapPin class="inline-block" size={16} stroke="currentColor" />
+          Usar mi ubicación
+        </button>
+
+        <div id="sl-count" class="sl-count" style="display:none;"></div>
+
+        <div class="sl-list-wrap" id="sl-list-wrap" style="display:none;">
+          <div class="sl-sidebar__list" id="sl-list"></div>
+        </div>
+      </div>
+
+      <div class="sl-map-col">
+        <div id="sl-skeleton" class="sl-skeleton-overlay">
+          <div class="sl-skeleton-shimmer"></div>
+          <div class="sl-skeleton-content">
+            <div class="sl-skeleton-pin">📍</div>
+            <p class="sl-skeleton-msg" id="sl-skeleton-msg">Detectando tu ubicación…</p>
+          </div>
+        </div>
+        <div id="sl-map" class="sl-map loading"></div>
+      </div>
+    </div>
+
+    <div class="ballons w-full flex justify-center items-center my-8 px-4">
+      <img src="https://snack.yummiespromociones.com/SnacksyummiesAssets/footercanjemundial3.webp" alt="Balloon 1" class="hidden md:block max-w-[900px] w-full h-auto mx-auto" style="animation: float1 6s ease-in-out infinite;" />
+      <img src="https://snack.yummiespromociones.com/SnacksyummiesAssets/footercanjemundial-mobile2.webp" alt="Balloon 1" class="block md:hidden w-full max-w-[90%] h-auto mx-auto" style="animation: float1 6s ease-in-out infinite;" />
+    </div>
+
+    
+  </section>
+</div>
+
+<script
+  is:inline
+  src="https://unpkg.com/@googlemaps/markerclusterer@2.5.3/dist/index.min.js"
+></script>
+
+<script is:inline define:vars={{ mapsApiKey, countries, ISO_TO_COUNTRY, COUNTRY_CENTROIDS, allPoints, wazeSvgPath, wazeTitle }}>
+(function () {
+  "use strict";
+
+  var sl = {
+    map: null,
+    infoWindow: null,
+    markers: [],
+    clusterer: null,
+    circle: null,
+    currentCountry: null,
+    loading: false,
+    searchFilter: "",
+    userLat: null,
+    userLng: null,
+    skeletonHidden: false,
+  };
+
+  var pointsData = /** @type {Array} */ (allPoints);
+  var countryList = /** @type {Array} */ (countries);
+
+  function $(id) { return document.getElementById(id); }
+
+  function showStatus(msg, type) {
+    var el = $("sl-status");
+    if (!el) return;
+    el.textContent = msg;
+    el.className = "sl-status sl-status--" + (type || "info");
+    el.style.display = "block";
+  }
+
+  function hideStatus() {
+    var el = $("sl-status");
+    if (el) el.style.display = "none";
+  }
+
+  function setFindBtnLoading(on) {
+    var btn = $("sl-find-btn");
+    if (!btn) return;
+    btn.disabled = on;
+    btn.textContent = on ? "Buscando…" : "Buscar";
+  }
+
+  function showCount(count, label) {
+    var el = $("sl-count");
+    if (!el) return;
+    el.textContent = count + " punto" + (count !== 1 ? "s" : "") + " encontrado" + (count !== 1 ? "s" : "") + (label ? " en " + label : "");
+    el.style.display = "block";
+  }
+
+  function hideCount() {
+    var el = $("sl-count");
+    if (el) el.style.display = "none";
+  }
+
+  function hideSkeleton() {
+    if (sl.skeletonHidden) return;
+    sl.skeletonHidden = true;
+    var sk = $("sl-skeleton");
+    if (sk) {
+      sk.style.opacity = "0";
+      sk.style.pointerEvents = "none";
+      setTimeout(function () {
+        sk.style.display = "none";
+        if (sl.map) google.maps.event.trigger(sl.map, "resize");
+      }, 500);
+    }
+    if (sl.map) google.maps.event.trigger(sl.map, "resize");
+  }
+
+  function updateSkeletonMsg(msg) {
+    var el = $("sl-skeleton-msg");
+    if (el) el.textContent = msg;
+  }
+
+  function getGeoCookie() {
+    var m1 = document.cookie.match(/(?:^|; )yummies_geo_v2=([^;]*)/);
+    if (m1) return decodeURIComponent(m1[1]);
+    var m2 = document.cookie.match(/(?:^|; )yummies_country_code=([^;]*)/);
+    return m2 ? decodeURIComponent(m2[1]) : null;
+  }
+
+  function isoToCountry(iso) {
+    return ISO_TO_COUNTRY[iso] || null;
+  }
+
+  function countryToIso(name) {
+    for (var k in ISO_TO_COUNTRY) {
+      if (ISO_TO_COUNTRY[k] === name) return k;
+    }
+    return null;
+  }
+
+  function getCountryCentroid(country) {
+    return COUNTRY_CENTROIDS[country] || { lat: 14.5, lng: -87.0 };
+  }
+
+  function addGlobalHandlers() {
+    if (window.__slHandlersAdded) return;
+    window.__slHandlersAdded = true;
+    window.addEventListener("pageshow", function (e) {
+      if (e.persisted && sl.map) {
+        setTimeout(function () { google.maps.event.trigger(sl.map, "resize"); }, 150);
+      }
+    });
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden && sl.map) {
+        setTimeout(function () { google.maps.event.trigger(sl.map, "resize"); }, 150);
+      }
+    });
+    document.addEventListener("astro:after-swap", function () {
+      [200, 450, 800].forEach(function (d) {
+        setTimeout(function () {
+          if (sl.map) google.maps.event.trigger(sl.map, "resize");
+        }, d);
+      });
+    });
+  }
+
+  function loadMapsApi(key, callback) {
+    if (window.google && window.google.maps) {
+      setTimeout(callback, 400);
+      return;
+    }
+    if (document.querySelector('script[data-sl-maps]')) {
+      window.__slMapReady = callback;
+      return;
+    }
+    window.__slMapReady = callback;
+    var s = document.createElement("script");
+    s.setAttribute("data-sl-maps", "1");
+    s.src = "https://maps.googleapis.com/maps/api/js?key=" + key + "&libraries=places&callback=__slMapReady&loading=async";
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  function initMap() {
+    var container = $("sl-map");
+    if (!container) return;
+
+    var isMobile = window.innerWidth < 768;
+    var mapH = isMobile
+      ? Math.max(Math.round(window.innerWidth * 0.72), 320)
+      : Math.max(Math.round(window.innerHeight * 0.58), 480);
+    container.style.height = mapH + "px";
+
+    sl.map = new google.maps.Map(container, {
+      center: { lat: 14.5, lng: -87.0 },
+      zoom: 6,
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true,
+      zoomControl: true,
+      gestureHandling: "greedy",
+      clickableIcons: false,
+      styles: [
+        { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] },
+        { featureType: "transit", elementType: "labels", stylers: [{ visibility: "off" }] },
+      ],
+    });
+
+    container.classList.add("loaded");
+    container.classList.remove("loading");
+    hideStatus();
+
+    google.maps.event.addListenerOnce(sl.map, "idle", function () {
+      google.maps.event.trigger(sl.map, "resize");
+    });
+    [100, 300, 600, 1500].forEach(function (d) {
+      setTimeout(function () {
+        if (sl.map) google.maps.event.trigger(sl.map, "resize");
+      }, d);
+    });
+
+    sl.infoWindow = new google.maps.InfoWindow();
+
+    bindCountrySelector();
+    bindSearchButton();
+    bindLocateButton();
+    bindSearchInput();
+    initGeolocation();
+  }
+
+  function bindCountrySelector() {
+    var sel = $("sl-country");
+    if (!sel) return;
+    sel.addEventListener("change", function () {
+      var country = sel.value;
+      if (!country) return;
+      sl.currentCountry = country;
+      sl.searchFilter = "";
+      var searchInput = $("sl-search");
+      if (searchInput) searchInput.value = "";
+      var centroid = getCountryCentroid(country);
+      sl.map.setCenter(centroid);
+      sl.map.setZoom(7);
+      loadPointsForCountry(country);
+    });
+  }
+
+  function bindSearchInput() {
+    var input = $("sl-search");
+    if (!input) return;
+
+    // Simple search on Enter
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        doSearch();
+      }
+    });
+  }
+
+  function doSearch() {
+    var input = $("sl-search");
+    var query = input ? input.value.trim() : "";
+    sl.searchFilter = query;
+    var country = sl.currentCountry || ($("sl-country") ? $("sl-country").value : "");
+    if (!country && !query) return;
+    if (!country) {
+      showStatus("Selecciona un país primero.", "info");
+      setTimeout(hideStatus, 3000);
+      return;
+    }
+    loadPointsForCountry(country);
+  }
+
+  function bindSearchButton() {
+    var btn = $("sl-find-btn");
+    if (!btn) return;
+    btn.addEventListener("click", doSearch);
+  }
+
+  function bindLocateButton() {
+    var btn = $("sl-locate-btn");
+    if (!btn) return;
+    btn.onclick = function () {
+      sl.currentCountry = null;
+      sl.searchFilter = "";
+      var searchInput = $("sl-search");
+      if (searchInput) searchInput.value = "";
+      var sel = $("sl-country");
+      if (sel) sel.value = "";
+      requestGeolocation();
+    };
+  }
+
+  function requestGeolocation() {
+    updateSkeletonMsg("Detectando tu ubicación…");
+    if (!navigator.geolocation) {
+      hideSkeleton();
+      fallbackToCookie();
+      return;
+    }
+    showStatus("Detectando tu ubicación…", "loading");
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        var lat = pos.coords.latitude;
+        var lng = pos.coords.longitude;
+        sl.userLat = lat;
+        sl.userLng = lng;
+        sl.map.setCenter({ lat: lat, lng: lng });
+        sl.map.setZoom(8);
+        hideStatus();
+        hideSkeleton();
+        [300, 700, 1200].forEach(function (d) {
+          setTimeout(function () {
+            if (sl.map) google.maps.event.trigger(sl.map, "resize");
+          }, d);
+        });
+
+        // Reverse geocode to find country
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: { lat: lat, lng: lng } }, function (results, status) {
+          if (status === "OK" && results && results.length > 0) {
+            for (var i = 0; i < results.length; i++) {
+              var comps = results[i].address_components || [];
+              for (var j = 0; j < comps.length; j++) {
+                if (comps[j].types.indexOf("country") !== -1) {
+                  var countryName = comps[j].long_name;
+                  // Check if this country is in our available list (fuzzy match)
+                  var match = findMatchingCountry(countryName);
+                  if (match) {
+                    selectCountry(match);
+                    showStatus("Mostrando puntos en " + match, "info");
+                    setTimeout(hideStatus, 3000);
+                    return;
+                  }
+                }
+              }
+            }
+          }
+          // Fallback: find nearest country from our list
+          showStatus("No se pudo determinar tu país. Selecciona uno manualmente.", "info");
+          setTimeout(hideStatus, 5000);
+          hideSkeleton();
+        });
+      },
+      function () {
+        hideStatus();
+        hideSkeleton();
+        fallbackToCookie();
+      },
+      { timeout: 10000, enableHighAccuracy: false },
+    );
+  }
+
+  function findMatchingCountry(googleCountry) {
+    var lower = googleCountry.toLowerCase();
+    for (var i = 0; i < countryList.length; i++) {
+      if (countryList[i].toLowerCase() === lower) return countryList[i];
+    }
+    // Partial match
+    for (var j = 0; j < countryList.length; j++) {
+      if (countryList[j].toLowerCase().indexOf(lower) !== -1 || lower.indexOf(countryList[j].toLowerCase()) !== -1) {
+        return countryList[j];
+      }
+    }
+    return null;
+  }
+
+  function fallbackToCookie() {
+    var geoCode = getGeoCookie();
+    var country = geoCode ? isoToCountry(geoCode) : null;
+    if (country && countryList.indexOf(country) !== -1) {
+      selectCountry(country);
+    } else {
+      // Default to first available country
+      if (countryList.length > 0) {
+        selectCountry(countryList[0]);
+      } else {
+        hideSkeleton();
+      }
+    }
+  }
+
+  function initGeolocation() {
+    // First check if geo cookie matches an available country
+    var geoCode = getGeoCookie();
+    var cookieCountry = geoCode ? isoToCountry(geoCode) : null;
+
+    if (cookieCountry && countryList.indexOf(cookieCountry) !== -1) {
+      // We have a matching cookie, skip geolocation and use cookie
+      hideSkeleton();
+      selectCountry(cookieCountry);
+      return;
+    }
+
+    // Try geolocation first
+    requestGeolocation();
+  }
+
+  function selectCountry(country) {
+    var sel = $("sl-country");
+    if (sel) sel.value = country;
+    sl.currentCountry = country;
+    var centroid = getCountryCentroid(country);
+    sl.map.setCenter(centroid);
+    sl.map.setZoom(7);
+    loadPointsForCountry(country);
+  }
+
+  function getPointsForCountry(country) {
+    if (!country) return [];
+    return pointsData.filter(function (p) {
+      return p.pais === country;
+    });
+  }
+
+  function loadPointsForCountry(country) {
+    if (sl.loading) return;
+    sl.loading = true;
+
+    showStatus("Cargando puntos en " + country + "…", "loading");
+    clearMarkers();
+    hideCount();
+
+    var stores = getPointsForCountry(country);
+
+    // Apply search filter
+    if (sl.searchFilter) {
+      var q = sl.searchFilter.toLowerCase();
+      var filtered = stores.filter(function (s) {
+        var ciudad = (s.ciudad || "").toLowerCase();
+        var direccion = (s.direccion || "").toLowerCase();
+        var departamento = (s.departamento || "").toLowerCase();
+        return ciudad.indexOf(q) !== -1 || direccion.indexOf(q) !== -1 || departamento.indexOf(q) !== -1;
+      });
+      stores = filtered.length > 0 ? filtered : stores;
+    }
+
+    sl.currentCountry = country;
+
+    if (stores.length === 0) {
+      showStatus("No se encontraron puntos en " + country + (sl.searchFilter ? " con ese filtro" : ""), "info");
+      renderList([], country);
+      sl.loading = false;
+      return;
+    }
+
+    renderMarkers(stores);
+    renderList(stores, country);
+    showCount(stores.length, country);
+
+    hideStatus();
+    sl.loading = false;
+  }
+
+  function clearMarkers() {
+    if (sl.clusterer) {
+      sl.clusterer.clearMarkers();
+      sl.clusterer = null;
+    }
+    sl.markers.forEach(function (m) { m.setMap(null); });
+    sl.markers = [];
+    clearCircle();
+    if (sl.infoWindow) sl.infoWindow.close();
+  }
+
+  function clearCircle() {
+    if (sl.circle) {
+      sl.circle.setMap(null);
+      sl.circle = null;
+    }
+  }
+
+  function openStorePopup(marker, store) {
+    clearCircle();
+
+    sl.circle = new google.maps.Circle({
+      map: sl.map,
+      center: marker.getPosition(),
+      radius: 1500,
+      strokeColor: "#2979FF",
+      strokeOpacity: 0.7,
+      strokeWeight: 2,
+      fillColor: "#2979FF",
+      fillOpacity: 0.12,
+    });
+
+    var address = escapeHtml(store.direccion || "");
+    var ciudad = escapeHtml(store.ciudad || "");
+    var depto = escapeHtml(store.departamento || "");
+    var fullAddress = [address, ciudad, depto].filter(Boolean).join(", ");
+
+    var destination = store.latitud + "," + store.longitud;
+    sl.infoWindow.setContent(
+      '<div class="sl-popup">' +
+        "<strong>" + escapeHtml(store.departamento || "") + "</strong>" +
+        "<p>" + fullAddress + "</p>" +
+        '<div class="sl-popup-links">' +
+        '<a href="https://www.google.com/maps/dir/?api=1&destination=' + destination +
+        '" target="_blank" rel="noopener noreferrer" class="sl-popup-link" title="Abrir en Google Maps"><i class="bx bx-map-alt"></i></a>' +
+        '<a href="https://www.waze.com/ul?ll=' + destination + '&navigate=yes"' +
+        ' target="_blank" rel="noopener noreferrer" class="sl-popup-link" title="Abrir en Waze"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="' + wazeSvgPath + '"></path></svg></a>' +
+        "</div>" +
+      "</div>"
+    );
+    sl.infoWindow.open(sl.map, marker);
+
+    google.maps.event.addListenerOnce(sl.infoWindow, "closeclick", clearCircle);
+  }
+
+  function renderMarkers(stores) {
+    var validStores = stores.filter(function (s) {
+      return s.latitud && s.longitud;
+    });
+    if (validStores.length === 0) return;
+
+    var pin = {
+      path: "M 0,-10 C -6,-10 -10,-6 -10,0 C -10,6 0,14 0,14 C 0,14 10,6 10,0 C 10,-6 6,-10 0,-10 Z M 0,3 C -1.7,3 -3,1.7 -3,0 C -3,-1.7 -1.7,-3 0,-3 C 1.7,-3 3,-1.7 3,0 C 3,1.7 1.7,3 0,3 Z",
+      fillColor: "#D32F2F",
+      fillOpacity: 1,
+      strokeColor: "#9B1C1C",
+      strokeWeight: 0.5,
+      scale: 1.8,
+      anchor: new google.maps.Point(0, 14),
+    };
+
+    sl.markers = validStores.map(function (store) {
+      var marker = new google.maps.Marker({
+        position: { lat: parseFloat(store.latitud), lng: parseFloat(store.longitud) },
+        title: store.direccion || store.ciudad || "",
+        icon: pin,
+        cursor: "pointer",
+      });
+      marker.addListener("click", function () {
+        sl.map.panTo(marker.getPosition());
+        sl.map.setZoom(Math.max(sl.map.getZoom(), 14));
+        openStorePopup(marker, store);
+      });
+      return marker;
+    });
+
+    var McLib = window.markerClusterer || {};
+    var Clusterer = McLib.MarkerClusterer;
+    var AlgoClass = McLib.SuperClusterAlgorithm || McLib.GridAlgorithm || null;
+
+    if (Clusterer) {
+      sl.clusterer = new Clusterer({
+        map: sl.map,
+        markers: sl.markers,
+        algorithm: AlgoClass ? new AlgoClass({ radius: 80, maxZoom: 14 }) : undefined,
+        renderer: {
+          render: function (cluster) {
+            var count = cluster.count;
+            var pos = cluster.position;
+            var size = count > 500 ? 54 : count > 100 ? 46 : count > 20 ? 38 : 30;
+            var color = count > 100 ? "#B71C1C" : "#0E6D20";
+            var clusterMarker = new google.maps.Marker({
+              position: pos,
+              label: {
+                text: count > 999 ? "999+" : String(count),
+                color: "#fff",
+                fontSize: count > 99 ? "11px" : "13px",
+                fontWeight: "bold",
+              },
+              icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: color,
+                fillOpacity: 0.92,
+                strokeColor: "#fff",
+                strokeWeight: 2.5,
+                scale: size / 2,
+              },
+              zIndex: 1000 + count,
+              cursor: "pointer",
+            });
+            clusterMarker.addListener("click", function () {
+              var bounds = new google.maps.LatLngBounds();
+              cluster.markers.forEach(function (m) { bounds.extend(m.getPosition()); });
+              sl.map.fitBounds(bounds, 60);
+            });
+            return clusterMarker;
+          },
+        },
+      });
+    } else {
+      sl.markers.forEach(function (m) { m.setMap(sl.map); });
+    }
+
+    var bounds = new google.maps.LatLngBounds();
+    sl.markers.forEach(function (m) { bounds.extend(m.getPosition()); });
+    sl.map.fitBounds(bounds, { top: 60, right: 40, bottom: 40, left: 40 });
+    if (sl.markers.length === 1) sl.map.setZoom(15);
+
+    setTimeout(function () {
+      if (sl.map) google.maps.event.trigger(sl.map, "resize");
+    }, 200);
+  }
+
+  function renderList(stores, country) {
+    var list = $("sl-list");
+    var wrap = $("sl-list-wrap");
+    if (!list || !wrap) return;
+
+    if (stores.length === 0) {
+      list.innerHTML = '<div class="sl-empty">No hay puntos de canje en ' + country + "</div>";
+      wrap.style.display = "block";
+      return;
+    }
+
+    list.innerHTML = stores
+      .map(function (store, i) {
+        var address = escapeHtml([store.direccion, store.ciudad, store.departamento].filter(Boolean).join(", "));
+        return (
+          '<div class="sl-store-card" data-index="' + i + '" tabindex="0" role="button">' +
+            '<div class="sl-store-card__name">' + escapeHtml(store.departamento || "") + "</div>" +
+            '<div class="sl-store-card__address">' + address + "</div>" +
+            '<a class="sl-store-card__directions" href="https://www.google.com/maps/dir/?api=1&destination=' +
+            store.latitud + "," + store.longitud +
+            '" target="_blank" rel="noopener" onclick="event.stopPropagation()">Abrir en Google Maps</a>' +
+          "</div>"
+        );
+      })
+      .join("");
+
+    list.querySelectorAll(".sl-store-card").forEach(function (card, i) {
+      function activate() {
+        var marker = sl.markers[i];
+        var storeData = stores[i];
+        if (!marker || !storeData) return;
+        sl.map.panTo(marker.getPosition());
+        sl.map.setZoom(14);
+        openStorePopup(marker, storeData);
+        list.querySelectorAll(".sl-store-card").forEach(function (c) { c.classList.remove("active"); });
+        card.classList.add("active");
+        var mapEl = $("sl-map");
+        if (mapEl && window.innerWidth < 768) mapEl.scrollIntoView({ behavior: "smooth" });
+      }
+      card.addEventListener("click", activate);
+      card.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") activate();
+      });
+    });
+
+    wrap.style.display = "block";
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function boot() {
+    var page = $("store-locator-page");
+    if (!page) return;
+
+    sl.map = null;
+    sl.markers = [];
+    sl.clusterer = null;
+    sl.circle = null;
+    sl.currentCountry = null;
+    sl.infoWindow = null;
+    sl.loading = false;
+    sl.searchFilter = "";
+    sl.userLat = null;
+    sl.userLng = null;
+    sl.skeletonHidden = false;
+
+    var sk = $("sl-skeleton");
+    if (sk) {
+      sk.style.display = "";
+      sk.style.opacity = "1";
+      sk.style.pointerEvents = "auto";
+    }
+
+    addGlobalHandlers();
+
+    if (!mapsApiKey) {
+      hideSkeleton();
+      showStatus("Falta la clave de Google Maps. Agrega PUBLIC_GOOGLE_MAPS_API_KEY en .env", "error");
+      return;
+    }
+
+    loadMapsApi(mapsApiKey, initMap);
+  }
+
+  document.addEventListener("astro:page-load", boot);
+})();
+</script>
+
+<style is:inline>
+  .sl-popup {
+    font-family: sans-serif;
+    max-width: 220px;
+    padding: 4px 0;
+  }
+  .sl-popup strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0e6d20;
+    margin-bottom: 4px;
+  }
+  .sl-popup p {
+    font-size: 12px;
+    color: #444;
+    margin: 0 0 8px;
+    line-height: 1.4;
+  }
+  .sl-popup a {
+    font-size: 12px;
+    color: #b71c1c;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .sl-popup a:hover {
+    text-decoration: underline;
+  }
+  .sl-popup-links {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .sl-popup-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .sl-popup-link:hover {
+    opacity: 0.85;
+    transform: scale(1.1);
+    text-decoration: none;
+  }
+  .sl-popup-link--maps {
+    background: #0E6D20;
+    color: #fff;
+  }
+  .sl-popup-link--waze {
+    background: #0E6D20;
+    color: #fff;
+  }
+  .sl-select {
+    appearance: auto;
+    cursor: pointer;
+  }
+  .sl-input,
+  .sl-find-btn,
+  .sl-locate-btn {
+    border-radius: 9999px !important;
+  }
+</style>
