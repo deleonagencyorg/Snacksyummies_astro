@@ -108,14 +108,16 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
     </div>
 
     <div class="ballons w-full flex justify-center items-center my-8 px-4">
-      <img src="https://snack.yummiespromociones.com/SnacksyummiesAssets/footercanjemundial3.webp" alt="Balloon 1" class="hidden md:block max-w-[900px] w-full h-auto mx-auto" style="animation: float1 6s ease-in-out infinite;" />
-      <img src="https://snack.yummiespromociones.com/SnacksyummiesAssets/footercanjemundial-mobile2.webp" alt="Balloon 1" class="block md:hidden w-full max-w-[90%] h-auto mx-auto" style="animation: float1 6s ease-in-out infinite;" />
+      <img loading="lazy" src="https://snack.yummiespromociones.com/SnacksyummiesAssets/footercanjemundial3.webp" alt="Balloon 1" class="hidden md:block max-w-[900px] w-full h-auto mx-auto" style="animation: float1 6s ease-in-out infinite;" />
+      <img loading="lazy" src="https://snack.yummiespromociones.com/SnacksyummiesAssets/footercanjemundial-mobile2.webp" alt="Balloon 1" class="block md:hidden w-full max-w-[90%] h-auto mx-auto" style="animation: float1 6s ease-in-out infinite;" />
     </div>
 
     
   </section>
 </div>
 
+<link rel="preconnect" href="https://maps.googleapis.com" />
+<link rel="preconnect" href="https://unpkg.com" />
 <script
   is:inline
   src="https://unpkg.com/@googlemaps/markerclusterer@2.5.3/dist/index.min.js"
@@ -777,7 +779,7 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
     display: block;
     font-size: 14px;
     font-weight: 700;
-    color: #0e6d20;
+    color: #2979FF;
     margin-bottom: 4px;
   }
   .sl-popup p {
@@ -824,8 +826,18 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
     color: #fff;
   }
   .sl-select {
-    appearance: auto;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     cursor: pointer;
+    padding: 0.85em 3.5em 0.85em 1.4em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.75rem;
+  }
+  .sl-select::-ms-expand {
+    display: none;
   }
   .sl-input,
   .sl-find-btn,

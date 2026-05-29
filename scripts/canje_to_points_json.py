@@ -214,9 +214,20 @@ def resolve_location(
     }
 
 
+def detect_header_row(path: Path) -> int:
+    """Encuentra la fila donde están los encabezados (0-indexed)."""
+    df_raw = pd.read_excel(path, header=None, nrows=10, dtype=str)
+    for i in range(min(10, len(df_raw))):
+        row = [str(v).strip() for v in df_raw.iloc[i] if pd.notna(v)]
+        if any(normalize_header(c) in {normalize_header(a) for a in COLUMN_ALIASES["direccion"]} for c in row):
+            return i
+    return 0
+
+
 def process_excel(path: Path, api_key: str) -> List[Tuple[str, List[Dict[str, Optional[str]]]]]:
     log(f"Procesando {path.name}...")
-    df = pd.read_excel(path, dtype=str)
+    header_row = detect_header_row(path)
+    df = pd.read_excel(path, header=header_row, dtype=str)
     if df.empty:
         log(f"  Aviso: archivo vacío {path.name}")
         return []
