@@ -76,6 +76,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  margin-bottom: 5%;
 }
 
 @media (min-width: 768px) {
@@ -84,6 +85,7 @@
     flex-shrink: 0;
     max-height: 100%;
     overflow: hidden;
+    margin-bottom: 0;
   }
 }
 
@@ -141,15 +143,15 @@
   cursor: pointer;
   margin-top: 1.5%;
   margin-bottom: 2%;
-  box-shadow: 0 4px 16px rgba(183,28,28,0.4);
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: none;
+  transition: background 0.2s, transform 0.15s;
   font-family: inherit;
 }
 
 .sl-find-btn:hover {
   background: red;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(183,28,28,0.5);
+  box-shadow: none;
 }
 
 .sl-find-btn:disabled {

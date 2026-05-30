@@ -79,7 +79,7 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
           />
         </div>
 
-        <button id="sl-find-btn" class="sl-find-btn">
+        <button type="button" id="sl-find-btn" class="sl-find-btn">
           Buscar
         </button>
 
@@ -512,7 +512,7 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
         var departamento = (s.departamento || "").toLowerCase();
         return ciudad.indexOf(q) !== -1 || direccion.indexOf(q) !== -1 || departamento.indexOf(q) !== -1;
       });
-      stores = filtered.length > 0 ? filtered : stores;
+      stores = filtered;
     }
 
     sl.currentCountry = country;
@@ -831,6 +831,7 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
     -moz-appearance: none;
     cursor: pointer;
     padding: 0.85em 3.5em 0.85em 1.4em;
+    font-size: 16px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
