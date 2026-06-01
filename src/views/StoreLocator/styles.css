@@ -259,6 +259,11 @@
   color: #B71C1C;
   font-weight: 600;
   text-decoration: none;
+  margin-right: 0.5rem;
+}
+
+.sl-store-card__directions--waze {
+  color: #1a5cff;
 }
 
 .sl-store-card__directions:hover { text-decoration: underline; }

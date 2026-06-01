@@ -41,6 +41,7 @@ ENV_FILE = ROOT / ".env"
 GOOGLE_GEOCODE_BASE = "https://maps.googleapis.com/maps/api/geocode/json"
 
 COLUMN_ALIASES = {
+    "nombre": ["nombre", "name", "cliente", "nombre 1", "nombre 2", "nombre1", "nombre2"],
     "direccion": ["direccion", "dirección", "address", "direccion completa", "ubicacion"],
     "latitud": ["latitud", "latitude", "lat"],
     "longitud": ["longitud", "longitude", "long"]
@@ -160,9 +161,14 @@ def resolve_location(
     address_col: Optional[str],
     lat_col: Optional[str],
     lng_col: Optional[str],
+    nombre_col: Optional[str],
     api_key: str,
     cache: Dict[str, Dict[str, Any]],
 ) -> Dict[str, Optional[str]]:
+    nombre_value = None
+    if nombre_col and pd.notna(row.get(nombre_col, None)):
+        nombre_value = str(row[nombre_col]).strip()
+
     address_value = None
     if address_col and pd.notna(row.get(address_col, None)):
         address_value = str(row[address_col]).strip()
@@ -175,7 +181,7 @@ def resolve_location(
         lng_value = str(row[lng_col]).strip()
 
     if not address_value and (not lat_value or not lng_value):
-        return {"pais": None, "departamento": None, "ciudad": None, "direccion": None, "latitud": None, "longitud": None}
+        return {"pais": None, "departamento": None, "ciudad": None, "nombre": nombre_value, "direccion": None, "latitud": None, "longitud": None}
 
     if lat_value and lng_value:
         cache_key = f"rev:{lat_value},{lng_value}"
@@ -208,55 +214,80 @@ def resolve_location(
         "pais": location_info.get("pais"),
         "departamento": location_info.get("departamento"),
         "ciudad": location_info.get("ciudad"),
+        "nombre": nombre_value,
         "direccion": address_value,
         "latitud": lat_value,
         "longitud": lng_value,
     }
 
 
-def detect_header_row(path: Path) -> int:
+def detect_header_row(path: Path, sheet_name: Optional[str] = None) -> int:
     """Encuentra la fila donde están los encabezados (0-indexed)."""
-    df_raw = pd.read_excel(path, header=None, nrows=10, dtype=str)
+    df_raw = pd.read_excel(path, sheet_name=sheet_name, header=None, nrows=10, dtype=str)
+    all_aliases = set()
+    for aliases in COLUMN_ALIASES.values():
+        for a in aliases:
+            all_aliases.add(normalize_header(a))
     for i in range(min(10, len(df_raw))):
         row = [str(v).strip() for v in df_raw.iloc[i] if pd.notna(v)]
-        if any(normalize_header(c) in {normalize_header(a) for a in COLUMN_ALIASES["direccion"]} for c in row):
+        if any(normalize_header(c) in all_aliases for c in row):
             return i
     return 0
 
 
-def process_excel(path: Path, api_key: str) -> List[Tuple[str, List[Dict[str, Optional[str]]]]]:
-    log(f"Procesando {path.name}...")
-    header_row = detect_header_row(path)
-    df = pd.read_excel(path, header=header_row, dtype=str)
+def process_sheet(df: pd.DataFrame, path: Path, sheet_name: str, api_key: str, cache: Dict[str, Dict[str, Any]]) -> Dict[str, List[Dict[str, Optional[str]]]]:
     if df.empty:
-        log(f"  Aviso: archivo vacío {path.name}")
-        return []
+        return {}
 
     header = list(df.columns)
+    nombre_col = find_column(header, COLUMN_ALIASES["nombre"])
     address_col = find_column(header, COLUMN_ALIASES["direccion"])
     lat_col = find_column(header, COLUMN_ALIASES["latitud"])
     lng_col = find_column(header, COLUMN_ALIASES["longitud"])
 
     if not address_col and (not lat_col or not lng_col):
-        log(f"  ERROR: no se encontró columna Direccion ni columnas Latitud/Longitud en {path.name}")
-        return []
+        log(f"  [{path.name}:{sheet_name}] columnas no encontradas, saltando")
+        return {}
 
-    cache: Dict[str, Dict[str, Any]] = {}
     country_points: Dict[str, List[Dict[str, Optional[str]]]] = {}
+    row_count = 0
 
     for _, row in df.iterrows():
         try:
-            point = resolve_location(row, address_col, lat_col, lng_col, api_key, cache)
+            point = resolve_location(row, address_col, lat_col, lng_col, nombre_col, api_key, cache)
         except Exception as e:
-            log(f"  Error geocodificando fila en {path.name}: {e}")
+            log(f"  [{path.name}:{sheet_name}] Error geocodificando fila: {e}")
             continue
         if point["latitud"] is None or point["longitud"] is None:
-            log(f"  Aviso: fila con datos incompletos en {path.name}")
+            log(f"  [{path.name}:{sheet_name}] Aviso: fila con datos incompletos")
         pais = point.get("pais") or "unknown"
         country_points.setdefault(pais, []).append(point)
+        row_count += 1
+
+    log(f"  [{path.name}:{sheet_name}] {row_count} filas procesadas, {len(country_points)} pa\u00edses")
+    return country_points
+
+
+def process_excel(path: Path, api_key: str) -> List[Tuple[str, List[Dict[str, Optional[str]]]]]:
+    log(f"Procesando {path.name}...")
+
+    sheet_names = pd.ExcelFile(path, engine="openpyxl").sheet_names
+    log(f"  Hojas encontradas: {sheet_names}")
+
+    cache: Dict[str, Dict[str, Any]] = {}
+    all_country_points: Dict[str, List[Dict[str, Optional[str]]]] = {}
+
+    for sheet_name in sheet_names:
+        header_row = detect_header_row(path, sheet_name)
+        df = pd.read_excel(path, sheet_name=sheet_name, header=header_row, dtype=str)
+        sheet_points = process_sheet(df, path, sheet_name, api_key, cache)
+        for pais, pts in sheet_points.items():
+            all_country_points.setdefault(pais, []).extend(pts)
+
+    log(f"  {path.name}: total {sum(len(v) for v in all_country_points.values())} puntos en {len(all_country_points)} pa\u00edses")
 
     results = []
-    for pais, pts in country_points.items():
+    for pais, pts in all_country_points.items():
         filename = f"{sanitize_filename(pais)}.json"
         results.append((filename, pts))
 
