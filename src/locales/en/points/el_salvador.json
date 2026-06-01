@@ -66,7 +66,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Sonsonate Department",
+      "departamento": "Sonsonate",
       "ciudad": "Apancoyo",
       "nombre": "Tda Lito",
       "direccion": "Cton El Encanto",
@@ -165,7 +165,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Ahuachapán Department",
+      "departamento": "Ahuachapán",
       "ciudad": "Garita Palmera",
       "nombre": "Variedades Paty",
       "direccion": "Playa Garita Palmera",
@@ -219,7 +219,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Col Serramonte",
       "nombre": "Tda Valeria",
       "direccion": "Colonia Caseres",
@@ -228,7 +228,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Col El Palmar",
       "nombre": "Tda Michelle",
       "direccion": "Redondel El Palmar cll Ppl",
@@ -237,7 +237,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Col Universitaria",
       "nombre": "Tienda Santiana",
       "direccion": "Colonia Universitaria",
@@ -246,7 +246,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Res Campo Bello",
       "nombre": "Tda Kamila",
       "direccion": "Urb El Trebol Alto Verde Pol 4 N 12",
@@ -273,7 +273,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Santa Ana",
       "nombre": "Tda y Venta De Lacteos La 4",
       "direccion": "Av Fray Felipe Moraga Residencia L 2",
@@ -282,7 +282,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "La Criba",
       "nombre": "Brayan Mauricio Zeceña Flamenco",
       "direccion": "Canton Zacamil",
@@ -381,7 +381,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Ahuachapán Department",
+      "departamento": "Ahuachapán",
       "ciudad": "Colonia Ivu",
       "nombre": "Super Market Isabella",
       "direccion": "Colonia El Ivu Pasaje 8 Local 1",
@@ -516,7 +516,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Morazán Department",
+      "departamento": "Morazán",
       "ciudad": "El Mozote",
       "nombre": "Mini Super El Mozote",
       "direccion": "Caserio El Pinalito Canton Tierra Colorada Arambala",
@@ -534,7 +534,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Miguel Department",
+      "departamento": "San Miguel",
       "ciudad": "Colonia La Fuerteza",
       "nombre": "Super Tienda Rio Grande",
       "direccion": "12 Av Norte n.2 Col 15 De Sep",
@@ -570,7 +570,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Morazán Department",
+      "departamento": "Morazán",
       "ciudad": "Sociedad",
       "nombre": "Flores Super Market",
       "direccion": "Canton El Tablon calle principal",
@@ -579,7 +579,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Morazán Department",
+      "departamento": "Morazán",
       "ciudad": "Morazán Norte",
       "nombre": "Xiomara",
       "direccion": "Barrio La Cruz",
@@ -597,7 +597,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Miguel Department",
+      "departamento": "San Miguel",
       "ciudad": "El Cerro",
       "nombre": "Tda Ancelmo",
       "direccion": "Canton Tangolona, Calle Ppal",
@@ -633,7 +633,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Unión Department",
+      "departamento": "La Unión",
       "ciudad": "Santa Rosa de Lima",
       "nombre": "Super Limeño Pupuseria y Bar",
       "direccion": "Col. Santa Maria casa 2",
@@ -642,7 +642,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Unión Department",
+      "departamento": "La Unión",
       "ciudad": "Albornoz",
       "nombre": "Karla Milena Sorto Nuñez",
       "direccion": "Carr. Panamericana, Cton. La Chorrera Crio. El Limon",
@@ -822,7 +822,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Cabañas Department",
+      "departamento": "Cabañas",
       "ciudad": "Colonia Tempisque",
       "nombre": "Andres Josue Martinez Mercado",
       "direccion": "Final 5a Avenida Sur, Carretera a Sensuntepeque",
@@ -849,7 +849,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Tecomapa",
       "nombre": "Tda Monse",
       "direccion": "Caserio Agua Fria Canton Tecomapa",
@@ -948,7 +948,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Miguel Department",
+      "departamento": "San Miguel",
       "ciudad": "Colonia Tesoro",
       "nombre": "El Baratillo 1",
       "direccion": "Cl. Milagro De La Paz Calle El Prog",
@@ -984,7 +984,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Adelita",
       "direccion": "Calle Ppal. Col. 22 De Abril, San Salvador",
@@ -1029,7 +1029,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Lotificacion Las Margaritas",
       "nombre": "Tienda Lourdes",
       "direccion": "Cll a La Estacion Urb Lourdes Pasaje A Casa 32",
@@ -1038,7 +1038,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Barrio El Centro",
       "nombre": "Tienda Lilian",
       "direccion": "Centro Nejapa",
@@ -1047,7 +1047,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Residencial Santa Teresa De las Flores",
       "nombre": "Tda. El Paso",
       "direccion": "Col Las Flores Res. Sta. Teresa N. 1",
@@ -1065,7 +1065,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Paz Department",
+      "departamento": "La Paz",
       "ciudad": "Zacatecoluca",
       "nombre": "Tda Kenia",
       "direccion": "Cll autopista Col Anabella 3",
@@ -1155,7 +1155,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Miguel Department",
+      "departamento": "San Miguel",
       "ciudad": "Colonia Belen",
       "nombre": "Super Tienda Josue C",
       "direccion": "Calle Suiza, Col. España n.4, Pol. 11",
@@ -1191,7 +1191,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Miguel Department",
+      "departamento": "San Miguel",
       "ciudad": "Colonia Santa Julia",
       "nombre": "Guevara Hernandez, S.A. de C.V.",
       "direccion": "Avenida Unidad de Salud, Colonia Milagro de la Paz",
@@ -1236,7 +1236,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Usulután Department",
+      "departamento": "Usulután",
       "ciudad": "Ceiba Doblada",
       "nombre": "Esperanza",
       "direccion": "Isla De Mendez",
@@ -1299,7 +1299,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Miguel Department",
+      "departamento": "San Miguel",
       "ciudad": "San Miguel",
       "nombre": "Denis Alexander Romero Martinez",
       "direccion": "Final 8a calle pte Col Ciudad Pacifica No 52 fte pollo campe",
@@ -1407,7 +1407,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Chalatenango Department",
+      "departamento": "Chalatenango",
       "ciudad": "El Tronconal",
       "nombre": "Super Sol",
       "direccion": "Psj. 1, Col. Reubicacion 1, n.2, entrada a nucleo 1",
@@ -1470,7 +1470,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Urbanizacion Valle Verde 1",
       "nombre": "Tienda Danny",
       "direccion": "Urb Valle Verde 1 Psj H Sur casa 13",
@@ -1569,7 +1569,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Venta De Verduras",
       "direccion": "Montes De San Bartolo",
@@ -1578,7 +1578,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Soyapango",
       "nombre": "Nidia Alejandra Reyes Lopez",
       "direccion": "Pje 36 Reparto las Margaritas 5, 5ta etapa casa 78",
@@ -1587,7 +1587,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Johana Campos",
       "direccion": "Cll ppal Colonia las Cañas",
@@ -1614,7 +1614,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Sonsonate Department",
+      "departamento": "Sonsonate",
       "ciudad": "Colonia Rasa No.2",
       "nombre": "Rossy Elizabeth Franco Escobar",
       "direccion": "Av. A, Col. Rasa 2, n. 5-C",
@@ -1668,7 +1668,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Paz Department",
+      "departamento": "La Paz",
       "ciudad": "Playa El Pimental",
       "nombre": "Tda Yariela",
       "direccion": "El Pimental Cas Los Mangos N112",
@@ -1695,7 +1695,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tda y Carniceria Elsy",
       "direccion": "Col Llano Verde av Central No 1 Ilopango",
@@ -1749,7 +1749,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "San Alfredo",
       "nombre": "Tda Dorita",
       "direccion": "Hda. Nueva, Cton Cangrejera",
@@ -1848,7 +1848,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Piedras Azules",
       "nombre": "Tda La Bendicion",
       "direccion": "Frontera San Cristobal",
@@ -1857,7 +1857,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Urb Valle Del Sol San Leonardo",
       "nombre": "Tada Dayana",
       "direccion": "Col San Leonardo pj Ote Casa 28",
@@ -1866,7 +1866,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Urb Jardines De Madre Tierra",
       "nombre": "Tieda Alfa Y Omega",
       "direccion": "Colonia Madre Tierra 2 Pasaje 3 Block B Casa No3 Apopa San S",
@@ -1875,7 +1875,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Urb Jardines De Madre Tierra",
       "nombre": "Tienda Milagros",
       "direccion": "Col. Madre Tierra 2 49C",
@@ -1965,7 +1965,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Monte Largo",
       "nombre": "La Linea",
       "direccion": "Col. San Juan Cton. Santa Rosa",
@@ -1992,7 +1992,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Col Gerardo Barrios",
       "nombre": "Tda Ady",
       "direccion": "Lot Barcelona pol 18 lote 5 a la par de",
@@ -2001,7 +2001,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "El Barillo",
       "nombre": "Tda Martinez",
       "direccion": "Col Brumas 1 pj las 3 rosas n.7",
@@ -2028,7 +2028,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "Residencial Los Girasoles 2",
       "nombre": "Tienda Dayenu",
       "direccion": "14 Av Norte Villas De San Rafael n. 1",
@@ -2046,7 +2046,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "Zapotitan",
       "nombre": "Tda Marcela",
       "direccion": "Cl Al Tanque Zapotitan",
@@ -2100,7 +2100,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Barrio Mercedes",
       "nombre": "Central de Ventas Steven",
       "direccion": "Calle San Nicolas Aguilar",
@@ -2172,7 +2172,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Cuscatlán Department",
+      "departamento": "Cuscatlán",
       "ciudad": "Barrio Conception",
       "nombre": "Santos Alexander Beltran Ramirez",
       "direccion": "3ra Calle Oriente y 6ta Avenida Norte, Barrio Santa Lucia",
@@ -2235,7 +2235,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Sonsonate Department",
+      "departamento": "Sonsonate",
       "ciudad": "Colonia Santa Maria",
       "nombre": "Minisuper El Tio",
       "direccion": "Col Altos Del Rio casa 24",
@@ -2244,7 +2244,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Sonsonate Department",
+      "departamento": "Sonsonate",
       "ciudad": "Nahuizalco",
       "nombre": "Chalet Quintero",
       "direccion": "Av. San Juan Bo. Las Mercedes",
@@ -2280,7 +2280,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Sonsonate Department",
+      "departamento": "Sonsonate",
       "ciudad": "Colonia San Fernando",
       "nombre": "Mini Super Familiar",
       "direccion": "Res San Luis Entre 4a y 5a Calle casa 3",
@@ -2307,7 +2307,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Sonsonate Department",
+      "departamento": "Sonsonate",
       "ciudad": "Colonia Santa Eugenia",
       "nombre": "Tda Mateo",
       "direccion": "Col Santa Eugenia Psj 7 Casa 1",
@@ -2325,7 +2325,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Sonsonate Department",
+      "departamento": "Sonsonate",
       "ciudad": "Lotificacion El Carmen",
       "nombre": "Tienda Venecia",
       "direccion": "Col. San Ramon Calle Principal",
@@ -2370,7 +2370,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tda Kilo 10",
       "direccion": "Crr A Planes De Renderos Km 10",
@@ -2397,7 +2397,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tda Floresta",
       "direccion": "Col Floresta Cll Los Bambues No 84",
@@ -2424,7 +2424,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Santiago Texacuangos",
       "nombre": "Tda Santiagueña",
       "direccion": "Bo El Calvario Calle Mexico",
@@ -2451,7 +2451,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tda Marta",
       "direccion": "Sierra Morena 1 calle San Roberto casa 197",
@@ -2487,7 +2487,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "Los Flores",
       "nombre": "Jimmy",
       "direccion": "Lot. Aruba Lote 7 Pol. 2 Jayaque",
@@ -2694,7 +2694,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tienda Virginia",
       "direccion": "Carr Troncal Del Nte Km 1 1/2 Col Aurora",
@@ -2712,7 +2712,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tda. Las Gemelas",
       "direccion": "Bo. Paleca 2 Calle La Ronda Casa N. 25,Ciudad Delgado",
@@ -2793,7 +2793,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "Urbanizacion Jardines de Merliot",
       "nombre": "Tda Emanuel",
       "direccion": "Cll Ayagualo, Av. El Boqueron 35N",
@@ -2820,7 +2820,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tda Oly",
       "direccion": "Col San Joaquin Ca Ppal",
@@ -2829,7 +2829,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Cuscatancingo",
       "nombre": "Tienda Katherine",
       "direccion": "Col San Antonio final calle Real Madrid no 23",
@@ -2838,7 +2838,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "Cuscatancingo",
       "nombre": "Tda Davicito",
       "direccion": "Urb Lirios Del Nte 1 Casa 41",
@@ -2847,7 +2847,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Tienda La Familia",
       "direccion": "Col. Ciudad Futura 1, Calle Tempisque, n",
@@ -2883,7 +2883,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Usulután Department",
+      "departamento": "Usulután",
       "ciudad": "Azacualpia",
       "nombre": "Arquimides Eliceo Sanchez Romero",
       "direccion": "Bo. El Calvario",
@@ -3018,7 +3018,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "Zapotitan",
       "nombre": "Tda Nuevo Milagro",
       "direccion": "Col Los Proceres Cton Cerro de Plata",
@@ -3081,7 +3081,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Market HYP, S.A. de C.V.",
       "direccion": "Av. Ppl. Block 1, Urb. La Cima II",
@@ -3099,7 +3099,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Salvador Department",
+      "departamento": "San Salvador",
       "ciudad": "San Salvador",
       "nombre": "Mini Super Bettos",
       "direccion": "Lomas S. Francisco Cll 1 Casa 2",
@@ -3144,7 +3144,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Vicente Department",
+      "departamento": "San Vicente",
       "ciudad": "Santa Cruz Porrillo",
       "nombre": "Raul Edilberto Navarrete Quintanill",
       "direccion": "Pje 2, Pol. 19, Lote 11 Carr Litoral Km 74",
@@ -3153,7 +3153,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Vicente Department",
+      "departamento": "San Vicente",
       "ciudad": "San Antonio",
       "nombre": "Tda Enmanuel",
       "direccion": "Frente a parque San Lorenso",
@@ -3216,7 +3216,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "La Libertad Department",
+      "departamento": "La Libertad",
       "ciudad": "Santa Rosa",
       "nombre": "MOLSCAR, S.A. de C.V.",
       "direccion": "Cton. Santa Rosa, n. 2, 1ra zona el Centro",
@@ -3252,7 +3252,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Vicente Department",
+      "departamento": "San Vicente",
       "ciudad": "Santa Cruz Porrillo",
       "nombre": "Estefany Betsabe Rivera Hernandez",
       "direccion": "Calle principal, Cton. Bo. Nuevo Crio. Bo. Nuevo",
@@ -3306,7 +3306,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Comecayo",
       "nombre": "Tda Sandra",
       "direccion": "Col Mendez Primera Cl Pte Casa 7",
@@ -3333,7 +3333,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Ahuachapán Department",
+      "departamento": "Ahuachapán",
       "ciudad": "Ahuachapan",
       "nombre": "Hugo Ernesto Gonzalez Villalta",
       "direccion": "8a Cll Pte Y Av 2 de abril Bo. El Calvario n. 2-1",
@@ -3477,7 +3477,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "San Vicente Department",
+      "departamento": "San Vicente",
       "ciudad": "Apastepeque",
       "nombre": "Tda Esmeralda 5",
       "direccion": "Tercera Av Nte Bo Los Angeles",
@@ -3495,7 +3495,7 @@
     },
     {
       "pais": "El Salvador",
-      "departamento": "Santa Ana Department",
+      "departamento": "Santa Ana",
       "ciudad": "Urb Altamira",
       "nombre": "Mi Tiendita",
       "direccion": "Comunidad Emanuel",
