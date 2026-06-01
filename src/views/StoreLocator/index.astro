@@ -595,9 +595,9 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
 
     var pin = {
       path: "M 0,-10 C -6,-10 -10,-6 -10,0 C -10,6 0,14 0,14 C 0,14 10,6 10,0 C 10,-6 6,-10 0,-10 Z M 0,3 C -1.7,3 -3,1.7 -3,0 C -3,-1.7 -1.7,-3 0,-3 C 1.7,-3 3,-1.7 3,0 C 3,1.7 1.7,3 0,3 Z",
-      fillColor: "#D32F2F",
+      fillColor: "#2979FF",
       fillOpacity: 1,
-      strokeColor: "#9B1C1C",
+      strokeColor: "#1A5CFF",
       strokeWeight: 0.5,
       scale: 1.8,
       anchor: new google.maps.Point(0, 14),
@@ -632,7 +632,7 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
             var count = cluster.count;
             var pos = cluster.position;
             var size = count > 500 ? 54 : count > 100 ? 46 : count > 20 ? 38 : 30;
-            var color = count > 100 ? "#B71C1C" : "#0E6D20";
+            var color = count > 100 ? "#1A5CFF" : "#2979FF";
             var clusterMarker = new google.maps.Marker({
               position: pos,
               label: {
