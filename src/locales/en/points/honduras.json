@@ -1,5 +1,5 @@
 {
-  "source": "Honduras.xlsx; Honduras2.xlsx",
+  "source": "Honduras.xlsx; Honduras.xlsx; Honduras2.xlsx",
   "points": [
     {
       "pais": "Honduras",
@@ -8001,6 +8001,15 @@
       "direccion": null,
       "latitud": "14.0589555",
       "longitud": "-87.162403"
+    },
+    {
+      "pais": "Honduras",
+      "departamento": "Francisco Morazán",
+      "ciudad": "Talanga",
+      "nombre": "Mercadito Universal",
+      "direccion": "Talanga Barrio  El Centro",
+      "latitud": "14.3997627",
+      "longitud": "-87.0828858"
     }
   ]
 }
