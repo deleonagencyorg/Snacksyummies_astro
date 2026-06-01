@@ -41,6 +41,7 @@ ENV_FILE = ROOT / ".env"
 GOOGLE_GEOCODE_BASE = "https://maps.googleapis.com/maps/api/geocode/json"
 
 COLUMN_ALIASES = {
+    "nombre": ["nombre", "name", "cliente", "nombre 1", "nombre 2", "nombre1", "nombre2"],
     "direccion": ["direccion", "dirección", "address", "direccion completa", "ubicacion"],
     "latitud": ["latitud", "latitude", "lat"],
     "longitud": ["longitud", "longitude", "long"]
@@ -160,9 +161,14 @@ def resolve_location(
     address_col: Optional[str],
     lat_col: Optional[str],
     lng_col: Optional[str],
+    nombre_col: Optional[str],
     api_key: str,
     cache: Dict[str, Dict[str, Any]],
 ) -> Dict[str, Optional[str]]:
+    nombre_value = None
+    if nombre_col and pd.notna(row.get(nombre_col, None)):
+        nombre_value = str(row[nombre_col]).strip()
+
     address_value = None
     if address_col and pd.notna(row.get(address_col, None)):
         address_value = str(row[address_col]).strip()
@@ -175,7 +181,7 @@ def resolve_location(
         lng_value = str(row[lng_col]).strip()
 
     if not address_value and (not lat_value or not lng_value):
-        return {"pais": None, "departamento": None, "ciudad": None, "direccion": None, "latitud": None, "longitud": None}
+        return {"pais": None, "departamento": None, "ciudad": None, "nombre": nombre_value, "direccion": None, "latitud": None, "longitud": None}
 
     if lat_value and lng_value:
         cache_key = f"rev:{lat_value},{lng_value}"
@@ -208,6 +214,7 @@ def resolve_location(
         "pais": location_info.get("pais"),
         "departamento": location_info.get("departamento"),
         "ciudad": location_info.get("ciudad"),
+        "nombre": nombre_value,
         "direccion": address_value,
         "latitud": lat_value,
         "longitud": lng_value,
@@ -217,9 +224,13 @@ def resolve_location(
 def detect_header_row(path: Path) -> int:
     """Encuentra la fila donde están los encabezados (0-indexed)."""
     df_raw = pd.read_excel(path, header=None, nrows=10, dtype=str)
+    all_aliases = set()
+    for aliases in COLUMN_ALIASES.values():
+        for a in aliases:
+            all_aliases.add(normalize_header(a))
     for i in range(min(10, len(df_raw))):
         row = [str(v).strip() for v in df_raw.iloc[i] if pd.notna(v)]
-        if any(normalize_header(c) in {normalize_header(a) for a in COLUMN_ALIASES["direccion"]} for c in row):
+        if any(normalize_header(c) in all_aliases for c in row):
             return i
     return 0
 
@@ -233,6 +244,7 @@ def process_excel(path: Path, api_key: str) -> List[Tuple[str, List[Dict[str, Op
         return []
 
     header = list(df.columns)
+    nombre_col = find_column(header, COLUMN_ALIASES["nombre"])
     address_col = find_column(header, COLUMN_ALIASES["direccion"])
     lat_col = find_column(header, COLUMN_ALIASES["latitud"])
     lng_col = find_column(header, COLUMN_ALIASES["longitud"])
@@ -246,7 +258,7 @@ def process_excel(path: Path, api_key: str) -> List[Tuple[str, List[Dict[str, Op
 
     for _, row in df.iterrows():
         try:
-            point = resolve_location(row, address_col, lat_col, lng_col, api_key, cache)
+            point = resolve_location(row, address_col, lat_col, lng_col, nombre_col, api_key, cache)
         except Exception as e:
             log(f"  Error geocodificando fila en {path.name}: {e}")
             continue

@@ -1,10 +1,11 @@
 {
-  "source": "Nicaragua.xlsx",
+  "source": "NI.xlsx",
   "points": [
     {
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Joseline Scarlett Soto Mantilla",
       "direccion": "Villa Israel, 2Da Entra Praderas De",
       "latitud": "12.13499",
       "longitud": "-86.18893833"
@@ -13,6 +14,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Adel Miranda Soto",
       "direccion": "Villa Canada, pte praderas 8 andene",
       "latitud": "12.13701808",
       "longitud": "-86.18884787"
@@ -21,6 +23,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Adel Miranda Soto",
       "direccion": "Villa Canada, pte praderas 8 andene",
       "latitud": "12.13701808",
       "longitud": "-86.18884787"
@@ -29,6 +32,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Geral Antonio Zamora Rostran",
       "direccion": "Villa Israel, 2Da Entrada La Prader",
       "latitud": "12.13371",
       "longitud": "-86.18917"
@@ -37,6 +41,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Villa Miguel Gutiérrez",
+      "nombre": "Maria Cruz Herrera",
       "direccion": "Villa Miguel Gut., Costado S De La",
       "latitud": "12.1415042000268",
       "longitud": "-86.2148355000101"
@@ -45,6 +50,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulperia. Maria",
       "direccion": "Barrio Jose Dolores Estrada, Porton",
       "latitud": "12.156085",
       "longitud": "-86.213114"
@@ -53,6 +59,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "El Chorizo",
+      "nombre": "Pulperia Maria",
       "direccion": "B.  La Primavera , De Donde Fue La",
       "latitud": "12.156063",
       "longitud": "-86.220489"
@@ -61,6 +68,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulperia Dolmus",
       "direccion": "Hilario Sanchez,Armando Guido 1C E,",
       "latitud": "12.158112",
       "longitud": "-86.243089"
@@ -69,6 +77,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Los Pescadores",
+      "nombre": "Ana Mercedes Sanches Narvaes",
       "direccion": "B.Quinta Nina,Porton Ppal Enel 75Vr",
       "latitud": "12.153982",
       "longitud": "-86.25529"
@@ -77,6 +86,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Las Torres",
+      "nombre": "Jacinto Castillo",
       "direccion": "Bo. Las Torres zona Index 3c N, med",
       "latitud": "12.1574249",
       "longitud": "-86.2473286"
@@ -85,6 +95,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Joseling Anielka Mayorga Reyes",
       "direccion": "Bo. Alexis Arguello, Entrada 3C Sur",
       "latitud": "12.1482781",
       "longitud": "-86.1553702"
@@ -93,6 +104,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Monte Fresco",
+      "nombre": "Miscelanea Rouss",
       "direccion": "Santa Elena ,Ferreteria 3C Norte.",
       "latitud": "12.15370833",
       "longitud": "-86.15388167"
@@ -101,6 +113,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulperia Sarantes",
       "direccion": "Villa Esperanza, Bloque B6 Casa 419",
       "latitud": "12.13938",
       "longitud": "-86.14109833"
@@ -109,6 +122,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Santa Elena",
+      "nombre": "Pulp Nuvia",
       "direccion": "Bo Monte Fresco 3ra etapa Pul El Pu",
       "latitud": "12.1551379",
       "longitud": "-86.151993"
@@ -117,6 +131,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Sebastián",
+      "nombre": "Kevin Absalon Donaire Miranda",
       "direccion": "Bo. El Rodeo, Semaforos Del Aeropue",
       "latitud": "12.1463455",
       "longitud": "-86.1676709"
@@ -125,6 +140,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia Unidad de Propósito",
+      "nombre": "Janeth Lazo",
       "direccion": "Unidad De Proposito Colegio Modesto",
       "latitud": "12.154115",
       "longitud": "-86.184903"
@@ -133,6 +149,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Las Mercedes",
+      "nombre": "Lucia Silva",
       "direccion": "Pali Las Mercedes 2C. Norte",
       "latitud": "12.153053",
       "longitud": "-86.189038"
@@ -141,6 +158,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Américas 2",
+      "nombre": "Eliezer Zeledon Bravo",
       "direccion": "Americas 2, Terminal De La 114 1C A",
       "latitud": "12.1627929",
       "longitud": "-86.1897597"
@@ -149,6 +167,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Delmis Maria Reyes Suarez",
       "direccion": "Bertha Diaz, Cafe Sola Ble",
       "latitud": "12.15521667",
       "longitud": "-86.194465"
@@ -157,6 +176,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Miscelanea Hugo Chavez",
       "direccion": "B.Hugo Chavez,Entrada Principal 12",
       "latitud": "12.153427",
       "longitud": "-86.203361"
@@ -165,6 +185,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Hermanos Garcias",
       "direccion": "Naciones Unidad, De La Terminal 165",
       "latitud": "12.09982333",
       "longitud": "-86.22590667"
@@ -173,6 +194,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Reparto Schick 3 Etapa",
+      "nombre": "Enelkis Figueroa Vargas",
       "direccion": "Bo Blanca Segovia ,Donde Fue Cine I",
       "latitud": "12.105321",
       "longitud": "-86.227049"
@@ -181,6 +203,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Junior Jose Miranda Molina",
       "direccion": "Esquipulas,Hermita 400Vrs N",
       "latitud": "12.079957",
       "longitud": "-86.211975"
@@ -189,6 +212,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Reparto Schick 1",
+      "nombre": "Cristina Gastes Corrales",
       "direccion": "Bo. Angel Valentino, Ddf La Casa De",
       "latitud": "12.10911667",
       "longitud": "-86.22833667"
@@ -197,6 +221,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Milagro Del Rosario Vasquez",
       "direccion": "Costado Este Galeria Santo Domingo",
       "latitud": "12.100645",
       "longitud": "-86.251786"
@@ -205,6 +230,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Erick Lacayo",
       "direccion": "B.Jorge Dimitrov,Comedor Infantil 2",
       "latitud": "12.133739",
       "longitud": "-86.264074"
@@ -213,6 +239,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Cristhian  Ubeda Castillo",
       "direccion": "B Larga Espada Frente  A Conami",
       "latitud": "12.139923",
       "longitud": "-86.266408"
@@ -221,6 +248,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Juana Paula Rodriguez",
       "direccion": "B.19 De Julio,Novillo 1C S",
       "latitud": "12.148633",
       "longitud": "-86.265228"
@@ -229,6 +257,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Elizabeth Aguirre",
       "direccion": "B.19 De Julio,Fuerza Naval 2C N",
       "latitud": "12.146242",
       "longitud": "-86.270054"
@@ -237,6 +266,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Juan Carlos Miranda",
       "direccion": "De Donde Fue Mancion De Somoza Medi",
       "latitud": "12.144963",
       "longitud": "-86.264485"
@@ -245,6 +275,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia Colombia",
+      "nombre": "Miscelanea Javierita",
       "direccion": "Frente Al Parque 10 De Junio Costad",
       "latitud": "12.132409",
       "longitud": "-86.244589"
@@ -253,6 +284,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Bendicion De Dios",
       "direccion": "Semafaros El Dorado Media Al Sur 2",
       "latitud": "12.136576",
       "longitud": "-86.248591"
@@ -261,6 +293,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Ducuali",
+      "nombre": "Miscelanea La Principal",
       "direccion": "Bo. Ducualy, ddf Estilo Y La Moda 7",
       "latitud": "12.135982",
       "longitud": "-86.24115"
@@ -269,6 +302,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia Maestro Gabriel",
+      "nombre": "Distribuidora Nico",
       "direccion": "Col. Maestro Gabriel, semaforos del",
       "latitud": "12.1452964",
       "longitud": "-86.2375917"
@@ -277,6 +311,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Lareynaga",
+      "nombre": "Juana Galo",
       "direccion": "Bo. Larreynaga. Del puente 2c O, 1c",
       "latitud": "12.1455755",
       "longitud": "-86.2432256"
@@ -285,6 +320,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Nueva Libia",
+      "nombre": "Edwin Rigoberto Mejia Reyes",
       "direccion": "Bo. Farabundo Marti, Iglesia Don Bo",
       "latitud": "12.141937",
       "longitud": "-86.225453"
@@ -293,6 +329,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Hader Pastor Garcia Rivas",
       "direccion": "Bo 18 De Mayo, Bloquera Briones 2Cu",
       "latitud": "12.107639",
       "longitud": "-86.240318"
@@ -301,6 +338,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia 14 de Septiembre",
+      "nombre": "Erasmo Amador",
       "direccion": "Col.14 Septiembre,Colegio 14 septie",
       "latitud": "12.125258",
       "longitud": "-86.232237"
@@ -309,6 +347,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Jardines de Veracruz",
+      "nombre": "Pulperia Paulita",
       "direccion": "Jardines De Veracruz,Rotonda 1C E",
       "latitud": "12.128059",
       "longitud": "-86.226983"
@@ -317,6 +356,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Pablo Úbeda",
+      "nombre": "Pulperia San Pablo",
       "direccion": "B.Pablo Ubeda,Tanque De La Colonia",
       "latitud": "12.116984",
       "longitud": "-86.232234"
@@ -325,6 +365,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia Primero de Mayo",
+      "nombre": "Pulperia Las Graditas",
       "direccion": "Iglesia Catolica De Villa Flor, 25",
       "latitud": "12.121945",
       "longitud": "-86.221653"
@@ -333,6 +374,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Josue Espinoza",
       "direccion": "Tope Villa Flor Sur 4 Cuadras Al Su",
       "latitud": "12.116328",
       "longitud": "-86.2252"
@@ -341,6 +383,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Miscelanea Chontalenos",
       "direccion": "Bo. 30 De Mayo, Tanque Rojo 3C Este",
       "latitud": "12.10988167",
       "longitud": "-86.22125333"
@@ -349,6 +392,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Luz Adriana Barilla Rocha",
       "direccion": "Bo. Rene Polanco, De La Casa De La",
       "latitud": "12.11432",
       "longitud": "-86.226085"
@@ -357,6 +401,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Jesenia Aragon",
       "direccion": "Bo.Milagro De Dios De Terminal 195",
       "latitud": "12.110855",
       "longitud": "-86.2166"
@@ -365,6 +410,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Carlos Adan Gutierrez",
       "direccion": "Villa Venezuela, Iglesia Madre De D",
       "latitud": "12.1215918",
       "longitud": "-86.2097477"
@@ -373,6 +419,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Alba Bermudez",
       "direccion": "Villa Reconciliacion, Bloquera Horw",
       "latitud": "12.138571",
       "longitud": "-86.204892"
@@ -381,6 +428,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio 8 de Marzo",
+      "nombre": "Adolfo Jose Sotelo Sanchez",
       "direccion": "B. Americas 3, Semaforo Sandak 2C E",
       "latitud": "12.131885",
       "longitud": "-86.215448"
@@ -389,6 +437,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Villa San Jacinto",
+      "nombre": "Rene Moncada",
       "direccion": "iglesia fraternidad 4c o.",
       "latitud": "12.139567",
       "longitud": "-86.213028"
@@ -397,6 +446,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Walter Amador",
       "direccion": "Villa Canada,Sandak 7C S",
       "latitud": "12.12142",
       "longitud": "-86.216073"
@@ -405,6 +455,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Pulperia Moises",
       "direccion": "B. Cristo Rey, Ddf Terminal Vieja M",
       "latitud": "12.2149",
       "longitud": "-86.06203"
@@ -413,6 +464,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudadela San Martín",
+      "nombre": "Maria Amparo Miranda Diaz",
       "direccion": "Ciudad Dela, De La Virgen 1C,Arriba",
       "latitud": "12.228563",
       "longitud": "-86.090013"
@@ -421,6 +473,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Kiara Isamar Castillo",
       "direccion": "San Juan De La Playwood, Fte A Para",
       "latitud": "12.17852833",
       "longitud": "-86.04242167"
@@ -429,6 +482,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Marbeli Del Carmen Fonseca",
       "direccion": "Bo. Noel Morales, Gasolinera Uno Pa",
       "latitud": "12.20027833",
       "longitud": "-86.10213333"
@@ -437,6 +491,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Pulperia Guadalupe Pavon",
       "direccion": "Tipitapa,Ddf Policia 13C E,Media C",
       "latitud": "12.196294",
       "longitud": "-86.087196"
@@ -445,6 +500,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Rubenia",
+      "nombre": "Pulperia Nora",
       "direccion": "Bo. Georgino Andrade, Parque De Rub",
       "latitud": "12.13303",
       "longitud": "-86.22673333"
@@ -453,6 +509,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Santa Rosa",
+      "nombre": "Pulperia Kenia",
       "direccion": "B.Santa Rosa,Donde Fue La Nabisco 1",
       "latitud": "12.14931",
       "longitud": "-86.22654"
@@ -461,6 +518,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Villa Progreso",
+      "nombre": "Mini Market El Roble",
       "direccion": "Villa progreso, frente colegio carl",
       "latitud": "12.140847",
       "longitud": "-86.222995"
@@ -469,6 +527,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Bello Horizonte",
+      "nombre": "Elizabeth Camacho",
       "direccion": "B. Santa Rosa, De Los Semaforos De",
       "latitud": "12.150202",
       "longitud": "-86.231456"
@@ -477,6 +536,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulperia Gemelas",
       "direccion": "Americas 1, gallo mas gallo 4c N, 2",
       "latitud": "12.129959",
       "longitud": "-86.219264"
@@ -485,6 +545,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Miguel Antonio Castillo Rodriguez",
       "direccion": "San Rafael, Bar La Canducha 2C Arri",
       "latitud": "12.1759898",
       "longitud": "-86.101807"
@@ -493,6 +554,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Gregoriana Zoraya Espinoza Moraga",
       "direccion": "b. fco rojas, bar gina media c o, m",
       "latitud": "12.190073",
       "longitud": "-86.098498"
@@ -501,6 +563,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Yuri Ordoñez",
+      "nombre": "Pulperia Kevin",
       "direccion": "B. Yuris Ordonez, Rest Parqueo 1C E",
       "latitud": "12.182135",
       "longitud": "-86.099568"
@@ -509,6 +572,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Pulperia Marisol",
       "direccion": "San Rafael, frente a entrada princi",
       "latitud": "12.166739",
       "longitud": "-86.1116961"
@@ -517,6 +581,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Abastecedora San Martin",
       "direccion": "San Rafael, Frente a la enterada pr",
       "latitud": "12.1676564",
       "longitud": "-86.1100952"
@@ -525,6 +590,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Los Laureles Sur",
+      "nombre": "Ana Alvarez",
       "direccion": "B. Arnoldo Aleman , De la Fernandez",
       "latitud": "12.118261",
       "longitud": "-86.189236"
@@ -533,6 +599,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Los Laureles Sur",
+      "nombre": "Vanesa Gualesca Alvarez Granado",
       "direccion": "Lomas De Guadalupe, Parada Jovo 2C",
       "latitud": "12.10675",
       "longitud": "-86.19110167"
@@ -541,6 +608,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Arlen Siu",
+      "nombre": "Adan Miranda",
       "direccion": "Villa La Sabana, Trillizos 1C Este,",
       "latitud": "12.11986",
       "longitud": "-86.206515"
@@ -549,6 +617,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Los Laureles Sur",
+      "nombre": "Marlon Antonio Chavarria Matuz",
       "direccion": "Israel Galeano, Parada El Jovo 2C A",
       "latitud": "12.110555",
       "longitud": "-86.190585"
@@ -557,6 +626,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Villa Libertad",
+      "nombre": "Pulpería Raquel 2",
       "direccion": "Coleg Villa Libertad 1.5C Al Sur",
       "latitud": "12.11514333",
       "longitud": "-86.20246333"
@@ -565,6 +635,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Victoria de Julio",
+      "nombre": "Ana Yanci Valverde Aguilar",
       "direccion": "Villa Japon, Taller Denis 20Vrs Al",
       "latitud": "12.244965",
       "longitud": "-85.9996066666667"
@@ -573,6 +644,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Ronaldo Jose Orozco Vivas",
       "direccion": "2 Da Entrada Chilamatillo Contigo I",
       "latitud": "12.277375",
       "longitud": "-86.06191333"
@@ -581,6 +653,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "San Benito",
+      "nombre": "Kiosko Chayito",
       "direccion": "San Benito, frente a la gasolinera",
       "latitud": "12.3086907",
       "longitud": "-86.0544266"
@@ -589,6 +662,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Tipitapa",
+      "nombre": "Adonis Cruz",
       "direccion": "Bo. El Paraiso, Del Pozo Comunal 1C",
       "latitud": "12.30565333",
       "longitud": "-86.04810833"
@@ -597,6 +671,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Pulperia,  Vicenta",
       "direccion": "Bo. Los Angeles, Kilometros 55.",
       "latitud": "12.1491025",
       "longitud": "-85.8428332"
@@ -605,6 +680,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Agencia Guardabarranco",
       "direccion": "C.Belen policia 1 Lago, media calle",
       "latitud": "12.1318011",
       "longitud": "-86.1575229"
@@ -613,6 +689,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Misc Guadalupana 1",
       "direccion": "Villa Jerusalen, Bomberos 8C S, Med",
       "latitud": "12.1037789",
       "longitud": "-86.1717325"
@@ -621,6 +698,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulperia La Fe 2",
       "direccion": "Camino Del Rio, Cruce Los Rieles 2C",
       "latitud": "12.1220716666667",
       "longitud": "-86.1775133333333"
@@ -629,6 +707,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Villa Dignidad",
+      "nombre": "Magdanela Mairena Meza",
       "direccion": "Villa Dignidad el bar mar y sol 1c",
       "latitud": "12.1305352",
       "longitud": "-86.1766835"
@@ -637,6 +716,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Yara Nohemi Molina",
       "direccion": "Bismark Martinez, Porton Principal",
       "latitud": "12.10210833",
       "longitud": "-86.173715"
@@ -645,6 +725,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Catarina",
+      "nombre": "Rosa Ruiz Gaitan",
       "direccion": "Puesto de Salud 2 media c al este ,",
       "latitud": "11.910968",
       "longitud": "-86.074871"
@@ -653,6 +734,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Diriá",
+      "nombre": "Ramon Vega",
       "direccion": "Diria Fte A La Igle. Catolica",
       "latitud": "11.886453",
       "longitud": "-86.056634"
@@ -661,6 +743,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Niquinohomo",
+      "nombre": "Ervin Campos Quintanilla",
       "direccion": "Niquinohomo, contiguo al Museo Sand",
       "latitud": "11.904395",
       "longitud": "-86.095352"
@@ -669,6 +752,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "El Puentecito",
+      "nombre": "Alba Luz Baltodano",
       "direccion": "Km47,Guanacaste ,Diriomo",
       "latitud": "11.865461",
       "longitud": "-86.034447"
@@ -677,6 +761,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Barrio 17 de Julio",
+      "nombre": "Pulperia Noemar",
       "direccion": "Bo. 17 De Julio, Policia Nacional 1",
       "latitud": "11.87356",
       "longitud": "-86.05198667"
@@ -685,6 +770,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Maria Felix Reyes Perez",
       "direccion": "La Estacion Frente A La Policia",
       "latitud": "11.936935",
       "longitud": "-85.954261"
@@ -693,6 +779,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Armando Guadalupe Gutierrez",
       "direccion": "Bo. Bartomelo, De Lioncito Media Al",
       "latitud": "11.94112",
       "longitud": "-85.95308667"
@@ -701,6 +788,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Johana Del Carmen Barrios  Alvarez",
       "direccion": "Bo. Paz Y Vida, Casa Pachelli 3C No",
       "latitud": "11.950135",
       "longitud": "-85.949624"
@@ -709,6 +797,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Kevin Antonio Munoz Montiel",
       "direccion": "El Domingazo, Parroquia Del Socorro",
       "latitud": "11.9431858",
       "longitud": "-85.9574443"
@@ -717,6 +806,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Mini Market",
       "direccion": "Rpto. Adelita 1, Costado Sur Escuel",
       "latitud": "11.9168203",
       "longitud": "-85.954892"
@@ -725,6 +815,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ticuantepe",
+      "nombre": "Jean Carlos Aguirre",
       "direccion": "Semaforo Ticuantepe 4 C Al Oeste",
       "latitud": "12.022808",
       "longitud": "-86.208492"
@@ -733,6 +824,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ticuantepe",
+      "nombre": "Mini Super La Mini",
       "direccion": "Semaforos DeÂ  Ticuantepe 1C Al Sur",
       "latitud": "12.023781",
       "longitud": "-86.206169"
@@ -741,6 +833,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ticuantepe",
+      "nombre": "Gabriela Sanchez Miranda",
       "direccion": "Km 17/5 donde fue quinta Gloria cal",
       "latitud": "12.029642",
       "longitud": "-86.20662"
@@ -749,6 +842,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Managua",
+      "nombre": "Fernando Jose Urbina",
       "direccion": "Km 12.5 , Resi, Montecielo 100 Mts",
       "latitud": "12.062527",
       "longitud": "-86.203547"
@@ -757,6 +851,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Veracruz",
+      "nombre": "Juan Carlos Acevedo Alvarado",
       "direccion": "De La Iglesia Bautista 1C Arriba 1C",
       "latitud": "12.083466",
       "longitud": "-86.168953"
@@ -765,6 +860,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Nindirí",
+      "nombre": "Irian Carolina Serrano",
       "direccion": "Del Gasolinera Puma 3C N.",
       "latitud": "12.0023817",
       "longitud": "-86.115595"
@@ -773,6 +869,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Guanacastillo",
+      "nombre": "Jose Rocha",
       "direccion": "Carretera Tipitapa Masaya Km 34 .5",
       "latitud": "12.077353",
       "longitud": "-86.100519"
@@ -781,6 +878,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Nindirí",
+      "nombre": "Negocio El Moncho",
       "direccion": "Zona 2 De La Alcaldia 1 C Al Sur",
       "latitud": "12.001983",
       "longitud": "-86.119072"
@@ -789,6 +887,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Campuzano",
+      "nombre": "Sonia Del Rosario Flores Medrano",
       "direccion": "Cmca. Campusano, Contiguo Al Colegi",
       "latitud": "12.053572",
       "longitud": "-86.135313"
@@ -797,6 +896,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Los Cocos",
+      "nombre": "Nolberto Fajardo",
       "direccion": "Costado Sur Del Colegio Portillo",
       "latitud": "12.068089",
       "longitud": "-86.13826"
@@ -805,6 +905,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "La Concepción",
+      "nombre": "Maria Jose Delgado Tapia",
       "direccion": "Bo. San Antonio, Estadio Municipal",
       "latitud": "11.938835",
       "longitud": "-86.1827666"
@@ -813,6 +914,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "San Juan de La Concepción",
+      "nombre": "Xochilt Suarez",
       "direccion": "Jose Benito Escobar Barrio Jose Ben",
       "latitud": "11.953624",
       "longitud": "-86.187925"
@@ -821,6 +923,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "El Rodeo",
+      "nombre": "Martha Jarquin",
       "direccion": "De La Escuela El Rodeo 100M Al Sur",
       "latitud": "11.952762",
       "longitud": "-86.202432"
@@ -829,6 +932,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "La Concepción",
+      "nombre": "Jose Antonio Calero Cerda",
       "direccion": "Pikin Guerrero, Capilla Catolica Sa",
       "latitud": "11.9384571",
       "longitud": "-86.2074347"
@@ -837,6 +941,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Sandino",
+      "nombre": "Pulperia Bendicion De Dios",
       "direccion": "Barrio Sandino,Colegio Emilio Gonza",
       "latitud": "11.931565",
       "longitud": "-86.184354"
@@ -845,6 +950,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Los Ranchos",
+      "nombre": "Iliana Maribel Baldelomar Alcocer",
       "direccion": "El Rosario, Hotel Casa Blanca 100 M",
       "latitud": "11.4598815",
       "longitud": "-85.8481091"
@@ -853,6 +959,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Las Piedras",
+      "nombre": "Soda Renacer",
       "direccion": "Cmc Las Piedras, Costado Sur Del Ho",
       "latitud": "11.4366862",
       "longitud": "-85.8440924"
@@ -861,6 +968,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "La Chocolata",
+      "nombre": "Kathya Georgina Vanegas Zaus",
       "direccion": "La Chocolata, 1Er Puente 50Mts Al S",
       "latitud": "11.389929",
       "longitud": "-85.848234"
@@ -869,6 +977,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "San Rafael",
+      "nombre": "Willian Antonio Ruiz Castillo",
       "direccion": "Palos Negros, Carretera Tola Km 113",
       "latitud": "11.450472",
       "longitud": "-85.8565582"
@@ -877,6 +986,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Rivas",
+      "nombre": "Martha Baldelomar",
       "direccion": "Coleg. Humberto Mendez 1C 1.2 Al N.",
       "latitud": "11.441695",
       "longitud": "-85.828192"
@@ -885,6 +995,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "Jinotepe",
+      "nombre": "Ana Mena",
       "direccion": "Banpro 4C Al S.",
       "latitud": "11.844438",
       "longitud": "-86.198482"
@@ -893,6 +1004,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "El Rosario",
+      "nombre": "Mini Markert Adhara",
       "direccion": "Sector 1, Iglesia Catolica 50 Mts A",
       "latitud": "11.83275",
       "longitud": "-86.16665333"
@@ -901,6 +1013,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "Jinotepe",
+      "nombre": "Mini Market San Jose",
       "direccion": "Colegio San Jose 1C Al Este.",
       "latitud": "11.851448",
       "longitud": "-86.203823"
@@ -909,6 +1022,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "Dolores",
+      "nombre": "Maribel Isaguirre",
       "direccion": "B.San Antonio, 4Ta Calle",
       "latitud": "11.869263",
       "longitud": "-86.212265"
@@ -917,6 +1031,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Pulperia Lupita",
       "direccion": "Comarca La La Laguna, Frente A Cosi",
       "latitud": "11.941258",
       "longitud": "-85.989904"
@@ -925,6 +1040,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Valle La Laguna",
+      "nombre": "Pulperia Isalia",
       "direccion": "Cmc,El Hatillo,Frente Ala Iglesia S",
       "latitud": "11.948052",
       "longitud": "-86.045785"
@@ -933,6 +1049,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Granada",
+      "nombre": "Isaias Ubeda Oliva",
       "direccion": "Km 38.5 Ctra Masaya A Granada Entra",
       "latitud": "11.96996667",
       "longitud": "-86.01814"
@@ -941,6 +1058,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Las Puertas",
+      "nombre": "Adan Antonio Quiros Dominguez",
       "direccion": "Entrada principal Buena esperanza 2",
       "latitud": "11.911296",
       "longitud": "-85.964966"
@@ -949,6 +1067,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Masatepe",
+      "nombre": "Mayra Isabel Aleman Gonzalez",
       "direccion": "El Pochote, Del Triangulo 50 Mts Al",
       "latitud": "11.8945528",
       "longitud": "-86.1354368"
@@ -957,6 +1076,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "La Cruz Negra",
+      "nombre": "Juan Sanchez",
       "direccion": "B. Fatima, Iglesia El Calvario 50 V",
       "latitud": "11.898326",
       "longitud": "-86.173795"
@@ -965,6 +1085,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "San José de Masatepe",
+      "nombre": "Emilia Asuncion Sevilla Aburto",
       "direccion": "Cmca. San Jose, Templo Bautista 20V",
       "latitud": "11.8485077",
       "longitud": "-86.1423955"
@@ -973,6 +1094,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Masatepe",
+      "nombre": "Leoncia Diaz",
       "direccion": "B.Los Mangos Del Puente Jalatha 100",
       "latitud": "11.928057",
       "longitud": "-86.142572"
@@ -981,6 +1103,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Masaya",
+      "nombre": "Agencia Cheyla",
       "direccion": "Anexo 10 De Mayo, Catastro 2 Cuadra",
       "latitud": "11.982685",
       "longitud": "-86.0838033"
@@ -989,6 +1112,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "El Raizon",
+      "nombre": "Juan Vicente Urbina Vermudez",
       "direccion": "Km 21  Buena Vista Frente Al Colegi",
       "latitud": "12.03198833",
       "longitud": "-86.15852"
@@ -997,6 +1121,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Villa Bosco Monje",
+      "nombre": "Karen Lizeth Madriz",
       "direccion": "Villa Bosco Monge, Grupo E Casa Gru",
       "latitud": "11.9844218",
       "longitud": "-86.0766437"
@@ -1005,6 +1130,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Las Flores",
+      "nombre": "Distribuidora Jimenez",
       "direccion": "Comarca Las Flores, Antigua Estaci",
       "latitud": "11.99368",
       "longitud": "-86.03711"
@@ -1013,6 +1139,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "San Jerónimo",
+      "nombre": "Maria Karolina Martinez",
       "direccion": "Bo. Sacuanjoche, Salon De Los Testi",
       "latitud": "11.9861215",
       "longitud": "-86.0902066"
@@ -1021,6 +1148,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Barrio Cristo Rey",
+      "nombre": "Yadira Chavarria",
       "direccion": "Ba. Cristo Rey, Cancha 1C Al O.",
       "latitud": "11.449606",
       "longitud": "-85.820461"
@@ -1029,6 +1157,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "San Jorge",
+      "nombre": "Brigida Mora",
       "direccion": "Telcor 2N, Sn Jorge",
       "latitud": "11.457359",
       "longitud": "-85.800914"
@@ -1037,6 +1166,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Ingenio Benjamín Zeledón",
+      "nombre": "Miscelanea Mi Familia",
       "direccion": "Comarca San Juan Viejo",
       "latitud": "11.48322333",
       "longitud": "-85.83267333"
@@ -1045,6 +1175,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Potosí",
+      "nombre": "Mini Super Gerardo",
       "direccion": "Potosi, De La Policia 2C Al Sur.",
       "latitud": "11.49349667",
       "longitud": "-85.85395167"
@@ -1053,6 +1184,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Belén",
+      "nombre": "Nestor Alberto Acevedo",
       "direccion": "Bo El Bambu. De Los Bomberos De Bel",
       "latitud": "11.49704",
       "longitud": "-85.88423"
@@ -1061,6 +1193,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Nandaime",
+      "nombre": "Eva Maria Manzanares Peralta",
       "direccion": "Entrada A Reparto La Gran China.",
       "latitud": "11.761742",
       "longitud": "-86.054464"
@@ -1069,6 +1202,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Barrio Javier Guerra",
+      "nombre": "Dulcería Yelbita",
       "direccion": "Costado Sur Parque Javier Guerra",
       "latitud": "11.7596966",
       "longitud": "-86.0584683"
@@ -1077,6 +1211,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Nandaime",
+      "nombre": "La Casa Del Pueblo",
       "direccion": "Ctdo Norte Fuente A La Plaza Jose D",
       "latitud": "11.75649833",
       "longitud": "-86.05429167"
@@ -1085,6 +1220,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Nandaime",
+      "nombre": "Pulperia Tato",
       "direccion": "Gasolinera Uno Santa Teresa 500 Met",
       "latitud": "11.757896",
       "longitud": "-86.046372"
@@ -1093,6 +1229,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "El Manchón",
+      "nombre": "Ruth Elizabeth Mojica Cruz",
       "direccion": "Nandaime, Entrada La Providencia 10",
       "latitud": "11.730987",
       "longitud": "-86.015823"
@@ -1101,6 +1238,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "El Genizaro",
+      "nombre": "Pulperia El Genicero",
       "direccion": "B.El Genicero ,Carreterra San Juan",
       "latitud": "11.348668",
       "longitud": "-85.781602"
@@ -1109,6 +1247,7 @@
       "pais": "Nicaragua",
       "departamento": "Granada",
       "ciudad": "Pochotillo",
+      "nombre": "Pulp El Tamarindo",
       "direccion": "Bo. Sacaria Mora, Del Pali 50 Metro",
       "latitud": "11.914816",
       "longitud": "-85.97047"
@@ -1117,6 +1256,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "El Ostional",
+      "nombre": "Ariel Antonio Pena Lopez",
       "direccion": "Detras De La Igle. Catolica, Ostion",
       "latitud": "11.112537",
       "longitud": "-85.761717"
@@ -1125,6 +1265,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "San Juan del Sur",
+      "nombre": "Yaritza Martinez",
       "direccion": "Entrada a Bo. Auxiliadora 1c al nor",
       "latitud": "11.263689",
       "longitud": "-85.853843"
@@ -1133,6 +1274,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Cárdenas",
+      "nombre": "Leonarda Aragon",
       "direccion": "El Triunfo, Cancha Deportiva 500 Me",
       "latitud": "11.193944",
       "longitud": "-85.512152"
@@ -1141,6 +1283,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Belén",
+      "nombre": "Jenny Carolina Sequeira Espinoza",
       "direccion": "costado oeste escuela San Juan viej",
       "latitud": "11.503382",
       "longitud": "-85.887202"
@@ -1149,6 +1292,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Nancimí",
+      "nombre": "Pulperia Kenia.",
       "direccion": "Villa Ariel Casco, Frente A La Ante",
       "latitud": "11.467569",
       "longitud": "-85.951661"
@@ -1157,6 +1301,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "La Virgen Morena",
+      "nombre": "Pulp Nubia",
       "direccion": "Virgen Morena, Contiguo Al Pozo Ena",
       "latitud": "11.48837667",
       "longitud": "-86.09520333"
@@ -1165,6 +1310,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "El Astillero",
+      "nombre": "Reyna Margarita Chavez Martinez",
       "direccion": "Astillero, Cancha De Fubboll 50 Vrs",
       "latitud": "11.51256333",
       "longitud": "-86.165445"
@@ -1173,6 +1319,7 @@
       "pais": "Nicaragua",
       "departamento": "Rivas",
       "ciudad": "Tola",
+      "nombre": "Happy Shopping",
       "direccion": "Alcaldia De Tola 1.5C Al Oeste",
       "latitud": "11.43837",
       "longitud": "-85.937255"
@@ -1181,6 +1328,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "Buena Vista del Sur",
+      "nombre": "Roger Gutierrez",
       "direccion": "Km 55 , C. A La Boquita",
       "latitud": "11.756908",
       "longitud": "-86.302392"
@@ -1189,6 +1337,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "Diriamba",
+      "nombre": "Pulp. Miurell",
       "direccion": "Gasolinera Al Mar 5C. Oeste",
       "latitud": "11.858991",
       "longitud": "-86.241041"
@@ -1197,6 +1346,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "La Boquita",
+      "nombre": "Melissa Tatiana Garcia Gonzalez",
       "direccion": "Ayapal, Del Porton 1C Este, 1C Al N",
       "latitud": "11.6785852",
       "longitud": "-86.3810821"
@@ -1205,6 +1355,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "Diriamba",
+      "nombre": "Pulp Divino Nino",
       "direccion": "Iglesia San Jiso.4.S.1 2 O",
       "latitud": "11.85182",
       "longitud": "-86.237534"
@@ -1213,6 +1364,7 @@
       "pais": "Nicaragua",
       "departamento": "Carazo",
       "ciudad": "Diriamba",
+      "nombre": "Jose Antonio Mendieta Gonzalez",
       "direccion": "La Trinidad, Cuadro Deportivo 1C Al",
       "latitud": "11.856825",
       "longitud": "-86.246515"
@@ -1221,6 +1373,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Monimbo",
+      "nombre": "Luis Daniel G Tellez",
       "direccion": "Comandito 1C S, Media Oeste.",
       "latitud": "11.964345",
       "longitud": "-86.093605"
@@ -1229,6 +1382,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Masaya",
+      "nombre": "Jony Enrique Mendieta Lopez",
       "direccion": "De Farmacia Santa Rita 6C Al Sur.",
       "latitud": "11.9702678",
       "longitud": "-86.0841083"
@@ -1237,6 +1391,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Masaya",
+      "nombre": "Jamileth De Los Angeles Gomez",
       "direccion": "Pochotillo, Del Verdugo 4C Al Este.",
       "latitud": "11.9776778",
       "longitud": "-86.0905059"
@@ -1245,6 +1400,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Masaya",
+      "nombre": "Luis David Bermudes",
       "direccion": "3Ra Calle Del Faria.",
       "latitud": "11.9830481",
       "longitud": "-86.093669"
@@ -1253,6 +1409,7 @@
       "pais": "Nicaragua",
       "departamento": "Masaya",
       "ciudad": "Masaya",
+      "nombre": "Geovani Enrique Laguna Lopez",
       "direccion": "Pancasan, Iglesia San Miguel 1C Est",
       "latitud": "11.971095",
       "longitud": "-86.09075333"
@@ -1261,6 +1418,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Martha Castillo",
       "direccion": "Bello Amanecer, Costa Norte Maura C",
       "latitud": "12.147199",
       "longitud": "-86.346808"
@@ -1269,6 +1427,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Vulcanizacion Fonseca",
       "direccion": "Bello Amanecer, Del Parque 8C Sur.",
       "latitud": "12.140353",
       "longitud": "-86.347543"
@@ -1277,6 +1436,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Juana Paula Rosales",
       "direccion": "Ciudad Sandino, Colegio Trinidad 2",
       "latitud": "12.13583667",
       "longitud": "-86.34578667"
@@ -1285,6 +1445,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Licoreria Y Pulperia El Redentor",
       "direccion": "Bello Amanecer, Contiguo Centro Sal",
       "latitud": "12.147628",
       "longitud": "-86.343293"
@@ -1293,6 +1454,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Ana Matey Vasquez",
       "direccion": "Vista Hermosa, Cancha 2C Norte.",
       "latitud": "12.152416",
       "longitud": "-86.340959"
@@ -1301,6 +1463,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Rene González",
       "direccion": "Km13.5 Caretera Vieja A Leon Md",
       "latitud": "12.090538",
       "longitud": "-86.355221"
@@ -1309,6 +1472,7 @@
       "pais": "Nicaragua",
       "departamento": "León",
       "ciudad": "Ojo de Agua",
+      "nombre": "Pulperia Golpe A Golpe",
       "direccion": "Comarca Ojo De Agua  Km 42Cvl",
       "latitud": "12.10809",
       "longitud": "-86.591773"
@@ -1317,6 +1481,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Los Cedros",
+      "nombre": "Variedades Aracely",
       "direccion": "Los Cedros  Contiguo Al Colegio Cri",
       "latitud": "12.070158",
       "longitud": "-86.478678"
@@ -1325,6 +1490,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulperia Munguia",
       "direccion": "Kilometro 14.5 entrada a Planetario",
       "latitud": "12.081067000000001",
       "longitud": "-86.362033"
@@ -1333,6 +1499,7 @@
       "pais": "Nicaragua",
       "departamento": "León",
       "ciudad": "Las Pilas II",
+      "nombre": "Variedades Danita",
       "direccion": "Santa Lucia 2, Km 40 Ctra V. Leon,",
       "latitud": "12.1253783",
       "longitud": "-86.5766966"
@@ -1341,6 +1508,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Pulp Kira",
       "direccion": "Bo. Daniel Chavarria iglesia de cri",
       "latitud": "12.1375591",
       "longitud": "-86.3001668"
@@ -1349,6 +1517,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Ayapal",
+      "nombre": "Yahaira Del Carmen Ruiz",
       "direccion": "B. Ayapal, Ddf Hosp. Velez Paiz 3C",
       "latitud": "12.127525",
       "longitud": "-86.314382"
@@ -1357,6 +1526,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia Independencia",
+      "nombre": "Carlos Garcia Martinez",
       "direccion": "B. Tierra Prometida, Porton Nestle",
       "latitud": "12.12270248",
       "longitud": "-86.30282633"
@@ -1365,6 +1535,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Fabiola Balladares Hermandez",
       "direccion": "B. German Pomares, pte Ticomo 1c N,",
       "latitud": "12.10813795",
       "longitud": "-86.31129641"
@@ -1373,6 +1544,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Irene Lacayo Aguilar",
       "direccion": "Altos de Motastepe, de la aguja 1c",
       "latitud": "12.13150735",
       "longitud": "-86.34068638"
@@ -1381,6 +1553,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Santa Rita",
+      "nombre": "Luisa Aguilar",
       "direccion": "Villa El Carmen,Sta Rita, Km32 Cost",
       "latitud": "12.063244",
       "longitud": "-86.503354"
@@ -1389,6 +1562,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "San Cayetano",
+      "nombre": "Kiosco Kirenia",
       "direccion": "Barrio San Cayetano Costado  Oeste",
       "latitud": "11.899197",
       "longitud": "-86.517559"
@@ -1397,6 +1571,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Los Rugamas",
+      "nombre": "Distribuidora de todo",
       "direccion": "Villa El Carmen, Frente km 49 carre",
       "latitud": "11.9164424",
       "longitud": "-86.5071176"
@@ -1405,6 +1580,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Villa El Carmen",
+      "nombre": "Jacqueline De Los Angeles Aburto Or",
       "direccion": "Villa El Carmen, Contiguo Al Cement",
       "latitud": "11.9795031",
       "longitud": "-86.5089853"
@@ -1413,6 +1589,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Masachapa",
+      "nombre": "Pulperia Coquito",
       "direccion": "San Rafael, Masachapa , Contiguo Al",
       "latitud": "11.784557",
       "longitud": "-86.515082"
@@ -1421,6 +1598,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Luis Miguel Pineda Nunez",
       "direccion": "Calors Nunez, Deposito Vehicular 2C",
       "latitud": "12.1590566666667",
       "longitud": "-86.3096733333334"
@@ -1429,6 +1607,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Pulperia Amendarez",
       "direccion": "Barrio Monseñor Lezcano Donde Fue E",
       "latitud": "12.150926",
       "longitud": "-86.299588"
@@ -1437,6 +1616,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Paula Gomez",
       "direccion": "B. Acahualinca, Casa Pellas 4C O, 1",
       "latitud": "12.158892",
       "longitud": "-86.303003"
@@ -1445,6 +1625,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio El Seminario",
+      "nombre": "Claudia Galo Palacios",
       "direccion": "B. Juan Emilio Menocal",
       "latitud": "12.145596",
       "longitud": "-86.306921"
@@ -1453,6 +1634,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Cony Nineth Largaespada",
       "direccion": "Batahola Norte, Ctdo Norte Del Cent",
       "latitud": "12.14179833",
       "longitud": "-86.30474"
@@ -1461,6 +1643,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Mateare",
+      "nombre": "Nerys Lezama Espinoza",
       "direccion": "Rpto Sn Jose, contiguo a escuela Sn",
       "latitud": "12.232975",
       "longitud": "-86.42757"
@@ -1469,6 +1652,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Mateare",
+      "nombre": "Esther Guadalupe Orozco",
       "direccion": "Frente al parque costado norte.",
       "latitud": "12.23683",
       "longitud": "-86.430332"
@@ -1477,6 +1661,7 @@
       "pais": "Nicaragua",
       "departamento": "León",
       "ciudad": "Nagarote",
+      "nombre": "Maclobia Garcia",
       "direccion": "Nagarote, B.Jeronimo Lopez, Quesill",
       "latitud": "12.272203",
       "longitud": "-86.556696"
@@ -1485,6 +1670,7 @@
       "pais": "Nicaragua",
       "departamento": "León",
       "ciudad": "Nagarote",
+      "nombre": "Reyneris Esalia MoralesSevilla",
       "direccion": "De la parda los trosos 1c al oeste.",
       "latitud": "12.269314",
       "longitud": "-86.568894"
@@ -1493,6 +1679,7 @@
       "pais": "Nicaragua",
       "departamento": "León",
       "ciudad": "Nagarote",
+      "nombre": "Carlos Antonio Matus Zapata",
       "direccion": "Colegio Ruben Dario media c al oest",
       "latitud": "12.259157",
       "longitud": "-86.567371"
@@ -1501,6 +1688,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "SUPER DON TRINO",
       "direccion": "DE LOS JUZGADO NUEVO DE MANAGUA 2C",
       "latitud": "12.155616",
       "longitud": "-86.268031"
@@ -1509,6 +1697,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio La Esperanza",
+      "nombre": "Omar Alberto Garcia Flores",
       "direccion": "Bo. La Esperanza, Plaza Julio Marti",
       "latitud": "12.12378333",
       "longitud": "-86.29106833"
@@ -1517,6 +1706,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio El Recreo",
+      "nombre": "Lucia Velasquez",
       "direccion": "El Recreo Colegio Benjamin Zeledon",
       "latitud": "12.127948",
       "longitud": "-86.289225"
@@ -1525,6 +1715,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Bolonia",
+      "nombre": "Everto Jimenez",
       "direccion": "Bolonia, Tica Bus 2 Y Media S",
       "latitud": "12.141676",
       "longitud": "-86.280557"
@@ -1533,6 +1724,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio El Boer",
+      "nombre": "Pulperia El Cabrera",
       "direccion": "B. Boer, De Donde Fue Cine Cabrera",
       "latitud": "12.146184",
       "longitud": "-86.278202"
@@ -1541,6 +1733,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Altagracia",
+      "nombre": "Pulperia La Ventecita",
       "direccion": "Bo. Altagracia, Repuestos Resadon 2",
       "latitud": "12.1366216",
       "longitud": "-86.2926316"
@@ -1549,6 +1742,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia Independencia",
+      "nombre": "Licoreria El Primo",
       "direccion": "Bo. San Judas ceibon 5c N mano izqu",
       "latitud": "12.12132145",
       "longitud": "-86.29620597"
@@ -1557,6 +1751,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Rene Javier Mejia Vado",
       "direccion": "Bo. Martin Luter King, Centro De Sa",
       "latitud": "12.1107783",
       "longitud": "-86.2932466"
@@ -1565,6 +1760,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulp Elizabeth",
       "direccion": "Bo. Pablo VI. Contiguo al Costado O",
       "latitud": "12.12033215",
       "longitud": "-86.29167572"
@@ -1573,6 +1769,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "El Zumen",
+      "nombre": "Juan Jose Aguilar Mora",
       "direccion": "Altagracia, Econtre 1C Norte Sobre",
       "latitud": "12.13013167",
       "longitud": "-86.30132"
@@ -1581,6 +1778,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "San Isidro Libertador",
+      "nombre": "Nelson Ruiz",
       "direccion": "San Isidro De Bola Colegio Cristo O",
       "latitud": "12.095661",
       "longitud": "-86.291485"
@@ -1589,6 +1787,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Sheyla Velasquez",
       "direccion": "Comarca Pochocuape Centro De Salud",
       "latitud": "12.084367",
       "longitud": "-86.302772"
@@ -1597,6 +1796,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Camilo Ortega",
+      "nombre": "Franklin Antonio Bonilla Urroz",
       "direccion": "B.Camilo Ortega, Terminal 105, 1 y",
       "latitud": "12.094604",
       "longitud": "-86.308094"
@@ -1605,6 +1805,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Sierra Maestra",
+      "nombre": "Agencia.Y.Distribuidora Jis",
       "direccion": "B.Loma Linda, Surtidora Gaston 1 y",
       "latitud": "12.097791",
       "longitud": "-86.301563"
@@ -1613,6 +1814,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Agencia Castillo",
       "direccion": "Zona 7,  centro de Salud 2c Sur, me",
       "latitud": "12.167651",
       "longitud": "-86.342945"
@@ -1621,6 +1823,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Distribuidora Ebenezer",
       "direccion": "Zona 8, Plaza Miguel 3C S, 1C O, Me",
       "latitud": "12.162963",
       "longitud": "-86.348827"
@@ -1629,6 +1832,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "La Despensa De Don Carlos",
       "direccion": "Zona 8, Donde Fue La Policia 2C S,",
       "latitud": "12.160028",
       "longitud": "-86.349866"
@@ -1637,6 +1841,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Kenia Del Socorro Rodrigues Marenco",
       "direccion": "Km 16.5 Ctra A Xiloa, Parada La Ace",
       "latitud": "12.1904778",
       "longitud": "-86.3363752"
@@ -1645,6 +1850,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Kenia Del Socorro Rodrigues Marenco",
       "direccion": "Km 16.5 Ctra A Xiloa, Parada La Ace",
       "latitud": "12.1904778",
       "longitud": "-86.3363752"
@@ -1653,6 +1859,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Bosques de Xiloá",
+      "nombre": "Jose Santos Davila Garcia",
       "direccion": "Bo. Xiloa. De La Iglesia Catolica M",
       "latitud": "12.2117998",
       "longitud": "-86.3124916"
@@ -1661,6 +1868,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Mini Market Valle Sandino",
       "direccion": "Valle Sandino, Del Super Express 2C",
       "latitud": "12.17768",
       "longitud": "-86.36310667"
@@ -1669,6 +1877,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Mateare",
+      "nombre": "Arlen Mendes Vado",
       "direccion": "Vista Momotombo. Bloque 10 lote 11.",
       "latitud": "12.222614",
       "longitud": "-86.393269"
@@ -1677,6 +1886,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad El Doral",
+      "nombre": "Daniel Granados",
       "direccion": "Ciudad Doral , Calle 2 , avenida 16",
       "latitud": "12.199988",
       "longitud": "-86.389047"
@@ -1685,6 +1895,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Mateare",
+      "nombre": "Yaritza Del Carmen Santeliz Dolmuz",
       "direccion": "Los Brasiles, cuadro de Baseball me",
       "latitud": "12.191258",
       "longitud": "-86.36498"
@@ -1693,6 +1904,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "El Crucero",
+      "nombre": "Pulperia Dona Rosita N.1.",
       "direccion": "El Crucero, De Donde Fue El Restaur",
       "latitud": "11.98171",
       "longitud": "-86.311306"
@@ -1701,6 +1913,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Juan Dávila",
+      "nombre": "Fatima Del Rosario Siles Gonzales",
       "direccion": "Juan Davila, Parada Puentecito 27 V",
       "latitud": "11.957723",
       "longitud": "-86.303465"
@@ -1709,6 +1922,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "San Rafael del Sur",
+      "nombre": "Mini Market Emma.",
       "direccion": "El Granero  San Rafael Del Sur, Bar",
       "latitud": "11.852334",
       "longitud": "-86.431671"
@@ -1717,6 +1931,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "San Rafael del Sur",
+      "nombre": "Pulperia Magaly.",
       "direccion": "San Rafael del Sur, Rpto Canada  de",
       "latitud": "11.842932",
       "longitud": "-86.446996"
@@ -1725,6 +1940,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "San Carlos",
+      "nombre": "Pulperia  Sam.",
       "direccion": "San Jose.  San Rafael Del Sur, Coma",
       "latitud": "11.812858",
       "longitud": "-86.486582"
@@ -1733,6 +1949,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Maria Elena Cardoza",
       "direccion": "Memorial Sandino De La Cancha Del M",
       "latitud": "12.111881",
       "longitud": "-86.288477"
@@ -1741,6 +1958,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Gloria Maria Lara Matus",
       "direccion": "Anexo Casimiro Zotelo De Los Semafa",
       "latitud": "12.119574",
       "longitud": "-86.274496"
@@ -1749,6 +1967,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Yosara Lissette Flores Castellon",
       "direccion": "Bo. Healeah, Rotonda Periodista 6 C",
       "latitud": "12.1187952",
       "longitud": "-86.2823747"
@@ -1757,6 +1976,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Villa Santa Fe",
+      "nombre": "Arlen Del Socorro Arauz Hernandez",
       "direccion": "Gimnasio Hercules 1C Y Media Al Sur",
       "latitud": "12.1189836",
       "longitud": "-86.2692153"
@@ -1765,6 +1985,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Reparto San Juan",
+      "nombre": "Yamileth Del Socorro Treminio Marti",
       "direccion": "Bo Edgard Munguia, Centro Salud Med",
       "latitud": "12.1223519",
       "longitud": "-86.2732972"
@@ -1773,6 +1994,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Alexandre Meza Guevara",
       "direccion": "C. Sandino, Resd. Sn Andres, 1C N,",
       "latitud": "12.149413",
       "longitud": "-86.352724"
@@ -1781,6 +2003,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Distribuidora El Nica",
       "direccion": "Resd. P. De Sandino, terminal  ruta",
       "latitud": "12.15365",
       "longitud": "-86.349152"
@@ -1789,6 +2012,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Mini Super La Esquina",
       "direccion": "Residencial San Miguel  De La Aguja",
       "latitud": "12.1503979",
       "longitud": "-86.3701517"
@@ -1797,6 +2021,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Agencia El Gato",
       "direccion": "B. Nva Vida, Fte Ranchon.",
       "latitud": "12.159728",
       "longitud": "-86.370983"
@@ -1805,6 +2030,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Ciudad Sandino",
+      "nombre": "Maura Reyes",
       "direccion": "Terminal 115 2C Arriba 1C 1,2 Al No",
       "latitud": "12.170822",
       "longitud": "-86.364129"
@@ -1813,6 +2039,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Miriam Lopez",
       "direccion": "B. Acahualinca , De Las Huellas 4C",
       "latitud": "12.163495",
       "longitud": "-86.29364"
@@ -1821,6 +2048,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Mini Super El Punto",
       "direccion": "Bo. Monsenor Lezcano, Cementerio Mo",
       "latitud": "12.151625",
       "longitud": "-86.29193833"
@@ -1829,6 +2057,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Pulperia Limpito",
       "direccion": "Barrio Santa Ana Iglesia Santa Ana",
       "latitud": "12.156497",
       "longitud": "-86.289944"
@@ -1837,6 +2066,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito I",
+      "nombre": "Adalis Soza Castellon",
       "direccion": "B. San Sebastian, Ddf COSEP 3c N,1c",
       "latitud": "12.159465",
       "longitud": "-86.275664"
@@ -1845,6 +2075,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Distrito II",
+      "nombre": "Micelania. La Palma",
       "direccion": "B. Monsenor Lezcano, Ddf Banco Popu",
       "latitud": "12.144957",
       "longitud": "-86.295082"
@@ -1853,6 +2084,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Managua",
+      "nombre": "Pulperia Matagalpa",
       "direccion": "22 De Mayo De La Entrada De Lomas D",
       "latitud": "12.10709",
       "longitud": "-86.247682"
@@ -1861,6 +2093,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Riguero",
+      "nombre": "Pulperia media nocturno",
       "direccion": "Bo. El riguero, talleres modernos 1",
       "latitud": "12.13411261",
       "longitud": "-86.25370167"
@@ -1869,6 +2102,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Riguero",
+      "nombre": "Pulperia aries",
       "direccion": "Bo. El riguero, entrada Elvis Diaz",
       "latitud": "12.13234289",
       "longitud": "-86.25438597"
@@ -1877,6 +2111,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Barrio Riguero",
+      "nombre": "Alejandra Migdalia reyes Ayala",
       "direccion": "Bo. El riguero, talleres modernos 4",
       "latitud": "12.13118186",
       "longitud": "-86.25293724"
@@ -1885,6 +2120,7 @@
       "pais": "Nicaragua",
       "departamento": "Managua",
       "ciudad": "Colonia Centroamérica",
+      "nombre": "Cintia Karina Lopez",
       "direccion": "Colonia Centro America",
       "latitud": "12.11170667",
       "longitud": "-86.24834667"

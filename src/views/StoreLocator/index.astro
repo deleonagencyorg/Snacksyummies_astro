@@ -572,7 +572,7 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
     var destination = store.latitud + "," + store.longitud;
     sl.infoWindow.setContent(
       '<div class="sl-popup">' +
-        "<strong>" + escapeHtml(store.departamento || "") + "</strong>" +
+        "<strong>" + escapeHtml(store.nombre || store.departamento || "") + "</strong>" +
         "<p>" + fullAddress + "</p>" +
         '<div class="sl-popup-links">' +
         '<a href="https://www.google.com/maps/dir/?api=1&destination=' + destination +
@@ -606,7 +606,7 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
     sl.markers = validStores.map(function (store) {
       var marker = new google.maps.Marker({
         position: { lat: parseFloat(store.latitud), lng: parseFloat(store.longitud) },
-        title: store.direccion || store.ciudad || "",
+        title: store.nombre || store.direccion || store.ciudad || "",
         icon: pin,
         cursor: "pointer",
       });
@@ -691,11 +691,14 @@ const COUNTRY_CENTROIDS: Record<string, { lat: number; lng: number }> = {
         var address = escapeHtml([store.direccion, store.ciudad, store.departamento].filter(Boolean).join(", "));
         return (
           '<div class="sl-store-card" data-index="' + i + '" tabindex="0" role="button">' +
-            '<div class="sl-store-card__name">' + escapeHtml(store.departamento || "") + "</div>" +
+            '<div class="sl-store-card__name">' + escapeHtml(store.nombre || store.departamento || "") + "</div>" +
             '<div class="sl-store-card__address">' + address + "</div>" +
             '<a class="sl-store-card__directions" href="https://www.google.com/maps/dir/?api=1&destination=' +
             store.latitud + "," + store.longitud +
-            '" target="_blank" rel="noopener" onclick="event.stopPropagation()">Abrir en Google Maps</a>' +
+            '" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Maps</a>' +
+            '<a class="sl-store-card__directions sl-store-card__directions--waze" href="https://www.waze.com/ul?ll=' +
+            store.latitud + "," + store.longitud + '&navigate=yes"' +
+            ' target="_blank" rel="noopener" onclick="event.stopPropagation()">Waze</a>' +
           "</div>"
         );
       })
