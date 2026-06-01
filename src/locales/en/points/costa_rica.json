@@ -5,6 +5,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Barrio Manuel de Jesús Jiménez",
+      "nombre": "súper shun Fa",
       "direccion": "Manuel Jesús jimenes contiguo a panadería Dori  pan",
       "latitud": "9.851445",
       "longitud": "-83.9215516"
@@ -13,6 +14,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Cartago",
+      "nombre": "Super La Pitaya",
       "direccion": "100 Este De La Iglesia De Pitaya",
       "latitud": "9.85092633",
       "longitud": "-83.92773652"
@@ -21,6 +23,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Cartago",
+      "nombre": "Abastecedor Sagrada Familia",
       "direccion": "200 Norte Iglesia Catolica San Rafael",
       "latitud": "9.871464716",
       "longitud": "-83.90373286"
@@ -29,6 +32,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Villa Llanos",
+      "nombre": "Super La Futuro",
       "direccion": "200 mts sur de Super Nathy",
       "latitud": "9.835714415",
       "longitud": "-83.87971746"
@@ -37,6 +41,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Barrio México",
+      "nombre": "Super Mega Oferta",
       "direccion": "Barrio Mexico",
       "latitud": "9.9403193",
       "longitud": "-84.0847131"
@@ -45,6 +50,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Bajamar",
+      "nombre": "Super El Peñón",
       "direccion": "50 Este De La Escuela Bajamar",
       "latitud": "9.84086636",
       "longitud": "-84.6655984"
@@ -53,6 +59,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Atenas",
+      "nombre": "Súper Reina 2",
       "direccion": "Atenas",
       "latitud": "9.977659096",
       "longitud": "-84.38202159"
@@ -61,6 +68,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Orotina",
+      "nombre": "Mini Super El Menor",
       "direccion": "100 Oeste De Cable Tica",
       "latitud": "9.91117751",
       "longitud": "-84.52750447"
@@ -69,6 +77,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Orotina",
+      "nombre": "Super Minor",
       "direccion": "Frente Escuela Ramosa Sosa Mastate Orotina",
       "latitud": "9.91453674",
       "longitud": "-84.54175259"
@@ -77,6 +86,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Santo Domingo",
+      "nombre": "Super Paracito",
       "direccion": "Paracito De Moravia  Diagonal A La",
       "latitud": "9.993665268",
       "longitud": "-84.02611967"
@@ -85,6 +95,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Puntarenas",
+      "nombre": "mini súper las playitas",
       "direccion": "barrio las playitas puntarenas centró",
       "latitud": "9.977865714",
       "longitud": "-84.82893616"
@@ -93,6 +104,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Puntarenas",
+      "nombre": "Pulperia la ligia",
       "direccion": "Barrio el carmen",
       "latitud": "9.97575368",
       "longitud": "-84.84273867"
@@ -101,6 +113,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Chacarita",
+      "nombre": "SUPERMERCADOS EL AHORRO",
       "direccion": "puntarenas,fray casiano entrada al boli 250 metros norte.",
       "latitud": "9.9808194",
       "longitud": "-84.7573886"
@@ -109,6 +122,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "El Roble 2",
+      "nombre": "Mini Super Cachetón #2",
       "direccion": "100 metros oeste de la Uned",
       "latitud": "9.984103181",
       "longitud": "-84.73053693"
@@ -117,6 +131,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Veinte de Noviembre",
+      "nombre": "MYH GRUPO AHORRO SRL",
       "direccion": "Puntarenas Barrio 20 De Noviembre 25 Mts Este De Parada 10",
       "latitud": "9.982208812",
       "longitud": "-84.7722996"
@@ -125,6 +140,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Ramón",
+      "nombre": "Comisiarato La Paz",
       "direccion": "La Paz 200 Este De La Ermita",
       "latitud": "10.14356692",
       "longitud": "-84.531865"
@@ -133,6 +149,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Piedades Norte",
+      "nombre": "Super y Licorera Oxx",
       "direccion": "50 m sur de la Iglesia de Piedades",
       "latitud": "10.13504866",
       "longitud": "-84.50943873"
@@ -141,6 +158,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Los Olivos",
+      "nombre": "los olivos",
       "direccion": "san Pedro san Ramón",
       "latitud": "10.08206536",
       "longitud": "-84.49191987"
@@ -149,6 +167,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Piedades Sur",
+      "nombre": "Súper El Trébol",
       "direccion": "50M Sur De La Delegación De Policía Piedades Sur San Ramón",
       "latitud": "10.11651748",
       "longitud": "-84.53315509"
@@ -157,6 +176,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Ramón",
+      "nombre": "Súper Mario",
       "direccion": "200M Sur De Urgencias Del Hospital  De San Ramón",
       "latitud": "10.09028023",
       "longitud": "-84.47022997"
@@ -165,6 +185,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Ramón",
+      "nombre": "Súper la Central #2",
       "direccion": "150 Norte Del Barrio Copansan Ramón Alajuela",
       "latitud": "10.094625",
       "longitud": "-84.47667777"
@@ -173,6 +194,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Esquipulas",
+      "nombre": "Súper Brayka Esquipulas",
       "direccion": "350 Este Esc Esquipulas",
       "latitud": "10.05895015",
       "longitud": "-84.41935415"
@@ -181,6 +203,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Los Ángeles",
+      "nombre": "SUPER LA PERLA ORIENTAL",
       "direccion": "Los Angeles Atenas",
       "latitud": "9.9849989",
       "longitud": "-84.3712655"
@@ -189,6 +212,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San José Sur",
+      "nombre": "Super la Amistad",
       "direccion": "Atenas Barrio San José Sur",
       "latitud": "9.998905275",
       "longitud": "-84.39196696"
@@ -197,6 +221,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Zaragoza",
+      "nombre": "Minisuper Brayka Zaragoza",
       "direccion": "Costado Noroeste Del Parque De Zaragoza",
       "latitud": "10.0417687",
       "longitud": "-84.42889152"
@@ -205,6 +230,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Zaragoza",
+      "nombre": "Super Rincon",
       "direccion": "850 Iglesia Catolica Zaragoza",
       "latitud": "10.03552287",
       "longitud": "-84.44943102"
@@ -213,6 +239,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Barrio San Juan",
+      "nombre": "MaikJack S.A",
       "direccion": "San Juan de Ciudad Quesada",
       "latitud": "10.34705984",
       "longitud": "-84.40180248"
@@ -221,6 +248,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Barrio Cedral Sur",
+      "nombre": "Buen Precio 1",
       "direccion": "cedral centro",
       "latitud": "10.366155",
       "longitud": "-84.4360433"
@@ -229,6 +257,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Barranca",
+      "nombre": "Mini Super y Verduleria Las Palmas",
       "direccion": "Barranca entrada a los almendros",
       "latitud": "9.9782197",
       "longitud": "-84.7252173"
@@ -237,6 +266,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Manuel Mora",
+      "nombre": "Super Las Palmas",
       "direccion": "Entrada Principal Palmas De Rio 300 Mts Sur",
       "latitud": "9.972186447",
       "longitud": "-84.72830106"
@@ -245,6 +275,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Miramar",
+      "nombre": "GRUPO ORO COSTANERA SOCIEDAD DE RES",
       "direccion": "Miramar frente a librería Miramar centro",
       "latitud": "10.090646",
       "longitud": "-84.729235"
@@ -253,6 +284,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Macacona",
+      "nombre": "Super Nances N. 2",
       "direccion": "Esparza Entrada Principal De Nances",
       "latitud": "10.00011303",
       "longitud": "-84.64642097"
@@ -261,6 +293,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Labrador",
+      "nombre": "Inversiones Dk",
       "direccion": "300 Oeste De La Plaza Del Labrador",
       "latitud": "9.944587558",
       "longitud": "-84.61776714"
@@ -269,6 +302,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Aguas Zarcas",
+      "nombre": "Super Licorera Donde Chato",
       "direccion": "1 km al norte de la Iglesia Catolica de",
       "latitud": "10.38422603",
       "longitud": "-84.33970231"
@@ -277,6 +311,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "La Carpio",
+      "nombre": "Abastecedor El Pana",
       "direccion": "La Carpio Frente A La Rural",
       "latitud": "9.963341808",
       "longitud": "-84.14979152"
@@ -285,6 +320,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San José",
+      "nombre": "Super Chinchilla",
       "direccion": "La Carpio Cueva Del Sapo",
       "latitud": "9.960694134",
       "longitud": "-84.1522156"
@@ -293,6 +329,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Rosario",
+      "nombre": "Supermercado Los Pinos #02",
       "direccion": "Villa Nueva Carretera Monterrey",
       "latitud": "9.791583939",
       "longitud": "-84.09610777"
@@ -301,6 +338,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San José",
+      "nombre": "Súper Mercado Los Pinos Jorco",
       "direccion": "Vuelta de Jorco 200 mts norte de la igle",
       "latitud": "9.796389725",
       "longitud": "-84.12838091"
@@ -309,6 +347,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Naranjo",
+      "nombre": "Abastecedor El Combate",
       "direccion": "Naranjo Frente A La Gasolinera Que Este",
       "latitud": "10.0955914",
       "longitud": "-84.37732823"
@@ -317,6 +356,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Coopezamora",
+      "nombre": "Mini Super Mi Pueblo",
       "direccion": "Bajo Rodriguez Contiguo A Esc Coopezam",
       "latitud": "10.31983448",
       "longitud": "-84.53705366"
@@ -325,6 +365,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "La Tigra",
+      "nombre": "Maricela Piedra Bejarano",
       "direccion": "Cruce La Tigra Y San Isidro Peñas Blanca",
       "latitud": "10.36510502",
       "longitud": "-84.58673653"
@@ -333,6 +374,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "La Fortuna",
+      "nombre": "Central Park",
       "direccion": "Costado Norte Parque Fortuna",
       "latitud": "10.47219998",
       "longitud": "-84.64543048"
@@ -341,6 +383,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Boca Arenal",
+      "nombre": "Super Dany",
       "direccion": "Pocosol Buenos Aires Frente Bomba",
       "latitud": "10.57502273",
       "longitud": "-84.50161691"
@@ -349,6 +392,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Santa Rosa de Pocosol",
+      "nombre": "Mini Super Lico",
       "direccion": "Costado Sur del parque Santa Rosa de Pocosol",
       "latitud": "10.62321327",
       "longitud": "-84.52924234"
@@ -357,6 +401,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Barrio Manny Renner",
+      "nombre": "Licorera Plata",
       "direccion": "Los chiles frontera 25mtrs  norte i 200",
       "latitud": "11.0335151",
       "longitud": "-84.7113282"
@@ -365,6 +410,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Los Chiles",
+      "nombre": "Licorera La Maka",
       "direccion": "Los chiles barrio bello horizonte",
       "latitud": "11.03830029",
       "longitud": "-84.710418"
@@ -373,6 +419,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Pital",
+      "nombre": "Super Mayi",
       "direccion": "300 Sur  Salon Comunal Pital",
       "latitud": "10.44969185",
       "longitud": "-84.27691245"
@@ -381,6 +428,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "San Luis",
+      "nombre": "Huanyong Wang",
       "direccion": "Guacimo Barrio San Luis 50 Mts Este Del Salon Comunal",
       "latitud": "10.24395606",
       "longitud": "-83.66376351"
@@ -389,6 +437,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Pocora Sur",
+      "nombre": "Super La Fortuna",
       "direccion": "Pocora Centro",
       "latitud": "10.16870418",
       "longitud": "-83.60652734"
@@ -397,6 +446,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Barrio Santa Cruz",
+      "nombre": "Minisuper Gova",
       "direccion": "100 Metros Norte Escuela Santa Cruz",
       "latitud": "9.174953158",
       "longitud": "-83.32562406"
@@ -405,6 +455,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Barrio El Gol",
+      "nombre": "Frutería Buen Precio",
       "direccion": "Costado Este Del Ebais La Piñera Buenos Aires De Puntarenas",
       "latitud": "9.15927252",
       "longitud": "-83.33334435"
@@ -413,6 +464,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Isidro de El General",
+      "nombre": "Licorera Rio Seco",
       "direccion": "Contiguo a los tribunales de justic",
       "latitud": "9.374314548",
       "longitud": "-83.7016356"
@@ -421,6 +473,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Rio Seco",
+      "nombre": "súper tang",
       "direccion": "barrio las brisas daniel flores",
       "latitud": "9.3690994",
       "longitud": "-83.682729"
@@ -429,6 +482,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Cajón",
+      "nombre": "Licorera H",
       "direccion": "Carmen cajón",
       "latitud": "9.293222342",
       "longitud": "-83.58166451"
@@ -437,6 +491,7 @@
       "pais": "Costa Rica",
       "departamento": "San José Province",
       "ciudad": "Pérez Zeledón",
+      "nombre": "Super Border",
       "direccion": "300m norte de la Escuela Republica de Mexico",
       "latitud": "9.277691357",
       "longitud": "-83.58608592"
@@ -445,6 +500,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Palmar Norte",
+      "nombre": "Verduleria Hermanos Mora",
       "direccion": "Hmorasuper@Hotmailcom",
       "latitud": "8.962009521",
       "longitud": "-83.45829623"
@@ -453,6 +509,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Finca Tres",
+      "nombre": "La Managuita",
       "direccion": "Finca 200 Antes Antigua Escuela",
       "latitud": "8.933959737",
       "longitud": "-83.48681727"
@@ -461,6 +518,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Ciudad Cortés",
+      "nombre": "Abast. Paula",
       "direccion": "Finca 8 A Un Costado De La Plaza",
       "latitud": "8.93403594",
       "longitud": "-83.52166559"
@@ -469,6 +527,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Ciudad Cortés",
+      "nombre": "Super Económico Azur",
       "direccion": "50 Oeste del Ebais Ojo de Agua",
       "latitud": "8.983648792",
       "longitud": "-83.53870422"
@@ -477,6 +536,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Valle Azul",
+      "nombre": "Minisuper Y Licorera Gamboa",
       "direccion": "San Francisco",
       "latitud": "8.76764252",
       "longitud": "-82.94649196"
@@ -485,6 +545,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Fila Tigre",
+      "nombre": "super el Gigante",
       "direccion": "Pitier Fila Tigre",
       "latitud": "8.930759196",
       "longitud": "-82.92153336"
@@ -493,6 +554,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Río Claro",
+      "nombre": "Viriteca Rio Claro",
       "direccion": "Contiguo A Libreria Ericka Rio Claro",
       "latitud": "8.676167",
       "longitud": "-83.063277"
@@ -501,6 +563,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Corredores",
+      "nombre": "Mini Super Nacho",
       "direccion": "Corredores Laurel Contiguo A La Escuela La Nubia",
       "latitud": "8.510331289",
       "longitud": "-82.97126704"
@@ -509,6 +572,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Barrio Las Américas",
+      "nombre": "Abastecedor El Maracay",
       "direccion": "Frente al Polideportivo de Perez",
       "latitud": "9.36280208",
       "longitud": "-83.70619024"
@@ -517,6 +581,7 @@
       "pais": "Costa Rica",
       "departamento": "San José Province",
       "ciudad": "Platanillo",
+      "nombre": "Minisuper Elizabeth #2",
       "direccion": "Platanillo De Baru 200 Oeste De La Escuela",
       "latitud": "9.287700993",
       "longitud": "-83.8036538"
@@ -525,6 +590,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Ciudad Neily",
+      "nombre": "Viriteca Corredor Limitada",
       "direccion": "Diagonal a los tribunales de justicia",
       "latitud": "8.648429255",
       "longitud": "-82.94368533"
@@ -533,6 +599,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Corredores",
+      "nombre": "Grupo Estrella De Laurel",
       "direccion": "150 Mtrs A Un Costado De La Estación De Policía",
       "latitud": "8.432245827",
       "longitud": "-82.9569943"
@@ -541,6 +608,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Las Juntas",
+      "nombre": "Super Mercado Cen",
       "direccion": "Frente A Bomberos De Las Juntas De Abangares",
       "latitud": "10.28178599",
       "longitud": "-84.95907509"
@@ -549,6 +617,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Fortuna",
+      "nombre": "la despensa 3",
       "direccion": "barrio las palmas entrada a urbanización",
       "latitud": "10.678796",
       "longitud": "-85.20249561"
@@ -557,6 +626,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "San Gerardo",
+      "nombre": "Mini Super y Panaderia La Despensa",
       "direccion": "Bagaces Frente A La Parada Municipal Edi",
       "latitud": "10.53098087",
       "longitud": "-85.25708065"
@@ -565,6 +635,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Daniel Oduber Quirós",
+      "nombre": "Mini Súper Y Licorera Chema 2",
       "direccion": "Daniel Oduber 250 Sur Del Polígono De Jocimes",
       "latitud": "10.61519003",
       "longitud": "-85.4283906"
@@ -573,6 +644,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "San Roque",
+      "nombre": "Mini Super Chema 4",
       "direccion": "200 Metros Oeste De La Plaza De Barrio San Roque Liberia Gua",
       "latitud": "10.64151957",
       "longitud": "-85.43873642"
@@ -581,6 +653,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Barrio El Guanacaste",
+      "nombre": "Inversiones Racar 2",
       "direccion": "100 Mtrs Este De La Clínica De Tilaran",
       "latitud": "10.46997144",
       "longitud": "-84.96956627"
@@ -589,6 +662,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Barrio El Carmen",
+      "nombre": "Inversiones Racar 3",
       "direccion": "Barrio El Carmen",
       "latitud": "10.46581918",
       "longitud": "-84.96874742"
@@ -597,6 +671,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Jicaral",
+      "nombre": "Super Las Brisas",
       "direccion": "Jicaral Barrio Las Brisas",
       "latitud": "9.962818033",
       "longitud": "-85.10701456"
@@ -605,6 +680,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Los Mangos",
+      "nombre": "Super Los Angeles",
       "direccion": "A Un Costado De La Plaza De Futbol Los Mangos",
       "latitud": "9.682133619",
       "longitud": "-85.11653359"
@@ -613,6 +689,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Barrio Irvin",
+      "nombre": "Minisuper Jormat 6",
       "direccion": "La Cruz gte Barrio Irvin",
       "latitud": "11.0636547",
       "longitud": "-85.6278448"
@@ -621,6 +698,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Colorado",
+      "nombre": "Mini Súper y Licorera La Puerta del",
       "direccion": "Liberia Barrio Guadalupe",
       "latitud": "10.66672347",
       "longitud": "-85.47442057"
@@ -629,6 +707,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Brasilito",
+      "nombre": "Mini Súper Jka",
       "direccion": "Frente Ala Plaza En Brasilito",
       "latitud": "10.40717809",
       "longitud": "-85.7970804"
@@ -637,6 +716,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "San Francisco",
+      "nombre": "Mini super génesis",
       "direccion": "50este de la cruz roja Belén carrillo Guanacaste",
       "latitud": "10.4109159",
       "longitud": "-85.5840301"
@@ -645,6 +725,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Barrio la Virginia",
+      "nombre": "Mini Tavo",
       "direccion": "La Virginia De Nicoya Costado De La Plaz",
       "latitud": "10.14459652",
       "longitud": "-85.44785418"
@@ -653,6 +734,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Nosara",
+      "nombre": "Abastecedor Bacesaj",
       "direccion": "Frente Al Colegio Nosara",
       "latitud": "9.980335382",
       "longitud": "-85.63330954"
@@ -661,6 +743,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Coco",
+      "nombre": "Súper King",
       "direccion": "Playas Del Coco  150 Este De Súper San Martín Carrillo Guan",
       "latitud": "10.54166627",
       "longitud": "-85.70678476"
@@ -669,6 +752,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Nazareth",
+      "nombre": "Maxi Corvin 2",
       "direccion": "rojas Chaves costado este de la central de taxis",
       "latitud": "10.64727297",
       "longitud": "-85.43761864"
@@ -677,6 +761,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Upala",
+      "nombre": "Super Canalete",
       "direccion": "Canalete de Upala",
       "latitud": "10.83986898",
       "longitud": "-85.04009076"
@@ -685,6 +770,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Barrio Las Palmas",
+      "nombre": "Mini Super Upala",
       "direccion": "Barrio Las Palmas Upala Alajuela",
       "latitud": "10.89970997",
       "longitud": "-85.01182242"
@@ -693,6 +779,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Santa Rita",
+      "nombre": "MINISUPER MAYRA",
       "direccion": "Nandayure Guanacaste",
       "latitud": "10.02419274",
       "longitud": "-85.2625872"
@@ -701,6 +788,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Corazón de Jesús",
+      "nombre": "Minisuper El Almendro Hmr",
       "direccion": "Corazón De Jesús",
       "latitud": "10.6387122",
       "longitud": "-85.44987357"
@@ -709,6 +797,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Salto",
+      "nombre": "Donde boli",
       "direccion": "El salto de liberia frente a la plaza",
       "latitud": "10.56919731",
       "longitud": "-85.38661713"
@@ -717,6 +806,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Barrio Guayabal",
+      "nombre": "Mini Super Guayabal",
       "direccion": "Santa Cruz Guayabal Del Aya 100 Mts Norte",
       "latitud": "10.25711001",
       "longitud": "-85.56524715"
@@ -725,6 +815,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Santa Cruz",
+      "nombre": "Super Grupo Economico",
       "direccion": "200mtrs este del Banco Nacional",
       "latitud": "10.26825882",
       "longitud": "-85.583195"
@@ -733,6 +824,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "La Palma",
+      "nombre": "Super el sol",
       "direccion": "La Palma Parrita 150 Sur Oeste Escuela La Palma Parrita",
       "latitud": "9.532049121",
       "longitud": "-84.37639715"
@@ -741,6 +833,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Quepos",
+      "nombre": "súper la iguana",
       "direccion": "costado sur de la plasa de deportes  que",
       "latitud": "9.4293724",
       "longitud": "-84.1603601"
@@ -749,6 +842,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Palmares",
+      "nombre": "INVERSIONES ECONOMICO OCHO RSRL",
       "direccion": "Palmares Pz 300 Norte Banco Nacional Frente A Concentrados",
       "latitud": "9.325280152",
       "longitud": "-83.66764367"
@@ -757,6 +851,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Isidro de El General",
+      "nombre": "Viriteca CBA buenos aires SRL",
       "direccion": "Daniel Flores frente a la Cámara de Cañe",
       "latitud": "9.335793451",
       "longitud": "-83.6708295"
@@ -765,6 +860,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Guápiles",
+      "nombre": "Super Los Chinitos",
       "direccion": "250Este Del Cementerio De Guapiles",
       "latitud": "10.21365282",
       "longitud": "-83.79382508"
@@ -773,6 +869,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Guápiles",
+      "nombre": "Super La Estrella Oriental Ky",
       "direccion": "La Carretera Así La Colonia",
       "latitud": "10.22380998",
       "longitud": "-83.79512594"
@@ -781,6 +878,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Jiménez",
+      "nombre": "Mini Súper Gamboa",
       "direccion": "molino guapiles 100 oeste de la plaza deportes",
       "latitud": "10.2100771",
       "longitud": "-83.7577357"
@@ -789,6 +887,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "La Guaria",
+      "nombre": "Supermercado El Oferton",
       "direccion": "Limón Limon La Guaria",
       "latitud": "9.743299372",
       "longitud": "-82.95164182"
@@ -797,6 +896,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Pococí",
+      "nombre": "Abastecedor El Gallo",
       "direccion": "Barrio Formoza",
       "latitud": "10.36490149",
       "longitud": "-83.75063082"
@@ -805,6 +905,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "El Progreso",
+      "nombre": "Minisuper Batallas",
       "direccion": "Cariari",
       "latitud": "10.37653296",
       "longitud": "-83.74930131"
@@ -813,6 +914,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Barrio El Mangal",
+      "nombre": "Super Primo #2",
       "direccion": "200 Oeste De La Delegación Del Cairo De Siquirres",
       "latitud": "10.09310113",
       "longitud": "-83.50011526"
@@ -821,6 +923,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Siquirres",
+      "nombre": "Distribuidora Súper Diferente",
       "direccion": "Siquirres Centro Costado Del Mercado",
       "latitud": "10.09771589",
       "longitud": "-83.50374384"
@@ -829,6 +932,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Santa Marta",
+      "nombre": "Bazar y Tienda E y M",
       "direccion": "Santa Marta De Bataan Matina Limon",
       "latitud": "10.12175619",
       "longitud": "-83.31711963"
@@ -837,6 +941,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Barrio Veintiséis Millas",
+      "nombre": "Supermercado Chabracore S.A",
       "direccion": "26 millas frente a la entrada los almedros",
       "latitud": "10.08679859",
       "longitud": "-83.35463361"
@@ -845,6 +950,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Olivia",
+      "nombre": "Mini Super LUCKY",
       "direccion": "pueblo nuevo de olivia 100metros sureste",
       "latitud": "9.6133108",
       "longitud": "-82.8108149"
@@ -853,6 +959,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Talamanca",
+      "nombre": "minisuper varela",
       "direccion": "switche paraiso",
       "latitud": "9.55804",
       "longitud": "-82.6974366"
@@ -861,6 +968,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Corales I",
+      "nombre": "Luna Azul",
       "direccion": "100Sur Y 200 Oeste De Abastecedor Andres",
       "latitud": "9.99717643",
       "longitud": "-83.04526747"
@@ -869,6 +977,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Limón",
+      "nombre": "SUPER ARRECIFE",
       "direccion": "500Mts Norte De Abastecedor Cariari Lim",
       "latitud": "10.00407547",
       "longitud": "-83.03405799"
@@ -877,6 +986,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "El Rótulo",
+      "nombre": "Mini Super Rachell",
       "direccion": "Frente Al Salon Comunal Del Rotulo",
       "latitud": "10.41105454",
       "longitud": "-83.76006665"
@@ -885,6 +995,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Sarapiquí",
+      "nombre": "Super Daniel#2",
       "direccion": "800 Sur Río San Jose",
       "latitud": "10.24107447",
       "longitud": "-83.91614516"
@@ -893,6 +1004,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Río Frío",
+      "nombre": "Super la suerte N. 2",
       "direccion": "Finca6 Horquetas Sarapiqui Heredia",
       "latitud": "10.32046765",
       "longitud": "-83.886102"
@@ -901,6 +1013,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Guácimo",
+      "nombre": "Super Guang Dong",
       "direccion": "Calle Guayacan Guacimo",
       "latitud": "10.212734",
       "longitud": "-83.685425"
@@ -909,6 +1022,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Barrio Cascadas Tres",
+      "nombre": "Abastecedor The Blessings",
       "direccion": "Guapiles Cascadas 1",
       "latitud": "10.24199",
       "longitud": "-83.788414"
@@ -917,6 +1031,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Rita",
+      "nombre": "Abastecedor La Union",
       "direccion": "500Mts Sur Del Bar Barrilitos La Rita",
       "latitud": "10.28093183",
       "longitud": "-83.78234242"
@@ -925,6 +1040,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Zent",
+      "nombre": "Centro comercial esquivel y mora",
       "direccion": "Limon Matina Carrandi 1Km Al Sur De La Entrada De Zent",
       "latitud": "10.02330194",
       "longitud": "-83.27062558"
@@ -933,6 +1049,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "B-Line",
+      "nombre": "ALMACEN ZHONGPO",
       "direccion": "B line frente a la ruta 32",
       "latitud": "10.04579208",
       "longitud": "-83.30833252"
@@ -941,6 +1058,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Puerto Viejo de Talamanca",
+      "nombre": "Súper Puerto Viejo",
       "direccion": "Talamanca Cahuita Puerto Viejo Frente",
       "latitud": "9.655531952",
       "longitud": "-82.75570215"
@@ -949,6 +1067,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Cocles",
+      "nombre": "Super cocles",
       "direccion": "Cocles Puerto Viejo Talamanca",
       "latitud": "9.644976331",
       "longitud": "-82.73418245"
@@ -957,6 +1076,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Pacayas",
+      "nombre": "Emporio grato",
       "direccion": "costado sur iglesia de la iglesia de pacayas de Alvarado car",
       "latitud": "9.916922588",
       "longitud": "-83.80888641"
@@ -965,6 +1085,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Tierra Blanca",
+      "nombre": "Don Víctor Mini Super",
       "direccion": "100 norte iglesia tierra blanca",
       "latitud": "9.916093524",
       "longitud": "-83.89316592"
@@ -973,6 +1094,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Escazú",
+      "nombre": "Super Max",
       "direccion": "200sur del Colegio Pilar",
       "latitud": "9.9159755",
       "longitud": "-84.1389374"
@@ -981,6 +1103,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Antonio",
+      "nombre": "Super Aldino Feliz",
       "direccion": "De Panterd 25 Oeste",
       "latitud": "9.905041702",
       "longitud": "-84.13372527"
@@ -989,6 +1112,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Goicoechea",
+      "nombre": "Cacao Monkeys S.A",
       "direccion": "Diagonal A Super Amigos",
       "latitud": "9.961274",
       "longitud": "-84.006609"
@@ -997,6 +1121,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Ipis",
+      "nombre": "Super Nazareno",
       "direccion": "Diagonal Centro Infantil De Zetillal",
       "latitud": "9.968478731",
       "longitud": "-84.00967539"
@@ -1005,6 +1130,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Barrio Alto de Ochomogo",
+      "nombre": "Super Los Pinos",
       "direccion": "Barrio Fátima Diagonal A La Entrada De Barrio La Cruz",
       "latitud": "9.88810107",
       "longitud": "-83.93830334"
@@ -1013,6 +1139,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Cartago",
+      "nombre": "Minisuper La Fortuna",
       "direccion": "400 Mts Norte Del Asilo Antiguo Bar La Fortuna",
       "latitud": "9.873723208",
       "longitud": "-83.92237266"
@@ -1021,6 +1148,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Santiago",
+      "nombre": "Super Buen Precio",
       "direccion": "Costado N De Parque Puriscal",
       "latitud": "9.846470074",
       "longitud": "-84.31632075"
@@ -1029,6 +1157,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Santiago",
+      "nombre": "SUPER BOMBEROS",
       "direccion": "Frente a la estación de bomberos Puriscal",
       "latitud": "9.8470804",
       "longitud": "-84.3111813"
@@ -1037,6 +1166,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Nueva Virginia",
+      "nombre": "Abastecedor La Coope",
       "direccion": "Nueva Virginia Siquirres A Un Costado Del Ebais",
       "latitud": "10.22121276",
       "longitud": "-83.4509748"
@@ -1045,6 +1175,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Cairo",
+      "nombre": "Supermercado El Cairo",
       "direccion": "Frente a la escuela Cairo",
       "latitud": "10.12171868",
       "longitud": "-83.53782984"
@@ -1053,6 +1184,7 @@
       "pais": "Costa Rica",
       "departamento": "Puntarenas Province",
       "ciudad": "Tarcoles",
+      "nombre": "Super Tarcoles",
       "direccion": "100 Sur De La Plata De Deportes",
       "latitud": "9.756030486",
       "longitud": "-84.62430413"
@@ -1061,6 +1193,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Barrio Las Parcelas",
+      "nombre": "Mini Super Costa Azu",
       "direccion": "Herradura",
       "latitud": "9.658364677",
       "longitud": "-84.64247273"
@@ -1069,6 +1202,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Herradura",
+      "nombre": "Loria Delgado S.A",
       "direccion": "Herradura",
       "latitud": "9.668142728",
       "longitud": "-84.63361868"
@@ -1077,6 +1211,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Cerro Bajo",
+      "nombre": "Jumbomax",
       "direccion": "Cerro Bajo Orotina",
       "latitud": "9.884509912",
       "longitud": "-84.57638498"
@@ -1085,6 +1220,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Barrio Copey",
+      "nombre": "Super Excelente",
       "direccion": "Barrio Copey",
       "latitud": "9.620094907",
       "longitud": "-84.62124543"
@@ -1093,6 +1229,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Bejuco",
+      "nombre": "Good Market",
       "direccion": "Bejuco Frente A Residencias Málaga",
       "latitud": "9.527482517",
       "longitud": "-84.43627529"
@@ -1101,6 +1238,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Quebrada Ganado",
+      "nombre": "Super Quebra Ganado",
       "direccion": "Quebrada ganado de garabito puntarenas",
       "latitud": "9.7180694",
       "longitud": "-84.63185845"
@@ -1109,6 +1247,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Turrialba",
+      "nombre": "Super Varela",
       "direccion": "Turrialba Fte Colegio",
       "latitud": "9.907499813",
       "longitud": "-83.68639529"
@@ -1117,6 +1256,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "La Suiza",
+      "nombre": "Súper La Primavera 3",
       "direccion": "Cartagoturrialbala Suizafrente A Gollo",
       "latitud": "9.850646481",
       "longitud": "-83.61324332"
@@ -1125,6 +1265,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Oficinas",
+      "nombre": "ASEFEMSA",
       "direccion": "Calle Blancos, Tienda Store Coca Cola",
       "latitud": "9.945121799",
       "longitud": "-84.06509176"
@@ -1133,6 +1274,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Pataste Arriba",
+      "nombre": "Super Cristin",
       "direccion": "pataste",
       "latitud": "10.65847346",
       "longitud": "-84.73819911"
@@ -1141,6 +1283,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Sarapiquí",
+      "nombre": "B Y J",
       "direccion": "Río Frío Finca 2 100Metros E De La Iglesia Católica",
       "latitud": "10.35660419",
       "longitud": "-83.8829614"
@@ -1149,6 +1292,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Puebla",
+      "nombre": "Super Tuanis",
       "direccion": "Chen Feng",
       "latitud": "9.994132",
       "longitud": "-84.108721"
@@ -1157,6 +1301,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Guararí",
+      "nombre": "Super Girasol",
       "direccion": "Guarari Pradera Silvestres",
       "latitud": "9.976109815",
       "longitud": "-84.12121151"
@@ -1165,6 +1310,7 @@
       "pais": "Costa Rica",
       "departamento": "Alajuela Province",
       "ciudad": "Rincón Cacao",
+      "nombre": "Súper Tang",
       "direccion": "cacao alajuela",
       "latitud": "10.01180466",
       "longitud": "-84.2968407"
@@ -1173,6 +1319,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Carrillos Alto",
+      "nombre": "Super Carrillo",
       "direccion": "50 oeste del parque carrillos alto",
       "latitud": "10.03701344",
       "longitud": "-84.26564704"
@@ -1181,6 +1328,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Senda",
+      "nombre": "Super Carrillos Bajo",
       "direccion": "Carrillos bajo Alajuela",
       "latitud": "10.0251165",
       "longitud": "-84.28179564"
@@ -1189,6 +1337,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Ciruelas",
+      "nombre": "Super la Central",
       "direccion": "Diagonal A Super Amigos",
       "latitud": "9.981829552",
       "longitud": "-84.25919883"
@@ -1197,6 +1346,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Turrúcares",
+      "nombre": "IMPERIO HUIXIAO S.A.",
       "direccion": "Turrucares Centro",
       "latitud": "9.962366771",
       "longitud": "-84.31765213"
@@ -1205,6 +1355,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Tacares",
+      "nombre": "Súper Fenix",
       "direccion": "Tacares centro",
       "latitud": "10.02921206",
       "longitud": "-84.29178638"
@@ -1213,6 +1364,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Puente de Piedra",
+      "nombre": "Puente Piedra",
       "direccion": "Frente la plaza de puente piedra",
       "latitud": "10.04764839",
       "longitud": "-84.31670033"
@@ -1221,6 +1373,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Pedro de Poás",
+      "nombre": "Super Basico #2",
       "direccion": "San Pedro de poas 50 mts norte del templo catolico frente ar",
       "latitud": "10.07717974",
       "longitud": "-84.24490099"
@@ -1229,6 +1382,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Urbanizacion Los Portones",
+      "nombre": "Supermercado Los Portones",
       "direccion": "De la Iglesia catolica 150 m oeste izqui",
       "latitud": "9.967987061",
       "longitud": "-84.23272705"
@@ -1237,6 +1391,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Guacima Arriba",
+      "nombre": "Super La Veranera S.A",
       "direccion": "san rafael",
       "latitud": "9.971667305",
       "longitud": "-84.24233119"
@@ -1245,6 +1400,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Alajuela",
+      "nombre": "Súper Barrio San José",
       "direccion": "Alajuela Barrio Sanjose",
       "latitud": "10.01581232",
       "longitud": "-84.24326169"
@@ -1253,6 +1409,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Guácima Abajo",
+      "nombre": "Supermercado las Vueltas",
       "direccion": "frente a iglesia las vueltas la Guacima",
       "latitud": "9.94714767",
       "longitud": "-84.29070761"
@@ -1261,6 +1418,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Guácima Abajo",
+      "nombre": "Supermercado Los Mangos1",
       "direccion": "50Sur Hacienda Los Reyes Guacima",
       "latitud": "9.945726345",
       "longitud": "-84.26310713"
@@ -1269,6 +1427,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Tucurrique",
+      "nombre": "Mini Súper Willy",
       "direccion": "100 Este Centro Agricola",
       "latitud": "9.851052944",
       "longitud": "-83.71843903"
@@ -1277,6 +1436,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "León Cortés Castro",
+      "nombre": "Super San Isidro",
       "direccion": "San José León Cortés San Isidro",
       "latitud": "9.676917487",
       "longitud": "-84.07556544"
@@ -1285,6 +1445,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Marcos",
+      "nombre": "Supermercado Nueva Estrella",
       "direccion": "Tarrazú San Marcos Centro Frente Al Banco De Costa Rica",
       "latitud": "9.660791151",
       "longitud": "-84.02052872"
@@ -1293,6 +1454,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Barrio La Cruz",
+      "nombre": "Supermercado Mayoreo liang",
       "direccion": "300 mtrs Sur del parque tejar",
       "latitud": "9.842415784",
       "longitud": "-83.94007353"
@@ -1301,6 +1463,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Barrio Sabana Grande",
+      "nombre": "Abastecedor La Sabana",
       "direccion": "De Servicentro El Guarco 500 Oeste",
       "latitud": "9.846370015",
       "longitud": "-83.95715495"
@@ -1309,6 +1472,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Colonia Puntarenas",
+      "nombre": "Super Colonia",
       "direccion": "Colonia Puntarenas Frente A La Escuela",
       "latitud": "10.83318445",
       "longitud": "-84.9634812"
@@ -1317,6 +1481,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Sarapiquí",
+      "nombre": "Súper La Conquista",
       "direccion": "Heredia Sarapiqui 800Mts Este De L Escuela La Conquista",
       "latitud": "10.39156906",
       "longitud": "-83.94503901"
@@ -1325,6 +1490,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Río Cuarto",
+      "nombre": "Abast. La Españolita",
       "direccion": "La Españolita Contiguo A La Plaza",
       "latitud": "10.43461677",
       "longitud": "-84.2046353"
@@ -1333,6 +1499,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Miguel",
+      "nombre": "Onde Beto",
       "direccion": "Frente A Ferreteria San Miguel",
       "latitud": "10.3137601",
       "longitud": "-84.1824792"
@@ -1341,6 +1508,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Jardines De Roma",
+      "nombre": "La Buena Siembra",
       "direccion": "Jardines San Rafael Heredia",
       "latitud": "10.00167191",
       "longitud": "-84.10887927"
@@ -1349,6 +1517,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Barva",
+      "nombre": "SUPERMERCADO FENG LIMITADA",
       "direccion": "Costado de la municipalidad barva",
       "latitud": "10.02087887",
       "longitud": "-84.12456549"
@@ -1357,6 +1526,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Palmares",
+      "nombre": "Súper Brayka 4",
       "direccion": "entrada a los proyectos",
       "latitud": "10.05624448",
       "longitud": "-84.44226756"
@@ -1365,6 +1535,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Ramón",
+      "nombre": "SUPER ALEX N. 1",
       "direccion": "200 Sur De Gimnasio Gabelo Conejo",
       "latitud": "10.08482284",
       "longitud": "-84.47357364"
@@ -1373,6 +1544,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Ramón",
+      "nombre": "Súper Moncho",
       "direccion": "Costado Sur Este Esc Washington(Antiguo Súper Rápido)",
       "latitud": "10.0841342",
       "longitud": "-84.4704155"
@@ -1381,6 +1553,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "La Unión",
+      "nombre": "MC frutas verduras y mas",
       "direccion": "san ramon",
       "latitud": "10.07491422",
       "longitud": "-84.47222609"
@@ -1389,6 +1562,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Rafael",
+      "nombre": "mini súper el chino",
       "direccion": "calle zamora",
       "latitud": "10.0584992",
       "longitud": "-84.4653337"
@@ -1397,6 +1571,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Ramón",
+      "nombre": "Mini Super I Y I",
       "direccion": "200 N De La Entrada De Magallanes",
       "latitud": "10.06800276",
       "longitud": "-84.50090756"
@@ -1405,6 +1580,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Rafael",
+      "nombre": "Super la central # 6",
       "direccion": "San rafel san ramon",
       "latitud": "10.06371",
       "longitud": "-84.473669"
@@ -1413,6 +1589,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Berlín",
+      "nombre": "Jeobany",
       "direccion": "Berlin De San Ramon",
       "latitud": "10.01593541",
       "longitud": "-84.47214164"
@@ -1421,6 +1598,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Cristo Rey",
+      "nombre": "Oromakro",
       "direccion": "San Sebastian",
       "latitud": "9.922270118",
       "longitud": "-84.08381774"
@@ -1429,6 +1607,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Horizontes",
+      "nombre": "mini súper 83",
       "direccion": "200 Este De Rtv Alajuelita",
       "latitud": "9.913885501",
       "longitud": "-84.11276659"
@@ -1437,6 +1616,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Alajuelita",
+      "nombre": "Súper Lux",
       "direccion": "Col Don Bosco 200 Metros Al Norte Concepción Arriba Alajueli",
       "latitud": "9.89251493",
       "longitud": "-84.0867823"
@@ -1445,6 +1625,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Zarcero",
+      "nombre": "Heladeria Dos Pinos",
       "direccion": "costado sur de parque",
       "latitud": "10.184073",
       "longitud": "-84.391823"
@@ -1453,6 +1634,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Zarcero",
+      "nombre": "Licorera Popeye",
       "direccion": "2 kilómetro norte del parque de zarcero   frente a carretera",
       "latitud": "10.2010241",
       "longitud": "-84.39724591"
@@ -1461,6 +1643,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Grecia",
+      "nombre": "Súper Bolívar",
       "direccion": "175 Sur Del Templo Católico De San Juan Bolívar",
       "latitud": "10.10111247",
       "longitud": "-84.31772028"
@@ -1469,6 +1652,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Sarchí",
+      "nombre": "mini súper el pino",
       "direccion": "alto castro sarchi",
       "latitud": "10.07802181",
       "longitud": "-84.3378444"
@@ -1477,6 +1661,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Sam Pérez I",
+      "nombre": "Super Selecto",
       "direccion": "Diagonal Al Banco Nacional De Sarchi",
       "latitud": "10.08953208",
       "longitud": "-84.34943666"
@@ -1485,6 +1670,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Naranjo",
+      "nombre": "Supermercado Dulce Nombre",
       "direccion": "150 norte del telefono publico meson grecia",
       "latitud": "10.08124263",
       "longitud": "-84.36794522"
@@ -1493,6 +1679,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Sarchí",
+      "nombre": "Super el Parque",
       "direccion": "Sarchin Centro",
       "latitud": "10.08993228",
       "longitud": "-84.34640562"
@@ -1501,6 +1688,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Juanillo",
+      "nombre": "Super La Central",
       "direccion": "Costado Sur De La Iglesia San Juanillo",
       "latitud": "10.13912818",
       "longitud": "-84.39354431"
@@ -1509,6 +1697,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Aranjuez",
+      "nombre": "Mini Super Josecito",
       "direccion": "Costado Este Del Hospital Calderon G Edificio Rojo Con Gris",
       "latitud": "9.937069253",
       "longitud": "-84.06854019"
@@ -1517,6 +1706,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "López Mateos",
+      "nombre": "Misuper Santa Cruz",
       "direccion": "Barrio Cuba",
       "latitud": "9.9068959",
       "longitud": "-84.0913318"
@@ -1525,6 +1715,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Francisco",
+      "nombre": "Super San Francisco",
       "direccion": "San Francisco Heredia",
       "latitud": "9.99235",
       "longitud": "-84.146339"
@@ -1533,6 +1724,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Mercedes Norte",
+      "nombre": "SUPER MILENIUM",
       "direccion": "Mercedes Sur Heredia Frente A Pali",
       "latitud": "10.00347694",
       "longitud": "-84.1416578"
@@ -1541,6 +1733,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Santa Bárbara",
+      "nombre": "Super El Favorito",
       "direccion": "Heredia",
       "latitud": "10.01948424",
       "longitud": "-84.16338369"
@@ -1549,6 +1742,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Francisco",
+      "nombre": "Supermercado El Futuro",
       "direccion": "Aurora Heredia 200 Norte 25 Este Del Pali",
       "latitud": "9.99330733",
       "longitud": "-84.1514252"
@@ -1557,6 +1751,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Orosí",
+      "nombre": "Mini Super Fuerza #2",
       "direccion": "100 Norte Escuela De Palomo Orosi",
       "latitud": "9.786851",
       "longitud": "-83.840239"
@@ -1565,6 +1760,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San José",
+      "nombre": "Super Le Tucan",
       "direccion": "Platanares 15 K Este De La Ultima Parada",
       "latitud": "10.0069993",
       "longitud": "-84.00204061"
@@ -1573,6 +1769,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "El Valle",
+      "nombre": "Alfa consumo S.A.",
       "direccion": "san jose tibas centro 75 sur iglesia catolica",
       "latitud": "9.9609619",
       "longitud": "-84.07840353"
@@ -1581,6 +1778,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Leiva Urcuyo",
+      "nombre": "Alimercado",
       "direccion": "200 M Oeste De La Escuela De Cinco Esquinas De Tibas",
       "latitud": "9.94732",
       "longitud": "-84.08397"
@@ -1589,6 +1787,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Liverpool",
+      "nombre": "Súpermercado Container",
       "direccion": "Limón  Liverpool Sobre Ruta 32",
       "latitud": "9.991322833",
       "longitud": "-83.13071512"
@@ -1597,6 +1796,7 @@
       "pais": "Costa Rica",
       "departamento": "Limón",
       "ciudad": "Limón",
+      "nombre": "Abastecedor Johana",
       "direccion": "Frente A Licorera 99 En Entrada A Pueblo",
       "latitud": "9.985233281",
       "longitud": "-83.04709971"
@@ -1605,6 +1805,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Villas de Ayarco",
+      "nombre": "Mini Super Villa Cruz",
       "direccion": "Diagonal Escuela Villas de Ayarco",
       "latitud": "9.901954242",
       "longitud": "-84.01302001"
@@ -1613,6 +1814,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Tres Rios",
+      "nombre": "Super mercado Tony",
       "direccion": "Tres rios",
       "latitud": "9.905966349",
       "longitud": "-83.98256599"
@@ -1621,6 +1823,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Sector 7",
+      "nombre": "súper castillo market",
       "direccion": "sanjose  loa Guidos",
       "latitud": "9.865054681",
       "longitud": "-84.05152099"
@@ -1629,6 +1832,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Miguel",
+      "nombre": "Super Mucho Mejor",
       "direccion": "Desamparados San Miguel Frente A La Iglesia Catolica",
       "latitud": "9.8721498",
       "longitud": "-84.0625231"
@@ -1637,6 +1841,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Aserri",
+      "nombre": "Supermercados Caracolito",
       "direccion": "Costado Oeste De La Iglesia Catolica De Aserri",
       "latitud": "9.862345967",
       "longitud": "-84.09337443"
@@ -1645,6 +1850,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Desamparados",
+      "nombre": "Súper Loma Linda Tan",
       "direccion": "San Jose Desamparados 100 Sur 200 Este Terminal Loma",
       "latitud": "9.902289894",
       "longitud": "-84.07555727"
@@ -1653,6 +1859,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Grecia",
+      "nombre": "Super Gomez",
       "direccion": "200 oeste del hogar de ancianos San",
       "latitud": "10.08911645",
       "longitud": "-84.31026775"
@@ -1661,6 +1868,7 @@
       "pais": "Costa Rica",
       "departamento": "Alajuela Province",
       "ciudad": "Grecia",
+      "nombre": "Licorera Paraíso",
       "direccion": "Grecia25 Mts Sur Y 75 Mts Este De La Musmanni",
       "latitud": "10.07124859",
       "longitud": "-84.31300963"
@@ -1669,6 +1877,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Grecia",
+      "nombre": "Mini Super Pino San Roque",
       "direccion": "Costado Norte Iglesia San Roque Grecia",
       "latitud": "10.09716276",
       "longitud": "-84.30115801"
@@ -1677,6 +1886,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Grecia",
+      "nombre": "Super Panda",
       "direccion": "Grecia santa getrubi norte calle imas super panda",
       "latitud": "10.08554321",
       "longitud": "-84.29023419"
@@ -1685,6 +1895,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Miguel",
+      "nombre": "Super San Miguel",
       "direccion": "Frente Plaza Deportes San Miguel",
       "latitud": "10.11776555",
       "longitud": "-84.29249297"
@@ -1693,6 +1904,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "San Rafael",
+      "nombre": "Super san Rafael",
       "direccion": "Ssrfacturaect@Gmailcom",
       "latitud": "10.09123229",
       "longitud": "-84.25610381"
@@ -1701,6 +1913,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Granadilla",
+      "nombre": "Super Granadilla Maravillosa S.A",
       "direccion": "Frete Comercial Cuca Calle Principal",
       "latitud": "9.9351427",
       "longitud": "-84.01691063"
@@ -1709,6 +1922,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Cartago",
       "ciudad": "Concepción",
+      "nombre": "SUPER LUNASOL",
       "direccion": "cartago la unión 200m oeste de la iglesia catolixa",
       "latitud": "9.927456086",
       "longitud": "-84.00198876"
@@ -1717,6 +1931,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Alajuela",
+      "nombre": "Super Barrantes",
       "direccion": "Abastecedorbarrantes@Gmailcom",
       "latitud": "10.03705113",
       "longitud": "-84.17318346"
@@ -1725,6 +1940,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Carrizal",
+      "nombre": "Jian long He",
       "direccion": "alajuela carrizal de la playa de deportes 400m al norte",
       "latitud": "10.08644322",
       "longitud": "-84.16825242"
@@ -1733,6 +1949,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Barva",
+      "nombre": "Super San Jose",
       "direccion": "San Jose de la Montaña",
       "latitud": "10.05386831",
       "longitud": "-84.11453569"
@@ -1741,6 +1958,7 @@
       "pais": "Costa Rica",
       "departamento": "Heredia",
       "ciudad": "Sector Central",
+      "nombre": "Super Centro San Isidro",
       "direccion": "Costado De Iglesia Catolica De San Isidro De Heredia",
       "latitud": "10.016912",
       "longitud": "-84.05515217"
@@ -1749,6 +1967,7 @@
       "pais": "Costa Rica",
       "departamento": "San José Province",
       "ciudad": "Monte Azul",
+      "nombre": "Mini Super M Y M",
       "direccion": "San jose costado sue de casa conde",
       "latitud": "9.909725112",
       "longitud": "-84.07257719"
@@ -1757,6 +1976,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San Antonio de Desamparados",
+      "nombre": "Super Herrero",
       "direccion": "San Jose Desamparados frente al par",
       "latitud": "9.898942841",
       "longitud": "-84.04746172"
@@ -1765,6 +1985,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Escazú",
+      "nombre": "Super el parque",
       "direccion": "San Jose Escazu 30 Mts Al Este Ofician Aya",
       "latitud": "9.920471534",
       "longitud": "-84.14139385"
@@ -1773,6 +1994,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Puntarenas",
       "ciudad": "Costa de Pájaros",
+      "nombre": "Abastecedor Gaby",
       "direccion": "Costa Pajaros 100 Norte Escuela",
       "latitud": "10.10279819",
       "longitud": "-84.99787707"
@@ -1781,6 +2003,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Guanacaste",
       "ciudad": "Moracia de Nicoya",
+      "nombre": "Pulperia El Oeste",
       "direccion": "Moracia De Nicoya",
       "latitud": "10.23684648",
       "longitud": "-85.39775293"
@@ -1789,6 +2012,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Zeta trece",
+      "nombre": "Grupo Super Cristian Tres F S.A",
       "direccion": "San Carlos La Fortuna zeta trece frente a super cristian 4",
       "latitud": "10.46839595",
       "longitud": "-84.66166874"
@@ -1797,6 +2021,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "El Roble",
+      "nombre": "súper el descuento el roble",
       "direccion": "el roble",
       "latitud": "9.986680839",
       "longitud": "-84.24425534"
@@ -1805,6 +2030,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "El Roble",
+      "nombre": "Súper Naranjo",
       "direccion": "Costado Oeste  Plaza Del Roble",
       "latitud": "9.986845366",
       "longitud": "-84.24438262"
@@ -1813,6 +2039,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "El Hogar",
+      "nombre": "MiniSuper Bonita",
       "direccion": "Casa Esquinera 50M Sur De La Plaza Cristaljose Maria Zeledo",
       "latitud": "9.920531124",
       "longitud": "-84.04338442"
@@ -1821,6 +2048,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "San José",
+      "nombre": "Xcon",
       "direccion": "Tirrases Frente A AlcohÃ³licos AnÃ³nimos",
       "latitud": "9.901074705",
       "longitud": "-84.02643552"
@@ -1829,6 +2057,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Ángeles",
+      "nombre": "Súper Flor De Liz",
       "direccion": "Los Ángeles De La Fortuna",
       "latitud": "10.45791102",
       "longitud": "-84.55717294"
@@ -1837,6 +2066,7 @@
       "pais": "Costa Rica",
       "departamento": "Provincia de Alajuela",
       "ciudad": "Tres Esquinas",
+      "nombre": "Super FyM",
       "direccion": "tres esquinas centro contiguo a la plaza de deportes",
       "latitud": "10.44490789",
       "longitud": "-84.57513257"
@@ -1845,6 +2075,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Cristo Rey",
+      "nombre": "Supermercado La confianza",
       "direccion": "Cristo Rey 100 N Abast Pompeya",
       "latitud": "9.9212458",
       "longitud": "-84.0846003"
@@ -1853,6 +2084,7 @@
       "pais": "Costa Rica",
       "departamento": "San José",
       "ciudad": "Merced",
+      "nombre": "super la merced de San Jose ltda",
       "direccion": "San Jose",
       "latitud": "9.931884562",
       "longitud": "-84.08329688"

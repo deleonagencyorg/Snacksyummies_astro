@@ -1,10 +1,11 @@
 {
-  "source": "El Salvador.xlsx",
+  "source": "SV.xlsx",
   "points": [
     {
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Barra de Santiago",
+      "nombre": "Jhony Alberto Ponce Berrios",
       "direccion": "Calle Central, Crio. Barra de Santiago",
       "latitud": "13.68929334",
       "longitud": "-90.00146516"
@@ -13,6 +14,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Metalío",
+      "nombre": "Chalet Mari",
       "direccion": "Colonia Boulevar Metalio",
       "latitud": "13.6423832",
       "longitud": "-89.8836085"
@@ -21,6 +23,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Metalío",
+      "nombre": "Mendez",
       "direccion": "Playa Costa Azul",
       "latitud": "13.64176914",
       "longitud": "-89.90616761"
@@ -29,6 +32,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Cara Sucia",
+      "nombre": "K.A.S Mini Store",
       "direccion": "7a Calle Pe Barrio El Progreso Cara Sucia",
       "latitud": "13.77184459",
       "longitud": "-90.03137045"
@@ -37,6 +41,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Concepción de Ataco",
+      "nombre": "Tda San Jorge",
       "direccion": "Bo El Calvario",
       "latitud": "13.86658323",
       "longitud": "-89.85149581"
@@ -45,6 +50,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Concepción de Ataco",
+      "nombre": "Tda Jerusalen",
       "direccion": "Bo La Vega",
       "latitud": "13.86938",
       "longitud": "-89.848469"
@@ -53,6 +59,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Miravalles",
+      "nombre": "Tda Rosita",
       "direccion": "Col Nueva Generacion",
       "latitud": "13.592352",
       "longitud": "-89.7378723"
@@ -61,6 +68,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Apancoyo",
+      "nombre": "Tda Lito",
       "direccion": "Cton El Encanto",
       "latitud": "13.550861",
       "longitud": "-89.663574"
@@ -69,6 +77,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "San Francisco Menéndez",
+      "nombre": "Tienda La Esquina",
       "direccion": "Playa Bola De Monte",
       "latitud": "13.73966615",
       "longitud": "-90.11521161"
@@ -77,6 +86,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Izalco",
+      "nombre": "Tda Ingrid",
       "direccion": "Bo San Juan desvio a Izalco",
       "latitud": "13.74224261",
       "longitud": "-89.6762111"
@@ -85,6 +95,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Apaneca",
+      "nombre": "Danilo Edgardo Guzman Marquez",
       "direccion": "4ta Cll Pte, Bo. El Calvario, frente a Hostal Colonial",
       "latitud": "13.85770914",
       "longitud": "-89.80461616"
@@ -93,6 +104,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Cara Sucia",
+      "nombre": "Elsa Iselia Escalante Estrada",
       "direccion": "Cll a Garita Palmera Pol B Bo Salaverria ctg a Gas UNO",
       "latitud": "13.7808916",
       "longitud": "-90.03424946"
@@ -101,6 +113,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "San Francisco Menéndez",
+      "nombre": "Tda Jeaneth",
       "direccion": "Col Ista Garita Palmera",
       "latitud": "13.749608",
       "longitud": "-90.086095"
@@ -109,6 +122,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "La Hachadura",
+      "nombre": "Tda Mega Store",
       "direccion": "Cll Central, Bo. El Centro, Cton. La Hachadura",
       "latitud": "13.845533",
       "longitud": "-90.092541"
@@ -117,6 +131,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Cara Sucia",
+      "nombre": "Super Ruiz",
       "direccion": "Calle Garita Palmera una Cuadra de Gasol",
       "latitud": "13.7811866",
       "longitud": "-90.0352042"
@@ -125,6 +140,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Sonsonate",
+      "nombre": "Tda Cristian",
       "direccion": "Lot La Chilena Block E Casa No.5",
       "latitud": "13.75245176",
       "longitud": "-89.7053523"
@@ -133,6 +149,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Canton el Sunza",
+      "nombre": "Faremi",
       "direccion": "Carr. Litoral Hacia Frontera Cara Sucia",
       "latitud": "13.6315883",
       "longitud": "-89.84602"
@@ -141,6 +158,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Jujutla",
+      "nombre": "Tienda Ailanys",
       "direccion": "Ave. Morazan Sur Barrio El Calvario",
       "latitud": "13.78507",
       "longitud": "-89.8601966"
@@ -149,6 +167,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Garita Palmera",
+      "nombre": "Variedades Paty",
       "direccion": "Playa Garita Palmera",
       "latitud": "13.7267768",
       "longitud": "-90.0795997"
@@ -157,6 +176,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Cara Sucia",
+      "nombre": "JAYUMI S.A. de C.V.",
       "direccion": "4a Calle Ote. Local C-1 San Martin De Po",
       "latitud": "13.77914",
       "longitud": "-90.0311"
@@ -165,6 +185,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "El Porvenir",
+      "nombre": "Tda El molino",
       "direccion": "La presa caserio el chilamate",
       "latitud": "13.81766705",
       "longitud": "-89.51494027"
@@ -173,6 +194,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Ciudad Arce",
+      "nombre": "Tda. Amalia",
       "direccion": "Cton. El Rodeo 2 El Congo",
       "latitud": "13.845414",
       "longitud": "-89.491821"
@@ -181,6 +203,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "San Juan Buenavista",
+      "nombre": "Tda Irlanda",
       "direccion": "Cton Flor Amarilla Lot S Jose pol 1",
       "latitud": "13.946124",
       "longitud": "-89.558369"
@@ -189,6 +212,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "El Congo",
+      "nombre": "Tda Jorgito",
       "direccion": "Cton 7 Principes Cton el Amate",
       "latitud": "13.90546056",
       "longitud": "-89.50655065"
@@ -197,6 +221,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Col Serramonte",
+      "nombre": "Tda Valeria",
       "direccion": "Colonia Caseres",
       "latitud": "13.9829033",
       "longitud": "-89.568205"
@@ -205,6 +230,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Col El Palmar",
+      "nombre": "Tda Michelle",
       "direccion": "Redondel El Palmar cll Ppl",
       "latitud": "13.97999425",
       "longitud": "-89.56493497"
@@ -213,6 +239,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Col Universitaria",
+      "nombre": "Tienda Santiana",
       "direccion": "Colonia Universitaria",
       "latitud": "13.97215",
       "longitud": "-89.5755133"
@@ -221,6 +248,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Res Campo Bello",
+      "nombre": "Tda Kamila",
       "direccion": "Urb El Trebol Alto Verde Pol 4 N 12",
       "latitud": "13.96228307",
       "longitud": "-89.57104739"
@@ -229,6 +257,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Santa Ana",
+      "nombre": "La Esquina",
       "direccion": "Cond. Procabia Edif. 14  Apto.",
       "latitud": "13.97245327",
       "longitud": "-89.57049217"
@@ -237,6 +266,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Urb El Trebol 4",
+      "nombre": "Tda Merci",
       "direccion": "Urbanizacion El Trebol Pol 17 Casa 46",
       "latitud": "13.9568483",
       "longitud": "-89.572415"
@@ -245,6 +275,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Santa Ana",
+      "nombre": "Tda y Venta De Lacteos La 4",
       "direccion": "Av Fray Felipe Moraga Residencia L 2",
       "latitud": "13.9638166",
       "longitud": "-89.57552"
@@ -253,6 +284,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "La Criba",
+      "nombre": "Brayan Mauricio Zeceña Flamenco",
       "direccion": "Canton Zacamil",
       "latitud": "14.09615346",
       "longitud": "-89.64940008"
@@ -261,6 +293,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Candelaria de La Frontera",
+      "nombre": "Providencia",
       "direccion": "Av. Jose Domingo Peñate",
       "latitud": "14.11429813",
       "longitud": "-89.65040859"
@@ -269,6 +302,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Canton El Coco",
+      "nombre": "Tda Telma",
       "direccion": "Cton el Paste",
       "latitud": "14.13152872",
       "longitud": "-89.71301336"
@@ -277,6 +311,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Chalchuapa",
+      "nombre": "Liceo El Salvador",
       "direccion": "Final 13 C. Ote. Bo. San Sebastian",
       "latitud": "13.975319",
       "longitud": "-89.692665"
@@ -285,6 +320,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Zacamil",
+      "nombre": "Colegio Maria Auxiliadora",
       "direccion": "Calle Al Arado Bo. San Sebastianchalchuapa",
       "latitud": "13.971210",
       "longitud": "-89.688698"
@@ -293,6 +329,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Atiquizaya",
+      "nombre": "Tienda Daniela",
       "direccion": "Lot. Nueva Guadalupe Poligono A Lote 5",
       "latitud": "13.97471286",
       "longitud": "-89.74054992"
@@ -301,6 +338,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Chalchuapa",
+      "nombre": "Tienda Taty",
       "direccion": "Calle al Arado Reparto San Antonio Lote 46 B",
       "latitud": "13.978625",
       "longitud": "-89.6862783"
@@ -309,6 +347,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Cantón San José Capulin",
+      "nombre": "Sandy Yezenia Osorio Umaña",
       "direccion": "Cton Llano de Las Majadas Cll Ppal, fte a Iglesia",
       "latitud": "14.2123185",
       "longitud": "-89.4086565"
@@ -317,6 +356,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Metapán",
+      "nombre": "Gregorio",
       "direccion": "Bo. Las Flores",
       "latitud": "14.32841528",
       "longitud": "-89.4473533"
@@ -325,6 +365,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Las Piedras",
+      "nombre": "Tda Eva",
       "direccion": "Brisas del Sur Carretera Internacional",
       "latitud": "14.31818",
       "longitud": "-89.445805"
@@ -333,6 +374,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Las Piedras",
+      "nombre": "Tienda Rodriguez",
       "direccion": "Caserio El Citio",
       "latitud": "14.3027333",
       "longitud": "-89.4683233"
@@ -341,6 +383,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Colonia Ivu",
+      "nombre": "Super Market Isabella",
       "direccion": "Colonia El Ivu Pasaje 8 Local 1",
       "latitud": "13.927425",
       "longitud": "-89.8526683"
@@ -349,6 +392,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Ahuachapán",
+      "nombre": "Tienda Don Pio",
       "direccion": "Lotificacion Las Cusitas Lote 14",
       "latitud": "13.90571",
       "longitud": "-89.8713633"
@@ -357,6 +401,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Ahuachapán",
+      "nombre": "Tda Cecibel",
       "direccion": "Cton los Huatales Caserio, la escuelita",
       "latitud": "13.908805",
       "longitud": "-89.864245"
@@ -365,6 +410,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Tacuba",
+      "nombre": "Chalet Monterrosa",
       "direccion": "Canton El Valle Calle a Taciba",
       "latitud": "13.9038166",
       "longitud": "-89.903565"
@@ -373,6 +419,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Chalchuapa",
+      "nombre": "Tda. Clelia",
       "direccion": "Lot. El Paraiso, Final Cll Ramon Flores casa 12",
       "latitud": "13.986301",
       "longitud": "-89.689182"
@@ -381,6 +428,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Chalchuapa",
+      "nombre": "C.E. Colonia El Tazumal",
       "direccion": "Colonia Tazumal Poligono T 1 Calle",
       "latitud": "13.971757",
       "longitud": "-89.673248"
@@ -389,6 +437,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Galeano",
+      "nombre": "Norma",
       "direccion": "Col. San Edgardo Casa 18 Chalchuapa",
       "latitud": "13.993730",
       "longitud": "-89.691658"
@@ -397,6 +446,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Chalchuapa",
+      "nombre": "Venta De Pan Genesis",
       "direccion": "Colonia Casablanca Nª 2 Carretera Hacia Ahuachapan Frente A",
       "latitud": "13.9742899",
       "longitud": "-89.69548009"
@@ -405,6 +455,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Yayantique",
+      "nombre": "Sofia",
       "direccion": "Calle Principal Caserio El Tejar De Yayantique",
       "latitud": "13.4467074",
       "longitud": "-88.0393228"
@@ -413,6 +464,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Pasaquina",
+      "nombre": "Saul Santiago Zelaya Guevara",
       "direccion": "1 Calle Oriente, Bo. El Centro, Ctgo a PNC",
       "latitud": "13.5844715",
       "longitud": "-87.8371781"
@@ -421,6 +473,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Juan Anselmo Vasquez",
       "direccion": "17 calle Poniente y 3 av. Sur, n. 301",
       "latitud": "13.476905",
       "longitud": "-88.1673817"
@@ -429,6 +482,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Leticia Magdalena Palacios de Castr",
       "direccion": "3a av. Sur, n. 414",
       "latitud": "13.4638958",
       "longitud": "-88.1762448"
@@ -437,6 +491,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Yenny Judith Flores Sosa",
       "direccion": "Calle Ppal, Polig. F, Col. Monte Maria, n.3, calle a Montegr",
       "latitud": "13.4706167",
       "longitud": "-88.173145"
@@ -445,6 +500,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Perquín",
+      "nombre": "Tienda Los Hermanos",
       "direccion": "Bo El Centro pequin calle a torola salida a perquin",
       "latitud": "13.9600316",
       "longitud": "-88.1611433"
@@ -453,6 +509,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Joateca",
+      "nombre": "Tienda Dayana",
       "direccion": "Cton El Rodeo Desvio De Jocoatique",
       "latitud": "13.892561",
       "longitud": "-88.0426746"
@@ -461,6 +518,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "El Mozote",
+      "nombre": "Mini Super El Mozote",
       "direccion": "Caserio El Pinalito Canton Tierra Colorada Arambala",
       "latitud": "13.9101049",
       "longitud": "-88.1170666"
@@ -469,6 +527,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Urbanización El Molino",
+      "nombre": "Candelaria de la Cruz Joya de Ulloa",
       "direccion": "Poligono A-1, Colonia El Molino, 39",
       "latitud": "13.489265",
       "longitud": "-88.166045"
@@ -477,6 +536,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Colonia La Fuerteza",
+      "nombre": "Super Tienda Rio Grande",
       "direccion": "12 Av Norte n.2 Col 15 De Sep",
       "latitud": "13.4858983",
       "longitud": "-88.1674866"
@@ -485,6 +545,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Tienda Emmanuel",
       "direccion": "Urb Ls Palmras 30 Av Venda C Casa 6",
       "latitud": "13.4930173",
       "longitud": "-88.1672533"
@@ -493,6 +554,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Satelite de Oriente",
+      "nombre": "Maria Isolina Martinez Osorio",
       "direccion": "Calle Saturno Polig. A-3, Col. Ciudad Satelite, n.24",
       "latitud": "13.4918291",
       "longitud": "-88.1694639"
@@ -501,6 +563,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Sociedad",
+      "nombre": "Williams Alexander Zelaya Fuentes",
       "direccion": "Canton Animas, Caserio La Pintal",
       "latitud": "13.6754717",
       "longitud": "-87.9949567"
@@ -509,6 +572,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Sociedad",
+      "nombre": "Flores Super Market",
       "direccion": "Canton El Tablon calle principal",
       "latitud": "13.7308466",
       "longitud": "-88.0076666"
@@ -517,6 +581,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Morazán Norte",
+      "nombre": "Xiomara",
       "direccion": "Barrio La Cruz",
       "latitud": "13.7923531",
       "longitud": "-87.9742865"
@@ -525,6 +590,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Papalones",
+      "nombre": "Luis Enrique Majano Peña",
       "direccion": "Bo San Pedro 4ta Av Norte Cll Ppal",
       "latitud": "13.6220152",
       "longitud": "-88.2922265"
@@ -533,6 +599,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "El Cerro",
+      "nombre": "Tda Ancelmo",
       "direccion": "Canton Tangolona, Calle Ppal",
       "latitud": "13.5825777",
       "longitud": "-88.2502083"
@@ -541,6 +608,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Guatajiagua",
+      "nombre": "Miriam Ivette Cruz de Joya",
       "direccion": "Av 2 de Abril Local 1 Bo El Centro ctgo a par 2",
       "latitud": "13.6662782",
       "longitud": "-88.2085002"
@@ -549,6 +617,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Sesori",
+      "nombre": "Ronald",
       "direccion": "1a Calle Poniente",
       "latitud": "13.720863",
       "longitud": "-88.3601138"
@@ -557,6 +626,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "La Unión Norte",
+      "nombre": "Kevin Adiel Montes Sorto",
       "direccion": "Carr. Longitudinal del Nte, Cton Algodón",
       "latitud": "13.6234184",
       "longitud": "-87.8574913"
@@ -565,6 +635,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Santa Rosa de Lima",
+      "nombre": "Super Limeño Pupuseria y Bar",
       "direccion": "Col. Santa Maria casa 2",
       "latitud": "13.6245607",
       "longitud": "-87.8685325"
@@ -573,6 +644,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Albornoz",
+      "nombre": "Karla Milena Sorto Nuñez",
       "direccion": "Carr. Panamericana, Cton. La Chorrera Crio. El Limon",
       "latitud": "13.6079863",
       "longitud": "-87.9302455"
@@ -581,6 +653,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Santa Rosa de Lima",
+      "nombre": "Tienda Y Distribuidora La Tribuna",
       "direccion": "Barrio las Delicias calle al cementerio",
       "latitud": "13.6315111",
       "longitud": "-87.8908078"
@@ -589,6 +662,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Gualococti",
+      "nombre": "Will Jacobo Lopez Diaz",
       "direccion": "Barrio El Centro Gualococti",
       "latitud": "13.8173198",
       "longitud": "-88.2099525"
@@ -597,6 +671,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Osicala",
+      "nombre": "Jose Balbino Argueta Argueta",
       "direccion": "Cton. Agua Zarca, Crio el Tablon",
       "latitud": "13.8058567",
       "longitud": "-88.171885"
@@ -605,6 +680,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Carolina",
+      "nombre": "Super Tienda Sofia",
       "direccion": "Bo El Centro Costado Norte De La Iglesia",
       "latitud": "13.8487962",
       "longitud": "-88.3055985"
@@ -613,6 +689,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "San Isidro",
+      "nombre": "Mi Pueblo",
       "direccion": "Desvio San Gregorio Cton Piedra parada",
       "latitud": "13.8585049",
       "longitud": "-88.2337911"
@@ -621,6 +698,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "San Simon",
+      "nombre": "Santos Benjamin Coca Martinez",
       "direccion": "Calle Principal, Bo. El Centro, fte a Laboratorio Clinico Em",
       "latitud": "13.831473",
       "longitud": "-88.2260485"
@@ -629,6 +707,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Chilanga",
+      "nombre": "Hermano Chevez 2",
       "direccion": "Barrio Concepcion Chilanga",
       "latitud": "13.7211465",
       "longitud": "-88.1221736"
@@ -637,6 +716,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "La Unión",
+      "nombre": "Tda Palo Blanco",
       "direccion": "Col Betel calle ppal parada de buses",
       "latitud": "13.3695017",
       "longitud": "-87.91033"
@@ -645,6 +725,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Pasaquina",
+      "nombre": "Super Sierra 89",
       "direccion": "Barrio El Centro Pasaquina",
       "latitud": "13.5814626",
       "longitud": "-87.836294"
@@ -653,6 +734,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Jorge",
+      "nombre": "Lacteos Lemus",
       "direccion": "2da av Nte Bo el Centro",
       "latitud": "13.4165174",
       "longitud": "-88.3427872"
@@ -661,6 +743,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "El Transito",
+      "nombre": "Tienda Sabina",
       "direccion": "5 Cl Ote Bo La Cruz Casa N. 20 B",
       "latitud": "13.3602836",
       "longitud": "-88.3521996"
@@ -669,6 +752,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "El Rosario",
+      "nombre": "Super Tda Sofia",
       "direccion": "Cas Tihuilocoyo Santiago Nonualco",
       "latitud": "13.438702",
       "longitud": "-88.980326"
@@ -677,6 +761,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "Santiago Nonualco",
+      "nombre": "El Milagro No.2",
       "direccion": "Cas. Santa Rita Cton. Guarumas",
       "latitud": "13.44002665",
       "longitud": "-88.96706019"
@@ -685,6 +770,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Canton San Juan de La Cruz",
+      "nombre": "Maria Carmen Guillen de Cruz",
       "direccion": "Chalatenango",
       "latitud": "14.26895819",
       "longitud": "-89.02479842"
@@ -693,6 +779,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Ilobasco",
+      "nombre": "Karen Lisseth Hernandez Ramirez",
       "direccion": "Cton. Agua Zarca, desvio a Ilobasco km 52",
       "latitud": "13.81865842",
       "longitud": "-88.8620517"
@@ -701,6 +788,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Ilobasco",
+      "nombre": "Tienda Ariana",
       "direccion": "Bo San Miguel 8a Av Norte",
       "latitud": "13.842463",
       "longitud": "-88.847485"
@@ -709,6 +797,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Cinquera",
+      "nombre": "Teinda Marlen",
       "direccion": "Barrio El Calvario Cinquera",
       "latitud": "13.8891816",
       "longitud": "-88.9609383"
@@ -717,6 +806,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Comunidad Santa Marta",
+      "nombre": "Tda. Andy",
       "direccion": "Cton. San Antonio El Palomar",
       "latitud": "13.98753303",
       "longitud": "-88.65710881"
@@ -725,6 +815,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "San Isidro",
+      "nombre": "Tda Karlita",
       "direccion": "1Ra Cl Ote Bo Centro Fte Al Parque",
       "latitud": "13.83324685",
       "longitud": "-88.71887706"
@@ -733,6 +824,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Colonia Tempisque",
+      "nombre": "Andres Josue Martinez Mercado",
       "direccion": "Final 5a Avenida Sur, Carretera a Sensuntepeque",
       "latitud": "13.865991284797403",
       "longitud": "-88.63165442"
@@ -741,6 +833,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Sensuntepeque",
+      "nombre": "Lacteos La Hacienda",
       "direccion": "2 av sur Bo Santa Barbara casa 49 por te",
       "latitud": "13.87199",
       "longitud": "-88.6266333"
@@ -749,6 +842,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "El Shiste",
+      "nombre": "Steven",
       "direccion": "Canton El Shiste Caserio La Cañada",
       "latitud": "14.39673474",
       "longitud": "-89.55057174"
@@ -757,6 +851,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Tecomapa",
+      "nombre": "Tda Monse",
       "direccion": "Caserio Agua Fria Canton Tecomapa",
       "latitud": "14.32653181",
       "longitud": "-89.48319297"
@@ -765,6 +860,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "La Barra",
+      "nombre": "María Luisa Rodríguez",
       "direccion": "Cantón tecomapa caserío la soledad",
       "latitud": "14.31834578",
       "longitud": "-89.53888502"
@@ -773,6 +869,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "El Panal",
+      "nombre": "Tda Gloria",
       "direccion": "1 cuadra debajo de terminal de buses Cton El Panal",
       "latitud": "14.36872676",
       "longitud": "-89.44227219"
@@ -781,6 +878,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Ilobasco",
+      "nombre": "La Casa De La Hacienda",
       "direccion": "Carretera a Tejutepeque",
       "latitud": "13.84522",
       "longitud": "-88.86851"
@@ -789,6 +887,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Colonia La Esperanza",
+      "nombre": "Juan Francisco Carpio",
       "direccion": "Km. 69 Carretera San Salvador",
       "latitud": "13.8700652",
       "longitud": "-88.6258563"
@@ -797,6 +896,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Chalatenango Sur",
+      "nombre": "Tda Estefany",
       "direccion": "Cas Cerron Grande Centro Jutiapa Cabañas",
       "latitud": "13.93377854",
       "longitud": "-88.89525644"
@@ -805,6 +905,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Sensuntepeque",
+      "nombre": "Veronica Guadalupe Lopez de Olivar",
       "direccion": "5ta Av. Sur No. 8 Bo. El Calvario Sensuntepeque",
       "latitud": "13.875541",
       "longitud": "-88.630104"
@@ -813,6 +914,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "San Ignacio",
+      "nombre": "San Jose",
       "direccion": "Cll Ppal Las Delicias, Contiguo A",
       "latitud": "14.33951989",
       "longitud": "-89.17857818"
@@ -821,6 +923,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Aguilares",
+      "nombre": "Tda Dios Es Amor",
       "direccion": "Col Las Victorias Casa 1Cll I",
       "latitud": "13.96695339",
       "longitud": "-89.18198794"
@@ -829,6 +932,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Comalapa",
+      "nombre": "Inversiones Deras Ardon S.A. de C.V",
       "direccion": "Calle Principal, Barrio las Delicias, a la par del parque",
       "latitud": "14.13991821",
       "longitud": "-88.95630989"
@@ -837,6 +941,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Cantón Santa Rosa",
+      "nombre": "Lilian Magdalena Aguilar Tobias",
       "direccion": "Calle ppal Cton Santa Rosa Nueva Concepcion Chalatenango",
       "latitud": "14.06667232",
       "longitud": "-89.25959297"
@@ -845,6 +950,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Colonia Tesoro",
+      "nombre": "El Baratillo 1",
       "direccion": "Cl. Milagro De La Paz Calle El Prog",
       "latitud": "13.462695",
       "longitud": "-88.1762533"
@@ -853,6 +959,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Caserio El Limón",
+      "nombre": "Neris Noel Martinez Menjivar",
       "direccion": "Cton Guarjila, Crio. Guancora",
       "latitud": "14.0526727",
       "longitud": "-88.99598513"
@@ -861,6 +968,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Canton Piedras Gordas",
+      "nombre": "Tienda Donde Heneey",
       "direccion": "Redondel Amayo",
       "latitud": "14.1041783",
       "longitud": "-89.0263033"
@@ -869,6 +977,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "San Juan Opico",
+      "nombre": "Migueleña 3",
       "direccion": "Bo El Centro 2da calle ote No 2",
       "latitud": "13.8759514",
       "longitud": "-89.3579591"
@@ -877,6 +986,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Adelita",
       "direccion": "Calle Ppal. Col. 22 De Abril, San Salvador",
       "latitud": "13.695982",
       "longitud": "-89.161053"
@@ -885,6 +995,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Jorge",
+      "nombre": "Melva Maricela Campos Aguilar",
       "direccion": "Bo El Centro, Mercado San Jorge puesto 63 San Jorge, San Mig",
       "latitud": "13.414196",
       "longitud": "-88.3440169"
@@ -893,6 +1004,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "las Plasitas",
+      "nombre": "Distribuidora Rosita",
       "direccion": "El Transito",
       "latitud": "13.4537766",
       "longitud": "-88.2977216"
@@ -901,6 +1013,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Colonia Santa Julia",
+      "nombre": "El Baratillo 2",
       "direccion": "Cl. Milagro Calle 5 De Enero",
       "latitud": "13.46239",
       "longitud": "-88.1794317"
@@ -909,6 +1022,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Citala",
+      "nombre": "Yessika Yvetth Landaverde Marin",
       "direccion": "Calle Principal, Bo. Concepcion",
       "latitud": "14.37354981",
       "longitud": "-89.21428174"
@@ -917,6 +1031,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Lotificacion Las Margaritas",
+      "nombre": "Tienda Lourdes",
       "direccion": "Cll a La Estacion Urb Lourdes Pasaje A Casa 32",
       "latitud": "13.79629022",
       "longitud": "-89.18233965"
@@ -925,6 +1040,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Barrio El Centro",
+      "nombre": "Tienda Lilian",
       "direccion": "Centro Nejapa",
       "latitud": "13.8143416",
       "longitud": "-89.2304683"
@@ -933,6 +1049,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Residencial Santa Teresa De las Flores",
+      "nombre": "Tda. El Paso",
       "direccion": "Col Las Flores Res. Sta. Teresa N. 1",
       "latitud": "13.81423548",
       "longitud": "-89.16423708"
@@ -941,6 +1058,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Agua Escondida",
+      "nombre": "Tda Karina",
       "direccion": "Cton Agua Escondida fte a la iglesia",
       "latitud": "13.8264283",
       "longitud": "-89.3503483"
@@ -949,6 +1067,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "Zacatecoluca",
+      "nombre": "Tda Kenia",
       "direccion": "Cll autopista Col Anabella 3",
       "latitud": "13.49818728",
       "longitud": "-88.87558546"
@@ -957,6 +1076,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Rafael Obrajuelo",
+      "nombre": "Tda Reyes",
       "direccion": "Cton San Rafael Obrajuelo",
       "latitud": "13.49273169",
       "longitud": "-88.93170163"
@@ -965,6 +1085,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Puerto El Triunfo",
+      "nombre": "Antony",
       "direccion": "B. El centro Puerto el Triunfo",
       "latitud": "13.294905",
       "longitud": "-88.5505217"
@@ -973,6 +1094,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "El Refugio",
+      "nombre": "Tienda Paty",
       "direccion": "Col. El Angel Pol. M N. 8",
       "latitud": "13.97917015",
       "longitud": "-89.70366318"
@@ -981,6 +1103,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Cantón Laguna Seca",
+      "nombre": "San Antonio",
       "direccion": "Cton Laguna Seca Bo El Centro",
       "latitud": "14.1325662",
       "longitud": "-89.33970049"
@@ -989,6 +1112,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Cantón Potrero Sula",
+      "nombre": "Tda Memo",
       "direccion": "C.S . El Amatal Cton. Potrero Sula",
       "latitud": "14.10475204",
       "longitud": "-89.38511264"
@@ -997,6 +1121,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Urbanizacion Jardines Del Norte 1",
+      "nombre": "Tda Bendicion de Dios",
       "direccion": "Ca la pedrera",
       "latitud": "13.7896133",
       "longitud": "-89.17689174"
@@ -1005,6 +1130,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Juan Nonualco",
+      "nombre": "Tda y farmacia Elenita",
       "direccion": "2da av Sur contiguo a mercado municipal",
       "latitud": "13.50466674",
       "longitud": "-88.89740087"
@@ -1013,6 +1139,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "El Cuco",
+      "nombre": "Tienda Pedron",
       "direccion": "Playa El Cuco Col La Española",
       "latitud": "13.1903667",
       "longitud": "-88.1099774"
@@ -1021,6 +1148,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "El Cuco",
+      "nombre": "Baltazar Barahona Santos",
       "direccion": "Cll Ppal El Cuco, frente a P.N.C",
       "latitud": "13.1736276",
       "longitud": "-88.1105338"
@@ -1029,6 +1157,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Colonia Belen",
+      "nombre": "Super Tienda Josue C",
       "direccion": "Calle Suiza, Col. España n.4, Pol. 11",
       "latitud": "13.4719023",
       "longitud": "-88.1639312"
@@ -1037,6 +1166,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "La Pilas",
+      "nombre": "Variedades Valle",
       "direccion": "Calle Principal canton las Pilas",
       "latitud": "14.368995",
       "longitud": "-89.0952766"
@@ -1045,6 +1175,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Guazapa",
+      "nombre": "Virgen De Fatima",
       "direccion": "Cll Ppal Parque Central De Guazapa",
       "latitud": "13.8780417",
       "longitud": "-89.17023215"
@@ -1053,6 +1184,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "Zacatecoluca",
+      "nombre": "Tda el Pollito",
       "direccion": "Bo el centro 8va cll Oriente",
       "latitud": "13.51052011",
       "longitud": "-88.86889972"
@@ -1061,6 +1193,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Colonia Santa Julia",
+      "nombre": "Guevara Hernandez, S.A. de C.V.",
       "direccion": "Avenida Unidad de Salud, Colonia Milagro de la Paz",
       "latitud": "13.46492",
       "longitud": "-88.18137"
@@ -1069,6 +1202,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Alegría",
+      "nombre": "La Sirenita",
       "direccion": "Cton. San Juan 1 En La Laguna",
       "latitud": "13.5068205",
       "longitud": "-88.4877248"
@@ -1077,6 +1211,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Berlín",
+      "nombre": "Tienda Sarai",
       "direccion": "Final Av. San Jose Polig. C, Lot. Año Nu",
       "latitud": "13.4982406",
       "longitud": "-88.5300753"
@@ -1085,6 +1220,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "California",
+      "nombre": "Consuelo del Carmen Guandique de He",
       "direccion": "Avenida Roosvelt sur, frente a parque municipal",
       "latitud": "13.4437642",
       "longitud": "-88.4643115"
@@ -1093,6 +1229,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "San Marcos Lempa",
+      "nombre": "Lilian Vanessa Solano de Pineda",
       "direccion": "Cton. Tierra Blanca",
       "latitud": "13.4212811",
       "longitud": "-88.6965483"
@@ -1101,6 +1238,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Ceiba Doblada",
+      "nombre": "Esperanza",
       "direccion": "Isla De Mendez",
       "latitud": "13.2406902",
       "longitud": "-88.6700485"
@@ -1109,6 +1247,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "San Marcos Lempa",
+      "nombre": "Sarai",
       "direccion": "San Marcos Lempa Jiquilisco",
       "latitud": "13.420735",
       "longitud": "-88.695835"
@@ -1117,6 +1256,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Jucuapa",
+      "nombre": "Tda Arizbet",
       "direccion": "Col. San Joaquin casa 1",
       "latitud": "13.5280466",
       "longitud": "-88.386445"
@@ -1125,6 +1265,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Nueva Guadalupe",
+      "nombre": "Tda Paty",
       "direccion": "9a  Calle Poniente Bo San Luis",
       "latitud": "13.5375016",
       "longitud": "-88.3507899"
@@ -1133,6 +1274,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Chinameca",
+      "nombre": "Tienda Rosmery",
       "direccion": "Bo Dolores Col Av R Vasquez N32",
       "latitud": "13.5156803",
       "longitud": "-88.3492918"
@@ -1141,6 +1283,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San José Quelepa",
+      "nombre": "Tienda Cory",
       "direccion": "5 av. Norte pasaje 1 No 6 bario San Francisco San Miguel",
       "latitud": "13.497125",
       "longitud": "-88.2410967"
@@ -1149,6 +1292,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Tda Rodas",
       "direccion": "Col Ciudad Pasifica,2 Etapa",
       "latitud": "13.4937917",
       "longitud": "-88.2241717"
@@ -1157,6 +1301,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Denis Alexander Romero Martinez",
       "direccion": "Final 8a calle pte Col Ciudad Pacifica No 52 fte pollo campe",
       "latitud": "13.48975",
       "longitud": "-88.1780617"
@@ -1165,6 +1310,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "La Unión Norte",
+      "nombre": "Tda Katherin",
       "direccion": "Cton El Algodon  Cas Quebrada Onda",
       "latitud": "13.6481967",
       "longitud": "-87.8492017"
@@ -1173,6 +1319,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Concepción de Oriente",
+      "nombre": "Tda. Santos",
       "direccion": "Bo. El Centro C. Oriente",
       "latitud": "13.7920117",
       "longitud": "-87.71311"
@@ -1181,6 +1328,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Las Cuevas",
+      "nombre": "Jorge Arturo Andrade Ventura",
       "direccion": "Barrio el Centro",
       "latitud": "13.8260367",
       "longitud": "-87.7359533"
@@ -1189,6 +1337,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Lajitaz",
+      "nombre": "Super Tienda La Montequeña",
       "direccion": "Canton San Jose Monteca",
       "latitud": "13.8667675",
       "longitud": "-87.8322033"
@@ -1197,6 +1346,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Polorós",
+      "nombre": "Glenda Gabriela Perdomo de Romero",
       "direccion": "Bo. El Centro, Ctgo.a la Clinica",
       "latitud": "13.8117842",
       "longitud": "-87.8163994"
@@ -1205,6 +1355,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Polorós",
+      "nombre": "Pamela Nataly Rubio Cruz",
       "direccion": "Bo Nuevo, salida a Monteca",
       "latitud": "13.8098988",
       "longitud": "-87.816374"
@@ -1213,6 +1364,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Canton Guarjila",
+      "nombre": "Tienda Yaquelyn",
       "direccion": "Cll Ppal, Cton. Guarjila, fte a Escuela",
       "latitud": "14.02197135",
       "longitud": "-88.88468251"
@@ -1221,6 +1373,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Chalatenango",
+      "nombre": "Tda Blanca",
       "direccion": "Cas Tepeyac Cton Chiapas",
       "latitud": "14.032146051503364",
       "longitud": "-88.91046719076563"
@@ -1229,6 +1382,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Aguilares",
+      "nombre": "Lacteos La Vaquita",
       "direccion": "Calle Sin Ley, Local Numero 2",
       "latitud": "13.9588183",
       "longitud": "-89.186455"
@@ -1237,6 +1391,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "El Paisnal",
+      "nombre": "Xenia",
       "direccion": "Ingenio la cabaña Col Santa Emilia",
       "latitud": "14.01080336",
       "longitud": "-89.19386342"
@@ -1245,6 +1400,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Chalatenango Centro",
+      "nombre": "Edwin Antonio Sa Vasquez",
       "direccion": "Calle Principal, Cton. Santa Barbara, El Paraiso",
       "latitud": "14.07315196",
       "longitud": "-89.09887701"
@@ -1253,6 +1409,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "El Tronconal",
+      "nombre": "Super Sol",
       "direccion": "Psj. 1, Col. Reubicacion 1, n.2, entrada a nucleo 1",
       "latitud": "14.07724181",
       "longitud": "-89.02536839"
@@ -1261,6 +1418,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Ojos de Agua",
+      "nombre": "Tda Los Gemelos",
       "direccion": "Ojo de Agua",
       "latitud": "14.13760044",
       "longitud": "-88.86878606"
@@ -1269,6 +1427,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "San Pablo Tacachico",
+      "nombre": "Jose Vidal Mejia Orellana",
       "direccion": "Cll Ppal Poniente, Bo. El Centro n. 2",
       "latitud": "13.97585484",
       "longitud": "-89.34012663"
@@ -1277,6 +1436,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "La Paz Oeste",
+      "nombre": "Tda Lucy",
       "direccion": "Calle a La Bocana Rio Jiboa",
       "latitud": "13.35299364",
       "longitud": "-89.02883347"
@@ -1285,6 +1445,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Luis la Herradura",
+      "nombre": "Tda Elsy",
       "direccion": "Cll Pll Bo El Calvario",
       "latitud": "13.34605664",
       "longitud": "-88.94747704"
@@ -1293,6 +1454,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Luis la Herradura",
+      "nombre": "Carmencita",
       "direccion": "Boulevard Costa del Sol Cton. Los Blancos",
       "latitud": "13.32969542",
       "longitud": "-88.9704971"
@@ -1301,6 +1463,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Apopa",
+      "nombre": "Tda Elba",
       "direccion": "Col Valle V 1 Pje F Nte P 8 C 65",
       "latitud": "13.79775022",
       "longitud": "-89.16692164"
@@ -1309,6 +1472,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Urbanizacion Valle Verde 1",
+      "nombre": "Tienda Danny",
       "direccion": "Urb Valle Verde 1 Psj H Sur casa 13",
       "latitud": "13.79712213",
       "longitud": "-89.16657463"
@@ -1317,6 +1481,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Santiago de María",
+      "nombre": "Mini Super De Leo",
       "direccion": "Av Monseñor Romero Bo El Calvario Local",
       "latitud": "13.4819967",
       "longitud": "-88.462145"
@@ -1325,6 +1490,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Quezaltepeque",
+      "nombre": "Tda Kevin",
       "direccion": "Col San Felipe pj 1 N.12",
       "latitud": "13.81788323",
       "longitud": "-89.28303849"
@@ -1333,6 +1499,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "San Juan Opico",
+      "nombre": "Tda Cenicer",
       "direccion": "Hda Chanmico camino a Sitio Grande",
       "latitud": "13.787796",
       "longitud": "-89.351586"
@@ -1341,6 +1508,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Quezaltepeque",
+      "nombre": "Tienda Jimenita",
       "direccion": "Urb La Esperanza Cll Principal 2-R Norte",
       "latitud": "13.8271366",
       "longitud": "-89.268615"
@@ -1349,6 +1517,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Quezaltepeque",
+      "nombre": "Tienda Milagro",
       "direccion": "Col Las Crucitas Pol 6 Casa 5",
       "latitud": "13.8249366",
       "longitud": "-89.272055"
@@ -1357,6 +1526,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "San Juan Opico",
+      "nombre": "Tda Jasmin",
       "direccion": "Pje Chanmico",
       "latitud": "13.78748216",
       "longitud": "-89.35708858"
@@ -1365,6 +1535,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda. Viñedo",
       "direccion": "Km 21 Autopista Comalapa El Viñedo",
       "latitud": "13.61065671",
       "longitud": "-89.12104815"
@@ -1373,6 +1544,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Quezaltepeque",
+      "nombre": "Tda Lupita 2",
       "direccion": "Canton Milgro La Roca",
       "latitud": "13.809855",
       "longitud": "-89.3207233"
@@ -1381,6 +1553,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Pedro",
+      "nombre": "Tienda Benesme",
       "direccion": "Bo Concepcion Avenida Rodolfo Duke",
       "latitud": "13.547764",
       "longitud": "-89.037274"
@@ -1389,6 +1562,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "Comalapa",
+      "nombre": "Kevin Alexander Carrillo Cruz",
       "direccion": "Carr. Litoral, Cton. Comalapa n. 105",
       "latitud": "13.49952883",
       "longitud": "-89.07614429"
@@ -1397,6 +1571,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Venta De Verduras",
       "direccion": "Montes De San Bartolo",
       "latitud": "13.719185",
       "longitud": "-89.1366166"
@@ -1405,6 +1580,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Soyapango",
+      "nombre": "Nidia Alejandra Reyes Lopez",
       "direccion": "Pje 36 Reparto las Margaritas 5, 5ta etapa casa 78",
       "latitud": "13.73073",
       "longitud": "-89.142796"
@@ -1413,6 +1589,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Johana Campos",
       "direccion": "Cll ppal Colonia las Cañas",
       "latitud": "13.71414333",
       "longitud": "-89.11459174"
@@ -1421,6 +1598,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Soyapango",
+      "nombre": "C.E Credissa",
       "direccion": "Ciudad Credissa av coatepeque",
       "latitud": "13.6935131",
       "longitud": "-89.1615703"
@@ -1429,6 +1607,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "La Tiendita",
       "direccion": "Col Santa Maria 1 Pje 1 Casa 1",
       "latitud": "13.699188",
       "longitud": "-89.153502"
@@ -1437,14 +1616,25 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Colonia Rasa No.2",
+      "nombre": "Rossy Elizabeth Franco Escobar",
       "direccion": "Av. A, Col. Rasa 2, n. 5-C",
       "latitud": "13.58957552",
       "longitud": "-89.8283108"
     },
     {
       "pais": "El Salvador",
+      "departamento": "La Paz",
+      "ciudad": "San Luis Talpa",
+      "nombre": "Tienda Katy",
+      "direccion": "Lot. Riveras De San Luis",
+      "latitud": "13.4714166",
+      "longitud": "-89.0913166"
+    },
+    {
+      "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Comasagua",
+      "nombre": "Tda  La Favorita",
       "direccion": "Bo El Centro Casa13 Call Jose Ant",
       "latitud": "13.6377651",
       "longitud": "-89.3779744"
@@ -1453,6 +1643,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Cantón El Cacique",
+      "nombre": "Tienda Sara",
       "direccion": "Canton El Faro",
       "latitud": "13.595585",
       "longitud": "-89.3654933"
@@ -1461,6 +1652,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Caserío Hacienda San Alfonso",
+      "nombre": "Tienda Marilin",
       "direccion": "Mitificacion Pablinca El Silie",
       "latitud": "13.50507",
       "longitud": "-89.38484"
@@ -1469,6 +1661,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Juan Talpa",
+      "nombre": "Ronald",
       "direccion": "Cton. Tobalon Polg. 2 N. 12",
       "latitud": "13.510041",
       "longitud": "-89.094536"
@@ -1477,6 +1670,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "Playa El Pimental",
+      "nombre": "Tda Yariela",
       "direccion": "El Pimental Cas Los Mangos N112",
       "latitud": "13.3855135",
       "longitud": "-89.0941228"
@@ -1485,6 +1679,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "La Libertad",
+      "nombre": "Tda Luis",
       "direccion": "Cton el jute cas el gallo solo",
       "latitud": "13.49870141",
       "longitud": "-89.30566661"
@@ -1493,6 +1688,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Ilopango",
+      "nombre": "Chalet Nanci Yamilet",
       "direccion": "Entrada Zona Franca Ilopango",
       "latitud": "13.69781323",
       "longitud": "-89.11344677"
@@ -1501,6 +1697,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda y Carniceria Elsy",
       "direccion": "Col Llano Verde av Central No 1 Ilopango",
       "latitud": "13.69759336",
       "longitud": "-89.1069632"
@@ -1509,6 +1706,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador Este",
+      "nombre": "Tda Santos",
       "direccion": "Col Santa Maria Pje 21 Casan.16",
       "latitud": "13.73819081",
       "longitud": "-89.0619849"
@@ -1517,6 +1715,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Ilopango",
+      "nombre": "Frutas y Verduras",
       "direccion": "Cll 9na etapa contiguo a C. Escolar",
       "latitud": "13.709345",
       "longitud": "-89.098285"
@@ -1525,6 +1724,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Ilopango",
+      "nombre": "El Shaddai",
       "direccion": "Crr Panamericana Km10 1/2",
       "latitud": "13.69969112",
       "longitud": "-89.10542328"
@@ -1533,6 +1733,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tienda Alicia",
       "direccion": "Bosques De La Paz N. 81Cll 19 Orte",
       "latitud": "13.698596",
       "longitud": "-89.123943"
@@ -1541,6 +1742,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "La Libertad",
+      "nombre": "Td  Yuris",
       "direccion": "Cton Hacienda San Diego calle ppal",
       "latitud": "13.4834966",
       "longitud": "-89.24490821"
@@ -1549,6 +1751,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "San Alfredo",
+      "nombre": "Tda Dorita",
       "direccion": "Hda. Nueva, Cton Cangrejera",
       "latitud": "13.47213662",
       "longitud": "-89.17276014"
@@ -1557,6 +1760,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Raquelita",
       "direccion": "San Bartolo 3 Av C Block 47 Casa 60",
       "latitud": "13.715457",
       "longitud": "-89.131065"
@@ -1565,6 +1769,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Soyapango",
+      "nombre": "Tda Jugos Y Licuados",
       "direccion": "Urb Prados De Venecia 3 Grupo 107 Av Pericia casa 20",
       "latitud": "13.713177",
       "longitud": "-89.145741"
@@ -1573,6 +1778,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Soyapango",
+      "nombre": "Tda Nena",
       "direccion": "Rto Los Santos 1 Cll San Pablo Casa 175",
       "latitud": "13.70835363",
       "longitud": "-89.14277539"
@@ -1581,6 +1787,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Pedro Masahuat",
+      "nombre": "Ana Silvia Arias Leiva",
       "direccion": "Cton. El Carmen fte. a desvio",
       "latitud": "13.492822",
       "longitud": "-89.04154"
@@ -1589,6 +1796,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "Santiago Nonualco",
+      "nombre": "Tda Genesis",
       "direccion": "Costado Sur Escuela Centro America",
       "latitud": "13.529512",
       "longitud": "-88.970246"
@@ -1597,6 +1805,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "San Pedro Nonualco",
+      "nombre": "Mary",
       "direccion": "Clle ppal av Bernal San Pedro Nonualco",
       "latitud": "13.60231583",
       "longitud": "-88.92678112"
@@ -1605,6 +1814,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Quelepa",
+      "nombre": "Tienda La Economica",
       "direccion": "Media Cuad A Ote De La Uni De Salud",
       "latitud": "13.5183846",
       "longitud": "-88.2342492"
@@ -1613,6 +1823,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Quelepa",
+      "nombre": "Tienda Rebeca",
       "direccion": "Colonia El Castaño",
       "latitud": "13.5195686",
       "longitud": "-88.2357723"
@@ -1621,6 +1832,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Tda Evelyn",
       "direccion": "Col Valle Nuevo C. El Mirador Pol 14 Casa 16",
       "latitud": "13.5020227",
       "longitud": "-88.1930074"
@@ -1629,6 +1841,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Colonia Aurora",
+      "nombre": "Tienda Economica",
       "direccion": "Col Aurora Pje Los Eucalipto Casa 1",
       "latitud": "13.497275",
       "longitud": "-88.1965549"
@@ -1637,6 +1850,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Piedras Azules",
+      "nombre": "Tda La Bendicion",
       "direccion": "Frontera San Cristobal",
       "latitud": "14.18192347",
       "longitud": "-89.66718111"
@@ -1645,6 +1859,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Urb Valle Del Sol San Leonardo",
+      "nombre": "Tada Dayana",
       "direccion": "Col San Leonardo pj Ote Casa 28",
       "latitud": "13.81821629",
       "longitud": "-89.18358654"
@@ -1653,6 +1868,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Urb Jardines De Madre Tierra",
+      "nombre": "Tieda Alfa Y Omega",
       "direccion": "Colonia Madre Tierra 2 Pasaje 3 Block B Casa No3 Apopa San S",
       "latitud": "13.8089491",
       "longitud": "-89.1831327"
@@ -1661,6 +1877,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Urb Jardines De Madre Tierra",
+      "nombre": "Tienda Milagros",
       "direccion": "Col. Madre Tierra 2 49C",
       "latitud": "13.80779838",
       "longitud": "-89.18362778"
@@ -1669,6 +1886,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "Tejutla",
+      "nombre": "La Sagrada Familia",
       "direccion": "Frente Parque Central A De Tejutla",
       "latitud": "14.17088554",
       "longitud": "-89.10042297"
@@ -1677,6 +1895,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "AGUA CALIENTE",
+      "nombre": "San Antonio",
       "direccion": "Calle Principal Agua Caliente",
       "latitud": "14.184789",
       "longitud": "-89.231723"
@@ -1685,6 +1904,7 @@
       "pais": "El Salvador",
       "departamento": "Chalatenango",
       "ciudad": "La Palma",
+      "nombre": "Tienda La Palma 2",
       "direccion": "Calle Entrada La Palma",
       "latitud": "14.315085",
       "longitud": "-89.168255"
@@ -1693,6 +1913,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Usulután",
+      "nombre": "Rene",
       "direccion": "Bo. La Parroquia Cll. Ppal.",
       "latitud": "13.3510684",
       "longitud": "-88.4332643"
@@ -1701,6 +1922,7 @@
       "pais": "El Salvador",
       "departamento": "Cabañas",
       "ciudad": "Azacualpa",
+      "nombre": "Super Tienda El Pepeto",
       "direccion": "Canton Huertas Caserio El Centro",
       "latitud": "13.8938766",
       "longitud": "-88.8071049"
@@ -1709,6 +1931,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Cutumay Camones",
+      "nombre": "Mercy",
       "direccion": "Col. Rio Zarco Pje. Amatiyo N. 3",
       "latitud": "14.02264826",
       "longitud": "-89.54074513"
@@ -1717,6 +1940,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Cutumay Camones",
+      "nombre": "Tienda La Esquina",
       "direccion": "Urbanizacion El Milagro",
       "latitud": "14.0238599",
       "longitud": "-89.5385683"
@@ -1725,6 +1949,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Cutumay Camones",
+      "nombre": "Marinita",
       "direccion": "Lot El Bosque",
       "latitud": "14.01570495",
       "longitud": "-89.53970008"
@@ -1733,6 +1958,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Barrio El Angel",
+      "nombre": "Tda San Martin De Porras",
       "direccion": "Urbanizacion Bella Santana",
       "latitud": "13.97745329",
       "longitud": "-89.55488674"
@@ -1741,6 +1967,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Monte Largo",
+      "nombre": "La Linea",
       "direccion": "Col. San Juan Cton. Santa Rosa",
       "latitud": "13.981550",
       "longitud": "-89.632517"
@@ -1749,6 +1976,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "El Portezuelo",
+      "nombre": "Tienda Arig",
       "direccion": "Col. El Eden N. 68",
       "latitud": "13.9751722",
       "longitud": "-89.5923197"
@@ -1757,6 +1985,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Residencial Luna Maya",
+      "nombre": "Tienda Reyna",
       "direccion": "Col. Nva. Ilamatepect Pje M Pol 7 N. 3",
       "latitud": "13.956676",
       "longitud": "-89.579956"
@@ -1765,6 +1994,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Col Gerardo Barrios",
+      "nombre": "Tda Ady",
       "direccion": "Lot Barcelona pol 18 lote 5 a la par de",
       "latitud": "13.969611",
       "longitud": "-89.5850872"
@@ -1773,6 +2003,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "El Barillo",
+      "nombre": "Tda Martinez",
       "direccion": "Col Brumas 1 pj las 3 rosas n.7",
       "latitud": "13.61015163",
       "longitud": "-89.28598825"
@@ -1781,6 +2012,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Colonia Quezaltepec",
+      "nombre": "Tienda Elizabeth, S.A.S. de C.V.",
       "direccion": "Calle San Salvador, Colonia Quezaltepeque, n.15",
       "latitud": "13.68182927",
       "longitud": "-89.30084668"
@@ -1789,6 +2021,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Lotification Monteverde",
+      "nombre": "Tienda La Esperanza",
       "direccion": "Col. Quezaltepec Calle Real casa No180",
       "latitud": "13.68137939",
       "longitud": "-89.30818018"
@@ -1797,6 +2030,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Residencial Los Girasoles 2",
+      "nombre": "Tienda Dayenu",
       "direccion": "14 Av Norte Villas De San Rafael n. 1",
       "latitud": "13.6818339",
       "longitud": "-89.2955593"
@@ -1805,6 +2039,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "El Limon",
+      "nombre": "Tda Aracely 2",
       "direccion": "Col El Pital Blok G Casa 1",
       "latitud": "13.74651775",
       "longitud": "-89.38816432"
@@ -1813,6 +2048,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Zapotitan",
+      "nombre": "Tda Marcela",
       "direccion": "Cl Al Tanque Zapotitan",
       "latitud": "13.805153",
       "longitud": "-89.450683"
@@ -1821,6 +2057,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Zaragoza",
+      "nombre": "El Baratillo",
       "direccion": "2da ave Sur Local 2",
       "latitud": "13.5880766",
       "longitud": "-89.2892333"
@@ -1829,6 +2066,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Huizúcar",
+      "nombre": "Tda Linares",
       "direccion": "Cton San Juan Buena Vista Calle Ppal",
       "latitud": "13.5289899",
       "longitud": "-89.2440766"
@@ -1837,6 +2075,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Ilopango",
+      "nombre": "Estelita",
       "direccion": "Cton. Las Delicias C. A Tonacatepeq",
       "latitud": "13.73780487",
       "longitud": "-89.08462342"
@@ -1845,6 +2084,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Ilopango",
+      "nombre": "Tda Jeferson",
       "direccion": "Av Monseñor Romero Pje 1A Casa N.1",
       "latitud": "13.744576",
       "longitud": "-89.056003"
@@ -1853,6 +2093,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "Suchitoto",
+      "nombre": "Super El Mercadito",
       "direccion": "Av. Padre Rafael Palacios Suchitoto",
       "latitud": "13.92971055",
       "longitud": "-89.03040223"
@@ -1861,6 +2102,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Barrio Mercedes",
+      "nombre": "Central de Ventas Steven",
       "direccion": "Calle San Nicolas Aguilar",
       "latitud": "13.780715",
       "longitud": "-89.120145"
@@ -1869,6 +2111,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Residencial Altavista",
+      "nombre": "Tda Cristian",
       "direccion": "Pol 18 B pje 35 casa 62 Altavista",
       "latitud": "13.730579",
       "longitud": "-89.0916"
@@ -1877,6 +2120,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Residencial Altavista",
+      "nombre": "Tienda Nathaly",
       "direccion": "Alta Vista Calle Principal Poligono No65",
       "latitud": "13.73270557",
       "longitud": "-89.08014648"
@@ -1885,6 +2129,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Residencial Altavista",
+      "nombre": "Tda Familiar",
       "direccion": "Pj. 3 Casa 13 Res Alta Vista 1ra Etapa",
       "latitud": "13.72406024",
       "longitud": "-89.09606505"
@@ -1893,6 +2138,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Residencial Altavista",
+      "nombre": "Tienda Joby",
       "direccion": "Res Alta Vista Av. B Casa 25",
       "latitud": "13.7239833",
       "longitud": "-89.0961616"
@@ -1901,6 +2147,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "Santa Cruz Michapa",
+      "nombre": "Tda El Deposito",
       "direccion": "Bo El Centro Lot Romero N 6",
       "latitud": "13.739637",
       "longitud": "-88.976063"
@@ -1909,6 +2156,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "Tenancingo",
+      "nombre": "Tienda El Palmo",
       "direccion": "Calle Principal al Parque Central",
       "latitud": "13.83563",
       "longitud": "-88.98512"
@@ -1917,6 +2165,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "San PEDRO PERULAPAN",
+      "nombre": "Regalito De Dios",
       "direccion": "Avenida Morazan Bo. El Centro",
       "latitud": "13.76536269",
       "longitud": "-89.03717883"
@@ -1925,6 +2174,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "Barrio Conception",
+      "nombre": "Santos Alexander Beltran Ramirez",
       "direccion": "3ra Calle Oriente y 6ta Avenida Norte, Barrio Santa Lucia",
       "latitud": "13.722401",
       "longitud": "-88.932196"
@@ -1933,6 +2183,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "Santa Cruz Michapa",
+      "nombre": "Tda Las Delicias 1",
       "direccion": "Cton Las Delicias antes de Unidad De Salud",
       "latitud": "13.7307414",
       "longitud": "-88.9795677"
@@ -1941,6 +2192,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Sonsonate Este",
+      "nombre": "Variedades Andres",
       "direccion": "Cton Ceiba El Charco",
       "latitud": "13.74489818",
       "longitud": "-89.6361855"
@@ -1949,6 +2201,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Sonsonate",
+      "nombre": "Tda Marina",
       "direccion": "Cton El Eden pol 2 Sonsonate",
       "latitud": "13.648355",
       "longitud": "-89.735978"
@@ -1957,6 +2210,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Caluco",
+      "nombre": "Chalet Sofi",
       "direccion": "Bo El Cetro a un costado de la iglesia Catolica",
       "latitud": "13.7245475",
       "longitud": "-89.66343775"
@@ -1965,6 +2219,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Chiquihuat",
+      "nombre": "Tobar Escobar, S.A.S. de C.V.",
       "direccion": "Cton. Chiquihuath Crio. Santa Cruz",
       "latitud": "13.6547716",
       "longitud": "-89.6884783"
@@ -1973,6 +2228,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Santa Catarina Masahuat",
+      "nombre": "Tda Angelina",
       "direccion": "Barrio San Jose 1 Av Sur Santa Catarina",
       "latitud": "13.7861866",
       "longitud": "-89.76886"
@@ -1981,6 +2237,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Colonia Santa Maria",
+      "nombre": "Minisuper El Tio",
       "direccion": "Col Altos Del Rio casa 24",
       "latitud": "13.73408357",
       "longitud": "-89.72005818"
@@ -1989,6 +2246,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Nahuizalco",
+      "nombre": "Chalet Quintero",
       "direccion": "Av. San Juan Bo. Las Mercedes",
       "latitud": "13.78042661",
       "longitud": "-89.73689172"
@@ -1997,6 +2255,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Nahuizalco",
+      "nombre": "Tda La Esquina",
       "direccion": "Col Santa Isabel Calle Principal",
       "latitud": "13.7854933",
       "longitud": "-89.7361966"
@@ -2005,6 +2264,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "San Pedro Puxtla",
+      "nombre": "La Bendicion De Dios",
       "direccion": "Bo. El Angel Las 5 Calles",
       "latitud": "13.7682326",
       "longitud": "-89.80618089"
@@ -2013,6 +2273,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Santo Domingo de Guzman",
+      "nombre": "Maty",
       "direccion": "Bo. El CalvarioRuben DarioSanto Domingo",
       "latitud": "13.7197967",
       "longitud": "-89.7975217"
@@ -2021,6 +2282,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Colonia San Fernando",
+      "nombre": "Mini Super Familiar",
       "direccion": "Res San Luis Entre 4a y 5a Calle casa 3",
       "latitud": "13.7347683",
       "longitud": "-89.7157466"
@@ -2029,6 +2291,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Urbanización El Sauce",
+      "nombre": "Mini Bodega Alberto",
       "direccion": "Urb El Sauce Block K Psj 4 #2",
       "latitud": "13.73828297",
       "longitud": "-89.71884482"
@@ -2037,6 +2300,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Sonsonate",
+      "nombre": "Carlos Roberto Lue Machuca",
       "direccion": "10 Av Nte Barrio El Angel casa 4-5",
       "latitud": "13.72015",
       "longitud": "-89.7220766"
@@ -2045,6 +2309,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Colonia Santa Eugenia",
+      "nombre": "Tda Mateo",
       "direccion": "Col Santa Eugenia Psj 7 Casa 1",
       "latitud": "13.7300776",
       "longitud": "-89.7103577"
@@ -2053,6 +2318,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Sonsonate",
+      "nombre": "Confiteria Mendez",
       "direccion": "Mercadito el Angel",
       "latitud": "13.718769",
       "longitud": "-89.724487"
@@ -2061,6 +2327,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Lotificacion El Carmen",
+      "nombre": "Tienda Venecia",
       "direccion": "Col. San Ramon Calle Principal",
       "latitud": "13.7290966",
       "longitud": "-89.7355316"
@@ -2069,6 +2336,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Lomas de San Antonio",
+      "nombre": "Tda Rodrivilla",
       "direccion": "Urb Lomas de San Antonio 26 Av Sur casa 1",
       "latitud": "13.71315966",
       "longitud": "-89.73582923"
@@ -2077,6 +2345,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Lomas de San Antonio",
+      "nombre": "Felipe Santiago Gutierrez Hernandez",
       "direccion": "26 Cll Pte Av. 1 Block 1, Urb. Lomas de San Antonio n. 88-1",
       "latitud": "13.7132285",
       "longitud": "-89.7358192"
@@ -2085,6 +2354,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Sonsonate",
+      "nombre": "Tienda Maudalena",
       "direccion": "8va Cl. Col. San Antonio",
       "latitud": "13.719568",
       "longitud": "-89.73246"
@@ -2093,6 +2363,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Colonia Sensunapan",
+      "nombre": "Tienda Josue",
       "direccion": "Col. Sensunapan Cl. Acacsual",
       "latitud": "13.711939",
       "longitud": "-89.731294"
@@ -2101,6 +2372,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Kilo 10",
       "direccion": "Crr A Planes De Renderos Km 10",
       "latitud": "13.64477186",
       "longitud": "-89.18600354"
@@ -2109,6 +2381,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Panchimalco",
+      "nombre": "Tda La Manzana",
       "direccion": "Barrio San Esteban calle principal",
       "latitud": "13.612775",
       "longitud": "-89.17959"
@@ -2117,6 +2390,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Panchimalco",
+      "nombre": "Lizeth de Jesus Castellanos de Sanc",
       "direccion": "Palo Grande, frente a Polideportivo",
       "latitud": "13.54502385",
       "longitud": "-89.21577908"
@@ -2125,6 +2399,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Floresta",
       "direccion": "Col Floresta Cll Los Bambues No 84",
       "latitud": "13.6869395",
       "longitud": "-89.2211504"
@@ -2133,6 +2408,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tienda Dorita",
       "direccion": "Centro Comercial La Union Loca 20-B",
       "latitud": "13.69628779",
       "longitud": "-89.19334307"
@@ -2141,6 +2417,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Wendy",
       "direccion": "47 Av. Sur N. 1005 Col. Luz",
       "latitud": "13.6912156",
       "longitud": "-89.21582904"
@@ -2149,6 +2426,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Santiago Texacuangos",
+      "nombre": "Tda Santiagueña",
       "direccion": "Bo El Calvario Calle Mexico",
       "latitud": "13.64219336",
       "longitud": "-89.11826"
@@ -2157,6 +2435,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador Sur",
+      "nombre": "Tienda La Colochita",
       "direccion": "Calle Ppal Jose Mariano Calderon Local 11-A",
       "latitud": "13.6423716",
       "longitud": "-89.1164383"
@@ -2165,6 +2444,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Santo Tomás",
+      "nombre": "Tda Victoria",
       "direccion": "Crr A Zacate Col Los Elexos N15",
       "latitud": "13.6474614",
       "longitud": "-89.1485405"
@@ -2173,6 +2453,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Marta",
       "direccion": "Sierra Morena 1 calle San Roberto casa 197",
       "latitud": "13.69173843",
       "longitud": "-89.14342012"
@@ -2181,6 +2462,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Ana Esmeralda",
       "direccion": "Terminal Del Sur San Marcos",
       "latitud": "13.663165",
       "longitud": "-89.1893333"
@@ -2189,6 +2471,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Los Chapines",
       "direccion": "Terminal Del Sur San Marcos",
       "latitud": "13.6631133",
       "longitud": "-89.1894666"
@@ -2197,6 +2480,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda. Karlita",
       "direccion": "Urb. San Marcos, Pje. 14 N. 152",
       "latitud": "13.654635",
       "longitud": "-89.170304"
@@ -2205,6 +2489,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Los Flores",
+      "nombre": "Jimmy",
       "direccion": "Lot. Aruba Lote 7 Pol. 2 Jayaque",
       "latitud": "13.71414984",
       "longitud": "-89.42801323"
@@ -2213,6 +2498,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Armenia",
+      "nombre": "Alicia Erlinda Ramirez de Vasquez",
       "direccion": "Cll. Arturo Araujo, Av. 9 de Sep. Mdo. Mpl.",
       "latitud": "13.74521669",
       "longitud": "-89.50104978"
@@ -2221,6 +2507,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Armenia",
+      "nombre": "Lorena Elizabeth Sanchez Peña",
       "direccion": "3ra av. Sur n. 6",
       "latitud": "13.7447767",
       "longitud": "-89.50280327"
@@ -2229,6 +2516,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Armenia",
+      "nombre": "CECILIA ELIZABETH OSORIO DE VILLATO",
       "direccion": "PUESTO N. 233 MERCADO INTERIOR",
       "latitud": "13.74539939",
       "longitud": "-89.50340275"
@@ -2237,6 +2525,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Armenia",
+      "nombre": "Ada Marlene Sanchez Peña",
       "direccion": "Calle Arturo Araujo n. 3, 1 Av. Sur y 2 Calle Pte",
       "latitud": "13.74486626",
       "longitud": "-89.50170793"
@@ -2245,6 +2534,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Canton el Sunza",
+      "nombre": "Tda y Lubricentro Martinez",
       "direccion": "Cton El Establo 150mt antes de Cem",
       "latitud": "13.732207",
       "longitud": "-89.563163"
@@ -2253,6 +2543,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "san julian",
+      "nombre": "Luis Alberto Sanchez Barraza",
       "direccion": "Calle Simon Bolivar, Bo. El Calvario",
       "latitud": "13.696001",
       "longitud": "-89.558369"
@@ -2261,6 +2552,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Santa Isabel Ishuatán",
+      "nombre": "Variedades De Leon",
       "direccion": "Calle Principal Avenida Gerardo Barrios",
       "latitud": "13.6158399",
       "longitud": "-89.583085"
@@ -2269,6 +2561,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Cuyagualo",
+      "nombre": "Juan Carlos",
       "direccion": "Cton. Las Higueras Cll. Ppal. Izalco",
       "latitud": "13.75155357",
       "longitud": "-89.61439658"
@@ -2277,6 +2570,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Lourdes",
+      "nombre": "Refresqueria Linda",
       "direccion": "2da Calle Ote 24 Av Sur N 2 12 Apto Lurdes",
       "latitud": "13.72354824",
       "longitud": "-89.36653499"
@@ -2285,6 +2579,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Lourdes",
+      "nombre": "Luis Ernesto Mejia Paises",
       "direccion": "Av. D Block 20 Sda. A, Urb. Nuevo Lourdes, n.1",
       "latitud": "13.72741139",
       "longitud": "-89.38316233"
@@ -2293,6 +2588,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Lourdes",
+      "nombre": "Tienda y Lacteos La Familia",
       "direccion": "Urb Nuevo Lourdes Senda Los Granados Pol",
       "latitud": "13.7243016",
       "longitud": "-89.3864233"
@@ -2301,6 +2597,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "El Limon",
+      "nombre": "Tienda Quintanilla",
       "direccion": "Calle Tabacalera Contiguo a Linares 1 n. 4",
       "latitud": "13.73709325",
       "longitud": "-89.39084586"
@@ -2309,6 +2606,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Lourdes",
+      "nombre": "Jose Rene Linares Contreras",
       "direccion": "Polig. 66 Sda.10 Ote,Res.Campos Verdes casa 37",
       "latitud": "13.71240",
       "longitud": "-89.37128"
@@ -2317,6 +2615,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Ateos",
+      "nombre": "Chalet Kimberly",
       "direccion": "Canton Ateos chalet de complejo educativ",
       "latitud": "13.74012699",
       "longitud": "-89.42799009"
@@ -2325,6 +2624,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Sacacoyo",
+      "nombre": "Tienda Keytlin",
       "direccion": "Colonia Las Palmeras Casa 16",
       "latitud": "13.7316266",
       "longitud": "-89.47256"
@@ -2333,6 +2633,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Quezaltepeque",
+      "nombre": "J.R Market",
       "direccion": "El Rosal 2a Etapa Blvr Mñor Romero n. 16",
       "latitud": "13.8284816",
       "longitud": "-89.2652816"
@@ -2341,6 +2642,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Quezaltepeque",
+      "nombre": "Tda Elena",
       "direccion": "Col Jardines 14 Cl Pte Casa 11",
       "latitud": "13.83908945",
       "longitud": "-89.27315656"
@@ -2349,6 +2651,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Quezaltepeque",
+      "nombre": "Antonio Flores Reina",
       "direccion": "Polig. 7, Res. Villa Primavera, n. 104",
       "latitud": "13.83169494",
       "longitud": "-89.27514844"
@@ -2357,6 +2660,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Los Amates",
+      "nombre": "Kevin",
       "direccion": "Res. Valladolid Pol N. 6 Casa N.",
       "latitud": "13.99443522",
       "longitud": "-89.64362863"
@@ -2365,6 +2669,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Los Amates",
+      "nombre": "Tda Miriam",
       "direccion": "Ciudad Real Sevilla 2 Pol G n. 1",
       "latitud": "13.99401002",
       "longitud": "-89.64103159"
@@ -2373,6 +2678,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Ayuta",
+      "nombre": "Tienda Sonia",
       "direccion": "Canton Ayuta Caserio Ayutica Carre Panam",
       "latitud": "14.0304683",
       "longitud": "-89.6053433"
@@ -2381,6 +2687,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Santa Ana",
+      "nombre": "Tienda La Bendicion de Dios",
       "direccion": "Cton El Ranchador Col La Union Pol C n.5",
       "latitud": "14.00918693",
       "longitud": "-89.60845783"
@@ -2389,6 +2696,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tienda Virginia",
       "direccion": "Carr Troncal Del Nte Km 1 1/2 Col Aurora",
       "latitud": "13.7758766",
       "longitud": "-89.1668794"
@@ -2397,6 +2705,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Delgado",
+      "nombre": "Tda. Chano",
       "direccion": "Calle La Fuente casa 102",
       "latitud": "13.7483162",
       "longitud": "-89.1692763"
@@ -2405,6 +2714,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda. Las Gemelas",
       "direccion": "Bo. Paleca 2 Calle La Ronda Casa N. 25,Ciudad Delgado",
       "latitud": "13.72985998",
       "longitud": "-89.16856349"
@@ -2413,6 +2723,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Mejicanos",
+      "nombre": "La Refresqueria",
       "direccion": "Col. Independencia y C. 15 de Sept. No. 66 Mejicanos",
       "latitud": "13.7289945",
       "longitud": "-89.1901432"
@@ -2421,6 +2732,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Apopa",
+      "nombre": "Tienda Economica El Progreso",
       "direccion": "Col. Delicias Del Norte Calle El Progres",
       "latitud": "13.7854033",
       "longitud": "-89.19573"
@@ -2429,6 +2741,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda y Variedades Adita",
       "direccion": "C. al Zapote n.2 plan del Pito",
       "latitud": "13.73897668",
       "longitud": "-89.20841508"
@@ -2437,6 +2750,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Lucas",
+      "nombre": "La Esquinita",
       "direccion": "Col La Gloria Cll Pll 15",
       "latitud": "13.74083209",
       "longitud": "-89.22053564"
@@ -2445,6 +2759,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Super Zait",
       "direccion": "Boulevar Universitario Casa 23-13",
       "latitud": "13.71686762",
       "longitud": "-89.21169139"
@@ -2453,6 +2768,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Alvarito",
       "direccion": "2Do Parqueo Edfi Atlanta Pj 8 10",
       "latitud": "13.73482158",
       "longitud": "-89.21915095"
@@ -2461,6 +2777,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Santa Tecla",
+      "nombre": "Tda Y Libreria Sofia",
       "direccion": "Comunicada La Cruz Fte Al Itca",
       "latitud": "13.6728973",
       "longitud": "-89.2800408"
@@ -2469,6 +2786,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Urbanizacion Jardines de La Libertad",
+      "nombre": "Mini Super Betos",
       "direccion": "Calle Libertad casa 25 Merliot",
       "latitud": "13.675101",
       "longitud": "-89.265205"
@@ -2477,6 +2795,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Urbanizacion Jardines de Merliot",
+      "nombre": "Tda Emanuel",
       "direccion": "Cll Ayagualo, Av. El Boqueron 35N",
       "latitud": "13.678481",
       "longitud": "-89.270248"
@@ -2485,6 +2804,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Adonay",
       "direccion": "Col Maria Auxiliadora 11 av nte cas",
       "latitud": "13.71221182",
       "longitud": "-89.19576511"
@@ -2493,6 +2813,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Gloria",
       "direccion": "La Garita calle concepcion",
       "latitud": "13.7073953",
       "longitud": "-89.1743064"
@@ -2501,6 +2822,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Oly",
       "direccion": "Col San Joaquin Ca Ppal",
       "latitud": "13.71725652",
       "longitud": "-89.17642001"
@@ -2509,6 +2831,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Cuscatancingo",
+      "nombre": "Tienda Katherine",
       "direccion": "Col San Antonio final calle Real Madrid no 23",
       "latitud": "13.78183005",
       "longitud": "-89.17721998"
@@ -2517,6 +2840,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Cuscatancingo",
+      "nombre": "Tda Davicito",
       "direccion": "Urb Lirios Del Nte 1 Casa 41",
       "latitud": "13.7687459",
       "longitud": "-89.1769418"
@@ -2525,6 +2849,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tienda La Familia",
       "direccion": "Col. Ciudad Futura 1, Calle Tempisque, n",
       "latitud": "13.7835566",
       "longitud": "-89.18626"
@@ -2533,6 +2858,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Moncagua",
+      "nombre": "La Cabañita",
       "direccion": "Canton El Rodeo Cll Ppl",
       "latitud": "13.5324173",
       "longitud": "-88.2861622"
@@ -2541,6 +2867,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Lolotique",
+      "nombre": "Tda y Lacteos Bethel",
       "direccion": "Entrada a Lolotique",
       "latitud": "13.5562322",
       "longitud": "-88.3460758"
@@ -2549,6 +2876,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Lolotique",
+      "nombre": "Tda y Lacteos Bethel 2",
       "direccion": "Entrada a Lolotique",
       "latitud": "13.5562326",
       "longitud": "-88.3460696"
@@ -2557,6 +2885,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Azacualpia",
+      "nombre": "Arquimides Eliceo Sanchez Romero",
       "direccion": "Bo. El Calvario",
       "latitud": "13.6575284",
       "longitud": "-88.4147812"
@@ -2565,6 +2894,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Jardines Del Rio",
+      "nombre": "Edgar Manrique Ortiz Alvarenga",
       "direccion": "Calle Andromeda, av. Capricornio, Block D-7, Urb. Satelite d",
       "latitud": "13.4542551",
       "longitud": "-88.1583105"
@@ -2573,6 +2903,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Joaquin Alexander Espinal Barrera",
       "direccion": "Av. Jose Simeon Cañas, Cton. La Puerta",
       "latitud": "13.3990547",
       "longitud": "-88.1779608"
@@ -2581,6 +2912,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Dinora Yamileth Hernandez de Jurado",
       "direccion": "Cton. El Tecomal Crio. Cantora",
       "latitud": "13.3857703",
       "longitud": "-88.1110665"
@@ -2589,6 +2921,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Market Valle Alegre",
       "direccion": "A un Costado De Carretera Litoral",
       "latitud": "13.4501056",
       "longitud": "-88.1567883"
@@ -2597,6 +2930,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "Tienda Deysi",
       "direccion": "Canton El Tecomatal",
       "latitud": "13.3771625",
       "longitud": "-88.1429778"
@@ -2605,6 +2939,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Jucuarán",
+      "nombre": "Tienda Doña Merced",
       "direccion": "Clle principal jucuaran",
       "latitud": "13.25543",
       "longitud": "-88.2491733"
@@ -2613,6 +2948,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Mercedes Umaña",
+      "nombre": "Jose Faustino Carranza Coreas",
       "direccion": "Calle Ppal. Local 5, Bo. El Centro",
       "latitud": "13.5624517",
       "longitud": "-88.488735"
@@ -2621,6 +2957,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Jocoro",
+      "nombre": "Saul Gilberto Gomez Ramos",
       "direccion": "Cton. El Triunfo, Crio. Los Lopez",
       "latitud": "13.6109575",
       "longitud": "-88.0264706"
@@ -2629,6 +2966,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Jocoro",
+      "nombre": "Súper Tienda La Jocoreña",
       "direccion": "Calle Alberto Masferre calle el centro",
       "latitud": "13.6136666",
       "longitud": "-88.02559"
@@ -2637,6 +2975,7 @@
       "pais": "El Salvador",
       "departamento": "Morazán",
       "ciudad": "Jocoro",
+      "nombre": "Marcos Jose Martinez Melgar",
       "direccion": "4a Calle Oriente, N. 103",
       "latitud": "13.6132267",
       "longitud": "-88.0281667"
@@ -2645,6 +2984,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "Bolívar",
+      "nombre": "Henrry Jaime Cruz Flores",
       "direccion": "Calle Manuel J. Arce, Bo. El Centro",
       "latitud": "13.57427",
       "longitud": "-87.9532333"
@@ -2653,6 +2993,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Antonio",
+      "nombre": "Ruth Marisol Romero de Garcia",
       "direccion": "Av. Guerra, Pj 3 Col. Caracol, Cton. San",
       "latitud": "13.4028822",
       "longitud": "-88.0519502"
@@ -2661,6 +3002,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "El Carmen",
+      "nombre": "Rachel Lissett Nolasco de Giron",
       "direccion": "Bo. El Centro, Cton. Olomega",
       "latitud": "13.3600154",
       "longitud": "-87.9965008"
@@ -2669,6 +3011,7 @@
       "pais": "El Salvador",
       "departamento": "La Unión",
       "ciudad": "El Piche",
+      "nombre": "Mini Super Alisson",
       "direccion": "Canton Salalagua fte Ferreteria",
       "latitud": "13.286725",
       "longitud": "-87.9939633"
@@ -2677,6 +3020,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Zapotitan",
+      "nombre": "Tda Nuevo Milagro",
       "direccion": "Col Los Proceres Cton Cerro de Plata",
       "latitud": "13.787578",
       "longitud": "-89.440502"
@@ -2685,6 +3029,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Lourdes",
+      "nombre": "Tienda Chonita",
       "direccion": "Palo Grade casa 27",
       "latitud": "13.7392033",
       "longitud": "-89.3666216"
@@ -2693,6 +3038,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Salmo 40",
       "direccion": "Final Calle Lara Local 1008",
       "latitud": "13.68857473",
       "longitud": "-89.18408006"
@@ -2701,6 +3047,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Tda Elena",
       "direccion": "Mercado Tineti puesto 482",
       "latitud": "13.698272",
       "longitud": "-89.183749"
@@ -2709,6 +3056,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Nueva Granada",
+      "nombre": "Jose Miguel Soriano Rivera",
       "direccion": "Calle Principal Poligo A. Lotif Eltempisque 3,Nueva Granada",
       "latitud": "13.560351",
       "longitud": "-88.4538952"
@@ -2717,6 +3065,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Estanzuelas",
+      "nombre": "Farmacia Shadai",
       "direccion": "Barrio Belen Calle Principal",
       "latitud": "13.6440885",
       "longitud": "-88.4937675"
@@ -2725,6 +3074,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Mercedes Umaña",
+      "nombre": "Tienda Antistenia",
       "direccion": "El Escarbadero Calle Principal",
       "latitud": "13.5915283",
       "longitud": "-88.4987683"
@@ -2733,6 +3083,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Market HYP, S.A. de C.V.",
       "direccion": "Av. Ppl. Block 1, Urb. La Cima II",
       "latitud": "13.66607585",
       "longitud": "-89.21929143"
@@ -2741,6 +3092,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Antiguo Cuscatlán",
+      "nombre": "Tda El Baratillo San Antonio",
       "direccion": "Altos De Guadalupe Block A Casa 11",
       "latitud": "13.67376553",
       "longitud": "-89.23526064"
@@ -2749,6 +3101,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "San Salvador",
+      "nombre": "Mini Super Bettos",
       "direccion": "Lomas S. Francisco Cll 1 Casa 2",
       "latitud": "13.67337819",
       "longitud": "-89.22858428"
@@ -2757,6 +3110,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Las Mesas",
+      "nombre": "Super La Pita",
       "direccion": "Calle a la pita",
       "latitud": "13.27747",
       "longitud": "-88.8106399"
@@ -2765,6 +3119,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Apastepeque",
+      "nombre": "Tda Manguito",
       "direccion": "Cas. El Carrizal Cton. San Juan Mer",
       "latitud": "13.68328119",
       "longitud": "-88.70144304"
@@ -2773,6 +3128,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "El Rosario",
+      "nombre": "Paula Isabel Hernandez de Lopez",
       "direccion": "Bo El Centro costado derecho de Iglesia catolica fte al parq",
       "latitud": "13.7686123",
       "longitud": "-88.9087131"
@@ -2781,6 +3137,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "Zacatecoluca",
+      "nombre": "Tienda el Mango",
       "direccion": "km 83 Cton el Espino Carr. a San Vicente",
       "latitud": "13.5065483",
       "longitud": "-88.8566133"
@@ -2789,6 +3146,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Santa Cruz Porrillo",
+      "nombre": "Raul Edilberto Navarrete Quintanill",
       "direccion": "Pje 2, Pol. 19, Lote 11 Carr Litoral Km 74",
       "latitud": "13.44022165",
       "longitud": "-88.79794624"
@@ -2797,6 +3155,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "San Antonio",
+      "nombre": "Tda Enmanuel",
       "direccion": "Frente a parque San Lorenso",
       "latitud": "13.605195",
       "longitud": "-88.770302"
@@ -2805,6 +3164,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "San Ildefonso",
+      "nombre": "Tda Nataly",
       "direccion": "San  Idelfonso Bo San Antonio",
       "latitud": "13.70478104",
       "longitud": "-88.56030017"
@@ -2813,6 +3173,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Santa Clara",
+      "nombre": "Tienda Rocio",
       "direccion": "Santa Clara fte a casa comunal",
       "latitud": "13.7030736",
       "longitud": "-88.7281178"
@@ -2821,6 +3182,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Verapaz",
+      "nombre": "Super La Sagrada Familia",
       "direccion": "Calle Principal, Barrio las Mercedes",
       "latitud": "13.64436557",
       "longitud": "-88.8688444"
@@ -2829,6 +3191,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Verapaz",
+      "nombre": "Tda El Ceibon",
       "direccion": "Cton Molineros, Cl A Verapaz",
       "latitud": "13.6595099",
       "longitud": "-88.86665571"
@@ -2837,6 +3200,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Guadalupe",
+      "nombre": "Tda Lety",
       "direccion": "Av Salvador Platero Bo El Calvario",
       "latitud": "13.61746971",
       "longitud": "-88.88000406"
@@ -2845,6 +3209,7 @@
       "pais": "El Salvador",
       "departamento": "Cuscatlán",
       "ciudad": "San Rafael Cedros",
+      "nombre": "Tda Divino Niño",
       "direccion": "Cton San Jose Lomas De Peñas",
       "latitud": "13.72989516",
       "longitud": "-88.89631659"
@@ -2853,6 +3218,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Santa Rosa",
+      "nombre": "MOLSCAR, S.A. de C.V.",
       "direccion": "Cton. Santa Rosa, n. 2, 1ra zona el Centro",
       "latitud": "13.84667677",
       "longitud": "-89.42417834"
@@ -2861,6 +3227,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Ciudad Arce",
+      "nombre": "Tienda Helen",
       "direccion": "Entrada el Divisadero N.11 San Buena Aventura Entr",
       "latitud": "13.8194266",
       "longitud": "-89.4223883"
@@ -2869,6 +3236,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Tecapán",
+      "nombre": "Yeni",
       "direccion": "Av. 8 De Diciembre Bo. El Calvario",
       "latitud": "13.4567521",
       "longitud": "-88.4911948"
@@ -2877,6 +3245,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Jiquilisco",
+      "nombre": "Tienda Fatima",
       "direccion": "Hacienda Normandia el cruce",
       "latitud": "13.3511836",
       "longitud": "-88.6161471"
@@ -2885,6 +3254,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Santa Cruz Porrillo",
+      "nombre": "Estefany Betsabe Rivera Hernandez",
       "direccion": "Calle principal, Cton. Bo. Nuevo Crio. Bo. Nuevo",
       "latitud": "13.4300683",
       "longitud": "-88.7988933"
@@ -2893,6 +3263,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "San Vicente",
+      "nombre": "Tda Jeraldina",
       "direccion": "Residencial Alta Vista 4 senda 34 pol. 21 casa 50",
       "latitud": "13.644727",
       "longitud": "-88.788019"
@@ -2901,6 +3272,7 @@
       "pais": "El Salvador",
       "departamento": "La Paz",
       "ciudad": "El Rosario",
+      "nombre": "Deposito Yanira",
       "direccion": "Calle Jose Marias Delgado, Bo. El Angel, n.9110",
       "latitud": "13.49578285",
       "longitud": "-88.9972229"
@@ -2909,14 +3281,25 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Atiquizaya",
+      "nombre": "EL BARATILLO SA DE CV",
       "direccion": "No 2-3 Mercado Municipal No 3 fte Karlam",
       "latitud": "13.97783817",
       "longitud": "-89.75790583"
     },
     {
       "pais": "El Salvador",
+      "departamento": "Santa Ana",
+      "ciudad": "Chalchuapa",
+      "nombre": "Tda Juan",
+      "direccion": "Residencial Limar",
+      "latitud": "13.98498336",
+      "longitud": "-89.68366563"
+    },
+    {
+      "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Atiquizaya",
+      "nombre": "Tienda Mercy",
       "direccion": "4a Cll Pte y 1a Av Norte Bo El Centro",
       "latitud": "13.97654068",
       "longitud": "-89.75484408"
@@ -2925,6 +3308,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Comecayo",
+      "nombre": "Tda Sandra",
       "direccion": "Col Mendez Primera Cl Pte Casa 7",
       "latitud": "13.98920589",
       "longitud": "-89.5952912"
@@ -2933,6 +3317,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Bo San Juan",
+      "nombre": "Fatima",
       "direccion": "Urb. Santa Ana Norte Av. Via Celeste",
       "latitud": "13.98786422",
       "longitud": "-89.5644971"
@@ -2941,6 +3326,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Ciudad Arce",
+      "nombre": "Luis Adolfo Ardon Gutierrez",
       "direccion": "Carr. Panamericana Bo. El Centro n.13",
       "latitud": "13.839735",
       "longitud": "-89.44619693"
@@ -2949,6 +3335,7 @@
       "pais": "El Salvador",
       "departamento": "Ahuachapán",
       "ciudad": "Ahuachapan",
+      "nombre": "Hugo Ernesto Gonzalez Villalta",
       "direccion": "8a Cll Pte Y Av 2 de abril Bo. El Calvario n. 2-1",
       "latitud": "13.92483121",
       "longitud": "-89.84795697"
@@ -2957,6 +3344,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Chalchuapa",
+      "nombre": "Jose Alfredo Castillo",
       "direccion": "Blvd Chafic Handal, Bo. Las Animas, n. 3, Parcela 104",
       "latitud": "13.9845422",
       "longitud": "-89.67593148"
@@ -2965,6 +3353,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Chalchuapa",
+      "nombre": "Mario Ernesto Rivera Lozano",
       "direccion": "Entre 2da y 4ta Calle Ote. 1ra Av. Nte n.15",
       "latitud": "13.98614645",
       "longitud": "-89.6781034"
@@ -2973,6 +3362,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "DISTRIBUIDORA VAZEDA S.A de C.V",
       "direccion": "Cl. Ppal. entrada Urb. Barcelona",
       "latitud": "13.4580133",
       "longitud": "-88.168705"
@@ -2981,6 +3371,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Miguel",
+      "nombre": "DISTRIBUIDORA VAZEDA S.A de C.V",
       "direccion": "Cl. Elizabeth, Frente a el Car Wahs",
       "latitud": "13.4577145",
       "longitud": "-88.1644982"
@@ -2989,6 +3380,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Alegría",
+      "nombre": "Jenny Supermarket",
       "direccion": "Barrio El Centro Estanzuela",
       "latitud": "13.507713",
       "longitud": "-88.490315"
@@ -2997,6 +3389,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Residencial MonteCarlo",
+      "nombre": "Todito Pacifica",
       "direccion": "Final 8 calle pte Col Ciudad Pacifica plaza l 1 C.C Ciudad P",
       "latitud": "13.483782",
       "longitud": "-88.1941029"
@@ -3005,6 +3398,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "Lolotique",
+      "nombre": "Variedades Luis",
       "direccion": "Bo. El Centro C. Atlacat No. 14",
       "latitud": "13.5554445",
       "longitud": "-88.3506525"
@@ -3013,6 +3407,7 @@
       "pais": "El Salvador",
       "departamento": "San Miguel",
       "ciudad": "San Luis de la Reina",
+      "nombre": "Yuridia Rosmeri Salgado Hernandez",
       "direccion": "Barrio El Calvario",
       "latitud": "13.81585",
       "longitud": "-88.3472247"
@@ -3021,6 +3416,7 @@
       "pais": "El Salvador",
       "departamento": "Sonsonate",
       "ciudad": "Sonsonate Este",
+      "nombre": "Ruben Alexander Pineda Sibrian",
       "direccion": "Calle Principal, Bo. El Centro, n. 6",
       "latitud": "13.69715231",
       "longitud": "-89.55836222"
@@ -3029,6 +3425,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Soyapango",
+      "nombre": "La Canastita Hogareña",
       "direccion": "Col Las Margaritas pje 34 N No 257 fte a Mercado Las Margari",
       "latitud": "13.7301",
       "longitud": "-89.14308"
@@ -3037,6 +3434,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "Lourdes",
+      "nombre": "Grupo Contreras Salinas, S.A. de C.",
       "direccion": "Av. Lourdes, Col. San Francisco, n. 21,",
       "latitud": "13.734960",
       "longitud": "-89.374990"
@@ -3045,6 +3443,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Santa Clara",
+      "nombre": "Tienda Yariza",
       "direccion": "Calle Principal hacia Calderitas",
       "latitud": "13.7018534",
       "longitud": "-88.7453693"
@@ -3053,6 +3452,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "San Sebastián",
+      "nombre": "Orlando Rafael Cañas",
       "direccion": "Bo San Jose 5ta av sur No 7 San Sebastian",
       "latitud": "13.7231912",
       "longitud": "-88.8139018"
@@ -3061,6 +3461,7 @@
       "pais": "El Salvador",
       "departamento": "La Libertad",
       "ciudad": "La Libertad Centro",
+      "nombre": "Tda Market Genesis",
       "direccion": "Km 33 Ctra A San Juan Opico",
       "latitud": "13.80772187",
       "longitud": "-89.35831133"
@@ -3069,6 +3470,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Apastepeque",
+      "nombre": "Super Tienda Y Mayoreo La Infancia",
       "direccion": "Clle Principal Cton Calderas Apaste",
       "latitud": "13.68253682",
       "longitud": "-88.76127508"
@@ -3077,6 +3479,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "Apastepeque",
+      "nombre": "Tda Esmeralda 5",
       "direccion": "Tercera Av Nte Bo Los Angeles",
       "latitud": "13.66995069",
       "longitud": "-88.77797619"
@@ -3085,6 +3488,7 @@
       "pais": "El Salvador",
       "departamento": "San Vicente",
       "ciudad": "San Vicente",
+      "nombre": "Tienda La Harrinson",
       "direccion": "Canton Las Minas Col Divina Providencian 3 Casa A1",
       "latitud": "13.669505",
       "longitud": "-88.79371"
@@ -3093,6 +3497,7 @@
       "pais": "El Salvador",
       "departamento": "Santa Ana",
       "ciudad": "Urb Altamira",
+      "nombre": "Mi Tiendita",
       "direccion": "Comunidad Emanuel",
       "latitud": "13.97502357",
       "longitud": "-89.56808221"
@@ -3101,6 +3506,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Ilopango",
+      "nombre": "Tda Sofia",
       "direccion": "urb Vista al Lago pje 5 No 54",
       "latitud": "13.6823",
       "longitud": "-89.1228"
@@ -3109,6 +3515,7 @@
       "pais": "El Salvador",
       "departamento": "San Salvador",
       "ciudad": "Ilopango",
+      "nombre": "Tienda Paquita",
       "direccion": "Res. Vista al lago pj 1 bloq 1 casa 1",
       "latitud": "13.682607",
       "longitud": "-89.122577"
@@ -3117,6 +3524,7 @@
       "pais": "El Salvador",
       "departamento": "Usulután",
       "ciudad": "Santiago de María",
+      "nombre": "Super Market Tecapan",
       "direccion": "Barrio El Centro Tecapan, Usulutan",
       "latitud": "13.4862949",
       "longitud": "-88.4694354"
