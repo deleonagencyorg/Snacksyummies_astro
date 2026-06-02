@@ -38,6 +38,11 @@ export default defineConfig({
       target: 'es2020'
     },
     // Optimize images
-    assetsInclude: ['**/*.webp', '**/*.avif']
+    assetsInclude: ['**/*.webp', '**/*.avif'],
+    server: {
+      watch: {
+        ignored: ['**/.vercel/**']
+      }
+    }
   }
 });
