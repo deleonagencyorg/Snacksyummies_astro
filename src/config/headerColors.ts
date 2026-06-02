@@ -193,6 +193,10 @@ export function getHeaderColors(pathname: string): HeaderColorConfig {
     return headerColors.winners;
   }
   
+  if (path.includes('/centros-de-canje')) {
+    return headerColors.contact;
+  }
+  
   // Si no coincide con ninguna sección específica, usar la configuración por defecto
   return headerColors.default;
 } 
