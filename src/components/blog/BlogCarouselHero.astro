@@ -18,8 +18,9 @@ interface Props {
 
 const { news = [], currentLang = getLocale() } = Astro.props;
 
-// Show the first 3 news items as provided (no sorting)
+// Show the first 4 news items as provided (no sorting)
 const latestNews = Array.isArray(news) ? news.slice(0, 4) : [];
+const bannerUrl = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/BANNER-BLOGS.webp';
 
 const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
 ---
@@ -39,7 +40,7 @@ const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
         >
           <div class="absolute inset-0 w-full h-full overflow-hidden">
             <LazyImage
-              src={item.image}
+              src={bannerUrl}
               alt={item.title}
               class="w-full h-full object-cover animate-zoom"
             />
@@ -75,24 +76,7 @@ const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
         ></button>
       ))}
     </div>
-    <button
-      class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-2 rounded-full transition-all duration-300"
-      id="prev-slide"
-      aria-label="Previous slide"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
-    </button>
-    <button
-      class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-20 hover:bg-opacity-40 text-white p-2 rounded-full transition-all duration-300"
-      id="next-slide"
-      aria-label="Next slide"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </button>
+    <!-- Prev/Next controls removed to avoid flash during transitions -->
   </div>
 )}
 
@@ -102,8 +86,6 @@ class BlogCarouselHero {
     this.container = container;
     this.slides = container.querySelectorAll('[data-slide]');
     this.indicators = container.querySelectorAll('[data-indicator]');
-    this.prevButton = container.querySelector('#prev-slide');
-    this.nextButton = container.querySelector('#next-slide');
     this.currentSlide = 0;
     this.autoPlayInterval = null;
     this.init();
@@ -135,8 +117,6 @@ class BlogCarouselHero {
     this.showSlide((this.currentSlide - 1 + this.slides.length) % this.slides.length);
   }
   bindEvents() {
-    this.prevButton?.addEventListener('click', () => this.prevSlide());
-    this.nextButton?.addEventListener('click', () => this.nextSlide());
     this.indicators.forEach((btn, idx) => {
       btn.addEventListener('click', () => this.showSlide(idx));
     });
