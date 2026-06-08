@@ -3,31 +3,49 @@
   "subtitle": "Descubre tu personalidad Yummies",
   "personalities": [
     {
-      "id": "snackero",
-      "title": "El Buena Vibra Snackero",
-      "emoji": "👑",
-      "description": "Siempre listo para la buena compañía, las risas y el sabor real. Eres auténtico y sin complicaciones, como tus chips Ziba's.",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp",
-      "brand": "Ziba's",
-      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-logo-3.webp"
+      "id": "yumminuts",
+      "title": "YUMMI NUTS",
+      "emoji": "🥜",
+      "description": "Siempre estás haciendo algo, moviéndote o resolviendo planes sobre la marcha. Te gustan las cosas prácticas, pero también disfrutar el momento. Encuentras formas simples de seguir tu ritmo, recarga energía y acompañar tu día sin complicarte.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+      "brand": "yumminuts",
+      "logo": "#"
     },
     {
-      "id": "aventurero",
-      "title": "El Aventurero Crujiente",
-      "emoji": "🏄",
-      "description": "Buscas emociones fuertes y sabores intensos. No le temes a nada y siempre estás listo para el próximo reto, como nuestros Taqueritos Fuego.",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-dragon-de-fuego-2.webp",
-      "brand": "Taqueritos",
-      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-logo.webp"
+      "id": "cappy",
+      "title": "CAPPY",
+      "emoji": "🐯",
+      "description": "Tu creatividad aparece en tu rutina conviertes lo cotidiano en aventuras y siempre encuentras una forma autentica de expresarte.  Eres soñador, espontaneo y de los que crean su propio estilo de seguir reglas.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Infladitos_Queso_Mantequilla.webp",
+      "brand": "cappy",
+      "logo": "#"
     },
     {
-      "id": "gamer",
-      "title": "El Gamer Snacker",
-      "emoji": "🎮",
-      "description": "Tu combo perfecto es una buena partida y tus Taqueritos. Estratégico, competitivo y siempre con energía para una partida más.",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-chile-toreado-2.webp",
+      "id": "taqueritos",
+      "title": "TAQUERITOS",
+      "emoji": "🔥",
+      "description": "Eres intensidad, actividad y puro nivel. Te gusta vivir rápido, hacer ruido y competir, Gaming, fútbol y juegos intensos con amigos... siempre llegas a subir el nivel de todo y de todos..",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
       "brand": "Taqueritos",
-      "logo": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-logo.webp"
+      "logo": "#"
+    },
+        {
+      "id": "ranchitas",
+      "title": "RANCHITAS",
+      "emoji": "🌶️",
+      "description": "Siempre encuentras cómo hacer más real cada momento y logras ponerle crunch a todo. Te gusta improvisar, compartir y disfrutar sin complicarte tanto. Básicamente contigo cualquier plan se siente más Ranchitas.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
+      "brand": "Ranchitas",
+      "logo": "#"
+    },
+        {
+      "id": "zibas",
+      "title": "ZIBA´S",
+      "emoji": "🥔",
+      "description": "Haces que todo se sienta más auténtico, espontaneo y natural. Te gusta compartir con los tuyos y disfrutar sin complicarte. Tu vibe convierte cualquier junte, viaje o antojo en algo memorable.",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
+      "brand": "Ziba´s",
+      "logo": "#"
     }
 
   ],
@@ -41,151 +59,131 @@
   "questions": [
     {
       "id": 1,
-      "question": "Un plan perfecto de fin de semana es:",
+      "question": "Tus amigos organizaron un plan. Tú siempre llegas con...",
       "options": [
         {
           "id": "1a",
-          "text": "Ver Formula 1"
+          "text": "Semillas y buena energía"
         },
         {
           "id": "1b",
-          "text": "Ver un partido con amigos"
+          "text": "La bocina y el buen mood"
         },
         {
           "id": "1c",
-          "text": "Jugar videojuegos con amigos"
+          "text": "El mejor Juego para jugar intenso"
         },
         {
           "id": "1d",
-          "text": "Imaginar y crear algo nuevo"
+          "text": "El dip para compartir"
         },
         {
           "id": "1e",
-          "text": "Ir a la playa con música en vivo"
-        },
-        {
-          "id": "1f",
-          "text": "Ejercitarse"
+          "text": "Una playlist para bailar sin parar"
         }
       ]
     },
     {
       "id": 2,
-      "question": "Si fueras una frase, ¿Cuál serías?",
+      "question": "Un finde ideal para ti incluye",
       "options": [
         {
           "id": "2a",
-          "text": "¡Hagamos algo extremo!"
+          "text": "Un pic nic relajado.."
         },
         {
           "id": "2b",
-          "text": "Devorar el mundo sin miedo"
+          "text": "Improvisar planes con tu imaginación"
         },
         {
           "id": "2c",
-          "text": "¿Un juego más?"
+          "text": "Pasar niveles hasta que salga el sol"
         },
         {
           "id": "2d",
-          "text": "Todo empieza con un poco de magia"
+          "text": "Acampar con Amigos"
         },
         {
           "id": "2e",
-          "text": "La música es mi vida"
-        },
-        {
-          "id": "2f",
-          "text": "Salud es sabor"
+          "text": "¡Finde de concierto!"
         }
       ]
     },
     {
       "id": 3,
-      "question": "¿Cómo te ves en una reunión?",
+      "question": "En tu mochila nunca falta",
       "options": [
         {
           "id": "3a",
-          "text": "Creando retos extremos"
+          "text": "Algo que me acompañe entre pendientes y rutina"
         },
         {
           "id": "3b",
-          "text": "Devorando los snacks"
+          "text": "Una libreta para mis ideas"
         },
         {
           "id": "3c",
-          "text": "Hablando de videojuegos"
+          "text": "Mi juego favorito"
         },
         {
           "id": "3d",
-          "text": "Jugando en todo momento"
+          "text": "Una cámara instantánea"
         },
         {
           "id": "3e",
-          "text": "Animando a todos a ir a un concierto"
-        },
-        {
-          "id": "3f",
-          "text": "Con algo rico y saludable"
+          "text": "Audifonos y mis lentes de sol"
         }
       ]
     },
     {
       "id": 4,
-      "question": "¿Qué no puede faltar en tu mochila o cartera?",
+      "question": "Tu tipo de película favorita es:",
       "options": [
         {
           "id": "4a",
-          "text": "GoPro"
+          "text": "Inspiradoras y motivadoras"
         },
         {
           "id": "4b",
-          "text": "Mis chips favoritos"
+          "text": "Animadas, llenas de magia"
         },
         {
           "id": "4c",
-          "text": "Audífonos y control de videojuegos"
+          "text": "Que sea inspirada en videojuegos"
         },
         {
           "id": "4d",
-          "text": "Un cuaderno de inspiración"
+          "text": "Los que tienen los mejores plot twist"
         },
         {
           "id": "4e",
-          "text": "Lentes de sol y entradas a un concierto"
-        },
-        {
-          "id": "4f",
-          "text": "Botella de agua y un snack saludable"
+          "text": "Comedias para reír toda la noche"
         }
       ]
     },
     {
       "id": 5,
-      "question": "¿Qué red social te representa más?",
+      "question": "Si tuvieras un Súper poder por 24 horas",
       "options": [
         {
           "id": "5a",
-          "text": "TikTok: Retos, diversión, actitud"
+          "text": "Recargar tu energía en cualquier momento"
         },
         {
           "id": "5b",
-          "text": "YouTube: contenido real y directo"
+          "text": "Dar vida a todo lo que imagino"
         },
         {
           "id": "5c",
-          "text": "Twitch: Juegos, streaming, comunidad"
+          "text": "Pasarme todos los videojuegos del mundo"
         },
         {
           "id": "5d",
-          "text": "Pinterest: ideas mágicas e inspiración"
+          "text": "Poder escapar de la rutina cuando quiera"
         },
         {
           "id": "5e",
-          "text": "Instagram: Fotos, estilo y vibes"
-        },
-        {
-          "id": "5f",
-          "text": "Strava o Spotify: me gusta moverme y cuidar de mí"
+          "text": "Teletransportarme a cualquier concierto"
         }
       ]
     }
