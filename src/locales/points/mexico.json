@@ -1,0 +1,68 @@
+{
+  "source": "Honduras_zona_norte.xlsx",
+  "points": [
+    {
+      "pais": "México",
+      "departamento": "Ciudad de México",
+      "ciudad": "Ampliación Potrerillo",
+      "nombre": "1825554",
+      "direccion": "Col Pradera, 27 Clle Una Cdra Antes De Bulevar Las Torres",
+      "latitud": "19.3076704",
+      "longitud": "-99.2584771"
+    },
+    {
+      "pais": "México",
+      "departamento": "Guanajuato",
+      "ciudad": "Centro",
+      "nombre": "1829454",
+      "direccion": "Central Metropolitana, 1 Nivel",
+      "latitud": "21.1172394",
+      "longitud": "-101.6872529"
+    },
+    {
+      "pais": "México",
+      "departamento": "Guanajuato",
+      "ciudad": "Centro",
+      "nombre": "1829454",
+      "direccion": "Central Metropolitana, 1 Nivel",
+      "latitud": "21.1172394",
+      "longitud": "-101.6872529"
+    },
+    {
+      "pais": "México",
+      "departamento": "Puebla",
+      "ciudad": "Chignahuapan",
+      "nombre": "1829455",
+      "direccion": "Bo El Llano Del Conejo, Esquina Opuesta Oficina De La Enee S",
+      "latitud": "19.704495",
+      "longitud": "-98.0805144"
+    },
+    {
+      "pais": "México",
+      "departamento": "Guanajuato",
+      "ciudad": "Centro",
+      "nombre": "1829454",
+      "direccion": "Central Metropolitana, 1 Nivel",
+      "latitud": "21.1172394",
+      "longitud": "-101.6872529"
+    },
+    {
+      "pais": "México",
+      "departamento": "Jalisco",
+      "ciudad": "Puente Grande",
+      "nombre": "1831092",
+      "direccion": "Ald Puente Grande,El Centro,Frente A Agrocomecial",
+      "latitud": "20.5691587",
+      "longitud": "-103.1540636"
+    },
+    {
+      "pais": "México",
+      "departamento": "Jalisco",
+      "ciudad": "Puente Grande",
+      "nombre": "1831092",
+      "direccion": "Ald Puente Grande,El Centro,Frente A Agrocomecial",
+      "latitud": "20.5691587",
+      "longitud": "-103.1540636"
+    }
+  ]
+}

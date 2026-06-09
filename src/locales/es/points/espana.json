@@ -1,0 +1,50 @@
+{
+  "source": "Honduras_zona_norte.xlsx",
+  "points": [
+    {
+      "pais": "España",
+      "departamento": "Comunidad de Madrid",
+      "ciudad": "Arroyomolinos",
+      "nombre": "1844252",
+      "direccion": "Cll De La Linea",
+      "latitud": "40.2792305",
+      "longitud": "-3.9152117"
+    },
+    {
+      "pais": "España",
+      "departamento": "Canarias",
+      "ciudad": "Las Palmas de Gran Canaria",
+      "nombre": "1828535",
+      "direccion": "Bo Las Palmas- Las Minas Cll Ppl Progreso",
+      "latitud": "28.1235459",
+      "longitud": "-15.4362574"
+    },
+    {
+      "pais": "España",
+      "departamento": "Comunidad de Madrid",
+      "ciudad": "Centro",
+      "nombre": "1981400",
+      "direccion": "Cll Prin ,1 Cuadra Antes De La Casa De La Cultura",
+      "latitud": "40.421977",
+      "longitud": "-3.69553"
+    },
+    {
+      "pais": "España",
+      "departamento": "Comunidad de Madrid",
+      "ciudad": "Arroyomolinos",
+      "nombre": "1844252",
+      "direccion": "Cll De La Linea",
+      "latitud": "40.2792305",
+      "longitud": "-3.9152117"
+    },
+    {
+      "pais": "España",
+      "departamento": null,
+      "ciudad": "La Manjoya",
+      "nombre": "1831128",
+      "direccion": "Ald Los Prietos,1 Cdra Antes De La Iglesia Catolica",
+      "latitud": "43.340894",
+      "longitud": "-5.847314900000001"
+    }
+  ]
+}

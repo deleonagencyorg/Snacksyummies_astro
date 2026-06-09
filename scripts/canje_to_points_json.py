@@ -20,6 +20,9 @@ import ssl
 import sys
 import datetime
 import time
+import random
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 from urllib.error import HTTPError, URLError
@@ -242,10 +245,7 @@ def resolve_location(
         return {"pais": None, "departamento": None, "ciudad": None, "nombre": nombre_value, "direccion": None, "latitud": None, "longitud": None}
 
     location_info: Dict[str, Optional[str]] = {}
-    if file_country:
-        # Fast path: skip API call and use known country
-        location_info = {"pais": file_country, "departamento": None, "ciudad": None}
-    elif lat_value and lng_value:
+    if lat_value and lng_value:
         cache_key = f"rev:{lat_value},{lng_value}"
         if cache_key not in cache:
             response = reverse_geocode(lat_value, lng_value, api_key)
@@ -259,7 +259,10 @@ def resolve_location(
             location_info = result
         else:
             location_info = extract_location_data(result) if result else {"pais": None, "departamento": None, "ciudad": None}
-    else:
+        # Override with known country if file_country is set
+        if file_country and not location_info.get("pais"):
+            location_info["pais"] = file_country
+    elif address_value:
         cache_key = f"geocode:{address_value}"
         if cache_key not in cache:
             response = geocode_address(address_value, api_key)
@@ -278,6 +281,10 @@ def resolve_location(
             location_info = result
         else:
             location_info = extract_location_data(result) if result else {"pais": None, "departamento": None, "ciudad": None}
+        if file_country and not location_info.get("pais"):
+            location_info["pais"] = file_country
+    else:
+        location_info = {"pais": file_country, "departamento": None, "ciudad": None}
 
     return {
         "pais": location_info.get("pais"),
@@ -304,6 +311,57 @@ def detect_header_row(path: Path, sheet_name: Optional[str] = None) -> int:
     return 0
 
 
+def batch_geocode(df: pd.DataFrame, lat_col: Optional[str], lng_col: Optional[str], api_key: str, cache: Dict[str, Dict[str, Any]], file_country: Optional[str]) -> None:
+    """Pre-geocode all unique lat/lng pairs in parallel to speed up row processing."""
+    if not lat_col or not lng_col:
+        return
+
+    # Collect unique lat/lng pairs that are missing from cache
+    unique_pairs = set()
+    for _, row in df.iterrows():
+        if pd.notna(row.get(lat_col, None)) and pd.notna(row.get(lng_col, None)):
+            lat = str(row[lat_col]).strip()
+            lng = str(row[lng_col]).strip()
+            if lat and lng:
+                cache_key = f"rev:{lat},{lng}"
+                if cache_key not in cache:
+                    unique_pairs.add((lat, lng))
+
+    if not unique_pairs:
+        return
+
+    log(f"  Geocodificando {len(unique_pairs)} coordenadas únicas en paralelo...")
+
+    def geocode_pair(lat: str, lng: str) -> Tuple[str, Optional[Dict[str, Any]]]:
+        try:
+            response = reverse_geocode(lat, lng, api_key)
+            if response.get("status") == "OK" and response.get("results"):
+                result = response["results"][0]
+                info = extract_location_data(result)
+                # If we know the country from filename, override it
+                if file_country:
+                    info["pais"] = file_country
+                return f"rev:{lat},{lng}", info
+            else:
+                # If reverse geocode fails, try forward geocode with address
+                return f"rev:{lat},{lng}", {"pais": file_country, "departamento": None, "ciudad": None}
+        except Exception as exc:
+            log(f"  Error geocodificando {lat},{lng}: {exc}")
+            return f"rev:{lat},{lng}", {"pais": file_country, "departamento": None, "ciudad": None}
+
+    completed = 0
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futures = {executor.submit(geocode_pair, lat, lng): (lat, lng) for lat, lng in unique_pairs}
+        for future in as_completed(futures):
+            cache_key, info = future.result()
+            cache[cache_key] = info
+            completed += 1
+            if completed % 100 == 0:
+                log(f"  Geocodificados {completed}/{len(unique_pairs)}...")
+
+    log(f"  Geocodificación completada: {len(unique_pairs)} nuevas entradas")
+
+
 def process_sheet(df: pd.DataFrame, path: Path, sheet_name: str, api_key: str, cache: Dict[str, Dict[str, Any]], file_country: Optional[str] = None) -> Dict[str, List[Dict[str, Optional[str]]]]:
     if df.empty:
         return {}
@@ -317,6 +375,9 @@ def process_sheet(df: pd.DataFrame, path: Path, sheet_name: str, api_key: str, c
     if not address_col and (not lat_col or not lng_col):
         log(f"  [{path.name}:{sheet_name}] columnas no encontradas, saltando")
         return {}
+
+    # Pre-geocode all unique coordinates first (parallel batch)
+    batch_geocode(df, lat_col, lng_col, api_key, cache, file_country)
 
     country_points: Dict[str, List[Dict[str, Optional[str]]]] = {}
     row_count = 0

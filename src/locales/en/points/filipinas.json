@@ -1,0 +1,14 @@
+{
+  "source": "Honduras_zona_norte.xlsx",
+  "points": [
+    {
+      "pais": "Filipinas",
+      "departamento": "Metro Manila",
+      "ciudad": "Barrio San Jose",
+      "nombre": "1831127",
+      "direccion": "Ald Los Prietos,Bo San Jose,Calle Principal Salida Chilileng",
+      "latitud": "14.6400798",
+      "longitud": "120.9920745"
+    }
+  ]
+}

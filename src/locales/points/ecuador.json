@@ -1,0 +1,23 @@
+{
+  "source": "Honduras_zona_norte.xlsx",
+  "points": [
+    {
+      "pais": "Ecuador",
+      "departamento": "Guayas",
+      "ciudad": "Guayaquil",
+      "nombre": "1844254",
+      "direccion": "Bodegas De Unicomer",
+      "latitud": "-2.1090253",
+      "longitud": "-79.9464922"
+    },
+    {
+      "pais": "Ecuador",
+      "departamento": "Guayas",
+      "ciudad": "Guayaquil",
+      "nombre": "1844254",
+      "direccion": "Bodegas De Unicomer",
+      "latitud": "-2.1090253",
+      "longitud": "-79.9464922"
+    }
+  ]
+}
