@@ -89,7 +89,7 @@ const textColor = headerColorConfig?.textColor || 'text-white';
 const hoverTextColor = headerColorConfig?.hoverTextColor || 'hover:text-yellow-300';
 ---
 
-<div class="language-switcher flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2">
+<div class="language-switcher flex flex-col md:flex-row md:flex-wrap items-center space-y-2 md:space-y-0 md:space-x-2">
   <div class="flex items-center space-x-2">
     <a href={esUrl} class={`language-link flex items-center ${activeLocale === 'es' ? 'font-bold text-yellow-500' : `${textColor} ${hoverTextColor}`}`} title="Español" data-lang="es">
       <span class="flag-icon mr-1">
@@ -130,8 +130,8 @@ const hoverTextColor = headerColorConfig?.hoverTextColor || 'hover:text-yellow-3
   )}
 
   <div class="mt-2 md:mt-0 md:ml-2 flex items-center">
-    <a href="https://yummiesmundialista.com" target="_blank" rel="noopener noreferrer" class="verano-btn flex items-center px-3 py-1.5 rounded-md font-bold text-white text-xs uppercase tracking-wide transition-all duration-200 hover:opacity-90 hover:scale-105 whitespace-nowrap" title="VERANO 2026">
-      YUMMIES MUNDIALISTA
+    <a href="https://yummiesmundialista.com" target="_blank" rel="noopener noreferrer" class="verano-btn flex items-center justify-center px-3 py-1.5 rounded-md font-bold text-white text-xs uppercase tracking-wide transition-all duration-200 hover:opacity-90 hover:scale-105" title="VERANO 2026">
+      <span class="verano-btn-text">YUMMIES<br/>MUNDIALISTA</span>
     </a>
   </div>
 </div>
@@ -193,5 +193,15 @@ const hoverTextColor = headerColorConfig?.hoverTextColor || 'hover:text-yellow-3
 
   .verano-btn {
     background-color: #e41313;
+    min-height: 2.75rem;
+    width: 8.75rem;
+    text-align: center;
+    line-height: 1.05;
+  }
+
+  .verano-btn-text {
+    display: inline-block;
+    white-space: normal;
+    text-align: center;
   }
 </style>
