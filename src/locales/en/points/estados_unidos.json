@@ -1,0 +1,14 @@
+{
+  "source": "Honduras_zona_norte.xlsx",
+  "points": [
+    {
+      "pais": "Estados Unidos",
+      "departamento": "California",
+      "ciudad": "Santa Bárbara",
+      "nombre": "1825555",
+      "direccion": "Bo Abajo, Fte. a Placita, Santa Barbara",
+      "latitud": "34.420285",
+      "longitud": "-119.698935"
+    }
+  ]
+}

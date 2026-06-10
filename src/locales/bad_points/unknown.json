@@ -1,0 +1,437 @@
+{
+  "source": "Honduras.xlsx; Honduras2.xlsx; Honduras_zona_norte.xlsx",
+  "points": [
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "Comercial  jiret",
+      "direccion": "Calle prinsip a",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "Comercial  jiret",
+      "direccion": null,
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "Pùlperia Petrona",
+      "direccion": null,
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1800120",
+      "direccion": "7 Calle 13 Ave,Esquina Opuesta A Iglesia Evangelica",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1824035",
+      "direccion": "Res Montebello Calle principal bloq",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844251",
+      "direccion": "2 Cuadras Abajo Del Campo",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1371408",
+      "direccion": "cll principal  col lempira 2  abajo de pulperia Santos",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844162",
+      "direccion": "Ultima Cll,Parte Intermedia De La Cll",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844246",
+      "direccion": "Cll Ppl",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844247",
+      "direccion": "Una Cuadra Abajo De La Iglesia",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831135",
+      "direccion": "Bo El Centro,Parque Central,Dos Cuadras Ariiba De Calle Prin",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844245",
+      "direccion": "28 Cll, 33 Ave",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844246",
+      "direccion": "Cll Ppl",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844247",
+      "direccion": "Una Cuadra Abajo De La Iglesia",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831135",
+      "direccion": "Bo El Centro,Parque Central,Dos Cuadras Ariiba De Calle Prin",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1824035",
+      "direccion": "Res Montebello Calle principal bloq",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1354207",
+      "direccion": "San Pedro Sula",
+      "latitud": "16.67197287",
+      "longitud": "-86.40706301"
+    },
+    {
+      "pais": null,
+      "departamento": "Ocotepeque",
+      "ciudad": "Ocotepeque",
+      "nombre": "1304393",
+      "direccion": "El Poy, Fte A Posta Aduanera",
+      "latitud": "14.3766670",
+      "longitud": "-89.2090820"
+    },
+    {
+      "pais": null,
+      "departamento": "Ocotepeque",
+      "ciudad": "Ocotepeque",
+      "nombre": "1370671",
+      "direccion": "El Poy, Fte A Posta Aduanera",
+      "latitud": "14.3766760",
+      "longitud": "-89.2090930"
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1829464",
+      "direccion": "Col Valle, Cll Prin Contiguo A El Campo Villanueva",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1829464",
+      "direccion": "Col Valle, Cll Prin Contiguo A El Campo Villanueva",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1829464",
+      "direccion": "Col Valle, Cll Prin Contiguo A El Campo Villanueva",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1829464",
+      "direccion": "Col Valle, Cll Prin Contiguo A El Campo Villanueva",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1829464",
+      "direccion": "Col Valle, Cll Prin Contiguo A El Campo Villanueva",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1829464",
+      "direccion": "Col Valle, Cll Prin Contiguo A El Campo Villanueva",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844160",
+      "direccion": "Una Cuadra Antes De El Arroz Cafe La 20",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844160",
+      "direccion": "Una Cuadra Antes De El Arroz Cafe La 20",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1829425",
+      "direccion": "Col Impacto Del Rey, A La Par De Pulp",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831122",
+      "direccion": "Ald La Sabana De San Pedro ,En Calle Principal Tercera Caset",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831123",
+      "direccion": "Ald Las Lomitas,Frente A Campo De Futbol",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831098",
+      "direccion": "Ald El Salitre,La Puerta Guares,2 Cdra Antes Del Parque",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1844161",
+      "direccion": "Cll Ppl,Tres Cuadra Adelante De La Posta",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831122",
+      "direccion": "Ald La Sabana De San Pedro ,En Calle Principal Tercera Caset",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831123",
+      "direccion": "Ald Las Lomitas,Frente A Campo De Futbol",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831092",
+      "direccion": "Ald Puente Grande,El Centro,Frente A Agrocomecial",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831092",
+      "direccion": "Ald Puente Grande,El Centro,Frente A Agrocomecial",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831093",
+      "direccion": "Ald Altamira,Calle Principal",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831093",
+      "direccion": "Ald Altamira,Calle Principal",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831131",
+      "direccion": "Ald Los Prietos,2 Cdra Abajo De Pulperia Chindo",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1831130",
+      "direccion": "Bo Buenos Aires 2,Contiguo Al Polivalente Fco Morazán",
+      "latitud": null,
+      "longitud": null
+    },
+    {
+      "pais": null,
+      "departamento": null,
+      "ciudad": null,
+      "nombre": "1812240",
+      "direccion": "2DA CALLE PRIN ESQUINA OPUESTA A LA IGLESIA DE DIOS MORAZAN",
+      "latitud": null,
+      "longitud": null
+    }
+  ]
+}
