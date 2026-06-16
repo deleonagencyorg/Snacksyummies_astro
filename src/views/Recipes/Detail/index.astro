@@ -313,7 +313,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
           <!-- Flechas de navegación en recetas -->
     <div class="w-full mx-auto px-4 md:px-0 mt-6 mb-6">
       <div class="max-w-7xl mx-auto">
-        <div class="flex justify-between items-center gap-6">
+        <div class="flex justify-between items-center gap-6 recipe-buttons-row">
           <button
             id="prevRecipeBtn"
             class="recipe-prev-btn text-white font-bold bg-transparent hover:opacity-90 px-4 py-2 rounded-full shadow-lg transition-all duration-200"
@@ -636,7 +636,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
 
   .recipe-prev-btn,
   .recipe-next-btn,
-  .rel-nav-btn {
+  .rel-arrow-btn {
     border: 1px solid rgba(255,255,255,0.18);
     background: rgba(255,255,255,0.06);
     color: #ffffff;
@@ -645,7 +645,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
 
   .recipe-prev-btn,
   .recipe-next-btn,
-  .rel-nav-btn {
+  .rel-arrow-btn {
     min-width: 160px;
     height: 44px;
     display: inline-flex;
@@ -659,13 +659,13 @@ function formatTime(minutes: number, lang: string = currentLang): string {
   @media (min-width: 768px) {
     .recipe-prev-btn,
     .recipe-next-btn,
-    .rel-nav-btn {
+    .rel-arrow-btn {
       transform: none !important;
     }
 
     .recipe-prev-btn:hover,
     .recipe-next-btn:hover,
-    .rel-nav-btn:hover {
+    .rel-arrow-btn:hover {
       transform: none !important;
       background: rgba(255,255,255,0.12);
     }
@@ -679,7 +679,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
   @media (max-width: 480px) {
     .recipe-prev-btn,
     .recipe-next-btn,
-    .rel-nav-btn {
+    .rel-arrow-btn {
       min-width: 140px;
       height: 40px;
       font-size: 0.9rem;
@@ -689,10 +689,10 @@ function formatTime(minutes: number, lang: string = currentLang): string {
   
   .recipe-prev-btn:focus,
   .recipe-next-btn:focus,
-  .rel-nav-btn:focus,
+  .rel-arrow-btn:focus,
   .recipe-prev-btn.active,
   .recipe-next-btn.active,
-  .rel-nav-btn.active {
+  .rel-arrow-btn.active {
     outline: none;
     background: #ffffff;
     color: #0A3D7E; /* primary */
@@ -733,5 +733,36 @@ function formatTime(minutes: number, lang: string = currentLang): string {
   
   ::-webkit-scrollbar-thumb:hover {
     background: #3b82f6;
+  }
+  @media (max-width: 640px) {
+    .recipe-buttons-row {
+      justify-content: center;
+      gap: 12px;
+      padding: 0 1rem;
+      flex-wrap: wrap;
+    }
+
+    .recipe-prev-btn,
+    .recipe-next-btn {
+      flex: 1 1 auto;
+      max-width: calc(50% - 12px);
+      min-width: 120px;
+      height: 40px;
+      padding: 0 14px;
+      font-size: 0.92rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .recipe-buttons-row {
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 1rem;
+    }
+    .recipe-prev-btn,
+    .recipe-next-btn {
+      width: 100%;
+      max-width: none;
+    }
   }
 </style>
