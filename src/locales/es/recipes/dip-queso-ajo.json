@@ -29,7 +29,7 @@
     "Paso 5. Ajusta de sal al gusto y sirve caliente acompañado de Ziba's Queso para dipear."
   ],
   "brand": "zibas",
-  "product": ["zibas-queso"],
+  "Product": "Zibas Queso",
   "category": "brunch",
   "servings": 6
 }

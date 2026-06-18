@@ -31,8 +31,6 @@
   "brand": [
     "zambos"
   ],
-  "product": [
-    "zambos-platano-picositas"
-  ],
+  "Product": "Zambos Picositas",
   "new": true
 }

@@ -29,9 +29,7 @@
       "Sirve el dip en un bol, termina con un chorrito de aceite de oliva por encima y acompaña con Yummi Pops Nacho Jalapeño Cream para mojar."
     ],
   "brand": "yummipops",
-  "product": [
-    "yummi-pops-nacho-jalapeno-cream"
-  ],
+  "Product": "Yummi Pops Nacho Jalapeño Cream",
   "chef_tips": [
     "Asegúrate de que la ricotta esté a temperatura ambiente para que se bata con mayor suavidad y cremosidad.",
     "Prueba con orégano, tomillo o páprika ahumada para darle un toque de sabor especial al dip.",

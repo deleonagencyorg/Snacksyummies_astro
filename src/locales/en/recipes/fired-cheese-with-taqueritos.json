@@ -2,9 +2,9 @@
   "date": "2025-09-11",
   "id": "fired-cheese-with-taqueritos",
   "slug": "fired-cheese-with-taqueritos",
-  "title": "Fired Cheede with Taqueritos",
+  "title": "Fired Cheese with Taqueritos",
   "people": "4",
-  "difficulty": "Fácil",
+  "difficulty": "Easy",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/queso-frito-con-taqueritos.webp",
   "gallery": [
     "queso-frito-con-taqueritos.webp"
@@ -28,7 +28,5 @@
     "Step 6. Serve and garnish with dressing and jalapeño peppers."
   ],
   "brand": "taqueritos",
-  "product": [
-    "Taqueritos Chile Toreado"
-  ]
+  "Product": "Taqueritos Chile Toreado"
 }

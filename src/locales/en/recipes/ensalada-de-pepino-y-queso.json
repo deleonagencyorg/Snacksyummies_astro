@@ -29,8 +29,6 @@
         "Serve immediately."
     ],
     "brand": "zambos",
-    "products": [
-        "zambos-chile-limon"
-    ],
+  "Product": "Zambos Picositas",
     "new": true
 }
