@@ -34,10 +34,17 @@ export function initProductsFilter() {
       let visibleCount = 0;
       
       productItems.forEach((item) => {
-        const itemBrand = item.getAttribute('data-brand');
-        const normalizedItemBrand = itemBrand ? itemBrand.toLowerCase() : '';
-        const match = normalizedItemBrand === normalizedBrand;
-        
+        const itemBrand = item.getAttribute('data-brand') || '';
+        const itemBrandName = item.getAttribute('data-brand-name') || '';
+        const normalizedItemBrand = itemBrand ? itemBrand.toLowerCase().trim() : '';
+        const normalizedItemBrandName = itemBrandName ? itemBrandName.toLowerCase().trim() : '';
+        const match = (
+          normalizedItemBrand === normalizedBrand ||
+          normalizedItemBrandName === normalizedBrand ||
+          normalizedItemBrand.indexOf(normalizedBrand) !== -1 ||
+          normalizedItemBrandName.indexOf(normalizedBrand) !== -1
+        );
+
         if (match) {
           visibleCount++;
           (item as HTMLElement).style.display = '';

@@ -168,6 +168,7 @@ const clientLang = currentLang;
             {allProducts.map((product: Product, index: number) => (
               <div 
                 data-brand={product.brandId || 'unknown'}
+                data-brand-name={product.brand || product.brandId}
                 class="product-item w-full animate-on-scroll"
                 data-animate-direction="up"
                 data-animate-delay={index * 50}
