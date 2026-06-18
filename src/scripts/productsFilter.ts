@@ -26,6 +26,7 @@ export function initProductsFilter() {
     if (brand === 'all') {
       console.log('[PRODUCTS] ✅ Mostrando todos los productos');
       productItems.forEach((item) => {
+        (item as HTMLElement).removeAttribute('data-brand-filtered');
         (item as HTMLElement).style.display = '';
       });
     } else {
@@ -47,8 +48,10 @@ export function initProductsFilter() {
 
         if (match) {
           visibleCount++;
+          (item as HTMLElement).removeAttribute('data-brand-filtered');
           (item as HTMLElement).style.display = '';
         } else {
+          (item as HTMLElement).setAttribute('data-brand-filtered', 'true');
           (item as HTMLElement).style.display = 'none';
         }
       });

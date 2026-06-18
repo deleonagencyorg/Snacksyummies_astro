@@ -239,9 +239,16 @@ const clientLang = currentLang;
 
     let visibleCount = INITIAL_COUNT;
 
+    function getActiveBrand() {
+      return new URL(window.location.href).searchParams.get('brand') || 'all';
+    }
+
     function updateScrollIndicator() {
       if (!scrollIndicator) return;
-      
+      if (getActiveBrand() !== 'all') {
+        scrollIndicator.classList.add('hidden');
+        return;
+      }
       if (visibleCount < items.length) {
         scrollIndicator.classList.remove('hidden');
       } else {
@@ -250,19 +257,31 @@ const clientLang = currentLang;
     }
 
     function applyVisibility() {
+      const brandFilterActive = getActiveBrand() !== 'all';
       items.forEach((item, index) => {
-        if (index < visibleCount) {
+        if (item.hasAttribute('data-brand-filtered')) return;
+
+        if (brandFilterActive) {
           if (item.style.display === 'none') {
-            // Elemento que se está mostrando por primera vez
+            item.style.display = '';
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            void item.offsetHeight;
+            requestAnimationFrame(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            });
+          }
+        } else if (index < visibleCount) {
+          if (item.style.display === 'none') {
             item.style.display = '';
             item.style.opacity = '0';
             item.style.transform = 'translateY(20px)';
             item.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             
-            // Trigger reflow para que la transición funcione
             void item.offsetHeight;
             
-            // Aplicar la animación
             requestAnimationFrame(() => {
               item.style.opacity = '1';
               item.style.transform = 'translateY(0)';
@@ -275,6 +294,10 @@ const clientLang = currentLang;
       
       updateScrollIndicator();
     }
+
+    document.addEventListener('brandFilterChange', () => {
+      requestAnimationFrame(applyVisibility);
+    });
 
     applyVisibility();
 
