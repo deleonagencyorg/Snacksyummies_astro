@@ -387,13 +387,13 @@ function formatTime(minutes: number, lang: string = currentLang): string {
           ))}
         </div>
         { /* Desktop: show product link BELOW the info row */ }
-        {safeRecipe.Product && recipeBrandSlug && (
+        {safeRecipe.product && recipeBrandSlug && (
           <div class="hidden md:block mt-3">
             <a
               href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}?brand=${encodeURIComponent(recipeBrandSlug)}`}
               class="product-link inline-flex items-center px-4 py-2 rounded-full bg-white text-primary font-semibold shadow-md hover:opacity-90"
             >
-              {safeRecipe.Product}
+              {safeRecipe.product}
             </a>
           </div>
         )}
@@ -413,12 +413,12 @@ function formatTime(minutes: number, lang: string = currentLang): string {
           <ShareModal id="recipeShareModal" url={Astro.url.toString()} title={safeRecipe.title} description={safeRecipe.description} />
         </div>
         { /* Mobile: show product link under share button (stacked via flex-col on mobile) */ }
-        {safeRecipe.Product && recipeBrandSlug && (
+        {safeRecipe.product && recipeBrandSlug && (
           <a
             href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}?brand=${encodeURIComponent(recipeBrandSlug)}`}
             class="product-link-mobile md:hidden mt-2 md:mt-0 inline-flex justify-center items-center w-full text-center px-4 py-2 rounded-full bg-white text-primary font-semibold shadow-md hover:opacity-90"
           >
-            <span class="w-full">{safeRecipe.Product}</span>
+            <span class="w-full">{safeRecipe.product}</span>
           </a>
         )}
       </div>
