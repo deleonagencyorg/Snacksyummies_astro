@@ -160,6 +160,11 @@
       "id": "contact",
       "text": "Contacto",
       "href": "/es/contacto"
+    },
+    {
+      "id": "promotions",
+      "text": "Promociones",
+      "href": "/es/promociones"
     }
   ],
   "about_us": {
