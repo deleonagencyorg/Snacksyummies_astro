@@ -19,7 +19,6 @@ const { country, winners, currentLang, uiTexts } = Astro.props;
 
 // Ensure we have winners data
 const displayWinners = winners || [];
-const totalSlides = displayWinners.length; // one card per slide for consistent responsive behavior
 const openLabel = currentLang === 'es' ? 'Abrir ganador' : 'Open winner';
 const closeLabel = currentLang === 'es' ? 'Cerrar vista' : 'Close preview';
 const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
@@ -33,14 +32,9 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
     </h2>
   </div>
 
-  <!-- Carousel Container -->
-  <div class="flex flex-col gap-6 items-center justify-center w-full">
-    <!-- Photo Cards Container -->
-    <div class="carousel-container relative w-full overflow-hidden">
-      <div class="carousel-track flex transition-transform duration-300 ease-in-out" data-slides={totalSlides}>
-        {displayWinners.map((winner, index) => (
-          <div class="carousel-slide flex justify-center items-center min-w-full">
-            <div class="winner-card flex flex-col items-start justify-start relative w-[265px] flex-shrink-0">
+  <div class="winners-grid grid w-full grid-cols-1 justify-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {displayWinners.map((winner, index) => (
+      <div class="winner-card flex w-full max-w-[265px] flex-col items-start justify-start relative">
               <button
                 type="button"
                 class="winner-card-trigger bg-[#faf1e9] flex flex-col gap-4 items-center justify-start overflow-hidden p-4 rounded-[20px] w-full relative text-left transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#ffd53d]/70"
@@ -76,54 +70,14 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
               </button>
 
               <!-- logo ganador -->
-              <div class="absolute left-[-35px] top-[-32px] w-[70px] h-[65px] z-10">
+              <div class="absolute left-[-35px] top-[-32px] w-[70px] h-[65px] z-10 pointer-events-none">
                 <svg xmlns="http://www.w3.org/2000/svg" width="70" height="65" viewBox="0 0 70 65" fill="none" class="w-full h-full">
                   <path d="M52.1367 5.02148C53.3055 4.50763 54.4798 4.55138 55.4043 4.8252C57.1511 5.34267 58.6206 6.8462 58.96 8.85059L59.0293 9.2627C61.0896 19.1624 63.092 28.7881 65.1543 38.6973H65.1523C65.2973 39.3574 65.3286 39.9782 65.3018 40.5342L65.3037 40.5352C65.3031 40.5502 65.3005 40.5651 65.2998 40.5801C65.2992 40.5921 65.3005 40.6042 65.2998 40.6162L65.2979 40.6152C65.2489 41.5945 65.0009 42.5234 64.6094 43.3564L64.6104 43.3574C61.7312 49.4873 55.8032 54.1708 49.5439 57.0234C43.2729 59.8814 35.9446 61.2364 29.6992 59.9512L29.6611 59.9434L29.623 59.9346C29.1375 59.8248 28.6262 59.6459 28.124 59.3818V59.3838C28.1125 59.3778 28.1013 59.3712 28.0898 59.3652C28.0727 59.3561 28.0552 59.3473 28.0381 59.3379V59.3359C27.2778 58.9267 26.7193 58.4023 26.3379 57.9688L26.3311 57.96L26.3232 57.9512C23.6061 54.8272 10.8722 39.7411 5.99023 33.7832L5.99121 33.7822C4.73947 32.2551 4.4631 30.1784 5.2666 28.4316C5.6713 27.5519 6.39306 26.683 7.47168 26.1484C8.57094 25.6037 9.77775 25.5387 10.8652 25.8447C16.0476 27.2852 18.8338 28.5099 22.8857 29.1816C22.9453 28.8357 22.9926 28.3973 23.0264 27.834C23.2124 23.905 22.9037 20.1659 22.7588 15.7607V15.7598C22.6991 14.3905 22.6475 13.0398 22.5967 11.666C22.5228 9.66596 23.5379 7.65507 25.5303 6.71289C27.5065 5.7785 29.6786 6.25668 31.1758 7.54102L31.1768 7.54004C37.8332 13.2208 39.8693 15.5432 44.4639 18.7051C44.563 18.7714 44.6516 18.8273 44.7305 18.874C44.8409 18.7015 44.9778 18.474 45.1348 18.1729C45.5143 17.4449 45.8235 16.7213 46.291 15.7129C47.2163 13.5747 48.442 10.4557 49.6621 7.56348C50.1006 6.52385 50.9208 5.55607 52.1367 5.02148ZM12.1777 28.7129C12.1826 28.7188 12.1875 28.7246 12.1924 28.7305L12.1768 28.71L12.1777 28.7129Z" fill="#D23627" stroke="#FAF1E9" stroke-width="8"/>
                   <text x="35" y="30" text-anchor="middle" dominant-baseline="central" class="fill-white font-bold text-sm font-['Trois_Mille_TRIAL_Bold']">{index + 1}</text>
                 </svg>
               </div>
-            </div>
-          </div>
-        ))}
       </div>
-    </div>
-
-    <!-- Carousel Navigation -->
-    {totalSlides > 1 && (
-      <div class="carousel-nav flex gap-6 items-center justify-center">
-        <!-- Previous Button -->
-        <button 
-          class="carousel-prev w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors cursor-pointer"
-          aria-label="Previous slide"
-        >
-          <svg class="w-full h-full" viewBox="0 0 32 32" fill="none">
-            <path d="M20 8L12 16L20 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        <!-- Navigation Dots -->
-        <div class="nav-dots flex items-center justify-center">
-          {Array.from({ length: totalSlides }, (_, index) => (
-            <div class="nav-dot relative w-10 h-10 flex items-center justify-center cursor-pointer">
-              <div 
-                class={`dot w-4 h-4 rounded-full transition-colors ${index === 0 ? 'bg-white' : 'bg-[#a4aeb7]'}`}
-                data-slide={index}
-              ></div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Next Button -->
-        <button 
-          class="carousel-next w-8 h-8 flex items-center justify-center text-white hover:text-gray-300 transition-colors cursor-pointer"
-          aria-label="Next slide"
-        >
-          <svg class="w-full h-full" viewBox="0 0 32 32" fill="none">
-            <path d="M12 8L20 16L12 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
-    )}
+    ))}
   </div>
 
   <div class="winner-lightbox fixed inset-0 z-[120] hidden items-center justify-center p-4 md:p-8" aria-hidden="true">
@@ -177,17 +131,12 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
     width: 100%;
   }
 
-  .carousel-container {
-    width: 100%;
+  .winners-grid {
+    align-items: stretch;
   }
 
-  .carousel-track {
+  .winner-card {
     width: 100%;
-  }
-
-  .carousel-slide {
-    width: 100%;
-    justify-content: center;
   }
 
   .winner-card-trigger {
@@ -278,24 +227,13 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
 
   /* Responsive adjustments */
   @media (max-width: 1200px) {
-    .carousel-slide {
-      gap: 1rem;
-    }
-    
     .winner-card {
-      width: calc(25% - 0.75rem);
       min-width: 240px;
     }
   }
 
   @media (max-width: 768px) {
-    .carousel-slide {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
     .winner-card {
-      width: calc(50% - 0.5rem);
       min-width: 200px;
     }
 
@@ -310,7 +248,7 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
 
   @media (max-width: 480px) {
     .winner-card {
-      width: 100%;
+      min-width: 0;
       max-width: 265px;
     }
 
@@ -356,13 +294,6 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
       const carousels = document.querySelectorAll('.winners-carousel');
 
       carousels.forEach((carousel) => {
-        const track = carousel.querySelector('.carousel-track');
-        const carouselContainer = carousel.querySelector('.carousel-container');
-        const slides = carousel.querySelectorAll('.carousel-slide');
-        let containerWidth = carouselContainer instanceof HTMLElement ? Math.round(carouselContainer.clientWidth) : Math.round(carousel.clientWidth);
-        const prevBtn = carousel.querySelector('.carousel-prev');
-        const nextBtn = carousel.querySelector('.carousel-next');
-        const dots = carousel.querySelectorAll('.nav-dot');
         const lightbox = carousel.querySelector('.winner-lightbox');
         const lightboxImage = lightbox?.querySelector('.winner-lightbox-image');
         const lightboxSource = lightbox?.querySelector('.winner-lightbox-source');
@@ -371,8 +302,6 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
         const lightboxRank = lightbox?.querySelector('.winner-lightbox-rank');
         const lightboxClose = lightbox?.querySelector('.winner-lightbox-close');
         const triggers = carousel.querySelectorAll('.winner-card-trigger');
-        let currentSlide = 0;
-        const totalSlides = slides.length;
 
         function openLightbox(trigger: Element) {
           if (!(lightbox instanceof HTMLElement)) return;
@@ -447,98 +376,6 @@ const previewLabel = currentLang === 'es' ? 'Vista ampliada' : 'Expanded view';
         document.addEventListener('keydown', handleEscape);
         cleanups.push(() => document.removeEventListener('keydown', handleEscape));
         cleanups.push(closeLightbox);
-
-        if (totalSlides <= 1 || !(track instanceof HTMLElement)) {
-          return;
-        }
-
-        // ensure track and slides use pixel widths to avoid fractional-pixel peeking
-        function setSlideWidths(){
-          containerWidth = carouselContainer instanceof HTMLElement ? Math.round(carouselContainer.clientWidth) : Math.round(carousel.clientWidth);
-          containerWidth = Math.max(0, containerWidth);
-          track.style.width = `${slides.length * containerWidth}px`;
-          track.style.gap = '0px';
-          slides.forEach((sl) => {
-            if (sl instanceof HTMLElement) {
-              sl.style.boxSizing = 'border-box';
-              sl.style.flex = `0 0 ${containerWidth}px`;
-              sl.style.width = `${containerWidth}px`;
-              sl.style.margin = '0';
-              sl.style.padding = '0';
-            }
-          });
-        }
-        setSlideWidths();
-        let resizeTimer;
-        const resizeHandler = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { setSlideWidths(); updateCarousel(true); }, 80); };
-        window.addEventListener('resize', resizeHandler);
-        cleanups.push(() => window.removeEventListener('resize', resizeHandler));
-
-        function updateCarousel(skipFade = false) {
-          const translateX = -currentSlide * containerWidth;
-          const doSnap = () => {
-            if (track instanceof HTMLElement) {
-              track.style.transition = 'none';
-              track.style.transform = `translateX(${translateX}px)`;
-            }
-            dots.forEach((dot, index) => {
-              const dotElement = dot.querySelector('.dot');
-              if (dotElement instanceof HTMLElement) {
-                dotElement.className = index === currentSlide
-                  ? 'dot w-4 h-4 rounded-full transition-colors bg-white'
-                  : 'dot w-4 h-4 rounded-full transition-colors bg-[#a4aeb7]';
-              }
-            });
-          };
-          if (skipFade || !(carouselContainer instanceof HTMLElement)) {
-            doSnap();
-            return;
-          }
-          carouselContainer.style.transition = 'opacity 220ms ease';
-          carouselContainer.style.opacity = '0';
-          setTimeout(() => {
-            doSnap();
-            requestAnimationFrame(() => {
-              carouselContainer.style.opacity = '1';
-            });
-          }, 220);
-        }
-
-        function prevSlide() {
-          currentSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
-          updateCarousel();
-        }
-
-        function nextSlide() {
-          currentSlide = currentSlide === totalSlides - 1 ? 0 : currentSlide + 1;
-          updateCarousel();
-        }
-
-        function goToSlide(slideIndex: number) {
-          currentSlide = slideIndex;
-          updateCarousel();
-        }
-
-        if (prevBtn instanceof HTMLElement) {
-          prevBtn.addEventListener('click', prevSlide);
-          cleanups.push(() => prevBtn.removeEventListener('click', prevSlide));
-        }
-
-        if (nextBtn instanceof HTMLElement) {
-          nextBtn.addEventListener('click', nextSlide);
-          cleanups.push(() => nextBtn.removeEventListener('click', nextSlide));
-        }
-
-        dots.forEach((dot, index) => {
-          const handleDotClick = () => goToSlide(index);
-          dot.addEventListener('click', handleDotClick);
-          cleanups.push(() => dot.removeEventListener('click', handleDotClick));
-        });
-
-        const autoplay = window.setInterval(nextSlide, 5000);
-        cleanups.push(() => window.clearInterval(autoplay));
-
-        updateCarousel(true);
       });
 
       window.__winnersCarouselCleanups = cleanups;

@@ -22,6 +22,7 @@ const formattedDate = (startDate: string, endDate: string) => {
 };
 ---
 
+{items && items.length > 0 ? (
 <div class="promos-carousel" id={uid}>
   <div class="promo-carousel-container content-stretch flex flex-col gap-6 items-center justify-start relative w-full">
     <div class="content-stretch flex flex-col gap-6 items-center justify-start relative w-full">
@@ -257,3 +258,4 @@ const formattedDate = (startDate: string, endDate: string) => {
     });
   </script>
 </div>
+) : ''}

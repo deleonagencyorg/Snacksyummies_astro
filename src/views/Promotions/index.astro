@@ -44,37 +44,31 @@ const finishedPromotions = promotionsData.filter((promo: any) => promo.status ==
   />
   </div>
   <!-- Active Promotions Section -->
-  <section class="active-promotions py-16 bg-[#1A649E] -mt-4">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-white">
-        {sectionsData.active?.title}
-      </h2>
-      
-      {activePromotions.length > 0 ? (
+  {activePromotions.length > 0 && (
+    <section class="active-promotions py-16 bg-[#1A649E] -mt-4">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-white">
+          {sectionsData.active?.title}
+        </h2>
+
         <div class="w-full max-w-[1036px] mx-auto">
           <PromosCarousel 
             items={activePromotions}
             currentLang={currentLang}
           />
         </div>
-      ) : (
-        <div class="text-center py-12">
-          <p class="text-gray-500 text-lg">
-            {sectionsData.active?.emptyMessage}
-          </p>
-        </div>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 
   <!-- Finished Promotions Section -->
-  <section class="finished-promotions py-16 bg-[#1A649E]">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-white">
-        {sectionsData.finished?.title}
-      </h2>
-      
-      {finishedPromotions.length > 0 ? (
+  {finishedPromotions.length > 0 && (
+    <section class="finished-promotions py-16 bg-[#1A649E]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-title font-bold text-center mb-12 text-white">
+          {sectionsData.finished?.title}
+        </h2>
+
         <div class="w-full max-w-[1036px] mx-auto">
           <PromosCarousel 
             items={finishedPromotions.map((promotion: any) => ({
@@ -88,13 +82,7 @@ const finishedPromotions = promotionsData.filter((promo: any) => promo.status ==
             isFinished={true}
           />
         </div>
-      ) : (
-        <div class="text-center py-12">
-          <p class="text-gray-500 text-lg">
-            {sectionsData.finished?.emptyMessage}
-          </p>
-        </div>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
 </main>
