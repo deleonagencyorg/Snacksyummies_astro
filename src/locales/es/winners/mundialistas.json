@@ -1,0 +1,73 @@
+{
+  "Honduras": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_hn_or.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_hn_mob.webp",
+      "description": "Ganadores Semana 1"
+    },
+        {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_hn_or2.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_hn_mob2.webp",
+      "description": "Ganadores Semana 2"
+    }
+  ],
+  "Guatemala": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_gt_or.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_gt_mob.webp",
+      "description": "Ganadores Semana 1"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_gt_or2.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_gt_mob2.webp",
+      "description": "Ganadores Semana 2"
+    }
+  ],
+  "El Salvador": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_sv_or.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_sv_mob.webp",
+      "description": "Ganadores Semana 1"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_sv_or2.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_sv_mob2.webp",
+      "description": "Ganadores Semana 2"
+    }
+  ],
+  "Nicaragua": [
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_ni_or.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_ni_mob.webp",
+      "description": "Ganadores Semana 1"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_ni_or2.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_ni_mob2.webp",
+      "description": "Ganadores Semana 2"
+    }
+  ],
+  "Costa Rica": [
+        {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_cr_or.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_cr_mob.webp",
+      "description": "Ganadores Semana 1"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_cr_or2.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_cr_mob2.webp",
+      "description": "Ganadores Semana 2"
+    }
+  ],
+  "República Dominicana": [    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_rd_or.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_rd_mob.webp",
+      "description": "Ganadores Semana 1"
+    },
+    {
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_rd_or2.webp",
+      "image_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ganador_mundial_rd_mob2.webp",
+      "description": "Ganadores Semana 2"
+    }
+  ]
+}

@@ -33,33 +33,56 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
   <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white">
     <div class="block w-full h-[300px] md:h-[800px]">
       <div class="w-full h-full overflow-hidden">
-        {mobileSrc && (
-          <LazyImage 
-            src={mobileSrc} 
-            alt={detailData.image?.alt || ''}
-            class="w-full h-full object-cover object-center md:hidden"
-            priority={true}
-          />
-        )}
-        {desktopSrc && (
-          <LazyImage 
-            src={desktopSrc} 
-            alt={detailData.image?.alt || ''}
-            class="w-full h-full object-cover object-center hidden md:block"
-            priority={true}
-          />
-        )}
-        {!mobileSrc && !desktopSrc && (
-          <div class="w-full h-[300px] md:h-[800px] flex items-center justify-center bg-[#1A649E] text-white text-center p-6">
-            <div>
-              <h2 class="text-2xl md:text-4xl font-title font-bold mb-2">
-                {detailData.title || promotion.title}
-              </h2>
-              <p class="opacity-90">
-                {detailData.subtitle || promotion.subtitle || (currentLang === 'es' ? 'Imagen no disponible' : 'Image not available')}
-              </p>
-            </div>
-          </div>
+        {detailData.image?.url_image && detailData.image.url_image !== '#' ? (
+          <a href={detailData.image.url_image} target="_blank" rel="noopener noreferrer" class="block w-full h-full cursor-pointer">
+            {mobileSrc && (
+              <LazyImage 
+                src={mobileSrc} 
+                alt={detailData.image?.alt || ''}
+                class="w-full h-full object-cover object-center md:hidden"
+                priority={true}
+              />
+            )}
+            {desktopSrc && (
+              <LazyImage 
+                src={desktopSrc} 
+                alt={detailData.image?.alt || ''}
+                class="w-full h-full object-cover object-center hidden md:block"
+                priority={true}
+              />
+            )}
+          </a>
+        ) : (
+          <>
+            {mobileSrc && (
+              <LazyImage 
+                src={mobileSrc} 
+                alt={detailData.image?.alt || ''}
+                class="w-full h-full object-cover object-center md:hidden"
+                priority={true}
+              />
+            )}
+            {desktopSrc && (
+              <LazyImage 
+                src={desktopSrc} 
+                alt={detailData.image?.alt || ''}
+                class="w-full h-full object-cover object-center hidden md:block"
+                priority={true}
+              />
+            )}
+            {!mobileSrc && !desktopSrc && (
+              <div class="w-full h-[300px] md:h-[800px] flex items-center justify-center bg-[#1A649E] text-white text-center p-6">
+                <div>
+                  <h2 class="text-2xl md:text-4xl font-title font-bold mb-2">
+                    {detailData.title || promotion.title}
+                  </h2>
+                  <p class="opacity-90">
+                    {detailData.subtitle || promotion.subtitle || (currentLang === 'es' ? 'Imagen no disponible' : 'Image not available')}
+                  </p>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
@@ -123,7 +146,9 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
       
       <div class="text-center mt-20 mb-10">
         <a 
-          href={detailData.registerButtonUrl || '#'}
+          href={detailData.register_url || detailData.registerButtonUrl || '#'}
+          target={detailData.register_url && detailData.register_url !== '#' ? '_blank' : undefined}
+          rel={detailData.register_url && detailData.register_url !== '#' ? 'noopener noreferrer' : undefined}
           class="inline-block bg-white text-primary font-bold py-3 px-8 rounded-full hover:bg-blue-800 hover:text-white transition-colors text-lg"
         >
           {detailData.registerButton}

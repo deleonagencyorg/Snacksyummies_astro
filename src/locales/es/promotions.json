@@ -5,6 +5,10 @@
     "button": "Registrarme",
     "buttonUrl": "/es/yummiesone"
   },
+  "pageImage": {
+    "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista.webp",
+    "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista_mob.webp"
+  },
   "sections": {
     "active": {
       "title": "Promociones activas",
@@ -24,7 +28,7 @@
       "description": "Gánate un viaje todo incluido a Six Flags Mexico y muchos premios más",
       "startDate": "2024-01-19",
       "endDate": "2024-02-19",
-      "status": "active",
+      "status": "finished",
       "winners": true,
       "image": {
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
@@ -46,7 +50,8 @@
         "image": {
           "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
           "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-          "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
+          "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks",
+          "url_image": "#"
         },
         "steps": [
           {
@@ -72,6 +77,7 @@
           }
         ],
         "registerButton": "Regístrate",
+        "register_url": "#",
         "sections": {
           "validity": {
             "title": "Vigencia",
@@ -92,6 +98,77 @@
           "faq": {
             "title": "FAQ's",
             "content": "Preguntas frecuentes sobre la promoción."
+          }
+        }
+      }
+    },
+    {
+      "id": "mundialistas",
+      "slug": "mundialistas",
+      "title": "MUNDIALISTAS",
+      "subtitle": "Celebra con los Mundialistas y gana premios exclusivos",
+      "description": "Participa en la promoción Mundialistas y gana experiencias y premios relacionados al fútbol",
+      "startDate": "2026-06-16",
+      "endDate": "2026-08-16",
+      "status": "active",
+      "winners": true,
+      "image": {
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista_mob.webp",
+        "alt": "Promoción Mundialistas"
+      },
+      "buttonText": "Ver detalles",
+      "buttonUrl": "/es/promociones/mundialistas",
+      "shareText": "Compartir:",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
+        "instagram": "https://www.instagram.com/",
+        "x": "https://x.com/intent/tweet?url="
+      },
+      "tags": ["mundialistas", "futbol", "experiencias"],
+      "category": "experiences",
+      "detail": {
+        "title": "Para participar, sigue estos pasos:",
+        "image": {
+          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista_mob.webp",
+          "alt": "Mundialistas",
+          "url_image": "https://mundialista.yummiespromociones.com/"
+        },
+        "steps": [
+          {
+            "number": 1,
+            "title": "Regístrate",
+            "description": "Crea tu cuenta en Yummies One",
+            "icon": "📝"
+          },
+          {
+            "number": 2,
+            "title": "Ingresa tu factura",
+            "description": "Introduce el código que viene en tu producto Mundialistas",
+            "icon": "🎫"
+          },
+          {
+            "number": 3,
+            "title": "Participa y gana",
+            "description": "Juega y reclama tus premios relacionados con el Mundial",
+            "icon": "🏆"
+          }
+        ],
+        "registerButton": "Regístrate",
+        "register_url": "https://mundialista.yummiespromociones.com/",
+        "sections": {
+          "validity": {
+            "title": "Vigencia",
+            "content": "Esta promoción estará vigente desde la primer semana de junio de 2026"
+          },
+          "terms": {
+            "title": "Bases y Condiciones",
+            "content": "Lee las bases y condiciones completas de la promoción Mundialistas."
+          },
+          "prizes": {
+            "title": "Premios",
+            "content": "Descubre los premios disponibles en esta promoción."
           }
         }
       }
@@ -129,7 +206,8 @@
         "image": {
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
-        "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua"
+        "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua",
+        "url_image": "#"
       },
         "title": "Para participar, sigue estos pasos:",
         "steps": [
@@ -153,6 +231,7 @@
           }
         ],
         "registerButton": "Regístrate",
+        "register_url": "#",
         "sections": {
           "validity": {
             "title": "Vigencia",

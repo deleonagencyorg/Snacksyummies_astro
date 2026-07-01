@@ -1,11 +1,13 @@
 // Importar automáticamente todos los archivos JSON de ganadores
 import guardianesSaborPuntaCana from './guardianes-sabor-punta-cana.json';
 import supermanSixFlags2024 from './superman-six-flags-2024.json';
+import mundialistas from './mundialistas.json';
 
 // Exportar todos los ganadores organizados por promoción
 export const winners_promotions = {
   'superman-six-flags-mexico': supermanSixFlags2024,
   'guardianes-sabor-punta-cana': guardianesSaborPuntaCana
+  , 'mundialistas': mundialistas
 } as WinnersPromotions;
 
 // Exportar tipos para TypeScript
