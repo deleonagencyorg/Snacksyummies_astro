@@ -172,13 +172,7 @@ const formattedDate = (startDate: string, endDate: string) => {
       }
       setWidths();
       let resizeTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          setWidths();
-          update(current, !hasMultipleSlides);
-        }, 80);
-      });
+      window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(() => { setWidths(); update(current); }, 80); });
 
       function update(activeIndex, skipFade = false){
         const index = ((activeIndex % slides.length) + slides.length) % slides.length;
@@ -198,11 +192,7 @@ const formattedDate = (startDate: string, endDate: string) => {
           });
           current = index;
         };
-        if (skipFade || !slidesViewport) {
-          doSnap();
-          return;
-        }
-        if (!hasMultipleSlides) {
+        if (!hasMultipleSlides || skipFade || !slidesViewport) {
           doSnap();
           return;
         }
@@ -216,40 +206,45 @@ const formattedDate = (startDate: string, endDate: string) => {
         }, 220);
       }
 
-      if (hasMultipleSlides) {
-        prevBtn?.addEventListener('click', ()=> update((current - 1 + slides.length) % slides.length));
-        nextBtn?.addEventListener('click', ()=> update((current + 1) % slides.length));
-        dots.forEach(d => d.addEventListener('click', ()=> update(Number(d.dataset.dotIndex))));
+      if (!hasMultipleSlides) {
+        prevBtn?.setAttribute('disabled', 'true');
+        nextBtn?.setAttribute('disabled', 'true');
+        prevBtn?.setAttribute('aria-disabled', 'true');
+        nextBtn?.setAttribute('aria-disabled', 'true');
+        dots.forEach((dot) => {
+          dot.setAttribute('aria-disabled', 'true');
+          dot.classList.remove('hover:bg-white/80');
+        });
+        update(0, true);
+        return;
       }
 
+      prevBtn?.addEventListener('click', ()=> update((current - 1 + slides.length) % slides.length));
+      nextBtn?.addEventListener('click', ()=> update((current + 1) % slides.length));
+      dots.forEach(d => d.addEventListener('click', ()=> update(Number(d.dataset.dotIndex))));
+
       // autoplay
-      let autoplay;
-      if (hasMultipleSlides) {
-        autoplay = setInterval(()=> update(current + 1), 5000);
-        root.addEventListener('mouseenter', ()=> clearInterval(autoplay));
-        root.addEventListener('mouseleave', ()=> { autoplay = setInterval(()=> update(current + 1), 5000); });
-      }
+      let autoplay = setInterval(()=> update(current + 1), 5000);
+      root.addEventListener('mouseenter', ()=> clearInterval(autoplay));
+      root.addEventListener('mouseleave', ()=> { autoplay = setInterval(()=> update(current + 1), 5000); });
 
       // touch
       let startX = 0;
       let deltaX = 0;
       const threshold = 50;
       root.addEventListener('touchstart', (e) => {
-        if (!hasMultipleSlides) return;
         startX = e.touches[0].clientX;
         deltaX = 0;
         if (slidesTrack) slidesTrack.style.transition = '';
         clearInterval(autoplay);
       }, { passive: true });
       root.addEventListener('touchmove', (e) => {
-        if (!hasMultipleSlides) return;
         deltaX = e.touches[0].clientX - startX;
         if (slidesTrack) {
           slidesTrack.style.transform = `translateX(${ -current * containerWidth + deltaX }px)`;
         }
       }, { passive: true });
       root.addEventListener('touchend', () => {
-        if (!hasMultipleSlides) return;
         if (Math.abs(deltaX) > threshold) {
           if (deltaX < 0) update(current + 1, true); else update(current - 1, true);
         } else {
@@ -258,7 +253,7 @@ const formattedDate = (startDate: string, endDate: string) => {
         autoplay = setInterval(()=> update(current + 1), 5000);
       });
 
-      update(0, !hasMultipleSlides);
+      update(0, true);
     });
   </script>
 </div>
