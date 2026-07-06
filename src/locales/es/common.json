@@ -160,6 +160,11 @@
       "id": "contact",
       "text": "Contacto",
       "href": "/es/contacto"
+    },
+    {
+      "id": "promotions",
+      "text": "Promociones",
+      "href": "/es/promociones"
     }
   ],
   "about_us": {
@@ -195,16 +200,16 @@
       "newsletter":"Entérate de las noticias y promociones",
      "instagramLinks":[
         {
-          "url":"https://www.instagram.com/p/DXfb-uOOkYr/"
+          "url":"https://www.instagram.com/p/DZlIiUFDoXh/"
         },
         {
-          "url":"https://www.instagram.com/p/DXclLzFge9J/"
+          "url":"https://www.instagram.com/p/DZfy_CIlZnr/"
         },
         {
-          "url":"https://www.instagram.com/p/DXR4b2TEcnl/"
+          "url":"https://www.instagram.com/p/DZdOIXqlbxx/"
         },
         {
-          "url":"https://www.instagram.com/p/DXPu8EDjrwR/"
+          "url":"https://www.instagram.com/p/DZVOVoIF8a8/"
         }
       ]
     },
@@ -259,12 +264,12 @@
   "messagetop":[
     {
       "id":"1",
-      "title":"😏 El sabor que buscabas… ¡está aquí! 🤤",
+      "title":"🏆 Líderes en snacks de Centroamérica",
       "link":""
     },
     {
       "id":"2",
-      "title":"🌶️ ¡Snacks Yummies, donde cada mordida es una aventura! 🎉",
+      "title":"😎 ¡Porque los mejores sabores nacen aquí!",
       "link":""
     }
   ],

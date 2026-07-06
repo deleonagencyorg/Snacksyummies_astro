@@ -27,6 +27,7 @@
 
       ],
       "brand": "taqueritos",
-      "product": ["Taqueritos Chile Toreado","Taqueritos Queso Fusión"]
+      "product": "Taqueritos Queso Fusión y Chile Toreado",  
+      "product-page": "https://www.taqueritos.com/es/productos/taqueritos-queso-fusion-y-chile-toreado"
     }
 
