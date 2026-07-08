@@ -88,6 +88,7 @@ const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
     text-overflow: ellipsis;
     line-height: 1.2;
     max-height: calc(1.2em * 4); /* fallback to ensure consistent height */
+    min-height: calc(1.2em * 4); /* reserve space so shorter titles match height */
     display: block;
     word-break: break-word;
   }
