@@ -7,7 +7,7 @@
   },
   "pageImage": {
     "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Prueba2.webp",
-    "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista_mob.webp"
+    "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/movilazul.webp"
   },
   "sections": {
     "active": {
@@ -32,7 +32,7 @@
       "winners": true,
       "image": {
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/mundial_1920x1080.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista_mob.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/movilazul.webp",
         "alt": "Promoción Mundialistas"
       },
       "buttonText": "Ver detalles",
@@ -49,7 +49,7 @@
         "title": "Para participar, sigue estos pasos:",
         "image": {
           "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Prueba2.webp",
-          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/fondo_mundialista_mob.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/movilazul.webp",
           "alt": "Mundialistas",
           "url_image": "https://mundialista.yummiespromociones.com/"
         },
