@@ -109,10 +109,10 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
 <div class="flex flex-col items-start justify-start w-full h-[24rem] md:h-[28.75rem] group">
   <div class="bg-white rounded-[40px] overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 w-full h-full flex flex-col relative">
     <a href={recipeLink} class="h-full flex flex-col relative">
-      <!-- Default State Layout (always in flow to maintain card height) -->
-      <div class="w-full h-full flex flex-col justify-between md:justify-start">
-        <!-- Recipe Image (Square aspect ratio) -->
-        <div class="relative aspect-square w-full overflow-hidden rounded-t-[40px]">
+      <!-- Default State Layout: image 70% / info 30% -->
+      <div class="w-full h-full flex flex-col">
+        <!-- Image panel (70%) -->
+        <div class="relative w-full h-[70%] overflow-hidden rounded-t-[40px]">
           <LazyImage
             src={gridImage}
             alt={safeTitle}
@@ -134,17 +134,15 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
             </button>
           )}
         </div>
-        
-        <!-- Content Area -->
-        <div class="flex flex-col gap-4 items-center justify-center h-full p-3 md:p-4 w-full">
-          <!-- Recipe Title -->
+
+        <!-- Info panel (30%) -->
+        <div class="flex flex-col gap-4 items-center justify-center h-[30%] p-3 md:p-4 w-full bg-white">
           <div class="flex flex-col gap-1 items-start justify-center w-full">
             <h3 class="text-[#00306F] font-title text-lg leading-5 w-full title-clamp">
               {safeTitle}
             </h3>
           </div>
-          
-          <!-- CTA Button -->
+
           <div class="flex flex-col gap-2 items-center justify-center w-full">
             <div class="bg-white h-12 rounded-full w-full border border-[#2E5DAB]">
               <div class="flex gap-2 h-12 items-center justify-center px-6 py-3">
