@@ -491,17 +491,26 @@
             "alt": "Yummi Pops",
             "products": [
                 {
+                    "id": "yummipops-nacho-spice-maple",
+                    "slug": "yummipops-nacho-spice-maple",
+                    "pagina": "",
+                    "title": "Yummi Pops Nacho Spice Maple",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
+                    "isNew": true
+                },
+                {
                     "id": "yummipops-dragon-hielo",
                     "slug": "yummipops-dragon-hielo",
                     "pagina": "#",
-                    "title": "Yummipops Dragon Hielo",
+                    "title": "Yummi Pops Dragon Hielo",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
                     "isNew": true
                 },
                 {
                     "id": "yummipops-nacho-jalapeno-cream",
-                    "slug": "yummipops-nacho-jalapeno-cream",
+                    "slug": "yummi Pops-nacho-jalapeno-cream",
                     "pagina": "#",
                     "title": "Yummipops Nacho Jalapeño Cream",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-jalapeno-cream-2.webp",
@@ -511,7 +520,7 @@
                     "id": "yummipops-nacho-queso-blanco",
                     "slug": "yummipops-nacho-queso-blanco",
                     "pagina": "#",
-                    "title": "Yummipops Nacho Queso Blanco",
+                    "title": "Yummi Pops Nacho Queso Blanco",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-queso-blanco.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-queso-blanco.webp"
                 },
@@ -519,7 +528,7 @@
                     "id": "yummipops-palomitas-de-maiz-sal-marina",
                     "slug": "yummipops-palomitas-de-maiz-sal-marina",
                     "pagina": "#",
-                    "title": "Yummipops Palomitas de Maíz Sal Marina",
+                    "title": "Yummi Pops Palomitas de Maíz Sal Marina",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-sal-marina-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-sal-marina-2.webp"
                 },
@@ -527,7 +536,7 @@
                     "id": "yummipops-palomitas-de-maiz-queso",
                     "slug": "yummipops-palomitas-de-maiz-queso",
                     "pagina": "#",
-                    "title": "Yummipops Palomitas de Maíz Queso",
+                    "title": "Yummi Pops Palomitas de Maíz Queso",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-queso-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-de-maiz-queso-2.webp"
                 },
@@ -535,7 +544,7 @@
                     "id": "yummipops-palomitas-de-maiz-chile-toreado",
                     "slug": "yummipops-palomitas-de-maiz-chile-toreado",
                     "pagina": "#",
-                    "title": "Yummipops Palomitas de Maíz Chile Toreado",
+                    "title": "Yummi Pops Palomitas de Maíz Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
                     "isNew": true
