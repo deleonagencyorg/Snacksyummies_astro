@@ -31,7 +31,7 @@
       "status": "active",
       "winners": true,
       "image": {
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/mundial_1920x1080.webp",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Prueba2.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/movilazul.webp",
         "alt": "Promoción Mundialistas"
       },
@@ -43,7 +43,11 @@
         "instagram": "https://www.instagram.com/",
         "x": "https://x.com/intent/tweet?url="
       },
-      "tags": ["mundialistas", "futbol", "experiencias"],
+      "tags": [
+        "mundialistas",
+        "futbol",
+        "experiencias"
+      ],
       "category": "experiences",
       "detail": {
         "title": "Para participar, sigue estos pasos:",
