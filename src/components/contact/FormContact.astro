@@ -135,6 +135,14 @@ const options = dynamicOptions[locale];
       >
         <option value="">{countryPlaceholder}</option>
       </select>
+      <input
+        type="text"
+        name="country"
+        id="countryInput"
+        disabled
+        class="hidden w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+        placeholder={locale === 'es' ? 'Escribe tu país' : 'Enter your country'}
+      />
     </div>
 
     <!-- City Selector -->
@@ -151,6 +159,14 @@ const options = dynamicOptions[locale];
       >
         <option value="">{departmentPlaceholder}</option>
       </select>
+      <input
+        type="text"
+        name="city"
+        id="cityInput"
+        disabled
+        class="hidden w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+        placeholder={locale === 'es' ? 'Escribe tu ciudad' : 'Enter your city'}
+      />
     </div>
     
     <!-- Name -->
@@ -290,10 +306,12 @@ const options = dynamicOptions[locale];
     const contactReasonSelect = document.getElementById('contactReasonSelect');
     const countrySelect = document.getElementById('countrySelect');
     const citySelect = document.getElementById('departmentSelect');
+    const countryInput = document.getElementById('countryInput');
+    const cityInput = document.getElementById('cityInput');
     const dynamicFields = document.getElementById('dynamicFields');
     const form = document.getElementById('contactForm');
 
-    if (!contactReasonSelect || !countrySelect || !citySelect || !dynamicFields || !form) return;
+    if (!contactReasonSelect || !countrySelect || !citySelect || !countryInput || !cityInput || !dynamicFields || !form) return;
 
     // File validation
     function validateFile(file) {
@@ -407,12 +425,79 @@ const options = dynamicOptions[locale];
       }
     }
 
+    function toggleCountryCityFields(selectedReason) {
+      if (selectedReason === 'Exportaciones') {
+        // Hide selects, disable them, remove required
+        countrySelect.classList.add('hidden');
+        countrySelect.disabled = true;
+        countrySelect.removeAttribute('required');
+
+        citySelect.classList.add('hidden');
+        citySelect.disabled = true;
+        citySelect.removeAttribute('required');
+
+        // Show inputs, enable them, add required
+        countryInput.classList.remove('hidden');
+        countryInput.disabled = false;
+        countryInput.setAttribute('required', 'required');
+
+        cityInput.classList.remove('hidden');
+        cityInput.disabled = false;
+        cityInput.setAttribute('required', 'required');
+
+        // Populate text inputs if select has a value or from geo cookie
+        var geoCode = getGeoCookie();
+        var countryName = geoCode ? ISO_TO_COUNTRY[geoCode.toUpperCase()] : '';
+
+        if (countrySelect.value) {
+          countryInput.value = countrySelect.value;
+        } else if (countryName && !countryInput.value) {
+          countryInput.value = countryName;
+        }
+
+        if (citySelect.value && citySelect.value !== '') {
+          cityInput.value = citySelect.value;
+        } else if (countryName && countriesData[countryName] && countriesData[countryName][0] && !cityInput.value) {
+          cityInput.value = countriesData[countryName][0];
+        }
+      } else {
+        // Show selects, enable them, add required
+        countrySelect.classList.remove('hidden');
+        countrySelect.disabled = false;
+        countrySelect.setAttribute('required', 'required');
+
+        citySelect.classList.remove('hidden');
+        if (countrySelect.value) {
+          citySelect.disabled = false;
+          citySelect.classList.remove('disabled:bg-gray-100', 'disabled:cursor-not-allowed');
+        } else {
+          citySelect.disabled = true;
+          citySelect.classList.add('disabled:bg-gray-100', 'disabled:cursor-not-allowed');
+        }
+        citySelect.setAttribute('required', 'required');
+
+        // Hide inputs, disable them, remove required
+        countryInput.classList.add('hidden');
+        countryInput.disabled = true;
+        countryInput.removeAttribute('required');
+
+        cityInput.classList.add('hidden');
+        cityInput.disabled = true;
+        cityInput.removeAttribute('required');
+      }
+    }
+
     // Handle contact reason change
     contactReasonSelect.onchange = function() {
       const selectedReason = this.value;
       console.log('Contact reason changed to:', selectedReason);
+      
+      toggleCountryCityFields(selectedReason);
       updateDynamicFields(selectedReason);
-      if (selectedReason) applyGeoToForm();
+      
+      if (selectedReason && selectedReason !== 'Exportaciones') {
+        applyGeoToForm();
+      }
     };
 
     // Handle country change
@@ -490,6 +575,7 @@ const options = dynamicOptions[locale];
           
           // Reset form
           this.reset();
+          toggleCountryCityFields('');
           if (citySelect) {
             citySelect.disabled = true;
             citySelect.classList.add('disabled:bg-gray-100', 'disabled:cursor-not-allowed');
@@ -696,6 +782,7 @@ const options = dynamicOptions[locale];
 
     // Initialize dynamic fields with default contact reason if already selected
     if (contactReasonSelect.value) {
+      toggleCountryCityFields(contactReasonSelect.value);
       updateDynamicFields(contactReasonSelect.value);
     }
   }
