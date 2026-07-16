@@ -13,6 +13,29 @@
   ],
   "products": [
     {
+                    "id": "yummi-pops-nacho-spice-maple",
+                    "slug": "yummi-pops-nacho-spice-maple",
+                    "title": "Yummi Pops Nacho Spice Maple",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
+                    "isNew": true
+                },
+     {    
+                    "id": "ranchitas-chili-beans",
+                    "slug": "ranchitas-chili-beans",
+                    "title": "Ranchitas Chili Beans",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
+                    "isNew": true,
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-chili-beans"
+                },
+     {    
+                    "id": "zibas-jalapenio-grill",
+                    "slug": "zibas-jalapenio-grill",
+                    "title": "Ziba’s Jalapeño Grill",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/jalapeno_gril.webp",
+                    "isNew": true,
+                    "pagina": "https://www.zibaspapas.com/es/productos/zibas-jalapenio-grill"
+                },
+    {
                     "id": "yummipops-palomitas-de-maiz-chile-toreado",
                     "slug": "yummipops-palomitas-de-maiz-chile-toreado",
                     "title": "Yummipops Palomitas de Maíz Chile Toreado",
@@ -46,43 +69,19 @@
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
                     "isNew": false,
                     "pagina": "https://www.taqueritos.com/es/productos/taqueritos-buffalo-ranch"
-                },
-      {
-                    "id": "zambos-yuquitas-con-ajo-parmesano",
-                    "slug": "zambos-yuquitas-con-ajo-parmesano",
-                    "title": "Zambos Yuquitas Con Ajo Parmesano",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
-                    "isNew": false,
-                    "pagina": "https://www.zambos.com/es/productos/zambos-yuquitas-con-ajo-parmesano?count=6"
-                },                               
-    {
-      "id": "yummipops-dragon-hielo",
-      "title": "Yummipops Dragon Hielo",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
-      "isNew": false
-  },
-    {
-      "id": "zibas-chile-toreado",
-      "title": "Zibas Chile Toreado",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
-      "isNew": false,
-      "pagina": "https://www.zibaspapas.com/es/productos/zibas-chile-toreado"
-  },{
-    "id": "product1",
-    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
-    "alt": "Ranchitas Buffalo Ranch",
-    "link": "#",
-    "isNew": false,
-    "pagina": "https://ranchitas.com/"
-  },
-     {
-                    "id": "delrancho-salsa-verde",
-                    "slug": "delrancho-salsa-verde",
-                    "title": "Del Rancho Salsa Verde",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicharones_salsa_verde.webp",
+                },                              
+        {
+                    "id": "yummipops-dragon-hielo",
+                    "title": "Yummipops Dragon Hielo",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
                     "isNew": false
+                },
+        {
+                    "id": "zibas-chile-toreado",
+                    "title": "Zibas Chile Toreado",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
+                    "isNew": false,
+                    "pagina": "https://www.zibaspapas.com/es/productos/zibas-chile-toreado"
                 },
     
       {
