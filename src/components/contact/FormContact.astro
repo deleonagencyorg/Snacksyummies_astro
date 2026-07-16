@@ -246,7 +246,9 @@ const options = dynamicOptions[locale];
     'HN': 'Honduras', 'GT': 'Guatemala', 'SV': 'El Salvador',
     'NI': 'Nicaragua', 'CR': 'Costa Rica', 'DO': 'Rep\u00fablica Dominicana'
   };
-
+  const REASONS_MAP = {
+    EXPORTS: 'exportaciones'
+  };
   function getGeoCookie() {
     var m1 = document.cookie.match(/(?:^|; )yummies_geo_v2=([^;]*)/);
     if (m1) return decodeURIComponent(m1[1]);
@@ -425,8 +427,11 @@ const options = dynamicOptions[locale];
       }
     }
 
-    function toggleCountryCityFields(selectedReason) {
-      if (selectedReason === 'Exportaciones') {
+function toggleCountryCityFields(selectedReason) {
+
+      const normalizedReason = selectedReason ? selectedReason.toLowerCase() : '';
+
+      if (normalizedReason === REASONS_MAP.EXPORTS) {
         // Hide selects, disable them, remove required
         countrySelect.classList.add('hidden');
         countrySelect.disabled = true;
@@ -490,12 +495,13 @@ const options = dynamicOptions[locale];
     // Handle contact reason change
     contactReasonSelect.onchange = function() {
       const selectedReason = this.value;
+      const normalizedReason = selectedReason ? selectedReason.toLowerCase() : '';
       console.log('Contact reason changed to:', selectedReason);
       
       toggleCountryCityFields(selectedReason);
       updateDynamicFields(selectedReason);
       
-      if (selectedReason && selectedReason !== 'Exportaciones') {
+      if (normalizedReason && normalizedReason !== REASONS_MAP.EXPORTS) {
         applyGeoToForm();
       }
     };
