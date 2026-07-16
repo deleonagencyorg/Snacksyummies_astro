@@ -193,6 +193,15 @@
             "alt": "Zibas",
             "products": [
                 {
+                    "id": "zibas-jalapenio-grill",
+                    "slug": "zibas-jalapenio-grill",
+                    "pagina": "https://www.zibaspapas.com/es/productos/zibas-jalapenio-grill",
+                    "title": "Ziba’s Jalapeño Grill",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/jalapeno_gril.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/jalapeno_gril.webp",
+                    "isNew": true
+                },
+                {
                     "id": "zibas-clasicas",
                     "slug": "zibas-clasicas",
                     "pagina": "https://www.zibaspapas.com/es/productos/zibas-clasicas",
@@ -297,9 +306,18 @@
             "alt": "Ranchitas",
             "products": [
                 {
+                    "id": "ranchitas-chili-beans",
+                    "slug": "ranchitas-chili-beans",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-chili-beans",
+                    "title": "Ranchitas Chili Beans",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
+                    "isNew": true
+                },
+                {
                     "id": "ranchitas-nacho-exitante",
                     "slug": "ranchitas-nacho-exitante",
-                    "pagina": "https://ranchitas.com/",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-nacho-excitante",
                     "title": "Ranchitas Nacho Exitante",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-exitante-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-exitante-2.webp"
@@ -307,7 +325,7 @@
                 {
                     "id": "ranchitas-nacho-extremo",
                     "slug": "ranchitas-nacho-extremo",
-                    "pagina": "https://ranchitas.com/",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-nacho-extremo",
                     "title": "Ranchitas Nacho Extremo",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp"
@@ -315,7 +333,7 @@
                 {
                     "id": "ranchitas-nacho-guacamole",
                     "slug": "ranchitas-nacho-guacamole",
-                    "pagina": "https://ranchitas.com/",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-nacho-guacamole",
                     "title": "Ranchitas Nacho Guacamole",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-guacamole-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-guacamole-2.webp"
@@ -323,7 +341,7 @@
                 {
                     "id": "ranchitas-nacho-pizza",
                     "slug": "ranchitas-nacho-pizza",
-                    "pagina": "https://ranchitas.com/",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-nacho-pizza",
                     "title": "Ranchitas Nacho Pizza",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-pizza-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-pizza-2.webp"
@@ -331,7 +349,7 @@
                 {
                     "id": "ranchitas-nacho-queso",
                     "slug": "ranchitas-nacho-queso",
-                    "pagina": "https://ranchitas.com/",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-nacho-queso",
                     "title": "Ranchitas Nacho Queso",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-queso-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-queso-2.webp"
@@ -339,7 +357,7 @@
                 {
                     "id": "ranchitas-nacho-cinema",
                     "slug": "ranchitas-nacho-cinema",
-                    "pagina": "https://ranchitas.com/",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-nacho-cinema",
                     "title": "Ranchitas Nacho Cinema",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-cinema.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-cinema.webp"
@@ -347,7 +365,7 @@
                 {
                     "id": "ranchitas-buffalo-ranch",
                     "slug": "ranchitas-buffalo-ranch",
-                    "pagina": "#",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-buffalo-ranch",
                     "title": "Ranchitas Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
@@ -356,7 +374,7 @@
                 {
                     "id": "ranchitas-chile-toreado",
                     "slug": "ranchitas-chile-toreado",
-                    "pagina": "#",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-chile-toreado",
                     "title": "Ranchitas Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreado.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreado.webp"
@@ -364,7 +382,7 @@
                 {
                     "id": "ranchitas-naturales",
                     "slug": "ranchitas-naturales",
-                    "pagina": "https://ranchitas.com/",
+                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-naturales",
                     "title": "Ranchitas Naturales",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-naturales.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-naturales.webp"
