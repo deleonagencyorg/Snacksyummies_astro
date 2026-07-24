@@ -62,6 +62,21 @@ const validProducts = Array.isArray(newProducts) ? newProducts : [];
 const chips = t('chips', { namespace: 'newproducts', locale: currentLang }) || [];
 const brands = t('brands', { namespace: 'brands', locale: currentLang }) || [];
 
+// orden para mlas marcas
+const desiredHomeOrder = ['taqueritos','zambos','ranchitas','zibas','cappy','yumminuts','yummipops','taco','yummimix','anillitos','delrancho','xixi'];
+const homeOrderMap = new Map(desiredHomeOrder.map((s, i) => [s.toLowerCase(), i]));
+const orderedBrands = Array.isArray(brands)
+  ? [...brands].sort((a: any, b: any) => {
+    const aKey = (a?.slug || a?.id || '').toString().toLowerCase();
+    const bKey = (b?.slug || b?.id || '').toString().toLowerCase();
+    const ia = homeOrderMap.has(aKey) ? homeOrderMap.get(aKey)! : Number.MAX_SAFE_INTEGER;
+    const ib = homeOrderMap.has(bKey) ? homeOrderMap.get(bKey)! : Number.MAX_SAFE_INTEGER;
+    if (ia !== ib) return ia - ib;
+    // fallback: preserve original order
+    return 0;
+  })
+  : brands;
+
 // Obtener promos dummy para la Home (solo ES)
 const promotionsData = t('promotions', { namespace: 'promotions', locale: currentLang }) || [];
 const sectionsData = t('sections', { namespace: 'promotions', locale: currentLang }) || {};
@@ -128,33 +143,12 @@ const slides = Array.isArray(commonAssets)
 ---
 
   <main class="w-full flex flex-col items-center justify-center mt-0">
-    <!-- Slider Section con máscara -->
-    <div class="relative w-full overflow-hidden max-w-[100vw] h-auto aspect-[1/1] md:aspect-[21/9] lg:h-[66vh]">
-      <!-- Título superpuesto posicionado a la izquierda y centrado verticalmente -->
-      <!-- div class="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 hidden md:block">
-        <LazyImage 
-          src="https://snack.yummiespromociones.com/snacksyummies/Header-Title.webp" 
-          alt="Título decorativo" 
-          class="md:w-40 lg:w-80 object-cover object-center" 
-        />
-      </div>
-      
-      <!-- Máscara PNG superpuesta (cambia según el idioma y dispositivo) -->
-      <!-- <div class="absolute inset-0 z-10 pointer-events-none w-screen left-0 right-0">
-        <img src={sliderMask} alt="Máscara decorativa" class="hidden md:block w-full h-full object-cover object-center" />
-        <img src={sliderMaskMobile} alt="Máscara decorativa" class="md:hidden w-full h-full object-cover object-center" />
-      </div> -->
-      
-      <!-- Slider posicionado más a la derecha en desktop, full width en móvil 
-      <div class="relative z-0 w-full md:w-[80%] md:ml-auto">
-        <Carousel slides={slides} />
-       
-      </div>-->
-
-      <div class="relative z-0 w-full md:w-[100%] md:ml-auto md:h-full h-[72vh] md:flex md:items-center md:justify-center">
+    <!-- Slider Section -->
+    <section class="relative w-full overflow-hidden">
+      <div class="relative z-0 w-full flex items-center justify-center">
         <Carousel slides={slides} />
       </div>
-    </div>
+    </section>
     
  
 
@@ -357,7 +351,7 @@ const slides = Array.isArray(commonAssets)
     <div class="md:flex md:items-center md:justify-between mt-[2rem]md:mt-[0rem] ">
       <div id="logosbrands" class="md:w-1/2 flex flex-col px-4 md:px-0 items-center justify-center md:order-2 ">
         <div class="brands-grid">
-          {brands.map((brand: any, index: number) => (
+          {orderedBrands.map((brand: any, index: number) => (
             <div 
               class="logo-brand"
               style={{ backgroundColor: brand.bgColor }}
@@ -379,7 +373,7 @@ const slides = Array.isArray(commonAssets)
       <div id="previewbrand" class="mt-6 md:w-1/2 flex items-center justify-center md:order-1 relative md:mt-[2rem]">
         <div id="floating-images-container" class="absolute inset-0 z-10 pointer-events-none overflow-hidden md:mt-[-4rem]">
           <ChipsFromBag 
-            imageUrl={brands[0].imageChip1}
+            imageUrl={orderedBrands[0]?.imageChip1}
             count={20}
             baseSize={130}
             sizeVariation={40}
@@ -396,21 +390,21 @@ const slides = Array.isArray(commonAssets)
         </div>
         <LazyImage
           id="brand-preview-img"
-          src={brands[0].image}
-          alt={brands[0].title}
+          src={orderedBrands[0]?.image}
+          alt={orderedBrands[0]?.title}
           class="hidden md:block w-full h-auto object-contain transition-opacity duration-300 md:mt-[2rem]"
         />
         <LazyImage
           id="brand-preview-img-mobile"
-          src={brands[0].imageMobile}
-          alt={brands[0].title}
+          src={orderedBrands[0]?.imageMobile}
+          alt={orderedBrands[0]?.title}
           class="md:hidden w-full h-auto object-contain transition-opacity duration-300"
         />
       </div>
     </div>
     <script define:vars={{brands}}>
       // Exponer los datos de las marcas para JavaScript
-      window.brandsData = brands.map(brand => ({
+      window.brandsData = orderedBrands.map(brand => ({
         title: brand.title,
         image: brand.image,
         imageMobile: brand.imageMobile,

@@ -29,7 +29,8 @@ const formattedDate = (startDate: string, endDate: string) => {
       <div class="slides-viewport relative w-full overflow-hidden">
         <div class="slides-track flex relative will-change-transform">
         {items.map((promotion: any, idx: number) => {
-          const bgDesktop = promotion?.image?.desktop ?? '';
+          const bgDesktop = promotion?.imageDesktop || promotion?.image?.desktop || '';
+          const bgMobile = promotion?.imageMobile || promotion?.image?.mobile || bgDesktop;
           return (
             <div class="promo-slide-full flex-shrink-0 w-full relative" data-slide-index={idx}>
               <div class="card-wrapper mx-auto w-full" style={`max-width: 1036px`}>
@@ -37,11 +38,16 @@ const formattedDate = (startDate: string, endDate: string) => {
                   <div class="flex flex-col md:flex-row md:h-[471px]">
 
                     {/* Image panel — full width on mobile, half on desktop */}
-                    <div
-                      class="relative w-full h-[240px] md:w-[517px] md:h-full flex-shrink-0 bg-center bg-cover bg-no-repeat"
-                      style={`background-image: url('${bgDesktop}')`}
-                    >
-                      <div class={`absolute inset-0 bg-gradient-to-r from-transparent to-white/10 ${isFinished ? 'bg-black/20' : ''}`}></div>
+                    <div class="relative w-full h-[240px] md:w-[517px] md:h-full flex-shrink-0 overflow-hidden">
+                      <picture class="block w-full h-full">
+                        <source media="(min-width: 768px)" srcset={bgDesktop} />
+                        <img 
+                          src={bgMobile} 
+                          alt={promotion?.image?.alt || promotion?.title || 'Promoción'} 
+                          class="w-full h-full object-cover object-center" 
+                        />
+                      </picture>
+                      <div class={`absolute inset-0 bg-gradient-to-r from-transparent to-white/10 pointer-events-none ${isFinished ? 'bg-black/20' : ''}`}></div>
                       {isFinished && (
                         <div class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1.5 rounded-full text-xs font-bold z-10">
                           {currentLang === 'es' ? 'Finalizada' : 'Finished'}

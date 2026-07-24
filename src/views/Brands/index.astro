@@ -48,8 +48,17 @@ try {
 const skeletonCount = 3;
 
 // Client-side filtering only: render all brands and filter in browser
-// Prioritzar recetas con pagina web en marcas
+// orden para marcas
+const desiredOrder = ['taqueritos','zambos','ranchitas','zibas','cappy','yumminuts','yummipops','taco','yummimix','anillitos','delrancho','xixi'];
+const orderMap = new Map(desiredOrder.map((s, i) => [s.toLowerCase(), i]));
+
 const filteredBrands = [...(brandsData as any[])].sort((a: any, b: any) => {
+  const aKey = (a?.slug || a?.id || '').toString().toLowerCase();
+  const bKey = (b?.slug || b?.id || '').toString().toLowerCase();
+  const ia = orderMap.has(aKey) ? orderMap.get(aKey)! : Number.MAX_SAFE_INTEGER;
+  const ib = orderMap.has(bKey) ? orderMap.get(bKey)! : Number.MAX_SAFE_INTEGER;
+  if (ia !== ib) return ia - ib;
+
   const aHasUrl = a?.url && a.url !== '#' ? 1 : 0;
   const bHasUrl = b?.url && b.url !== '#' ? 1 : 0;
   return bHasUrl - aHasUrl;

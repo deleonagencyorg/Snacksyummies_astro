@@ -31,7 +31,7 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
 <main class="promotion-detail-page">
   <!-- Hero Section -->
   <section class="hero-section bg-gradient-to-b from-primary to-secondary text-white">
-    <div class="block w-full h-[300px] md:h-[800px]">
+    <div class="block w-full h-auto md:h-[800px]">
       <div class="w-full h-full overflow-hidden">
         {detailData.image?.url_image && detailData.image.url_image !== '#' ? (
           <a href={detailData.image.url_image} target="_blank" rel="noopener noreferrer" class="block w-full h-full cursor-pointer">
@@ -39,7 +39,7 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
               <LazyImage 
                 src={mobileSrc} 
                 alt={detailData.image?.alt || ''}
-                class="w-full h-full object-cover object-center md:hidden"
+                class="w-full h-auto object-contain object-center md:hidden"
                 priority={true}
               />
             )}
@@ -58,7 +58,7 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
               <LazyImage 
                 src={mobileSrc} 
                 alt={detailData.image?.alt || ''}
-                class="w-full h-full object-cover object-center md:hidden"
+                class="w-full h-auto object-contain object-center md:hidden"
                 priority={true}
               />
             )}

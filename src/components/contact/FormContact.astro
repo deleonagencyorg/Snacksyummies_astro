@@ -428,10 +428,10 @@ const options = dynamicOptions[locale];
     }
 
 function toggleCountryCityFields(selectedReason) {
-
       const normalizedReason = selectedReason ? selectedReason.toLowerCase() : '';
+      const isExports = normalizedReason === REASONS_MAP.EXPORTS || normalizedReason === 'exports';
 
-      if (normalizedReason === REASONS_MAP.EXPORTS) {
+      if (isExports) {
         // Hide selects, disable them, remove required
         countrySelect.classList.add('hidden');
         countrySelect.disabled = true;
@@ -450,21 +450,8 @@ function toggleCountryCityFields(selectedReason) {
         cityInput.disabled = false;
         cityInput.setAttribute('required', 'required');
 
-        // Populate text inputs if select has a value or from geo cookie
-        var geoCode = getGeoCookie();
-        var countryName = geoCode ? ISO_TO_COUNTRY[geoCode.toUpperCase()] : '';
-
-        if (countrySelect.value) {
-          countryInput.value = countrySelect.value;
-        } else if (countryName && !countryInput.value) {
-          countryInput.value = countryName;
-        }
-
-        if (citySelect.value && citySelect.value !== '') {
-          cityInput.value = citySelect.value;
-        } else if (countryName && countriesData[countryName] && countriesData[countryName][0] && !cityInput.value) {
-          cityInput.value = countriesData[countryName][0];
-        }
+        countryInput.value = '';
+        cityInput.value = '';
       } else {
         // Show selects, enable them, add required
         countrySelect.classList.remove('hidden');
@@ -496,12 +483,13 @@ function toggleCountryCityFields(selectedReason) {
     contactReasonSelect.onchange = function() {
       const selectedReason = this.value;
       const normalizedReason = selectedReason ? selectedReason.toLowerCase() : '';
+      const isExports = normalizedReason === REASONS_MAP.EXPORTS || normalizedReason === 'exports';
       console.log('Contact reason changed to:', selectedReason);
       
       toggleCountryCityFields(selectedReason);
       updateDynamicFields(selectedReason);
       
-      if (normalizedReason && normalizedReason !== REASONS_MAP.EXPORTS) {
+      if (normalizedReason && !isExports) {
         applyGeoToForm();
       }
     };

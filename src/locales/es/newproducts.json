@@ -3,94 +3,89 @@
     "tagtitle": "Nuevos",
     "title": "Productos"
   },
-  "chips":[
+  "chips": [
     "https://snack.yummiespromociones.com/snacksyummies/taqueritos-chip1.webp",
     "https://snack.yummiespromociones.com/snacksyummies/taqueritos-chip2.webp",
     "https://snack.yummiespromociones.com/snacksyummies/zibas-chip3.webp",
     "https://snack.yummiespromociones.com/snacksyummies/zambos-chip4.webp",
     "https://snack.yummiespromociones.com/snacksyummies/ranchitas-chip1.webp",
-        "https://snack.yummiespromociones.com/snacksyummies/yummimix-chip1.webp"
+    "https://snack.yummiespromociones.com/snacksyummies/yummimix-chip1.webp"
   ],
   "products": [
     {
-                    "id": "yummi-pops-nacho-spice-maple",
-                    "slug": "yummi-pops-nacho-spice-maple",
-                    "title": "Yummi Pops Nacho Spice Maple",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
-                    "isNew": true
-                },
-     {    
-                    "id": "ranchitas-chili-beans",
-                    "slug": "ranchitas-chili-beans",
-                    "title": "Ranchitas Chili Beans",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
-                    "isNew": true,
-                    "pagina": "https://www.ranchitas.com/es/productos/ranchitas-chili-beans"
-                },
-     {    
-                    "id": "zibas-jalapenio-grill",
-                    "slug": "zibas-jalapenio-grill",
-                    "title": "Ziba’s Jalapeño Grill",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/jalapeno_gril.webp",
-                    "isNew": true,
-                    "pagina": "https://www.zibaspapas.com/es/productos/zibas-jalapenio-grill"
-                },
+      "id": "yummi-pops-nacho-spice-maple",
+      "slug": "yummi-pops-nacho-spice-maple",
+      "title": "Yummi Pops Nacho Spice Maple",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
+      "isNew": true
+    },
     {
-                    "id": "yummipops-palomitas-de-maiz-chile-toreado",
-                    "slug": "yummipops-palomitas-de-maiz-chile-toreado",
-                    "title": "Yummipops Palomitas de Maíz Chile Toreado",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
-                    "isNew": true
-                },
-     {    
-                    "id": "taqueritos-lava",
-                    "slug": "taqueritos-lava",
-                    "title": "Taqueritos Lava",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
-                    "isNew": true,
-                    "pagina": "https://www.taqueritos.com/es/productos/taqueritos-lava"
-                },
-     {    
-                    "id": "zambos-camote-con-sal-marina",
-                    "slug": "zambos-camote-con-sal-marina",
-                    "title": "Zambos Camote Con Sal Marina",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
-                    "isNew": true,
-                    "pagina": "https://www.zambos.com/es/productos/zambos-camote-con-sal-marina?count=6"
-                },
-      {          
-                    "id": "taqueritos-buffalo-ranch",
-                    "slug": "taqueritos-buffalo-ranch",
-                    "title": "Taqueritos Buffalo Ranch",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
-                    "isNew": false,
-                    "pagina": "https://www.taqueritos.com/es/productos/taqueritos-buffalo-ranch"
-                },                              
-        {
-                    "id": "yummipops-dragon-hielo",
-                    "title": "Yummipops Dragon Hielo",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
-                    "isNew": false
-                },
-        {
-                    "id": "zibas-chile-toreado",
-                    "title": "Zibas Chile Toreado",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-chile-toreado-2.webp",
-                    "isNew": false,
-                    "pagina": "https://www.zibaspapas.com/es/productos/zibas-chile-toreado"
-                },
-    
-      {
-                    "id": "yummi-nut-sabor-a-chile-toreado",
-                    "alt": "Yummi Nut Sabor A Chile Toreado",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
-                    "isNew": false,
-                    "pagina": "https://www.yumminuts.com/es/productos/yummi-nut-mani-japones-con-sabor-a-chile-toreado"
-                }
+      "id": "ranchitas-chili-beans",
+      "slug": "ranchitas-chili-beans",
+      "title": "Ranchitas Chili Beans",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
+      "isNew": true,
+      "pagina": "https://www.ranchitas.com/es/productos/ranchitas-chili-beans"
+    },
+    {
+      "id": "zibas-jalapenio-grill",
+      "slug": "zibas-jalapenio-grill",
+      "title": "Ziba’s Jalapeño Grill",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/jalapeno_gril.webp",
+      "isNew": true,
+      "pagina": "https://www.zibaspapas.com/es/productos/zibas-jalapenio-grill"
+    },
+    {
+      "id": "yummipops-palomitas-de-maiz-chile-toreado",
+      "slug": "yummipops-palomitas-de-maiz-chile-toreado",
+      "title": "Yummipops Palomitas de Maíz Chile Toreado",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-chile-toreado.webp",
+      "isNew": false
+    },
+    {
+      "id": "taqueritos-lava",
+      "slug": "taqueritos-lava",
+      "title": "Taqueritos Lava",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
+      "isNew": false,
+      "pagina": "https://www.taqueritos.com/es/productos/taqueritos-lava"
+    },
+    {
+      "id": "zambos-camote-con-sal-marina",
+      "slug": "zambos-camote-con-sal-marina",
+      "title": "Zambos Camote Con Sal Marina",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+      "isNew": false,
+      "pagina": "https://www.zambos.com/es/productos/zambos-camote-con-sal-marina?count=6"
+    },
+    {
+      "id": "taqueritos-buffalo-ranch",
+      "slug": "taqueritos-buffalo-ranch",
+      "title": "Taqueritos Buffalo Ranch",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+      "isNew": false,
+      "pagina": "https://www.taqueritos.com/es/productos/taqueritos-buffalo-ranch"
+    },
+    {
+      "id": "zambos-yuquitas-con-ajo-parmesano",
+      "slug": "zambos-yuquitas-con-ajo-parmesano",
+      "pagina": "https://www.zambos.com/es/productos/zambos-yuquitas-con-ajo-parmesano?count=6",
+      "title": "Zambos Yuquitas Con Ajo Parmesano",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+      "isNew": false
+    },
+    {
+      "id": "yummi-nut-sabor-a-chile-toreado",
+      "alt": "Yummi Nut Sabor A Chile Toreado",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-nuts-chile-toreado.webp",
+      "isNew": false,
+      "pagina": "https://www.yumminuts.com/es/productos/yummi-nut-mani-japones-con-sabor-a-chile-toreado"
+    }
   ]
 }

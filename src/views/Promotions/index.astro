@@ -4,6 +4,7 @@ import { t, type Locale } from '../../i18n/i18n';
 import LazyImage from '../../components/common/LazyImage.astro';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import PromosCarousel from '../../components/promotions/PromosCarousel.astro';
+import Carousel from '../../components/common/Carousel/index.astro';
 import './styles.css';
 
 export interface Props {
@@ -15,7 +16,22 @@ const { currentLang } = Astro.props;
 // Obtener datos de promociones
 const promotionsData = t('promotions', { namespace: 'promotions', locale: currentLang }) || [];
 const heroData = t('hero', { namespace: 'promotions', locale: currentLang }) || {};
-const pageImage = t('pageImage', { namespace: 'promotions', locale: currentLang }) || {};
+const pageImageRaw = t('pageImage', { namespace: 'promotions', locale: currentLang });
+const pageImages = Array.isArray(pageImageRaw)
+  ? pageImageRaw
+  : (pageImageRaw && typeof pageImageRaw === 'object' && pageImageRaw.desktop)
+    ? [pageImageRaw]
+    : [];
+
+const slides = pageImages.map((img: any, idx: number) => ({
+  desktop: img.desktop || '',
+  mobile: img.mobile || img.desktop || '',
+  alt: img.alt || heroData.title || `Promociones ${idx + 1}`,
+  title: img.title || '',
+  subtitle: img.subtitle || '',
+  link: img.link || img.url || ''
+}));
+
 const sectionsData = t('sections', { namespace: 'promotions', locale: currentLang }) || {};
 
 // Filtrar promociones activas e inactivas
@@ -29,11 +45,10 @@ const finishedPromotions = promotionsData.filter((promo: any) => promo.status ==
   
   
   <!-- Hero Section -->
-  <section class="hero-section relative overflow-hidden bg-gradient-to-b from-primary to-secondary text-white">
-    <picture class="block w-full h-[72vh] md:h-[80vh]">
-      <source media="(min-width: 768px)" srcset={pageImage.desktop} />
-      <img src={pageImage.mobile} alt={heroData.title || 'Promociones'} class="w-full h-full object-cover object-center" />
-    </picture>
+  <section class="relative w-full overflow-hidden">
+    <div class="relative z-0 w-full flex items-center justify-center">
+      <Carousel slides={slides} />
+    </div>
   </section>
   <div class=" -mt-8 bg-gradient-to-r bg-[#1A649E] py-4">
     <Breadcrumb

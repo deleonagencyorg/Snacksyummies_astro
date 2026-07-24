@@ -5,10 +5,18 @@
     "button": "Registrarme",
     "buttonUrl": "/es/yummiesone"
   },
-  "pageImage": {
-    "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Prueba2.webp",
-    "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/movilazul.webp"
-  },
+  "pageImage": [
+    {
+      "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+      "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+      "alt": "Promoción 1"
+    },
+    {
+      "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
+      "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
+      "alt": "Promoción 2"
+    }
+  ],
   "sections": {
     "active": {
       "title": "Promociones activas",
@@ -21,18 +29,98 @@
   },
   "promotions": [
     {
+      "id": "money-party",
+      "slug": "money-party",
+      "title": "MONEY PARTY",
+      "subtitle": "Participa y gana fabulosos premios",
+      "description": "Participa en nuestra nueva promoción y gana fabulosos premios",
+      "startDate": "2026-07-20",
+      "endDate": "2026-10-22",
+      "status": "active",
+      "winners": true,
+      "imageDesktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+      "image": {
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+        "alt": "Money Party"
+      },
+      "buttonText": "Ver detalles",
+      "buttonUrl": "/es/promociones/money-party",
+      "shareText": "Compartir:",
+      "socialLinks": {
+        "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
+        "instagram": "https://www.instagram.com/",
+        "x": "https://x.com/intent/tweet?url="
+      },
+      "tags": [
+        "promocion",
+        "premios"
+      ],
+      "category": "experiences",
+      "detail": {
+        "title": "Para participar, sigue estos pasos:",
+        "image": {
+          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+          "alt": "Money Party",
+          "url_image": "https://www.yummiesmoneyparty.com/"
+        },
+        "steps": [
+          {
+            "number": 1,
+            "title": "Crea una cuenta en Yummies Party",
+            "description": "Crea tu cuenta en Yummies Party",
+            "icon": "📝"
+          },
+          {
+            "number": 2,
+            "title": "Ingresa tu código y participa del sorteo",
+            "description": "Introduce tu código y participa del sorteo",
+            "icon": "🎫"
+          },
+          {
+            "number": 3,
+            "title": "Suma chances, juega y diviértete",
+            "description": "Suma chances, juega y diviértete",
+            "icon": "🏆"
+          }
+        ],
+        "registerButton": "Regístrate",
+        "register_url": "https://www.yummiesmoneyparty.com/",
+        "sections": {
+          "validity": {
+            "title": "Vigencia",
+            "content": "Esta promoción estará vigente desde el 20 de julio hasta el 22 de octubre de 2026."
+          },
+          "terms": {
+            "title": "Bases y Condiciones",
+            "content": "Lee los términos y condiciones de la nueva promoción.",
+            "link": "https://kimera-my.sharepoint.com/:w:/g/personal/abonilla_anagram-us_com/IQBb6-8M0_LOTIhYL4eL2pgrAY5pOdAMkds8-arypI_RcDE?wdExp=TEAMS-TREATMENT&web=1&TeamsCID=11ca23b6-9710-4ea2-be26-95fb1cd87ece&ovuser=0baa55cc-a16a-4833-ac55-b46565a3ed18%2Cesantizo%40agenciadeleon.com&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjA3MDIxNTcxMSIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D",
+            "linkText": "Términos y Condiciones"
+          },
+          "prizes": {
+            "title": "Premios",
+            "content": "¡Premios hasta de RD$ 60,000! ¿Un viaje a Punta Cana todo incluido?"
+          }
+        }
+      }
+    },
+    {
       "id": "mundialistas",
       "slug": "mundialistas",
       "title": "MUNDIALISTAS",
       "subtitle": "Celebra con los Mundialistas y gana premios exclusivos",
       "description": "Participa en la promoción Mundialistas y gana experiencias y premios relacionados al fútbol",
-      "startDate": "2026-06-16",
-      "endDate": "2026-08-16",
+      "startDate": "2026-06-15",
+      "endDate": "2026-08-13",
       "status": "active",
       "winners": true,
+      "imageDesktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
       "image": {
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Prueba2.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/movilazul.webp",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
         "alt": "Promoción Mundialistas"
       },
       "buttonText": "Ver detalles",
@@ -52,8 +140,8 @@
       "detail": {
         "title": "Para participar, sigue estos pasos:",
         "image": {
-          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Prueba2.webp",
-          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/movilazul.webp",
+          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
           "alt": "Mundialistas",
           "url_image": "https://mundialista.yummiespromociones.com/"
         },
@@ -79,20 +167,7 @@
         ],
         "registerButton": "Regístrate",
         "register_url": "https://mundialista.yummiespromociones.com/",
-        "sections": {
-          "validity": {
-            "title": "Vigencia",
-            "content": "Esta promoción estará vigente desde el 15 de junio hasta el 15 de agosto de 2026."
-          },
-          "terms": {
-            "title": "Bases y Condiciones",
-            "content": "Lee las bases y condiciones completas de la promoción Mundialistas."
-          },
-          "prizes": {
-            "title": "Premios",
-            "content": "Descubre los premios disponibles en esta promoción."
-          }
-        }
+        "sections": {}
       }
     }
   ],
