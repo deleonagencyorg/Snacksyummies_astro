@@ -6,6 +6,7 @@ import {
   TelegramShareButton,
   FacebookIcon,
   TwitterIcon,
+  XIcon,
   WhatsappIcon,
   TelegramIcon
 } from 'react-share';
@@ -50,7 +51,7 @@ const SocialShare = ({
       buttons.push(
         <div key="twitter" className={`inline-block ${buttonClassName}`}>
           <TwitterShareButton url={url} title={title} hashtags={hashtags}>
-            <TwitterIcon size={iconSize} round={round} />
+            <XIcon size={iconSize} round={round} />
             {showLabels && <span className="block text-xs mt-1">{labels.twitter}</span>}
           </TwitterShareButton>
         </div>

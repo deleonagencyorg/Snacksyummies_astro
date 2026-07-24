@@ -77,13 +77,13 @@ const winnerCountries = countries.map((name) => ({ name, flag: getFlag(name) }))
 
   <!-- Hero Section -->
   <section class="hero-section bg-sexinary text-white">
-    <div class="block w-full h-[300px] md:h-[800px]">
+    <div class="block w-full h-auto md:h-[800px]">
       <div class="w-full h-full overflow-hidden">
         {promotion?.image?.mobile && (
           <LazyImage 
             src={promotion.image.mobile} 
             alt={promotion.image?.alt || ''}
-            class="w-full h-full object-cover object-center md:hidden"
+            class="w-full h-auto object-contain object-center md:hidden"
             priority={true}
           />
         )}

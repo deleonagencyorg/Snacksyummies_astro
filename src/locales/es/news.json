@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Noticias",
-    "description": "Mantente al día con las últimas noticias y eventos de Taqueritos."
+    "description": "MANTENTE AL DÍA CON LAS ÚLTIMAS NOTICIAS Y EVENTOS"
   },
   "page": {
     "title": "Noticias y Eventos",
-    "description": "Mantente al día con las últimas noticias y eventos de Taqueritos.",
+    "description": "MANTENTE AL DÍA CON LAS ÚLTIMAS NOTICIAS Y EVENTOS",
     "no_news": "No hay noticias disponibles en este momento.",
     "read_more": "Leer más",
     "published_on": "Publicado el"
@@ -19,12 +19,17 @@
     {
       "id": "taqueritos-la-ruta",
       "slug": "taqueritos-la-ruta",
-      "title": "¿Te imaginas que tu talento te lleve directo a Brasil?",
-      "summary": "¡Eso es la Ruta Taqueritos! Un Gaming Truck recorriendo Centroamérica por tierra",
-      "content": "<p>¡¡Eso es la Ruta Taqueritos! Un Gaming Truck recorriendo Centroamérica por tierra, de Guatemala a Costa Rica, para encontrar al gran campeón de FC26. Aquí demuestras tu nivel en un torneo regional donde el gran premio es un viaje a Gamescom Brasil 2026.</p><p>La Ruta Taqueritos continúa. Síguenos en nuestras redes sociales para conocer los resultados, los próximos destinos y descubrir quién sube al siguiente nivel.</p>",      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/laruta_blog.webp",
+      "title": "¡La Ruta Taqueritos estuvo épica! Y la llevamos al siguiente nivel con Taqueritos​",
+      "summary": "Y la llevamos al siguiente nivel con Taqueritos​",
+      "content": "<p>¡La Ruta Taqueritos leveleó Centroamérica y República Dominicana!</p><p>Nuestro gaming truck recorrió cada país, haciendo que más de 2,000 jugadores de FC26 demuestren su talento a nivel nacional. Los finalistas se llevaron $300 USD y representaron a su país en la final regional.</p><p>César Duarte, desde Costa Rica, se consagró como el gran campeón del torneo, anotando el gol del año y ganando un viaje inolvidable a la Gamescom Brasil 2026.</p>",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ruta_banner.webp",
       "published_date": "25/2/2026",
       "author": "Equipo Yummies",
-      "tags": ["premio", "taqueritos", "viajes"]
+      "tags": [
+        "premio",
+        "taqueritos",
+        "viajes"
+      ]
     },
     {
       "id": "yummies-top-brands",
@@ -35,7 +40,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/1-banner-Yummies-sigue-en-la-cima-la-marca-de-snacks.webp",
       "published_date": "5/5/2025",
       "author": "Equipo Yummies",
-      "tags": ["premio", "reconocimiento", "top-of-mind"]
+      "tags": [
+        "premio",
+        "reconocimiento",
+        "top-of-mind"
+      ]
     },
     {
       "id": "yummies-new-image",
@@ -46,7 +55,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/2-banner-Yummies-renueva-su-imagen.webp",
       "published_date": "15/4/2025",
       "author": "Departamento de Marketing",
-      "tags": ["rebranding", "imagen", "evolución"]
+      "tags": [
+        "rebranding",
+        "imagen",
+        "evolución"
+      ]
     },
     {
       "id": "community-commitment",
@@ -57,7 +70,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/4-banner-Reafirmamos-nuestro-compromiso-con-la-comunidad.webp",
       "published_date": "30/3/2025",
       "author": "Equipo de Sostenibilidad",
-      "tags": ["sostenibilidad", "comunidad", "educación"]
+      "tags": [
+        "sostenibilidad",
+        "comunidad",
+        "educación"
+      ]
     },
     {
       "id": "childrens-day",
@@ -68,7 +85,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/5-banner-Yummies-Celebra-el-Dia-del-Nino-con-Alegria-en-Honduras.webp",
       "published_date": "15/3/2025",
       "author": "Equipo de Responsabilidad Social",
-      "tags": ["niños", "responsabilidad-social", "honduras"]
+      "tags": [
+        "niños",
+        "responsabilidad-social",
+        "honduras"
+      ]
     },
     {
       "id": "education-guatemala",
@@ -79,7 +100,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/6-banner-Yummies-impulsa-la-educacion-en-Guatemala-con-Alegria.webp",
       "published_date": "1/3/2025",
       "author": "Equipo Guatemala",
-      "tags": ["guatemala", "educación", "niños"]
+      "tags": [
+        "guatemala",
+        "educación",
+        "niños"
+      ]
     },
     {
       "id": "taqueritos-copa-centroamericana",
@@ -90,7 +115,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/7-banner-Taqueritos-Snack-Oficial-de-la-Copa-Centroamericana.webp",
       "published_date": "15/2/2025",
       "author": "Equipo de Marketing Deportivo",
-      "tags": ["fútbol", "taqueritos", "copa-centroamericana"]
+      "tags": [
+        "fútbol",
+        "taqueritos",
+        "copa-centroamericana"
+      ]
     },
     {
       "id": "ranchitas-nachos",
@@ -101,7 +130,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/8-banner-La-explosion-de-sabores-de-Ranchitas-Nachos-llego-a-Honduras.webp",
       "published_date": "2/8/2024",
       "author": "Equipo de Alianzas",
-      "tags": ["ranchitas", "papa-johns", "novedad"]
+      "tags": [
+        "ranchitas",
+        "papa-johns",
+        "novedad"
+      ]
     },
     {
       "id": "escuelas-beneficiadas",
@@ -112,7 +145,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/9-banner-Mas-de-100-escuelas-publicas-beneficiadas.webp",
       "published_date": "15/1/2024",
       "author": "Equipo de Sostenibilidad",
-      "tags": ["sostenibilidad", "escuelas", "zambos"]
+      "tags": [
+        "sostenibilidad",
+        "escuelas",
+        "zambos"
+      ]
     },
     {
       "id": "tds-futbol",
@@ -123,7 +160,11 @@
       "image": "https://snack.yummiespromociones.com/snacksyummies/10-banner-Apoyamos-a-150-jovenes-futbolistas-en-la-TDS.webp",
       "published_date": "25/2/2024",
       "author": "Equipo de Patrocinios",
-      "tags": ["fútbol", "patrocinio", "jóvenes"]
+      "tags": [
+        "fútbol",
+        "patrocinio",
+        "jóvenes"
+      ]
     },
     {
       "id": "cappy-schools",
@@ -133,7 +174,11 @@
       "content": "<p>Cappy se une al programa Chispazo Educativo de Nuestro Diario para llevar aprendizaje y diversión a las escuelas primarias públicas. En esta edición, 600 niños y niñas de la Escuela Oficial Urbana Mixta Tipo Federación 2 vivieron una jornada especial con el león de Cappy, explorando el \"mundo mágico\" a través de dinámicas físicas, juegos y mucha imaginación.</p><p>Con guías interactivas insertadas en el diario y actividades en centros escolares, Chispazo Educativo busca fortalecer el aprendizaje desde la creatividad. \"Cappy es más que un snack; es una fuente de inspiración para niños curiosos y soñadores\", comentó Geisi Meza Matamoros, Gerente de Marca.</p><p>El programa cuenta con el respaldo del Ministerio de Educación y se implementa a nivel nacional. Así, Cappy reafirma su compromiso con el desarrollo infantil y la educación divertida.</p>",
       "image": "https://snack.yummiespromociones.com/snacksyummies/3-banner-El-mundo-magico-de-Cappy-llega-a-600-escolares.webp",
       "author": "Equipo Cappy",
-      "tags": ["educación", "niños", "programa"],
+      "tags": [
+        "educación",
+        "niños",
+        "programa"
+      ],
       "published_date": "25/2/2024"
     }
   ]

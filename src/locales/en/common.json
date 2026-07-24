@@ -91,7 +91,6 @@
       "iconUrl": "https://snack.yummiespromociones.com/SnacksyummiesAssets/X .svg"
     }
   },
-  
   "cookie_consent": {
     "title": "Cookie usage",
     "description": "We use cookies to improve your experience on our website.",
@@ -114,7 +113,6 @@
         "description": "",
         "link": "#"
       },
-
       {
         "id": "slide2",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Bannerr-home-21.webp",
@@ -163,13 +161,11 @@
       "text": "Recipes",
       "href": "/en/recipes"
     },
-    
     {
       "id": "blog",
       "text": "Blog",
       "href": "/en/blog"
     },
-  
     {
       "id": "about_us",
       "text": "About Us",
@@ -192,51 +188,50 @@
     ]
   },
   "home": {
-    "brands":{
-      "title":"Brands"
+    "brands": {
+      "title": "Brands"
     },
-    "new_products":{
-      "tagtitle":"New",
-      "title":"Products"
+    "new_products": {
+      "tagtitle": "New",
+      "title": "Products"
     },
-    "preview_brand":{
-      "button":"View brand",
-      "title":"Our brands"
+    "preview_brand": {
+      "button": "View brand",
+      "title": "Our brands"
     },
-    "newsletter":{
-      "placeholder":"email@email.com",
-      "buttonText":"Subscribe"
+    "newsletter": {
+      "placeholder": "email@email.com",
+      "buttonText": "Subscribe"
     },
-    "socialmedia":{
-      "title":"Follow us",
-      "tagtitle":"on social media",
-      "description":"Follow us on our social media - Snacks Yummies",
-      "newsletter":"Stay up to date with all our news and promotions",
-      "instagramLinks":[
+    "socialmedia": {
+      "title": "Follow us",
+      "tagtitle": "on social media",
+      "description": "Follow us on our social media - Snacks Yummies",
+      "newsletter": "Stay up to date with all our news and promotions",
+      "instagramLinks": [
         {
-          "url":"https://www.instagram.com/p/DZlIiUFDoXh/"
+          "url": "https://www.instagram.com/p/DZlIiUFDoXh/"
         },
         {
-          "url":"https://www.instagram.com/p/DZfy_CIlZnr/"
+          "url": "https://www.instagram.com/p/DZfy_CIlZnr/"
         },
         {
-          "url":"https://www.instagram.com/p/DZdOIXqlbxx/"
+          "url": "https://www.instagram.com/p/DZdOIXqlbxx/"
         },
         {
-          "url":"https://www.instagram.com/p/DZVOVoIF8a8/"
+          "url": "https://www.instagram.com/p/DZVOVoIF8a8/"
         }
       ]
     },
-    "quiz":{
-      "title":"https://snack.yummiespromociones.com/snacksyummies/titlequiz.webp",
-      "description":"Discover how to make your days more Yummies",
-      "button":"Make Quiz",
-        "urlButton":"/en/quiz"
-      
+    "quiz": {
+      "title": "https://snack.yummiespromociones.com/snacksyummies/titlequiz.webp",
+      "description": "Discover how to make your days more Yummies",
+      "button": "Make Quiz",
+      "urlButton": "/en/quiz"
     },
-    "spotify":{
-      "listen_in_spotify":"https://snack.yummiespromociones.com/taqueritos/Listen-Lockup-Spanish-Horizontal-White-_1_2-2-768x116.avif",
-      "button_listen_now":"https://snack.yummiespromociones.com/taqueritos/botonspotify.webp"
+    "spotify": {
+      "listen_in_spotify": "https://snack.yummiespromociones.com/taqueritos/Listen-Lockup-Spanish-Horizontal-White-_1_2-2-768x116.avif",
+      "button_listen_now": "https://snack.yummiespromociones.com/taqueritos/botonspotify.webp"
     },
     "title": " Snacks Yummies -  Authentic Mexican Food",
     "subtitle": "Enjoy the best tacos and Mexican dishes",
@@ -264,16 +259,16 @@
     "newsletter_placeholder": "youremail@email.com",
     "newsletter_button": "Subscribe"
   },
-  "messagetop":[
+  "messagetop": [
     {
-      "id":"1",
-      "title":"🏆 Leaders in snacks in Central America",
-      "link":""
+      "id": "1",
+      "title": "🌍 Central America tastes like Yummies",
+      "link": ""
     },
     {
-      "id":"2",
-      "title":"😎 Because the best flavors are born here!",
-      "link":""
+      "id": "2",
+      "title": "🤤 A real craving can't wait",
+      "link": ""
     }
   ]
 }

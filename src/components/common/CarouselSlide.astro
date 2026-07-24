@@ -17,48 +17,50 @@ export interface Props {
 const { slide, priority = false } = Astro.props;
 ---
 
-<div class="swiper-slide relative h-full">
+<div class="swiper-slide relative w-full h-full flex items-center justify-center">
   {slide.link ? (
     <a href={slide.link} class="block w-full h-full">
-      <div class="w-full h-full overflow-hidden">
-        <LazyImage 
-          src={slide.mobile} 
-          alt={slide.alt}
-          class="w-full h-full object-cover object-center md:hidden"
-          priority={priority}
-        />
-        <LazyImage 
-          src={slide.desktop} 
-          alt={slide.alt}
-          class="w-full h-full object-cover object-center hidden md:block"
-          priority={priority}
-        />
+      <div class="w-full h-full flex items-center justify-center overflow-hidden">
+        <picture class="block w-full h-full">
+          <source media="(min-width: 768px)" srcset={slide.desktop} />
+          <img 
+            src={slide.mobile} 
+            alt={slide.alt}
+            class="w-full h-auto object-contain object-center block mx-auto"
+            loading={priority ? "eager" : "lazy"}
+            decoding={priority ? "sync" : "async"}
+            fetchpriority={priority ? "high" : "auto"}
+          />
+        </picture>
       </div>
-      <div class="absolute inset-x-0 bottom-8 flex flex-col items-center justify-center text-center text-white px-4">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 drop-shadow-lg">{slide.title}</h2>
-        <p class="text-lg md:text-xl max-w-2xl drop-shadow">{slide.subtitle}</p>
-      </div>
+      {(slide.title || slide.subtitle) && (
+        <div class="absolute inset-x-0 bottom-8 flex flex-col items-center justify-center text-center text-white px-4">
+          {slide.title && <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 drop-shadow-lg">{slide.title}</h2>}
+          {slide.subtitle && <p class="text-lg md:text-xl max-w-2xl drop-shadow">{slide.subtitle}</p>}
+        </div>
+      )}
     </a>
   ) : (
     <>
-      <div class="w-full h-full overflow-hidden">
-        <LazyImage 
-          src={slide.mobile} 
-          alt={slide.alt}
-          class="w-full h-full object-cover object-center md:hidden"
-          priority={priority}
-        />
-        <LazyImage 
-          src={slide.desktop} 
-          alt={slide.alt}
-          class="w-full h-full object-cover object-center hidden md:block"
-          priority={priority}
-        />
+      <div class="w-full h-full flex items-center justify-center overflow-hidden">
+        <picture class="block w-full h-full">
+          <source media="(min-width: 768px)" srcset={slide.desktop} />
+          <img 
+            src={slide.mobile} 
+            alt={slide.alt}
+            class="w-full h-auto object-contain object-center block mx-auto"
+            loading={priority ? "eager" : "lazy"}
+            decoding={priority ? "sync" : "async"}
+            fetchpriority={priority ? "high" : "auto"}
+          />
+        </picture>
       </div>
-      <div class="absolute inset-x-0 bottom-8 flex flex-col items-center justify-center text-center text-white px-4">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 drop-shadow-lg">{slide.title}</h2>
-        <p class="text-lg md:text-xl max-w-2xl drop-shadow">{slide.subtitle}</p>
-      </div>
+      {(slide.title || slide.subtitle) && (
+        <div class="absolute inset-x-0 bottom-8 flex flex-col items-center justify-center text-center text-white px-4">
+          {slide.title && <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-4 drop-shadow-lg">{slide.title}</h2>}
+          {slide.subtitle && <p class="text-lg md:text-xl max-w-2xl drop-shadow">{slide.subtitle}</p>}
+        </div>
+      )}
     </>
   )}
 </div>
