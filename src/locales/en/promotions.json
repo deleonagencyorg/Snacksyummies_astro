@@ -16,7 +16,7 @@
       "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
       "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
       "alt": "Promotion 2",
-      "link": "https://mundialista.yummiespromociones.com/"
+      "link": "https://www.snacksyummies.com/es/ganadores/mundialistas"
     }
   ],
   "sections": {
@@ -53,7 +53,12 @@
         "instagram": "https://www.instagram.com/",
         "x": "https://x.com/intent/tweet?url="
       },
-      "tags": ["superman", "six-flags", "trip", "prizes"],
+      "tags": [
+        "superman",
+        "six-flags",
+        "trip",
+        "prizes"
+      ],
       "category": "travel",
       "detail": {
         "title": "To participate, follow these steps:",
@@ -128,7 +133,12 @@
         "instagram": "https://www.instagram.com/",
         "x": "https://x.com/intent/tweet?url="
       },
-      "tags": ["guardians", "punta-cana", "trip", "tropical"],
+      "tags": [
+        "guardians",
+        "punta-cana",
+        "trip",
+        "tropical"
+      ],
       "category": "travel",
       "participationSteps": [
         "HOW TO PARTICIPATE?",

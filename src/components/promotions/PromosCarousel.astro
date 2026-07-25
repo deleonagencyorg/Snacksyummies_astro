@@ -31,7 +31,7 @@ const formattedDate = (startDate: string, endDate: string) => {
         {items.map((promotion: any, idx: number) => {
           const bgDesktop = promotion?.imageDesktop || promotion?.image?.desktop || '';
           const bgMobile = promotion?.imageMobile || promotion?.image?.mobile || bgDesktop;
-          const externalUrl = promotion?.detail?.register_url || promotion?.detail?.image?.url_image;
+          const cardUrl = promotion?.cardUrl || promotion?.detail?.image?.url_image || promotion?.detail?.register_url;
           return (
             <div class="promo-slide-full flex-shrink-0 w-full relative" data-slide-index={idx}>
               <div class="card-wrapper mx-auto w-full" style={`max-width: 1036px`}>
@@ -40,8 +40,8 @@ const formattedDate = (startDate: string, endDate: string) => {
 
                     {/* Image panel — full width on mobile, half on desktop */}
                     <div class="relative w-full h-[240px] md:w-[517px] md:h-full flex-shrink-0 overflow-hidden">
-                      {externalUrl ? (
-                        <a href={externalUrl} target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                      {cardUrl ? (
+                        <a href={cardUrl} target="_blank" rel="noopener noreferrer" class="block w-full h-full">
                           <picture class="block w-full h-full">
                             <source media="(min-width: 768px)" srcset={bgDesktop} />
                             <img 
@@ -108,7 +108,7 @@ const formattedDate = (startDate: string, endDate: string) => {
                           {currentLang === 'es' ? 'Comparte:' : 'Share:'}
                         </span>
                         <SocialShare
-                          url={externalUrl || 'https://mundialista.yummiespromociones.com/'}
+                          url={cardUrl || 'https://mundialista.yummiespromociones.com/'}
                           title={promotion.title}
                           className="flex gap-3"
                           buttonClassName="text-black hover:text-blue-600 transition-colors"
