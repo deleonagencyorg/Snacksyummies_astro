@@ -26,7 +26,7 @@ const formattedDate = (startDate: string, endDate: string) => {
 <div class="promos-carousel" id={uid}>
   <div class="promo-carousel-container content-stretch flex flex-col gap-6 items-center justify-start relative w-full">
     <div class="content-stretch flex flex-col gap-6 items-center justify-start relative w-full">
-      <div class="slides-viewport relative w-full overflow-hidden">
+      <div class="slides-viewport relative w-full overflow-hidden" style="touch-action: pan-y;">
         <div class="slides-track flex relative will-change-transform">
         {items.map((promotion: any, idx: number) => {
           const bgDesktop = promotion?.imageDesktop || promotion?.image?.desktop || '';
@@ -98,7 +98,7 @@ const formattedDate = (startDate: string, endDate: string) => {
                           title={promotion.title}
                           className="flex gap-3"
                           buttonClassName="text-black hover:text-blue-600 transition-colors"
-                          platforms={['facebook', 'twitter', 'whatsapp']}
+                          platforms={['facebook', 'twitter', 'instagram']}
                         />
                       </div>
                     </div>
@@ -149,120 +149,230 @@ const formattedDate = (startDate: string, endDate: string) => {
   </div>
 
   <script>
-    document.querySelectorAll('.promos-carousel').forEach(function(root){
-      const slidesTrack = root.querySelector('.slides-track');
-      const slidesViewport = root.querySelector('.slides-viewport');
-      const slides = Array.from(root.querySelectorAll('.promo-slide-full'));
-      if(slides.length === 0) return;
-      const hasMultipleSlides = slides.length > 1;
-      let current = 0;
-      const prevBtn = root.querySelector('.carousel-prev');
-      const nextBtn = root.querySelector('.carousel-next');
-      const dots = Array.from(root.querySelectorAll('.dot'));
-      const containerEl = root.querySelector('.promo-carousel-container');
-      let containerWidth = slidesViewport ? slidesViewport.clientWidth : (containerEl ? containerEl.clientWidth : root.clientWidth);
-      function setWidths(){
-        containerWidth = slidesViewport ? slidesViewport.clientWidth : (containerEl ? containerEl.clientWidth : root.clientWidth);
-        containerWidth = Math.max(0, Math.round(containerWidth));
-        if (slidesTrack) {
-          slidesTrack.style.width = `${slides.length * containerWidth}px`;
-          slidesTrack.style.gap = '0px';
-          slidesTrack.style.boxSizing = 'border-box';
-          slides.forEach(sl => {
-            sl.style.boxSizing = 'border-box';
-            sl.style.flex = `0 0 ${containerWidth}px`;
-            sl.style.width = `${containerWidth}px`;
-            sl.style.paddingLeft = '0';
-            sl.style.paddingRight = '0';
-            sl.style.margin = '0';
-          });
-        }
+    function initPromosCarousel() {
+      // Limpiar instancias previas para evitar duplicación de listeners e intervalos
+      if ((window as any).__promosCarouselCleanups) {
+        (window as any).__promosCarouselCleanups.forEach((fn: any) => fn());
+        (window as any).__promosCarouselCleanups = [];
+      } else {
+        (window as any).__promosCarouselCleanups = [];
       }
-      setWidths();
-      let resizeTimeout;
-      window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(() => { setWidths(); update(current); }, 80); });
 
-      function update(activeIndex, skipFade = false){
-        const index = ((activeIndex % slides.length) + slides.length) % slides.length;
-        const doSnap = () => {
+      document.querySelectorAll('.promos-carousel').forEach(function(root) {
+        const slidesTrack = root.querySelector('.slides-track') as HTMLElement | null;
+        const slidesViewport = root.querySelector('.slides-viewport') as HTMLElement | null;
+        const slides = Array.from(root.querySelectorAll('.promo-slide-full')) as HTMLElement[];
+        if (slides.length === 0) return;
+
+        const hasMultipleSlides = slides.length > 1;
+        let current = 0;
+        const prevBtn = root.querySelector('.carousel-prev') as HTMLElement | null;
+        const nextBtn = root.querySelector('.carousel-next') as HTMLElement | null;
+        const dots = Array.from(root.querySelectorAll('.dot')) as HTMLElement[];
+        const containerEl = root.querySelector('.promo-carousel-container') as HTMLElement | null;
+
+        let autoplayTimer: any = null;
+
+        function getContainerWidth() {
+          const width = slidesViewport ? slidesViewport.clientWidth : (containerEl ? containerEl.clientWidth : root.clientWidth);
+          return width > 0 ? Math.round(width) : 0;
+        }
+
+        let containerWidth = getContainerWidth();
+
+        function setWidths() {
+          const w = getContainerWidth();
+          if (w <= 0) return;
+          containerWidth = w;
           if (slidesTrack) {
-            slidesTrack.style.transition = 'none';
-            slidesTrack.style.transform = `translateX(-${index * containerWidth}px)`;
+            slidesTrack.style.width = `${slides.length * containerWidth}px`;
+            slidesTrack.style.gap = '0px';
+            slidesTrack.style.boxSizing = 'border-box';
+            slides.forEach(sl => {
+              sl.style.boxSizing = 'border-box';
+              sl.style.flex = `0 0 ${containerWidth}px`;
+              sl.style.width = `${containerWidth}px`;
+              sl.style.paddingLeft = '0';
+              sl.style.paddingRight = '0';
+              sl.style.margin = '0';
+            });
           }
-          dots.forEach((d,i)=>{
-            if(i === index){
-              d.classList.remove('bg-[#a4aeb7]');
-              d.classList.add('bg-white');
-            } else {
-              d.classList.remove('bg-white');
-              d.classList.add('bg-[#a4aeb7]');
-            }
+        }
+
+        setWidths();
+
+        if (typeof ResizeObserver !== 'undefined' && slidesViewport) {
+          const resizeObserver = new ResizeObserver(() => {
+            setWidths();
+            update(current, true);
           });
-          current = index;
-        };
-        if (!hasMultipleSlides || skipFade || !slidesViewport) {
-          doSnap();
+          resizeObserver.observe(slidesViewport);
+          (window as any).__promosCarouselCleanups.push(() => resizeObserver.disconnect());
+        }
+
+        function startAutoplay() {
+          if (!hasMultipleSlides) return;
+          stopAutoplay();
+          autoplayTimer = setInterval(() => update(current + 1), 5000);
+        }
+
+        function stopAutoplay() {
+          if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+          }
+        }
+
+        (window as any).__promosCarouselCleanups.push(() => stopAutoplay());
+
+        function update(activeIndex: number, skipFade = false) {
+          if (containerWidth <= 0) {
+            setWidths();
+          }
+          const index = ((activeIndex % slides.length) + slides.length) % slides.length;
+          const doSnap = () => {
+            if (slidesTrack) {
+              slidesTrack.style.transition = 'none';
+              slidesTrack.style.transform = `translateX(-${index * containerWidth}px)`;
+            }
+            dots.forEach((d, i) => {
+              if (i === index) {
+                d.classList.remove('bg-[#a4aeb7]');
+                d.classList.add('bg-white');
+              } else {
+                d.classList.remove('bg-white');
+                d.classList.add('bg-[#a4aeb7]');
+              }
+            });
+            current = index;
+          };
+
+          if (!hasMultipleSlides || skipFade || !slidesViewport) {
+            doSnap();
+            return;
+          }
+
+          slidesViewport.style.transition = 'opacity 220ms ease';
+          slidesViewport.style.opacity = '0';
+          setTimeout(() => {
+            doSnap();
+            requestAnimationFrame(() => {
+              if (slidesViewport) slidesViewport.style.opacity = '1';
+            });
+          }, 220);
+        }
+
+        if (!hasMultipleSlides) {
+          prevBtn?.setAttribute('disabled', 'true');
+          nextBtn?.setAttribute('disabled', 'true');
+          prevBtn?.setAttribute('aria-disabled', 'true');
+          nextBtn?.setAttribute('aria-disabled', 'true');
+          dots.forEach((dot) => {
+            dot.setAttribute('aria-disabled', 'true');
+            dot.classList.remove('hover:bg-white/80');
+          });
+          update(0, true);
           return;
         }
-        slidesViewport.style.transition = 'opacity 220ms ease';
-        slidesViewport.style.opacity = '0';
-        setTimeout(() => {
-          doSnap();
-          requestAnimationFrame(() => {
-            slidesViewport.style.opacity = '1';
-          });
-        }, 220);
-      }
 
-      if (!hasMultipleSlides) {
-        prevBtn?.setAttribute('disabled', 'true');
-        nextBtn?.setAttribute('disabled', 'true');
-        prevBtn?.setAttribute('aria-disabled', 'true');
-        nextBtn?.setAttribute('aria-disabled', 'true');
-        dots.forEach((dot) => {
-          dot.setAttribute('aria-disabled', 'true');
-          dot.classList.remove('hover:bg-white/80');
+        const onPrevClick = () => update((current - 1 + slides.length) % slides.length);
+        const onNextClick = () => update((current + 1) % slides.length);
+        
+        prevBtn?.addEventListener('click', onPrevClick);
+        nextBtn?.addEventListener('click', onNextClick);
+
+        const dotListeners: { dot: HTMLElement; handler: EventListener }[] = [];
+        dots.forEach(d => {
+          const handler = () => update(Number(d.dataset.dotIndex));
+          d.addEventListener('click', handler);
+          dotListeners.push({ dot: d, handler });
         });
+
+        const onMouseEnter = () => stopAutoplay();
+        const onMouseLeave = () => startAutoplay();
+
+        root.addEventListener('mouseenter', onMouseEnter);
+        root.addEventListener('mouseleave', onMouseLeave);
+
+        (window as any).__promosCarouselCleanups.push(() => {
+          prevBtn?.removeEventListener('click', onPrevClick);
+          nextBtn?.removeEventListener('click', onNextClick);
+          dotListeners.forEach(({ dot, handler }) => dot.removeEventListener('click', handler));
+          root.removeEventListener('mouseenter', onMouseEnter);
+          root.removeEventListener('mouseleave', onMouseLeave);
+        });
+
+        let startX = 0;
+        let startY = 0;
+        let deltaX = 0;
+        let deltaY = 0;
+        let isScrolling: boolean | undefined = undefined;
+        const threshold = 50;
+
+        const onTouchStart = (e: TouchEvent) => {
+          if (e.touches.length > 1) return;
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          deltaX = 0;
+          deltaY = 0;
+          isScrolling = undefined;
+          if (slidesTrack) slidesTrack.style.transition = '';
+          stopAutoplay();
+        };
+
+        const onTouchMove = (e: TouchEvent) => {
+          if (e.touches.length > 1) return;
+          deltaX = e.touches[0].clientX - startX;
+          deltaY = e.touches[0].clientY - startY;
+
+          if (typeof isScrolling === 'undefined') {
+            isScrolling = Math.abs(deltaY) > Math.abs(deltaX);
+          }
+
+          if (isScrolling) {
+            return;
+          }
+
+          if (slidesTrack && containerWidth > 0) {
+            slidesTrack.style.transform = `translateX(${ -current * containerWidth + deltaX }px)`;
+          }
+        };
+
+        const onTouchEnd = () => {
+          if (!isScrolling && Math.abs(deltaX) > threshold) {
+            if (deltaX < 0) update(current + 1, true);
+            else update(current - 1, true);
+          } else {
+            update(current, true);
+          }
+          startAutoplay();
+        };
+
+        if (slidesViewport) {
+          slidesViewport.addEventListener('touchstart', onTouchStart, { passive: true });
+          slidesViewport.addEventListener('touchmove', onTouchMove, { passive: true });
+          slidesViewport.addEventListener('touchend', onTouchEnd, { passive: true });
+
+          (window as any).__promosCarouselCleanups.push(() => {
+            slidesViewport.removeEventListener('touchstart', onTouchStart);
+            slidesViewport.removeEventListener('touchmove', onTouchMove);
+            slidesViewport.removeEventListener('touchend', onTouchEnd);
+          });
+        }
+
+        startAutoplay();
         update(0, true);
-        return;
-      }
-
-      prevBtn?.addEventListener('click', ()=> update((current - 1 + slides.length) % slides.length));
-      nextBtn?.addEventListener('click', ()=> update((current + 1) % slides.length));
-      dots.forEach(d => d.addEventListener('click', ()=> update(Number(d.dataset.dotIndex))));
-
-      // autoplay
-      let autoplay = setInterval(()=> update(current + 1), 5000);
-      root.addEventListener('mouseenter', ()=> clearInterval(autoplay));
-      root.addEventListener('mouseleave', ()=> { autoplay = setInterval(()=> update(current + 1), 5000); });
-
-      // touch
-      let startX = 0;
-      let deltaX = 0;
-      const threshold = 50;
-      root.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        deltaX = 0;
-        if (slidesTrack) slidesTrack.style.transition = '';
-        clearInterval(autoplay);
-      }, { passive: true });
-      root.addEventListener('touchmove', (e) => {
-        deltaX = e.touches[0].clientX - startX;
-        if (slidesTrack) {
-          slidesTrack.style.transform = `translateX(${ -current * containerWidth + deltaX }px)`;
-        }
-      }, { passive: true });
-      root.addEventListener('touchend', () => {
-        if (Math.abs(deltaX) > threshold) {
-          if (deltaX < 0) update(current + 1, true); else update(current - 1, true);
-        } else {
-          update(current, true);
-        }
-        autoplay = setInterval(()=> update(current + 1), 5000);
       });
+    }
 
-      update(0, true);
-    });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPromosCarousel);
+    } else {
+      initPromosCarousel();
+    }
+
+    document.addEventListener('astro:page-load', initPromosCarousel);
+    document.addEventListener('astro:after-swap', initPromosCarousel);
   </script>
 </div>
 ) : ''}

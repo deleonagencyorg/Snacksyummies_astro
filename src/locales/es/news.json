@@ -17,11 +17,26 @@
   },
   "items": [
     {
+      "id": "snack-crujiente-hace-reir",
+      "slug": "snack-crujiente-hace-reir",
+      "title": "¿Por qué un snack crujiente nos hace sonreír?",
+      "summary": "El placer de romper lo crujiente es un efecto neurológico que activa los centros de recompensa en nuestro cerebro",
+      "content": "<p>El sonido crujiente de un snack activa zonas del cerebro asociadas a la recompensa, generando una sonrisa inmediata. En Snacks Yummies, reunimos el antojo, la diversión y el relax en un solo punto de encuentro.</p><p>¿Cómo funciona la ciencia del crujido?</p><p>Al masticar un totopo, la conducción ósea lleva el sonido al oído, intensificando el sabor percibido. A diferencia de los alimentos blandos, este crujido constante ayuda a reducir el estrés. Además, un snack de maíz horneado aporta energía rápida con menos calorías que las alternativas fritas tradicionales.</p><p>¿Cuáles son las mejores formas de disfrutar tu día?</p><p>• Break laboral: Consume un snack ligero para recuperar el enfoque</p><p>• Reto con amigos: Comparte sabores intensos para conectar.</p><p>No elegimos un solo momento, los impulsamos todos. Cada bocado transforma tu rutina diaria.</p>",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/blog_yummies.webp",
+      "published_date": "25/2/2026",
+      "author": "Equipo Yummies",
+      "tags": [
+        "premio",
+        "taqueritos",
+        "viajes"
+      ]
+    },
+    {
       "id": "taqueritos-la-ruta",
       "slug": "taqueritos-la-ruta",
       "title": "¡La Ruta Taqueritos estuvo épica! Y la llevamos al siguiente nivel con Taqueritos​",
       "summary": "Y la llevamos al siguiente nivel con Taqueritos​",
-      "content": "<p>¡La Ruta Taqueritos leveleó Centroamérica y República Dominicana!</p><p>Nuestro gaming truck recorrió cada país, haciendo que más de 2,000 jugadores de FC26 demuestren su talento a nivel nacional. Los finalistas se llevaron $300 USD y representaron a su país en la final regional.</p><p>César Duarte, desde Costa Rica, se consagró como el gran campeón del torneo, anotando el gol del año y ganando un viaje inolvidable a la Gamescom Brasil 2026.</p>",
+      "content": "<h2>¡La Ruta Taqueritos leveleó Centroamérica y República Dominicana!</h2><p>Nuestro gaming truck recorrió cada país, haciendo que más de 2,000 jugadores de FC26 demuestren su talento a nivel nacional. Los finalistas se llevaron $300 USD y representaron a su país en la final regional.</p><p>César Duarte, desde Costa Rica, se consagró como el gran campeón del torneo, anotando el gol del año y ganando un viaje inolvidable a la Gamescom Brasil 2026.</p>",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ruta_banner.webp",
       "published_date": "25/2/2026",
       "author": "Equipo Yummies",

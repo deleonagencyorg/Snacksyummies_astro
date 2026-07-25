@@ -4,6 +4,8 @@ import { t, type Locale } from '../../../i18n/i18n';
 import LazyImage from '../../../components/common/LazyImage.astro';
 import PromotionNavigation from '../../../components/common/PromotionNavigation.astro';
 import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
+import { winners_promotions as esWinners } from '../../../locales/es/winners/index';
+import { winners_promotions as enWinners } from '../../../locales/en/winners/index';
 import './styles.css';
 
 export interface Props {
@@ -26,6 +28,14 @@ const detailData = promotion.detail || {};
 const mobileSrc: string | undefined = detailData?.image?.mobile;
 const desktopSrc: string | undefined = detailData?.image?.desktop;
 
+// Verificar si la promocion tiene ganadores
+const esPromotionWinners = esWinners[promotionSlug] || {};
+const enPromotionWinners = enWinners[promotionSlug] || {};
+const hasWinnersEntered = 
+  Object.values(esPromotionWinners).some((winners) => Array.isArray(winners) && winners.length > 0) ||
+  Object.values(enPromotionWinners).some((winners) => Array.isArray(winners) && winners.length > 0);
+
+const showWinnersSection = Boolean(promotion.winners) && hasWinnersEntered;
 ---
 
 <main class="promotion-detail-page">
@@ -157,7 +167,7 @@ const desktopSrc: string | undefined = detailData?.image?.desktop;
     </div>
   </section>
 
-  {promotion.winners && (
+  {showWinnersSection && (
     <section class="winners-section py-16 bg-gradient-to-r from-primary to-secondary">
       <div class="container mx-auto px-4 text-center">
         <h3 class="text-2xl font-bold text-white mb-6">
