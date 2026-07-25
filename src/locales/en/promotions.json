@@ -5,6 +5,20 @@
     "button": "Register",
     "buttonUrl": "/en/yummiesone"
   },
+  "pageImage": [
+    {
+      "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+      "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+      "alt": "Promotion 1",
+      "link": "https://yummiesmoneyparty.com/"
+    },
+    {
+      "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
+      "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
+      "alt": "Promotion 2",
+      "link": "https://mundialista.yummiespromociones.com/"
+    }
+  ],
   "sections": {
     "active": {
       "title": "Active Promotions",

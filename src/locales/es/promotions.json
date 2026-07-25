@@ -9,12 +9,14 @@
     {
       "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
       "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
-      "alt": "Promoción 1"
+      "alt": "Promoción 1",
+      "link": "https://yummiesmoneyparty.com/"
     },
     {
       "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
       "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
-      "alt": "Promoción 2"
+      "alt": "Promoción 2",
+      "link": "https://mundialista.yummiespromociones.com/"
     }
   ],
   "sections": {
@@ -64,11 +66,11 @@
           "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
           "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
           "alt": "Money Party",
-          "url_image": "https://www.yummiesmoneyparty.com/"
+          "url_image": "https://yummiesmoneyparty.com/"
         },
         "steps": [],
         "registerButton": "Regístrate",
-        "register_url": "https://www.yummiesmoneyparty.com/",
+        "register_url": "https://yummiesmoneyparty.com/",
         "sections": {
           "validity": {
             "title": "Vigencia",
