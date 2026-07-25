@@ -66,26 +66,7 @@
           "alt": "Money Party",
           "url_image": "https://www.yummiesmoneyparty.com/"
         },
-        "steps": [
-          {
-            "number": 1,
-            "title": "Crea una cuenta en Yummies Party",
-            "description": "Crea tu cuenta en Yummies Party",
-            "icon": "📝"
-          },
-          {
-            "number": 2,
-            "title": "Ingresa tu código y participa del sorteo",
-            "description": "Introduce tu código y participa del sorteo",
-            "icon": "🎫"
-          },
-          {
-            "number": 3,
-            "title": "Suma chances, juega y diviértete",
-            "description": "Suma chances, juega y diviértete",
-            "icon": "🏆"
-          }
-        ],
+        "steps": [],
         "registerButton": "Regístrate",
         "register_url": "https://www.yummiesmoneyparty.com/",
         "sections": {
@@ -96,7 +77,7 @@
           "terms": {
             "title": "Bases y Condiciones",
             "content": "Lee los términos y condiciones de la nueva promoción.",
-            "link": "https://kimera-my.sharepoint.com/:w:/g/personal/abonilla_anagram-us_com/IQBb6-8M0_LOTIhYL4eL2pgrAY5pOdAMkds8-arypI_RcDE?wdExp=TEAMS-TREATMENT&web=1&TeamsCID=11ca23b6-9710-4ea2-be26-95fb1cd87ece&ovuser=0baa55cc-a16a-4833-ac55-b46565a3ed18%2Cesantizo%40agenciadeleon.com&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI1MC8yNjA3MDIxNTcxMSIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D",
+            "link": "https://snack.yummiespromociones.com/SnacksyummiesAssets/terminos_y_condiciones_yummies_money_party.pdf",
             "linkText": "Términos y Condiciones"
           },
           "prizes": {
@@ -145,26 +126,7 @@
           "alt": "Mundialistas",
           "url_image": "https://mundialista.yummiespromociones.com/"
         },
-        "steps": [
-          {
-            "number": 1,
-            "title": "Regístrate",
-            "description": "Crea tu cuenta en Yummies One",
-            "icon": "📝"
-          },
-          {
-            "number": 2,
-            "title": "Ingresa tu factura",
-            "description": "Introduce el código que viene en tu producto Mundialistas",
-            "icon": "🎫"
-          },
-          {
-            "number": 3,
-            "title": "Participa y gana",
-            "description": "Juega y reclama tus premios relacionados con el Mundial",
-            "icon": "🏆"
-          }
-        ],
+        "steps": [],
         "registerButton": "Regístrate",
         "register_url": "https://mundialista.yummiespromociones.com/",
         "sections": {}
