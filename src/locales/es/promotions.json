@@ -16,7 +16,7 @@
       "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
       "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
       "alt": "Promoción 2",
-      "link": "https://mundialista.yummiespromociones.com/"
+      "link": "https://www.snacksyummies.com/es/ganadores/mundialistas"
     }
   ],
   "sections": {
@@ -49,6 +49,7 @@
       },
       "buttonText": "Ver detalles",
       "buttonUrl": "/es/promociones/money-party",
+      "cardUrl": "https://yummiesmoneyparty.com/",
       "shareText": "Compartir:",
       "socialLinks": {
         "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
@@ -108,6 +109,7 @@
       },
       "buttonText": "Ver detalles",
       "buttonUrl": "/es/promociones/mundialistas",
+      "cardUrl": "https://www.snacksyummies.com/es/ganadores/mundialistas",
       "shareText": "Compartir:",
       "socialLinks": {
         "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
@@ -126,7 +128,7 @@
           "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
           "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
           "alt": "Mundialistas",
-          "url_image": "https://mundialista.yummiespromociones.com/"
+          "url_image": "https://www.snacksyummies.com/es/ganadores/mundialistas"
         },
         "steps": [],
         "registerButton": "Regístrate",
