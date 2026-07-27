@@ -13,9 +13,9 @@
   ],
   "products": [
     {
-      "id": "yummi-pops-nacho-spice-maple",
-      "slug": "yummi-pops-nacho-spice-maple",
-      "title": "Yummi Pops Nacho Spice Maple",
+      "id": "yummi-pops-nacho-spicy-maple",
+      "slug": "yummi-pops-nacho-spicy-maple",
+      "title": "Yummi Pops Nacho Spicy Maple",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
       "isNew": true
     },

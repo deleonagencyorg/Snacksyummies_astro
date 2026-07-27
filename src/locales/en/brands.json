@@ -499,13 +499,22 @@
             "alt": "Yummi Pops",
             "products": [
                 {
+                    "id": "yummipops-nacho-spicy-maple",
+                    "slug": "yummipops-nacho-spicy-maple",
+                    "pagina": "#",
+                    "title": "Yummi Pops Nacho Spicy Maple",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
+                    "isNew": true
+                },
+                {
                     "id": "yummipops-dragon-hielo",
                     "slug": "yummipops-dragon-hielo",
                     "pagina": "#",
                     "title": "Yummipops Dragon Hielo",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
-                    "isNew": true
+                    "isNew": false
                 },
                 {
                     "id": "yummipops-nacho-jalapeno-cream",
