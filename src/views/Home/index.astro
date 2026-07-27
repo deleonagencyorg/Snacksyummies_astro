@@ -62,6 +62,21 @@ const validProducts = Array.isArray(newProducts) ? newProducts : [];
 const chips = t('chips', { namespace: 'newproducts', locale: currentLang }) || [];
 const brands = t('brands', { namespace: 'brands', locale: currentLang }) || [];
 
+// orden para mlas marcas
+const desiredHomeOrder = ['taqueritos','zambos','ranchitas','zibas','cappy','yumminuts','yummipops','taco','yummimix','anillitos','delrancho','xixi'];
+const homeOrderMap = new Map(desiredHomeOrder.map((s, i) => [s.toLowerCase(), i]));
+const orderedBrands = Array.isArray(brands)
+  ? [...brands].sort((a: any, b: any) => {
+    const aKey = (a?.slug || a?.id || '').toString().toLowerCase();
+    const bKey = (b?.slug || b?.id || '').toString().toLowerCase();
+    const ia = homeOrderMap.has(aKey) ? homeOrderMap.get(aKey)! : Number.MAX_SAFE_INTEGER;
+    const ib = homeOrderMap.has(bKey) ? homeOrderMap.get(bKey)! : Number.MAX_SAFE_INTEGER;
+    if (ia !== ib) return ia - ib;
+    // fallback: preserve original order
+    return 0;
+  })
+  : brands;
+
 // Obtener promos dummy para la Home (solo ES)
 const promotionsData = t('promotions', { namespace: 'promotions', locale: currentLang }) || [];
 const sectionsData = t('sections', { namespace: 'promotions', locale: currentLang }) || {};
@@ -128,33 +143,12 @@ const slides = Array.isArray(commonAssets)
 ---
 
   <main class="w-full flex flex-col items-center justify-center mt-0">
-    <!-- Slider Section con máscara -->
-    <div class="relative w-full overflow-hidden max-w-[100vw] h-auto aspect-[1/1] md:aspect-[21/9] lg:h-[66vh]">
-      <!-- Título superpuesto posicionado a la izquierda y centrado verticalmente -->
-      <!-- div class="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 hidden md:block">
-        <LazyImage 
-          src="https://snack.yummiespromociones.com/snacksyummies/Header-Title.webp" 
-          alt="Título decorativo" 
-          class="md:w-40 lg:w-80 object-cover object-center" 
-        />
-      </div>
-      
-      <!-- Máscara PNG superpuesta (cambia según el idioma y dispositivo) -->
-      <!-- <div class="absolute inset-0 z-10 pointer-events-none w-screen left-0 right-0">
-        <img src={sliderMask} alt="Máscara decorativa" class="hidden md:block w-full h-full object-cover object-center" />
-        <img src={sliderMaskMobile} alt="Máscara decorativa" class="md:hidden w-full h-full object-cover object-center" />
-      </div> -->
-      
-      <!-- Slider posicionado más a la derecha en desktop, full width en móvil 
-      <div class="relative z-0 w-full md:w-[80%] md:ml-auto">
-        <Carousel slides={slides} />
-       
-      </div>-->
-
-      <div class="relative z-0 w-full md:w-[100%] md:ml-auto md:h-full h-[72vh] md:flex md:items-center md:justify-center">
+    <!-- Slider Section -->
+    <section class="relative w-full overflow-hidden">
+      <div class="relative z-0 w-full flex items-center justify-center">
         <Carousel slides={slides} />
       </div>
-    </div>
+    </section>
     
  
 
@@ -357,15 +351,19 @@ const slides = Array.isArray(commonAssets)
     <div class="md:flex md:items-center md:justify-between mt-[2rem]md:mt-[0rem] ">
       <div id="logosbrands" class="md:w-1/2 flex flex-col px-4 md:px-0 items-center justify-center md:order-2 ">
         <div class="brands-grid">
-          {brands.map((brand: any, index: number) => (
+          {orderedBrands.map((brand: any, index: number) => (
             <div 
-              class="logo-brand"
+              class={`logo-brand ${index === 0 ? 'active-brand' : ''}`}
               style={{ backgroundColor: brand.bgColor }}
               data-image={brand.image}
               data-image-mobile={brand.imageMobile}
               data-title={brand.title}
-              onclick={`updateBrandPreview('${brand.image}', '${brand.imageMobile}', '${brand.title}'); highlightSelectedBrand(this, '${brand.bgColor}')`}
-              ontouchstart={`updateBrandPreview('${brand.image}', '${brand.imageMobile}', '${brand.title}'); highlightSelectedBrand(this, '${brand.bgColor}')`}
+              data-bg-color={brand.bgColor}
+              data-chip-image={brand.imageChip1}
+              data-index={index}
+              role="button"
+              tabindex="0"
+              aria-label={`Ver marca ${brand.title}`}
             >
               <LazyImage
                 src={brand.logo}
@@ -379,7 +377,7 @@ const slides = Array.isArray(commonAssets)
       <div id="previewbrand" class="mt-6 md:w-1/2 flex items-center justify-center md:order-1 relative md:mt-[2rem]">
         <div id="floating-images-container" class="absolute inset-0 z-10 pointer-events-none overflow-hidden md:mt-[-4rem]">
           <ChipsFromBag 
-            imageUrl={brands[0].imageChip1}
+            imageUrl={orderedBrands[0]?.imageChip1}
             count={20}
             baseSize={130}
             sizeVariation={40}
@@ -396,100 +394,120 @@ const slides = Array.isArray(commonAssets)
         </div>
         <LazyImage
           id="brand-preview-img"
-          src={brands[0].image}
-          alt={brands[0].title}
+          src={orderedBrands[0]?.image}
+          alt={orderedBrands[0]?.title}
           class="hidden md:block w-full h-auto object-contain transition-opacity duration-300 md:mt-[2rem]"
         />
         <LazyImage
           id="brand-preview-img-mobile"
-          src={brands[0].imageMobile}
-          alt={brands[0].title}
+          src={orderedBrands[0]?.imageMobile}
+          alt={orderedBrands[0]?.title}
           class="md:hidden w-full h-auto object-contain transition-opacity duration-300"
         />
       </div>
     </div>
-    <script define:vars={{brands}}>
+    <script define:vars={{ orderedBrands }}>
       // Exponer los datos de las marcas para JavaScript
-      window.brandsData = brands.map(brand => ({
+      window.brandsData = (orderedBrands || []).map(brand => ({
         title: brand.title,
         image: brand.image,
         imageMobile: brand.imageMobile,
         imageChip1: brand.imageChip1,
         imageChip2: brand.imageChip2,
         imageChip3: brand.imageChip3,
-        imageChip4: brand.imageChip4
+        imageChip4: brand.imageChip4,
+        bgColor: brand.bgColor
       }));
 
-      // Función global para actualizar la imagen de preview y los chips
-      function updateBrandPreview(imageUrl, mobileImageUrl, title) {
+      function selectBrand(logoElement) {
+        if (!logoElement) return;
+
+        const imageUrl = logoElement.getAttribute('data-image');
+        const mobileImageUrl = logoElement.getAttribute('data-image-mobile');
+        const title = logoElement.getAttribute('data-title');
+        const bgColor = logoElement.getAttribute('data-bg-color');
+        const chipImage = logoElement.getAttribute('data-chip-image');
+
+        // Actualizar preview desktop y mobile
         const previewImg = document.getElementById('brand-preview-img');
         const previewImgMobile = document.getElementById('brand-preview-img-mobile');
-        
-        // Obtener la marca seleccionada por su imagen
-        const selectedBrand = Array.from(document.querySelectorAll('.logo-brand')).find(logo => {
-          return logo.getAttribute('data-image') === imageUrl;
-        });
-        
-        if (previewImg) {
+
+        if (previewImg && imageUrl) {
           previewImg.src = imageUrl;
           previewImg.alt = title || '';
         }
-        
-        if (previewImgMobile) {
+
+        if (previewImgMobile && mobileImageUrl) {
           previewImgMobile.src = mobileImageUrl;
           previewImgMobile.alt = title || '';
         }
-        
-        // Actualizar la imagen de los chips
-        if (selectedBrand) {
-          // Encontrar el índice de la marca seleccionada
-          const brandIndex = Array.from(document.querySelectorAll('.logo-brand')).indexOf(selectedBrand);
-          
-          // Actualizar el componente ChipsFromBag con la nueva imagen
+
+        // Actualizar la imagen de los chips flotantes
+        if (chipImage) {
+          if (typeof window.updateChipsImage === 'function') {
+            window.updateChipsImage(chipImage);
+          }
           const chipsContainer = document.getElementById('floating-images-container');
-          if (chipsContainer && brandIndex !== -1 && window.brandsData && window.brandsData[brandIndex]) {
-            const brandData = window.brandsData[brandIndex];
-            if (brandData && brandData.imageChip1) {
-              // Actualizar todas las imágenes de chips
-              const chipImages = chipsContainer.querySelectorAll('.chip img');
-              chipImages.forEach(img => {
-                img.src = brandData.imageChip1;
-                img.alt = brandData.title || 'Chip flotante';
-              });
-            }
+          if (chipsContainer) {
+            const chipImages = chipsContainer.querySelectorAll('.chip img, .burst-chip img');
+            chipImages.forEach(img => {
+              img.src = chipImage;
+              img.alt = title || 'Chip flotante';
+            });
           }
         }
-      }
-      
-      // Function to highlight the selected brand logo
-      function highlightSelectedBrand(element, bgColor) {
-        // Remove highlight from all logos
+
+        // Resaltar la marca seleccionada
         const allLogos = document.querySelectorAll('.logo-brand');
         allLogos.forEach(logo => {
-          logo.style.borderColor = 'transparent';
-          logo.style.transform = 'scale(1)';
           logo.classList.remove('active-brand');
+          logo.style.transform = '';
+          logo.style.borderColor = 'transparent';
         });
-        
-        // Add highlight to the selected logo
-        element.style.borderColor = bgColor;
-        element.style.borderOpacity = '0.3';
-        element.style.transform = 'scale(1.1)';
-        element.classList.add('active-brand');
-      }
-      
-      // Initialize the first brand as selected when the page loads
-      document.addEventListener('DOMContentLoaded', function() {
-        const firstBrand = document.querySelector('.logo-brand');
-        if (firstBrand) {
-          const bgColor = firstBrand.style.backgroundColor;
-          highlightSelectedBrand(firstBrand, bgColor);
+
+        logoElement.classList.add('active-brand');
+        logoElement.style.transform = 'scale(1.12)';
+        if (bgColor) {
+          logoElement.style.borderColor = bgColor;
         }
-      });
-      
-      // Asegurarse de que la función esté disponible globalmente
-      window.updateBrandPreview = updateBrandPreview;
-      window.highlightSelectedBrand = highlightSelectedBrand;
+      }
+
+      function setupBrandInteractions() {
+        const logoElements = document.querySelectorAll('.logo-brand');
+        logoElements.forEach((logo) => {
+          const clickHandler = function(e) {
+            selectBrand(this);
+          };
+          logo.addEventListener('click', clickHandler);
+          logo.addEventListener('touchstart', clickHandler, { passive: true });
+        });
+
+        // Asegurarse de que la primera marca est seleccionada
+        const activeBrand = document.querySelector('.logo-brand.active-brand') || document.querySelector('.logo-brand');
+        if (activeBrand) {
+          selectBrand(activeBrand);
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupBrandInteractions);
+      } else {
+        setupBrandInteractions();
+      }
+
+      document.addEventListener('astro:page-load', setupBrandInteractions);
+
+      // Exponer funciones globalmente
+      window.selectBrand = selectBrand;
+      window.updateBrandPreview = function(imageUrl, mobileImageUrl, title) {
+        const logo = Array.from(document.querySelectorAll('.logo-brand')).find(
+          el => el.getAttribute('data-image') === imageUrl
+        );
+        if (logo) selectBrand(logo);
+      };
+      window.highlightSelectedBrand = function(element, bgColor) {
+        if (element) selectBrand(element);
+      };
     </script>
    
         
@@ -757,6 +775,12 @@ const slides = Array.isArray(commonAssets)
     .logo-brand:hover {
       transform: scale(1.05);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .logo-brand.active-brand {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9), 0 10px 20px rgba(0, 0, 0, 0.25);
+      z-index: 10;
     }
 
     .brand-logo-img {
