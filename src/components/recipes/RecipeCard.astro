@@ -203,11 +203,22 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
 </div>
 
 <style>
-  /* Clamp title to 3 lines to keep consistent layout heights */
+  /* mile a dos lineas*/
   .title-clamp{
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.1;
+    max-height: calc(1.1em * 2);
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .title-clamp{
+      -webkit-line-clamp: 3;
+      max-height: calc(1.1em * 3);
+    }
   }
 </style>
