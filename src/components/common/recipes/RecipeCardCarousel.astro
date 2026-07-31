@@ -72,7 +72,7 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
         : 'w-[310px] h-[30%] bg-[#F8E31F] rounded-b-[30px] border border-black border-opacity-50'
     } p-6 flex flex-col justify-between`}>
       <!-- Título -->
-      <h3 class="font-title font-bold text-black leading-tight flex-1 flex items-center text-2xl">{title}</h3>
+      <h3 class="font-title font-bold text-black leading-tight flex-1 flex items-center text-2xl clamped-title">{title}</h3>
       
       <!-- Botón Ver Receta -->
       <div class="flex justify-center">
@@ -83,3 +83,25 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
     </div>
   </div>
 </a>
+
+<style>
+  /* mobile a dos lineas */
+  .clamped-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.15;
+    max-height: calc(1.15em * 2);
+    display: block;
+    word-break: break-word;
+  }
+
+  @media (min-width: 768px) {
+    .clamped-title {
+      -webkit-line-clamp: 3;
+      max-height: calc(1.15em * 3);
+    }
+  }
+</style>
