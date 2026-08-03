@@ -1,6 +1,8 @@
 {
     "date": "2026-04-30",
-    "brand":["taqueritos"],
+    "brand": [
+        "taqueritos"
+    ],
     "id": "carne-asada-with-taqueritos-chile-toreado",
     "slug": "carne-asada-with-taqueritos-chile-toreado",
     "title": "Carne asada con Taqueritos Chile Toreado",
@@ -8,7 +10,7 @@
     "difficulty": "Media",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/06-taqueritos-fiesta-con-carne-asada800x800.webp",
     "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/06-taqueritos-fiesta-con-carne-asada1920x840.webp",
-    "video": "https://www.youtube.com/shorts/bhzTAfAodmk",
+    "video": "https://snack.yummiespromociones.com/SnacksyummiesAssets/azado.webm",
     "gallery": [
         "taqueritos-fiesta-con-carne-asada-1920.jpg"
     ],
@@ -31,6 +33,6 @@
         "Paso 4. Agrega un scoop de guacamole sobre la carne y acompaña con crema agria al gusto.",
         "Paso 5. Termina con cebollín picado y espolvorea Taqueritos Chile Toreado triturados por encima para aportar más crunch y picor antes de servir."
     ],
-      "product": "Taqueritos Chile Toreado",  
-  "product-page": "https://www.taqueritos.com/es/productos/taqueritos-chile-toreado"
+    "product": "Taqueritos Chile Toreado",
+    "product-page": "https://www.taqueritos.com/es/productos/taqueritos-chile-toreado"
 }

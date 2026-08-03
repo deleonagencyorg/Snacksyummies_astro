@@ -33,32 +33,6 @@
     container.style.removeProperty('aspect-ratio');
   }
 
-  function classifyDirectVideoRatio(width, height) {
-    if (!width || !height) return 'direct-landscape';
-    const ratio = width / height;
-    if (ratio < 0.85) return 'direct-portrait';
-    if (ratio > 1.2) return 'direct-landscape';
-    return 'direct-square';
-  }
-
-  function applyDirectVideoSizing(videoEl, container, modal) {
-    function updateSizing() {
-      const w = videoEl.videoWidth;
-      const h = videoEl.videoHeight;
-      const mode = classifyDirectVideoRatio(w, h);
-      setDisplayMode(container, modal, mode);
-      if (mode === 'direct-square' && w && h) {
-        container.style.aspectRatio = w + ' / ' + h;
-      }
-    }
-
-    if (videoEl.readyState >= 1) {
-      updateSizing();
-    } else {
-      videoEl.addEventListener('loadedmetadata', updateSizing, { once: true });
-    }
-  }
-
   window.openVideoModal = function(url) {
     if (!url) return;
     const modal = document.getElementById('video-modal-overlay');
@@ -73,7 +47,6 @@
 
       if (videoPlayer) {
         videoPlayer.pause();
-        videoPlayer.src = '';
         videoPlayer.removeAttribute('src');
         videoPlayer.load();
         videoPlayer.classList.add('hidden');
@@ -86,20 +59,17 @@
         iframe.classList.remove('hidden');
       }
     } else {
-      if (iframe) {
-        iframe.src = '';
-        iframe.classList.add('hidden');
+      if (videoPlayer) {
+        videoPlayer.pause();
+        videoPlayer.removeAttribute('src');
+        videoPlayer.load();
+        videoPlayer.classList.add('hidden');
       }
 
-      setDisplayMode(container, modal, 'direct-landscape');
-
-      if (videoPlayer) {
-        videoPlayer.src = url;
-        videoPlayer.classList.remove('hidden');
-        applyDirectVideoSizing(videoPlayer, container, modal);
-        videoPlayer.play().catch(function(err) {
-          console.warn('Autoplay prevented by browser:', err);
-        });
+      if (iframe) {
+        setDisplayMode(container, modal, 'youtube-shorts');
+        iframe.src = url;
+        iframe.classList.remove('hidden');
       }
     }
 
@@ -122,7 +92,6 @@
 
     if (videoPlayer) {
       videoPlayer.pause();
-      videoPlayer.src = '';
       videoPlayer.removeAttribute('src');
       videoPlayer.load();
       videoPlayer.classList.add('hidden');
@@ -181,7 +150,7 @@
       class="video-modal-player hidden w-full h-full object-contain"
       controls
       playsinline
-      preload="metadata"
+      preload="auto"
     ></video>
   </div>
 </div>
@@ -195,6 +164,9 @@
   .video-modal-player {
     display: block;
     border: none;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .video-modal-close {
@@ -230,8 +202,10 @@
   @media (max-width: 767px) {
     #video-modal-container[data-mode='youtube-shorts'],
     #video-modal-container[data-mode='direct-portrait'] {
-      height: min(92dvh, calc(100vw * 16 / 9));
-      max-width: 100vw;
+      aspect-ratio: 9 / 16;
+      height: min(85dvh, calc(90vw * 16 / 9));
+      width: auto;
+      max-width: 90vw;
       border-radius: 0.75rem;
     }
 
