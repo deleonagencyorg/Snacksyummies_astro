@@ -93,6 +93,7 @@ export function initRecipesFilter() {
       allRecipeItems.forEach((item) => {
         const el = item as HTMLElement;
         el.classList.remove('hidden', 'block');
+        el.classList.add('hidden');
         el.style.display = 'none';
       });
 
@@ -100,9 +101,10 @@ export function initRecipesFilter() {
       const recipesToShow = filteredRecipes.slice(0, itemsPerPage);
       recipesToShow.forEach((item) => {
         const el = item as HTMLElement;
-        el.classList.remove('hidden');
-        el.classList.add('block');
-        el.style.display = 'block';
+        el.classList.remove('hidden', 'block');
+        el.classList.add('flex');
+        el.style.display = 'flex';
+        el.style.flexDirection = 'column';
       });
       console.log(`[RECIPES] ✅ Mostrando ${recipesToShow.length} recetas inicialmente`);
 
@@ -166,7 +168,10 @@ export function initRecipesFilter() {
         const recipesToShow = filteredRecipes.slice(loadedCount, loadedCount + nextBatch);
         recipesToShow.forEach((recipeItem, index) => {
           const htmlElement = recipeItem as HTMLElement;
-          htmlElement.style.display = 'block';
+          htmlElement.classList.remove('hidden', 'block');
+          htmlElement.classList.add('flex');
+          htmlElement.style.display = 'flex';
+          htmlElement.style.flexDirection = 'column';
           htmlElement.style.opacity = '0';
           htmlElement.style.transform = 'translateY(20px)';
           htmlElement.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
