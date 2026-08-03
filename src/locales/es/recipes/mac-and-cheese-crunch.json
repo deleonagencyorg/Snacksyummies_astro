@@ -3,12 +3,11 @@
     "id": "mac-and-cheese-crunch",
     "slug": "mac-and-cheese-crunch",
     "title": "Mac and Cheese Crunch",
-    
     "people": "4",
     "difficulty": "Media",
     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch1920x840.webp",
     "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/08-taqueritos-queso-fusion-mac-cheese-crunch-800x800.webp",
-    "video": "https://www.youtube.com/shorts/GrVNGapcMUc",
+    "video": "https://snack.yummiespromociones.com/SnacksyummiesAssets/mac_cheasse.webm",
     "gallery": [
         "mac-and-cheese-crunch.webp"
     ],
@@ -33,6 +32,6 @@
         "Sirve caliente y termina espolvoreando Taqueritos Queso Fusión triturados por encima para aportar textura crujiente y sabor intenso."
     ],
     "brand": "Taqueritos",
-  "product": "Taqueritos Queso Fusión",  
-  "product-page": "https://www.taqueritos.com/es/productos/taqueritos-queso-fusion"
+    "product": "Taqueritos Queso Fusión",
+    "product-page": "https://www.taqueritos.com/es/productos/taqueritos-queso-fusion"
 }
