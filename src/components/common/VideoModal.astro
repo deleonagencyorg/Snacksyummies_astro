@@ -28,130 +28,10 @@
     return 'https://www.youtube.com/embed/' + videoId + '?' + params.toString();
   }
 
-  function applyWrapperSize(wrapper, w, h) {
-    if (!wrapper || !w || !h) return;
-    const maxW = window.innerWidth * 0.9;
-    const maxH = window.innerHeight * 0.85;
-    const ratio = w / h;
-    let width = maxW;
-    let height = width / ratio;
-
-    if (height > maxH) {
-      height = maxH;
-      width = height * ratio;
-    }
-
-    wrapper.style.width = Math.round(width) + 'px';
-    wrapper.style.height = Math.round(height) + 'px';
-  }
-
-  function showMedia(el) {
-    if (!el) return;
-    el.classList.remove('hidden');
-    el.style.display = 'block';
-  }
-
-  function hideMedia(el) {
-    if (!el) return;
-    el.classList.add('hidden');
-    el.style.display = 'none';
-  }
-
-  function hideFallback() {
-    const fallback = document.getElementById('video-modal-fallback');
-    if (fallback) {
-      fallback.classList.add('hidden');
-      fallback.style.display = 'none';
-    }
-  }
-
-  function showFallback(url) {
-    const fallback = document.getElementById('video-modal-fallback');
-    const link = document.getElementById('video-modal-fallback-link');
-    if (!fallback || !link) return;
-    link.href = url;
-    fallback.classList.remove('hidden');
-    fallback.style.display = 'flex';
-  }
-
-  function resetMedia(wrapper, iframe, videoPlayer) {
-    hideFallback();
-
-    if (iframe) {
-      iframe.src = '';
-      hideMedia(iframe);
-    }
-
-    if (videoPlayer) {
-      videoPlayer.pause();
-      videoPlayer.onloadedmetadata = null;
-      videoPlayer.onerror = null;
-      videoPlayer.oncanplay = null;
-      videoPlayer.removeAttribute('src');
-      hideMedia(videoPlayer);
-    }
-
-    if (wrapper) {
-      wrapper.dataset.mode = 'default';
-      wrapper.style.width = '';
-      wrapper.style.height = '';
-    }
-  }
-
-  function playDirectVideo(url, wrapper, iframe, videoPlayer) {
-    if (!videoPlayer || !wrapper) return;
-
-    wrapper.dataset.mode = 'direct-video';
-    applyWrapperSize(wrapper, 16, 9);
-    hideMedia(iframe);
-    hideFallback();
-
-    videoPlayer.src = url;
-    videoPlayer.setAttribute('controls', '');
-    videoPlayer.setAttribute('playsinline', '');
-    videoPlayer.setAttribute('webkit-playsinline', '');
-    videoPlayer.muted = true;
-
-    const resizeFromMetadata = function() {
-      const w = videoPlayer.videoWidth;
-      const h = videoPlayer.videoHeight;
-      if (w > 0 && h > 0) {
-        applyWrapperSize(wrapper, w, h);
-      }
-    };
-
-    const tryPlay = function() {
-      const playPromise = videoPlayer.play();
-      if (playPromise && typeof playPromise.catch === 'function') {
-        playPromise.catch(function() {
-          videoPlayer.muted = false;
-          videoPlayer.controls = true;
-        });
-      }
-    };
-
-    const tryIframeFallback = function() {
-      if (!iframe) {
-        showFallback(url);
-        return;
-      }
-
-      hideMedia(videoPlayer);
-      wrapper.dataset.mode = 'direct-video-iframe';
-      applyWrapperSize(wrapper, 16, 9);
-      iframe.src = url;
-      showMedia(iframe);
-    };
-
-    videoPlayer.onloadedmetadata = resizeFromMetadata;
-    videoPlayer.oncanplay = function() {
-      tryPlay();
-    };
-    videoPlayer.onerror = tryIframeFallback;
-
-    showMedia(videoPlayer);
-    videoPlayer.load();
-    tryPlay();
+  function setDisplayMode(container, modal, mode) {
+    if (modal) modal.dataset.mode = mode;
+    if (container) container.dataset.mode = mode;
+    if (container) container.style.removeProperty('aspect-ratio');
   }
 
   window.openVideoModal = function(url) {
@@ -165,19 +45,64 @@
 
     resetMedia(wrapper, iframe, videoPlayer);
 
+    const isMobile = isMobileViewport();
+
     if (isYouTube(url)) {
       const videoId = getYouTubeId(url);
-      if (!videoId || !iframe) return;
+      if (!videoId) return;
 
-      const isShort = isYouTubeShort(url);
-      wrapper.dataset.mode = isShort ? 'youtube-shorts' : 'youtube';
-      applyWrapperSize(wrapper, isShort ? 9 : 16, isShort ? 16 : 9);
+      if (videoPlayer) {
+        videoPlayer.pause();
+        videoPlayer.removeAttribute('src');
+        videoPlayer.load();
+        videoPlayer.classList.add('hidden');
+      }
 
-      hideMedia(videoPlayer);
-      iframe.src = buildEmbedUrl(videoId);
-      showMedia(iframe);
+      if (iframe) {
+        const isShort = isYouTubeShort(url);
+        const displayMode = isShort ? (isMobile ? 'shorts-mobile' : 'shorts-desktop') : 'default';
+        setDisplayMode(container, modal, displayMode);
+        iframe.src = buildEmbedUrl(videoId);
+        iframe.classList.remove('hidden');
+      }
     } else {
-      playDirectVideo(url, wrapper, iframe, videoPlayer);
+      if (iframe) {
+        iframe.src = '';
+        iframe.classList.add('hidden');
+      }
+
+      const defaultMode = isMobile ? 'direct-portrait-mobile' : 'direct-portrait';
+      setDisplayMode(container, modal, defaultMode);
+
+      if (videoPlayer) {
+        videoPlayer.src = url;
+        videoPlayer.classList.remove('hidden');
+
+        videoPlayer.onloadedmetadata = function() {
+          const vw = videoPlayer.videoWidth;
+          const vh = videoPlayer.videoHeight;
+          if (vw && vh) {
+            const isPortrait = vh > vw;
+            if (isPortrait) {
+              const mode = isMobile ? 'direct-portrait-mobile' : 'direct-portrait';
+              setDisplayMode(container, modal, mode);
+            } else {
+              const mode = isMobile ? 'direct-landscape-mobile' : 'direct-landscape';
+              setDisplayMode(container, modal, mode);
+            }
+          }
+        };
+
+        videoPlayer.load();
+        var playPromise = videoPlayer.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function(err) {
+            console.warn('Autoplay unmuted blocked, falling back to muted autoplay:', err);
+            videoPlayer.muted = true;
+            videoPlayer.play();
+          });
+        }
+      }
     }
 
     modal.classList.remove('hidden');
@@ -192,7 +117,12 @@
     const videoPlayer = document.getElementById('video-modal-player');
     if (!modal) return;
 
-    resetMedia(wrapper, iframe, videoPlayer);
+    if (videoPlayer) {
+      videoPlayer.pause();
+      videoPlayer.removeAttribute('src');
+      videoPlayer.load();
+      videoPlayer.classList.add('hidden');
+    }
 
     modal.classList.add('hidden');
     modal.classList.remove('flex');
@@ -216,88 +146,71 @@
   });
 </script>
 
-<div
-  id="video-modal-overlay"
-  class="video-modal-overlay hidden fixed inset-0 z-[100] items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-  onclick="if(event.target===this)window.closeVideoModal()"
->
-  <div
-    id="video-modal-wrapper"
-    data-mode="default"
-    class="video-modal-wrapper relative bg-black rounded-xl overflow-hidden shadow-2xl"
-    onclick="event.stopPropagation()"
-  >
-    <button
-      type="button"
-      onclick="window.closeVideoModal()"
-      class="video-modal-close absolute top-2 right-2 z-30 flex items-center justify-center w-9 h-9 text-white bg-black/60 hover:bg-black/80 rounded-full transition-colors"
-      aria-label="Close video"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+<div id="video-modal-overlay" data-mode="default" class="video-modal-overlay hidden fixed inset-0 z-[100] items-center justify-center bg-black/80 backdrop-blur-sm">
+  <div id="video-modal-container" data-mode="default" class="video-modal-container relative w-full max-w-4xl mx-4 aspect-video bg-black rounded-xl overflow-hidden shadow-2xl flex items-center justify-center">
+    <button onclick="window.closeVideoModal()" class="video-modal-close absolute top-3 right-3 z-10 text-white bg-black/50 hover:bg-black/70 rounded-full p-2 transition-colors" aria-label="Close video">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-
     <iframe
       id="video-modal-iframe"
-      class="video-modal-media hidden"
+      class="video-modal-iframe hidden w-full h-full"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
       allowfullscreen
     ></iframe>
-
     <video
       id="video-modal-player"
-      class="video-modal-media hidden"
+      class="video-modal-player hidden w-full h-full object-cover"
       controls
       playsinline
-      webkit-playsinline
       preload="auto"
     ></video>
-
-    <div
-      id="video-modal-fallback"
-      class="video-modal-fallback hidden absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 p-6 text-center text-white"
-    >
-      <p class="text-sm md:text-base opacity-90">No se pudo reproducir el video en este navegador.</p>
-      <a
-        id="video-modal-fallback-link"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-primary hover:opacity-90"
-      >
-        Abrir video
-      </a>
-    </div>
   </div>
 </div>
 
-<style is:global>
-  .video-modal-wrapper {
-    flex-shrink: 0;
-  }
-
-  .video-modal-media {
-    position: absolute;
-    inset: 0;
+<style>
+  .video-modal-iframe {
+    border: none;
     width: 100%;
     height: 100%;
-    border: none;
-    display: none;
-    background: #000;
-  }
-
-  #video-modal-player {
     object-fit: contain;
   }
 
-  .video-modal-close {
-    top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
-    right: calc(env(safe-area-inset-right, 0px) + 0.5rem);
+  .video-modal-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  .video-modal-fallback {
-    background: rgba(0, 0, 0, 0.92);
+  #video-modal-container[data-mode='direct-portrait'],
+  #video-modal-container[data-mode='direct-portrait-mobile'],
+  #video-modal-container[data-mode='shorts-desktop'],
+  #video-modal-container[data-mode='shorts-mobile'] {
+    width: auto;
+    height: 85dvh;
+    max-height: 85dvh;
+    aspect-ratio: 9 / 16;
+    max-width: min(90vw, calc(85dvh * 9 / 16));
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Direct Landscape Videos */
+  #video-modal-container[data-mode='direct-landscape'],
+  #video-modal-container[data-mode='direct-landscape-mobile'] {
+    width: min(90vw, calc(85dvh * 16 / 9));
+    height: auto;
+    max-height: 85dvh;
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem;
+  }
+
+  @media (max-width: 767px) {
+    .video-modal-close {
+      top: calc(0.5rem + env(safe-area-inset-top, 0px));
+      right: calc(0.5rem + env(safe-area-inset-right, 0px));
+    }
   }
 </style>
