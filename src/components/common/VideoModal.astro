@@ -16,19 +16,15 @@
     return /youtube\.com\/shorts\//.test(url);
   }
 
-  function isMobileViewport() {
-    return window.matchMedia('(max-width: 767px)').matches;
-  }
-
   function buildEmbedUrl(videoId) {
     const params = new URLSearchParams({
       autoplay: '1',
       controls: '1',
       playsinline: '1',
       rel: '0',
-      modestbranding: '1'
+      modestbranding: '1',
+      enablejsapi: '1'
     });
-
     return 'https://www.youtube.com/embed/' + videoId + '?' + params.toString();
   }
 
@@ -40,11 +36,14 @@
 
   window.openVideoModal = function(url) {
     if (!url) return;
+
     const modal = document.getElementById('video-modal-overlay');
-    const container = document.getElementById('video-modal-container');
+    const wrapper = document.getElementById('video-modal-wrapper');
     const iframe = document.getElementById('video-modal-iframe');
     const videoPlayer = document.getElementById('video-modal-player');
-    if (!modal || !container) return;
+    if (!modal || !wrapper) return;
+
+    resetMedia(wrapper, iframe, videoPlayer);
 
     const isMobile = isMobileViewport();
 
@@ -113,15 +112,10 @@
 
   window.closeVideoModal = function() {
     const modal = document.getElementById('video-modal-overlay');
-    const container = document.getElementById('video-modal-container');
+    const wrapper = document.getElementById('video-modal-wrapper');
     const iframe = document.getElementById('video-modal-iframe');
     const videoPlayer = document.getElementById('video-modal-player');
-    if (!modal || !container) return;
-
-    if (iframe) {
-      iframe.src = '';
-      iframe.classList.add('hidden');
-    }
+    if (!modal) return;
 
     if (videoPlayer) {
       videoPlayer.pause();
@@ -130,8 +124,6 @@
       videoPlayer.classList.add('hidden');
     }
 
-    modal.dataset.mode = 'default';
-    container.dataset.mode = 'default';
     modal.classList.add('hidden');
     modal.classList.remove('flex');
     document.body.style.overflow = '';
@@ -146,7 +138,10 @@
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      window.closeVideoModal();
+      const modal = document.getElementById('video-modal-overlay');
+      if (modal && !modal.classList.contains('hidden')) {
+        window.closeVideoModal();
+      }
     }
   });
 </script>
