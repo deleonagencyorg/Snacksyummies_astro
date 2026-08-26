@@ -89,15 +89,6 @@
     "slider": [
       {
         "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
-        "alt": "Ranchitas Buffalo Ranch",
-        "title": "",
-        "description": "",
-        "link": "https://yummiesmoneyparty.com/"
-      },
-      {
-        "id": "slide3",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Inovacion_desk.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Inovacion_mob.webp",
         "alt": "Taqueritos",
@@ -158,11 +149,6 @@
       "id": "contact",
       "text": "Contacto",
       "href": "/es/contacto"
-    },
-    {
-      "id": "promotions",
-      "text": "Promociones",
-      "href": "/es/promociones"
     }
   ],
   "about_us": {
