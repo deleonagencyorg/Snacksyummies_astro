@@ -13,6 +13,7 @@ interface Props {
     title: string;
     summary: string;
     image: string;
+    imagemobile?: string;
     published_date: string;
   }>;
   currentLang: Locale;
@@ -49,6 +50,7 @@ const { blogPosts, currentLang, isLoading = false } = Astro.props;
             >
               <BlogCard 
                 image={post.image}
+                imagemobile={post.imagemobile}
                 title={post.title}
                 slug={post.slug || post.id}
                 id={post.id}
