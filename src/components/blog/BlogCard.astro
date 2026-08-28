@@ -6,6 +6,7 @@ import { fade } from 'astro:transitions';
 
 interface Props {
   image: string;
+  imagemobile?: string;
   title: string;
   id: string;
   slug: string;
@@ -17,6 +18,7 @@ interface Props {
 
 const { 
   image, 
+  imagemobile,
   title, 
   id,
   slug,
@@ -28,6 +30,7 @@ const {
 
 const blogLink = `/${currentLang}/blog/${slug || id}`;
 const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
+const mobileImage = imagemobile || image;
 ---
 
 <a 
@@ -37,11 +40,18 @@ const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
 >
   <!-- Imagen de fondo (siempre visible) -->
   <div class="absolute inset-0 w-full h-full">
+    <!-- Desktop Image -->
     <LazyImage
       src={image}
       alt={title}
-      class="w-full h-full object-cover"
+      class="hidden md:block w-full h-full object-cover"
       transition:name={`blog-image-${id}`}
+    />
+    <!-- Mobile Image -->
+    <LazyImage
+      src={mobileImage}
+      alt={title}
+      class="block md:hidden w-full h-full object-cover"
     />
   </div>
   
