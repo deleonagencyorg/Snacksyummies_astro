@@ -4,6 +4,7 @@ import { routesConfig, findRouteBySlug } from '../../config/routes';
 import { setLocale, t, type Locale } from '../../i18n/i18n';
 import MainLayout from '../../layouts/MainLayout.astro';
 import RecipeDetail from '../../views/Recipes/Detail/index.astro';
+import { getAllRecipes, getRecipeBySlug } from '../../services/api/recipes';
 
 // Define the expected structure of the dynamically imported modules
 interface PageModule {
@@ -64,17 +65,15 @@ if (urlParts.length === 3) {
     console.log(`Detectada ruta de receta: ${detailId}`);
     
     try {
-      // Cargar datos de recetas directamente
-      const allRecipes = t('items', { namespace: 'recipes', locale: langCode as Locale }) || [];
-      console.log(`Total de recetas cargadas: ${allRecipes.length}`);
-      console.log('IDs de recetas disponibles:', allRecipes.map((r: any) => r.id));
-      
-      const recipe = allRecipes.find((r: any) => r.id === detailId);
-      console.log('Receta encontrada:', recipe ? recipe.id : 'NO');
+      // Cargar datos de recetas directamente del CMS
+      let recipe = await getRecipeBySlug(detailId, langCode as Locale);
+      if (!recipe) {
+        const allRecipes = await getAllRecipes(langCode as Locale);
+        recipe = allRecipes.find((r) => r.id === detailId || r.slug === detailId) || null;
+      }
       
       if (recipe) {
         console.log('Renderizando detalle de receta:', recipe.title);
-        // Preparar datos para renderizado en la sección de plantilla
         isRecipeDetail = true;
         recipeData = recipe;
         recipeId = detailId;

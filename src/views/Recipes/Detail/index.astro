@@ -1,85 +1,52 @@
 ---
 // src/views/Recipes/Detail/index.astro
-import { getLocale } from '../../../i18n/i18n';
+import { getLocale, t } from '../../../i18n/i18n';
 import './styles.css';
 import RecipeCard from '../../../components/recipes/RecipeCard.astro';
 import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
 import RelatedRecipesCarousel from '../../../components/recipes/RelatedRecipesCarousel.astro';
 import LazyImage from '../../../components/common/LazyImage.astro';
-import { div } from 'framer-motion/m';
 import ShareModal from '../../../components/common/ShareModal.astro';
-import { t } from '../../../i18n/i18n';
-
-interface RecipeItem {
-  id: string;
-  slug?: string;
-  title: string;
-  description: string;
-  ingredients: string[];
-  instructions: string[];
-  preparation_time: number;
-  people: number | string;
-  image?: string;
-  tags?: string[];
-  product_image?: string;
-  product?: string;
-  'product-page'?: string;
-}
+import { getAllRecipes, getRecipeBySlug } from '../../../services/api/recipes';
+import type { Recipe as CMSDetailRecipe } from '../../../services/api/types';
 
 // Recibimos los parámetros de la página
-const { currentLang, recipeId, recipe: propRecipe } = Astro.props;
+const { currentLang = getLocale(), recipeId, recipe: propRecipe } = Astro.props;
 
-// Helper to slugify titles with improved handling (solo para URLs)
 function slugify(str: string): string {
   if (!str) return '';
-  
-  // Normalizar caracteres especiales primero
   let text = str
     .normalize('NFD')
     .toLowerCase()
-    // Reemplazar caracteres acentuados
     .replace(/[\u0300-\u036f]/g, '')
-    // Reemplazar ñ con n
     .replace(/\u00f1/g, 'n')
-    // Reemplazar espacios y caracteres especiales con guiones
     .replace(/[^a-z0-9]+/g, '-')
-    // Eliminar guiones al principio y al final
     .replace(/^-+|-+$/g, '');
     
-  // Eliminar palabras comunes para acortar slugs
   const commonWords = ['con', 'de', 'del', 'la', 'el', 'los', 'las', 'and', 'with', 'the', 'of', 'y'];
   let parts = text.split('-');
   parts = parts.filter(part => !commonWords.includes(part));
-  
   return parts.join('-');
 }
 
-// Función para normalizar títulos con acentos (para mostrar al usuario)
+// Función para normalizar títulos con acentos
 function normalizeTitle(input: string): string {
   if (!input) return '';
-
-  // Primero normalizamos a NFC para unificar caracteres compuestos
   let text = input.normalize('NFC');
-
-  // Método directo para casos específicos
   text = text
-    // Vocales minúsculas con acento
     .replace(/Ã¡/g, 'á')
     .replace(/Ã©/g, 'é')
     .replace(/Ã­/g, 'í')
     .replace(/Ã³/g, 'ó')
     .replace(/Ãº/g, 'ú')
-    // Vocales mayúsculas con acento
     .replace(/Ã/g, 'Á')
     .replace(/Ã‰/g, 'É')
     .replace(/Ã/g, 'Í')
     .replace(/Ã"/g, 'Ó')
     .replace(/Ãš/g, 'Ú')
-    // Ñ y caracteres especiales
     .replace(/Ã±/g, 'ñ')
     .replace(/Ã'/g, 'Ñ')
     .replace(/Â/g, '')
-    // Casos específicos observados
     .replace(/manÃ/g, 'maní')
     .replace(/japonÃ©s/g, 'japonés')
     .replace(/PlÃ¡tano/g, 'Plátano')
@@ -91,78 +58,41 @@ function normalizeTitle(input: string): string {
     .replace(/FusiÃ³n/g, 'Fusión')
     .replace(/ClÃ¡sicas/g, 'Clásicas')
     .replace(/Ã³n/g, 'ón');
-
-  // Limpieza final de espacios y caracteres invisibles
-  text = text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim();
-
-  // Normalizar nuevamente para asegurar consistencia
-  return text.normalize('NFC');
+  return text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim().normalize('NFC');
 }
 
-// Import all recipe files with static glob and filter by language for related recipes
-const recipeModules = import.meta.glob<{ default: RecipeItem }>("../../../locales/*/recipes/*.json");
-const allRecipes: RecipeItem[] = [];
-for (const path in recipeModules) {
-  const lang = path.split('/') [4];
-  if (lang === currentLang) {
-    const mod = await recipeModules[path]();
-    allRecipes.push(mod.default);
-  }
-}
+// Obtener todas las recetas del CMS
+const allRecipes: CMSDetailRecipe[] = await getAllRecipes(currentLang);
 
-// Buscar la receta si no viene como prop con búsqueda mejorada
-let currentRecipe = propRecipe;
-if (!currentRecipe) {
-  // Búsqueda exacta
-  currentRecipe = allRecipes.find((r) => 
-    r.id === recipeId || 
-    r.slug === recipeId || 
-    slugify(r.title || '') === recipeId
-  );
-  
-  // Si no encontramos la receta, intentamos búsqueda flexible
+// Buscar la receta si no viene como prop
+let currentRecipe: CMSDetailRecipe | null = propRecipe as CMSDetailRecipe | null;
+if (!currentRecipe && recipeId) {
+  currentRecipe = await getRecipeBySlug(recipeId, currentLang);
   if (!currentRecipe) {
-    // Caso especial para anafres
-    if (recipeId.includes('anafres')) {
-      currentRecipe = allRecipes.find(r => r.id.includes('anafres') || (r.slug && r.slug.includes('anafres')));
-    } else {
-      // Búsqueda por palabras clave
-      const keywords = recipeId.split('-').filter(k => k.length > 3);
-      if (keywords.length > 0) {
-        currentRecipe = allRecipes.find(r => {
-          const idWords = r.id.split('-');
-          const slugWords = r.slug ? r.slug.split('-') : [];
-          const titleWords = slugify(r.title || '').split('-');
-          
-          // Verificar si hay suficientes palabras clave en común
-          const matchCount = keywords.filter(k => 
-            idWords.includes(k) || slugWords.includes(k) || titleWords.includes(k)
-          ).length;
-          
-          // Si hay al menos 3 palabras clave en común o más del 70% de coincidencia
-          return matchCount >= 3 || (matchCount / keywords.length) > 0.7;
-        });
-      }
-    }
+    currentRecipe = allRecipes.find((r) => 
+      r.id === recipeId || 
+      r.slug === recipeId || 
+      slugify(r.title || '') === recipeId
+    ) || null;
   }
 }
 
-// Fallback recipe in case the requested one is not found
-const fallbackRecipe: RecipeItem = {
+// Receta fallback
+const fallbackRecipe: CMSDetailRecipe = {
   id: 'fallback',
+  slug: 'fallback',
   title: currentLang === 'es' ? 'Receta no encontrada' : 'Recipe not found',
   description: '',
   ingredients: [],
   instructions: [],
   preparation_time: 0,
   people: 0,
-  image: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'
+  image: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+  brandSlugs: [],
 };
 
-// Use the recipe or fallback
 let safeRecipe = currentRecipe || fallbackRecipe;
 
-// Normalizar el título para mostrar correctamente los acentos
 if (safeRecipe && safeRecipe.title) {
   safeRecipe = {
     ...safeRecipe,
@@ -170,7 +100,6 @@ if (safeRecipe && safeRecipe.title) {
   };
 }
 
-// Normalizar ingredientes e instrucciones
 if (safeRecipe && safeRecipe.ingredients && safeRecipe.ingredients.length > 0) {
   safeRecipe.ingredients = safeRecipe.ingredients.map(ingredient => normalizeTitle(ingredient));
 }
@@ -179,68 +108,46 @@ if (safeRecipe && safeRecipe.instructions && safeRecipe.instructions.length > 0)
   safeRecipe.instructions = safeRecipe.instructions.map(instruction => normalizeTitle(instruction));
 }
 
-// Recetas relacionadas segun la marca
-allRecipes.sort((a: any, b: any) => {
+allRecipes.sort((a, b) => {
   const dateA = a.date ? new Date(a.date).getTime() : 0;
   const dateB = b.date ? new Date(b.date).getTime() : 0;
   return dateB - dateA;
 });
 
-// Normalize brand to a single string (accepts string or array)
-const rawBrand = (safeRecipe as any).brand;
-const currentBrand = Array.isArray(rawBrand) ? String(rawBrand[0]) : (rawBrand ?? '');
+// Marcas asociadas a la receta actual
+const currentBrandSlugs = safeRecipe.brandSlugs || [];
+const firstBrandSlug = currentBrandSlugs[0] || (Array.isArray(safeRecipe.brand) ? safeRecipe.brand[0] : (safeRecipe.brand as string) || '');
+const recipeBrandSlug = firstBrandSlug;
 
-// Load brands data to map titles -> ids (slug)
-interface Brand { id: string; title?: string; }
-const brandsData = t('brands', { namespace: 'brands', locale: currentLang }) as Brand[] || [];
-let recipeBrandSlug = '';
-if (currentBrand) {
-  const lower = String(currentBrand).toLowerCase();
-  const found = brandsData.find(b => (b.id && b.id.toLowerCase() === lower) || (b.title && b.title.toLowerCase() === lower));
-  recipeBrandSlug = found ? found.id : String(currentBrand);
-}
+const firstProduct = (safeRecipe.products && safeRecipe.products[0]) || null;
+const recipeProductName = firstProduct?.name || (safeRecipe as any).product || '';
+const recipeProductSlug = firstProduct?.slug || firstProduct?.id || '';
 
-// Filtrar recetas por marca
+// Filtrar recetas relacionadas de la misma marca
 let relatedRecipes = allRecipes
-  .filter((item: any) => {
+  .filter((item) => {
     if (!item || !item.id) return false;
-    const titleSlug = slugify(item.title || '');
-    const isCurrentRecipe = item.id === recipeId || item.slug === recipeId || titleSlug === recipeId;
+    const isCurrentRecipe = item.id === safeRecipe.id || item.slug === safeRecipe.slug;
+    if (isCurrentRecipe) return false;
     
-    const itemBrand = Array.isArray(item.brand) ? item.brand[0] : item.brand;
-    const normalizedItemBrand = itemBrand ? itemBrand.toLowerCase().trim() : '';
-    const normalizedCurrentBrand = currentBrand ? currentBrand.toLowerCase().trim() : '';
-    
-    return !isCurrentRecipe && normalizedItemBrand === normalizedCurrentBrand && normalizedCurrentBrand !== '';
+    if (currentBrandSlugs.length > 0 && item.brandSlugs.length > 0) {
+      return item.brandSlugs.some(s => currentBrandSlugs.includes(s));
+    }
+    return false;
   })
-  .map(recipe => {
-    // Normalizar títulos de recetas relacionadas
-    return {
+  .map(recipe => ({
+    ...recipe,
+    title: normalizeTitle(recipe.title)
+  }));
+
+if (relatedRecipes.length === 0) {
+  relatedRecipes = allRecipes
+    .filter((item) => item.id !== safeRecipe.id && item.slug !== safeRecipe.slug)
+    .slice(0, 6)
+    .map(recipe => ({
       ...recipe,
       title: normalizeTitle(recipe.title)
-    };
-  });
-
-// si una marca tiene solo una receta, muestra la de otras marcas
-if (relatedRecipes.length === 0 && currentBrand) {
-  relatedRecipes = allRecipes
-    .filter((item: any) => {
-      if (!item || !item.id) return false;
-      const titleSlug = slugify(item.title || '');
-      const isCurrentRecipe = item.id === recipeId || item.slug === recipeId || titleSlug === recipeId;
-      
-      const itemCategory = Array.isArray(item.category) ? item.category[0] : item.category;
-      const normalizedCategory = itemCategory ? itemCategory.toLowerCase().trim() : '';
-
-      return !isCurrentRecipe && normalizedCategory === 'snack';
-    })
-    .slice(0, 6)
-    .map(recipe => {
-      return {
-        ...recipe,
-        title: normalizeTitle(recipe.title)
-      };
-    });
+    }));
 }
 
 // Load shared recipe assets (titles, labels etc)
@@ -389,18 +296,17 @@ function formatTime(minutes: number, lang: string = currentLang): string {
           ))}
         </div>
         { /* Desktop: show product link BELOW the info row */ }
-        {safeRecipe.product && recipeBrandSlug && (() => {
-          const productPage = (safeRecipe as any)["product-page"];
+        {(recipeProductName || safeRecipe.product) && recipeBrandSlug && (() => {
+          const productPage = (safeRecipe as any)["product-page"] || (recipeProductSlug ? `/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${recipeProductSlug}` : null);
+          const displayProdName = recipeProductName || safeRecipe.product;
           if (productPage) {
             return (
               <div class="hidden md:block mt-3">
                 <a
                   href={productPage}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   class="product-link inline-flex items-center px-4 py-2 rounded-full bg-white text-primary font-semibold shadow-md hover:opacity-90"
                 >
-                  {safeRecipe.product}
+                  {displayProdName}
                 </a>
               </div>
             );
@@ -412,7 +318,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
                 href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}?brand=${encodeURIComponent(recipeBrandSlug)}`}
                 class="product-link inline-flex items-center px-4 py-2 rounded-full bg-white text-primary font-semibold shadow-md hover:opacity-90"
               >
-                {safeRecipe.product}
+                {displayProdName}
               </a>
             </div>
           );
@@ -433,17 +339,16 @@ function formatTime(minutes: number, lang: string = currentLang): string {
           <ShareModal id="recipeShareModal" url={Astro.url.toString()} title={safeRecipe.title} description={safeRecipe.description} />
         </div>
         { /* Mobile: show product link under share button (stacked via flex-col on mobile) */ }
-        {safeRecipe.product && recipeBrandSlug && (() => {
-          const productPage = (safeRecipe as any)["product-page"];
+        {(recipeProductName || safeRecipe.product) && recipeBrandSlug && (() => {
+          const productPage = (safeRecipe as any)["product-page"] || (recipeProductSlug ? `/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${recipeProductSlug}` : null);
+          const displayProdName = recipeProductName || safeRecipe.product;
           if (productPage) {
             return (
               <a
                 href={productPage}
-                target="_blank"
-                rel="noopener noreferrer"
                 class="product-link-mobile md:hidden mt-2 md:mt-0 inline-flex justify-center items-center w-full text-center px-4 py-2 rounded-full bg-white text-primary font-semibold shadow-md hover:opacity-90"
               >
-                <span class="w-full">{safeRecipe.product}</span>
+                <span class="w-full">{displayProdName}</span>
               </a>
             );
           }
@@ -453,7 +358,7 @@ function formatTime(minutes: number, lang: string = currentLang): string {
               href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}?brand=${encodeURIComponent(recipeBrandSlug)}`}
               class="product-link-mobile md:hidden mt-2 md:mt-0 inline-flex justify-center items-center w-full text-center px-4 py-2 rounded-full bg-white text-primary font-semibold shadow-md hover:opacity-90"
             >
-              <span class="w-full">{safeRecipe.product}</span>
+              <span class="w-full">{displayProdName}</span>
             </a>
           );
         })()}

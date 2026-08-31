@@ -1,5 +1,6 @@
 ---
 import { t, type Locale } from '../../../i18n/i18n';
+import { getActiveTopMessages } from '../../../services/api/topMessages';
 
 interface Props {
   currentLang: Locale;
@@ -12,8 +13,20 @@ interface Message {
 
 const { currentLang } = Astro.props;
 
-// Obtener los mensajes del archivo de traducción
-const messages = t('messagetop', { namespace: 'common', locale: currentLang }) as Message[] || [];
+// Obtener mensajes del CMS
+const cmsTopMessages = await getActiveTopMessages(currentLang);
+
+let messages: Message[] = cmsTopMessages.map((msg) => ({
+  title: msg.text,
+  link: msg.link || '',
+}));
+
+// Fallback a i18n local en caso de estar vacío
+if (messages.length === 0) {
+  const localMessages = (t('messagetop', { namespace: 'common', locale: currentLang }) as Message[]) || [];
+  messages = localMessages;
+}
+
 const messageCount = Array.isArray(messages) ? messages.length : 0;
 const showControls = messageCount > 1;
 const safeMessages = messageCount > 0 ? messages : [{ title: '' }];

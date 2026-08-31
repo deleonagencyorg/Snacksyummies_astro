@@ -3,6 +3,7 @@
 import { setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
+import { getAllRecipes } from '../../../services/api/recipes';
 
 // Usamos generación estática para Vercel
 export const prerender = true;
@@ -21,49 +22,22 @@ interface Recipe {
   difficulty?: string;
 }
 
-// Esta función es requerida para rutas dinámicas con prerender=true
 export async function getStaticPaths() {
-  // Importar todos los archivos de recetas
-  const recipeModules = import.meta.glob<{default: Recipe}>('../../../locales/*/recipes/*.json');
+  const languages = ['en'];
   const paths = [];
-  
-  // Obtener idiomas disponibles
-  const languages = new Set<string>();
-  for (const path in recipeModules) {
-    const lang = path.split('/')[4]; // Extraer idioma de la ruta
-    languages.add(lang);
-  }
-  
-  // Para cada idioma, procesar todas las recetas
+
   for (const lang of languages) {
-    const recipesForLang: Recipe[] = [];
-    
-    // Cargar todas las recetas para este idioma
-    for (const path in recipeModules) {
-      if (path.includes(`/${lang}/`)) {
-        const mod = await recipeModules[path]();
-        recipesForLang.push(mod.default);
-      }
-    }
-    
-    // Generar rutas para cada receta
-    for (const recipe of recipesForLang) {
-      // Ruta principal por ID
+    const recipes = await getAllRecipes(lang);
+    for (const recipe of recipes) {
+      if (!recipe.slug) continue;
+
       paths.push({
-        params: { lang, recipeId: recipe.id },
+        params: { lang, recipeId: recipe.slug },
         props: { recipe }
       });
-      
-      // Si hay un slug diferente al ID, generar otra ruta
-      if (recipe.slug && recipe.slug !== recipe.id) {
-        paths.push({
-          params: { lang, recipeId: recipe.slug },
-          props: { recipe }
-        });
-      }
     }
   }
-  
+
   return paths;
 }
 

@@ -11,56 +11,33 @@ import LazyImage from '../../components/common/LazyImage.astro';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import banner from '../../assets/Banner recetas animado.png';
 import group from '../../assets/Group 40.png';
-interface Recipe {
-  id: string;
-  title: string;
-  image?: string;
-  'preview-image'?: string;
-  preparation_time: number;
-  type?: string;
-  brand?: string;
-  people?: number | string;
-  difficulty?: string;
-  slug?: string;
-  date?: string;
-}
+import { getAllRecipes } from '../../services/api/recipes';
 
 const currentLang = getLocale();
 
 // Pass current language to client-side script
 const clientLang = currentLang;
 
-// Get all recipe files with correct Vite glob typing
-const recipeModules = import.meta.glob<{default: Recipe}>('../../locales/*/recipes/*.json');
-const allRecipes: Recipe[] = [];
+// Cargar recetas directamente desde el servicio CMS
+const cmsRecipes = await getAllRecipes(currentLang);
 
-// Process each file
-for (const path in recipeModules) {
-  const lang = path.split('/')[3]; // Extract language from path
-  if (lang === currentLang) {
-    const module = await recipeModules[path]();
-    allRecipes.push(module.default);
-  }
-}
-
-// Sort by date descending (newest first)
-allRecipes.sort((a, b) => {
+// Ordenar por fecha descendente (la más reciente primero)
+const allRecipes = cmsRecipes.sort((a, b) => {
   const dateA = a.date ? new Date(a.date).getTime() : 0;
   const dateB = b.date ? new Date(b.date).getTime() : 0;
   return dateB - dateA;
 });
 
-// Compute featured recipe (always the first from full list)
+// Receta destacada (la primera del listado)
 const featured = allRecipes[0];
 const featuredTitle = featured?.title ?? '';
 const featuredTime = featured ? `${featured.preparation_time}MIN` : '';
 const featuredImage = featured?.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
 const featuredId = featured?.id ?? '';
-const featuredPeople = (featured as any)?.people ?? 0;
-const featuredDifficulty = (featured as any)?.difficulty ?? '---';
+const featuredPeople = featured?.people ?? 0;
+const featuredDifficulty = featured?.difficulty ?? '---';
 const featuredSlug = featured?.slug ?? '';
-const featuredVideo = (featured as any)?.video ?? '';
-
+const featuredVideo = featured?.video ?? '';
 ---
 <div id="hero" class="relative w-full aspect-[4/3] md:h-[32rem] overflow-hidden bg-cover bg-top" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/banerrecipes.jpg');" transition:animate="fade">
   <div class="w-full md:w-[90%] mx-auto px-4 h-full">
@@ -131,7 +108,9 @@ const featuredVideo = (featured as any)?.video ?? '';
                 <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 place-items-center">
                   {allRecipes.map((recipe: any, index: number) => {
                     const isVisible = index < itemsPerPage;
-                    const brandAttr = Array.isArray(recipe.brand) ? recipe.brand.join(',') : (recipe.brand || 'unknown');
+                    const brandAttr = recipe.brandSlugs && recipe.brandSlugs.length > 0
+                      ? recipe.brandSlugs.join(',')
+                      : (Array.isArray(recipe.brand) ? recipe.brand.join(',') : (recipe.brand || 'unknown'));
                     return (
                       <div 
                         data-recipe-index={index} 

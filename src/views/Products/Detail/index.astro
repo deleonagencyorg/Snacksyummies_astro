@@ -7,102 +7,54 @@ import './styles.css';
 import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
 import LazyImage from '../../../components/common/LazyImage.astro';
 import DeliveryAppsCarousel from '../../../components/common/DeliveryAppsCarousel.astro';
-
-// Interfaces para el producto
-interface Product {
-  id: string;
-  slug?: string;
-  title: string;
-  image: string;
-  imageMobile?: string;
-  brand?: string;
-  brandId?: string;
-  nutritional_info?: {
-    serving_size?: string;
-    calories?: number;
-    fat?: string;
-    carbs?: string;
-    protein?: string;
-    sodium?: string;
-  };
-}
+import { getAllBrands } from '../../../services/api/brands';
+import { getAllProducts, getProductBySlug } from '../../../services/api/products';
+import type { Product as CMSProduct } from '../../../services/api/types';
 
 const { productId, product } = Astro.props;
 const currentLang = getLocale();
 
-// Obtener las marcas desde los archivos de localización
-interface Brand {
-  id: string;
-  title?: string;
-  logo?: string;
-  bgColor?: string;
-  products?: Array<{
-    id: string;
-    slug?: string;
-    title: string;
-    image: string;
-    imageMobile?: string;
-  }>;
-}
-
-const brandsData = t('brands', { namespace: 'brands', locale: currentLang }) as Brand[] || [];
-
-// Buscar el producto en todas las marcas
-let currentProduct: Product | null = null;
-let currentBrand: Brand | null = null;
+// Obtener producto del CMS
+let currentProduct: CMSProduct | null = null;
 
 if (product && typeof product === 'object') {
-  currentProduct = product as Product;
+  currentProduct = product as CMSProduct;
 }
 
-if (!currentProduct) {
-  for (const brand of brandsData) {
-    if (brand.products && Array.isArray(brand.products)) {
-      const foundProduct = brand.products.find(p => p.id === productId || p.slug === productId);
-      if (foundProduct) {
-        currentProduct = {
-          ...foundProduct,
-          brand: brand.title || brand.id,
-          brandId: brand.id
-        };
-        currentBrand = brand;
-        break;
-      }
-    }
-  }
+if (!currentProduct && productId) {
+  currentProduct = await getProductBySlug(productId, currentLang);
 }
 
-// Si no se encuentra el producto, mostrar un error
+const allProducts = await getAllProducts(currentLang);
+const allBrands = await getAllBrands(currentLang);
+const brandMap = new Map(allBrands.map((b) => [b.id, b]));
+
+if (!currentProduct && productId) {
+  currentProduct = allProducts.find(p => p.id === productId || p.slug === productId) || null;
+}
+
 if (!currentProduct) {
   throw new Error(`Producto no encontrado: ${productId}`);
 }
 
-// Función para normalizar títulos con acentos
+// Normalización de títulos y textos
 function normalizeTitle(input: string): string {
   if (!input) return '';
-
-  // Primero normalizamos a NFC para unificar caracteres compuestos
   let text = input.normalize('NFC');
-
-  // Método directo para casos específicos
   text = text
-    // Vocales minúsculas con acento
     .replace(/Ã¡/g, 'á')
     .replace(/Ã©/g, 'é')
     .replace(/Ã­/g, 'í')
     .replace(/Ã³/g, 'ó')
     .replace(/Ãº/g, 'ú')
-    // Vocales mayúsculas con acento
     .replace(/Ã/g, 'Á')
     .replace(/Ã‰/g, 'É')
     .replace(/Ã/g, 'Í')
     .replace(/Ã"/g, 'Ó')
     .replace(/Ãš/g, 'Ú')
-    // Ñ y caracteres especiales
     .replace(/Ã±/g, 'ñ')
     .replace(/Ã'/g, 'Ñ')
     .replace(/Â/g, '')
-    // Casos específicos observados
     .replace(/manÃ/g, 'maní')
     .replace(/japonÃ©s/g, 'japonés')
     .replace(/PlÃ¡tano/g, 'Plátano')
@@ -114,41 +66,48 @@ function normalizeTitle(input: string): string {
     .replace(/FusiÃ³n/g, 'Fusión')
     .replace(/ClÃ¡sicas/g, 'Clásicas')
     .replace(/Ã³n/g, 'ón');
-
-  // Limpieza final de espacios y caracteres invisibles
-  text = text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim();
-
-  // Normalizar nuevamente para asegurar consistencia
-  return text.normalize('NFC');
+  return text.replace(/[\u00A0\u200B\u200C\u200D]/g, ' ').trim().normalize('NFC');
 }
 
-// Helper para traducir y normalizar textos estáticos
 function tr(es: string, en: string): string {
   return normalizeTitle(currentLang === 'es' ? es : en);
 }
 
-// Normalizar el producto completo (igual que en recetas)
-if (currentProduct && currentProduct.title) {
-  currentProduct = {
-    ...currentProduct,
-    title: normalizeTitle(currentProduct.title),
-    brand: currentProduct.brand ? normalizeTitle(currentProduct.brand) : currentProduct.brand
-  };
+const productTitle = normalizeTitle(currentProduct.title || currentProduct.name);
+const productImage = currentProduct.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
+
+// Marca asociada
+const currentBrand = currentProduct.brandId ? brandMap.get(currentProduct.brandId) : null;
+const brandName = currentBrand ? currentBrand.name : (currentProduct.brandName || '');
+
+// Presentaciones obtenidas del CMS
+const presentations: Array<{ label: string; image?: string }> = [];
+if (currentProduct.sizes && currentProduct.sizes.length > 0) {
+  currentProduct.sizes.forEach(s => {
+    presentations.push({ label: `${s.value} g`, image: s.image });
+  });
+} else if (currentProduct.weight && currentProduct.weight.length > 0) {
+  currentProduct.weight.forEach(w => {
+    presentations.push({ label: w });
+  });
+} else {
+  presentations.push({ label: '140 g' }, { label: '70 g' });
 }
 
-// Obtener el título normalizado
-const productTitle = currentProduct.title;
+// Información Nutricional
+const nutritionData = currentProduct.nutrition;
+const hasCmsNutritionRows = nutritionData?.rows && Array.isArray(nutritionData.rows) && nutritionData.rows.length > 0;
 
-const nutritionFacts = {
+const fallbackNutrition = {
   servingsPerContainer: currentLang === 'es' ? '8 Porciones Por Envase' : '8 Servings Per Container',
   servingSizeLabel: currentLang === 'es' ? 'Tamaño de la Porción' : 'Serving Size',
   servingSizeValue: currentLang === 'es' ? 'Aproximadamente 15 Chips (38g)' : 'About 15 Chips (38g)',
   amountPerServing: currentLang === 'es' ? 'Cantidad Por Porción' : 'Amount Per Serving',
   caloriesLabel: currentLang === 'es' ? 'Calorías' : 'Calories',
-  caloriesValue: typeof currentProduct.nutritional_info?.calories === 'number' ? currentProduct.nutritional_info.calories : 160,
+  caloriesValue: 160,
   dailyValueLabel: currentLang === 'es' ? 'Valor Diario' : 'Daily Value',
   totalFatLabel: currentLang === 'es' ? 'Grasa Total' : 'Total Fat',
-  totalFatValue: currentProduct.nutritional_info?.fat || '10 g',
+  totalFatValue: '10 g',
   totalFatDaily: '13%',
   saturatedFatLabel: currentLang === 'es' ? 'Grasa Saturada' : 'Saturated Fat',
   saturatedFatValue: '1.5 g',
@@ -161,7 +120,7 @@ const nutritionFacts = {
   cholesterolDaily: '0%'
 };
 
-// Textos según el idioma (ya normalizados)
+// Textos estáticos
 const texts = {
   description: tr('Descripción', 'Description'),
   ingredients: tr('Ingredientes', 'Ingredients'),
@@ -170,205 +129,200 @@ const texts = {
   relatedProducts: tr('Productos Relacionados', 'Related Products'),
   availableIn: tr('Disponible en', 'Available in'),
   backToProducts: tr('Volver a Productos', 'Back to Products'),
-  servingsPerContainer: tr('8 Porciones Por Envase', '8 Servings Per Container'),
-  servingSize: tr('Tamaño de la Porción', 'Serving Size'),
-  servingSizeValue: tr('Aproximadamente 15 Chips (38g)', 'About 15 Chips (38g)'),
-  amountPerServing: tr('Cantidad Por Porción', 'Amount Per Serving'),
-  calories: tr('Calorías', 'Calories'),
-  dailyValue: tr('Valor Diario', 'Daily Value'),
-  totalFat: tr('Grasa Total', 'Total Fat'),
-  saturatedFat: tr('Grasa Saturada', 'Saturated Fat'),
-  transFat: tr('Grasa Trans', 'Trans Fat'),
-  cholesterol: tr('Colesterol', 'Cholesterol'),
   presentation: tr('Presentación:', 'Presentation:'),
   presentationNote: tr('Tamaño de presentación varía de acuerdo al país', 'Presentation size varies by country')
 };
 
-// Productos relacionados (otros productos de la misma marca)
-let relatedProducts: Product[] = [];
-if (currentBrand && currentBrand.products) {
-  relatedProducts = currentBrand.products
-    .filter(p => p.id !== currentProduct?.id)
-    .slice(0, 3)
-    .map(p => ({
-      ...p,
-      title: normalizeTitle(p.title),
-      brand: normalizeTitle(currentBrand?.title || currentBrand?.id || ''),
-      brandId: currentBrand?.id || ''
-    }));
+// Productos relacionados de la misma marca
+let relatedProducts = allProducts
+  .filter(p => p.id !== currentProduct?.id && (p.brandId === currentProduct?.brandId || (brandName && p.brandName === brandName)))
+  .slice(0, 6);
+
+if (relatedProducts.length === 0) {
+  relatedProducts = allProducts.filter(p => p.id !== currentProduct?.id).slice(0, 6);
 }
 
 
 ---
-<div class="w-full" >
-<!-- Page background wrapper -->
-
+<div class="w-full">
   <!-- Hero Banner con fondo primary -->
   <div class="bg-white py-2">
-  <!-- Breadcrumbs -->
-  <div class="container mx-auto px-4">
-    <Breadcrumb 
-      items={[
-        { label: 'Home', href: `/${currentLang}` },
-        { label: currentLang === 'es' ? 'Productos' : 'Products', href: `/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}` },
-        { label: productTitle, href: `#` },
-      ]}
-      textColor="text-primary"
-    />
+    <!-- Breadcrumbs -->
+    <div class="container mx-auto px-4">
+      <Breadcrumb 
+        items={[
+          { label: 'Home', href: `/${currentLang}` },
+          { label: currentLang === 'es' ? 'Productos' : 'Products', href: `/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}` },
+          { label: productTitle, href: '#' },
+        ]}
+        textColor="text-primary"
+      />
     </div>
-</div>
-
-
+  </div>
 
   <!-- Detalle del producto con fondo blanco -->
   <div class="bg-white py-8 md:py-12">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
-      <!-- Columna izquierda: Imagen y presentaciones -->
-      <div class="w-full">
-        <!-- Imagen del producto -->
-        <div class="product-image-container mb-8 flex justify-center">
-          <LazyImage
-            src={currentProduct.image}
-            alt={productTitle}
-            class="w-[300px] max-w-md h-auto object-contain"
-            transition:name={`product-image-${currentProduct.id}`}
-            priority={true}
-          />
-        </div>
-        
-        <!-- Presentaciones -->
-        <div class="mt-8">
-          <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{currentLang === 'es' ? 'Presentación:' : 'Presentation:'}</h2>
-          <div class="flex gap-6 items-end justify-center">
-            <div class="text-center">
-              <div class="w-20 h-24 border-2 border-gray-300 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/gramajes.png"
-                  alt={currentLang === 'es' ? 'Presentación 140 g' : '140 g presentation'}
-                  class="w-full h-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <p class="text-sm font-semibold text-gray-700">140 g</p>
-            </div>
-            <div class="text-center">
-              <div class="w-16 h-20 border-2 border-gray-300 rounded-lg mb-2 flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/gramajes.png"
-                  alt={currentLang === 'es' ? 'Presentación 70 g' : '70 g presentation'}
-                  class="w-full h-full object-contain"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <p class="text-sm font-semibold text-gray-700">70 g</p>
-            </div>
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
+        <!-- Columna izquierda: Imagen y presentaciones -->
+        <div class="w-full">
+          <!-- Imagen del producto -->
+          <div class="product-image-container mb-8 flex justify-center">
+            <LazyImage
+              src={productImage}
+              alt={productTitle}
+              class="w-[300px] max-w-md h-auto object-contain"
+              transition:name={`product-image-${currentProduct.id}`}
+              priority={true}
+            />
           </div>
-          <p class="text-xs text-gray-500 text-center mt-4 italic">*{currentLang === 'es' ? 'Tamaño de presentación varía de acuerdo al país' : 'Presentation size varies by country'}</p>
-        </div>
-      </div>
-      
-      <!-- Columna derecha: Información del producto -->
-      <div class="w-full">
-        <!-- Título del producto -->
-        <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6">{productTitle}</h1>
-        
-        <!-- Descripción -->
-        <div class="mb-8">
-          <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{currentLang === 'es' ? 'Descripción' : 'Description'}</h2>
-          <div class="space-y-3">
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              <p class="text-gray-700 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum sollicitudin magna, a lacinia urna finibus non.</p>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              <p class="text-gray-700 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum sollicitudin.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Información Nutricional -->
-        <div class="mb-8">
-          <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{currentLang === 'es' ? 'Información Nutricional' : 'Nutritional Facts'}</h2>
-          <div class="border border-gray-300 rounded-lg overflow-hidden">
-            <div class="bg-gray-50 px-4 py-2 border-b border-gray-300">
-              <p class="text-sm font-semibold text-gray-700">{nutritionFacts.servingsPerContainer}</p>
-              <p class="text-sm text-gray-600">{nutritionFacts.servingSizeLabel} <span class="float-right">{nutritionFacts.servingSizeValue}</span></p>
-            </div>
-            <div class="px-4 py-2">
-              <div class="border-b border-gray-200 py-2">
-                <p class="text-sm font-semibold text-gray-700">{nutritionFacts.amountPerServing}</p>
-              </div>
-              <div class="border-b border-gray-200 py-2 flex justify-between">
-                <span class="text-sm text-gray-700">{nutritionFacts.caloriesLabel}</span>
-                <span class="text-sm font-bold text-gray-900">{nutritionFacts.caloriesValue}</span>
-              </div>
-              <div class="py-1">
-                <p class="text-xs text-right text-gray-600">% {nutritionFacts.dailyValueLabel} *</p>
-              </div>
-              <div class="border-b border-gray-200 py-2 flex justify-between">
-                <span class="text-sm text-gray-700">{nutritionFacts.totalFatLabel} {nutritionFacts.totalFatValue}</span>
-                <span class="text-sm font-bold text-gray-900">{nutritionFacts.totalFatDaily}</span>
-              </div>
-              <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
-                <span class="text-sm text-gray-700">{nutritionFacts.saturatedFatLabel} {nutritionFacts.saturatedFatValue}</span>
-                <span class="text-sm font-bold text-gray-900">{nutritionFacts.saturatedFatDaily}</span>
-              </div>
-              <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
-                <span class="text-sm text-gray-700">{nutritionFacts.transFatLabel} {nutritionFacts.transFatValue}</span>
-                <span class="text-sm font-bold text-gray-900">{nutritionFacts.transFatDaily}</span>
-              </div>
-              <div class="border-b border-gray-200 py-2 flex justify-between">
-                <span class="text-sm text-gray-700">{nutritionFacts.cholesterolLabel} {nutritionFacts.cholesterolValue}</span>
-                <span class="text-sm font-bold text-gray-900">{nutritionFacts.cholesterolDaily}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {currentLang === 'es' && (
-  <DeliveryAppsCarousel />
-)}
-    <!-- Productos relacionados -->
-    {relatedProducts.length > 0 && (
-      <div class="mt-16">
-        <h2 class="text-2xl font-bold text-primary mb-8 text-center">{texts.relatedProducts}</h2>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-center">
-          {relatedProducts.map(product => (
-            <div class="product-item w-full">
-              <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.slug || product.id}`} class="w-full flex flex-col items-center">
-                <div class="w-full overflow-hidden mb-3 hover:scale-105 transition-transform duration-300">
-                  <LazyImage
-                    src={product.image}
-                    alt={product.title}
-                    class="w-full h-auto object-contain"
-                  />
+          
+          <!-- Presentaciones -->
+          <div class="mt-8">
+            <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{texts.presentation}</h2>
+            <div class="flex gap-6 items-end justify-center flex-wrap">
+              {presentations.map((item) => (
+                <div class="text-center">
+                  <div class="w-20 h-24 border-2 border-gray-300 rounded-lg mb-2 flex items-center justify-center overflow-hidden bg-white p-1">
+                    <img
+                      src={item.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/gramajes.png'}
+                      alt={item.label}
+                      class="w-full h-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <p class="text-sm font-semibold text-gray-700">{item.label}</p>
                 </div>
-                
-                <h3 class="text-center font-title text-lg leading-tight text-primary">
-                  {product.title}
-                </h3>
-              </a>
+              ))}
             </div>
-          ))}
+            <p class="text-xs text-gray-500 text-center mt-4 italic">*{texts.presentationNote}</p>
+          </div>
+        </div>
+        
+        <!-- Columna derecha: Información del producto -->
+        <div class="w-full">
+          <!-- Título del producto -->
+          <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6">{productTitle}</h1>
+          
+          <!-- Descripción -->
+          <div class="mb-8">
+            <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{texts.description}</h2>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <p class="text-gray-700 leading-relaxed">
+                  {currentProduct.description || (currentLang === 'es' ? 'Disfruta del auténtico sabor y la mejor calidad de nuestros productos.' : 'Enjoy authentic flavor and top quality snacks.')}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Información Nutricional -->
+          <div class="mb-8">
+            <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{texts.nutritionalInfo}</h2>
+            {hasCmsNutritionRows ? (
+              <div class="border border-gray-300 rounded-lg overflow-hidden">
+                {nutritionData?.title && (
+                  <div class="bg-primary text-white px-4 py-2 font-bold text-sm">
+                    {nutritionData.title}
+                  </div>
+                )}
+                {nutritionData?.serving && (
+                  <div class="bg-gray-50 px-4 py-2 border-b border-gray-300">
+                    <p class="text-sm font-semibold text-gray-700">{nutritionData.serving}</p>
+                  </div>
+                )}
+                <div class="px-4 py-2">
+                  {nutritionData?.rows?.map((row) => (
+                    <div class="border-b border-gray-200 py-2 flex justify-between">
+                      <span class="text-sm text-gray-700">{row.label}</span>
+                      <span class="text-sm font-bold text-gray-900">{row.value}</span>
+                    </div>
+                  ))}
+                  {nutritionData?.disclaimer && (
+                    <p class="text-xs text-gray-500 mt-2 italic">{nutritionData.disclaimer}</p>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div class="border border-gray-300 rounded-lg overflow-hidden">
+                <div class="bg-gray-50 px-4 py-2 border-b border-gray-300">
+                  <p class="text-sm font-semibold text-gray-700">{fallbackNutrition.servingsPerContainer}</p>
+                  <p class="text-sm text-gray-600">{fallbackNutrition.servingSizeLabel} <span class="float-right">{fallbackNutrition.servingSizeValue}</span></p>
+                </div>
+                <div class="px-4 py-2">
+                  <div class="border-b border-gray-200 py-2">
+                    <p class="text-sm font-semibold text-gray-700">{fallbackNutrition.amountPerServing}</p>
+                  </div>
+                  <div class="border-b border-gray-200 py-2 flex justify-between">
+                    <span class="text-sm text-gray-700">{fallbackNutrition.caloriesLabel}</span>
+                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.caloriesValue}</span>
+                  </div>
+                  <div class="py-1">
+                    <p class="text-xs text-right text-gray-600">% {fallbackNutrition.dailyValueLabel} *</p>
+                  </div>
+                  <div class="border-b border-gray-200 py-2 flex justify-between">
+                    <span class="text-sm text-gray-700">{fallbackNutrition.totalFatLabel} {fallbackNutrition.totalFatValue}</span>
+                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.totalFatDaily}</span>
+                  </div>
+                  <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
+                    <span class="text-sm text-gray-700">{fallbackNutrition.saturatedFatLabel} {fallbackNutrition.saturatedFatValue}</span>
+                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.saturatedFatDaily}</span>
+                  </div>
+                  <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
+                    <span class="text-sm text-gray-700">{fallbackNutrition.transFatLabel} {fallbackNutrition.transFatValue}</span>
+                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.transFatDaily}</span>
+                  </div>
+                  <div class="border-b border-gray-200 py-2 flex justify-between">
+                    <span class="text-sm text-gray-700">{fallbackNutrition.cholesterolLabel} {fallbackNutrition.cholesterolValue}</span>
+                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.cholesterolDaily}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    )}
-    
-    <!-- Botón para volver a productos -->
-    <div class="flex justify-center mt-12">
-      <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}`} class="bg-primary text-white py-3 px-8 rounded-full hover:bg-opacity-90 transition-all font-semibold">
-        {texts.backToProducts}
-      </a>
+
+      {currentLang === 'es' && (
+        <DeliveryAppsCarousel />
+      )}
+
+      <!-- Productos relacionados -->
+      {relatedProducts.length > 0 && (
+        <div class="mt-16">
+          <h2 class="text-2xl font-bold text-primary mb-8 text-center">{texts.relatedProducts}</h2>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-center">
+            {relatedProducts.map(relProd => (
+              <div class="product-item w-full">
+                <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${relProd.slug || relProd.id}`} class="w-full flex flex-col items-center">
+                  <div class="w-full overflow-hidden mb-3 hover:scale-105 transition-transform duration-300">
+                    <LazyImage
+                      src={relProd.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
+                      alt={relProd.title || relProd.name}
+                      class="w-full h-auto object-contain"
+                    />
+                  </div>
+                  
+                  <h3 class="text-center font-title text-lg leading-tight text-primary">
+                    {relProd.title || relProd.name}
+                  </h3>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      <!-- Botón para volver a productos -->
+      <div class="flex justify-center mt-12">
+        <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}`} class="bg-primary text-white py-3 px-8 rounded-full hover:bg-opacity-90 transition-all font-semibold">
+          {texts.backToProducts}
+        </a>
+      </div>
     </div>
   </div>
-</div>
 </div>

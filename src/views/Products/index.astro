@@ -8,27 +8,10 @@ import Categories from '../../components/recipes/Categories.astro';
 import ProductCard from '../../components/products/ProductCard.astro';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import DeliveryAppsCarousel from '../../components/common/DeliveryAppsCarousel.astro';
+import { getAllBrands } from '../../services/api/brands';
+import { getAllProducts } from '../../services/api/products';
 
 const currentLang = getLocale();
-
-// Obtener las marcas desde los archivos de localización
-interface Brand {
-  id: string;
-  title?: string;
-  logo?: string;
-  bgColor?: string;
-  products?: Array<{
-    id: string;
-    slug?: string;
-    pagina?: string;
-    title: string;
-    image: string;
-    imageMobile?: string;
-    isNew?: boolean;
-  }>;
-}
-
-const brandsData = t('brands', { namespace: 'brands', locale: currentLang }) as Brand[] || [];
 
 // Función para normalizar títulos con acentos
 function normalizeTitle(input: string): string {
@@ -75,8 +58,8 @@ function normalizeTitle(input: string): string {
   return text.normalize('NFC');
 }
 
-// Definir la interfaz para los productos
-interface Product {
+// Definir la interfaz para los productos en la vista
+interface ProductItemView {
   id: string;
   slug?: string;
   pagina?: string;
@@ -85,35 +68,38 @@ interface Product {
   imageMobile?: string;
   brand?: string;
   brandId?: string;
+  isNew?: boolean;
 }
 
-// Extraer todos los productos de todas las marcas
-const allProducts: Product[] = [];
-for (const brand of brandsData) {
-  if (brand.products && Array.isArray(brand.products)) {
-    for (const product of brand.products) {
-      // Crear una copia del producto para no modificar el original
-      const productCopy: Product = { ...(product as any) } as Product;
-      productCopy.pagina = productCopy.pagina || '#';
-      
-      // Normalizar el título
-      if (productCopy.title) {
-        productCopy.title = normalizeTitle(productCopy.title);
-      }
-      // Agregar la marca al producto (también normalizada)
-      productCopy.brand = normalizeTitle(brand.title || brand.id);
-      productCopy.brandId = brand.id;
-      allProducts.push(productCopy);
-    }
-  }
-}
+// Obtener las marcas y productos del cms
+const cmsBrands = await getAllBrands(currentLang);
+const cmsProducts = await getAllProducts(currentLang);
+const brandMap = new Map(cmsBrands.map((b) => [b.id, b]));
 
-// Crear las categorías para el filtro (basadas en las marcas)
-const categoryItems = brandsData.map((brand: Brand) => ({
-  label: normalizeTitle(brand.title || brand.id),
-  slug: brand.id,
-  logo: brand.logo,
-  bgColor: brand.bgColor || '#E5E7EB'
+const allProducts: ProductItemView[] = cmsProducts.map((p) => {
+  const brand = p.brandId ? brandMap.get(p.brandId) : undefined;
+  const brandSlug = brand?.slug || p.brandSlug || p.brandId || 'unknown';
+  const brandName = brand?.name || p.brandName || brandSlug;
+
+  return {
+    id: p.id,
+    slug: p.slug || p.id,
+    pagina: '#',
+    title: normalizeTitle(p.title || p.name),
+    image: p.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+    imageMobile: p.imageMobile,
+    brand: normalizeTitle(brandName),
+    brandId: brandSlug,
+    isNew: p.isNew === true,
+  };
+});
+
+// Crear las categorías para el filtro (basadas en las marcas obtenidas del CMS)
+const categoryItems = cmsBrands.map((brand) => ({
+  label: normalizeTitle(brand.name),
+  slug: brand.slug,
+  logo: brand.logoUrl,
+  bgColor: '#E5E7EB',
 }));
 
 // Pasar el idioma actual al script del cliente

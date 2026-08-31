@@ -37,6 +37,7 @@ const currentLang = getLocale();
               title={recipe.title}
               time={`${recipe.preparation_time}MIN`}
               id={recipe.id}
+              slug={(recipe as any).slug}
               textColor="text-white"
               iconColor="text-white"
               video={recipe.video}

@@ -4,24 +4,22 @@ import { t, setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import ProductDetail from '../../../views/Products/Detail/index.astro';
 
-export function getStaticPaths() {
+import { getAllProducts } from '../../../services/api/products';
+
+export async function getStaticPaths() {
   const locales = ['en'];
   const paths: Array<any> = [];
 
   for (const locale of locales) {
-    const brands = (t('brands', { namespace: 'brands', locale: locale as Locale }) as any[]) || [];
+    const products = await getAllProducts(locale);
     let count = 0;
-    for (const brand of brands) {
-      if (brand?.products && Array.isArray(brand.products)) {
-        for (const p of brand.products) {
-          const param = p.slug || p.id;
-          if (!param) continue;
-          paths.push({ params: { lang: locale, productId: String(param) } });
-          count++;
-        }
-      }
+    for (const p of products) {
+      const param = p.slug || p.id;
+      if (!param) continue;
+      paths.push({ params: { lang: locale, productId: String(param) } });
+      count++;
     }
-    console.log(`Generated ${count} product routes from brands for language ${locale}`);
+    console.log(`Generated ${count} product routes from CMS for language ${locale}`);
   }
 
   return paths;

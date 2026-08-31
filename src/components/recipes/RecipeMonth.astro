@@ -42,7 +42,13 @@ const titleSlug = String(recipeTitle || '')
   .replace(/[\u0300-\u036f]/g, '')
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-+|-+$/g, '');
-const recipeLink = `/${currentLocale}/${currentLocale === 'es' ? 'recetas' : 'recipes'}/${slug ?? titleSlug ?? id}`;
+const cleanSlug = (slug || titleSlug || id)
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+const recipeLink = `/${currentLocale}/${currentLocale === 'es' ? 'recetas' : 'recipes'}/${cleanSlug}`;
 const sectionTitle = title ?? (currentLocale === 'es' ? 'La receta del mes' : 'Recipe of the month');
 
 ---
