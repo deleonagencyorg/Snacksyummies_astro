@@ -18,6 +18,19 @@
   font-feature-settings: 'kern' 1;
 }
 
+@font-face {
+  font-family: 'TroisMille Black';
+  src: url('../assets/fonts/trois-mille-black-33.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  font-feature-settings: 'kern' 1;
+}
+
+.font-todas {
+  font-family: 'TroisMille Black', 'TroisMille Bold', system-ui, -apple-system, sans-serif !important;
+}
+
 
 /* Variables CSS para compatibilidad con código existente */
 :root {

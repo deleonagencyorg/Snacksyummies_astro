@@ -69,5 +69,5 @@ const headerColorConfig = getHeaderColors(pathname);
       <slot />
       <Footer currentLang={currentLang} />
     </I18nProvider>
-    <VideoModal />
+    <VideoModal transition:persist="video-modal" />
   </body>

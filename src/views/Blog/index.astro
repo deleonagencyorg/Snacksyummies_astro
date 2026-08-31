@@ -5,7 +5,6 @@ import BlogCard from '../../components/blog/BlogCard.astro';
 import BlogCardSkeleton from '../../components/blog/BlogCardSkeleton.astro';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import { fade } from 'astro:transitions';
-import BlogCarouselHero from '../../components/blog/BlogCarouselHero.astro';
 
 interface Props {
   blogPosts: Array<{
@@ -14,6 +13,7 @@ interface Props {
     title: string;
     summary: string;
     image: string;
+    imagemobile?: string;
     published_date: string;
   }>;
   currentLang: Locale;
@@ -24,10 +24,6 @@ const { blogPosts, currentLang, isLoading = false } = Astro.props;
 ---
 
 <Layout title="Blog" class="bg-primary" description="Latest blog posts">
-  
-  <!-- Hero Carousel -->
-  <BlogCarouselHero news={blogPosts} currentLang={currentLang} />
-  
   <div class="container mx-auto px-4 pt-6">
     <Breadcrumb 
       items={[
@@ -40,7 +36,7 @@ const { blogPosts, currentLang, isLoading = false } = Astro.props;
     <div class="text-center mb-12" transition:animate={fade({ duration: '0.5s' })}>
       <h1 class="font-sans text-4xl font-bold mb-4 text-white">Blog</h1>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto text-white">
-       {currentLang === 'es' ? 'Mantente al día con las últimas noticias y eventos de Taqueritos.' : 'Stay updated with our latest news and articles'}
+       {currentLang === 'es' ? 'MANTENTE AL DÍA CON LAS ÚLTIMAS NOTICIAS Y EVENTOS' : 'STAY UP TO DATE WITH THE LASTEST NEWS AND EVENTS'}
       </p>
     </div>
 
@@ -54,6 +50,7 @@ const { blogPosts, currentLang, isLoading = false } = Astro.props;
             >
               <BlogCard 
                 image={post.image}
+                imagemobile={post.imagemobile}
                 title={post.title}
                 slug={post.slug || post.id}
                 id={post.id}

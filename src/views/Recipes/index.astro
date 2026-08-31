@@ -105,7 +105,7 @@ const featuredVideo = featured?.video ?? '';
           return (
             <div>
               <div class="w-full">
-                <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 place-items-center">
+                <div id="recipes-grid" data-items-per-page={itemsPerPage} data-total-recipes={totalRecipes} data-loaded-count={Math.min(itemsPerPage, totalRecipes)} class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 w-full items-stretch justify-items-stretch">
                   {allRecipes.map((recipe: any, index: number) => {
                     const isVisible = index < itemsPerPage;
                     const brandAttr = recipe.brandSlugs && recipe.brandSlugs.length > 0
@@ -115,7 +115,7 @@ const featuredVideo = featured?.video ?? '';
                       <div 
                         data-recipe-index={index} 
                         data-brand={brandAttr}
-                        class={`recipe-item ${isVisible ? 'block' : 'hidden'}`}
+                        class={`recipe-item w-full flex flex-col ${isVisible ? 'flex' : 'hidden'}`}
                       >
                         <RecipeCard
                           image={recipe.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}

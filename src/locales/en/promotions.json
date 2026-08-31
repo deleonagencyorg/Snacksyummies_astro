@@ -5,6 +5,14 @@
     "button": "Register",
     "buttonUrl": "/en/yummiesone"
   },
+  "pageImage": [
+    {
+      "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+      "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+      "alt": "Promotion 1",
+      "link": "https://yummiesmoneyparty.com/"
+    }
+  ],
   "sections": {
     "active": {
       "title": "Active Promotions",
@@ -39,7 +47,12 @@
         "instagram": "https://www.instagram.com/",
         "x": "https://x.com/intent/tweet?url="
       },
-      "tags": ["superman", "six-flags", "trip", "prizes"],
+      "tags": [
+        "superman",
+        "six-flags",
+        "trip",
+        "prizes"
+      ],
       "category": "travel",
       "detail": {
         "title": "To participate, follow these steps:",
@@ -114,7 +127,12 @@
         "instagram": "https://www.instagram.com/",
         "x": "https://x.com/intent/tweet?url="
       },
-      "tags": ["guardians", "punta-cana", "trip", "tropical"],
+      "tags": [
+        "guardians",
+        "punta-cana",
+        "trip",
+        "tropical"
+      ],
       "category": "travel",
       "participationSteps": [
         "HOW TO PARTICIPATE?",
