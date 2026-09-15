@@ -30,6 +30,9 @@ interface Props {
     summary: string;
     image: string;
     imagemobile?: string;
+    card_title?: string;
+    card_image?: string;
+    card_imagemobile?: string;
     published_date: string;
   }>;
   isLoading?: boolean;
@@ -121,9 +124,9 @@ const mobileImage = blogPost.imagemobile || blogPost.image;
               <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mx-auto max-w-7xl">
                 {suggestedPosts.map((post) => (
                   <BlogCard 
-                    image={post.image}
-                    imagemobile={post.imagemobile}
-                    title={post.title}
+                    image={post.card_image || post.image}
+                    imagemobile={post.card_imagemobile || post.imagemobile}
+                    title={post.card_title || post.title}
                     id={post.id}
                     slug={post.slug || post.id}
                     currentLang={currentLang}
@@ -249,5 +252,28 @@ const mobileImage = blogPost.imagemobile || blogPost.image;
   
   .max-w-none {
     max-width: none;
+  }
+
+  /* Botón CTA dentro del contenido del blog (HTML proveniente de news.json) */
+  .blog-content :global(.blog-cta-wrapper) {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .blog-content :global(.blog-cta) {
+    display: inline-block;
+    background-color: #0A3D7E;
+    color: #FFFFFF;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .blog-content :global(.blog-cta:hover) {
+    background-color: #008DDD;
   }
 </style>
