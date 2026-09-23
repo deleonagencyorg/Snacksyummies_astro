@@ -11,9 +11,15 @@ interface Props {
     id: string;
     slug: string;
     title: string;
+    card_title?: string;
     summary: string;
     image: string;
+    imagen_preview?: string;
+    imagen_mobile?: string;
+    imagen_mobile_preview?: string;
     imagemobile?: string;
+    imagenpreview?: string;
+    imagenmobilepreview?: string;
     published_date: string;
   }>;
   currentLang: Locale;
@@ -40,7 +46,7 @@ const { blogPosts, currentLang, isLoading = false } = Astro.props;
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 py-6 mx-auto max-w-7xl">
+    <div class="grid grid-cols-2 min-[650px]:grid-cols-3 lg:grid-cols-4 gap-4 min-[650px]:gap-6 md:gap-8 py-6 mx-auto max-w-7xl">
       {isLoading
         ? [...Array(8)].map((_, i) => <BlogCardSkeleton key={i} />)
         : blogPosts.map((post, index) => (
@@ -50,8 +56,11 @@ const { blogPosts, currentLang, isLoading = false } = Astro.props;
             >
               <BlogCard 
                 image={post.image}
-                imagemobile={post.imagemobile}
+                imagen_preview={post.imagen_preview || post.imagenpreview}
+                imagen_mobile={post.imagen_mobile || post.imagemobile}
+                imagen_mobile_preview={post.imagen_mobile_preview || post.imagenmobilepreview}
                 title={post.title}
+                card_title={post.card_title}
                 slug={post.slug || post.id}
                 id={post.id}
                 currentLang={currentLang}

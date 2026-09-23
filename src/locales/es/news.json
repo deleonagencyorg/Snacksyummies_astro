@@ -17,6 +17,25 @@
   },
   "items": [
     {
+      "id": "dia-del-nino-2026",
+      "slug": "dia-del-nino-2026",
+      "title": "Un día lleno de sorpresas y regalos para los niños.",
+      "card_title": "¡Snacks Yummies lleva alegría a los niños en su día!",
+      "summary": "¡Snacks Yummies lleva alegría a los niños en su día!",
+      "content": "<p>El Día del Niño se celebró a lo grande junto a Cappy. A través de distintas acciones y celebraciones, más de 85,500 niños y niñas en Honduras disfrutaron de sorpresas, regalos, dulces y muchos motivos para sonreír.</p><p>Como parte de estas acciones, se donaron 2,676 libras de Cappy y dulces para acompañar las celebraciones.</p><p>En San Pedro Sula, junto al programa Amigos por Siempre, más de 100 niños y niñas disfrutaron de una jornada llena de juegos, regalos y momentos para compartir.</p><p>En Tegucigalpa, más de 300 niños y niñas del Hospital María también fueron parte de esta celebración.</p><p>Con estas acciones, Cappy se sumó a la celebración del Día del Niño, llevando alegría a las comunidades y creando momentos especiales para celebrar a los más pequeños.</p><div class=\"not-prose blog-cta-wrapper\"><a class=\"blog-cta\" href=\"https://youtube.com/shorts/F3HZy9qb4ds?feature=share\" target=\"_blank\" rel=\"noopener noreferrer\">¡Mira la experiencia completa aquí!</a></div>",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YUMMIES_DI%CC%81A-NIN%CC%83O_BANNER-DESKTOP.jpg",
+      "imagen_preview": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YUMMIES_DI%CC%81A-NIN%CC%83O_PREVIEW-DESKTOP.jpg",
+      "imagen_mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YUMMIES_DI%CC%81A-NIN%CC%83O_BANNER-MOBILE.jpg",
+      "imagen_mobile_preview": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YUMMIES_DI%CC%81A-NIN%CC%83O_PREVIEW-MOBILE.jpg",
+      "published_date": "14/9/2026",
+      "author": "Equipo Yummies",
+      "tags": [
+        "cappy",
+        "día del niño",
+        "responsabilidad social"
+      ]
+    },
+    {
       "id": "snack-crujiente-hace-reir",
       "slug": "snack-crujiente-hace-reir",
       "title": "¿Por qué un snack crujiente nos hace sonreír?",
@@ -37,8 +56,10 @@
       "title": "¡La Ruta Taqueritos estuvo épica! Y la llevamos al siguiente nivel con Taqueritos​",
       "summary": "Y la llevamos al siguiente nivel con Taqueritos​",
       "content": "<h2>¡La Ruta Taqueritos leveleó Centroamérica y República Dominicana!</h2><p>Nuestro gaming truck recorrió cada país, haciendo que más de 2,000 jugadores de FC26 demuestren su talento a nivel nacional. Los finalistas se llevaron $300 USD y representaron a su país en la final regional.</p><p>César Duarte, desde Costa Rica, se consagró como el gran campeón del torneo, anotando el gol del año y ganando un viaje inolvidable a la Gamescom Brasil 2026.</p>",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ruta_banner.webp",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_blog_prueba1.webp",
+      "imagenpreview": "https://snack.yummiespromociones.com/SnacksyummiesAssets/preview_blog_prueba1.webp",
       "imagemobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/laruta-blog.webp",
+      "imagenmobilepreview": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_prevmob_prueba1.webp",
       "published_date": "25/2/2026",
       "author": "Equipo Yummies",
       "tags": [
