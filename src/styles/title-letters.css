@@ -1,0 +1,33 @@
+/*
+  Títulos que aparecen letra por letra.
+  Uso: agregar la clase "title-letters" a cualquier título.
+  Ajustes: --title-letter-stagger (tiempo entre letras) y --title-letter-duration.
+*/
+.title-letters {
+  --title-letter-stagger: 45ms;
+  --title-letter-duration: 0.7s;
+}
+
+.title-letters .title-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.title-letters .title-char {
+  display: inline-block;
+  font-family: inherit;
+  opacity: 0;
+  transform: translateY(0.45em) rotate(4deg);
+  filter: blur(6px);
+  transition:
+    opacity var(--title-letter-duration) ease-out,
+    transform var(--title-letter-duration) cubic-bezier(0.22, 1, 0.36, 1),
+    filter var(--title-letter-duration) ease-out;
+  transition-delay: calc(var(--char-index) * var(--title-letter-stagger));
+}
+
+.title-letters.visible .title-char {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
