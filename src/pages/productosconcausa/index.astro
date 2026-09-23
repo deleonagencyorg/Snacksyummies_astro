@@ -2,6 +2,7 @@
 import Layout from '../../layouts/ProductosConCausaLayout.astro';
 import LazyImage from '../../components/common/LazyImage.astro';
 import { ViewTransitions } from 'astro:transitions';
+import '../../styles/title-letters.css';
 ---
 
 <!-- Google Fonts - Digital Counter Font -->
@@ -16,33 +17,33 @@ import { ViewTransitions } from 'astro:transitions';
     <article class="w-full">
        <LazyImage id="inicio" src="https://snack.yummiespromociones.com/SnacksyummiesAssets/portadahomemini.webp" alt="Operación Sonrisas Honduras" width={400} height={300} class="w-full" />
       
-        <section id="sobre-la-causa" class="container sm:flex-col md:flex-row  items-center justify-center text-center p-8 lg:p-0 my-8 grid-rows-1 grid-cols-2 justify-items-center gap-x-12 sm:flex animate-slide-up">
+        <section id="sobre-la-causa" class="container sm:flex-col md:flex-row  items-center justify-center text-center p-8 lg:p-0 my-8 grid-rows-1 grid-cols-2 justify-items-center gap-x-12 sm:flex overflow-x-clip">
           <div class="sm:w-full md:w-1/2 ">
-            <p class="text-red font-title text-2xl md:text-4xl text-left">Cada vez que disfrutas tus Yummi Pops favoritos, estás contribuyendo a cambiar vidas.</p>
-            <p class="text-primary text-justify mt-8 break-words text-lg md:text-2xl">
+            <p class="reveal reveal-left text-red font-title text-2xl md:text-4xl text-left">Cada vez que disfrutas tus Yummi Pops favoritos, estás contribuyendo a cambiar vidas.</p>
+            <p class="reveal reveal-up reveal-delay-1 text-primary text-justify mt-8 break-words text-lg md:text-2xl">
               Por cada producto que compras, Yummi Pops apoya a
               <b>Operación Sonrisa Honduras</b>, una fundación que brinda
               cirugías y tratamiento integral a niños y niñas con
               labio y paladar hendido.</p>
           </div>
-          <div class="sm:w-full md:w-1/2 text-center sm:mt-8">
+          <div class="reveal reveal-right reveal-delay-2 sm:w-full md:w-1/2 text-center sm:mt-8">
             <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ninosmini.webp" alt="Operación Sonrisas Honduras"  class="md:w-[80%] w-[90%] p-8 md:p-0" />
           </div>
       </section>
 
       <!-- Sección del Contador -->
-      <section id="counter" class="container mx-auto px-4 py-8 md:py-12">
+      <section id="counter" class="container mx-auto px-4 py-8 md:py-12 overflow-x-clip">
         <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 lg:gap-16">
           <!-- Texto Izquierdo -->
-          <div class="text-center md:text-center">
+          <div class="reveal reveal-left text-center md:text-center">
             <p class="text-[#1652a7] font-title font-bold text-lg md:text-2xl lg:text-5xl">
               Llevamos <br/>en esta campaña
             </p>
           </div>
 
           <!-- Contador Digital -->
-          <div class="counter-display py-8">
-            <div class="counter-wrapper">
+          <div class="reveal reveal-up reveal-delay-1 counter-display py-8">
+            <div class="counter-wrapper digital-counter" data-target="12334" aria-label="12.334">
               <span class="counter-ghost">88.888</span>
               <span class="counter-digit">1</span>
               <span class="counter-digit">2</span>
@@ -54,37 +55,43 @@ import { ViewTransitions } from 'astro:transitions';
           </div>
 
           <!-- Texto Derecho -->
-          <div class="text-center md:text-left">
+          <div class="reveal reveal-right reveal-delay-2 text-center md:text-left">
             <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisasgeneradas.webp" alt="Operación Sonrisas Honduras" class="md:w-[80%] w-[90%] p-8 md:p-0" />
           </div>
         </div>
       </section>
 
-        <section class="bg-[#1652a7] container py-8 my-8 sm:flex sm:flex-col rounded-t-2xl md:rounded-t-[5%]">
-          <div class="w-full py-8 flex justify-center">
+        <section class="bg-[#1652a7] container py-8 my-8 sm:flex sm:flex-col rounded-t-2xl md:rounded-t-[5%] overflow-x-clip">
+          <div class="reveal reveal-up w-full py-8 flex justify-center">
             <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logosonrisasblanco.webp" alt="Operación Sonrisas Honduras" class="w-[500px] p-8 md:p-0 mt-8" />
           </div>
-          <div class="w-full py-8 flex justify-center">
+          <div class="reveal reveal-left w-full py-8 flex justify-center">
             <h1 class="text-white font-title text-2xl md:text-4xl lg:text-6xl">Conoce más sobre la causa</h1>
           </div>
-          <div class="w-full px-8 pb-8 flex items-center justify-center text-center ">
+          <div class="reveal reveal-up reveal-delay-1 w-full px-8 pb-8 flex items-center justify-center text-center ">
             <p class="text-white text-justify text-lg md:text-2xl break-words">
               En Operación Sonrisa, creemos que cada niño que nace con la condición de labio y/o paladar hendido merece cirugías y tratamiento integral de calidad.<br/><br/>
-              <span class="font-bold font-title text-red">1 de cada 500 niños</span> nace con labio y/o paladar hendido, una condición que no solamente
+              <span class="font-bold font-title text-white">1 de cada 500 niños</span> nace con labio y/o paladar hendido, una condición que no solamente
               impacta en su sonrisa, sino también la capacidad para alimentarse, hablar, oír con
               normalidad e incluso la posibilidad de sobrevivir.<br/><br/>
               Aun así, con una cirugía a tiempo y el acompañamiento adecuado, pueden recuperar
               su salud, su desarrollo y su confianza.<br/><br/>
-              <span class="font-bold font-title text-red">Snacks Yummies y tú</span> pueden crear sonrisas que transforman vidas.
+              <span class="font-bold font-title text-white">Snacks Yummies y tú</span> pueden crear sonrisas que transforman vidas.
             </p>
             </div>
             <div class="px-8 flex flex-col sm:flex-row sm:justify-center sm:gap-x-4 sm:gap-y-4">
-              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto1mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full sm:w-1/3" />
-              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto2mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full sm:w-1/3" />
-              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto3mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full sm:w-1/3" />
+              <div class="reveal reveal-left w-full sm:w-1/3">
+                <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto1mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full" />
+              </div>
+              <div class="reveal reveal-up reveal-delay-1 w-full sm:w-1/3">
+                <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto2mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full" />
+              </div>
+              <div class="reveal reveal-right reveal-delay-2 w-full sm:w-1/3">
+                <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto3mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full" />
+              </div>
             </div>
-            <div class="flex justify-center mt-8">
-            <a href="/productosconcausa/historia" class="bg-yellow-400 text-primary text-center font-bold font-title py-2 px-4 rounded-full mt-4 w-[300px] mb-8">Conoce nuestra historia</a>
+            <div class="reveal reveal-up reveal-delay-1 flex justify-center mt-8">
+            <a href="/productosconcausa/historia" class="bg-yellow text-primary text-center font-bold font-title text-lg md:text-xl py-3 px-6 rounded-full mt-4 mb-8 w-full max-w-[300px] shadow-lg transition-all duration-200 hover:bg-white hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60">Conoce nuestra historia</a>
           </div>
           </div>
           
@@ -106,7 +113,7 @@ import { ViewTransitions } from 'astro:transitions';
         <div class="mb-8 md:mb-12">
           <div class="w-full flex justify-center items-center mb-6 md:mb-8">
             <div class="flex flex-col items-center">
-              <h4 class="font-title font-bold text-sky-400 text-3xl md:text-4xl lg:text-8xl">Indicadores</h4>
+              <h4 class="title-letters font-title font-bold text-sky-400 text-3xl md:text-4xl lg:text-8xl">Indicadores</h4>
               <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 md:p-0 max-w-32 lg:max-w-64" />
             </div>
           </div>
@@ -117,7 +124,7 @@ import { ViewTransitions } from 'astro:transitions';
               <!-- Indicador 1 -->
               <div class="flex-1 text-center px-4 animate-item">
                 <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                  17 eventos
+                  <span class="count-up" data-target="17" data-decimals="0">17</span> eventos
                 </p>
                 <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
                   de recaudación de<br/>fondos en conjunto.
@@ -127,7 +134,7 @@ import { ViewTransitions } from 'astro:transitions';
               <!-- Indicador 2 -->
               <div class="flex-1 text-center px-4 animate-item">
                 <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                  10 años
+                  <span class="count-up" data-target="10" data-decimals="0">10</span> años
                 </p>
                 <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
                   trabajando en conjunto<br/>en el área de la salud,<br/>transformando sonrisas
@@ -137,7 +144,7 @@ import { ViewTransitions } from 'astro:transitions';
               <!-- Indicador 3 -->
               <div class="flex-1 text-center px-4 animate-item">
                 <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                  14 misiones
+                  <span class="count-up" data-target="14" data-decimals="0">14</span> misiones
                 </p>
                 <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
                   apoyadas desde el 2016
@@ -152,7 +159,7 @@ import { ViewTransitions } from 'astro:transitions';
           <!-- Columna Izquierda - Info de Niños -->
           <div class="flex-1 flex flex-col justify-center">
             <div class="flex flex-col items-center">
-              <h3 class="font-title font-bold text-primary text-3xl md:text-4xl lg:text-8xl text-center">
+              <h3 class="title-letters font-title font-bold text-primary text-3xl md:text-4xl lg:text-8xl text-center">
               Donativos
               </h3>
               <p class="text-red font-bold text-base md:text-lg lg:text-xl mb-2 text-center">
@@ -166,7 +173,7 @@ import { ViewTransitions } from 'astro:transitions';
                 Este apoyo ha transformado<br/>la sonrisa y la vida de
               </p>
               <p class="text-primary font-title font-bold text-6xl md:text-7xl lg:text-8xl mb-4">
-                183
+                <span class="count-up" data-target="183" data-decimals="0">183</span>
               </p>
               <p class="text-sky-400 font-semibold text-base md:text-lg lg:text-xl">
                 niños y niñas
@@ -179,7 +186,7 @@ import { ViewTransitions } from 'astro:transitions';
             <!-- Monto 1 -->
             <div class="text-center">
               <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                L 331,252.41
+                L <span class="count-up" data-target="331252.41" data-decimals="2">331,252.41</span>
               </p>
               <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
                 en especie
@@ -189,7 +196,7 @@ import { ViewTransitions } from 'astro:transitions';
             <!-- Monto 2 -->
             <div class="text-center">
               <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                L 3,807,150
+                L <span class="count-up" data-target="3807150" data-decimals="0">3,807,150</span>
               </p>
               <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
                 en efectivo
@@ -199,7 +206,7 @@ import { ViewTransitions } from 'astro:transitions';
             <!-- Monto 3 -->
             <div class="text-center">
               <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                L 253,174.64
+                L <span class="count-up" data-target="253174.64" data-decimals="2">253,174.64</span>
               </p>
               <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
                 en infraestructura
@@ -250,7 +257,7 @@ import { ViewTransitions } from 'astro:transitions';
                   y ha brindado un total de
                 </p>
                 <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                 5,707 <br/>consultas
+                 <span class="count-up" data-target="5707" data-decimals="0">5,707</span> <br/>consultas
                 </p>
                
               </div>
@@ -264,7 +271,7 @@ import { ViewTransitions } from 'astro:transitions';
         <div class="relative z-10">
         <!-- Título -->
         <div class="text-left mb-8 md:mb-12 p-8 md:p-0">
-          <h2 class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
+          <h2 class="title-letters text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
             Productos<br/>participantes
           </h2><LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 max-w-32 lg:max-w-64 md:p-0" />
         </div>
@@ -403,7 +410,7 @@ import { ViewTransitions } from 'astro:transitions';
       <section id="testimonios" class="bg-gray-50 py-12 md:py-16 lg:py-20 animate-slide-up">
         <div class="container mx-auto px-4">
           <!-- Título -->
-          <h2 class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-10 md:mb-14 lg:mb-16">
+          <h2 class="title-letters text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-10 md:mb-14 lg:mb-16">
             Testimonios
           </h2>
 
@@ -745,9 +752,49 @@ import { ViewTransitions } from 'astro:transitions';
   .animate-item:nth-child(4) { transition-delay: 0.4s; }
   .animate-item:nth-child(5) { transition-delay: 0.5s; }
   .animate-item:nth-child(6) { transition-delay: 0.6s; }
+
+  /* Animaciones de entrada para textos e imágenes (reveal) */
+  .reveal {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left { transform: translateX(-40px); }
+  .reveal-up { transform: translateY(30px); }
+  .reveal-right { transform: translateX(40px) scale(0.95); }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-delay-1 { transition-delay: 0.2s; }
+  .reveal-delay-2 { transition-delay: 0.4s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* Posiciones sin usar del contador digital: se apagan y se ve el fondo "88.888" */
+  .counter-digit.is-off,
+  .counter-separator.is-off {
+    visibility: hidden;
+  }
+
+  /* Evita que la regla global de span (fonts.css) cambie la tipografía de las cifras */
+  .count-up {
+    font-family: inherit;
+  }
 </style>
 
 <script>
+  import { initTitleLetters } from '../../scripts/titleLetters';
+
   // Intersection Observer para animar elementos al hacer scroll
   document.addEventListener('astro:page-load', () => {
     const observerOptions = {
@@ -772,7 +819,7 @@ import { ViewTransitions } from 'astro:transitions';
     });
 
     // Observar items individuales
-    const animatedItems = document.querySelectorAll('.animate-item');
+    const animatedItems = document.querySelectorAll('.animate-item, .reveal');
     animatedItems.forEach(item => {
       observer.observe(item);
     });
@@ -789,5 +836,97 @@ import { ViewTransitions } from 'astro:transitions';
         overlay.classList.add('hidden');
       });
     });
+
+    // Títulos letra por letra (.title-letters)
+    initTitleLetters();
+
+    // Contador animado para las cifras de Indicadores y Donativos
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const counters = document.querySelectorAll<HTMLElement>('.count-up');
+
+    const digitalCounters = document.querySelectorAll<HTMLElement>('.digital-counter');
+
+    const runCount = (target: number, duration: number, render: (value: number) => void) => {
+      const start = performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        render(target * eased);
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const animateCounter = (el: HTMLElement) => {
+      const target = parseFloat(el.dataset.target || '0');
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const format = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+
+      runCount(target, 2000, (value) => {
+        el.textContent = format.format(value);
+      });
+    };
+
+    // Contador digital de la campaña: actualiza cada dígito por separado
+    const animateDigitalCounter = (el: HTMLElement) => {
+      const target = parseInt(el.dataset.target || '0', 10);
+      const cells = Array.from(el.querySelectorAll<HTMLElement>('.counter-digit, .counter-separator'));
+      const digitCount = cells.filter(cell => cell.classList.contains('counter-digit')).length;
+
+      runCount(target, 2500, (value) => {
+        const current = String(Math.floor(value));
+        const padded = current.padStart(digitCount, '0');
+        const firstUsed = digitCount - current.length;
+        let digitIndex = 0;
+
+        cells.forEach(cell => {
+          if (cell.classList.contains('counter-digit')) {
+            cell.textContent = padded[digitIndex];
+            cell.classList.toggle('is-off', digitIndex < firstUsed);
+            digitIndex++;
+          } else {
+            // El separador se apaga si todavía no hay dígitos a su izquierda
+            cell.classList.toggle('is-off', digitIndex <= firstUsed);
+          }
+        });
+      });
+    };
+
+    if (!prefersReducedMotion) {
+      // Arrancan en 0 para que no se vea la cifra final antes de animar
+      counters.forEach(counter => {
+        const decimals = parseInt(counter.dataset.decimals || '0', 10);
+        counter.textContent = (0).toFixed(decimals);
+      });
+      digitalCounters.forEach(counter => {
+        counter.querySelectorAll<HTMLElement>('.counter-digit, .counter-separator').forEach((cell, i, all) => {
+          const isLast = i === all.length - 1;
+          if (isLast) cell.textContent = '0';
+          cell.classList.toggle('is-off', !isLast);
+        });
+      });
+
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement;
+            if (target.classList.contains('digital-counter')) {
+              animateDigitalCounter(target);
+            } else {
+              animateCounter(target);
+            }
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counters.forEach(counter => counterObserver.observe(counter));
+      digitalCounters.forEach(counter => counterObserver.observe(counter));
+    }
   });
 </script>
