@@ -8,6 +8,13 @@
   --title-letter-duration: 0.7s;
 }
 
+/* Los spans heredan el estilo del título (fonts.css asigna --font-text a todo span) */
+.title-letters .title-word,
+.title-letters .title-char {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
 .title-letters .title-word {
   display: inline-block;
   white-space: nowrap;
@@ -15,7 +22,6 @@
 
 .title-letters .title-char {
   display: inline-block;
-  font-family: inherit;
   opacity: 0;
   transform: translateY(0.45em) rotate(4deg);
   filter: blur(6px);
