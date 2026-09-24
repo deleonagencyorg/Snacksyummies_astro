@@ -75,7 +75,7 @@ const fallbackImageUrl = 'https://snack.yummiespromociones.com/SnacksyummiesAsse
 
       
       <div class="w-full mx-auto text-cente ">
-        {historyItems.map((item: { year: string; image: string; text: string }, index: number) => (
+        {historyItems.map((item: { year: string; image: string; imagen_mobile?: string; text: string }, index: number) => (
           <div 
             id={`year-${index}`}
             class="timeline-item flex flex-row justify-start w-full h-full items-stretch space-x-8"
@@ -126,11 +126,19 @@ const fallbackImageUrl = 'https://snack.yummiespromociones.com/SnacksyummiesAsse
                 class="py-8 max-w-[250px] md:max-w-[500px] mx-auto animate-float"
                 style={`animation-delay: ${index * 0.6}s`}
               >
+                {/* Imagen para Desktop */}
                 <LazyImage 
-                  class="timeline-image rounded-2xl transform rotate-2 w-full animate-fade-in-scale" 
+                  class="timeline-image rounded-2xl transform rotate-2 w-full object-cover hidden md:block animate-fade-in-scale" 
                   src={item.image} 
                   alt={item.year}
                   transition:name={`timeline-image-${index}`}
+                />
+                {/* Imagen para Mobile */}
+                <LazyImage 
+                  class="timeline-image rounded-2xl transform rotate-2 w-full object-cover block md:hidden animate-fade-in-scale" 
+                  src={item.imagen_mobile || item.image} 
+                  alt={item.year}
+                  transition:name={`timeline-image-mobile-${index}`}
                 />
               </div>
             </div>
