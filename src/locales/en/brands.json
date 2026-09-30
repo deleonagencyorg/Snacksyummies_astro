@@ -61,6 +61,15 @@
                     "title": "Taqueritos Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "isNew": false
+                },
+                {
+                    "id": "taqueritos-lava",
+                    "slug": "taqueritos-lava",
+                    "pagina": "https://www.taqueritos.com/en/products/taqueritos-lava",
+                    "title": "Taqueritos Lava",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
                     "isNew": true
                 }
             ]
@@ -89,6 +98,24 @@
                     "title": "Zambos Picositas Con Chile Limón Y Sal",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-picositas-con-chile-limon-y-sal-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-picositas-con-chile-limon-y-sal-2.webp"
+                },
+                {
+                    "id": "zambos-yuquitas-con-ajo-parmesano",
+                    "slug": "zambos-yuquitas-con-ajo-parmesano",
+                    "pagina": "https://www.zambos.com/es/productos/zambos-yuquitas-con-ajo-parmesano?count=6",
+                    "title": "Zambos Yuquitas Con Ajo Parmesano",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "isNew": true
+                },
+                {
+                    "id": "zambos-camote-con-sal-marina",
+                    "slug": "zambos-camote-con-sal-marina",
+                    "pagina": "https://www.zambos.com/es/productos/zambos-camote-con-sal-marina?count=6",
+                    "title": "Zambos Camote Con Sal Marina",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "isNew": true
                 },
                 {
                     "id": "zambos-originals",

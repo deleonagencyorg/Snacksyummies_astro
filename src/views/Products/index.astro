@@ -94,6 +94,13 @@ const allProducts: ProductItemView[] = cmsProducts.map((p) => {
   };
 });
 
+const brandOrder = new Map(cmsBrands.map((b, index) => [b.slug, index]));
+allProducts.sort((a, b) => {
+  const brandDiff = (brandOrder.get(a.brandId ?? '') ?? Infinity) - (brandOrder.get(b.brandId ?? '') ?? Infinity);
+  if (brandDiff !== 0) return brandDiff;
+  return Number(b.isNew === true) - Number(a.isNew === true);
+});
+
 // Crear las categorías para el filtro (basadas en las marcas obtenidas del CMS)
 const categoryItems = cmsBrands.map((brand) => ({
   label: normalizeTitle(brand.name),
