@@ -210,15 +210,6 @@
             "alt": "Zibas",
             "products": [
                 {
-                    "id": "zibas-jalapenio-grill",
-                    "slug": "zibas-jalapenio-grill",
-                    "pagina": "https://www.zibaspapas.com/es/productos/zibas-jalapenio-grill",
-                    "title": "Ziba’s Jalapeño Grill",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/jalapeno_gril.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/jalapeno_gril.webp",
-                    "isNew": true
-                },
-                {
                     "id": "zibas-clasicas",
                     "slug": "zibas-clasicas",
                     "pagina": "https://www.zibaspapas.com/en/products/zibas-clasicas",
@@ -322,15 +313,6 @@
             "url": "https://ranchitas.com",
             "alt": "Ranchitas",
             "products": [
-                {
-                    "id": "ranchitas-chili-beans",
-                    "slug": "ranchitas-chili-beans",
-                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-chili-beans",
-                    "title": "Ranchitas Chili Beans",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
-                    "isNew": true
-                },
                 {
                     "id": "ranchitas-nacho-exitante",
                     "slug": "ranchitas-nacho-exitante",
@@ -525,15 +507,6 @@
             "url": "#",
             "alt": "Yummi Pops",
             "products": [
-                {
-                    "id": "yummipops-nacho-spicy-maple",
-                    "slug": "yummipops-nacho-spicy-maple",
-                    "pagina": "#",
-                    "title": "Yummi Pops Nacho Spicy Maple",
-                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
-                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nacho_spicy_maple.webp",
-                    "isNew": true
-                },
                 {
                     "id": "yummipops-dragon-hielo",
                     "slug": "yummipops-dragon-hielo",
