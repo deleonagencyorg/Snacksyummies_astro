@@ -144,7 +144,7 @@ const clientLang = currentLang;
     />
 
     <!-- Categories Section (reusable slider) -->
-     <div class="w-full mx-auto px-4  bg-transparent">
+     <div class="w-full mx-auto px-4 bg-transparent mt-6 md:mt-0">
       <Categories 
       title={currentLang === 'es' ? 'Productos por marca' : 'Products by brand'}
       items={categoryItems}
@@ -161,7 +161,7 @@ const clientLang = currentLang;
 </div>
 
 <!-- Sección de productos con fondo blanco -->
-<div class="md:py-8 py-4 -mt-[8rem]">
+<div class="md:py-8 py-4 -mt-12 md:-mt-[8rem]">
 
     {allProducts.length === 0 ? (
       <p class="text-center text-primary">{currentLang === 'es' ? 'No hay productos disponibles' : 'No products available'}</p>
