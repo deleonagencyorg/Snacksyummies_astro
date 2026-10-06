@@ -19,7 +19,7 @@ if (!gtmId || gtmId === 'GTM-XXXXXX') {
 </noscript>
 
 <!-- Google Tag Manager - Deferred for performance -->
-<script>
+<script is:inline define:vars={{ gtmId }}>
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     'gtm.start': new Date().getTime(),
@@ -29,7 +29,7 @@ if (!gtmId || gtmId === 'GTM-XXXXXX') {
   // Load GTM after page load to improve LCP
   window.addEventListener('load', function() {
     const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+    script.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
     script.async = true;
     document.head.appendChild(script);
   });
