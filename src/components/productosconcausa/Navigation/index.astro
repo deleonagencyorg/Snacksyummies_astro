@@ -21,40 +21,54 @@ const navLinks = [
 
 // Obtener la ruta actual para marcar el enlace activo
 const currentPath = Astro.url.pathname;
+
+// GT sigue el diseño YPOPS-CAUSA_WEB-LAYOUT (barra de 127px a 1920, escalada con el ancho de pantalla)
+const gtClass = {
+  bar: 'h-[clamp(64px,6.615vw,127px)]',
+  container: 'max-w-[1920px] px-[clamp(16px,6.667vw,128px)]',
+  logos: 'gap-[clamp(16px,2.344vw,45px)]',
+  ypops: 'h-[clamp(40px,5.313vw,102px)] w-auto',
+  osWrap: 'gap-[clamp(8px,2.135vw,41px)]',
+  divider: 'h-[clamp(32px,2.448vw,47px)]',
+  os: 'h-[clamp(32px,2.448vw,47px)] w-auto',
+  links: 'gap-[clamp(24px,2.344vw,45px)]',
+};
 ---
 
-<nav class="pcc-navigation bg-white border-b border-gray-200 sticky top-0 z-[1000]">
-  <div class="container mx-auto px-4">
-    <div class="flex items-center justify-between h-16">
+<nav class:list={['pcc-navigation bg-white border-b border-gray-200 sticky top-0 z-[1000]', { 'pcc-navigation--gt': isGT }]} data-spy={isGT ? '' : undefined}>
+  <div class:list={['mx-auto', isGT ? gtClass.container : 'container px-4']}>
+    <div class:list={['flex items-center justify-between', isGT ? gtClass.bar : 'h-16']}>
       <!-- Logos -->
-      <div class="flex items-center gap-4">
+      <div class:list={['flex items-center', isGT ? gtClass.logos : 'gap-4']}>
         <a href={basePath} class="flex items-center" aria-label="YummiPops">
           <LazyImage 
             src={logos.yummiPops.url} 
             alt={logos.yummiPops.alt} 
-            class="h-10 w-auto"
+            class={isGT ? gtClass.ypops : 'h-10 w-auto'}
           />
         </a>
-        <div class="flex items-center gap-2">
-          <div class="h-8 w-[1px] bg-gray-300"></div>
+        <div class:list={['flex items-center', isGT ? gtClass.osWrap : 'gap-2']}>
+          <div class:list={['w-[1px] bg-gray-300', isGT ? gtClass.divider : 'h-8']}></div>
           <LazyImage 
             src={isGT
               ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/productosconcausagt/header/logo.webp'
               : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/logooperacionsonrisas.webp'}
             alt={isGT ? 'Operación Sonrisa Guatemala' : 'Operación Sonrisas'}
-            class="h-8 w-auto"
+            class={isGT ? gtClass.os : 'h-8 w-auto'}
           />
         </div>
       </div>
 
       <!-- Navigation Links - Desktop -->
-      <div class="hidden lg:flex items-center gap-6">
-        {navLinks.map((link) => (
+      <div class:list={['hidden lg:flex items-center', isGT ? gtClass.links : 'gap-6']}>
+        {navLinks.map((link, i) => (
           <a 
             href={link.href}
             class:list={[
-              'pcc-nav-link text-sm font-medium transition-colors hover:text-red',
-              currentPath === link.href ? 'text-red' : 'text-secondary'
+              'pcc-nav-link transition-colors',
+              isGT
+                ? ['pcc-nav-link--gt font-gt-bold18', { 'is-active': i === 0 }]
+                : ['text-sm font-medium hover:text-red', currentPath === link.href ? 'text-red' : 'text-secondary']
             ]}
             data-key={link.key}
           >
@@ -150,6 +164,29 @@ const currentPath = Astro.url.pathname;
         }
       }, 250);
     });
+
+    // GT: marca en rojo el enlace de la sección visible (en el diseño "Inicio" va en rojo)
+    const spyNav = document.querySelector<HTMLElement>('.pcc-navigation[data-spy]');
+    if (spyNav) {
+      const spyLinks = Array.from(spyNav.querySelectorAll<HTMLAnchorElement>('.pcc-nav-link'));
+      const byId = new Map<string, HTMLAnchorElement>();
+      spyLinks.forEach(link => {
+        const hash = link.getAttribute('href')?.split('#')[1];
+        if (hash) byId.set(hash, link);
+      });
+      const setActive = (id: string) => {
+        spyLinks.forEach(link => link.classList.toggle('is-active', byId.get(id) === link));
+      };
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      byId.forEach((_, id) => {
+        const section = document.getElementById(id);
+        if (section) spy.observe(section);
+      });
+    }
 
     // Smooth scroll para anclas
     const allLinks = document.querySelectorAll('.pcc-nav-link, .pcc-nav-link-mobile');

@@ -83,3 +83,20 @@
     font-size: 0.875rem;
   }
 }
+
+/* GT: enlaces en TroisMille Bold 18 (26px a 1920), celeste; la sección activa en rojo */
+.pcc-nav-link--gt {
+  font-kerning: none;
+  font-size: clamp(16px, 1.363vw, 26.17px);
+  line-height: 1;
+  color: #00b5f6;
+}
+
+.pcc-nav-link--gt:hover,
+.pcc-nav-link--gt.is-active {
+  color: #e30a2e;
+}
+
+.pcc-nav-link--gt::after {
+  display: none;
+}

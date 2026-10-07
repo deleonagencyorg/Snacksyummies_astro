@@ -24,6 +24,38 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'TroisMille Bold 18';
+  src: url('../assets/fonts/TroisMilleBold-18.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TroisMille Medium 15';
+  src: url('../assets/fonts/TroisMilleMedium-15.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TroisMille Medium 20';
+  src: url('../assets/fonts/TroisMilleMedium-20.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TroisMille Light 20';
+  src: url('../assets/fonts/TroisMilleLight-20.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Títulos rojos (p. ej. "¡Yummi Pops se suma…") */
 .font-gt-title {
   font-family: 'TroisMille Black 20', var(--font-title);
@@ -40,4 +72,31 @@
 .font-gt-text strong {
   font-family: 'TroisMille Bold 15', var(--font-text);
   font-weight: 700;
+}
+
+/* Títulos azules del diseño (Conoce más, CIFRAS, Productos participantes, Súmate, nav) */
+.font-gt-bold18 {
+  font-family: 'TroisMille Bold 18', var(--font-title);
+  font-weight: 700;
+}
+
+.font-gt-bold15 {
+  font-family: 'TroisMille Bold 15', var(--font-title);
+  font-weight: 700;
+}
+
+.font-gt-medium15 {
+  font-family: 'TroisMille Medium 15', var(--font-text);
+  font-weight: 500;
+}
+
+/* Footer */
+.font-gt-medium20 {
+  font-family: 'TroisMille Medium 20', var(--font-text);
+  font-weight: 500;
+}
+
+.font-gt-light20 {
+  font-family: 'TroisMille Light 20', var(--font-text);
+  font-weight: 300;
 }
