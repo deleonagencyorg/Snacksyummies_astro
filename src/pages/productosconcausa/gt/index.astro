@@ -905,7 +905,7 @@ const gallery = [
   }
 
   /*
-   * Hasta 1023px la caja va arriba del título (a la par no cabe: el texto la desborda y tapa las tarjetas).
+   * Mobile (hasta 767px): la caja va arriba del título (a la par no cabe: el texto la desborda y tapa las tarjetas).
    * Sale hasta el borde derecho, como en desktop.
    */
   .gt-productos__head {
@@ -977,23 +977,45 @@ const gallery = [
       padding: calc(181 * var(--u)) 0 calc(221 * var(--u));
     }
 
-    .gt-productos__box {
-      margin: 0 0 calc(60 * var(--u)) calc(128 * var(--u));
-      padding: 1.5rem 2rem;
-      border-radius: 2.5rem 0 0 2.5rem;
-    }
-
-    .gt-productos__box-title {
-      font-size: 1.5rem;
-    }
-
-    .gt-productos__box-text {
-      font-size: 1.1875rem;
-      line-height: 1.25;
+    /* Desde 768px: título a la izquierda y caja a la derecha (medidas del diseño) */
+    .gt-productos__head {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      /* En tablet la caja puede crecer con su texto; las tarjetas bajan en vez de quedar tapadas */
+      min-height: calc(338 * var(--u));
     }
 
     .gt-productos__titlewrap {
-      padding: 0 0 0 calc(146 * var(--u));
+      flex-shrink: 0;
+      padding: calc(62 * var(--u)) 0 0 calc(146 * var(--u));
+    }
+
+    /* Caja de 338px de alto desde x=981 hasta el borde derecho, trazo de 5px */
+    .gt-productos__box {
+      order: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(939.2 * var(--u));
+      min-height: calc(338 * var(--u));
+      margin: 0;
+      padding: max(1rem, calc(30 * var(--u))) max(1rem, calc(40 * var(--u))) max(1rem, calc(30 * var(--u))) max(1.25rem, calc(75 * var(--u)));
+      border: max(3px, calc(5 * var(--u))) solid #e8e8e8;
+      border-right: 0;
+      border-radius: calc(72 * var(--u)) 0 0 calc(72 * var(--u));
+    }
+
+    /* Tamaños del diseño para esta caja: título 37.88/43.4, texto 33.07/37.7 (con mínimo legible) */
+    .gt-productos__box-title {
+      font-size: max(1.125rem, calc(37.88 * var(--u)));
+      line-height: 1.146;
+    }
+
+    .gt-productos__box-text {
+      font-size: max(0.9375rem, calc(33.07 * var(--u)));
+      line-height: 1.14;
     }
 
     .gt-productos__title {
@@ -1024,46 +1046,13 @@ const gallery = [
     }
   }
 
-  /* Desktop: título a la izquierda y caja a la derecha, con las medidas del diseño */
-  @media (min-width: 1024px) {
-    /* Caja de 338px de alto desde x=981 hasta el borde derecho, trazo de 5px */
-    .gt-productos__box {
-      order: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: calc(939.2 * var(--u));
-      min-height: calc(338 * var(--u));
-      margin: 0;
-      padding: calc(30 * var(--u)) calc(40 * var(--u)) calc(30 * var(--u)) calc(75 * var(--u));
-      border: calc(5 * var(--u)) solid #e8e8e8;
-      border-right: 0;
-      border-radius: calc(72 * var(--u)) 0 0 calc(72 * var(--u));
-    }
-
-    /* Tamaños del diseño para esta caja: título 37.88/43.4, texto 33.07/37.7 (con mínimo legible) */
-    .gt-productos__box-title {
-      font-size: max(1.25rem, calc(37.88 * var(--u)));
-      line-height: 1.146;
-    }
-
-    .gt-productos__box-text {
-      font-size: max(1rem, calc(33.07 * var(--u)));
-      line-height: 1.14;
-    }
-
+  /* Desktop (≥1280): alto exacto de la caja del diseño; la sonrisa del título puede sobresalir */
+  @media (min-width: 1280px) {
     .gt-productos__head {
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-      /* Alto de la caja del diseño; la sonrisa del título puede sobresalir */
       height: calc(338 * var(--u));
     }
-
-    .gt-productos__titlewrap {
-      padding: calc(62 * var(--u)) 0 0 calc(146 * var(--u));
-    }
   }
+
 
   /* ---------- Súmate a esta causa ---------- */
   .gt-sumate {
