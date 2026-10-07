@@ -4,9 +4,10 @@ import { logos, generalAssets } from '../../../config/assets';
 import SocialMediaIcons from '../../common/SocialMediaIcons/index.astro';
 
 const currentYear = new Date().getFullYear();
-const basePath = Astro.url.pathname.startsWith('/gt/productosconcausa') ? '/gt/productosconcausa' : '/productosconcausa';
+// Base path: /productosconcausa (HN) o /productosconcausa/gt (GT)
+const isGT = /^\/productosconcausa\/gt(\/|$)/.test(Astro.url.pathname);
+const basePath = isGT ? '/productosconcausa/gt' : '/productosconcausa';
 const currentLang = 'es'; // Productos con causa siempre en español
-const isGT = basePath === '/gt/productosconcausa';
 
 // GT: íconos del diseño (cuadros blancos con el logo calado), exportados del vector original.
 // El diseño también trae YouTube; se agrega cuando haya URL.

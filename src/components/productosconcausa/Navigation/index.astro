@@ -3,9 +3,9 @@ import './styles.css';
 import { logos } from '../../../config/assets';
 import LazyImage from '../../common/LazyImage.astro';
 
-// Base path: /productosconcausa (HN) o /gt/productosconcausa (GT)
-const isGT = Astro.url.pathname.startsWith('/gt/productosconcausa');
-const basePath = isGT ? '/gt/productosconcausa' : '/productosconcausa';
+// Base path: /productosconcausa (HN) o /productosconcausa/gt (GT)
+const isGT = /^\/productosconcausa\/gt(\/|$)/.test(Astro.url.pathname);
+const basePath = isGT ? '/productosconcausa/gt' : '/productosconcausa';
 
 // Enlaces de navegación
 const navLinks = [
