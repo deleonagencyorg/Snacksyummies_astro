@@ -3,14 +3,20 @@ import './styles.css';
 import { logos } from '../../../config/assets';
 import LazyImage from '../../common/LazyImage.astro';
 
+// Base path: /productosconcausa (HN) o /gt/productosconcausa (GT)
+const isGT = Astro.url.pathname.startsWith('/gt/productosconcausa');
+const basePath = isGT ? '/gt/productosconcausa' : '/productosconcausa';
+
 // Enlaces de navegación
 const navLinks = [
-  { href: '/productosconcausa#inicio', label: 'Inicio', key: 'inicio' },
-  { href: '/productosconcausa#sobre-la-causa', label: 'Sobre la causa', key: 'sobre-la-causa' },
-  { href: '/productosconcausa/historia', label: 'Historia', key: 'historia' },
-  { href: '/productosconcausa#impacto', label: 'Impacto', key: 'impacto' },
-  { href: '/productosconcausa#productos-participantes', label: 'Productos participantes', key: 'productos-participantes' },
-  { href: '/productosconcausa#testimonios', label: 'Testimonios', key: 'testimonios' },
+  { href: basePath + '#inicio', label: 'Inicio', key: 'inicio' },
+  { href: basePath + '#sobre-la-causa', label: 'Sobre la causa', key: 'sobre-la-causa' },
+  // GT no tiene página de historia
+  ...(isGT ? [] : [{ href: basePath + '/historia', label: 'Historia', key: 'historia' }]),
+  { href: basePath + '#impacto', label: 'Impacto', key: 'impacto' },
+  { href: basePath + '#productos-participantes', label: 'Productos participantes', key: 'productos-participantes' },
+  // GT no tiene sección de testimonios
+  ...(isGT ? [] : [{ href: basePath + '#testimonios', label: 'Testimonios', key: 'testimonios' }]),
 ];
 
 // Obtener la ruta actual para marcar el enlace activo
@@ -22,7 +28,7 @@ const currentPath = Astro.url.pathname;
     <div class="flex items-center justify-between h-16">
       <!-- Logos -->
       <div class="flex items-center gap-4">
-        <a href="/productosconcausa" class="flex items-center" aria-label="YummiPops">
+        <a href={basePath} class="flex items-center" aria-label="YummiPops">
           <LazyImage 
             src={logos.yummiPops.url} 
             alt={logos.yummiPops.alt} 
@@ -32,8 +38,10 @@ const currentPath = Astro.url.pathname;
         <div class="flex items-center gap-2">
           <div class="h-8 w-[1px] bg-gray-300"></div>
           <LazyImage 
-            src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logooperacionsonrisas.webp" 
-            alt="Operación Sonrisas"
+            src={isGT
+              ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/productosconcausagt/header/logo.webp'
+              : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/logooperacionsonrisas.webp'}
+            alt={isGT ? 'Operación Sonrisa Guatemala' : 'Operación Sonrisas'}
             class="h-8 w-auto"
           />
         </div>
@@ -150,10 +158,10 @@ const currentPath = Astro.url.pathname;
         const href = link.getAttribute('href');
         if (href && href.includes('#')) {
           const [path, hash] = href.split('#');
-          const currentPath = window.location.pathname;
+          const currentPath = window.location.pathname.replace(/\/$/, '');
           
           // Si estamos en la misma página, hacer smooth scroll
-          if (path === currentPath || path === '/productosconcausa' && currentPath === '/productosconcausa/') {
+          if (path === currentPath) {
             e.preventDefault();
             const target = document.getElementById(hash);
             if (target) {

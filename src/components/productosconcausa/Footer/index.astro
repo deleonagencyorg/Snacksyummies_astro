@@ -4,6 +4,7 @@ import { logos, generalAssets } from '../../../config/assets';
 import SocialMediaIcons from '../../common/SocialMediaIcons/index.astro';
 
 const currentYear = new Date().getFullYear();
+const basePath = Astro.url.pathname.startsWith('/gt/productosconcausa') ? '/gt/productosconcausa' : '/productosconcausa';
 const currentLang = 'es'; // Productos con causa siempre en español
 ---
 
@@ -34,7 +35,7 @@ const currentLang = 'es'; // Productos con causa siempre en español
 
       <!-- Columna 2: Logo y Copyright -->
       <div class="flex flex-col items-center space-y-4">
-        <a href="/productosconcausa" class="block">
+        <a href={basePath} class="block">
           <img 
             src={logos.principal.url} 
             alt={logos.principal.alt || 'Yummies Logo'} 
