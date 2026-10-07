@@ -172,10 +172,10 @@ const gallery = [
           <!-- Colores y tamaños del primer bloque (sobre-la-causa), a pedido -->
           <div class="reveal reveal-right gt-productos__box">
             <p class="font-gt-title gt-productos__box-title">
-              ¡Estos son los Yummi Pops<br/>que transforman vidas!
+              ¡Estos son los Yummi Pops<br class="hidden md:inline" /> que transforman vidas!
             </p>
             <p class="font-gt-text gt-productos__box-text">
-              <b>Con cada compra apoyas a Operación Sonrisa Guatemala,</b><br/>brindando atención integral a pacientes con labio fisurado y paladar hendido.
+              <b>Con cada compra apoyas a Operación Sonrisa Guatemala,</b><br class="hidden md:inline" /> brindando atención integral a pacientes con labio fisurado y paladar hendido.
             </p>
           </div>
         </div>
@@ -763,7 +763,7 @@ const gallery = [
   /* ---------- Cifras de impacto ---------- */
   .gt-cifras {
     position: relative;
-    padding: 2.5rem 1rem 3rem;
+    padding: 2.5rem 1rem 2rem;
   }
 
   .gt-cifras__pattern {
@@ -884,8 +884,9 @@ const gallery = [
   }
 
   /* ---------- Productos participantes ---------- */
+  /* Mobile: 40px entre la caja de cifras y la de productos (2rem de Cifras + 0.5rem aquí), como sobre "CIFRAS" */
   .gt-productos {
-    padding: 2rem 1rem 3rem;
+    padding: 0.5rem 1rem 3rem;
   }
 
   .gt-productos__titlewrap {
@@ -903,20 +904,36 @@ const gallery = [
     margin: 0.25rem 0 0 2.5rem;
   }
 
-  .gt-productos__box {
-    display: none;
+  /*
+   * Hasta 1023px la caja va arriba del título (a la par no cabe: el texto la desborda y tapa las tarjetas).
+   * Sale hasta el borde derecho, como en desktop.
+   */
+  .gt-productos__head {
+    display: flex;
+    flex-direction: column;
   }
 
+  .gt-productos__box {
+    order: -1;
+    margin: 0 -1rem 1.75rem 0;
+    padding: 1.125rem 1rem 1.125rem 1.25rem;
+    border: 3px solid #e8e8e8;
+    border-right: 0;
+    border-radius: 2rem 0 0 2rem;
+    background: #fff;
+  }
+
+  /* Mobile: más chico que el primer bloque; proporción del diseño (título 37.88 / texto 33.07) */
   .gt-productos__box-title {
     color: #e3032e;
-    font-size: clamp(1.75rem, 2.8vw, 3.375rem);
-    line-height: 1.11;
+    font-size: 1.375rem;
+    line-height: 1.15;
   }
 
   .gt-productos__box-text {
     color: var(--gt-blue);
-    font-size: clamp(1.125rem, 1.85vw, 2.5rem);
-    line-height: 1.25;
+    font-size: 1.1875rem;
+    line-height: 1.4;
     margin-top: 0.4em;
   }
 
@@ -960,16 +977,23 @@ const gallery = [
       padding: calc(181 * var(--u)) 0 calc(221 * var(--u));
     }
 
-    .gt-productos__head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      /* Alto de la caja del diseño; la sonrisa del título puede sobresalir */
-      height: calc(338 * var(--u));
+    .gt-productos__box {
+      margin: 0 0 calc(60 * var(--u)) calc(128 * var(--u));
+      padding: 1.5rem 2rem;
+      border-radius: 2.5rem 0 0 2.5rem;
+    }
+
+    .gt-productos__box-title {
+      font-size: 1.5rem;
+    }
+
+    .gt-productos__box-text {
+      font-size: 1.1875rem;
+      line-height: 1.25;
     }
 
     .gt-productos__titlewrap {
-      padding: calc(62 * var(--u)) 0 0 calc(146 * var(--u));
+      padding: 0 0 0 calc(146 * var(--u));
     }
 
     .gt-productos__title {
@@ -982,19 +1006,6 @@ const gallery = [
       margin: calc(-23 * var(--u)) 0 0 calc(151 * var(--u));
     }
 
-    /* Caja de 338px de alto desde x=981 hasta el borde derecho, trazo de 5px */
-    .gt-productos__box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: calc(939.2 * var(--u));
-      min-height: calc(338 * var(--u));
-      padding: calc(30 * var(--u)) calc(40 * var(--u)) calc(30 * var(--u)) calc(75 * var(--u));
-      border: calc(5 * var(--u)) solid #e8e8e8;
-      border-right: 0;
-      border-radius: calc(72 * var(--u)) 0 0 calc(72 * var(--u));
-      background: #fff;
-    }
 
     .gt-productos__grid {
       grid-template-columns: repeat(4, calc(385 * var(--u)));
@@ -1010,6 +1021,47 @@ const gallery = [
       font-size: calc(36.89 * var(--u));
       line-height: calc(36.9 * var(--u));
       margin-top: calc(20.7 * var(--u));
+    }
+  }
+
+  /* Desktop: título a la izquierda y caja a la derecha, con las medidas del diseño */
+  @media (min-width: 1024px) {
+    /* Caja de 338px de alto desde x=981 hasta el borde derecho, trazo de 5px */
+    .gt-productos__box {
+      order: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(939.2 * var(--u));
+      min-height: calc(338 * var(--u));
+      margin: 0;
+      padding: calc(30 * var(--u)) calc(40 * var(--u)) calc(30 * var(--u)) calc(75 * var(--u));
+      border: calc(5 * var(--u)) solid #e8e8e8;
+      border-right: 0;
+      border-radius: calc(72 * var(--u)) 0 0 calc(72 * var(--u));
+    }
+
+    /* Tamaños del diseño para esta caja: título 37.88/43.4, texto 33.07/37.7 (con mínimo legible) */
+    .gt-productos__box-title {
+      font-size: max(1.25rem, calc(37.88 * var(--u)));
+      line-height: 1.146;
+    }
+
+    .gt-productos__box-text {
+      font-size: max(1rem, calc(33.07 * var(--u)));
+      line-height: 1.14;
+    }
+
+    .gt-productos__head {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      /* Alto de la caja del diseño; la sonrisa del título puede sobresalir */
+      height: calc(338 * var(--u));
+    }
+
+    .gt-productos__titlewrap {
+      padding: calc(62 * var(--u)) 0 0 calc(146 * var(--u));
     }
   }
 
