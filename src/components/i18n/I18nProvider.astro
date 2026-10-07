@@ -13,7 +13,7 @@ import { getLocale, setLocale } from '../../i18n/i18n';
   }
 
   // Rutas que no deben ser afectadas por redirecciones de i18n
-  const I18N_BYPASS_ROUTES = ['/productosconcausa'];
+  const I18N_BYPASS_ROUTES = ['/productosconcausa', '/gt/productosconcausa'];
 
   // Función para detectar y establecer el idioma basado en la geolocalización
   async function detectAndSetLocale() {
