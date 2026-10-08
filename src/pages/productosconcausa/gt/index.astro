@@ -205,7 +205,7 @@ const gallery = [
 
           <div class="gt-sumate__center">
             <h2 class="font-gt-bold18 gt-sumate__title">
-              Súmate a esta causa y ayúdanos<br/>
+              Súmate a esta causa y ayúdanos<br class="hidden xl:inline" />
               a transformar más vidas con
             </h2>
             <div class="gt-sumate__logos">
@@ -1122,9 +1122,12 @@ const gallery = [
       padding: calc(127.3 * var(--u)) calc(128 * var(--u));
     }
 
+    /* La columna central puede encogerse (minmax 0): así título y logos nunca pasan por debajo de los niños */
     .gt-sumate__card {
+      /* Ancho de la niña (la más ancha): mínimo de las dos columnas laterales para que el texto quede centrado */
+      --kid-col: calc(255 * var(--u));
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: minmax(var(--kid-col), 1fr) minmax(0, max-content) minmax(var(--kid-col), 1fr);
       align-items: center;
       gap: 0;
       min-height: calc(708.5 * var(--u));
@@ -1134,6 +1137,43 @@ const gallery = [
 
     .gt-sumate__kid--girl { justify-self: end; }
 
+    /*
+     * Niños con el tamaño y la posición del diseño (personaje + sombra):
+     * niño 241x467 en x=192 / y=6805, niña 255x502 terminando en x=1735 / y=6777 (tarjeta en 128,6663).
+     * La caja mide lo que el personaje; el png (2243x2248 con margen) se ubica con su desplazamiento.
+     */
+    .gt-sumate__kid {
+      overflow: visible;
+      align-self: end;
+    }
+
+    .gt-sumate__kid img {
+      height: auto;
+      max-width: none;
+      transform: none;
+    }
+
+    .gt-sumate__kid--boy {
+      width: calc(241 * var(--u));
+      height: calc(467 * var(--u));
+      margin-bottom: calc(99.5 * var(--u));
+    }
+
+    .gt-sumate__kid--boy img { width: 222.2%; left: -61.1%; top: -7.47%; height: auto; transform: none; }
+
+    .gt-sumate__kid--girl {
+      width: calc(255 * var(--u));
+      height: calc(502 * var(--u));
+      margin: 0 calc(-7 * var(--u)) calc(92.5 * var(--u)) 0;
+    }
+
+    .gt-sumate__kid--girl img { width: 221.8%; left: -60.9%; top: -7.07%; height: auto; transform: none; }
+
+    .gt-sumate__center {
+      min-width: 0;
+      padding-inline: 1rem;
+    }
+
     .gt-sumate__title {
       font-size: calc(65.11 * var(--u));
       line-height: calc(74.7 * var(--u));
@@ -1141,11 +1181,18 @@ const gallery = [
 
     /* Yummi Pops: contenido 207x133 (el png de 300x300 trae margen); Operación Sonrisa 549 de ancho; divisor de 3px */
     .gt-sumate__logos {
+      min-width: 0;
       gap: calc(91 * var(--u));
       margin-top: calc(10 * var(--u));
       /* Baja sin cambiar el alto del bloque central (centrado en la tarjeta) */
       position: relative;
       top: calc(12.5 * var(--u));
+    }
+
+    .gt-sumate__ypops,
+    .gt-sumate__os {
+      flex: 0 1 auto;
+      min-width: 0;
     }
 
     .gt-sumate__ypops {
