@@ -215,7 +215,7 @@ const gallery = [
             </div>
           </div>
 
-          <!-- Mismo tamaño que ninamini (144x285); el png GT trae margen, se escala para que la niña ocupe el alto -->
+          <!-- 192x285 en móvil (el gif saluda fuera de 144px); el gif trae margen, se escala para que la niña ocupe el alto -->
           <div class="gt-sumate__kid gt-sumate__kid--girl">
             <img src={`${GT}/girl_gt.gif`} alt="Operación Sonrisa Guatemala - niña" width="2243" height="2248" loading="lazy" decoding="async" />
           </div>
@@ -1086,8 +1086,9 @@ const gallery = [
 
   .gt-sumate__kid--boy { width: 192px; }
   .gt-sumate__kid--boy img { top: 50%; height: 115%; transform: translate(-50%, -50%); }
-  .gt-sumate__kid--girl { width: 144px; }
-  .gt-sumate__kid--girl img { top: -7.1%; height: 112.9%; transform: translateX(-50%); }
+  /* El gif de la niña saluda con la mano fuera de los 144px: caja más ancha y escala para que cabeza y pies no se corten */
+  .gt-sumate__kid--girl { width: 192px; }
+  .gt-sumate__kid--girl img { top: -3.6%; height: 106%; transform: translateX(-50%); }
 
   .gt-sumate__center {
     text-align: center;
