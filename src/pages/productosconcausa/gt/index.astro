@@ -5,6 +5,7 @@ import patternConoce from '../../../assets/productosconcausagt/pattern-conoce.sv
 import patternCifras from '../../../assets/productosconcausagt/pattern-cifras.svg?url';
 import '../../../styles/title-letters.css';
 import '../../../styles/pcc-gt-fonts.css';
+import 'swiper/css';
 
 const CDN = 'https://snack.yummiespromociones.com/SnacksyummiesAssets';
 const GT = `${CDN}/productosconcausagt`;
@@ -28,6 +29,13 @@ const gallery = [
   { file: 'galeria_1', w: 2560, h: 1828, left: '-1.76%', top: '-8.76%', width: '121.3%' },
   { file: 'galeria_2', w: 667, h: 667, left: '-1.28%', top: '-39.86%', width: '117.6%' },
   { file: 'galeria_3', w: 1024, h: 683, left: '-4.19%', top: '-7.79%', width: '109.6%' },
+  // Fotos extra (no están en el diseño): centradas, cubriendo el marco
+  { file: 'galeria_4', w: 7000, h: 5000, left: '0%', top: '-3.11%', width: '100%' },
+  { file: 'galeria_5', w: 7000, h: 4667, left: '-0.43%', top: '0%', width: '100.86%' },
+  { file: 'galeria_6', w: 7000, h: 4667, left: '-0.43%', top: '0%', width: '100.86%' },
+  { file: 'galeria_7', w: 7000, h: 5000, left: '0%', top: '-3.11%', width: '100%' },
+  { file: 'galeria_8', w: 2000, h: 1333, left: '-0.45%', top: '0%', width: '100.89%' },
+  { file: 'galeria_9', w: 2000, h: 1333, left: '-0.45%', top: '0%', width: '100.89%' },
 ];
 ---
 
@@ -116,12 +124,25 @@ const gallery = [
             Este año, Yummies se suma a la celebración de los 15 años de Fundación Operación <br class="hidden md:inline" />Sonrisa Guatemala, reconociendo una trayectoria de compromiso y acceso a atención <br class="hidden md:inline" />médica especializada para quienes más lo necesitan.
           </p>
         </div>
-        <div class="gt-gallery">
-          {gallery.map((g, i) => (
-            <div class:list={['reveal gt-gallery__frame', i === 0 ? 'reveal-left' : i === 1 ? 'reveal-up reveal-delay-1' : 'reveal-right reveal-delay-2']}>
-              <img src={`${GT}/fotos/${g.file}.webp`} alt="Operación Sonrisa Guatemala" width={g.w} height={g.h} loading="lazy" decoding="async" style={`left:${g.left};top:${g.top};width:${g.width}`} />
+        <!-- Carrusel de la galería: 1 foto en mobile, 2 en tablet, 3 en desktop (como el diseño) -->
+        <div class="reveal reveal-up reveal-delay-2 gt-gallery" aria-roledescription="carrusel" aria-label="Galería Operación Sonrisa Guatemala">
+          <div class="swiper gt-gallery__swiper">
+            <div class="swiper-wrapper">
+              {gallery.map((g) => (
+                <div class="swiper-slide">
+                  <div class="gt-gallery__frame">
+                    <img src={`${GT}/fotos/${g.file}.webp`} alt="Operación Sonrisa Guatemala" width={g.w} height={g.h} loading="lazy" decoding="async" style={`left:${g.left};top:${g.top};width:${g.width}`} />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <button type="button" class="gt-gallery__nav gt-gallery__nav--prev" aria-label="Foto anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+          </button>
+          <button type="button" class="gt-gallery__nav gt-gallery__nav--next" aria-label="Foto siguiente">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+          </button>
         </div>
       </section>
 
@@ -702,9 +723,43 @@ const gallery = [
   }
 
   .gt-gallery {
-    display: grid;
-    gap: 1rem;
     margin-top: 1.5rem;
+  }
+
+  .gt-gallery__swiper {
+    border-radius: 1.5rem;
+  }
+
+  /* Flechas: círculo blanco con la flecha azul, sobre el borde de las fotos */
+  .gt-gallery__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    background: #fff;
+    color: var(--gt-blue);
+    box-shadow: 0 0.5rem 1.5rem -0.4rem rgba(0, 0, 0, 0.35);
+    transform: translateY(-50%);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .gt-gallery__nav:hover { background: #fec000; }
+  .gt-gallery__nav:active { transform: translateY(-50%) scale(0.92); }
+  .gt-gallery__nav--prev { left: -0.75rem; }
+  .gt-gallery__nav--next { right: -0.75rem; }
+
+  .gt-gallery__nav svg {
+    width: 55%;
+    height: 55%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   /* Marco blanco de 7px (trazo del diseño) con radio 38px; la foto va recortada dentro */
@@ -748,11 +803,24 @@ const gallery = [
       margin-top: calc(62.2 * var(--u));
     }
 
+    /* 3 fotos de 531.5 con 36.9 de separación (lo fija Swiper en JS) */
     .gt-gallery {
-      grid-template-columns: repeat(3, calc(531.5 * var(--u)));
-      gap: calc(36.9 * var(--u));
+      width: calc(1668.3 * var(--u));
       margin: calc(64 * var(--u)) 0 0 calc(-1.1 * var(--u));
     }
+
+    .gt-gallery__swiper {
+      border-radius: calc(41.5 * var(--u));
+    }
+
+    /* Las flechas quedan en el margen de 128px a cada lado de la galería */
+    .gt-gallery__nav {
+      width: max(2.75rem, calc(84 * var(--u)));
+      height: max(2.75rem, calc(84 * var(--u)));
+    }
+
+    .gt-gallery__nav--prev { left: calc(-106 * var(--u)); }
+    .gt-gallery__nav--next { right: calc(-106 * var(--u)); }
 
     .gt-gallery__frame {
       border-width: calc(7 * var(--u));
@@ -1313,6 +1381,8 @@ const gallery = [
 </style>
 
 <script>
+  import Swiper from 'swiper';
+  import { Autoplay, Navigation, A11y } from 'swiper/modules';
   import { initTitleLetters } from '../../../scripts/titleLetters';
 
   // Intersection Observer para animar elementos al hacer scroll
@@ -1359,6 +1429,47 @@ const gallery = [
 
     // Títulos letra por letra (.title-letters)
     initTitleLetters();
+
+    // Carrusel de la galería de "Conoce más sobre la causa"
+    const gallery = document.querySelector<HTMLElement>('.gt-gallery');
+    const gallerySwiper = gallery?.querySelector<HTMLElement & { swiper?: Swiper }>('.gt-gallery__swiper');
+    if (gallery && gallerySwiper && !gallerySwiper.swiper) {
+      // Separación del diseño (36.9px a 1920) escalada con el ancho de la página, igual que --u
+      const pageWidth = () => document.querySelector<HTMLElement>('.gt-page')?.clientWidth ?? window.innerWidth;
+      const designGap = () => (36.9 * pageWidth()) / 1920;
+
+      new Swiper(gallerySwiper, {
+        modules: [Autoplay, Navigation, A11y],
+        loop: true,
+        speed: 700,
+        grabCursor: true,
+        slidesPerView: 1,
+        spaceBetween: 16,
+        autoplay: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? false
+          : { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+        navigation: {
+          prevEl: gallery.querySelector<HTMLElement>('.gt-gallery__nav--prev'),
+          nextEl: gallery.querySelector<HTMLElement>('.gt-gallery__nav--next'),
+        },
+        a11y: {
+          prevSlideMessage: 'Foto anterior',
+          nextSlideMessage: 'Foto siguiente',
+        },
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 16 },
+          768: { slidesPerView: 3, spaceBetween: designGap() },
+        },
+        on: {
+          resize(swiper) {
+            if (window.innerWidth >= 768) {
+              swiper.params.spaceBetween = designGap();
+              swiper.update();
+            }
+          },
+        },
+      });
+    }
 
     // Contador animado para las cifras de Indicadores y Donativos
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
