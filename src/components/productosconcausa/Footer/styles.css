@@ -21,3 +21,115 @@
     justify-content: center;
   }
 }
+
+/* GT: diseño YPOPS-CAUSA_WEB-LAYOUT (footer de 301px a 1920, escalado con el ancho de pantalla) */
+.pcc-footer--gt {
+  font-kerning: none;
+  background-color: #004e9d;
+  --gt-icon: clamp(24px, 1.8125vw, 34.8px);
+}
+
+.pcc-footer-gt__inner {
+  max-width: 1920px;
+  margin-inline: auto;
+  padding: clamp(32px, 3.177vw, 61px) clamp(16px, 6.667vw, 128px) clamp(32px, 2.865vw, 55px);
+  display: grid;
+  gap: 2rem;
+  font-size: clamp(14px, 1.042vw, 20px);
+  line-height: 1;
+}
+
+.pcc-footer-gt__contact {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.094vw, 21px);
+}
+
+.pcc-footer-gt__row {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(8px, 0.6vw, 11px);
+}
+
+.pcc-footer-gt__row svg {
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.pcc-footer-gt__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pcc-footer-gt__logo {
+  height: clamp(64px, 5.625vw, 108px);
+  width: auto;
+}
+
+.pcc-footer-gt__privacy {
+  margin-top: clamp(12px, 1.2vw, 23px);
+}
+
+.pcc-footer-gt__copy {
+  margin-top: 0.65em;
+}
+
+.pcc-footer-gt__social {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(8px, 0.661vw, 12.7px);
+}
+
+.pcc-footer-gt__social svg {
+  display: block;
+  height: var(--gt-icon);
+}
+
+/* Mobile: como el footer de /productosconcausa, con interlineado y un punto más de tamaño para que se lea */
+@media (max-width: 768px) {
+  /* Íconos del tamaño de los de /productosconcausa en mobile */
+  .pcc-footer--gt {
+    --gt-icon: 30px;
+  }
+
+  .pcc-footer-gt__social {
+    gap: 14px;
+  }
+
+  .pcc-footer-gt__inner {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  .pcc-footer-gt__row {
+    justify-content: center;
+    text-align: left;
+  }
+
+  .pcc-footer--gt .pcc-footer-gt__privacy {
+    font-size: 15px;
+  }
+
+  /* La Light 20 es muy fina a este tamaño: en mobile va en Medium */
+  .pcc-footer--gt .pcc-footer-gt__copy {
+    font-family: 'TroisMille Medium 20', var(--font-text);
+    font-weight: 500;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 769px) {
+  .pcc-footer-gt__inner {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    gap: 0;
+  }
+
+  .pcc-footer-gt__social {
+    justify-content: flex-end;
+  }
+}
