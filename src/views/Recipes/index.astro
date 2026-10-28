@@ -86,16 +86,15 @@ const featuredVideo = (featured as any)?.video ?? '';
 <!-- Breadcrumbs -->
 
 
-<div class="-mt-10 pt-12 pb-16 overflow-hidden" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgrecipes2.webp'); background-position: top center;">
+<div class="-mt-10 pt-3 md:pt-12 pb-16 overflow-hidden" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgrecipes2.webp'); background-position: top center;">
 
-  <div class="container mx-auto px-4 mt-12 bg-transparent">
+  <div class="container mx-auto px-4 mt-1 md:mt-12 bg-transparent">
     <Breadcrumb 
   items={[
     { label: 'Home', href: `/${currentLang}` },
     { label: currentLang === 'es' ? 'Recetas' : 'Recipes', href: `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}` },
   ]}
-  textColor="text-white "
- 
+  textColor="text-white"
 />
 
 <!-- Categories Section (reusable slider) -->
