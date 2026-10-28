@@ -45,17 +45,17 @@ const currentLang = getLocale();
         ))}
       </div>
     </div>
-    <!-- Bottones de navecacion para recetas -->
-    <div class="w-full mx-10 md:mx-12 lg:mx-14 mt-6">
-      <div class="flex justify-between items-center">
-        <button id="relPrev" class="rel-nav-btn text-white font-bold bg-transparent hover:opacity-90 px-4 py-2 rounded-full shadow transition-colors duration-150" aria-label={currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}>
-          {currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}
-        </button>
-        <button id="relNext" class="rel-nav-btn text-white font-bold bg-transparent hover:opacity-90 px-4 py-2 rounded-full shadow transition-colors duration-150" aria-label={currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}>
-          {currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}
-        </button>
-      </div>
-    </div>
+    <!-- Botones de navegación -->
+    <button id="relPrev" class="rel-arrow-btn" aria-label={currentLang === 'es' ? 'Receta anterior' : 'Previous recipe'}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button id="relNext" class="rel-arrow-btn" aria-label={currentLang === 'es' ? 'Siguiente receta' : 'Next recipe'}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
 )}
 
@@ -154,49 +154,52 @@ const currentLang = getLocale();
 </script>
     <!-- estilo para botones de las recetas -->
 <style>
-  .rel-nav-btn {
-    border: 1px solid rgba(255,255,255,0.18);
-    background: rgba(255,255,255,0.06);
-    color: #ffffff;
-    cursor: pointer;
-  }
-
-  .rel-nav-btn {
-    min-width: 160px;
-    height: 44px;
+  .rel-arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 18px;
-    white-space: nowrap;
-    font-size: 0.95rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    border: 1px solid rgba(10,61,126,0.15);
+    background: rgba(10,61,126,0.95);
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 40;
+    transition: background 150ms ease, transform 150ms ease, opacity 150ms ease;
+    box-shadow: 0 4px 12px rgba(10,61,126,0.12);
   }
 
-  @media (min-width: 768px) {
-    .rel-nav-btn {
-      transform: none !important;
-    }
-    .rel-nav-btn:hover {
-      transform: none !important;
-      background: rgba(255,255,255,0.12);
-    }
+  /* Posicionamiento en mobile dejar padding lateral para que no choquen con el borde */
+  #relPrev { left: 1rem; }
+  #relNext { right: 1rem; }
+
+  .rel-arrow-btn:hover {
+    background: rgba(10,61,126,0.85);
+    transform: translateY(-50%) scale(1.03);
   }
 
-  @media (max-width: 480px) {
-    .rel-nav-btn {
-      min-width: 140px;
-      height: 40px;
-      font-size: 0.9rem;
-      padding: 0 12px;
-    }
-  }
-
-  .rel-nav-btn:focus,
-  .rel-nav-btn.active {
+  .rel-arrow-btn:focus {
     outline: none;
-    background: #ffffff;
-    color: #0A3D7E;
-    border-color: #0A3D7E;
-    box-shadow: 0 8px 24px rgba(10,61,126,0.12);
+    box-shadow: 0 8px 24px rgba(10,61,126,0.18);
+    background: #0A3D7E;
+    color: #ffffff;
+    border-color: rgba(255,255,255,0.15);
   }
+
+  @media (min-width: 640px) {
+    #relPrev { left: -1.5rem; }
+    #relNext { right: -1.5rem; }
+    .rel-arrow-btn { width: 48px; height: 48px; }
+  }
+
+  @media (min-width: 1024px) {
+    #relPrev { left: -2.5rem; }
+    #relNext { right: -2.5rem; }
+    .rel-arrow-btn { width: 56px; height: 56px; }
+  }
+
 </style>

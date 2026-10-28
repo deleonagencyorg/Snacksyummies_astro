@@ -26,6 +26,7 @@ export function initProductsFilter() {
     if (brand === 'all') {
       console.log('[PRODUCTS] ✅ Mostrando todos los productos');
       productItems.forEach((item) => {
+        (item as HTMLElement).removeAttribute('data-brand-filtered');
         (item as HTMLElement).style.display = '';
       });
     } else {
@@ -34,14 +35,23 @@ export function initProductsFilter() {
       let visibleCount = 0;
       
       productItems.forEach((item) => {
-        const itemBrand = item.getAttribute('data-brand');
-        const normalizedItemBrand = itemBrand ? itemBrand.toLowerCase() : '';
-        const match = normalizedItemBrand === normalizedBrand;
-        
+        const itemBrand = item.getAttribute('data-brand') || '';
+        const itemBrandName = item.getAttribute('data-brand-name') || '';
+        const normalizedItemBrand = itemBrand ? itemBrand.toLowerCase().trim() : '';
+        const normalizedItemBrandName = itemBrandName ? itemBrandName.toLowerCase().trim() : '';
+        const match = (
+          normalizedItemBrand === normalizedBrand ||
+          normalizedItemBrandName === normalizedBrand ||
+          normalizedItemBrand.indexOf(normalizedBrand) !== -1 ||
+          normalizedItemBrandName.indexOf(normalizedBrand) !== -1
+        );
+
         if (match) {
           visibleCount++;
+          (item as HTMLElement).removeAttribute('data-brand-filtered');
           (item as HTMLElement).style.display = '';
         } else {
+          (item as HTMLElement).setAttribute('data-brand-filtered', 'true');
           (item as HTMLElement).style.display = 'none';
         }
       });

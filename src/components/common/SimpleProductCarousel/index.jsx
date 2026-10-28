@@ -126,8 +126,9 @@ export default function SimpleProductCarousel({ products = [], locale = 'es' }) 
                 className="product-card"
                 style={{ cursor: (product.pagina && product.pagina !== '#') || (product.link && product.link !== '#') ? 'pointer' : 'default' }}
                 onClick={() => {
-                  const url = product.pagina || product.link;
-                  if (url && url !== '#') {
+                  const pickUrl = (u) => (u && typeof u === 'string' && u.trim().length > 0 && /^https?:\/\//i.test(u.trim()) ? u.trim() : null);
+                  const url = pickUrl(product.pagina) || pickUrl(product.link);
+                  if (url) {
                     window.open(url, '_blank', 'noopener,noreferrer');
                   }
                 }}

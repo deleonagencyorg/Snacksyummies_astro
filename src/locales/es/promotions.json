@@ -5,6 +5,14 @@
     "button": "Registrarme",
     "buttonUrl": "/es/yummiesone"
   },
+  "pageImage": [
+    {
+      "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+      "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+      "alt": "Promoción 1",
+      "link": "https://yummiesmoneyparty.com/"
+    }
+  ],
   "sections": {
     "active": {
       "title": "Promociones activas",
@@ -17,164 +25,109 @@
   },
   "promotions": [
     {
-      "id": "superman-six-flags-2024",
-      "slug": "superman-six-flags-mexico",
-      "title": "SUPERMAN",
-      "subtitle": "Participa para ganar UN VIAJE TODO INCLUIDO a SIX FLAGS MÉXICO y muchos premios más",
-      "description": "Gánate un viaje todo incluido a Six Flags Mexico y muchos premios más",
-      "startDate": "2024-01-19",
-      "endDate": "2024-02-19",
+      "id": "money-party",
+      "slug": "money-party",
+      "title": "MONEY PARTY",
+      "subtitle": "Participa y gana fabulosos premios",
+      "description": "Participa en nuestra nueva promoción y gana fabulosos premios",
+      "startDate": "2026-07-20",
+      "endDate": "2026-10-22",
       "status": "active",
       "winners": true,
+      "imageDesktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
       "image": {
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-        "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+        "alt": "Money Party"
       },
       "buttonText": "Ver detalles",
-      "buttonUrl": "/es/promociones/superman-six-flags-mexico",
+      "buttonUrl": "/es/promociones/money-party",
+      "cardUrl": "https://yummiesmoneyparty.com/",
       "shareText": "Compartir:",
       "socialLinks": {
         "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
         "instagram": "https://www.instagram.com/",
         "x": "https://x.com/intent/tweet?url="
       },
-      "tags": ["superman", "six-flags", "viaje", "premios"],
-      "category": "travel",
+      "tags": [
+        "promocion",
+        "premios"
+      ],
+      "category": "experiences",
       "detail": {
         "title": "Para participar, sigue estos pasos:",
         "image": {
-          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/superman.webp",
-          "alt": "Superman volando con un perro blanco, Six Flags México de fondo con bolsas de snacks"
+          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Desktop.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Money_Party_Mobile.webp",
+          "alt": "Money Party",
+          "url_image": "https://yummiesmoneyparty.com/"
         },
-        "steps": [
-          {
-            "number": 1,
-            "title": "Regístrate",
-            "description": "Crea tu cuenta en Yummies One",
-            "icon": "📝",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/s01.webp"
-          },
-          {
-            "number": 2,
-            "title": "Ingresa el código de tu vuelo Chappa",
-            "description": "Introduce el código que viene en tu producto",
-            "icon": "🎫",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/s02.webp"
-          },
-          {
-            "number": 3,
-            "title": "Juega y gana",
-            "description": "Participa para ganar UN VIAJE TODO INCLUIDO a SIX FLAGS MÉXICO y muchos premios más",
-            "icon": "✈️",
-            "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/s03.webp"
-          }
-        ],
+        "steps": [],
         "registerButton": "Regístrate",
+        "register_url": "https://yummiesmoneyparty.com/",
         "sections": {
           "validity": {
             "title": "Vigencia",
-            "content": "Esta promoción estará vigente desde el 19 de enero de 2024 hasta el 19 de febrero de 2024."
+            "content": "Esta promoción estará vigente desde el 20 de julio hasta el 22 de octubre de 2026."
           },
           "terms": {
             "title": "Bases y Condiciones",
-            "content": "Lee las bases y condiciones completas de la promoción Superman - Six Flags México."
+            "content": "Lee los términos y condiciones de la nueva promoción.",
+            "link": "https://snack.yummiespromociones.com/SnacksyummiesAssets/terminos_y_condiciones_yummies_money_party.pdf",
+            "linkText": "Términos y Condiciones"
           },
           "prizes": {
             "title": "Premios",
-            "content": "Descubre todos los premios disponibles en esta promoción."
-          },
-          "privacy": {
-            "title": "Política de Privacidad",
-            "content": "Conoce cómo protegemos tu información personal."
-          },
-          "faq": {
-            "title": "FAQ's",
-            "content": "Preguntas frecuentes sobre la promoción."
+            "content": "¡Premios hasta de RD$ 60,000! ¿Un viaje a Punta Cana todo incluido?"
           }
         }
       }
     },
     {
-      "id": "guardianes-sabor-punta-cana",
-      "slug": "guardianes-sabor-punta-cana",
-      "title": "LOS GUARDIANES DEL SABOR",
-      "subtitle": "¡GANA UN VIAJE A PUNTA CANA! PARA 2 PERSONAS",
-      "description": "Gánate un viaje todo incluido a Punta Cana para 2 personas y muchos premios más",
-      "startDate": "2023-11-01",
-      "endDate": "2023-12-31",
-      "status": "finished",
+      "id": "mundialistas",
+      "slug": "mundialistas",
+      "title": "MUNDIALISTAS",
+      "subtitle": "Celebra con los Mundialistas y gana premios exclusivos",
+      "description": "Participa en la promoción Mundialistas y gana experiencias y premios relacionados al fútbol",
+      "startDate": "2026-06-15",
+      "endDate": "2026-08-13",
+      "status": "active",
       "winners": true,
+      "imageDesktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
       "image": {
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
-        "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua"
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
+        "alt": "Promoción Mundialistas"
       },
       "buttonText": "Ver detalles",
-      "buttonUrl": "/es/promociones/guardianes-sabor-punta-cana",
+      "buttonUrl": "/es/promociones/mundialistas",
+      "cardUrl": "https://www.snacksyummies.com/es/ganadores/mundialistas",
       "shareText": "Compartir:",
       "socialLinks": {
         "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
         "instagram": "https://www.instagram.com/",
         "x": "https://x.com/intent/tweet?url="
       },
-      "tags": ["guardianes", "punta-cana", "viaje", "tropical"],
-      "category": "travel",
-      "participationSteps": [
-        "CÓMO PARTICIPAR?",
-        "DISFRUTA Y GANA!"
+      "tags": [
+        "mundialistas",
+        "futbol",
+        "experiencias"
       ],
+      "category": "experiences",
       "detail": {
-        "image": {
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/veranomin.webp",
-        "alt": "Los Guardianes del Sabor con elementos tropicales, palmeras y salpicaduras de agua"
-      },
         "title": "Para participar, sigue estos pasos:",
-        "steps": [
-          {
-            "number": 1,
-            "title": "Regístrate",
-            "description": "Crea tu cuenta en Yummies One",
-            "icon": "📝"
-          },
-          {
-            "number": 2,
-            "title": "Ingresa el código de tu producto",
-            "description": "Introduce el código que viene en tu producto Guardianes del Sabor",
-            "icon": "🎫"
-          },
-          {
-            "number": 3,
-            "title": "Juega y gana",
-            "description": "¡GANA UN VIAJE A PUNTA CANA! PARA 2 PERSONAS y muchos premios más",
-            "icon": "✈️"
-          }
-        ],
+        "image": {
+          "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial.webp",
+          "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ganadores_Mundial_mobil.webp",
+          "alt": "Mundialistas",
+          "url_image": "https://www.snacksyummies.com/es/ganadores/mundialistas"
+        },
+        "steps": [],
         "registerButton": "Regístrate",
-        "sections": {
-          "validity": {
-            "title": "Vigencia",
-            "content": "Esta promoción estuvo vigente desde el 1 de noviembre de 2023 hasta el 31 de diciembre de 2023."
-          },
-          "terms": {
-            "title": "Bases y Condiciones",
-            "content": "Lee las bases y condiciones completas de la promoción Los Guardianes del Sabor - Punta Cana."
-          },
-          "prizes": {
-            "title": "Premios",
-            "content": "Descubre todos los premios disponibles en esta promoción."
-          },
-          "privacy": {
-            "title": "Política de Privacidad",
-            "content": "Conoce cómo protegemos tu información personal."
-          },
-          "faq": {
-            "title": "FAQ's",
-            "content": "Preguntas frecuentes sobre la promoción."
-          }
-        }
+        "register_url": "https://mundialista.yummiespromociones.com/",
+        "sections": {}
       }
     }
   ],

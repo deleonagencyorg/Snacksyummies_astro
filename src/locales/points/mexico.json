@@ -1,0 +1,50 @@
+{
+  "source": "Honduras_zona_norte.xlsx",
+  "points": [
+    {
+      "pais": "México",
+      "departamento": "Ciudad de México",
+      "ciudad": "Ciudad de México",
+      "nombre": "1825554",
+      "direccion": "Col Pradera, 27 Clle Una Cdra Antes De Bulevar Las Torres",
+      "latitud": "19.3079074",
+      "longitud": "-99.2588606"
+    },
+    {
+      "pais": "México",
+      "departamento": "Guanajuato",
+      "ciudad": "Centro",
+      "nombre": "1829454",
+      "direccion": "Central Metropolitana, 1 Nivel",
+      "latitud": "21.1172394",
+      "longitud": "-101.6872529"
+    },
+    {
+      "pais": "México",
+      "departamento": "Guanajuato",
+      "ciudad": "Centro",
+      "nombre": "1829454",
+      "direccion": "Central Metropolitana, 1 Nivel",
+      "latitud": "21.1172394",
+      "longitud": "-101.6872529"
+    },
+    {
+      "pais": "México",
+      "departamento": "Puebla",
+      "ciudad": "Chignahuapan",
+      "nombre": "1829455",
+      "direccion": "Bo El Llano Del Conejo, Esquina Opuesta Oficina De La Enee S",
+      "latitud": "19.704495",
+      "longitud": "-98.0805144"
+    },
+    {
+      "pais": "México",
+      "departamento": "Guanajuato",
+      "ciudad": "Centro",
+      "nombre": "1829454",
+      "direccion": "Central Metropolitana, 1 Nivel",
+      "latitud": "21.1172394",
+      "longitud": "-101.6872529"
+    }
+  ]
+}

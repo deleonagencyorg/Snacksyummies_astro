@@ -10,11 +10,12 @@ interface Props {
   round?: boolean;
   className?: string;
   buttonClassName?: string;
-  platforms?: ('facebook' | 'twitter' | 'whatsapp' | 'telegram')[];
+  platforms?: ('facebook' | 'twitter' | 'whatsapp' | 'instagram' | 'telegram')[];
   labels?: {
     facebook?: string;
     twitter?: string;
     whatsapp?: string;
+    instagram?: string;
     telegram?: string;
   };
   showLabels?: boolean;
@@ -29,7 +30,7 @@ const {
   round = true,
   className = '',
   buttonClassName = '',
-  platforms = ['facebook', 'twitter', 'whatsapp', 'telegram'],
+  platforms = ['facebook', 'twitter', 'instagram', 'telegram'],
   labels,
   showLabels = false
 } = Astro.props;
@@ -46,12 +47,14 @@ const defaultLabels = {
     facebook: 'Facebook',
     twitter: 'Twitter',
     whatsapp: 'WhatsApp',
+    instagram: 'Instagram',
     telegram: 'Telegram'
   },
   en: {
     facebook: 'Facebook',
     twitter: 'Twitter',
     whatsapp: 'WhatsApp',
+    instagram: 'Instagram',
     telegram: 'Telegram'
   }
 };

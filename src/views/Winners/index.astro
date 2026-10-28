@@ -77,13 +77,13 @@ const winnerCountries = countries.map((name) => ({ name, flag: getFlag(name) }))
 
   <!-- Hero Section -->
   <section class="hero-section bg-sexinary text-white">
-    <div class="block w-full h-[300px] md:h-[800px]">
+    <div class="block w-full h-auto md:h-[800px]">
       <div class="w-full h-full overflow-hidden">
         {promotion?.image?.mobile && (
           <LazyImage 
             src={promotion.image.mobile} 
             alt={promotion.image?.alt || ''}
-            class="w-full h-full object-cover object-center md:hidden"
+            class="w-full h-auto object-contain object-center md:hidden"
             priority={true}
           />
         )}
@@ -98,7 +98,7 @@ const winnerCountries = countries.map((name) => ({ name, flag: getFlag(name) }))
       </div>
     </div>
   </section>
-  <div class="bg-sexinary -mt-8 pt-8">
+  <div class="bg-sexinary -mt-8 pt-8 pb-6">
     <Breadcrumb
       items={[
         { label: t('home', { namespace: 'promotions', locale: currentLang }), href: `/${currentLang}` },
@@ -139,11 +139,11 @@ const winnerCountries = countries.map((name) => ({ name, flag: getFlag(name) }))
         </div>
       </div>
     </div>
-    <div class="content-stretch flex gap-8 items-center justify-center size-full py-8 [&_svg]:hidden" data-name="Flags">
+    <div class="content-stretch flex flex-wrap gap-4 md:gap-8 items-center justify-center size-full py-8 px-4 [&_svg]:hidden" data-name="Flags">
       <!-- Emoji Flags (derived from winners countries) -->
       {winnerCountries.length > 0 ? (
         winnerCountries.map((c) => (
-          <span class="text-4xl" title={c.name}>
+          <span class="text-3xl md:text-4xl" title={c.name}>
             {c.flag || "🏁"}
           </span>
         ))

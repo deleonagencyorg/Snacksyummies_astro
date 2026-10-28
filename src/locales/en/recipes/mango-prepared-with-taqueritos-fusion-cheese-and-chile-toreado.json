@@ -18,15 +18,13 @@
     "Pepper to taste",
     "2 tablespoons of soy sauce",
     "1 tablespoon of lemon",
-    "1 Taqueritos Bag Bag Fusion and Chile Torado"
+    "1 Taqueritos Bag Bag Fusion and Chile Toreado"
   ],
   "instructions": [
     "Step 1. In a bowl place all the ingredients and mix perfectly.",
     "Step 2. Put in cooling for about 20 minutes and enjoy."
   ],
   "brand": "taqueritos",
-  "product": [
-    "Taqueritos Chile Toreado",
-    "Taqueritos Queso Fusión"
-  ]
+  "product": "Taqueritos Chile toreado and Taqueritos Queso Fusión",  
+      "product-page": "https://www.taqueritos.com/en/products/taqueritos-chile-toreado"
 }

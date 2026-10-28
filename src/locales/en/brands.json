@@ -17,7 +17,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/taqueritos-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/taqueritos-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/taqueritos-peque.webp",
-            "bgColor": "#3D4852",
+            "bgColor": "#fd0016",
             "title": "Taqueritos",
             "url": "https://taqueritos.com",
             "alt": "Taqueritos",
@@ -61,6 +61,15 @@
                     "title": "Taqueritos Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-bufalo-ranch.webp",
+                    "isNew": false
+                },
+                {
+                    "id": "taqueritos-lava",
+                    "slug": "taqueritos-lava",
+                    "pagina": "https://www.taqueritos.com/en/products/taqueritos-lava",
+                    "title": "Taqueritos Lava",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/taqueritos-lava.png",
                     "isNew": true
                 }
             ]
@@ -77,7 +86,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/zambos-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/zambos-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/zambos-peque.webp",
-            "bgColor": "#64A70B",
+            "bgColor": "#009337",
             "title": "Zambos",
             "url": "https://zambos.com",
             "alt": "Zambos",
@@ -89,6 +98,24 @@
                     "title": "Zambos Picositas Con Chile Limón Y Sal",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-picositas-con-chile-limon-y-sal-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos-picositas-con-chile-limon-y-sal-2.webp"
+                },
+                {
+                    "id": "zambos-yuquitas-con-ajo-parmesano",
+                    "slug": "zambos-yuquitas-con-ajo-parmesano",
+                    "pagina": "https://www.zambos.com/es/productos/zambos-yuquitas-con-ajo-parmesano?count=6",
+                    "title": "Zambos Yuquitas Con Ajo Parmesano",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zambos_yuquita_ajo_parmesano.webp",
+                    "isNew": true
+                },
+                {
+                    "id": "zambos-camote-con-sal-marina",
+                    "slug": "zambos-camote-con-sal-marina",
+                    "pagina": "https://www.zambos.com/es/productos/zambos-camote-con-sal-marina?count=6",
+                    "title": "Zambos Camote Con Sal Marina",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Zambos-camote.png",
+                    "isNew": true
                 },
                 {
                     "id": "zambos-originals",
@@ -177,7 +204,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/zibas-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/zibas-peque.webp",
-            "bgColor": "#F08C00",
+            "bgColor": "#ffc500",
             "title": "Zibas",
             "url": "https://zibaspapas.com",
             "alt": "Zibas",
@@ -237,7 +264,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/delrancho-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/delrancho-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/delrancho-peque.webp",
-            "bgColor": "#E59400",
+            "bgColor": "#9b592a",
             "title": "Del Rancho",
             "url": "#",
             "alt": "Del Rancho",
@@ -281,7 +308,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/ranchitas-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/ranchitas-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/ranchitas-peque.webp",
-            "bgColor": "#C6474B",
+            "bgColor": "#ff5700",
             "title": "Ranchitas",
             "url": "https://ranchitas.com",
             "alt": "Ranchitas",
@@ -289,7 +316,7 @@
                 {
                     "id": "ranchitas-nacho-exitante",
                     "slug": "ranchitas-nacho-exitante",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-nacho-excitante",
                     "title": "Ranchitas Nacho Exitante",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-exitante-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-exitante-2.webp"
@@ -297,7 +324,7 @@
                 {
                     "id": "ranchitas-nacho-extremo",
                     "slug": "ranchitas-nacho-extremo",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-nacho-extremo",
                     "title": "Ranchitas Nacho Extremo",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp"
@@ -305,7 +332,7 @@
                 {
                     "id": "ranchitas-nacho-guacamole",
                     "slug": "ranchitas-nacho-guacamole",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-nacho-guacamole",
                     "title": "Ranchitas Nacho Guacamole",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-guacamole-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-guacamole-2.webp"
@@ -313,7 +340,7 @@
                 {
                     "id": "ranchitas-nacho-pizza",
                     "slug": "ranchitas-nacho-pizza",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-nacho-pizza",
                     "title": "Ranchitas Nacho Pizza",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-pizza-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-pizza-2.webp"
@@ -321,7 +348,7 @@
                 {
                     "id": "ranchitas-nacho-queso",
                     "slug": "ranchitas-nacho-queso",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-nacho-queso",
                     "title": "Ranchitas Nacho Queso",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-queso-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-queso-2.webp"
@@ -329,7 +356,7 @@
                 {
                     "id": "ranchitas-nacho-cinema",
                     "slug": "ranchitas-nacho-cinema",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-nacho-cinema",
                     "title": "Ranchitas Nacho Cinema",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-cinema.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-cinema.webp"
@@ -337,7 +364,7 @@
                 {
                     "id": "ranchitas-buffalo-ranch",
                     "slug": "ranchitas-buffalo-ranch",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-buffalo-ranch",
                     "title": "Ranchitas Buffalo Ranch",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
@@ -346,7 +373,7 @@
                 {
                     "id": "ranchitas-chile-toreado",
                     "slug": "ranchitas-chile-toreado",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-chile-toreado",
                     "title": "Ranchitas Chile Toreado",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreado.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreado.webp"
@@ -354,7 +381,7 @@
                 {
                     "id": "ranchitas-naturales",
                     "slug": "ranchitas-naturales",
-                    "pagina": "https://ranchitas.com/en/home/",
+                    "pagina": "https://www.ranchitas.com/en/products/ranchitas-naturales",
                     "title": "Ranchitas Naturales",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-naturales.webp",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-naturales.webp"
@@ -373,7 +400,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/taco-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/taco-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/taco-peque.webp",
-            "bgColor": "#E59400",
+            "bgColor": "#fd4616",
             "title": "Taco",
             "url": "#",
             "alt": "Taco",
@@ -440,7 +467,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/yummimix-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/yummimix-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/yummimix-peque.webp",
-            "bgColor": "#C6D000",
+            "bgColor": "#0e7abd",
             "title": "Yumm Mix",
             "url": "#",
             "alt": "Yumm Mix",
@@ -487,7 +514,7 @@
                     "title": "Yummipops Dragon Hielo",
                     "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
                     "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/yummi-pops-dragon-hielo.png",
-                    "isNew": true
+                    "isNew": false
                 },
                 {
                     "id": "yummipops-nacho-jalapeno-cream",
@@ -543,7 +570,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/yumminuts-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/yumminuts-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/yumminuts-peque.webp",
-            "bgColor": "#0073C1",
+            "bgColor": "#405ca7",
             "title": "Yumminuts",
             "url": "https://yumminuts.com",
             "alt": "Yumminuts",
@@ -643,7 +670,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/cappy-producto.webp",
             "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/newcappypreview.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/cappy-peque.webp",
-            "bgColor": "#84B3DA",
+            "bgColor": "#f3c500",
             "title": "Cappy",
             "url": "https://www.cappylatam.com/en",
             "alt": "Cappy",
@@ -710,7 +737,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/anillitos-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/anillitos-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/snacksyummies/anillitos-peque.webp",
-            "bgColor": "#4895CE",
+            "bgColor": "#f36f21",
             "title": "Anillitos de Papa",
             "url": "#",
             "alt": "Anillitos de Papa",
@@ -745,7 +772,7 @@
             "imageProductPreview": "https://snack.yummiespromociones.com/snacksyummies/xixi-producto.webp",
             "image": "https://snack.yummiespromociones.com/snacksyummies/xixi-grande2.webp",
             "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/xixi_peque.webp",
-            "bgColor": "#91CAE9",
+            "bgColor": "#00abed",
             "title": "Xixi",
             "url": "#",
             "alt": "Xixi",

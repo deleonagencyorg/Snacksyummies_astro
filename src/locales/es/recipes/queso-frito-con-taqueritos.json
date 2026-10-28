@@ -28,5 +28,6 @@
     "Paso 5: Servir y acompañar con aderezo y chiles jalapeños."
   ],
   "brand": "taqueritos",
-  "product": ["Taqueritos Chile Toreado"]
+      "product": "Taqueritos Chile Toreado",  
+  "product-page": "https://www.taqueritos.com/es/productos/taqueritos-chile-toreado"
 }

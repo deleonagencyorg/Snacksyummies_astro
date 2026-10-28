@@ -17,7 +17,7 @@
     },
     "news": {
       "title": "Noticias",
-      "description": "Mantente al día con las últimas noticias y eventos de Taqueritos."
+      "description": "MANTENTE AL DÍA CON LAS ÚLTIMAS NOTICIAS Y EVENTOS"
     },
     "products": {
       "title": "Productos",
@@ -65,7 +65,7 @@
       "name": "TikTok",
       "url": "https://www.tiktok.com/@snacksyummies",
       "alt": "TikTok de Taqueritos",
-        "iconUrl": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Tik.svg"
+      "iconUrl": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Tik.svg"
     },
     "x": {
       "name": "X",
@@ -87,23 +87,14 @@
     "slidermask": "https://snack.yummiespromociones.com/snacksyummies/BGHeader_1_.webp",
     "slidermaskmobile": "https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp",
     "slider": [
-  {
-        "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/BANNER-HOME-1.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/BANNER-HOME-1.webp",
-        "alt": "Ranchitas Buffalo Ranch",
-        "title": "",
-        "description": "",
-        "link": "#"
-      },
       {
-        "id": "slide2",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/BANNER-HOMME-2.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/BANNER-HOMME-2.webp",
+        "id": "slide1",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Inovacion_desk.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_mob_up.webp",
         "alt": "Taqueritos",
         "title": "",
         "description": "",
-        "link": "#"
+        "link": "https://www.snacksyummies.com/es/productos"
       }
     ],
     "products": [
@@ -129,7 +120,6 @@
     "home": "Inicio"
   },
   "menu_items": [
-
     {
       "id": "brands",
       "text": "Marcas",
@@ -150,7 +140,6 @@
       "text": "Blog",
       "href": "/es/blog"
     },
-   
     {
       "id": "about_us",
       "text": "Nosotros",
@@ -173,73 +162,71 @@
     ]
   },
   "home": {
-    "brands":{
-      "title":"Marcas"
+    "brands": {
+      "title": "Marcas"
     },
-    "new_products":{
-      "tagtitle":"Nuevos",
-      "title":"Productos"
+    "new_products": {
+      "tagtitle": "Nuevos",
+      "title": "Productos"
     },
-    "preview_brand":{
-      "button":"Ver marca",
-      "title":"Nuestras marcas"
+    "preview_brand": {
+      "button": "Ver marca",
+      "title": "Nuestras marcas"
     },
-    "newsletter":{
-      "placeholder":"tucorreo@email.com",
-      "buttonText":"Suscribirse"
+    "newsletter": {
+      "placeholder": "tucorreo@email.com",
+      "buttonText": "Suscribirse"
     },
-    "socialmedia":{
-      "title":"Síguenos",
-      "tagtitle":"en redes",
-      "description":"Síguenos en nuestras redes sociales - Snacks Yummies",
-      "newsletter":"Entérate de las noticias y promociones",
-     "instagramLinks":[
+    "socialmedia": {
+      "title": "Síguenos",
+      "tagtitle": "en redes",
+      "description": "Síguenos en nuestras redes sociales - Snacks Yummies",
+      "newsletter": "Entérate de las últimas noticias y promociones",
+      "instagramLinks": [
         {
-          "url":"https://www.instagram.com/p/DXfb-uOOkYr/"
+          "url": "https://www.instagram.com/p/Ddr2FuoDs87/"
         },
         {
-          "url":"https://www.instagram.com/p/DXclLzFge9J/"
+          "url": "https://www.instagram.com/p/DdkA3t1AOcp/"
         },
         {
-          "url":"https://www.instagram.com/p/DXR4b2TEcnl/"
+          "url": "https://www.instagram.com/p/DdMeWeejWp6/"
         },
         {
-          "url":"https://www.instagram.com/p/DXPu8EDjrwR/"
+          "url": "https://www.instagram.com/p/DdKpppqjn6d/"
         }
       ]
     },
-    "quiz":{
-      "title":"https://snack.yummiespromociones.com/snacksyummies/titlequiz.webp",
-      "description":"Descubre cómo hacer tus días más Yummies",
-      "button":"Hacer Quiz",
-      "urlButton":"/es/quiz"
+    "quiz": {
+      "title": "https://snack.yummiespromociones.com/snacksyummies/titlequiz.webp",
+      "description": "Descubre cómo hacer tus días más Yummies",
+      "button": "Hacer Quiz",
+      "urlButton": "/es/quiz"
     },
-    "spotify":{
-     "listen_in_spotify":"https://snack.yummiespromociones.com/taqueritos/Listen-Lockup-Spanish-Horizontal-White-768x116.webp",
-      "button_listen_now":"https://snack.yummiespromociones.com/taqueritos/botonspotify.webp"
+    "spotify": {
+      "listen_in_spotify": "https://snack.yummiespromociones.com/taqueritos/Listen-Lockup-Spanish-Horizontal-White-768x116.webp",
+      "button_listen_now": "https://snack.yummiespromociones.com/taqueritos/botonspotify.webp"
     },
-    "delivery":{
-      "delivery_title":"Dónde",
-      "delivery_sub_title":"Encontrarnos",
-      "delivery_button":"",
-      "delivery_url":"",
-      "delivery_apps":[
+    "delivery": {
+      "delivery_title": "Dónde",
+      "delivery_sub_title": "Encontrarnos",
+      "delivery_button": "",
+      "delivery_url": "",
+      "delivery_apps": [
         {
-          "app_icon":"https://snack.yummiespromociones.com/SnacksyummiesAssets/cropped-Logo-Landing-Page-1.webp",
-          "app_name":"Sompopo App",
-          "app_url":"https://sompopo.app.link/yummies",
-          "country":"Honduras"
+          "app_icon": "https://snack.yummiespromociones.com/SnacksyummiesAssets/cropped-Logo-Landing-Page-1.webp",
+          "app_name": "Sompopo App",
+          "app_url": "https://sompopo.app.link/yummies",
+          "country": "Honduras"
         },
         {
-          "app_icon":"https://snack.yummiespromociones.com/SnacksyummiesAssets/latorre.webp",
-          "app_name":"Latorre",
-          "app_url":"https://www.latorre.com.gt/458?map=productClusterIds",
-          "country":"Guatemala"
+          "app_icon": "https://snack.yummiespromociones.com/SnacksyummiesAssets/latorre.webp",
+          "app_name": "Latorre",
+          "app_url": "https://www.latorre.com.gt/458?map=productClusterIds",
+          "country": "Guatemala"
         }
       ]
     },
-
-     
     "meta": {
       "title": " Snacks Yummies -  Participa y gana premios increíbles",
       "description": "Viví tus momentos más salvajes y disfrutá la experiencia de sabor intenso que te ofrecen Taqueritos. Hacé clic para conocer más sobre nuestros eventos."
@@ -249,23 +236,23 @@
     "privacy_policy_text": "Política de Privacidad",
     "privacy_policy_url": "/es/politica-privacidad",
     "copyright": "Yummies {year}. Todos los Derechos Reservados",
-    "address": "Barrio Morazán, Frente a Plantas Tropicales, Bulevar Suyapa, Tegucigalpa, Honduras",
+    "address": "Barrio Morazán, frente a Plantas Tropicales, Bulevar Suyapa, Tegucigalpa, Honduras",
     "phone": "(504) 2275-3370",
     "hours": "8:00 a.m. - 5:00 p.m.",
     "newsletter_title": "Únete a nuestra comunidad registrándote en",
     "newsletter_placeholder": "tucorreo@email.com",
     "newsletter_button": "Suscribirse"
   },
-  "messagetop":[
+  "messagetop": [
     {
-      "id":"1",
-      "title":"😏 El sabor que buscabas… ¡está aquí! 🤤",
-      "link":""
+      "id": "1",
+      "title": "​🔥 Leyendas del sabor desde el día uno.​​",
+      "link": ""
     },
     {
-      "id":"2",
-      "title":"🌶️ ¡Snacks Yummies, donde cada mordida es una aventura! 🎉",
-      "link":""
+      "id": "2",
+      "title": "🤤 Un Yummies para cada momento 🤤​",
+      "link": ""
     }
   ],
   "form_validation": {

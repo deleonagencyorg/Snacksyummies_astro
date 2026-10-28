@@ -37,3 +37,5 @@ pnpm-debug.log*
 vercel/
 /canje
 __pycache__/
+import os
+scripts/venv/
