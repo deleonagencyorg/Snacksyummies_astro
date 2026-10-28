@@ -95,6 +95,15 @@
         "title": "",
         "description": "",
         "link": "https://www.snacksyummies.com/es/productos"
+      },
+      {
+        "id": "slide2",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-DESKTOP.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-MOBILE.webp",
+        "alt": "Yummi Pops Pizza",
+        "title": "",
+        "description": "",
+        "link": "#"
       }
     ],
     "products": [
