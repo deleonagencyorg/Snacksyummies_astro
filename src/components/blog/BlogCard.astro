@@ -6,8 +6,15 @@ import { fade } from 'astro:transitions';
 
 interface Props {
   image: string;
+  imagen_preview?: string;
+  imagen_mobile?: string;
+  imagen_mobile_preview?: string;
+  imagenpreview?: string;
   imagemobile?: string;
+  imagenmobilepreview?: string;
   title: string;
+  card_title?: string;
+  cardTitle?: string;
   id: string;
   slug: string;
   textColor?: string;
@@ -18,8 +25,15 @@ interface Props {
 
 const { 
   image, 
+  imagen_preview,
+  imagen_mobile,
+  imagen_mobile_preview,
+  imagenpreview,
   imagemobile,
+  imagenmobilepreview,
   title, 
+  card_title,
+  cardTitle,
   id,
   slug,
   textColor = 'text-blue-900',
@@ -28,30 +42,40 @@ const {
   currentLang = getLocale()
 } = Astro.props;
 
+const displayTitle = card_title || cardTitle || title;
+
 const blogLink = `/${currentLang}/blog/${slug || id}`;
 const viewBlogText = currentLang === 'es' ? 'Leer más' : 'Read more';
-const mobileImage = imagemobile || image;
+
+const previewDesktop = (imagen_preview || imagenpreview || '').trim();
+const desktopPreviewImage = previewDesktop !== '' ? previewDesktop : image;
+
+const previewMobile = (imagen_mobile_preview || imagenmobilepreview || '').trim();
+const mainMobile = (imagen_mobile || imagemobile || '').trim();
+const mobilePreviewImage = previewMobile !== '' 
+  ? previewMobile 
+  : (mainMobile !== '' ? mainMobile : desktopPreviewImage);
 ---
 
 <a 
   href={blogLink} 
-  class="block group relative overflow-hidden rounded-[2rem] transition-all duration-300 ease-in-out h-[350px] md:h-[450px] hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+  class="block group relative overflow-hidden rounded-[2rem] transition-all duration-300 ease-in-out h-[350px] min-[650px]:h-[420px] md:h-[450px] hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.5)]"
   transition:animate="fade"
 >
   <!-- Imagen de fondo (siempre visible) -->
   <div class="absolute inset-0 w-full h-full">
     <!-- Desktop Image -->
     <LazyImage
-      src={image}
+      src={desktopPreviewImage}
       alt={title}
-      class="hidden md:block w-full h-full object-cover"
+      class="hidden min-[550px]:block w-full h-full object-cover"
       transition:name={`blog-image-${id}`}
     />
     <!-- Mobile Image -->
     <LazyImage
-      src={mobileImage}
+      src={mobilePreviewImage}
       alt={title}
-      class="block md:hidden w-full h-full object-cover"
+      class="block min-[550px]:hidden w-full h-full object-cover"
     />
   </div>
   
@@ -60,7 +84,7 @@ const mobileImage = imagemobile || image;
   
   <!-- Información en estado normal -->
   <div class="absolute bottom-0 left-0 right-0 p-4 bg-white bg-opacity-90 group-hover:opacity-0 transition-opacity duration-300">
-    <h3 class="font-sans text-sm md:text-lg font-bold text-primary text-center mb-3 clamped-title">{title}</h3>
+    <h3 class="font-sans text-sm md:text-lg font-bold text-primary text-center mb-3 clamped-title">{displayTitle}</h3>
     <div class="flex justify-center">
       <div class="border-2 border-primary bg-white text-primary py-2 px-8 rounded-full text-center text-sm font-medium">
         {viewBlogText}
@@ -76,7 +100,7 @@ const mobileImage = imagemobile || image;
     <!-- Toda la información en la parte inferior -->
     <div class="p-5 flex flex-col gap-3">
       <!-- Título en hover (al inicio de la información) -->
-      <h3 class="font-sans text-lg font-bold text-white text-center mb-3 clamped-title">{title}</h3>
+      <h3 class="font-sans text-lg font-bold text-white text-center mb-3 clamped-title">{displayTitle}</h3>
       
       <!-- Botón de leer más -->
       <div class="flex justify-center mt-4">

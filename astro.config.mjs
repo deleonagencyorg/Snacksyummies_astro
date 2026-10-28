@@ -6,6 +6,11 @@ import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   adapter: vercel(),
+  // La página de Guatemala pasó de /gt/productosconcausa a /productosconcausa/gt.
+  // Definido aquí (no en vercel.json) para que el adapter de Vercel lo incluya en .vercel/output/config.json
+  redirects: {
+    '/gt/productosconcausa': { status: 301, destination: '/productosconcausa/gt' },
+  },
   integrations: [
     react(),
     PinyAstro(),
