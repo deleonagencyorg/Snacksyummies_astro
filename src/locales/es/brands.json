@@ -491,6 +491,15 @@
             "alt": "Yummi Pops",
             "products": [
                 {
+                    "id": "yummipops-pizza",
+                    "slug": "yummipops-pizza",
+                    "pagina": "#",
+                    "title": "Yummi Pops Pizza",
+                    "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Yummi_pops_Pizza400x500.webp",
+                    "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Yummi_pops_Pizza400x500.webp",
+                    "isNew": true
+                },
+                {
                     "id": "yummipops-dragon-hielo",
                     "slug": "yummipops-dragon-hielo",
                     "pagina": "#",
