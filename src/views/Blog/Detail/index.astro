@@ -18,6 +18,9 @@ interface Props {
     title: string;
     content: string;
     image: string;
+    imagen_mobile?: string;
+    imagen_preview?: string;
+    imagen_mobile_preview?: string;
     imagemobile?: string;
     url?: string;
     author: string;
@@ -28,8 +31,12 @@ interface Props {
     id: string;
     slug: string;
     title: string;
+    card_title?: string;
     summary: string;
     image: string;
+    imagen_mobile?: string;
+    imagen_preview?: string;
+    imagen_mobile_preview?: string;
     imagemobile?: string;
     url?: string;
     published_date: string;
@@ -48,7 +55,7 @@ const suggestedPosts = allBlogPosts
 const readMoreTitle = currentLang === 'es' ? 'Otras Noticias' : 'Other News';
 
 // Mobile image fallback
-const mobileImage = blogPost.imagemobile || blogPost.image;
+const mobileImage = blogPost.imagen_mobile || blogPost.imagemobile || blogPost.image;
 ---
 
 <Layout title={blogPost.title} class="bg-white" description="Blog post details">
@@ -92,41 +99,38 @@ const mobileImage = blogPost.imagemobile || blogPost.image;
               <h1 class="font-sans text-3xl font-bold mb-4" transition:name={`blog-title-${blogPost.id}`}>{blogPost.title}</h1>
             </div>
             
-            <div class="blog-image-container w-full mb-8 rounded-lg overflow-hidden text-center flex justify-center" transition:animate={slide({ duration: '0.3s' })}>
-              {/* Imagen Desktop */}
+            <div class="blog-image-container w-full mb-8" transition:animate={slide({ duration: '0.3s' })}>
               <LazyImage
-                src={blogPost.image} 
+                src={blogPost.image}
                 alt={blogPost.title}
-                class="hidden md:block md:w-[500px] w-[100%] object-cover mx-auto" 
+                class="hidden md:block w-full h-auto object-cover rounded-lg mx-auto" 
                 transition:name={`blog-image-${blogPost.id}`}
                 loading="lazy"
+                sizes="(min-width: 768px) 500px, 100vw"
               />
-              {/* Imagen Mobile */}
               {blogPost.url ? (
-                <a 
-                  href={blogPost.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="block md:hidden w-full max-w-[800px] aspect-square mx-auto cursor-pointer"
+                <a
+                  href={blogPost.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="blog-image-link"
                   aria-label={blogPost.title}
                 >
                   <LazyImage
-                    src={mobileImage} 
+                    src={mobileImage}
                     alt={blogPost.title}
-                    class="w-full h-full object-cover mx-auto rounded-lg" 
-                    width={800}
-                    height={800}
+                    class="blog-featured-image blog-featured-image--mobile rounded-lg"
                     loading="lazy"
+                    sizes="100vw"
                   />
                 </a>
               ) : (
                 <LazyImage
-                  src={mobileImage} 
+                  src={mobileImage}
                   alt={blogPost.title}
-                  class="block md:hidden w-full max-w-[800px] aspect-square object-cover mx-auto rounded-lg" 
-                  width={800}
-                  height={800}
+                  class="blog-featured-image blog-featured-image--mobile rounded-lg"
                   loading="lazy"
+                  sizes="100vw"
                 />
               )}
             </div>
@@ -139,12 +143,15 @@ const mobileImage = blogPost.imagemobile || blogPost.image;
           {suggestedPosts.length > 0 && (
             <section class="mt-16 mb-12" transition:animate={fade({ duration: '0.7s' })}>
               <h2 class="text-gray-700 font-title text-4xl md:text-6xl font-bold text-left mb-8">{readMoreTitle}</h2>
-              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mx-auto max-w-7xl">
+              <div class="grid grid-cols-2 min-[650px]:grid-cols-3 lg:grid-cols-4 gap-4 min-[650px]:gap-6 md:gap-8 mx-auto max-w-7xl">
                 {suggestedPosts.map((post) => (
                   <BlogCard 
                     image={post.image}
-                    imagemobile={post.imagemobile}
+                    imagen_preview={post.imagen_preview || post.imagenpreview}
+                    imagen_mobile={post.imagen_mobile || post.imagemobile}
+                    imagen_mobile_preview={post.imagen_mobile_preview || post.imagenmobilepreview}
                     title={post.title}
+                    card_title={post.card_title}
                     id={post.id}
                     slug={post.slug || post.id}
                     currentLang={currentLang}
@@ -160,6 +167,55 @@ const mobileImage = blogPost.imagemobile || blogPost.image;
 </Layout>
 
 <style>
+  .blog-image-link {
+    display: block;
+    width: 100%;
+  }
+
+  .blog-featured-image {
+    width: min(500px, 100%);
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+    object-fit: contain;
+  }
+
+  .blog-featured-image.is-landscape {
+    width: 90%;
+  }
+
+  .blog-featured-image--desktop {
+    display: none;
+  }
+
+  .blog-featured-image--mobile {
+    display: block;
+  }
+
+  :global(.blog-content img) {
+    display: block;
+    width: min(500px, 100%);
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+    object-fit: contain;
+  }
+
+  :global(.blog-content img.is-landscape) {
+    width: 90%;
+  }
+
+  @media (min-width: 768px) {
+    .blog-featured-image--desktop {
+      display: block;
+    }
+
+    .blog-featured-image--mobile,
+    .blog-image-link {
+      display: none;
+    }
+  }
+
 .animate-zoom {
   animation: zoom 15s linear infinite;
 }
@@ -272,3 +328,23 @@ const mobileImage = blogPost.imagemobile || blogPost.image;
     max-width: none;
   }
 </style>
+
+<script>
+  function classifyBlogImages() {
+    document.querySelectorAll('.blog-featured-image, .blog-content img').forEach((node) => {
+      if (!(node instanceof HTMLImageElement)) return;
+      const img = node;
+      const apply = () => {
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        const portrait = img.naturalHeight > img.naturalWidth;
+        img.classList.toggle('is-portrait', portrait);
+        img.classList.toggle('is-landscape', !portrait);
+      };
+      if (img.complete) apply();
+      else img.addEventListener('load', apply, { once: true });
+    });
+  }
+
+  classifyBlogImages();
+  document.addEventListener('astro:page-load', classifyBlogImages);
+</script>

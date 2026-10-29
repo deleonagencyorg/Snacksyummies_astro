@@ -13,6 +13,15 @@
   ],
   "products": [
     {
+      "id": "yummipops-pizza",
+      "slug": "yummipops-pizza",
+      "pagina": "#",
+      "title": "Yummi Pops Pizza",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Yummi_pops_Pizza400x500.webp",
+      "imageMobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Yummi_pops_Pizza400x500.webp",
+      "isNew": true
+    },
+    {
       "id": "yummipops-palomitas-de-maiz-chile-toreado",
       "slug": "yummipops-palomitas-de-maiz-chile-toreado",
       "title": "Yummipops Palomitas de Maíz Chile Toreado",
