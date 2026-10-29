@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/ProductosConCausaLayout.astro';
 import LazyImage from '../../../components/common/LazyImage.astro';
 import { ViewTransitions } from 'astro:transitions';
+import '../../../styles/title-letters.css';
 ---
 <Layout title="Historia - Productos con Causa" description="Conoce la historia de nuestra iniciativa.">
   <ViewTransitions slot="head" />
@@ -233,7 +234,7 @@ import { ViewTransitions } from 'astro:transitions';
           <div class="max-w-5xl mx-auto">
             <!-- Título -->
             <div class="text-center mb-8 lg:mb-12">
-              <h2 class="text-primary font-title font-bold text-3xl lg:text-4xl xl:text-6xl mb-2">
+              <h2 class="title-letters text-primary font-title font-bold text-3xl lg:text-4xl xl:text-6xl mb-2">
                 Se brinda atención
               </h2>
               <p class="text-sky-400 font-semibold text-lg lg:text-4xl">
@@ -457,6 +458,8 @@ import { ViewTransitions } from 'astro:transitions';
 </style>
 
 <script>
+  import { initTitleLetters } from '../../../scripts/titleLetters';
+
   // Intersection Observer para animar elementos al hacer scroll
   document.addEventListener('astro:page-load', () => {
     const observerOptions = {
@@ -490,5 +493,8 @@ import { ViewTransitions } from 'astro:transitions';
     slideSections.forEach(section => {
       observer.observe(section);
     });
+
+    // Títulos letra por letra (.title-letters)
+    initTitleLetters();
   });
 </script>

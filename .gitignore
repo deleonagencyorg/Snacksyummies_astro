@@ -39,3 +39,5 @@ vercel/
 __pycache__/
 import os
 scripts/venv/
+
+.playwright-mcp
