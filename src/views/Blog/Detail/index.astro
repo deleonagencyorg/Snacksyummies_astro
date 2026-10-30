@@ -22,8 +22,7 @@ interface Props {
     imagen_preview?: string;
     imagen_mobile_preview?: string;
     imagemobile?: string;
-    imagenpreview?: string;
-    imagenmobilepreview?: string;
+    url?: string;
     author: string;
     published_date: string;
   };
@@ -39,8 +38,7 @@ interface Props {
     imagen_preview?: string;
     imagen_mobile_preview?: string;
     imagemobile?: string;
-    imagenpreview?: string;
-    imagenmobilepreview?: string;
+    url?: string;
     published_date: string;
   }>;
   isLoading?: boolean;
@@ -111,14 +109,33 @@ const mobileImage = blogPost.imagen_mobile || blogPost.imagemobile || blogPost.i
                 loading="lazy"
               />
               {/* Imagen Mobile */}
-              <LazyImage
-                src={mobileImage} 
-                alt={blogPost.title}
-                class="block md:hidden w-full max-w-[800px] aspect-square object-cover mx-auto rounded-lg" 
-                width={800}
-                height={800}
-                loading="lazy"
-              />
+              {blogPost.url ? (
+                <a 
+                  href={blogPost.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="block md:hidden w-full max-w-[800px] aspect-square mx-auto cursor-pointer"
+                  aria-label={blogPost.title}
+                >
+                  <LazyImage
+                    src={mobileImage} 
+                    alt={blogPost.title}
+                    class="w-full h-full object-cover mx-auto rounded-lg" 
+                    width={800}
+                    height={800}
+                    loading="lazy"
+                  />
+                </a>
+              ) : (
+                <LazyImage
+                  src={mobileImage} 
+                  alt={blogPost.title}
+                  class="block md:hidden w-full max-w-[800px] aspect-square object-cover mx-auto rounded-lg" 
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                />
+              )}
             </div>
             
             <div class="blog-content prose prose-lg max-w-none my-8 text-md md:text-lg " transition:animate={fade({ duration: '0.5s' })}>

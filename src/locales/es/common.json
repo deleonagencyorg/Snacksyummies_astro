@@ -89,12 +89,21 @@
     "slider": [
       {
         "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Inovacion_desk.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_mob_up.webp",
-        "alt": "Taqueritos",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-DESKTOP.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-MOBILE.webp",
+        "alt": "Yummi Pops Pizza",
         "title": "",
         "description": "",
-        "link": "https://www.snacksyummies.com/es/productos"
+        "link": "#"
+      },
+      {
+        "id": "slide2",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Inovacion_desk.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_mob_up.webp",
+        "alt": "Zambos Tajin",
+        "title": "",
+        "description": "",
+        "link": "#"
       }
     ],
     "products": [
@@ -181,19 +190,19 @@
       "title": "Síguenos",
       "tagtitle": "en redes",
       "description": "Síguenos en nuestras redes sociales - Snacks Yummies",
-      "newsletter": "Entérate de las noticias y promociones",
+      "newsletter": "Entérate de las últimas noticias y promociones",
       "instagramLinks": [
         {
-          "url": "https://www.instagram.com/p/DZlIiUFDoXh/"
+          "url": "https://www.instagram.com/p/Ddr2FuoDs87/"
         },
         {
-          "url": "https://www.instagram.com/p/DZfy_CIlZnr/"
+          "url": "https://www.instagram.com/p/DdkA3t1AOcp/"
         },
         {
-          "url": "https://www.instagram.com/p/DZdOIXqlbxx/"
+          "url": "https://www.instagram.com/p/DdMeWeejWp6/"
         },
         {
-          "url": "https://www.instagram.com/p/DZVOVoIF8a8/"
+          "url": "https://www.instagram.com/p/DdKpppqjn6d/"
         }
       ]
     },
@@ -236,7 +245,7 @@
     "privacy_policy_text": "Política de Privacidad",
     "privacy_policy_url": "/es/politica-privacidad",
     "copyright": "Yummies {year}. Todos los Derechos Reservados",
-    "address": "Barrio Morazán, Frente a Plantas Tropicales, Bulevar Suyapa, Tegucigalpa, Honduras",
+    "address": "Barrio Morazán, frente a Plantas Tropicales, Bulevar Suyapa, Tegucigalpa, Honduras",
     "phone": "(504) 2275-3370",
     "hours": "8:00 a.m. - 5:00 p.m.",
     "newsletter_title": "Únete a nuestra comunidad registrándote en",
