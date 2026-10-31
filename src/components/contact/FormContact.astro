@@ -3,6 +3,7 @@
 import { getLocale } from '../../i18n/i18n';
 import type { Locale } from '../../i18n/i18n';
 import SuccessModal from '../common/SuccessModal.astro';
+import type { ContactConfig } from '../../services/api/contact';
 
 // Import locale files statically
 import contactEs from '../../locales/es/contact.json';
@@ -10,9 +11,10 @@ import contactEn from '../../locales/en/contact.json';
 
 interface Props {
   currentLang?: Locale;
+  contactConfig?: ContactConfig | null;
 }
 
-const { currentLang } = Astro.props;
+const { currentLang, contactConfig } = Astro.props;
 
 // Get current locale if not provided
 const locale = currentLang || getLocale(Astro.url);
@@ -26,7 +28,9 @@ const departmentLabel = locale === 'es' ? 'Departamento/Estado' : 'Department/St
 const cityLabel = locale === 'es' ? 'Ciudad' : 'City';
 const countryPlaceholder = locale === 'es' ? 'Selecciona tu país' : 'Select your country';
 const departmentPlaceholder = locale === 'es' ? 'Primero selecciona un país' : 'First select a country';
-const contactReasonPlaceholder = locale === 'es' ? 'Selecciona el tipo de consulta' : 'Select the type of inquiry';
+const contactReasonPlaceholder =
+  contactConfig?.form.contactReason.placeholder ||
+  (locale === 'es' ? 'Selecciona el tipo de consulta' : 'Select the type of inquiry');
 
 // Get API configuration from environment variables
 const apiHost = import.meta.env.PUBLIC_CONTACT_API_HOST || 'https://api-crm.yummiespromociones.com/api';
@@ -63,7 +67,10 @@ const dynamicLabels = {
   }
 };
 
-const labels = dynamicLabels[locale];
+const labels = {
+  ...dynamicLabels[locale],
+  message: contactConfig?.form.message.label || dynamicLabels[locale].message,
+};
 
 // Dynamic options based on language
 const dynamicOptions = {
@@ -83,42 +90,45 @@ const dynamicOptions = {
   }
 };
 
-const options = dynamicOptions[locale];
+const options = {
+  ...dynamicOptions[locale],
+  contactReason: contactConfig?.form.contactReason.options?.length
+    ? contactConfig.form.contactReason.options
+    : dynamicOptions[locale].contactReason,
+};
+
+const formTitle = contactConfig?.form.title || contact.form.title;
+const contactReason = contactConfig?.form.contactReason || contact.form.contactReason;
+const fullName = contactConfig?.form.fullName || contact.form.fullName;
+const emailField = contactConfig?.form.email || contact.form.email;
+const phoneField = contactConfig?.form.phone || contact.form.phone;
+const submitLabel = contactConfig?.form.submit || contact.form.submit;
+const contactReasonRequired = contactConfig?.form.contactReason.required ?? true;
+const fullNameRequired = contactConfig?.form.fullName.required ?? true;
+const emailRequired = contactConfig?.form.email.required ?? true;
+const phoneRequired = contactConfig?.form.phone.required ?? false;
 
 ---
 
 <div class="bg-white rounded-2xl p-8" transition:name="contact-form">
   <h2 class="text-primary font-sans text-2xl font-bold mb-6">
-    {contact.form.title}
+    {formTitle}
   </h2>
   
   <form class="space-y-6" id="contactForm">
     <!-- Contact Reason Dropdown -->
     <div>
       <label class="block text-gray-700 font-medium mb-2">
-        {contact.form.contactReason.label} *
+        {contactReason.label}{contactReasonRequired ? ' *' : ''}
       </label>
       <select 
         name="contactReason" 
         id="contactReasonSelect"
-        required
+        required={contactReasonRequired}
         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
       >
         <option value="">{contactReasonPlaceholder}</option>
-        {locale === 'es' ? (
-          // En español, mostrar todas las opciones incluido "Soy un ganador"
-          dynamicOptions.es.contactReason.map((reason) => (
-            <option value={reason}>{reason}</option>
-          ))
-        ) : (
-          // En inglés, mostrar solo las opciones que tienen texto (filtrar vacías)
-          dynamicOptions.en.contactReason.map((reason, index) => {
-            if (reason) { // Solo mostrar si tiene texto
-              return <option value={dynamicOptions.es.contactReason[index]}>{reason}</option>;
-            }
-            return null;
-          })
-        )}
+        {options.contactReason.map((reason) => <option value={reason}>{reason}</option>)}
       </select>
     </div>
 
@@ -172,13 +182,13 @@ const options = dynamicOptions[locale];
     <!-- Name -->
     <div>
       <label class="block text-gray-700 font-medium mb-2">
-        {contact.form.fullName.label} *
+        {fullName.label}{fullNameRequired ? ' *' : ''}
       </label>
       <input 
         type="text" 
         name="name" 
-        required
-        placeholder={contact.form.fullName.placeholder}
+        required={fullNameRequired}
+        placeholder={fullName.placeholder}
         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
       />
     </div>
@@ -186,13 +196,13 @@ const options = dynamicOptions[locale];
     <!-- Email -->
     <div>
       <label class="block text-gray-700 font-medium mb-2">
-        {contact.form.email.label} *
+        {emailField.label}{emailRequired ? ' *' : ''}
       </label>
       <input 
         type="email" 
         name="email" 
-        required
-        placeholder={contact.form.email.placeholder}
+        required={emailRequired}
+        placeholder={emailField.placeholder}
         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
       />
     </div>
@@ -200,13 +210,14 @@ const options = dynamicOptions[locale];
     <!-- Phone -->
     <div>
       <label class="block text-gray-700 font-medium mb-2">
-        {contact.form.phone.label}
+        {phoneField.label}{phoneRequired ? ' *' : ''}
       </label>
       <input 
         type="number" 
         name="phone"
         id="phoneInput"
-        placeholder={contact.form.phone.placeholder}
+        required={phoneRequired}
+        placeholder={phoneField.placeholder}
         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
       />
     </div>
@@ -223,7 +234,7 @@ const options = dynamicOptions[locale];
         id="submitButton"
         class="w-full py-3 px-6 bg-primary text-white rounded-lg hover:bg-primary-dark transition-all"
       >
-        {contact.form.submit}
+        {submitLabel}
       </button>
     </div>
   </form>

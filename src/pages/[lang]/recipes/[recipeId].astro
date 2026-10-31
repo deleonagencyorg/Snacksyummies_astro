@@ -1,26 +1,13 @@
 ---
+import { resolveStaticPath } from '../../../utils/staticPaths';
 // src/pages/[lang]/recipes/[recipeId].astro
 import { setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
 import { getAllRecipes } from '../../../services/api/recipes';
+import { cmsMediaSrc } from '../../../services/api/multimedia';
 
 // Usamos generación estática para Vercel
-export const prerender = true;
-
-// Interfaz para la receta
-interface Recipe {
-  id: string;
-  slug?: string;
-  title: string;
-  ingredients: string[];
-  instructions: string[];
-  preparation_time: number;
-  servings: number;
-  image?: string;
-  brand?: string[];
-  difficulty?: string;
-}
 
 export async function getStaticPaths() {
   const languages = ['en'];
@@ -41,14 +28,27 @@ export async function getStaticPaths() {
   return paths;
 }
 
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
 // Obtener parámetros y props de getStaticPaths
 const { lang, recipeId } = Astro.params;
-const { recipe } = Astro.props;
+const { recipe } = staticPath.props;
 setLocale(lang as Locale);
 
 // Ya no necesitamos buscar la receta porque la recibimos como prop desde getStaticPaths
 ---
 
-<MainLayout title={recipe?.title || ''}>
+<MainLayout
+  title={recipe?.metaTitle || recipe?.title || ''}
+  description={recipe?.metaDescription || recipe?.description || ''}
+  keywords={recipe?.metaKeywords}
+  ogTitle={recipe?.ogTitle}
+  ogDescription={recipe?.ogDescription}
+  image={cmsMediaSrc(recipe?.ogImage) || recipe?.image}
+  type="recipe"
+>
   <RecipeDetail currentLang={lang} recipeId={recipeId} recipe={recipe} />
 </MainLayout>

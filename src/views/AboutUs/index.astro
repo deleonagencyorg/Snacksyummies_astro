@@ -1,6 +1,10 @@
 ---
 import Layout from '../../layouts/MainLayout.astro';
-import { t, getLocale } from '../../i18n/i18n';
+import { getLocale } from '../../i18n/i18n';
+import { getSiteTexts, text } from '../../services/api/site-texts';
+import { getPageBySlug } from '../../services/api/pages';
+import { getAboutTimeline } from '../../services/api/sections';
+import { cmsMediaSrc } from '../../services/api/multimedia';
 import type { Locale } from '../../i18n/i18n';
 import type { HeaderColorConfig } from '../../config/headerColors';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
@@ -19,24 +23,41 @@ export interface Props {
 const { currentLang: propLang, headerColorConfig } = Astro.props;
 const currentLang = propLang || getLocale();
 
-// Get translations from common.json
-const title = t('about_us.title', { namespace: 'common', locale: currentLang });
-const metaDescription = t('meta.about_us.description', { namespace: 'common', locale: currentLang });
+const [siteTexts, aboutPage, timeline] = await Promise.all([
+  getSiteTexts(currentLang),
+  getPageBySlug(currentLang === 'es' ? 'nosotros' : 'about-us', currentLang),
+  getAboutTimeline(currentLang),
+]);
 
-// Importar contenido específico de aboutus.json
-const aboutUsContent = await import(`../../locales/${currentLang}/aboutus.json`);
-const historyTitle = aboutUsContent.title;
-const historySubtitle = aboutUsContent.subtitle;
-const historyIntro = aboutUsContent.intro;
-const historyItems = aboutUsContent.items;
-const historyConclusion = aboutUsContent.conclusion;
+const title = aboutPage?.metaTitle || aboutPage?.title || '';
+const metaDescription = aboutPage?.metaDescription || '';
+const historyTitle = text(siteTexts, 'about_us.title');
+const historySubtitle = text(siteTexts, 'about_us.subtitle');
+const historyIntro = text(siteTexts, 'about_us.intro');
+const historyConclusion = text(siteTexts, 'about_us.conclusion');
+const historyItems = timeline.map((item) => ({
+  year: item.year,
+  title: item.title,
+  image: item.imageUrl,
+  imagen_mobile: item.mobileImageUrl,
+  text: item.text,
+}));
 
 // Video and image URLs for hero section
 const videoUrl = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/YUMMIES_INSTITUCIONAL_1920X1080.mp4';
 const fallbackImageUrl = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/portada_video.png';
 ---
 
-<Layout title={title} class="bg-brown" description={metaDescription}>
+<Layout
+  title={title}
+  class="bg-brown"
+  description={metaDescription}
+  canonicalUrl={aboutPage?.canonicalUrl}
+  keywords={aboutPage?.metaKeywords}
+  ogTitle={aboutPage?.ogTitle}
+  ogDescription={aboutPage?.ogDescription}
+  image={cmsMediaSrc(aboutPage?.ogImage)}
+>
 <div>
  <div class="absolute left-1/2 -translate-x-1/2 px-4 pt-6 z-10 md:left-auto md:translate-x-20 md:translate-y-20 translate-y-12" > 
   <p class="text-white text-center font-title uppercase font-bold text-[3rem]  bg-red  px-6 rounded-full z-10">{historyTitle}</p>
@@ -75,7 +96,7 @@ const fallbackImageUrl = 'https://snack.yummiespromociones.com/SnacksyummiesAsse
 
       
       <div class="w-full mx-auto text-cente ">
-        {historyItems.map((item: { year: string; image: string; imagen_mobile?: string; text: string }, index: number) => (
+        {historyItems.map((item: { year: string; title: string; image: string; imagen_mobile?: string; text: string }, index: number) => (
           <div 
             id={`year-${index}`}
             class="timeline-item flex flex-row justify-start w-full h-full items-stretch space-x-8"
@@ -120,6 +141,7 @@ const fallbackImageUrl = 'https://snack.yummiespromociones.com/SnacksyummiesAsse
                 class="timeline-text text-quinary animate-fade-in-up"
                 style={`animation-delay: ${index * 0.4}s`}
               >
+                {item.title && <strong class="block mb-2">{item.title}</strong>}
                 {item.text}
               </p>
               <div 

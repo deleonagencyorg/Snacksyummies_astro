@@ -4,6 +4,7 @@ import { getLocale } from '../../i18n/i18n';
 
 interface Props {
   image: string;
+  imageMobile?: string;
   title: string;
   id: string;
   brand?: string;
@@ -15,6 +16,7 @@ interface Props {
 
 const { 
   image, 
+  imageMobile,
   title, 
   id,
   brand = '',
@@ -28,7 +30,9 @@ const currentLocale = getLocale();
 const badgeImage = currentLocale === 'es' ? 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp' : 'https://snack.yummiespromociones.com/SnacksyummiesAssets/NEW.webp';
 const badgeAlt = currentLocale === 'es' ? 'Nuevo' : 'New';
 const isExternalPage = typeof pagina === 'string' && pagina.trim().length > 0 && /^https?:\/\//i.test(pagina.trim());
-const productLink = isExternalPage ? pagina.trim() : null;
+const productLink = isExternalPage
+  ? pagina.trim()
+  : `/${currentLocale}/${currentLocale === 'es' ? 'productos' : 'products'}/${slug || id}`;
 
 // Función para normalizar títulos con acentos
 function normalizeTitle(input: string): string {
@@ -83,14 +87,17 @@ const safeTitle = normalizeTitle(String(title || ''));
     <a href={productLink} target="_blank" rel="noopener noreferrer" class="w-full flex flex-col items-center">
       <div class="w-full flex justify-center">
         <div class="product-image-container overflow-hidden mb-2 hover:scale-105 transition-transform duration-300 flex items-center justify-center flex-shrink-0">
-          <LazyImage
-            src={image}
-            alt={safeTitle}
-            width="200"
-            height="200"
-            class="product-image object-contain"
-            transition:name={`product-image-${id}`}
-          />
+          <picture>
+            {imageMobile && <source media="(max-width: 767px)" srcset={imageMobile} />}
+            <LazyImage
+              src={image}
+              alt={safeTitle}
+              width="200"
+              height="200"
+              class="product-image object-contain"
+              transition:name={`product-image-${id}`}
+            />
+          </picture>
           {isNew && (
             <img 
               src={badgeImage}
@@ -110,14 +117,17 @@ const safeTitle = normalizeTitle(String(title || ''));
     <div class="w-full flex flex-col items-center">
       <div class="w-full flex justify-center">
         <div class="product-image-container overflow-hidden mb-2 transition-transform duration-300 flex items-center justify-center flex-shrink-0">
-          <LazyImage
-            src={image}
-            alt={safeTitle}
-            width="200"
-            height="200"
-            class="product-image object-contain"
-            transition:name={`product-image-${id}`}
-          />
+          <picture>
+            {imageMobile && <source media="(max-width: 767px)" srcset={imageMobile} />}
+            <LazyImage
+              src={image}
+              alt={safeTitle}
+              width="200"
+              height="200"
+              class="product-image object-contain"
+              transition:name={`product-image-${id}`}
+            />
+          </picture>
           {isNew && (
             <img 
               src={badgeImage}

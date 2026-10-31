@@ -19,6 +19,8 @@ export interface Recipe {
   preparation_time: number;
   people?: string | number;
   difficulty?: string;
+  type?: string;
+  isNew?: boolean;
   ingredients: string[];
   instructions: string[];
   category?: string;
@@ -47,6 +49,8 @@ export interface CMSRecipeRaw {
   image?: string | { url: string };
   preparationTime?: number;
   preparation_time?: number;
+  type?: string;
+  isNew?: boolean;
   category?: string;
   description?: string;
   ingredients?: string[];
@@ -90,6 +94,12 @@ export interface Product {
   headerTextColor?: string;
   textColor?: string;
   colorButton?: string;
+  available?: string;
+  backgroundImage?: string;
+  nameDescription?: string;
+  secondColorButton?: string;
+  borderColor?: string;
+  sortOrder?: number;
   weight?: string[];
   sizes?: Array<{ value: string; image?: string }>;
   nutrition?: {
@@ -128,6 +138,12 @@ export interface CMSProductRaw {
   text_color?: string;
   colorButton?: string;
   color_button?: string;
+  available?: string;
+  backgroundImage?: string;
+  nameDescription?: string;
+  secondColorButton?: string;
+  borderColor?: string;
+  sortOrder?: number;
   weight?: string[];
   sizes?: Array<{ value: string; image?: string }>;
   nutrition?: {

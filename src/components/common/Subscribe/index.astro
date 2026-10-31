@@ -1,5 +1,7 @@
 ---
-import { t, type Locale } from '../../../i18n/i18n';
+import { type Locale } from '../../../i18n/i18n';
+import { getSiteTexts } from '../../../services/api/site-texts';
+import { getFooterLabels } from '../../../services/api/footer';
 
 export interface Props {
   currentLang: Locale;
@@ -21,26 +23,35 @@ const {
   class: className = ''
 } = Astro.props;
 
-// Obtener textos desde los archivos de traducción, usando namespace específico según variante
-const namespace = variant === 'home' ? 'home' : 'common';
+const siteTexts = await getSiteTexts(currentLang);
+const footer = variant === 'footer' ? await getFooterLabels(currentLang) : null;
+if (variant === 'footer' && !footer) {
+  throw new Error(`CMS footer labels are unavailable for locale '${currentLang}'`);
+}
 
-// Intentar usar textos personalizados, si no hay, usar los de traducciones
-const title = customTitle || (variant === 'home' 
-  ? t('socialmedia.newsletter', { namespace: 'home', locale: currentLang }) 
-  : t('footer.newsletter_title', { namespace: 'common', locale: currentLang }));
+function requiredSiteText(key: string): string {
+  const value = siteTexts[key];
+  if (value === undefined) {
+    throw new Error(`CMS site text '${key}' is unavailable for locale '${currentLang}'`);
+  }
+  return value;
+}
+
+const title = customTitle || (variant === 'home'
+  ? requiredSiteText('home.newsletter.title')
+  : footer?.newsletter ?? '');
 
 const placeholder = customPlaceholder || (variant === 'home'
-  ? t('newsletter.placeholder', { namespace: 'home', locale: currentLang })
-  : t('footer.newsletter_placeholder', { namespace: 'common', locale: currentLang }));
+  ? requiredSiteText('home.newsletter.placeholder')
+  : footer?.emailPlaceholder ?? '');
 
 const buttonText = customButtonText || (variant === 'home'
-  ? t('newsletter.buttonText', { namespace: 'home', locale: currentLang })
-  : t('footer.newsletter_button', { namespace: 'common', locale: currentLang }));
+  ? requiredSiteText('home.newsletter.button')
+  : footer?.newsletterButton ?? '');
 
-// Mensajes de validación
-const requiredMessage = t('form_validation.required', { namespace: 'common', locale: currentLang });
-const invalidEmailMessage = t('form_validation.invalid_email', { namespace: 'common', locale: currentLang });
-const successMessage = t('subscribe.success', { namespace: 'common', locale: currentLang, fallback: '¡Gracias por suscribirte!' });
+const requiredMessage = requiredSiteText('form_validation.required');
+const invalidEmailMessage = requiredSiteText('form_validation.invalid_email');
+const successMessage = requiredSiteText('subscribe.success');
 
 // Variables de entorno para la API
 const apiHost = import.meta.env.PUBLIC_CONTACT_API_HOST;

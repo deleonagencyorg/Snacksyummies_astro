@@ -69,6 +69,7 @@ interface ProductItemView {
   brand?: string;
   brandId?: string;
   isNew?: boolean;
+  sortOrder?: number;
 }
 
 // Obtener las marcas y productos del cms
@@ -84,13 +85,14 @@ const allProducts: ProductItemView[] = cmsProducts.map((p) => {
   return {
     id: p.id,
     slug: p.slug || p.id,
-    pagina: '#',
+    pagina: '',
     title: normalizeTitle(p.title || p.name),
     image: p.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
     imageMobile: p.imageMobile,
     brand: normalizeTitle(brandName),
     brandId: brandSlug,
     isNew: p.isNew === true,
+    sortOrder: p.sortOrder,
   };
 });
 
@@ -98,6 +100,9 @@ const brandOrder = new Map(cmsBrands.map((b, index) => [b.slug, index]));
 allProducts.sort((a, b) => {
   const brandDiff = (brandOrder.get(a.brandId ?? '') ?? Infinity) - (brandOrder.get(b.brandId ?? '') ?? Infinity);
   if (brandDiff !== 0) return brandDiff;
+  const aOrder = a.sortOrder ?? Infinity;
+  const bOrder = b.sortOrder ?? Infinity;
+  if (aOrder !== bOrder) return aOrder - bOrder;
   return Number(b.isNew === true) - Number(a.isNew === true);
 });
 
@@ -168,6 +173,7 @@ const clientLang = currentLang;
               >
                 <ProductCard
                   image={product.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp'}
+                  imageMobile={product.imageMobile}
                   title={product.title}
                   id={product.id}
                   slug={product.slug}

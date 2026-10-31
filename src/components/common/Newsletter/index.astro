@@ -6,11 +6,12 @@ export interface Props {
   placeholder: string;
   buttonText: string;
   title?: string;
+  description?: string;
   centered?: boolean;
   class?: string;
 }
 
-const { placeholder, buttonText, title, centered = false, class: className = '' } = Astro.props;
+const { placeholder, buttonText, title, description, centered = false, class: className = '' } = Astro.props;
 
 // Obtener el idioma actual para pasarlo al componente Subscribe
 const currentLang = getLocale(Astro.url.pathname) || 'es';
@@ -19,6 +20,7 @@ const currentLang = getLocale(Astro.url.pathname) || 'es';
 
 <!-- Wrapper que mantiene la estructura anterior para compatibilidad -->
 <div class={`newsletter-component w-full flex flex-col ${className}`}>
+  {description && <p class="mb-3 text-sm">{description}</p>}
   <!-- Utilizamos el componente Subscribe pero mantenemos la misma API externa -->
   <Subscribe 
     currentLang={currentLang}

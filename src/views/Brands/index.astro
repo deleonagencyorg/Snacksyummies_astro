@@ -11,6 +11,8 @@ import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
 import FloatingChip from '../../components/common/FloatingChip/index.astro';
 import Categories from '../../components/recipes/Categories.astro';
 import { fade } from 'astro:transitions';
+import { getAllBrands } from '../../services/api/brands';
+import { getAllProducts } from '../../services/api/products';
 import './styles.css';
 
 const currentLang = getLocale();
@@ -27,7 +29,35 @@ let homeAssets:any = [];
 
 try {
   // Cargar datos de marcas
-  brandsData = t('brands', { namespace: 'brands', locale: currentLang }) || [];
+  const [cmsBrands, cmsProducts] = await Promise.all([
+    getAllBrands(currentLang),
+    getAllProducts(currentLang),
+  ]);
+  const marketingBrands = t('brands', { namespace: 'brands', locale: currentLang }) || [];
+  const marketingBySlug = new Map(
+    (marketingBrands as any[]).map((brand) => [(brand.slug || brand.id || '').toLowerCase(), brand])
+  );
+  brandsData = cmsBrands.map((brand) => {
+    const marketing = marketingBySlug.get(brand.slug.toLowerCase()) || {};
+    return {
+      ...marketing,
+      id: brand.slug,
+      slug: brand.slug,
+      title: brand.name,
+      logo: brand.logoUrl || '',
+      bgColor: brand.background || '#ffffff',
+      url: brand.link || '#',
+      products: cmsProducts
+        .filter((product) => product.brandId === brand.id)
+        .map((product) => ({
+          id: product.id,
+          slug: product.slug,
+          title: product.title || product.name,
+          image: product.image,
+          isNew: product.isNew,
+        })),
+    };
+  });
   homeAssets = t('home', { namespace: 'brands', locale: currentLang }) || [];
   
   // Cargar título y descripción
@@ -66,8 +96,8 @@ const filteredBrands = [...(brandsData as any[])].sort((a: any, b: any) => {
 
 // Normalized category items for Categories component (use brand.id as slug)
 const categoryItems = (brandsData || []).map((b: any) => ({
-  label: b?.title || b?.id,
-  slug: b?.id,
+  label: b?.title || b?.slug || b?.id,
+  slug: b?.slug || b?.id,
   logo: b?.logo,
   bgColor: b?.bgColor || '#E5E7EB'
 }));

@@ -1,10 +1,12 @@
 ---
+import { resolveStaticPath } from '../../../utils/staticPaths';
 // src/pages/[lang]/recetas/[recipeId].astro
 import { t, setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
 
 import { getAllRecipes } from '../../../services/api/recipes';
+import { cmsMediaSrc } from '../../../services/api/multimedia';
 
 export async function getStaticPaths() {
   const locales = ['es'];
@@ -25,7 +27,12 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { recipe, currentLang } = Astro.props;
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
+const { recipe, currentLang } = staticPath.props;
 const { lang, recipeId } = Astro.params;
 
 // Establecer el idioma para las traducciones
@@ -33,6 +40,14 @@ setLocale(lang as Locale);
 
 ---
 
-<MainLayout title={recipe?.title || ''}>
-  <RecipeDetail currentLang={lang} recipeId={recipeId} />
+<MainLayout
+  title={recipe?.metaTitle || recipe?.title || ''}
+  description={recipe?.metaDescription || recipe?.description || ''}
+  keywords={recipe?.metaKeywords}
+  ogTitle={recipe?.ogTitle}
+  ogDescription={recipe?.ogDescription}
+  image={cmsMediaSrc(recipe?.ogImage) || recipe?.image}
+  type="recipe"
+>
+  <RecipeDetail currentLang={lang} recipeId={recipeId} recipe={recipe} />
 </MainLayout>

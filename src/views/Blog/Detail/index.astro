@@ -19,6 +19,7 @@ interface Props {
     content: string;
     image: string;
     imagemobile?: string;
+    gallery?: string[];
     url?: string;
     author: string;
     published_date: string;
@@ -51,7 +52,7 @@ const readMoreTitle = currentLang === 'es' ? 'Otras Noticias' : 'Other News';
 const mobileImage = blogPost.imagemobile || blogPost.image;
 ---
 
-<Layout title={blogPost.title} class="bg-white" description="Blog post details">
+<Layout title={blogPost.title} class="bg-white" description={blogPost.summary} image={blogPost.image} type="article">
   <slot />
   
   <!-- Hero Section -->
@@ -134,6 +135,20 @@ const mobileImage = blogPost.imagemobile || blogPost.image;
             <div class="blog-content prose prose-lg max-w-none my-8 text-md md:text-lg " transition:animate={fade({ duration: '0.5s' })}>
               <Fragment set:html={blogPost.content} />
             </div>
+            {blogPost.gallery?.length > 0 && (
+              <section class="my-10" aria-label={currentLang === 'es' ? 'Galería de noticias' : 'News gallery'}>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {blogPost.gallery.map((image, index) => (
+                    <LazyImage
+                      src={image}
+                      alt={`${blogPost.title} ${index + 1}`}
+                      class="w-full aspect-square rounded-xl object-cover"
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
           
           {suggestedPosts.length > 0 && (

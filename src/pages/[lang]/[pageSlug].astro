@@ -1,10 +1,15 @@
 ---
+import { resolveStaticPath } from '../../utils/staticPaths';
 // src/pages/[lang]/[pageSlug].astro
 import { routesConfig, findRouteBySlug } from '../../config/routes';
-import { setLocale, t, type Locale } from '../../i18n/i18n';
+import { setLocale, type Locale } from '../../i18n/i18n';
+import { getPageBySlug } from '../../services/api/pages';
+import { getSiteInfo } from '../../services/api/site';
 import MainLayout from '../../layouts/MainLayout.astro';
 import RecipeDetail from '../../views/Recipes/Detail/index.astro';
 import { getAllRecipes, getRecipeBySlug } from '../../services/api/recipes';
+import type { CMSPage } from '../../services/api/pages';
+import { cmsMediaSrc } from '../../services/api/multimedia';
 
 // Define the expected structure of the dynamically imported modules
 interface PageModule {
@@ -31,8 +36,13 @@ export async function getStaticPaths() {
   return paths;
 }
 
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
 const { lang, pageSlug } = Astro.params as { lang: Locale; pageSlug: string };
-const { routeId } = Astro.props as { routeId: string };
+const { routeId } = staticPath.props as { routeId: string };
 
 setLocale(lang);
 
@@ -91,6 +101,7 @@ if (urlParts.length === 3) {
 // Si no es una receta, seguir con el flujo normal de páginas
 let pageTitle = '';
 let pageDescription = '';
+let cmsPage: CMSPage | null = null;
 let ContentComponent;
 
 if (!isRecipeDetail) {
@@ -136,19 +147,37 @@ if (!isRecipeDetail) {
     return Astro.redirect(`/${lang}/404`);
   }
 
-  pageTitle = currentRoute.metaTitleKey ? t(currentRoute.metaTitleKey) : 'Page';
-  pageDescription = currentRoute.metaDescriptionKey ? t(currentRoute.metaDescriptionKey) : '';
+  const [page, site] = await Promise.all([getPageBySlug(pageSlug, lang), getSiteInfo()]);
+  cmsPage = page;
+  pageTitle = cmsPage?.metaTitle || cmsPage?.title || site.defaultMetaTitle;
+  pageDescription = cmsPage?.metaDescription || site.defaultMetaDescription;
 }
 ---
 
 {isRecipeDetail && (
-  <MainLayout title={recipeData.title ?? ''} description="">
+  <MainLayout
+    title={recipeData.metaTitle || recipeData.title || ''}
+    description={recipeData.metaDescription || recipeData.description || ''}
+    keywords={recipeData.metaKeywords}
+    ogTitle={recipeData.ogTitle}
+    ogDescription={recipeData.ogDescription}
+    image={cmsMediaSrc(recipeData.ogImage) || recipeData.image}
+    type="recipe"
+  >
     <RecipeDetail currentLang={langCode as Locale} recipeId={recipeId} />
   </MainLayout>
 )}
 
 {!isRecipeDetail && (
-  <MainLayout title={pageTitle} description={pageDescription}>
+  <MainLayout
+    title={pageTitle}
+    description={pageDescription}
+    canonicalUrl={cmsPage?.canonicalUrl}
+    keywords={cmsPage?.metaKeywords}
+    ogTitle={cmsPage?.ogTitle}
+    ogDescription={cmsPage?.ogDescription}
+    image={cmsMediaSrc(cmsPage?.ogImage)}
+  >
     <ContentComponent />
   </MainLayout>
 )}

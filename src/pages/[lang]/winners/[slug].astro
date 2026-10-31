@@ -1,7 +1,9 @@
 ---
+import { resolveStaticPath } from '../../../utils/staticPaths';
 // src/pages/[lang]/winners/[slug].astro
 import { setLocale, t, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
+import { getPageBySlug } from '../../../services/api/pages';
 import SEO from '../../../components/SEO.astro';
 import WinnersView from '../../../views/Winners/index.astro';
 
@@ -42,8 +44,13 @@ export async function getStaticPaths() {
   return [...esPaths, ...enPaths];
 }
 
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
 const { lang, slug } = Astro.params as { lang: Locale; slug: string };
-const { promotionSlug, promotionTitle } = Astro.props;
+const { promotionSlug, promotionTitle } = staticPath.props;
 
 setLocale(lang);
 
@@ -56,8 +63,11 @@ if (!promotion) {
 }
 
 // Metadatos dinámicos
-const metaTitle = `${t('meta.winners.title', { namespace: 'common', locale: lang })} - ${promotion.title}`;
-const metaDescription = t('meta.winners.description', { namespace: 'common', locale: lang }) || promotion.subtitle;
+const seoPage = await getPageBySlug(lang === 'es' ? 'ganadores' : 'winners', lang);
+const seoTitle = seoPage?.metaTitle || seoPage?.title || '';
+const seoDescription = seoPage?.metaDescription || seoPage?.excerpt || '';
+const metaTitle = [seoTitle, promotion.title].filter(Boolean).join(' - ');
+const metaDescription = seoDescription || promotion.subtitle;
 const metaImage = promotion?.image?.desktop || promotion?.image?.mobile || '';
 ---
 

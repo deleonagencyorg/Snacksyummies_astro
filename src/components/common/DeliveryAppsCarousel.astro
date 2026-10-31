@@ -1,6 +1,7 @@
 ---
 // src/components/common/DeliveryAppsCarousel.astro
-import { getLocale, t } from '../../i18n/i18n';
+import { getLocale } from '../../i18n/i18n';
+import { getDeliveryApps } from '../../services/api/sections';
 
 interface AppItem {
   app_icon: string;
@@ -19,8 +20,9 @@ const currentLang = getLocale();
 const {
   title = currentLang === 'es' ? 'Encuéntralos en tiendas y en línea:' : 'Find them in stores and online:',
   subtitle = '',
-  items = (t('home.delivery.delivery_apps', { namespace: 'common', locale: 'es' }) as unknown as AppItem[]) || [],
+  items: itemsProp,
 }: Props = Astro.props;
+const items: AppItem[] = itemsProp ?? await getDeliveryApps('es');
 
 // Only render for Spanish as requested
 const shouldRender = currentLang === 'es' && Array.isArray(items) && items.length > 0;

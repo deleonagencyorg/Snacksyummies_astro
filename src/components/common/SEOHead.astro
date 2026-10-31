@@ -1,5 +1,5 @@
 ---
-import { t } from '../../i18n/i18n';
+import { getSiteInfo } from '../../services/api/site';
 import type { Locale } from '../../i18n/i18n';
 
 interface Props {
@@ -7,6 +7,9 @@ interface Props {
   description?: string;
   canonicalUrl?: string;
   image?: string;
+  keywords?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   type?: 'website' | 'article' | 'recipe' | 'product';
   schemaData?: Record<string, any> | Array<Record<string, any>>;
 }
@@ -16,6 +19,9 @@ const {
   description = 'Delicious snacks from Central America',
   canonicalUrl,
   image = 'https://snack.yummiespromociones.com/snacksyummies/og-image.jpg',
+  keywords,
+  ogTitle,
+  ogDescription,
   type = 'website',
   schemaData = {}
 } = Astro.props as Props;
@@ -25,7 +31,8 @@ const parts = path.split('/').filter(Boolean);
 const first = parts[0] as string | undefined;
 const validLocales: Locale[] = ['es', 'en'];
 const currentLang: Locale = validLocales.includes(first as Locale) ? (first as Locale) : 'es';
-const siteName = t('site.name', { locale: currentLang }) || 'Snacks Yummies';
+const siteInfo = await getSiteInfo();
+const siteName = siteInfo.name || 'Snacks Yummies';
 
 // Base URL precedence: env > Astro.site > Astro.url.origin
 const ENV_BASE = import.meta.env.PUBLIC_SITE_URL as string | undefined;
@@ -38,8 +45,10 @@ const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 
 // Build canonical (avoid query/hash). Fallback to normalizedBase + path
 const absoluteCanonical = canonicalUrl
-  ? canonicalUrl
+  ? new URL(canonicalUrl, normalizedBase).toString()
   : `${normalizedBase.replace(/\/$/, '')}${path}`;
+const openGraphTitle = ogTitle || title;
+const openGraphDescription = ogDescription || description;
 
 // Map localized segment between languages
 function mapSecondSegment(seg: string, toLang: Locale) {
@@ -75,21 +84,22 @@ const schemaString = schemaArray.length ? JSON.stringify(schemaArray.length === 
 <!-- Primary Meta Tags -->
 <title>{title} | {siteName}</title>
 <meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
 <link rel="canonical" href={absoluteCanonical} />
 <meta name="algolia-site-verification" content="475A813C49A826D5" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
 <meta property="og:url" content={absoluteCanonical} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+<meta property="og:title" content={openGraphTitle} />
+<meta property="og:description" content={openGraphDescription} />
 <meta property="og:image" content={image} />
 <meta property="og:site_name" content={siteName} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:title" content={openGraphTitle} />
+<meta name="twitter:description" content={openGraphDescription} />
 <meta name="twitter:image" content={image} />
 
 <!-- Language Alternates -->

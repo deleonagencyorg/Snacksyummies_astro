@@ -17,8 +17,16 @@ import VideoModal from '../../components/common/VideoModal.astro';
 import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
 import AnimHeart from '../../components/common/AnimHeart/index.astro';
 import ChipsFromBag from '../../components/common/ChipsFromBag/index.astro';
-import InstagramEmbed from '../../components/common/InstagramEmbed/index.astro';
+import SocialGalleryTile from '../../components/common/SocialGalleryTile.astro';
 import Delivery from '../../components/common/Delivery/index.astro';
+import { getSiteTexts, text } from '../../services/api/site-texts';
+import { getAllProducts } from '../../services/api/products';
+import { getAllRecipes } from '../../services/api/recipes';
+import { getAllBrands } from '../../services/api/brands';
+import { getHomePage, getPageBanners } from '../../services/api/pages';
+import { getDiscoverSection } from '../../services/api/descubrenos';
+import { getDeliveryApps } from '../../services/api/sections';
+import { HOME_CHIP_IMAGES } from '../../config/assets';
 
 // Add styles for active brand logo
 const activeLogoStyles = `
@@ -40,27 +48,39 @@ const { loading = false } = Astro.props;
 // Obtener idioma actual y exportarlo para que esté disponible en el template
 const currentLang = getLocale();
 
-// Precargar namespaces con validación
-t('common', { locale: currentLang }) || {};
-t('recipes', { locale: currentLang }) || {};
-t('news', { locale: currentLang }) || {};
-t('products', { locale: currentLang }) || {};
-t('newproducts', { locale: currentLang }) || {};
-t('brands', { locale: currentLang }) || {};
-t('promotions', { locale: currentLang }) || {};
-t('contentN', { locale: currentLang }) || {};
-t('chips', { locale: currentLang }) || {};
 
+const [siteTexts, cmsProducts, cmsRecipes, homePage, discover, deliveryApps, cmsBrands] = await Promise.all([
+  getSiteTexts(currentLang),
+  getAllProducts(currentLang),
+  getAllRecipes(currentLang),
+  getHomePage(currentLang),
+  getDiscoverSection(currentLang, 'home'),
+  getDeliveryApps(currentLang),
+  getAllBrands(currentLang),
+]);
 
-// Cargar productos nuevos con validación
-const newProducts = t('products', { namespace: 'newproducts', locale: currentLang }) || [];
+const validProducts = cmsProducts
+  .filter((product) => product.isNew === true)
+  .map((product) => ({ id: product.id, image: product.image, alt: product.title }));
 
-// Los datos de marcas ya están definidos más abajo
-
-const validProducts = Array.isArray(newProducts) ? newProducts : [];
-
-const chips = t('chips', { namespace: 'newproducts', locale: currentLang }) || [];
-const brands = t('brands', { namespace: 'brands', locale: currentLang }) || [];
+const chips = HOME_CHIP_IMAGES;
+const marketingBrands = t('brands', { namespace: 'brands', locale: currentLang }) || [];
+const brands = cmsBrands.map((brand) => {
+  const marketing = (marketingBrands as any[]).find(
+    (item) => (item.slug || item.id || '').toLowerCase() === brand.slug.toLowerCase()
+  ) || {};
+  return {
+    ...marketing,
+    id: brand.slug,
+    slug: brand.slug,
+    title: brand.name,
+    logo: brand.logoUrl || '',
+    bgColor: brand.background || '#ffffff',
+    url: brand.link || '#',
+    image: marketing.image || brand.logoUrl || '',
+    imageMobile: marketing.imageMobile || marketing.image || brand.logoUrl || '',
+  };
+});
 
 // orden para mlas marcas
 const desiredHomeOrder = ['taqueritos','zambos','ranchitas','zibas','cappy','yumminuts','yummipops','taco','yummimix','anillitos','delrancho','xixi'];
@@ -77,26 +97,37 @@ const orderedBrands = Array.isArray(brands)
   })
   : brands;
 
-// Obtener promos dummy para la Home (solo ES)
-const promotionsData = t('promotions', { namespace: 'promotions', locale: currentLang }) || [];
-const sectionsData = t('sections', { namespace: 'promotions', locale: currentLang }) || {};
-const activePromotions = Array.isArray(promotionsData)
-  ? promotionsData.filter((promo: any) => promo?.status === 'active')
-  : [];
-const featuredPromotions = activePromotions.slice(0, 2);
+const homeAssets = {
+  brands: { title: text(siteTexts, 'home.brands.title') },
+  new_products: {
+    tagtitle: text(siteTexts, 'home.new_products.tagtitle'),
+    title: text(siteTexts, 'home.new_products.title'),
+  },
+  newsletter: {
+    placeholder: text(siteTexts, 'home.newsletter.placeholder'),
+    buttonText: text(siteTexts, 'home.newsletter.button'),
+  },
+  socialmedia: {
+    tagtitle: text(siteTexts, 'home.socialmedia.tagtitle'),
+    title: text(siteTexts, 'home.socialmedia.title'),
+    newsletter: text(siteTexts, 'home.newsletter.title'),
+    instagramLinks: (discover?.posts ?? []).map((post) => ({ url: post.postUrl, image: '', alt: post.alt, caption: '' })),
+  },
+  quiz: {
+    title: text(siteTexts, 'home.quiz.title_image'),
+    description: text(siteTexts, 'home.quiz.description'),
+    button: text(siteTexts, 'home.quiz.button'),
+    urlButton: text(siteTexts, 'home.quiz.button_url'),
+  },
+  delivery: {
+    delivery_title: text(siteTexts, 'home.delivery.title'),
+    delivery_sub_title: text(siteTexts, 'home.delivery.subtitle'),
+    delivery_apps: deliveryApps,
+  },
+};
 
-const homeAssets = t('home', { namespace: 'common', locale: currentLang }) || {};
-const recipesAssets = t('home', { namespace: 'recipes', locale: currentLang }) || {};
-const recipeItems = t('items', { namespace: 'recipes', locale: currentLang }) || [];
+const deliveryData = homeAssets.delivery;
 
-// Obtener datos de delivery
-const deliveryData = homeAssets.delivery || {};
-
-// Obtener las imágenes de máscara del slider desde los archivos de idioma (desktop y mobile)
-const sliderMask = t('assets.slidermask', { namespace: 'common', locale: currentLang }) || 'https://snack.yummiespromociones.com/snacksyummies/bg-front.webp';
-const sliderMaskMobile = t('assets.slidermaskmobile', { namespace: 'common', locale: currentLang }) || 'https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp';
-
-// Cargar recetas usando el mismo patrón que la página de Recetas
 interface RecipeItem {
   id: string;
   title: string;
@@ -106,39 +137,34 @@ interface RecipeItem {
   video?: string;
 }
 
-const recipeModules = import.meta.glob<{default: RecipeItem}>("../../locales/*/recipes/*.json");
-const allRecipes: RecipeItem[] = [];
-for (const path in recipeModules) {
-  const lang = path.split('/')[3];
-  if (lang === currentLang) {
-    const mod = await recipeModules[path]();
-    allRecipes.push(mod.default);
-  }
-}
-allRecipes.sort((a, b) => {
-  const dateA = (a as any).date ? new Date((a as any).date).getTime() : 0;
-  const dateB = (b as any).date ? new Date((b as any).date).getTime() : 0;
-  return dateB - dateA;
-});
-const topRecipes = allRecipes.slice(0, 9);
+const topRecipes: RecipeItem[] = cmsRecipes
+  .slice()
+  .sort((a, b) => {
+    const dateA = a.date ? new Date(a.date).getTime() : 0;
+    const dateB = b.date ? new Date(b.date).getTime() : 0;
+    return dateB - dateA;
+  })
+  .slice(0, 9)
+  .map((recipe) => ({
+    id: recipe.id,
+    title: recipe.title,
+    image: recipe.image,
+    preparation_time: recipe.preparation_time,
+    slug: recipe.slug,
+    video: recipe.video,
+  }));
 const listingPath = `/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}`;
 
-
-const commonAssets = t('assets.slider', { namespace: 'common', locale: currentLang }) || [];
-const slides = Array.isArray(commonAssets) 
-  ? commonAssets
-    .filter(asset => asset && typeof asset === 'object' && asset.desktop && asset.mobile)
-    .map(asset => ({
-      desktop: asset.desktop,
-      mobile: asset.mobile,
-      alt: asset.alt || 'Snacks Yummies',
-      title: asset.title || '',
-      subtitle: asset.description || '',
-      link: asset.url || asset.link || ''
-    }))
-  : [];
-
-
+const slides = getPageBanners(homePage)
+  .filter((banner) => banner.type === 'image')
+  .map((banner) => ({
+    desktop: banner.desktop,
+    mobile: banner.mobile,
+    alt: banner.alt || 'Snacks Yummies',
+    title: banner.title,
+    subtitle: banner.description || banner.subtitle,
+    link: banner.link,
+  }));
 
 ---
 
@@ -565,22 +591,22 @@ const slides = Array.isArray(commonAssets)
           <div id="reels-track" class="reels-track">
             <div class="reels-slide">
               <div class="insta-wrap insta-wrap--mobile">
-                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[0].url} width="100%" height="100%" />
+                <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[0]} width="100%" height="100%" />
               </div>
             </div>
             <div class="reels-slide">
               <div class="insta-wrap insta-wrap--mobile">
-                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[1].url} width="100%" height="100%" />
+                <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[1]} width="100%" height="100%" />
               </div>
             </div>
             <div class="reels-slide">
               <div class="insta-wrap insta-wrap--mobile">
-                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[2].url} width="100%" height="100%" />
+                <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[2]} width="100%" height="100%" />
               </div>
             </div>
             <div class="reels-slide">
               <div class="insta-wrap insta-wrap--mobile">
-                <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[3].url} width="100%" height="100%" />
+                <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[3]} width="100%" height="100%" />
               </div>
             </div>
           </div>
@@ -596,11 +622,11 @@ const slides = Array.isArray(commonAssets)
         <!-- Instagram Posts - Left Side -->
         <div id="instagram1" class="flex flex-col items-center justify-center">
           <div class="insta-wrap insta-wrap--desktop z-0 mb-4">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[0].url} width="100%" height="100%" />
+            <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[0]} width="100%" height="100%" />
           </div>
 
           <div class="insta-wrap insta-wrap--desktop z-10 mt-4 translate-y-[-6rem] translate-x-[2rem]">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[1].url} width="100%" height="100%" />
+            <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[1]} width="100%" height="100%" />
           </div>
         </div>
 
@@ -632,11 +658,11 @@ const slides = Array.isArray(commonAssets)
         <!-- Instagram Posts - Right Side -->
         <div id="instagram2" class="flex flex-col items-center justify-center">
           <div class="insta-wrap insta-wrap--desktop z-0 mb-4">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[2].url} width="100%" height="100%" />
+            <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[2]} width="100%" height="100%" />
           </div>
 
           <div class="insta-wrap insta-wrap--desktop z-10 mt-4 translate-y-[-6rem] translate-x-[-2rem]">
-            <InstagramEmbed postUrl={homeAssets.socialmedia.instagramLinks[3].url} width="100%" height="100%" />
+            <SocialGalleryTile {...homeAssets.socialmedia.instagramLinks[3]} width="100%" height="100%" />
           </div>
         </div>
       </div>

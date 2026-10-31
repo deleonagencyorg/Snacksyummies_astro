@@ -1,6 +1,6 @@
 // Sistema de internacionalización simple
-import esCommon from '../locales/es/common.json';
-import enCommon from '../locales/en/common.json';
+import type { RequestLocaleContext } from './requestContext';
+import { buildCommonTranslations } from './commonTranslations';
 import esRecipes from '../locales/es/recipes.json';
 import esNews from '../locales/es/news.json';
 import esProducts from '../locales/es/products.json';
@@ -24,10 +24,16 @@ import enWinnersUI from '../locales/en/winners.json';
 export type Locale = 'es' | 'en';
 export type TranslationKey = string;
 
+declare global {
+  interface Window {
+    __cmsCommonTexts?: Partial<Record<Locale, Record<string, string>>>;
+    __cmsCommonLocale?: Locale;
+  }
+}
+
 // Estructura de traducciones
 const translations = {
   es: {
-    common: esCommon,
     recipes: esRecipes,
     news: esNews,
     products: esProducts,
@@ -38,7 +44,6 @@ const translations = {
     winners: { ...esWinners, ...esWinnersUI }
   },
   en: {
-    common: enCommon,
     recipes: enRecipes,
     news: enNews,
     products: enProducts,
@@ -77,26 +82,29 @@ currentLocale = detectInitialLocale();
  * @returns Texto traducido
  */
 export function t(key: TranslationKey, options?: { locale?: Locale, namespace?: string }): any {
-  const locale = options?.locale || currentLocale;
+  const locale = options?.locale || getLocale();
   const namespace = options?.namespace || 'common';
   
   // Dividir la clave por puntos para acceder a objetos anidados
   const keys = key.split('.');
   
   try {
-    // @ts-ignore - Accedemos dinámicamente a las traducciones
-    let result = translations[locale][namespace];
+    let result: unknown = namespace === 'common'
+      ? buildCommonTranslations(getCurrentCommonTexts(locale))
+      : (translations[locale] as Record<string, unknown>)[namespace];
     
     // Navegar por el objeto de traducciones siguiendo las claves
     for (const k of keys) {
       if (result && typeof result === 'object' && k in result) {
-        result = result[k];
+        result = Reflect.get(result, k);
       } else {
-        // Si no se encuentra la clave, devolver la clave original
+        if (namespace === 'common') {
+          throw new Error(`CMS common text is missing key '${key}' for locale '${locale}'`);
+        }
         return key;
       }
     }
-    
+
     // Si el resultado es un string, número o booleano, devolverlo como string.
     // Si es un objeto o array, devolverlo tal cual.
     if (typeof result === 'string' || typeof result === 'number' || typeof result === 'boolean') {
@@ -105,12 +113,28 @@ export function t(key: TranslationKey, options?: { locale?: Locale, namespace?: 
       return result; // Devuelve el objeto/array directamente
     }
     
-    // Fallback si no se encuentra la clave o el resultado es inesperado
+    if (namespace === 'common') {
+      throw new Error(`CMS common text resolved to an empty value for key '${key}'`);
+    }
     return key;
   } catch (error) {
     console.error(`Translation error for key: '${key}' in namespace '${namespace}' for locale '${locale}'`, error);
+    if (namespace === 'common') throw error;
     return key;
   }
+}
+
+export function getCurrentCommonTexts(locale: Locale = getLocale()): Record<string, string> {
+  if (typeof window !== 'undefined') {
+    const texts = window.__cmsCommonTexts?.[locale];
+    if (!texts) throw new Error(`CMS common texts were not loaded for locale '${locale}'`);
+    return texts;
+  }
+  const store = globalThis.__requestLocale?.getStore();
+  if (!store?.commonTexts || store.locale !== locale) {
+    throw new Error(`CMS common texts were not loaded for locale '${locale}'`);
+  }
+  return store.commonTexts;
 }
 
 /**
@@ -118,6 +142,12 @@ export function t(key: TranslationKey, options?: { locale?: Locale, namespace?: 
  * @param locale Nuevo idioma
  */
 export function setLocale(locale: Locale): void {
+  if (typeof window !== 'undefined') window.__cmsCommonLocale = locale;
+  const store = requestLocaleStore();
+  if (store) {
+    if (locale in translations) store.locale = locale;
+    return;
+  }
   if (locale in translations) {
     if (locale !== currentLocale) {
       currentLocale = locale;
@@ -136,7 +166,13 @@ export function setLocale(locale: Locale): void {
  * @returns Código de idioma actual
  */
 export function getLocale(): Locale {
-  return currentLocale;
+  return requestLocaleStore()?.locale
+    ?? (typeof window !== 'undefined' ? window.__cmsCommonLocale : undefined)
+    ?? currentLocale;
+}
+
+function requestLocaleStore(): RequestLocaleContext | undefined {
+  return globalThis.__requestLocale?.getStore();
 }
 
 // Sincronizar entre pestañas

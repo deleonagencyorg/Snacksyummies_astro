@@ -1,10 +1,12 @@
 ---
+import { resolveStaticPath } from '../../../utils/staticPaths';
 // src/pages/[lang]/productos/[productId].astro
 import { t, setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import ProductDetail from '../../../views/Products/Detail/index.astro';
 
-import { getAllProducts } from '../../../services/api/products';
+import { getAllProducts, getProductBySlug } from '../../../services/api/products';
+import { cmsMediaSrc } from '../../../services/api/multimedia';
 
 export async function getStaticPaths() {
   const locales = ['es'];
@@ -25,14 +27,28 @@ export async function getStaticPaths() {
   return paths;
 }
 
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
 const { lang, productId } = Astro.params;
 
 // Establecer el idioma para las traducciones
 setLocale(lang as Locale);
+const cmsProduct = await getProductBySlug(productId, lang as Locale);
 
 console.log(`Renderizando producto: ${productId} en idioma: ${lang}`);
 ---
 
-<MainLayout title={lang === 'es' ? 'Producto' : 'Product'}>
+<MainLayout
+  title={cmsProduct?.metaTitle || cmsProduct?.title || cmsProduct?.name || (lang === 'es' ? 'Producto' : 'Product')}
+  description={cmsProduct?.metaDescription || cmsProduct?.description || ''}
+  keywords={cmsProduct?.metaKeywords}
+  ogTitle={cmsProduct?.ogTitle}
+  ogDescription={cmsProduct?.ogDescription}
+  image={cmsMediaSrc(cmsProduct?.ogImage) || cmsProduct?.image}
+  type="product"
+>
   <ProductDetail productId={productId} />
 </MainLayout>

@@ -1,6 +1,6 @@
 ---
 // src/components/common/Footer/index.astro
-import { t, type Locale } from '../../../i18n/i18n';
+import { type Locale } from '../../../i18n/i18n';
 import { logos, generalAssets } from '../../../config/assets';
 import './styles.css';
 import Skeleton from './Skeleton.astro';
@@ -9,6 +9,9 @@ import Newsletter from '../Newsletter/index.astro';
 import SocialMediaIcons from '../SocialMediaIcons/index.astro';
 import contactEs from '../../../locales/es/contact.json';
 import contactEn from '../../../locales/en/contact.json';
+import { getFooterLabels } from '../../../services/api/footer';
+import { getFooterLinks, getFooterPhones } from '../../../services/api/sections';
+import { getContactConfig } from '../../../services/api/contact';
 
 export interface Props {
   currentLang: Locale;
@@ -19,20 +22,52 @@ const { currentLang, loading = false } = Astro.props;
 
 const currentYear = new Date().getFullYear();
 
-// Obtener textos del footer desde los archivos de traducción
-const privacyPolicyText = t('footer.privacy_policy_text', { namespace: 'common', locale: currentLang });
-const privacyPolicyUrl = t('footer.privacy_policy_url', { namespace: 'common', locale: currentLang });
-const copyrightText = t('footer.copyright', { namespace: 'common', locale: currentLang }).replace('{year}', currentYear.toString());
-const address = t('footer.address', { namespace: 'common', locale: currentLang });
-const phone = t('footer.phone', { namespace: 'common', locale: currentLang });
-const hours = t('footer.hours', { namespace: 'common', locale: currentLang });
-const newsletterTitle = t('footer.newsletter_title', { namespace: 'common', locale: currentLang });
-const newsletterPlaceholder = t('footer.newsletter_placeholder', { namespace: 'common', locale: currentLang });
-const newsletterButton = t('footer.newsletter_button', { namespace: 'common', locale: currentLang });
+const [footer, phones, footerLinks, cmsContact] = await Promise.all([
+  getFooterLabels(currentLang),
+  getFooterPhones(currentLang),
+  getFooterLinks(currentLang),
+  getContactConfig(currentLang),
+]);
+const privacyPolicyText = footer?.privacyPolicyText ?? '';
+const privacyPolicyUrl = footer?.privacyPolicyUrl ?? '';
+const copyrightText = (footer?.copyright ?? '').replace('{year}', currentYear.toString());
+const address = footer?.address ?? '';
+const phone = footer?.phone ?? '';
+const hours = footer?.hours ?? '';
+const newsletterTitle = footer?.newsletter ?? '';
+const newsletterDescription = footer?.newsletterDescription ?? '';
+const newsletterPlaceholder = footer?.emailPlaceholder ?? '';
+const newsletterButton = footer?.newsletterButton ?? '';
+const contactTitle = footer?.contactTitle ?? '';
 
 // Datos de oficinas por país para detección geo
 const contactData = currentLang === 'en' ? contactEn : contactEs;
-const officesData = contactData.offices.locations;
+const officesData: Record<string, any> = { ...contactData.offices.locations };
+const countryDialingCodes: Record<string, string> = {
+  HN: '+504',
+  GT: '+502',
+  SV: '+503',
+  NI: '+505',
+  CR: '+506',
+  DO: '+1809',
+};
+for (const office of cmsContact?.offices.locations ?? []) {
+  const countryCode = office.countryCode.toUpperCase();
+  const key = countryCode === 'DO' || countryCode === '+1-809'
+    ? '+1809'
+    : office.countryCode.startsWith('+')
+    ? office.countryCode
+    : countryDialingCodes[countryCode] || office.countryCode;
+  officesData[key] = {
+    ...(officesData[key] || {}),
+    address: office.address || '',
+    phones: office.phones || [],
+  };
+}
+if (cmsContact && !officesData['+504']) {
+  const firstOffice = cmsContact.offices.locations[0];
+  if (firstOffice) officesData['+504'] = { address: firstOffice.address, phones: firstOffice.phones };
+}
 ---
 
 {loading ? (
@@ -82,6 +117,15 @@ const officesData = contactData.offices.locations;
           <div>
             <a href={privacyPolicyUrl} class="text-sm hover:underline">{privacyPolicyText}</a>
           </div>
+          {footerLinks.length > 0 && (
+            <nav aria-label={currentLang === 'es' ? 'Enlaces del pie de página' : 'Footer links'}>
+              <ul class="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs">
+                {footerLinks.map((link) => (
+                  <li><a href={link.url} class="hover:underline">{link.label}</a></li>
+                ))}
+              </ul>
+            </nav>
+          )}
           <div class="text-xs opacity-80">
             {copyrightText}
           </div>
@@ -100,6 +144,7 @@ const officesData = contactData.offices.locations;
           <!-- Newsletter -->
           <Newsletter 
             title={newsletterTitle}
+            description={newsletterDescription}
             placeholder={newsletterPlaceholder} 
             buttonText={newsletterButton}
             centered={true}
@@ -111,39 +156,19 @@ const officesData = contactData.offices.locations;
       <div class="w-full border-t border-white border-opacity-20 mt-6 pt-6">
         <div class="container mx-auto">
           <div class="text-center mb-4">
-            <h3 class="text-white font-sans text-xl font-medium">{currentLang === 'es' ? 'Contacto' : 'Contact'}</h3>
+            <h3 class="text-white font-sans text-xl font-medium">{contactTitle}</h3>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 justify-items-center">
-            <!-- Guatemala -->
-            <div class="flex items-center space-x-1.5">
-              <span class="text-lg" role="img" aria-label="Guatemala">🇬🇹</span>
-              <span class="text-xs whitespace-nowrap">(+502) 2502-7050</span>
-            </div>
-            <!-- El Salvador -->
-            <div class="flex items-center space-x-1.5">
-              <span class="text-lg" role="img" aria-label="El Salvador">🇸🇻</span>
-              <span class="text-xs whitespace-nowrap">(+503) 2510-8300</span>
-            </div>
-            <!-- Costa Rica -->
-            <div class="flex items-center space-x-1.5">
-              <span class="text-lg" role="img" aria-label="Costa Rica">🇨🇷</span>
-              <span class="text-xs whitespace-nowrap">(+506) 2271-0665</span>
-            </div>
-            <!-- República Dominicana -->
-            <div class="flex items-center space-x-1.5">
-              <span class="text-lg" role="img" aria-label="República Dominicana">🇩🇴</span>
-              <span class="text-xs whitespace-nowrap">(+001) 809-2731042</span>
-            </div>
-            <!-- Nicaragua -->
-            <div class="flex items-center space-x-1.5">
-              <span class="text-lg" role="img" aria-label="Nicaragua">🇳🇮</span>
-              <span class="text-xs whitespace-nowrap">(+505) 2255-7480</span>
-            </div>
-            <!-- Honduras -->
-            <div class="flex items-center space-x-1.5">
-              <span class="text-lg" role="img" aria-label="Honduras">🇭🇳</span>
-              <span class="text-xs whitespace-nowrap">(+504) 2275-3370</span>
-            </div>
+            {phones.map((item) => (
+              <a href={item.telHref} class="flex items-center space-x-1.5">
+                {item.flagImageUrl ? (
+                  <img src={item.flagImageUrl} alt={item.country} class="h-4 w-6 object-cover" loading="lazy" />
+                ) : (
+                  <span class="text-lg" role="img" aria-label={item.country}>{item.flag}</span>
+                )}
+                <span class="text-xs whitespace-nowrap">{item.number}</span>
+              </a>
+            ))}
           </div>
         </div>
       </div>

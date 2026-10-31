@@ -1,6 +1,9 @@
 ---
+import { resolveStaticPath } from '../../utils/staticPaths';
 import { routesConfig, getRouteById } from '../../config/routes';
-import { setLocale, t, type Locale } from '../../i18n/i18n';
+import { setLocale, type Locale } from '../../i18n/i18n';
+import { getHomePage } from '../../services/api/pages';
+import { getSiteInfo } from '../../services/api/site';
 import MainLayout from '../../layouts/MainLayout.astro';
 // Importa el componente de contenido directamente
 import HomePageContent from '../../views/Home/index.astro';
@@ -14,6 +17,11 @@ export async function getStaticPaths() {
   }));
 }
 
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
 const { lang } = Astro.params as { lang: Locale };
 setLocale(lang);
 
@@ -24,15 +32,13 @@ if (!homeRoute) {
   throw new Error("Home route configuration is missing.");
 }
 
-const pageTitle = homeRoute.metaTitleKey ? t(homeRoute.metaTitleKey) : 'Home';
-const pageDescription = homeRoute.metaDescriptionKey ? t(homeRoute.metaDescriptionKey) : '';
+const [homePage, site] = await Promise.all([getHomePage(lang), getSiteInfo()]);
+const pageTitle = homePage?.metaTitle || homePage?.title || site.defaultMetaTitle;
+const pageDescription = homePage?.metaDescription || site.defaultMetaDescription;
 
 const ContentComponent = HomePageContent; // Asignación directa para la página de inicio
 
-// SEO Keywords based on language
-const seoKeywords = lang === 'es' 
-  ? 'snacks yummies, taqueritos, zambos, ranchitas marca líder centroamérica, botanas honduras, snacks guatemala el salvador, snacks picantes, tortrix, doritos competencia'
-  : 'snacks yummies, taqueritos, zambos, ranchitas, leading brand central america, snacks honduras, guatemala el salvador snacks, spicy snacks, tortrix, doritos competitor';
+const seoKeywords = homePage?.metaKeywords || '';
 ---
 <MainLayout title={pageTitle} description={pageDescription}>
   <Fragment slot="head">

@@ -1,7 +1,9 @@
 ---
+import { resolveStaticPath } from '../../../utils/staticPaths';
 // src/pages/[lang]/promotions/[slug].astro
 import { setLocale, t, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
+import { getPageBySlug } from '../../../services/api/pages';
 import PromotionDetailView from '../../../views/Promotions/Detail/index.astro';
 
 export async function getStaticPaths() {
@@ -34,8 +36,13 @@ export async function getStaticPaths() {
   return [...esPaths, ...enPaths];
 }
 
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
 const { lang, slug } = Astro.params as { lang: Locale; slug: string };
-const { promotionSlug, promotionTitle } = Astro.props;
+const { promotionSlug, promotionTitle } = staticPath.props;
 
 setLocale(lang);
 
@@ -48,8 +55,11 @@ if (!promotion) {
 }
 
 // Metadatos dinámicos
-const metaTitle = `${promotion.title} - ${t('meta.promotions.title', { namespace: 'common', locale: lang })}`;
-const metaDescription = promotion.subtitle || t('meta.promotions.description', { namespace: 'common', locale: lang });
+const seoPage = await getPageBySlug(lang === 'es' ? 'promociones' : 'promotions', lang);
+const seoTitle = seoPage?.metaTitle || seoPage?.title || '';
+const seoDescription = seoPage?.metaDescription || seoPage?.excerpt || '';
+const metaTitle = [promotion.title, seoTitle].filter(Boolean).join(' - ');
+const metaDescription = promotion.subtitle || seoDescription;
 ---
 
 <MainLayout title={metaTitle} description={metaDescription}>

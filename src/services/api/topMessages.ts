@@ -1,5 +1,6 @@
 import { cmsClient } from './client';
 import { getAllBrands } from './brands';
+import { cmsConfig } from './config';
 import type { TopMessage, CMSTopMessagesResponse, CMSTopMessageRaw } from './types';
 
 /**
@@ -29,7 +30,7 @@ function mapTopMessage(item: CMSTopMessageRaw): TopMessage {
  */
 export async function getActiveTopMessages(locale: string = 'es', brandSlug?: string): Promise<TopMessage[]> {
   try {
-    const targetBrandSlug = brandSlug ?? import.meta.env.PUBLIC_CMS_BRAND_SLUG;
+    const targetBrandSlug = brandSlug ?? cmsConfig.brandSlug;
     const params: Record<string, string | number | boolean> = {
       languageCode: locale,
     };
@@ -42,21 +43,26 @@ export async function getActiveTopMessages(locale: string = 'es', brandSlug?: st
           (b) => b.slug?.toLowerCase() === targetBrandSlug.toLowerCase() || b.id === targetBrandSlug
         );
 
-        if (matchedBrand) {
-          params.brandId = matchedBrand.id;
-        }
+        if (!matchedBrand) return [];
+        params.brandId = matchedBrand.id;
       } catch (brandError) {
         console.warn('[CMS] No se pudo resolver la marca a partir del slug (consultando cintillos sin filtro de brandId):', brandError);
       }
     }
 
-    const response = await cmsClient.get<CMSTopMessagesResponse>('v1/top-messages', params);
-
-    if (!response?.data || !Array.isArray(response.data)) {
-      return [];
+    const messages: CMSTopMessageRaw[] = [];
+    for (let page = 1; page < 50; page++) {
+      const response = await cmsClient.get<CMSTopMessagesResponse>('v1/top-messages', {
+        ...params,
+        page,
+        pageSize: 100,
+      });
+      const data = Array.isArray(response?.data) ? response.data : [];
+      messages.push(...data);
+      if (!data.length || messages.length >= (response.pagination?.total ?? messages.length)) break;
     }
 
-    return response.data
+    return messages
       .map(mapTopMessage)
       .filter((message) => message.isActive && message.text)
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));

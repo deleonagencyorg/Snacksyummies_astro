@@ -4,7 +4,7 @@ import GoogleTagManager from '../components/common/GoogleTagManager.astro';
 import MetaPixel from '../components/common/MetaPixel.astro';
 import TikTokPixel from '../components/common/TikTokPixel.astro';
 import Favicon from '../components/Favicon.astro';
-import { type Locale } from '../i18n/i18n';
+import { getCurrentCommonTexts, type Locale } from '../i18n/i18n';
 import Header from '../components/common/Header/index.astro';
 import Footer from '../components/common/Footer/index.astro';
 import MobileMenu from '../components/common/MobileMenu/index.astro';
@@ -18,15 +18,33 @@ import "../styles/global.css";
 export interface Props {
   title?: string;
   description?: string;
+  canonicalUrl?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'recipe' | 'product';
+  keywords?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   class?: string;
 }
-const { title, description, class: className } = Astro.props;
+const {
+  title,
+  description,
+  canonicalUrl,
+  image,
+  type,
+  keywords,
+  ogTitle,
+  ogDescription,
+  class: className,
+} = Astro.props;
 
 // Determine language for <html lang=...> and for key prop from the URL
 const pathSegments = Astro.url.pathname.split('/');
 const langFromUrl = pathSegments[1] as Locale;
 const validLocales: Locale[] = ['es', 'en'];
 const currentLang = validLocales.includes(langFromUrl) ? langFromUrl : 'es';
+const commonTexts = getCurrentCommonTexts(currentLang);
+const commonTextsJson = JSON.stringify(commonTexts).replace(/</g, '\\u003c');
 
 // Get header color config based on current route
 const { pathname } = Astro.url;
@@ -35,6 +53,12 @@ const headerColorConfig = getHeaderColors(pathname);
 
 <html lang={currentLang}>
   <head>
+    <script is:inline define:vars={{ currentLang, commonTextsJson }}>
+      const parsedCommonTexts = JSON.parse(commonTextsJson);
+      window.__cmsCommonTexts ??= {};
+      window.__cmsCommonTexts[currentLang] = parsedCommonTexts;
+      window.__cmsCommonLocale = currentLang;
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <GoogleTagManager />
@@ -44,6 +68,12 @@ const headerColorConfig = getHeaderColors(pathname);
     <SEOHead 
       title={title} 
       description={description}
+      canonicalUrl={canonicalUrl}
+      image={image}
+      type={type}
+      keywords={keywords}
+      ogTitle={ogTitle}
+      ogDescription={ogDescription}
     />
     <!-- Performance hints: preconnect to critical origins -->
     <link rel="preconnect" href="https://snack.yummiespromociones.com" crossorigin>

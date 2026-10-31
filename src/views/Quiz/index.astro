@@ -3,6 +3,7 @@
 import { t } from '../../i18n/i18n';
 import type { Locale } from '../../i18n/i18n';
 import { getLocale } from '../../i18n/i18n';
+import { getSiteTexts, text } from '../../services/api/site-texts';
 import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import CrownTitle from '../../components/common/CrownTitle/CrownTitle.astro';
 import SocialShare from '../../components/common/SocialShare.astro';
@@ -10,6 +11,7 @@ import { fade } from 'astro:transitions';
 import LazyImage from '../../components/common/LazyImage.astro';
 
 const currentLang = getLocale();
+const siteTexts = await getSiteTexts(currentLang);
 
 // Cargar datos del quiz desde el archivo JSON correspondiente
 let quizData: any = {};
@@ -44,7 +46,7 @@ try {
 
 // Breadcrumb data
 const breadcrumbItems = [
-  { label: t('nav.home'), href: `/${currentLang}` },
+  { label: text(siteTexts, 'breadcrumb.home'), href: `/${currentLang}` },
   { label: quizData.title || 'Quiz', href: `/${currentLang}/quiz` }
 ];
 ---

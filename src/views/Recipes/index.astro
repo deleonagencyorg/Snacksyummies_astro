@@ -1,6 +1,6 @@
 ---
 // src/components/pages/RecipesPage.astro
-import { t } from '../../i18n/i18n';
+import { getSiteTexts, text } from '../../services/api/site-texts';
 import type { Locale } from '../../i18n/i18n';
 import { getLocale } from '../../i18n/i18n';
 import './styles.css';
@@ -12,14 +12,23 @@ import Breadcrumb from '../../components/common/Breadcrumb/Breadcrumb.astro';
 import banner from '../../assets/Banner recetas animado.png';
 import group from '../../assets/Group 40.png';
 import { getAllRecipes } from '../../services/api/recipes';
+import { getAllBrands } from '../../services/api/brands';
 
 const currentLang = getLocale();
+const siteTexts = await getSiteTexts(currentLang);
 
 // Pass current language to client-side script
 const clientLang = currentLang;
 
 // Cargar recetas directamente desde el servicio CMS
 const cmsRecipes = await getAllRecipes(currentLang);
+const recipeBrands = await getAllBrands(currentLang);
+const recipeBrandFilters = recipeBrands.map((brand) => ({
+  label: brand.name,
+  slug: brand.slug,
+  logo: brand.logoUrl,
+  bgColor: brand.background || '#E5E7EB',
+}));
 
 // Ordenar por fecha descendente (la más reciente primero)
 const allRecipes = cmsRecipes.sort((a, b) => {
@@ -75,7 +84,7 @@ const featuredVideo = featured?.video ?? '';
 />
 
 <!-- Categories Section (reusable slider) -->
-<Categories mobileThreePerView={true} />
+<Categories items={recipeBrandFilters} mobileThreePerView={true} />
 
 <!-- Recipe of the Month -->
 <div class="w-full max-w-5xl px-5 mx-auto bg-white rounded-3xl ">
@@ -83,7 +92,7 @@ const featuredVideo = featured?.video ?? '';
   </div>
 
     {allRecipes.length === 0 ? (
-      <p class="text-center text-white">{t('page.no_recipes', { namespace: 'recipes' })}</p>
+      <p class="text-center text-white">{text(siteTexts, 'recipes.page.no_recipes')}</p>
     ) : (
       <div class="max-w-[1028px] mx-auto flex flex-col gap-14 items-center ">
         <!-- Title -->
@@ -140,12 +149,12 @@ const featuredVideo = featured?.video ?? '';
                   class="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                   style={totalRecipes <= itemsPerPage ? 'display: none;' : ''}
                 >
-                  <span id="load-more-text">{t('page.load_more', { namespace: 'recipes' })}</span>
-                  <span id="loading-text" class="hidden">{t('page.loading', { namespace: 'recipes' })}</span>
+                  <span id="load-more-text">{text(siteTexts, 'recipes.page.load_more')}</span>
+                  <span id="loading-text" class="hidden">{text(siteTexts, 'recipes.page.loading')}</span>
                 </button>
                 
                 <div id="no-more-recipes" class="hidden text-gray-600 font-medium py-3">
-                  {t('page.no_more_recipes', { namespace: 'recipes' })}
+                  {text(siteTexts, 'recipes.page.no_more_recipes')}
                 </div>
               </div>
             </div>

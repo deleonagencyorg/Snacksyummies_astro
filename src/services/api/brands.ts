@@ -1,6 +1,5 @@
 // src/services/api/brands.ts
 import { cmsClient } from './client';
-import type { CMSBrandsResponse, CMSBrandRaw } from './types';
 
 // ---------------------------------------------------------------------------
 // Tipos extendidos según la respuesta real del CMS
@@ -52,14 +51,21 @@ export interface MappedBrand {
   name: string;
   /** URL del logo para el círculo del filtro */
   logoUrl?: string;
+  background?: string;
+  link?: string;
+  caption?: string;
 }
 
-function mapBrand(item: CMSBrandItem): MappedBrand {
+function mapBrand(item: CMSBrandItem, locale: string): MappedBrand {
+  const localized = item.brandLanguages?.find((language) => language.code === locale);
   return {
     id: item.id,
     slug: item.slug || item.id,
-    name: item.name,
-    logoUrl: item.logoUrl,
+    name: localized?.name || item.name,
+    logoUrl: localized?.logoUrl || item.logoUrl,
+    background: item.background,
+    link: localized?.link,
+    caption: localized?.caption,
   };
 }
 
@@ -71,23 +77,33 @@ function mapBrand(item: CMSBrandItem): MappedBrand {
  * Obtiene todas las marcas del CMS y las devuelve normalizadas.
  * Usado para construir el filtro de categorías con logos reales.
  */
-export async function getAllBrands(locale: string = 'es'): Promise<MappedBrand[]> {
-  console.log('[getAllBrands] ▶ Obteniendo marcas del CMS para locale:', locale);
-  try {
-    const response = await cmsClient.get<CMSBrandsApiResponse>('v1/brands', {
-      languageCode: locale,
-    });
+const brandsByLocale = new Map<string, Promise<MappedBrand[]>>();
 
-    if (!response?.data || !Array.isArray(response.data)) {
-      console.warn('[getAllBrands] ⚠️  El CMS no devolvió data[] de marcas');
-      return [];
+export function getAllBrands(locale: string = 'es'): Promise<MappedBrand[]> {
+  const cached = brandsByLocale.get(locale);
+  if (cached) return cached;
+
+  const request = fetchAllBrands(locale);
+  brandsByLocale.set(locale, request);
+  return request;
+}
+
+async function fetchAllBrands(locale: string): Promise<MappedBrand[]> {
+  try {
+    const items: CMSBrandItem[] = [];
+    for (let page = 1; page < 50; page++) {
+      const response = await cmsClient.get<CMSBrandsApiResponse>('v1/brands', {
+        page,
+        pageSize: 100,
+      });
+      const data = Array.isArray(response?.data) ? response.data : [];
+      items.push(...data);
+      if (!data.length || items.length >= (response.pagination?.total ?? items.length)) break;
     }
 
-    const mapped = response.data.map(mapBrand);
-    console.log('[getAllBrands] ✅ Marcas obtenidas:', mapped.map((b) => `${b.slug}(${b.id.slice(0, 8)})`).join(', '));
-    return mapped;
+    return items.map((item) => mapBrand(item, locale));
   } catch (error) {
-    console.error('[getAllBrands] ❌ Error al obtener marcas:', error);
+    console.error('[CMS] Error al obtener marcas:', error);
     return [];
   }
 }

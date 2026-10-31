@@ -75,6 +75,11 @@ function tr(es: string, en: string): string {
 
 const productTitle = normalizeTitle(currentProduct.title || currentProduct.name);
 const productImage = currentProduct.image || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp';
+const productTitleColor = currentProduct.headerTextColor || '#003278';
+const productTextColor = currentProduct.textColor || '#374151';
+const productButtonColor = currentProduct.colorButton || '#003278';
+const productBackground = currentProduct.backgroundColor || '#ffffff';
+const productBackgroundImage = currentProduct.backgroundImage;
 
 // Marca asociada
 const currentBrand = currentProduct.brandId ? brandMap.get(currentProduct.brandId) : null;
@@ -90,35 +95,14 @@ if (currentProduct.sizes && currentProduct.sizes.length > 0) {
   currentProduct.weight.forEach(w => {
     presentations.push({ label: w });
   });
-} else {
-  presentations.push({ label: '140 g' }, { label: '70 g' });
 }
 
 // Información Nutricional
 const nutritionData = currentProduct.nutrition;
 const hasCmsNutritionRows = nutritionData?.rows && Array.isArray(nutritionData.rows) && nutritionData.rows.length > 0;
-
-const fallbackNutrition = {
-  servingsPerContainer: currentLang === 'es' ? '8 Porciones Por Envase' : '8 Servings Per Container',
-  servingSizeLabel: currentLang === 'es' ? 'Tamaño de la Porción' : 'Serving Size',
-  servingSizeValue: currentLang === 'es' ? 'Aproximadamente 15 Chips (38g)' : 'About 15 Chips (38g)',
-  amountPerServing: currentLang === 'es' ? 'Cantidad Por Porción' : 'Amount Per Serving',
-  caloriesLabel: currentLang === 'es' ? 'Calorías' : 'Calories',
-  caloriesValue: 160,
-  dailyValueLabel: currentLang === 'es' ? 'Valor Diario' : 'Daily Value',
-  totalFatLabel: currentLang === 'es' ? 'Grasa Total' : 'Total Fat',
-  totalFatValue: '10 g',
-  totalFatDaily: '13%',
-  saturatedFatLabel: currentLang === 'es' ? 'Grasa Saturada' : 'Saturated Fat',
-  saturatedFatValue: '1.5 g',
-  saturatedFatDaily: '7%',
-  transFatLabel: currentLang === 'es' ? 'Grasa Trans' : 'Trans Fat',
-  transFatValue: '0 g',
-  transFatDaily: '0%',
-  cholesterolLabel: currentLang === 'es' ? 'Colesterol' : 'Cholesterol',
-  cholesterolValue: '0 mg',
-  cholesterolDaily: '0%'
-};
+const hasNutritionData = Boolean(
+  hasCmsNutritionRows || nutritionData?.title || nutritionData?.serving || nutritionData?.disclaimer
+);
 
 // Textos estáticos
 const texts = {
@@ -161,24 +145,30 @@ if (relatedProducts.length === 0) {
   </div>
 
   <!-- Detalle del producto con fondo blanco -->
-  <div class="bg-white py-8 md:py-12">
+  <div
+    class="py-8 md:py-12"
+    style={`background-color: ${productBackground};${productBackgroundImage ? `background-image: url("${productBackgroundImage}"); background-position: center; background-size: cover;` : ''}`}
+  >
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
         <!-- Columna izquierda: Imagen y presentaciones -->
         <div class="w-full">
           <!-- Imagen del producto -->
           <div class="product-image-container mb-8 flex justify-center">
-            <LazyImage
-              src={productImage}
-              alt={productTitle}
-              class="w-[300px] max-w-md h-auto object-contain"
-              transition:name={`product-image-${currentProduct.id}`}
-              priority={true}
-            />
+            <picture>
+              {currentProduct.imageMobile && <source media="(max-width: 767px)" srcset={currentProduct.imageMobile} />}
+              <LazyImage
+                src={productImage}
+                alt={productTitle}
+                class="w-[300px] max-w-md h-auto object-contain"
+                transition:name={`product-image-${currentProduct.id}`}
+                priority={true}
+              />
+            </picture>
           </div>
           
           <!-- Presentaciones -->
-          <div class="mt-8">
+          {presentations.length > 0 && <div class="mt-8">
             <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{texts.presentation}</h2>
             <div class="flex gap-6 items-end justify-center flex-wrap">
               {presentations.map((item) => (
@@ -203,27 +193,35 @@ if (relatedProducts.length === 0) {
         <!-- Columna derecha: Información del producto -->
         <div class="w-full">
           <!-- Título del producto -->
-          <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-6">{productTitle}</h1>
+          <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6" style={`color: ${productTitleColor}`}>{productTitle}</h1>
+          {currentProduct.nameDescription && (
+            <p class="mb-6 text-lg font-semibold" style={`color: ${productTextColor}`}>{currentProduct.nameDescription}</p>
+          )}
           
           <!-- Descripción -->
           <div class="mb-8">
-            <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{texts.description}</h2>
+            {currentProduct.description && <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{texts.description}</h2>}
             <div class="space-y-3">
               <div class="flex items-start gap-3">
                 <svg class="w-6 h-6 text-primary flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                <p class="text-gray-700 leading-relaxed">
-                  {currentProduct.description || (currentLang === 'es' ? 'Disfruta del auténtico sabor y la mejor calidad de nuestros productos.' : 'Enjoy authentic flavor and top quality snacks.')}
-                </p>
+                {currentProduct.description && <p class="leading-relaxed" style={`color: ${productTextColor}`}>{currentProduct.description}</p>}
               </div>
+
+              {currentProduct.available && (
+                <div class="mb-8">
+                  <h2 class="text-xl md:text-2xl font-bold text-primary mb-2">{texts.availableIn}</h2>
+                  <p class="leading-relaxed" style={`color: ${productTextColor}`}>{currentProduct.available}</p>
+                </div>
+              )}
             </div>
           </div>
           
           <!-- Información Nutricional -->
-          <div class="mb-8">
+          {hasNutritionData && <div class="mb-8">
             <h2 class="text-xl md:text-2xl font-bold text-primary mb-4">{texts.nutritionalInfo}</h2>
-            {hasCmsNutritionRows ? (
+            {hasNutritionData && (
               <div class="border border-gray-300 rounded-lg overflow-hidden">
                 {nutritionData?.title && (
                   <div class="bg-primary text-white px-4 py-2 font-bold text-sm">
@@ -247,43 +245,8 @@ if (relatedProducts.length === 0) {
                   )}
                 </div>
               </div>
-            ) : (
-              <div class="border border-gray-300 rounded-lg overflow-hidden">
-                <div class="bg-gray-50 px-4 py-2 border-b border-gray-300">
-                  <p class="text-sm font-semibold text-gray-700">{fallbackNutrition.servingsPerContainer}</p>
-                  <p class="text-sm text-gray-600">{fallbackNutrition.servingSizeLabel} <span class="float-right">{fallbackNutrition.servingSizeValue}</span></p>
-                </div>
-                <div class="px-4 py-2">
-                  <div class="border-b border-gray-200 py-2">
-                    <p class="text-sm font-semibold text-gray-700">{fallbackNutrition.amountPerServing}</p>
-                  </div>
-                  <div class="border-b border-gray-200 py-2 flex justify-between">
-                    <span class="text-sm text-gray-700">{fallbackNutrition.caloriesLabel}</span>
-                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.caloriesValue}</span>
-                  </div>
-                  <div class="py-1">
-                    <p class="text-xs text-right text-gray-600">% {fallbackNutrition.dailyValueLabel} *</p>
-                  </div>
-                  <div class="border-b border-gray-200 py-2 flex justify-between">
-                    <span class="text-sm text-gray-700">{fallbackNutrition.totalFatLabel} {fallbackNutrition.totalFatValue}</span>
-                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.totalFatDaily}</span>
-                  </div>
-                  <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
-                    <span class="text-sm text-gray-700">{fallbackNutrition.saturatedFatLabel} {fallbackNutrition.saturatedFatValue}</span>
-                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.saturatedFatDaily}</span>
-                  </div>
-                  <div class="border-b border-gray-200 py-2 flex justify-between pl-4">
-                    <span class="text-sm text-gray-700">{fallbackNutrition.transFatLabel} {fallbackNutrition.transFatValue}</span>
-                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.transFatDaily}</span>
-                  </div>
-                  <div class="border-b border-gray-200 py-2 flex justify-between">
-                    <span class="text-sm text-gray-700">{fallbackNutrition.cholesterolLabel} {fallbackNutrition.cholesterolValue}</span>
-                    <span class="text-sm font-bold text-gray-900">{fallbackNutrition.cholesterolDaily}</span>
-                  </div>
-                </div>
-              </div>
             )}
-          </div>
+          </div>}
         </div>
       </div>
 
@@ -319,7 +282,7 @@ if (relatedProducts.length === 0) {
       
       <!-- Botón para volver a productos -->
       <div class="flex justify-center mt-12">
-        <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}`} class="bg-primary text-white py-3 px-8 rounded-full hover:bg-opacity-90 transition-all font-semibold">
+        <a href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}`} class="text-white py-3 px-8 rounded-full hover:opacity-90 transition-all font-semibold" style={`background-color: ${productButtonColor}; border: 2px solid ${currentProduct.borderColor || productButtonColor}`}>
           {texts.backToProducts}
         </a>
       </div>

@@ -1,8 +1,10 @@
 ---
 import LanguageSwitcher from '../../i18n/LanguageSwitcher.astro';
 import LocalizedImage from '../LazyImage.astro';
-import { t, type Locale } from '../../../i18n/i18n';
+import { type Locale } from '../../../i18n/i18n';
 import { socialMediaIconUrls, logos } from '../../../config/assets';
+import { getNavigation } from '../../../services/api/navigation';
+import { getSocialMediaLinks, socialMediaByPlatform } from '../../../services/api/social-media';
 import type { HeaderColorConfig } from '../../../config/headerColors';
 
 export interface Props {
@@ -13,12 +15,13 @@ export interface Props {
 const { currentLang, headerColorConfig } = Astro.props;
 
 // Obtener los datos de social media y menú desde las traducciones
-const socialMedia = t('social_media', { namespace: 'common', locale: currentLang }) as any;
-const menuItems = t('menu_items', { namespace: 'common', locale: currentLang }) as any[];
+const [navigation, socialLinks] = await Promise.all([getNavigation(currentLang), getSocialMediaLinks(currentLang)]);
+const socialMedia = socialMediaByPlatform(socialLinks);
+const menuItems = navigation?.items ?? [];
 
 // Traducciones
-const openMenuLabel = t('menu_labels.open_main_menu', { namespace: 'common', locale: currentLang }) || 'Open main menu';
-const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', locale: currentLang }) || 'Close main menu';
+const openMenuLabel = navigation?.openMenuLabel || 'Open main menu';
+const closeMenuLabel = navigation?.closeMenuLabel || 'Close main menu';
 
 ---
 
@@ -42,7 +45,7 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
           <div class="flex items-center justify-center text-white">
             {item.submenu ? (
               <>
-                <a href="#" class="menu-parent block text-xl font-sans font-medium hover:text-gray-300 transition-colors py-2">
+                <a href={item.href} target={item.isExternal ? '_blank' : undefined} rel={item.isExternal ? 'noopener noreferrer' : undefined} class="menu-parent block text-xl font-sans font-medium hover:text-gray-300 transition-colors py-2">
                   {item.text}
                 </a>
                 <button class="menu-toggle px-2 py-1 text-white hover:text-gray-300 ml-1">
@@ -52,7 +55,7 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
                 </button>
               </>
             ) : (
-              <a href={item.href} class="block text-xl font-sans font-medium hover:text-gray-300 transition-colors py-2">
+              <a href={item.href} target={item.isExternal ? '_blank' : undefined} rel={item.isExternal ? 'noopener noreferrer' : undefined} class="block text-xl font-sans font-medium hover:text-gray-300 transition-colors py-2">
                 {item.text}
               </a>
             )}
@@ -64,7 +67,7 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
                   <div class="flex items-center justify-center">
                     {subItem.submenu ? (
                       <>
-                        <a href="#" class="submenu-parent block text-lg font-sans font-normal text-gray-400 hover:text-gray-200 transition-colors py-1">{subItem.text}</a>
+                        <a href={subItem.href} target={subItem.isExternal ? '_blank' : undefined} rel={subItem.isExternal ? 'noopener noreferrer' : undefined} class="submenu-parent block text-lg font-sans font-normal text-gray-400 hover:text-gray-200 transition-colors py-1">{subItem.text}</a>
                         <button class="submenu-toggle px-2 py-1 text-gray-400 hover:text-gray-200 ml-1">
                           <svg class="w-4 h-4 chevron-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -72,13 +75,13 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
                         </button>
                       </>
                     ) : (
-                      <a href={subItem.href} class="block text-lg font-sans font-normal text-gray-400 hover:text-gray-200 transition-colors py-1">{subItem.text}</a>
+                      <a href={subItem.href} target={subItem.isExternal ? '_blank' : undefined} rel={subItem.isExternal ? 'noopener noreferrer' : undefined} class="block text-lg font-sans font-normal text-gray-400 hover:text-gray-200 transition-colors py-1">{subItem.text}</a>
                     )}
                   </div>
                   {subItem.submenu && (
                     <div class="third-level-submenu hidden mt-1 space-y-1 pl-4 text-center">
                       {subItem.submenu.map((thirdItem: any) => (
-                        <a href={thirdItem.href} class="block text-md font-sans font-normal text-gray-500 hover:text-gray-300 transition-colors py-1 text-center">{thirdItem.text}</a>
+                        <a href={thirdItem.href} target={thirdItem.isExternal ? '_blank' : undefined} rel={thirdItem.isExternal ? 'noopener noreferrer' : undefined} class="block text-md font-sans font-normal text-gray-500 hover:text-gray-300 transition-colors py-1 text-center">{thirdItem.text}</a>
                       ))}
                     </div>
                   )}

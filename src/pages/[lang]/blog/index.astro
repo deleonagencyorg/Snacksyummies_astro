@@ -1,6 +1,8 @@
 ---
+import { resolveStaticPath } from '../../../utils/staticPaths';
 import BlogListing from '../../../views/Blog/index.astro';
 import { type Locale } from '../../../i18n/i18n';
+import { getBlogPosts } from '../../../services/api/news';
 
 export async function getStaticPaths() {
   const locales = ['en', 'es'];
@@ -10,8 +12,13 @@ export async function getStaticPaths() {
   }));
 }
 
-const { currentLang } = Astro.props;
-const blogPosts = (await import(`../../../locales/${currentLang}/news.json`)).items || [];
+const staticPath = await resolveStaticPath(getStaticPaths, Astro.params);
+if (!staticPath) {
+  return Astro.rewrite('/404');
+}
+
+const { currentLang } = staticPath.props;
+const blogPosts = await getBlogPosts(currentLang);
 ---
 
 <BlogListing blogPosts={blogPosts} currentLang={currentLang} />
