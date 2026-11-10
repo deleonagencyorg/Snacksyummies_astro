@@ -17,24 +17,31 @@ if (!gtmEnabled) {
         style="display:none;visibility:hidden"
       ></iframe>
     </noscript>
-    <!-- Inline a propósito: un script procesado por Astro es type=module y corre
-         después de load, así que escuchar load ahí no llega a disparar gtm.js. -->
+    <!-- Inline y con insertBefore, igual que el snippet de Tag Manager.
+         Si es un módulo de Astro o se agrega con appendChild, la vista previa no se conecta. -->
     <script is:inline define:vars={{ gtmId }}>
-      (function (w, d, id) {
-        if (!id) return;
-        w.dataLayer = w.dataLayer || [];
+      (function (w, d, s, l, i) {
+        if (!i) return;
+        w[l] = w[l] || [];
 
         if (!w.__gtmInjected) {
           w.__gtmInjected = true;
-          w.dataLayer.push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js'
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0];
+          var j = d.createElement(s);
+          var dl = l != 'dataLayer' ? '&l=' + l : '';
+          var params = '';
+          var search = w.location.search || '';
+          ['gtm_auth', 'gtm_preview', 'gtm_cookies_win', 'gtm_debug', '_dbg'].forEach(function (key) {
+            var match = new RegExp('[?&]' + key + '=([^&]*)').exec(search);
+            if (match) params += '&' + key + '=' + match[1];
           });
-          var script = d.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
-          script.setAttribute('data-gtm', id);
-          d.documentElement.appendChild(script);
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl + params;
+          j.setAttribute('data-gtm', i);
+          if (f && f.parentNode) f.parentNode.insertBefore(j, f);
+          else d.head.appendChild(j);
+          d.documentElement.appendChild(j);
         }
 
         if (w.__gtmNavBound) return;
@@ -44,14 +51,14 @@ if (!gtmEnabled) {
           var path = w.location.pathname + w.location.search;
           if (path === lastPath) return;
           lastPath = path;
-          w.dataLayer.push({
+          w[l].push({
             event: 'virtual_page_view',
             page_location: w.location.href,
             page_path: path,
             page_title: d.title
           });
         });
-      })(window, document, gtmId);
+      })(window, document, 'script', 'dataLayer', gtmId);
     </script>
   </>
 )}
