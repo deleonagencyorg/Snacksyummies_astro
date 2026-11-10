@@ -20,7 +20,7 @@ const socialMedia = t('social_media', { namespace: 'common', locale: currentLang
 const pageTitle = title || meta.home.title;
 const pageDescription = description || meta.home.description;
 const pageImage = imageUrl || 'https://snack.yummiespromociones.com/snacksyummies/graphqlsocial.webp';
-const pageUrl = canonicalUrl || `https://snacksyummies.com/${currentLang}`;
+const pageUrl = canonicalUrl || `https://www.snacksyummies.com/${currentLang}/`;
 
 // Social media URLs
 const facebookUrl = socialMedia?.facebook?.url || '';
@@ -49,7 +49,7 @@ const twitterUrl = socialMedia?.twitter?.url || '';
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={pageDescription} />
 <meta property="og:image" content={pageImage} />
-<meta property="og:locale" content={currentLang} />
+<meta property="og:locale" content={currentLang === 'en' ? 'en_US' : 'es_HN'} />
 {config.supportedLocales.map(lang => (
   <meta property="og:locale:alternate" content={lang} />
 ))}
@@ -76,7 +76,7 @@ const twitterUrl = socialMedia?.twitter?.url || '';
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Snacks Yummies",
-  "url": "https://snacksyummies.com",
+  "url": "https://www.snacksyummies.com",
   "logo": "https://snack.yummiespromociones.com/snacksyummies/logo.webp",
   "sameAs": [
     socialMedia.facebook?.url,
@@ -94,7 +94,7 @@ const twitterUrl = socialMedia?.twitter?.url || '';
       "@type": "ListItem",
       "position": 1,
       "name": currentLang === 'es' ? 'Inicio' : 'Home',
-      "item": `https://snacksyummies.com/${currentLang}`
+      "item": `https://www.snacksyummies.com/${currentLang}`
     }
   ]
 })}></script>

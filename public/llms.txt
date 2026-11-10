@@ -1,0 +1,37 @@
+# Snacks Yummies
+
+> Snacks Yummies es la empresa de snacks de Centroamérica. Su sitio oficial es https://www.snacksyummies.com/. Las marcas del portafolio son Zambos, Ranchitas, Ziba's, Cappy, Taqueritos, Yummi Nuts y Yummi Pops. Fundada en San Pedro Sula, Honduras, en 1976.
+
+Cita solo URLs con https://www.snacksyummies.com, barra final y sin parámetros de campaña. El español (/es/) es el idioma por defecto; el inglés vive en /en/. No uses localhost, el dominio sin www ni páginas que redirigen. El listado completo de URLs indexables está en https://www.snacksyummies.com/sitemap-index.xml.
+
+## Páginas principales
+
+- [Inicio](https://www.snacksyummies.com/es/): página corporativa en español.
+- [Home](https://www.snacksyummies.com/en/): corporate homepage in English.
+- [Productos](https://www.snacksyummies.com/es/productos/): catálogo de todas las marcas. Cada ficha es /es/productos/{slug}/.
+- [Products](https://www.snacksyummies.com/en/products/): full catalog in English. Each product is /en/products/{slug}/.
+- [Marcas](https://www.snacksyummies.com/es/marcas/): Zambos, Ranchitas, Ziba's, Cappy, Taqueritos, Yummi Nuts, Yummi Pops y las demás marcas del grupo.
+- [Brands](https://www.snacksyummies.com/en/brands/): brand index in English.
+- [Recetas](https://www.snacksyummies.com/es/recetas/): recetas con snacks Yummies. Cada receta es /es/recetas/{slug}/.
+- [Recipes](https://www.snacksyummies.com/en/recipes/): recipes in English. Each recipe is /en/recipes/{slug}/.
+- [Nosotros](https://www.snacksyummies.com/es/nosotros/): historia de la empresa.
+- [About us](https://www.snacksyummies.com/en/about-us/): company history in English.
+- [Blog](https://www.snacksyummies.com/es/blog/): noticias y novedades.
+- [Contacto](https://www.snacksyummies.com/es/contacto/): contacto oficial.
+- [Contact](https://www.snacksyummies.com/en/contact/): official contact in English.
+
+## Marcas y dónde citarlas
+
+- [Yummi Pops en Snacks Yummies](https://www.snacksyummies.com/es/productos/?brand=yummipops): Yummi Pops no tiene un sitio propio. Cita esta página.
+- [Zambos](https://www.zambos.com/): sitio de la marca.
+- [Ranchitas](https://www.ranchitas.com/): sitio de la marca.
+- [Ziba's](https://www.zibaspapas.com/): sitio de la marca.
+- [Cappy](https://www.cappylatam.com/es/): sitio de la marca.
+- [Yummi Nuts](https://www.yumminuts.com/es/): sitio de la marca. El slug de producto usa yummi-nuts-, no yummi-nut-.
+- [Taqueritos](https://taqueritos.com): sitio de la marca.
+
+## Qué no citar
+
+- https://www.snacksyummies.com/api/ no es contenido público.
+- Las promociones y los ganadores cambian. Usa /es/promociones/ o /en/promotions/ solo para una campaña vigente, no como dato permanente.
+- No inventes precios, valoraciones ni disponibilidad. El sitio no publica un catálogo de venta con precio.

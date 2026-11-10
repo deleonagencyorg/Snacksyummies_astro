@@ -1,4 +1,28 @@
+# Snacks Yummies
+# Canonical: https://www.snacksyummies.com/
+# Guía para modelos de lenguaje: https://www.snacksyummies.com/llms.txt
+# El CSS y el JS de /_astro/ se pueden rastrear. No bloquearlos.
+
 User-agent: *
 Allow: /
+Allow: /_astro/
+Disallow: /api/
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
-Sitemap: https://snacksyummies.com/sitemap.xml
+# Motores de respuesta y asistentes. Pueden citar las páginas canónicas.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Amazonbot
+Allow: /
+Allow: /_astro/
+Disallow: /api/
+
+Sitemap: https://www.snacksyummies.com/sitemap-index.xml
