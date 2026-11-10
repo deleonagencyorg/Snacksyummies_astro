@@ -145,7 +145,12 @@ function getHueRotate(color: string) {
 const isExternal = src.startsWith('http');
 let srcset = '';
 
-if (isWebP) {
+const localRecipe = src.match(/^(.*)\/images\/recipes\/(.+)-1600\.webp$/);
+
+if (localRecipe) {
+  const base = `${localRecipe[1]}/images/recipes/${localRecipe[2]}`;
+  srcset = `${base}-800.webp 800w, ${base}-1600.webp 1600w`;
+} else if (isWebP) {
   if (isExternal && src.includes('assets.doguiygatibienestar.com')) {
     srcset = [
       `${src}?w=640 640w`,

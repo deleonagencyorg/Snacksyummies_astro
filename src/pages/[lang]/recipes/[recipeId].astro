@@ -3,6 +3,7 @@
 import { setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
+import { recipeMetaDescription } from '../../../utils/seo';
 
 // Usamos generación estática para Vercel
 export const prerender = true;
@@ -19,6 +20,8 @@ interface Recipe {
   image?: string;
   brand?: string[];
   difficulty?: string;
+  description?: string;
+  product?: string | string[];
 }
 
 // Esta función es requerida para rutas dinámicas con prerender=true
@@ -75,6 +78,6 @@ setLocale(lang as Locale);
 // Ya no necesitamos buscar la receta porque la recibimos como prop desde getStaticPaths
 ---
 
-<MainLayout title={recipe?.title || ''}>
+<MainLayout title={recipe?.title || ''} description={recipeMetaDescription(recipe, (lang as Locale) || 'en')}>
   <RecipeDetail currentLang={lang} recipeId={recipeId} recipe={recipe} />
 </MainLayout>

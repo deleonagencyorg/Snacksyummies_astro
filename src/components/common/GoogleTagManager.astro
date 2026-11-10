@@ -1,36 +1,57 @@
 ---
-// Replace with your actual GTM ID
-const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-XXXXXX';
+const gtmId = import.meta.env.PUBLIC_GTM_ID || '';
+const gtmEnabled = /^GTM-[A-Z0-9]+$/i.test(gtmId) && gtmId.toUpperCase() !== 'GTM-XXXXXX';
 
-// Validar que el GTM ID esté configurado
-if (!gtmId || gtmId === 'GTM-XXXXXX') {
-  console.warn('GTM ID no está configurado correctamente. Verifica tu archivo .env');
+if (!gtmEnabled) {
+  console.warn('GTM ID no está configurado correctamente. Verifica PUBLIC_GTM_ID.');
 }
 ---
 
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-  <iframe 
-    src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-    height="0" 
-    width="0" 
-    style="display:none;visibility:hidden">
-  </iframe>
-</noscript>
+{gtmEnabled && (
+  <>
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+    <!-- Inline a propósito: un script procesado por Astro es type=module y corre
+         después de load, así que escuchar load ahí no llega a disparar gtm.js. -->
+    <script is:inline define:vars={{ gtmId }}>
+      (function (w, d, id) {
+        if (!id) return;
+        w.dataLayer = w.dataLayer || [];
 
-<!-- Google Tag Manager - Deferred for performance -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    'gtm.start': new Date().getTime(),
-    event: 'gtm.js'
-  });
-  
-  // Load GTM after page load to improve LCP
-  window.addEventListener('load', function() {
-    const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
-    script.async = true;
-    document.head.appendChild(script);
-  });
-</script>
+        if (!w.__gtmInjected) {
+          w.__gtmInjected = true;
+          w.dataLayer.push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+          });
+          var script = d.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+          script.setAttribute('data-gtm', id);
+          d.documentElement.appendChild(script);
+        }
+
+        if (w.__gtmNavBound) return;
+        w.__gtmNavBound = true;
+        var lastPath = w.location.pathname + w.location.search;
+        d.addEventListener('astro:page-load', function () {
+          var path = w.location.pathname + w.location.search;
+          if (path === lastPath) return;
+          lastPath = path;
+          w.dataLayer.push({
+            event: 'virtual_page_view',
+            page_location: w.location.href,
+            page_path: path,
+            page_title: d.title
+          });
+        });
+      })(window, document, gtmId);
+    </script>
+  </>
+)}

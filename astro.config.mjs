@@ -3,8 +3,11 @@ import tailwind from '@astrojs/tailwind';
 import PinyAstro from "@pinegrow/piny-astro";
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
+  site: 'https://www.snacksyummies.com',
+  trailingSlash: 'always',
   adapter: vercel(),
   // La página de Guatemala pasó de /gt/productosconcausa a /productosconcausa/gt.
   // Definido aquí (no en vercel.json) para que el adapter de Vercel lo incluya en .vercel/output/config.json
@@ -14,6 +17,14 @@ export default defineConfig({
   integrations: [
     react(),
     PinyAstro(),
+    sitemap({
+      i18n: { defaultLocale: 'es', locales: { es: 'es', en: 'en' } },
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        if (path === '/' || path === '/blog' || path.startsWith('/blog/')) return false;
+        return !/\/(api|yummiesone|ganadores|winners)\//.test(path) && !path.includes('/404');
+      },
+    }),
     tailwind({
       // Configuración explícita de Tailwind
       config: { path: './tailwind.config.js' },

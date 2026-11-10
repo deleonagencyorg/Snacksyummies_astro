@@ -1,6 +1,116 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "/es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/producto/:slug",
+      "destination": "/es/productos/:slug/",
+      "statusCode": 301
+    },
+    {
+      "source": "/producto/:slug/",
+      "destination": "/es/productos/:slug/",
+      "statusCode": 301
+    },
+    {
+      "source": "/producto",
+      "destination": "/es/productos/",
+      "statusCode": 301
+    },
+    {
+      "source": "/producto/",
+      "destination": "/es/productos/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/producto/:slug",
+      "destination": "/en/products/:slug/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/producto/:slug/",
+      "destination": "/en/products/:slug/",
+      "statusCode": 301
+    },
+    {
+      "source": "/receta/:slug",
+      "destination": "/es/recetas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/receta/:slug/",
+      "destination": "/es/recetas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/encontranos",
+      "destination": "/es/contacto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/encontranos/",
+      "destination": "/es/contacto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/brands",
+      "destination": "/es/marcas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/brands/",
+      "destination": "/es/marcas/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/contact",
+      "destination": "/es/contacto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/contact/",
+      "destination": "/es/contacto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/find-us",
+      "destination": "/es/contacto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/find-us/",
+      "destination": "/es/contacto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/menu",
+      "destination": "/es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/es/menu/",
+      "destination": "/es/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/menu",
+      "destination": "/en/",
+      "statusCode": 301
+    },
+    {
+      "source": "/en/menu/",
+      "destination": "/en/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap-index.xml",
+      "statusCode": 301
+    },
+    {
       "source": "/verano/",
       "destination": "/verano",
       "permanent": true

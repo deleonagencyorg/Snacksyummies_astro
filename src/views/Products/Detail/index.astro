@@ -7,6 +7,7 @@ import './styles.css';
 import Breadcrumb from '../../../components/common/Breadcrumb/Breadcrumb.astro';
 import LazyImage from '../../../components/common/LazyImage.astro';
 import DeliveryAppsCarousel from '../../../components/common/DeliveryAppsCarousel.astro';
+import { canonicalHref } from '../../../utils/seo';
 
 // Interfaces para el producto
 interface Product {
@@ -138,6 +139,19 @@ if (currentProduct && currentProduct.title) {
 
 // Obtener el título normalizado
 const productTitle = currentProduct.title;
+const productUrl = canonicalHref(`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${currentProduct.slug || currentProduct.id}`);
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: productTitle,
+  description: currentLang === 'es'
+    ? `${productTitle}, snack de ${currentProduct.brand || 'Snacks Yummies'}.`
+    : `${productTitle}, a ${currentProduct.brand || 'Snacks Yummies'} snack.`,
+  image: [currentProduct.image].filter(Boolean),
+  brand: { '@type': 'Brand', name: currentProduct.brand || 'Snacks Yummies' },
+  manufacturer: { '@type': 'Organization', name: 'Snacks Yummies', url: 'https://www.snacksyummies.com/' },
+  url: productUrl,
+};
 
 const nutritionFacts = {
   servingsPerContainer: currentLang === 'es' ? '8 Porciones Por Envase' : '8 Servings Per Container',
@@ -201,6 +215,7 @@ if (currentBrand && currentBrand.products) {
 
 ---
 <div class="w-full" >
+<script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 <!-- Page background wrapper -->
 
   <!-- Hero Banner con fondo primary -->

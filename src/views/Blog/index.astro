@@ -29,7 +29,7 @@ interface Props {
 const { blogPosts, currentLang, isLoading = false } = Astro.props;
 ---
 
-<Layout title="Blog" class="bg-primary" description="Latest blog posts">
+<Layout title="Blog" class="bg-primary" description={currentLang === 'es' ? 'Noticias, tips y novedades de Snacks Yummies y sus marcas.' : 'News, tips and updates from Snacks Yummies and its brands.'}>
   <div class="container mx-auto px-4 pt-6">
     <Breadcrumb 
       items={[

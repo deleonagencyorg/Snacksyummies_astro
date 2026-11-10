@@ -1,6 +1,8 @@
 ---
 import { t } from '../../i18n/i18n';
 import type { Locale } from '../../i18n/i18n';
+import { routesConfig } from '../../config/routes';
+import { CANONICAL_ORIGIN } from '../../utils/seo';
 
 interface Props {
   title?: string;
@@ -13,89 +15,103 @@ interface Props {
 
 const {
   title = 'Snacks Yummies',
-  description = 'Delicious snacks from Central America',
+  description,
   canonicalUrl,
   image = 'https://snack.yummiespromociones.com/snacksyummies/og-image.jpg',
   type = 'website',
   schemaData = {}
 } = Astro.props as Props;
 
-const path = Astro.url.pathname;
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
 const parts = path.split('/').filter(Boolean);
 const first = parts[0] as string | undefined;
 const validLocales: Locale[] = ['es', 'en'];
 const currentLang: Locale = validLocales.includes(first as Locale) ? (first as Locale) : 'es';
 const siteName = t('site.name', { locale: currentLang }) || 'Snacks Yummies';
+const site = Astro.site ?? new URL(CANONICAL_ORIGIN);
 
-// Base URL precedence: env > Astro.site > Astro.url.origin
-const ENV_BASE = import.meta.env.PUBLIC_SITE_URL as string | undefined;
-const SITE_BASE = (Astro.site ? String(Astro.site) : '') as string;
-const ORIGIN = (Astro.url?.origin ? String(Astro.url.origin) : '') as string;
-const baseUrl = (ENV_BASE && ENV_BASE.trim()) || (SITE_BASE && SITE_BASE.trim()) || (ORIGIN && ORIGIN.trim()) || '';
-
-// Ensure baseUrl ends with '/'
-const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-
-// Build canonical (avoid query/hash). Fallback to normalizedBase + path
-const absoluteCanonical = canonicalUrl
-  ? canonicalUrl
-  : `${normalizedBase.replace(/\/$/, '')}${path}`;
-
-// Map localized segment between languages
-function mapSecondSegment(seg: string, toLang: Locale) {
-  const map: Record<string, Record<Locale, string>> = {
-    'productos': { es: 'productos', en: 'products' },
-    'products': { es: 'productos', en: 'products' },
-    'recetas': { es: 'recetas', en: 'recipes' },
-    'recipes': { es: 'recetas', en: 'recipes' },
-  };
-  const key = seg in map ? seg : '';
-  if (!key) return seg;
-  return map[key][toLang] || seg;
+function toCanonical(input: string): string {
+  const url = new URL(input, site);
+  url.protocol = 'https:';
+  url.hostname = 'www.snacksyummies.com';
+  url.search = '';
+  url.hash = '';
+  if (!url.pathname.endsWith('/')) url.pathname += '/';
+  return url.href;
 }
 
-// Build alternate URLs for es/en
-function buildAlternate(target: Locale) {
-  const parts = path.split('/').filter(Boolean); // [lang, seg2, ...]
-  const rest = parts.slice(2);
+const absoluteCanonical = toCanonical(canonicalUrl || path);
+
+const segmentMap: Record<string, Record<Locale, string>> = {
+  productos: { es: 'productos', en: 'products' },
+  products: { es: 'productos', en: 'products' },
+  recetas: { es: 'recetas', en: 'recipes' },
+  recipes: { es: 'recetas', en: 'recipes' },
+};
+
+for (const route of routesConfig) {
+  const es = route.slugs.es;
+  const en = route.slugs.en;
+  if (!es && !en) continue;
+  if (es) segmentMap[es] = { es, en: en || es };
+  if (en) segmentMap[en] = { es: es || en, en };
+}
+
+function buildAlternate(target: Locale): string {
   const second = parts[1] || '';
-  const mappedSecond = mapSecondSegment(second, target);
-  const rebuilt = ['' + target, mappedSecond, ...rest].filter(Boolean).join('/');
-  return `${normalizedBase.replace(/\/$/, '')}/${rebuilt}${path.endsWith('/') ? '/' : ''}`;
+  const rest = parts.slice(2);
+  const mappedSecond = second && segmentMap[second] ? segmentMap[second][target] : second;
+  const rebuilt = [target, mappedSecond, ...rest].filter(Boolean).join('/');
+  return toCanonical(`/${rebuilt}/`);
 }
 
-const altEs = buildAlternate('es');
-const altEn = buildAlternate('en');
+const hasLocalePrefix = first === 'es' || first === 'en';
+const altEs = hasLocalePrefix ? buildAlternate('es') : absoluteCanonical;
+const altEn = hasLocalePrefix ? buildAlternate('en') : absoluteCanonical;
 
-// Normalize schema data into an array and serialize
+const fallbackDescription =
+  currentLang === 'es'
+    ? 'Snacks de Centroamérica: Zambos, Ranchitas, Ziba\'s, Cappy, Taqueritos, Yummi Nuts y Yummi Pops.'
+    : 'Snacks from Central America: Zambos, Ranchitas, Ziba\'s, Cappy, Taqueritos, Yummi Nuts and Yummi Pops.';
+const metaDescription = description?.trim() || fallbackDescription;
+const documentTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const ogLocale = currentLang === 'en' ? 'en_US' : 'es_HN';
+
 const schemaArray = Array.isArray(schemaData) ? schemaData : (Object.keys(schemaData || {}).length ? [schemaData] : []);
 const schemaString = schemaArray.length ? JSON.stringify(schemaArray.length === 1 ? schemaArray[0] : { '@graph': schemaArray }) : '';
 ---
 
 <!-- Primary Meta Tags -->
-<title>{title} | {siteName}</title>
-<meta name="description" content={description} />
+<title>{documentTitle}</title>
+<meta name="description" content={metaDescription} />
 <link rel="canonical" href={absoluteCanonical} />
+<link rel="alternate" type="text/plain" href="https://www.snacksyummies.com/llms.txt" title="Guía para modelos de lenguaje" />
 <meta name="algolia-site-verification" content="475A813C49A826D5" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
 <meta property="og:url" content={absoluteCanonical} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+<meta property="og:title" content={documentTitle} />
+<meta property="og:description" content={metaDescription} />
 <meta property="og:image" content={image} />
 <meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={ogLocale} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:site" content="@SnacksYummies" />
+<meta name="twitter:title" content={documentTitle} />
+<meta name="twitter:description" content={metaDescription} />
 <meta name="twitter:image" content={image} />
 
 <!-- Language Alternates -->
-<link rel="alternate" hreflang="es" href={altEs} />
-<link rel="alternate" hreflang="en" href={altEn} />
-<link rel="alternate" hreflang="x-default" href={normalizedBase} />
+{hasLocalePrefix && (
+  <>
+    <link rel="alternate" hreflang="es" href={altEs} />
+    <link rel="alternate" hreflang="en" href={altEn} />
+    <link rel="alternate" hreflang="x-default" href={altEs} />
+  </>
+)}
 
 <!-- Schema.org -->
 {schemaString && (

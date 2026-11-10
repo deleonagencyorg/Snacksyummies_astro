@@ -3,6 +3,7 @@
 import { t, setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import ProductDetail from '../../../views/Products/Detail/index.astro';
+import { findCatalogProduct, productMetaDescription } from '../../../utils/seo';
 
 export function getStaticPaths() {
   // Solo español para /productos
@@ -33,9 +34,15 @@ const { lang, productId } = Astro.params;
 // Establecer el idioma para las traducciones
 setLocale(lang as Locale);
 
+const catalogProduct = findCatalogProduct(lang as Locale, String(productId || ''));
+const productTitle = catalogProduct?.product.title || 'Producto';
+const productDescription = catalogProduct
+  ? productMetaDescription(productTitle, catalogProduct.brandName, 'es')
+  : undefined;
+
 console.log(`Renderizando producto: ${productId} en idioma: ${lang}`);
 ---
 
-<MainLayout title={lang === 'es' ? 'Producto' : 'Product'}>
+<MainLayout title={productTitle} description={productDescription}>
   <ProductDetail productId={productId} />
 </MainLayout>

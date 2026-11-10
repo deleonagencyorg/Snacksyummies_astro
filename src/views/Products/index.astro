@@ -167,9 +167,8 @@ const clientLang = currentLang;
       <p class="text-center text-primary">{currentLang === 'es' ? 'No hay productos disponibles' : 'No products available'}</p>
     ) : (
       <div class="container mx-auto flex flex-col gap-14 items-center ">
-        <!-- Title -->
-       
-        
+        <h1 class="text-3xl md:text-5xl font-title font-bold text-primary text-center">{currentLang === 'es' ? 'Nuestros productos' : 'Our products'}</h1>
+
         <!-- Products Grid -->
         <div class="w-full">
           <div id="products-grid" class="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 place-items-start">
