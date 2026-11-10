@@ -2,99 +2,131 @@
 import Layout from '../../layouts/ProductosConCausaLayout.astro';
 import LazyImage from '../../components/common/LazyImage.astro';
 import { ViewTransitions } from 'astro:transitions';
+import patternConoce from '../../assets/productosconcausahn/pattern-conoce.svg?url';
 import '../../styles/title-letters.css';
+import '../../styles/pcc-gt-fonts.css';
+
+const CDN = 'https://snack.yummiespromociones.com/SnacksyummiesAssets';
+const HN = `${CDN}/productosconcausahn`;
+
+// Sonrisas rojas del diseño (YPOPS-CAUSA_WEB-LAYOUT-HN.ai), exportadas del vector original
+const smiles = {
+  counter: { w: 254.5, h: 75.3, d: 'M0 0.6C46.7 32.8 104.8 42.1 160.1 35.5C182 33 203.5 27.5 223.5 18.1C233.8 13.2 243.9 7.2 252.8 0L254.5 1.1C247.4 18.8 233 32.5 217.5 42.9C171.3 73.1 102.8 75.3 53.7 50.9C31.8 39.8 10.8 22.9 0 0.6Z' },
+  productos: { w: 360.4, h: 106.4, d: 'M0 0.6C50.6 41.2 116 59.5 180.3 59.2C236.2 59.1 292.9 47.7 339.5 15.5C346.2 10.8 352.8 5.7 358.7 0L360.4 1.1C353 17 340.9 30 327.7 41.4C250.3 106.4 110.5 104.8 33.6 39.5C20.5 28.3 8.3 15.7 0 0.6Z' },
+};
+
+const products = [
+  { file: 'ypops-nacho-jalapeno_osh-hn', h: 3877, alt: 'Yummi Pops Nacho Jalapeño Cream', name: ['Yummi Pops Nacho', 'Jalapeño Cream'], color: '#00bf00' },
+  { file: 'ypops-nacho-queso_osh-hn', h: 3872, alt: 'Yummi Pops Nacho Queso Blanco', name: ['Yummi Pops Nacho', 'Queso Blanco'], color: '#00b2f1' },
+  { file: 'ypops-queso_osh-hn', h: 3876, alt: 'Yummi Pops Queso', name: ['Yummi Pops', 'Queso'], color: '#ff6500' },
+  { file: 'ypops-sal_osh', h: 3877, alt: 'Yummi Pops Sal Marina', name: ['Yummi Pops', 'Sal Marina'], color: '#005ab2' },
+];
+
+// Fotos de "Conoce más": posición y escala de cada foto dentro de su marco, medidas sobre el diseño
+const gallery = [
+  { file: '77e31eed-3bb2-4292-910f-bd4ff5ae9bd8', w: 1464, h: 1135, left: '-1.74%', top: '-12.1%', width: '107.72%', alt: 'Entrega de donativo a Operación Sonrisa Honduras' },
+  { file: '94d5c629-2380-4e5a-986c-990fe437c64c', w: 1123, h: 709, left: '-5.21%', top: '-0.86%', width: '111.2%', alt: 'Equipo de Operación Sonrisa Honduras' },
+  { file: '1fef6d9d-7657-46f1-bd8a-9332d61e653d', w: 1600, h: 1120, left: '-6.95%', top: '-1.73%', width: '107.72%', alt: 'Familias apoyadas por Operación Sonrisa Honduras' },
+];
 ---
 
-<!-- Google Fonts - Digital Counter Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-<Layout 
+<Layout
   title="Productos con Causa Yummi Pops | Operación Sonrisa Honduras" 
   description="Descubre la alianza de Yummi Pops y Operación Sonrisa Honduras: productos con causa que financian cirugías, clínicas y miles de sonrisas transformadas.">
   <ViewTransitions slot="head" />
-  <main class="container mx-auto ">
+  <!--
+    Medidas del diseño YPOPS-CAUSA_WEB-LAYOUT-HN.ai (mesa de trabajo de 1920px).
+    En desktop las secciones del diseño se escalan con --u (1px del diseño = 100cqw / 1920), así a 1920 coincide 1:1.
+  -->
+  <main class="hn-page">
     <article class="w-full">
-       <LazyImage id="inicio" src="https://snack.yummiespromociones.com/SnacksyummiesAssets/portadahomemini.webp" alt="Operación Sonrisas Honduras" width={400} height={300} class="w-full" />
-      
-        <section id="sobre-la-causa" class="container flex flex-col md:flex-row items-center justify-center text-center px-6 pt-6 pb-0 mt-6 mb-0 gap-y-2 md:gap-x-12 md:p-8 md:my-8 lg:p-0 overflow-x-clip">
-          <div class="sm:w-full md:w-1/2 ">
-            <p class="reveal reveal-left text-red font-title text-2xl md:text-4xl text-left">Cada vez que disfrutas tus Yummi Pops favoritos, estás contribuyendo a cambiar vidas.</p>
-            <p class="reveal reveal-up reveal-delay-1 text-primary text-left lg:text-justify mt-6 md:mt-8 break-words text-lg md:text-2xl">
-              Por cada producto que compras, Yummi Pops apoya a
-              <b>Operación Sonrisa Honduras</b>, una fundación que brinda
-              cirugías y tratamiento integral a niños y niñas con
-              labio y paladar hendido.</p>
-          </div>
-          <div class="reveal reveal-right reveal-delay-2 sm:w-full md:w-1/2 text-center md:mt-8">
-            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ninosmini.webp" alt="Operación Sonrisas Honduras"  class="md:w-[80%] w-[78%] mx-auto" />
-          </div>
-      </section>
+       <!-- Header HN (YPOPS-CAUSA_WEB-LAYOUT-HN.ai): fondo fijo + listón que se llena de izq. a der. + productos + 10 años flotando al final -->
+       <header id="inicio" class="hn-hero">
+         <img src={`${HN}/header/header_bg.webp`} alt="" aria-hidden="true" class="hn-hero__bg" width="16383" height="10102" loading="eager" fetchpriority="high" decoding="async" />
+         <img src={`${HN}/header/sonrisas.webp`} alt="Sumando sonrisas" class="hn-hero__ribbon" width="16383" height="6566" loading="eager" decoding="async" />
+         <img src={`${HN}/products/ypops-nacho-jalapeno_osh-hn.webp`} alt="Yummi Pops Nacho Jalapeño Cream" class="hn-hero__product hn-hero__product--1" width="2626" height="3877" loading="eager" decoding="async" />
+         <img src={`${HN}/products/ypops-nacho-queso_osh-hn.webp`} alt="Yummi Pops Nacho Queso Blanco" class="hn-hero__product hn-hero__product--2" width="2626" height="3872" loading="eager" decoding="async" />
+         <img src={`${HN}/products/ypops-queso_osh-hn.webp`} alt="Yummi Pops Palomitas de Maíz Queso" class="hn-hero__product hn-hero__product--3" width="2626" height="3876" loading="eager" decoding="async" />
+         <img src={`${HN}/products/ypops-sal_osh.webp`} alt="Yummi Pops Palomitas de Maíz Sal Marina" class="hn-hero__product hn-hero__product--4" width="2626" height="3877" loading="eager" decoding="async" />
+         <!-- Flotado en el contenedor y entrada en la imagen: cada transform en su propio elemento, sin saltos al pasar de una animación a otra -->
+         <div class="hn-hero__years">
+           <img src={`${HN}/header/10_years.webp`} alt="10 años Yummi Pops y Operación Sonrisa Honduras" class="hn-hero__years-img" width="16383" height="10022" loading="eager" decoding="async" />
+         </div>
+       </header>
 
-      <!-- Sección del Contador -->
-      <section id="counter" class="container mx-auto px-4 pt-4 pb-2 md:py-12 overflow-x-clip">
-        <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 lg:gap-16">
-          <!-- Texto Izquierdo -->
-          <div class="reveal reveal-left text-center md:text-center">
-            <p class="text-[#1652a7] font-title font-bold text-lg md:text-2xl lg:text-5xl">
-              Llevamos <br/>en esta campaña
+      <!-- ¡Celebramos 10 años…! (medidas de YPOPS-CAUSA_WEB-LAYOUT-HN.ai) -->
+      <section id="sobre-la-causa" class="hn-intro">
+        <div class="hn-intro__text">
+          <h2 class="reveal reveal-left font-gt-title hn-intro__title">
+            ¡Celebramos 10 años unidos <br class="hidden md:inline" />por la sonrisa de miles de niños!
+          </h2>
+          <div class="reveal reveal-up reveal-delay-1 hn-intro__body">
+            <p class="font-gt-text">
+              Gracias a ti, <b>Yummi Pops y Operación Sonrisa Honduras</b> <br class="hidden md:inline" />continúan transformando el futuro de miles de niños y niñas <br class="hidden md:inline" />con labio y paladar hendido mediante <b>cirugías <br class="hidden md:inline" />y tratamientos gratuitos.</b>
             </p>
+            <p class="font-gt-text"><b>¡Súmate hoy, cada Yummi Pops cuenta!</b></p>
           </div>
-
-          <!-- Contador Digital -->
-          <div class="reveal reveal-up reveal-delay-1 counter-display py-8">
-            <div class="counter-wrapper digital-counter" data-target="12334" aria-label="12.334">
-              <span class="counter-ghost">88.888</span>
-              <span class="counter-digit">1</span>
-              <span class="counter-digit">2</span>
-              <span class="counter-separator">.</span>
-              <span class="counter-digit">3</span>
-              <span class="counter-digit">3</span>
-              <span class="counter-digit">4</span>
-            </div>
-          </div>
-
-          <!-- Texto Derecho -->
-          <div class="reveal reveal-right reveal-delay-2 text-center md:text-left">
-            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisasgeneradas.webp" alt="Operación Sonrisas Honduras" class="md:w-[80%] w-[86%] mx-auto" />
-          </div>
+        </div>
+        <!-- Niño y niña (gif 750x750 con margen transparente): se ubican para que los personajes caigan donde el diseño -->
+        <div class="reveal reveal-right reveal-delay-2 hn-kids">
+          <img src={`${HN}/nino-osh.gif`} alt="Operación Sonrisa Honduras - niño" class="hn-kids__boy" width="750" height="750" loading="lazy" decoding="async" />
+          <img src={`${HN}/nina-osh.gif`} alt="Operación Sonrisa Honduras - niña" class="hn-kids__girl" width="750" height="750" loading="lazy" decoding="async" />
         </div>
       </section>
 
-        <section class="bg-[#1652a7] container pt-6 pb-8 mt-4 mb-8 md:py-8 md:my-8 sm:flex sm:flex-col rounded-t-2xl md:rounded-t-[5%] overflow-x-clip">
-          <div class="reveal reveal-up w-full py-2 md:py-8 flex justify-center">
-            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/productosconcausahn/logo-sonrisa-light.webp" alt="Operación Sonrisa Honduras" width={2200} height={385} class="w-[240px] md:w-[500px] md:mt-8" />
+      <!-- Sección del Contador -->
+      <section id="counter" class="hn-counter">
+        <p class="reveal reveal-left hn-counter__lead">
+          <span class="font-gt-bold18">Llevamos</span><br/><span class="font-gt-bold15">en esta campaña</span>
+        </p>
+
+        <div class="reveal reveal-up reveal-delay-1 counter-display">
+          <div class="counter-wrapper digital-counter" data-target="12334" aria-label="12,334">
+            <span class="counter-digit">1</span>
+            <span class="counter-digit">2</span>
+            <span class="counter-separator">,</span>
+            <span class="counter-digit">3</span>
+            <span class="counter-digit">3</span>
+            <span class="counter-digit">4</span>
           </div>
-          <div class="reveal reveal-left w-full pt-6 pb-3 md:py-8 flex justify-center px-4">
-            <h1 class="text-white font-title text-2xl md:text-4xl lg:text-6xl">Conoce más sobre la causa</h1>
-          </div>
-          <div class="reveal reveal-up reveal-delay-1 w-full px-6 md:px-8 pb-6 md:pb-8 flex items-center justify-center text-center ">
-            <p class="text-white text-left lg:text-justify text-lg md:text-2xl leading-relaxed break-words">
-              En Operación Sonrisa, creemos que cada niño que nace con la condición de labio y/o paladar hendido merece cirugías y tratamiento integral de calidad.<br/><br/>
-              <span class="font-bold font-title text-white">1 de cada 500 niños</span> nace con labio y/o paladar hendido, una condición que no solamente
-              impacta en su sonrisa, sino también la capacidad para alimentarse, hablar, oír con
-              normalidad e incluso la posibilidad de sobrevivir.<br/><br/>
-              Aun así, con una cirugía a tiempo y el acompañamiento adecuado, pueden recuperar
-              su salud, su desarrollo y su confianza.<br/><br/>
-              <span class="font-bold font-title text-white">Snacks Yummies y tú</span> pueden crear sonrisas que transforman vidas.
-            </p>
+        </div>
+
+        <div class="reveal reveal-right reveal-delay-2 hn-counter__generated">
+          <p class="font-gt-title hn-counter__sonrisas">Sonrisas</p>
+          <p class="font-gt-bold18 hn-counter__generadas">generadas</p>
+          <svg class="hn-smile hn-counter__smile" viewBox={`0 0 ${smiles.counter.w} ${smiles.counter.h}`} aria-hidden="true"><path d={smiles.counter.d} /></svg>
+        </div>
+      </section>
+
+      <!-- Conoce más sobre la causa -->
+      <section id="conoce" class="hn-conoce">
+        <img src={patternConoce} alt="" aria-hidden="true" class="hn-conoce__pattern" width="1920" height="517" loading="lazy" decoding="async" />
+        <div class="reveal reveal-up hn-conoce__logo-wrap">
+          <img src={`${HN}/logo-sonrisa-light.webp`} alt="Operación Sonrisa Honduras" class="hn-conoce__logo" width="2200" height="385" loading="lazy" decoding="async" />
+        </div>
+        <h1 class="reveal reveal-left font-gt-bold18 hn-conoce__title">Conoce más sobre la causa</h1>
+        <div class="reveal reveal-up reveal-delay-1 hn-conoce__text">
+          <p class="font-gt-text">
+            <b class="hn-hl">1 de cada 500 niños</b> nace con labio y/o paladar hendido, una condición que impacta <br class="hidden md:inline" />no solo su sonrisa, sino también su capacidad para alimentarse, hablar y oír con <br class="hidden md:inline" />normalidad.
+          </p>
+          <p class="font-gt-text">
+            Aun así, con una cirugía a tiempo y el acompañamiento adecuado, pueden recuperar <br class="hidden md:inline" />su salud, su desarrollo y su confianza.
+          </p>
+          <p class="font-gt-text hn-conoce__closing">
+            <b class="hn-hl">Snacks Yummies y tú</b> <b>pueden crear sonrisas que transforman vidas.</b>
+          </p>
+        </div>
+        <!-- Marco blanco de 7px con radio 41.5px; cada foto recortada como en el diseño -->
+        <div class="hn-gallery">
+          {gallery.map((g, i) => (
+            <div class:list={['reveal', 'reveal-up', i === 1 && 'reveal-delay-1', i === 2 && 'reveal-delay-2', 'hn-gallery__frame']}>
+              <img src={`${HN}/${g.file}.webp`} alt={g.alt} width={g.w} height={g.h} loading="lazy" decoding="async" style={`left:${g.left};top:${g.top};width:${g.width}`} />
             </div>
-            <div class="px-8 flex flex-col sm:flex-row sm:justify-center sm:gap-x-4 sm:gap-y-4">
-              <div class="reveal reveal-left w-full sm:w-1/3">
-                <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto1mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full" />
-              </div>
-              <div class="reveal reveal-up reveal-delay-1 w-full sm:w-1/3">
-                <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto2mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full" />
-              </div>
-              <div class="reveal reveal-right reveal-delay-2 w-full sm:w-1/3">
-                <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/foto3mini.webp" alt="Operación Sonrisa Honduras" width={400} height={300} class="w-full" />
-              </div>
-            </div>
-            <div class="reveal reveal-up reveal-delay-1 flex justify-center mt-8">
-            <a href="/productosconcausa/historia" class="bg-yellow text-primary text-center font-bold font-title text-lg md:text-xl py-3 px-6 rounded-full mt-4 mb-8 w-full max-w-[300px] shadow-lg transition-all duration-200 hover:bg-white hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60">Conoce nuestra historia</a>
-          </div>
-          </div>
-          
+          ))}
+        </div>
+        <div class="reveal reveal-up hn-conoce__cta">
+          <a href="/productosconcausa/historia" class="font-gt-title hn-conoce__btn">Conoce nuestra historia</a>
+        </div>
       </section>
 
       <!-- Sección de Impacto -->
@@ -267,142 +299,61 @@ import '../../styles/title-letters.css';
       </section>
 
       <!-- Sección de Productos Participantes -->
-      <section id="productos-participantes" class="container mx-auto px-4 py-12 md:py-16 animate-slide-up relative bg-cover bg-center bg-no-repeat" style="background-image: url('https://snack.yummiespromociones.com/SnacksyummiesAssets/bgmini.webp');">
-      
-        <div class="relative z-10">
-        <!-- Título -->
-        <div class="text-left mb-8 md:mb-12 p-8 md:p-0">
-          <h2 class="title-letters text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-            Productos<br/>participantes
-          </h2><LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 max-w-32 lg:max-w-64 md:p-0" />
-        </div>
-
-        <!-- Grid de Productos -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
-          <!-- Producto 1: Yummi Pops Nacho Jalapeño Cream -->
-          <div class="flex flex-col items-center text-center animate-item">
-            <div class="w-full aspect-square flex items-center justify-center mb-4">
-              <LazyImage 
-                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-mini.webp" 
-                alt="Yummi Pops Nacho Jalapeño Cream" 
-                width={300} 
-                height={300} 
-                class="w-full h-full object-contain"
-              />
-            </div>
-            <h3 class="font-bold text-sm md:text-base lg:text-lg" style="color: #7CB342;">
-              Yummi Pops Nacho<br/>Jalapeño Cream
-            </h3>
+      <section id="productos-participantes" class="hn-productos animate-slide-up">
+        <!-- Desktop: título a la izquierda y caja de texto a la derecha que sale hasta el borde -->
+        <div class="hn-productos__head">
+          <div class="hn-productos__titlewrap">
+            <h2 class="title-letters font-gt-bold18 hn-productos__title">
+              Productos<br/>participantes
+            </h2>
+            <svg class="hn-smile hn-productos__smile" viewBox={`0 0 ${smiles.productos.w} ${smiles.productos.h}`} aria-hidden="true"><path d={smiles.productos.d} /></svg>
           </div>
-
-          <!-- Producto 2: Yummi Pops Nacho Queso Blanco -->
-          <div class="flex flex-col items-center text-center animate-item">
-            <div class="w-full aspect-square flex items-center justify-center mb-4">
-              <LazyImage 
-                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-nacho-quesoblanco-mini.webp" 
-                alt="Yummi Pops Nacho Queso Blanco" 
-                width={300} 
-                height={300} 
-                class="w-full h-full object-contain"
-              />
-            </div>
-            <h3 class="font-bold text-sm md:text-base lg:text-lg text-sky-400">
-              Yummi Pops Nacho<br/>Queso Blanco
-            </h3>
-          </div>
-
-          <!-- Producto 3: Yummi Pops Queso -->
-          <div class="flex flex-col items-center text-center animate-item">
-            <div class="w-full aspect-square flex items-center justify-center mb-4">
-              <LazyImage 
-                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-queso-mini.webp" 
-                alt="Yummi Pops Palomitas de maíz Queso" 
-                width={300} 
-                height={300} 
-                class="w-full h-full object-contain"
-              />
-            </div>
-            <h3 class="font-bold text-sm md:text-base lg:text-lg" style="color: #FF9800;">
-              Yummi Pops<br/>Palomitas de maíz<br/>Queso
-            </h3>
-          </div>
-
-          <!-- Producto 4: Yummi Pops Sal Marina -->
-          <div class="flex flex-col items-center text-center animate-item">
-            <div class="w-full aspect-square flex items-center justify-center mb-4">
-              <LazyImage 
-                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/yummipops-palomitas-sal-mini.webp" 
-                alt="Yummi Pops Palomitas de maíz Sal Marina" 
-                width={300} 
-                height={300} 
-                class="w-full h-full object-contain"
-              />
-            </div>
-            <h3 class="font-bold text-sm md:text-base lg:text-lg" style="color: #1976D2;">
-              Yummi Pops<br/>Palomitas de maíz<br/>Sal Marina
-            </h3>
+          <div class="reveal reveal-right hn-productos__box">
+            <p class="font-gt-title hn-productos__box-title">
+              ¡Estos son los Yummi Pops<br class="hidden md:inline" /> que transforman vidas!
+            </p>
+            <p class="font-gt-text hn-productos__box-text">
+              <b>Con cada compra apoyas a Operación Sonrisa Honduras,</b><br class="hidden md:inline" /> brindando cirugías y tratamiento integral a niños y niñas con<br class="hidden md:inline" /> labio y paladar hendido.
+            </p>
           </div>
         </div>
+
+        <!-- Cada bolsa sobre tarjeta gris #f2f2f2 (diseño: 385x467, radio 68px, bolsa de 375px de alto centrada) -->
+        <div class="hn-productos__grid">
+          {products.map((p) => (
+            <div class="hn-product animate-item">
+              <div class="hn-product__card">
+                <img src={`${HN}/products/${p.file}.webp`} alt={p.alt} width="2626" height={p.h} loading="lazy" decoding="async" />
+              </div>
+              <h3 class="font-gt-bold15 hn-product__name" style={`color:${p.color}`}>
+                {p.name[0]}<br/>{p.name[1]}
+              </h3>
+            </div>
+          ))}
         </div>
       </section>
 
-      <!-- Sección Súmate a esta causa (Azul) -->
-      <section class="bg-sky-400 py-12 md:py-16 lg:py-20">
-        <div class="container mx-auto px-4">
-          <div class="bg-white rounded-3xl md:rounded-[3rem] p-8 md:p-12 lg:p-16 shadow-2xl">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-              <!-- Personaje Izquierdo -->
-              <div class="flex-shrink-0">
-                <LazyImage 
-                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ninomini.webp" alt="Operación Sonrisa Honduras" 
-                  alt="Niño Yummi Pops" 
-                  width={200} 
-                  height={300} 
-                  class="h-[285px] w-auto object-contain"
-                />
-              </div>
+      <!-- Sección Súmate a esta causa -->
+      <section class="hn-sumate">
+        <div class="hn-sumate__card">
+          <div class="hn-sumate__kid hn-sumate__kid--boy">
+            <img src={`${HN}/nino-osh.gif`} alt="Operación Sonrisa Honduras - niño" width="750" height="750" loading="lazy" decoding="async" />
+          </div>
 
-              <!-- Contenido Central -->
-              <div class="flex-1 text-center">
-                <h2 class="text-primary font-bold text-xl md:text-2xl lg:text-3xl mb-4 md:mb-6">
-                  Súmate a esta causa y ayúdanos<br/>
-                  a transformar más vidas con
-                </h2>
-                
-                <!-- Logo Yummi Pops -->
-                <div class="flex justify-center md:justify-between items-center gap-2 mb-4 md:mb-4">
-                  <div>
-                    <LazyImage 
-                      src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Yummi-pops-3.webp" 
-                      alt="Yummi Pops" 
-                      width={150} 
-                      class="w-28 md:w-36 h-auto"
-                    />
-                  </div>
-                  <div class="border-l border-gray-300 h-12"></div>
-                  <div>
-                    <LazyImage 
-                      src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logooperacionsonrisas.webp" 
-                      alt="Operación Sonrisa Honduras" 
-                      width={300} 
-                      height={64} 
-                      class="w-56 h-auto"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <!-- Personaje Derecho -->
-              <div class="flex-shrink-0">
-                <LazyImage 
-                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/ninamini.webp" alt="Operación Sonrisa Honduras" 
-                  alt="Niña Yummi Pops" 
-                  width={200} 
-                  height={300} 
-                  class="h-[285px] w-auto object-contain"
-                />
-              </div>
+          <div class="hn-sumate__center">
+            <h2 class="font-gt-bold18 hn-sumate__title">
+              Súmate a esta causa y ayúdanos<br class="hidden xl:inline" />
+              a transformar más vidas con
+            </h2>
+            <div class="hn-sumate__logos">
+              <img src={`${CDN}/Yummi-pops-3.webp`} alt="Yummi Pops" class="hn-sumate__ypops" width="300" height="300" loading="lazy" decoding="async" />
+              <span class="hn-sumate__divider" aria-hidden="true"></span>
+              <img src={`${CDN}/logooperacionsonrisas.webp`} alt="Operación Sonrisa Honduras" class="hn-sumate__os" width="2200" height="385" loading="lazy" decoding="async" />
             </div>
+          </div>
+
+          <div class="hn-sumate__kid hn-sumate__kid--girl">
+            <img src={`${HN}/nina-osh.gif`} alt="Operación Sonrisa Honduras - niña" width="750" height="750" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
@@ -548,125 +499,869 @@ import '../../styles/title-letters.css';
 </Layout>
 
 <style>
-  /* Estilos del Contador Digital */
-  .counter-display {
+  /* ---------- Header HN ----------
+     Medidas de YPOPS-CAUSA_WEB-LAYOUT-HN.ai (mesa de 1920px; el header arranca bajo el nav de 127px).
+     X = (x_diseño - --x0) * --u. Desktop muestra todo el ancho; mobile recorta los lados para que los productos se lean. */
+  /* ---------- Base de medidas ---------- */
+  .hn-page {
+    container-type: inline-size;
+    max-width: 1920px;
+    margin-inline: auto;
+    overflow-x: clip;
+    --u: calc(100cqw / 1920);
+    --hn-blue: #004e9d;
+    --hn-blue-title: #0051a4;
+    --hn-sky: #00b2f1;
+    --hn-red: #e3032e;
+  }
+
+  /* El diseño no aplica kerning; tracking +20 (0.02em) en los bloques de texto que lo llevan */
+  .hn-intro,
+  .hn-conoce,
+  .hn-productos,
+  .hn-sumate {
+    font-kerning: none;
+  }
+
+  .hn-intro__title,
+  .hn-intro__body,
+  .hn-conoce__text,
+  .hn-product__name,
+  .hn-productos__box-title,
+  .hn-productos__box-text {
+    letter-spacing: 0.02em;
+  }
+
+  .hn-smile {
+    display: block;
+    fill: var(--hn-red);
+    height: auto;
+  }
+
+  .hn-hero {
+    --x0: 300;
+    --u: calc(100cqw / 1320);
     position: relative;
-    display: inline-block;
-    padding: 0.4rem;
-    border-radius: 1.25rem;
-    background: #f7f9fc;
-    box-shadow:
-      0 4px 10px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.8);
-    border: 1px solid #d9e2ee;
-    overflow: hidden;
     width: 100%;
-    max-width: 400px;
+    height: calc(1533 * var(--u));
+    overflow: hidden;
+    container-type: inline-size;
+    background: #fff;
   }
 
-  .counter-display::before {
-    content: '';
+  @media (min-width: 640px) {
+    .hn-hero {
+      --x0: 0;
+      --u: calc(100cqw / 1920);
+    }
+  }
+
+  /* img, o el canvas que lo reemplaza ya reducido (ver script) */
+  .hn-hero > :is(img, canvas) {
     position: absolute;
-    inset: 3px;
-    border-radius: 1rem;
-    background: linear-gradient(180deg, #d4e0ee 0%, #7791aa 45%, #536c85 100%);
-    box-shadow:
-      inset 0 1px 2px rgba(255, 255, 255, 0.7),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+    max-width: none;
+    height: auto;
   }
 
-  .counter-display::after {
-    content: '';
-    position: absolute;
-    left: 5%;
-    right: 5%;
-    top: 5%;
-    height: 40%;
-    border-radius: 50% / 100%;
-    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
-    opacity: 0.85;
+  .hn-hero__bg {
+    left: calc((0 - var(--x0)) * var(--u));
+    top: 0;
+    width: calc(1920 * var(--u));
   }
 
-  .counter-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.15rem;
-    padding: 0.4rem 1.4rem;
+  /* Listón "Sumando sonrisas": capa más ancha que la mesa, se sale por la izquierda */
+  .hn-hero__ribbon {
+    left: calc((-200 - var(--x0)) * var(--u));
+    top: calc(121 * var(--u));
+    width: calc(2784 * var(--u));
     z-index: 1;
+    clip-path: inset(0 100% 0 0);
   }
 
-  .counter-ghost {
+  .hn-hero__years {
     position: absolute;
-    inset: 0;
+    left: calc((424 - var(--x0)) * var(--u));
+    top: calc(133 * var(--u));
+    width: calc(1056 * var(--u));
+    z-index: 2;
+    will-change: transform;
+  }
+
+  /* Capa propia desde el inicio: la imagen ya está rasterizada cuando arranca la animación */
+  .hn-hero__years-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    opacity: 0;
+    transform: scale(0.6) rotate(-6deg);
+    transform-origin: 50% 45%;
+    will-change: transform, opacity;
+  }
+
+  .hn-hero__product {
+    opacity: 0;
+    transform: translateY(calc(160 * var(--u))) scale(0.85);
+    filter: drop-shadow(0 calc(18 * var(--u)) calc(14 * var(--u)) rgba(0, 0, 0, 0.3));
+  }
+
+  .hn-hero__product--1 { left: calc((376 - var(--x0)) * var(--u)); top: calc(1041 * var(--u)); width: calc(292 * var(--u)); z-index: 3; }
+  .hn-hero__product--2 { left: calc((648 - var(--x0)) * var(--u)); top: calc(1009 * var(--u)); width: calc(320 * var(--u)); z-index: 4; }
+  .hn-hero__product--3 { left: calc((936 - var(--x0)) * var(--u)); top: calc(989 * var(--u)); width: calc(340 * var(--u)); z-index: 6; }
+  .hn-hero__product--4 { left: calc((1252 - var(--x0)) * var(--u)); top: calc(1041 * var(--u)); width: calc(292 * var(--u)); z-index: 5; }
+
+  /* 1) el listón se llena de izquierda a derecha */
+  .hn-hero.visible .hn-hero__ribbon {
+    animation: hnRibbonFill 1.6s 0.2s forwards;
+  }
+
+  /* El listón sobresale ~7% a la izquierda y ~24% a la derecha de la mesa:
+     el tramo visible ocupa la mayor parte del tiempo y el final fuera de pantalla es rápido */
+  @keyframes hnRibbonFill {
+    0% { clip-path: inset(0 93% 0 0); animation-timing-function: cubic-bezier(0.45, 0, 0.35, 1); }
+    85% { clip-path: inset(0 23% 0 0); animation-timing-function: linear; }
+    100% { clip-path: inset(0 0 0 0); }
+  }
+
+  /* 2) los productos suben con rebote y quedan flotando */
+  .hn-hero.visible .hn-hero__product {
+    animation: hnProductIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+      hnFloat 5s ease-in-out infinite;
+  }
+
+  .hn-hero.visible .hn-hero__product--1 { animation-delay: 1s, 1.9s; }
+  .hn-hero.visible .hn-hero__product--2 { animation-delay: 1.15s, 2.5s; }
+  .hn-hero.visible .hn-hero__product--3 { animation-delay: 1.3s, 2.2s; }
+  .hn-hero.visible .hn-hero__product--4 { animation-delay: 1.45s, 2.8s; }
+
+  @keyframes hnProductIn {
+    0% { opacity: 0; transform: translateY(calc(160 * var(--u))) scale(0.85); }
+    50% { opacity: 1; }
+    100% { opacity: 1; transform: none; }
+  }
+
+  @keyframes hnFloat {
+    0%, 100% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(calc(-12 * var(--u))); }
+  }
+
+  /* 3) al final aparece el 10 años y queda flotando */
+  /* Entrada con rebote suave (escala + giro) y, ya casi asentado, el flotado del contenedor se suma sin cortes */
+  .hn-hero.visible .hn-hero__years-img {
+    animation: hnYearsIn 1.4s linear 1.9s both;
+  }
+
+  .hn-hero.visible .hn-hero__years {
+    animation: hnYearsFloat 4s ease-in-out 2.8s infinite;
+  }
+
+  /*
+   * La curva se define por tramo (CSS la aplica a cada intervalo entre keyframes):
+   * sale rápido y frena en el rebote; los vaivenes van con ease-in-out para no "reiniciar" la velocidad.
+   */
+  @keyframes hnYearsIn {
+    0% { opacity: 0; transform: scale(0.6) rotate(-6deg); animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1); }
+    30% { opacity: 1; }
+    58% { transform: scale(1.04) rotate(1.2deg); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+    80% { transform: scale(0.99) rotate(-0.4deg); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  @keyframes hnYearsFloat {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(calc(-18 * var(--u))) rotate(-1deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hn-hero .hn-hero__ribbon,
+    .hn-hero .hn-hero__years,
+    .hn-hero .hn-hero__years-img,
+    .hn-hero .hn-hero__product,
+    .hn-hero.visible .hn-hero__ribbon,
+    .hn-hero.visible .hn-hero__years,
+    .hn-hero.visible .hn-hero__years-img,
+    .hn-hero.visible .hn-hero__product {
+      animation: none;
+      opacity: 1;
+      transform: none;
+      clip-path: none;
+    }
+  }
+
+  /* ---------- ¡Celebramos 10 años…! ---------- */
+  .hn-intro {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .hn-intro__title {
+    color: var(--hn-red);
+    font-size: 1.75rem;
+    line-height: 1.11;
+  }
+
+  .hn-intro__body {
+    color: var(--hn-blue);
+    font-size: 1.375rem;
+    line-height: 1.5;
+    margin-top: 0.4em;
+  }
+
+  .hn-intro__body p + p {
+    margin-top: 1em;
+  }
+
+  /*
+   * Caja de los dos gif (750x750 con margen transparente). En el diseño:
+   * niño a 635.3px en (1025.7, 11.2) y niña a 642.7px en (1333.6, 3.2) desde el inicio de la sección.
+   */
+  .hn-kids {
+    position: relative;
+    width: min(100%, 26rem);
+    aspect-ratio: 950.6 / 643.3;
+    margin: 1.5rem auto 0;
+  }
+
+  .hn-kids img {
+    position: absolute;
+    max-width: none;
+    height: auto;
+  }
+
+  .hn-kids__boy { left: 0; top: 1.24%; width: 66.83%; z-index: 1; }
+  .hn-kids__girl { left: 32.39%; top: 0; width: 67.61%; z-index: 1; }
+
+  /* Sombra en el piso bajo cada personaje (el gif no la trae): niño x 1195–1494, niña x 1500–1802 */
+  .hn-kids::before,
+  .hn-kids::after,
+  .hn-sumate__kid::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.12) 55%, transparent);
+    pointer-events: none;
+  }
+
+  .hn-kids::before { left: 17.81%; top: 92.93%; width: 31.45%; height: 4.04%; }
+  .hn-kids::after { left: 49.9%; top: 92.93%; width: 31.77%; height: 4.04%; }
+
+  @media (min-width: 768px) {
+    .hn-intro {
+      position: relative;
+      height: calc(651 * var(--u));
+      padding: calc(86.5 * var(--u)) 0 0 calc(126 * var(--u));
+    }
+
+    .hn-intro__text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hn-intro__title {
+      font-size: calc(54 * var(--u));
+      line-height: calc(67.2 * var(--u));
+    }
+
+    .hn-intro__body {
+      font-size: calc(53.9 * var(--u));
+      line-height: calc(67.1 * var(--u));
+      margin-top: 0;
+    }
+
+    .hn-intro__body p + p {
+      margin-top: calc(67.1 * var(--u));
+    }
+
+    .hn-kids {
+      position: absolute;
+      left: calc(1025.7 * var(--u));
+      top: calc(3.2 * var(--u));
+      width: calc(950.6 * var(--u));
+      margin: 0;
+    }
+  }
+
+  /* ---------- Contador ---------- */
+  .hn-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .hn-counter__lead {
+    color: var(--hn-blue);
+    font-size: 1.875rem;
+    line-height: 0.92;
+  }
+
+  .hn-counter__generated {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2.5rem;
+    line-height: 0.91;
+  }
+
+  .hn-counter__sonrisas { color: var(--hn-red); }
+  .hn-counter__generadas { color: var(--hn-blue); }
+
+  /* En el diseño la sonrisa mide 2.9 veces el tamaño de la letra */
+  .hn-counter__smile {
+    width: 2.9em;
+    margin-top: 0.07em;
+  }
+
+  /*
+   * Caja del contador: cara #f6f4f2 de 678x270 con radio 38 (diseño), borde fino y sombra suave.
+   * Medidas en em (font-size = tamaño de las cifras): las cifras miden ~0.59em de alto.
+   */
+  .counter-display {
+    display: inline-flex;
+    justify-content: center;
+    font-size: clamp(4.5rem, 20vw, 7rem);
+    padding: 0.225em 0.275em;
+    border-radius: 0.146em;
+    background: #f6f4f2;
+    box-shadow:
+      0 0 0 1px #dcdad8,
+      0 0.012em 0.035em rgba(0, 0, 0, 0.18);
+  }
+
+  /* line-height = altura de las cifras; el top compensa las métricas de la fuente para centrarlas */
+  .counter-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    font-size: 2.5rem;
-    color: rgba(255, 255, 255, 0.22);
-    letter-spacing: 0.08em;
+    line-height: 0.59em;
+    position: relative;
+    top: 0.085em;
   }
 
-  .counter-digit {
-    font-family: 'Orbitron', monospace;
-    font-weight: 700;
-    font-size: 2.5rem;
-    color: #ffffff;
-    text-align: center;
-    line-height: 1;
-    text-shadow:
-      0 0 3px rgba(255, 255, 255, 0.9),
-      0 0 6px rgba(255, 255, 255, 0.7);
-  }
-
+  .counter-digit,
   .counter-separator {
-    font-family: 'Orbitron', monospace;
+    font-family: 'TroisMille Bold 15', var(--font-title);
     font-weight: 700;
-    font-size: 2.5rem;
-    color: #ffffff;
-    margin: 0 0.1rem;
-    line-height: 1;
-    text-shadow:
-      0 0 3px rgba(255, 255, 255, 0.9),
-      0 0 6px rgba(255, 255, 255, 0.7);
+    color: var(--hn-blue);
+    font-variant-numeric: tabular-nums;
   }
 
-  /* Responsive - Mobile */
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
+    .hn-counter {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 0;
+      padding: calc(62 * var(--u)) 0 calc(150 * var(--u)) calc(132 * var(--u));
+    }
+
+    .hn-counter__lead {
+      width: calc(393 * var(--u));
+      white-space: nowrap;
+      font-size: calc(69.74 * var(--u));
+      line-height: calc(63.7 * var(--u));
+    }
+
     .counter-display {
-      padding: 0.3rem;
-      border-radius: 0.9rem;
-      width: 90vw;
-      max-width: 90vw;
+      font-size: calc(260.3 * var(--u));
+      width: calc(678 * var(--u));
+      height: calc(270 * var(--u));
+      padding: 0;
+      align-items: center;
+      margin-left: calc(97 * var(--u));
     }
 
-    .counter-wrapper {
-      padding: 0.3rem 1rem;
-      gap: 0.08rem;
+    .hn-counter__generated {
+      width: calc(401 * var(--u));
+      margin-left: calc(92 * var(--u));
+      margin-top: calc(28 * var(--u));
+      font-size: calc(87.52 * var(--u));
+      line-height: calc(79.5 * var(--u));
     }
 
-    .counter-ghost {
-      font-size: 1.9rem;
-    }
-
-    .counter-digit,
-    .counter-separator {
-      font-size: 1.9rem;
+    .hn-counter__smile {
+      width: calc(254.5 * var(--u));
+      margin-top: calc(6 * var(--u));
+      position: relative;
+      top: calc(-15 * var(--u));
     }
   }
 
-  /* Responsive - Tablet */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .counter-ghost {
-      font-size: 2.2rem;
+  /* ---------- Conoce más sobre la causa ---------- */
+  .hn-conoce {
+    position: relative;
+    overflow: hidden;
+    background: var(--hn-blue);
+    color: #fff;
+    border-radius: 1.5rem 1.5rem 0 0;
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  /* Nachos, globos y palomitas #0063ae del borde inferior, exportados del vector del diseño */
+  .hn-conoce__pattern {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    pointer-events: none;
+  }
+
+  .hn-conoce > :not(.hn-conoce__pattern) {
+    position: relative;
+  }
+
+  .hn-conoce__logo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hn-conoce__logo {
+    width: min(70%, 15rem);
+    height: auto;
+  }
+
+  .hn-conoce__title {
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 1.5rem;
+  }
+
+  .hn-conoce__text {
+    font-size: 1.375rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+  }
+
+  .hn-conoce__text p + p {
+    margin-top: 1.3em;
+  }
+
+  /* "1 de cada 500 niños" y "Snacks Yummies y tú" van en amarillo */
+  .hn-conoce__text .hn-hl {
+    color: #ffc000;
+  }
+
+  .hn-gallery {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Marco blanco de 7px (trazo del diseño) con radio 41.5px; la foto va recortada dentro */
+  .hn-gallery__frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 531.5 / 361;
+    border: 0.4rem solid #fff;
+    border-radius: 1.5rem;
+    background: #fff;
+  }
+
+  .hn-gallery__frame img {
+    position: absolute;
+    max-width: none;
+    height: auto;
+  }
+
+  .hn-conoce__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  /* Botón amarillo #ffc000 de 632x75 con texto azul */
+  .hn-conoce__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.25rem;
+    padding: 0.5rem 1.75rem;
+    border-radius: 9999px;
+    background: #ffc000;
+    color: var(--hn-blue);
+    font-size: 1.25rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .hn-conoce__btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0.75rem 1.5rem -0.75rem rgba(0, 0, 0, 0.45);
+  }
+
+  .hn-conoce__btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
+  }
+
+  @media (min-width: 640px) {
+    .hn-gallery {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hn-conoce {
+      border-radius: calc(123 * var(--u)) calc(123 * var(--u)) 0 0;
+      padding: calc(138 * var(--u)) calc(128 * var(--u)) calc(116 * var(--u));
     }
 
-    .counter-digit,
-    .counter-separator {
-      font-size: 2.2rem;
+    .hn-conoce__logo {
+      width: calc(692 * var(--u));
+    }
+
+    .hn-conoce__title {
+      font-size: calc(124.08 * var(--u));
+      margin-top: calc(108 * var(--u));
+    }
+
+    .hn-conoce__text {
+      font-size: calc(62.23 * var(--u));
+      line-height: calc(62.2 * var(--u));
+      margin-top: calc(30 * var(--u));
+    }
+
+    .hn-conoce__text p + p {
+      margin-top: calc(62.2 * var(--u));
+    }
+
+    .hn-conoce__text p.hn-conoce__closing {
+      margin-top: calc(56 * var(--u));
+    }
+
+    /* 3 fotos de 531.5 con 36.9 de separación */
+    .hn-gallery {
+      width: calc(1668.3 * var(--u));
+      gap: calc(36.9 * var(--u));
+      margin: calc(79 * var(--u)) 0 0 calc(-1 * var(--u));
+    }
+
+    .hn-gallery__frame {
+      border-width: calc(7 * var(--u));
+      border-radius: calc(41.5 * var(--u));
+    }
+
+    .hn-conoce__cta {
+      margin-top: calc(78 * var(--u));
+    }
+
+    .hn-conoce__btn {
+      width: calc(632 * var(--u));
+      min-height: 0;
+      height: calc(75 * var(--u));
+      padding: 0;
+      font-size: max(1rem, calc(45.85 * var(--u)));
+    }
+  }
+
+  /* ---------- Productos participantes ---------- */
+  .hn-productos {
+    padding: 2.5rem 1rem 3rem;
+  }
+
+  .hn-productos__titlewrap {
+    padding: 0 1rem;
+  }
+
+  .hn-productos__title {
+    color: var(--hn-blue);
+    font-size: 2.75rem;
+    line-height: 0.91;
+  }
+
+  .hn-productos__smile {
+    width: 9rem;
+    margin: 0.25rem 0 0 2.5rem;
+  }
+
+  /* Mobile: la caja va arriba del título y sale hasta el borde derecho, como en desktop */
+  .hn-productos__head {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hn-productos__box {
+    order: -1;
+    margin: 0 -1rem 1.75rem 0;
+    padding: 1.125rem 1rem 1.125rem 1.25rem;
+    border: 3px solid #e8e8e8;
+    border-right: 0;
+    border-radius: 2rem 0 0 2rem;
+    background: #fff;
+  }
+
+  .hn-productos__box-title {
+    color: #e3032e;
+    font-size: 1.375rem;
+    line-height: 1.15;
+  }
+
+  .hn-productos__box-text {
+    color: var(--hn-blue);
+    font-size: 1.1875rem;
+    line-height: 1.4;
+    margin-top: 0.4em;
+  }
+
+  .hn-productos__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .hn-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hn-product__card {
+    width: 100%;
+    aspect-ratio: 385 / 467;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f2f2f2;
+    border-radius: 17.7% / 14.6%;
+  }
+
+  /* Bolsa de 254x375 centrada en la tarjeta de 385x467 */
+  .hn-product__card img {
+    width: 66%;
+    height: auto;
+  }
+
+  .hn-product__name {
+    font-size: 1rem;
+    line-height: 1;
+    margin-top: 0.6rem;
+  }
+
+  @media (min-width: 768px) {
+    .hn-productos {
+      padding: calc(181 * var(--u)) 0 calc(101.5 * var(--u));
+    }
+
+    .hn-productos__head {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: calc(338 * var(--u));
+    }
+
+    .hn-productos__titlewrap {
+      flex-shrink: 0;
+      padding: calc(53.8 * var(--u)) 0 0 calc(146 * var(--u));
+    }
+
+    /* Caja de 338px de alto desde x=981 hasta el borde derecho, trazo de 5px */
+    .hn-productos__box {
+      order: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(939.2 * var(--u));
+      min-height: calc(338 * var(--u));
+      margin: 0;
+      padding: max(1rem, calc(30 * var(--u))) max(1rem, calc(40 * var(--u))) max(1rem, calc(30 * var(--u))) max(1.25rem, calc(75 * var(--u)));
+      border: max(3px, calc(5 * var(--u))) solid #e8e8e8;
+      border-right: 0;
+      border-radius: calc(72 * var(--u)) 0 0 calc(72 * var(--u));
+    }
+
+    .hn-productos__box-title {
+      font-size: max(1.125rem, calc(37.88 * var(--u)));
+      line-height: 1.146;
+    }
+
+    .hn-productos__box-text {
+      font-size: max(0.9375rem, calc(33.07 * var(--u)));
+      line-height: 1.14;
+    }
+
+    .hn-productos__title {
+      font-size: calc(124.08 * var(--u));
+      line-height: calc(112.8 * var(--u));
+    }
+
+    .hn-productos__smile {
+      width: calc(360.4 * var(--u));
+      margin: calc(-23 * var(--u)) 0 0 calc(151 * var(--u));
+    }
+
+    .hn-productos__grid {
+      grid-template-columns: repeat(4, calc(385 * var(--u)));
+      gap: calc(40.9 * var(--u));
+      margin: calc(96 * var(--u)) 0 0 calc(129 * var(--u));
+    }
+
+    .hn-product__card {
+      border-radius: calc(68 * var(--u));
+    }
+
+    .hn-product__name {
+      font-size: calc(36.89 * var(--u));
+      line-height: calc(36.9 * var(--u));
+      margin-top: calc(20.7 * var(--u));
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hn-productos__head {
+      height: calc(338 * var(--u));
+    }
+  }
+
+  /* ---------- Súmate a esta causa ---------- */
+  .hn-sumate {
+    background: var(--hn-sky);
+    padding: 3rem 1rem;
+  }
+
+  .hn-sumate__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 2rem;
+  }
+
+  /*
+   * Caja = personaje (sin el margen del gif de 750x750). El gif se ubica con su desplazamiento:
+   * niño: personaje 300x679 en (207, 34); niña: 277x671 en (214, 43).
+   */
+  .hn-sumate__kid {
+    position: relative;
+    flex-shrink: 0;
+    height: 285px;
+  }
+
+  .hn-sumate__kid img {
+    position: absolute;
+    max-width: none;
+    height: auto;
+  }
+
+  .hn-sumate__kid--boy { width: 126px; }
+  .hn-sumate__kid--boy img { width: 249.6%; left: -68.9%; top: -5%; }
+  .hn-sumate__kid--girl { width: 118px; }
+  .hn-sumate__kid--girl img { width: 271%; left: -77.4%; top: -6.41%; }
+
+  /* Sombra en el piso (diseño: niño x 197–467, niña x 1472–1741, 24px de alto) */
+  .hn-sumate__kid::before { top: 97.2%; height: 5.13%; }
+  .hn-sumate__kid--boy::before { left: -2.42%; width: 130.4%; }
+  .hn-sumate__kid--girl::before { left: -19.17%; width: 139.4%; }
+
+  .hn-sumate__center {
+    text-align: center;
+  }
+
+  .hn-sumate__title {
+    color: var(--hn-blue-title);
+    font-size: 1.375rem;
+    line-height: 1.15;
+  }
+
+  .hn-sumate__logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .hn-sumate__ypops { width: 5.5rem; height: auto; }
+  .hn-sumate__os { width: 10rem; height: auto; }
+
+  .hn-sumate__divider {
+    align-self: stretch;
+    width: 2px;
+    margin-block: 1.75rem;
+    background: #d0d0d0;
+  }
+
+  @media (min-width: 768px) {
+    .hn-sumate {
+      padding: calc(127.3 * var(--u)) calc(128 * var(--u));
+    }
+
+    /* La columna central puede encogerse (minmax 0): título y logos nunca pasan por debajo de los niños */
+    .hn-sumate__card {
+      --kid-col: calc(207 * var(--u));
+      display: grid;
+      grid-template-columns: minmax(var(--kid-col), 1fr) minmax(0, max-content) minmax(var(--kid-col), 1fr);
+      align-items: center;
+      gap: 0;
+      min-height: calc(708.5 * var(--u));
+      padding: 0 calc(84 * var(--u));
+      border-radius: calc(102 * var(--u));
+    }
+
+    /* Niños de 468px de alto con los pies a 133px del borde inferior de la tarjeta (diseño) */
+    .hn-sumate__kid {
+      align-self: end;
+      height: calc(468 * var(--u));
+      margin-bottom: calc(133 * var(--u));
+    }
+
+    .hn-sumate__kid--boy {
+      width: calc(207 * var(--u));
+      margin-left: calc(-8 * var(--u));
+    }
+
+    .hn-sumate__kid--girl {
+      justify-self: end;
+      width: calc(193 * var(--u));
+      margin-right: calc(4 * var(--u));
+    }
+
+    .hn-sumate__center {
+      min-width: 0;
+      padding-inline: 1rem;
+    }
+
+    .hn-sumate__title {
+      font-size: calc(65.11 * var(--u));
+      line-height: calc(74.7 * var(--u));
+    }
+
+    /* Yummi Pops: contenido 207x133 (el png de 300x300 trae margen); Operación Sonrisa 549 de ancho; divisor de 3px */
+    .hn-sumate__logos {
+      min-width: 0;
+      gap: calc(91 * var(--u));
+      margin-top: calc(10 * var(--u));
+      position: relative;
+      top: calc(12.5 * var(--u));
+    }
+
+    .hn-sumate__ypops,
+    .hn-sumate__os {
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+
+    .hn-sumate__ypops {
+      width: calc(207.7 * var(--u));
+      margin-block: calc(-37.4 * var(--u)) calc(-36.7 * var(--u));
+    }
+
+    .hn-sumate__os { width: calc(549 * var(--u)); }
+
+    .hn-sumate__divider {
+      align-self: center;
+      width: calc(3 * var(--u));
+      height: calc(70 * var(--u));
+      margin: 0;
     }
   }
 
@@ -821,6 +1516,60 @@ import '../../styles/title-letters.css';
 
     // Observar items individuales
     const animatedItems = document.querySelectorAll('.animate-item, .reveal');
+    // Header: las capas del CDN miden hasta 16383px de ancho. Pintarlas por primera vez congela ~800ms
+    // (justo cuando entra el 10 años). Antes de animar se reemplaza cada imagen por un canvas del tamaño
+    // con que se ve (x densidad de pantalla), así la animación solo mueve bitmaps livianos.
+    // El CDN no manda CORS: el canvas queda "tainted", pero se puede mostrar sin problema.
+    const hero = document.querySelector<HTMLElement>('.hn-hero');
+    if (hero) {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      const shrink = async (img: HTMLImageElement) => {
+        try {
+          if (!img.complete || !img.naturalWidth) {
+            await new Promise((resolve, reject) => {
+              img.addEventListener('load', resolve, { once: true });
+              img.addEventListener('error', reject, { once: true });
+            });
+          }
+          // 1.25x de margen por si la ventana crece después
+          const width = Math.ceil(img.offsetWidth * dpr * 1.25);
+          if (!width || img.naturalWidth <= width * 1.2) {
+            await img.decode();
+            return;
+          }
+          const height = Math.round((width * img.naturalHeight) / img.naturalWidth);
+          const bitmap = await createImageBitmap(img, { resizeWidth: width, resizeHeight: height, resizeQuality: 'high' });
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          canvas.getContext('2d')?.drawImage(bitmap, 0, 0, width, height);
+          bitmap.close();
+          // Copia class y los data-astro-cid-* (los estilos de la página están "scoped" a ese atributo)
+          const skip = new Set(['src', 'srcset', 'sizes', 'alt', 'width', 'height', 'loading', 'decoding', 'fetchpriority']);
+          for (const { name, value } of Array.from(img.attributes)) {
+            if (!skip.has(name)) canvas.setAttribute(name, value);
+          }
+          if (img.alt) {
+            canvas.setAttribute('role', 'img');
+            canvas.setAttribute('aria-label', img.alt);
+          } else {
+            canvas.setAttribute('aria-hidden', 'true');
+          }
+          img.replaceWith(canvas);
+        } catch {
+          // Si algo falla se queda la imagen original
+        }
+      };
+
+      const ready = Promise.all(Array.from(hero.querySelectorAll('img')).map(shrink));
+      const timeout = new Promise(resolve => setTimeout(resolve, 4000));
+      Promise.race([ready, timeout]).then(() => {
+        // Dos frames para que los canvas ya estén pintados antes del primer cuadro de la animación
+        requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('visible')));
+      });
+    }
+
     animatedItems.forEach(item => {
       observer.observe(item);
     });
