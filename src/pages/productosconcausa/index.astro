@@ -63,7 +63,7 @@ import '../../styles/title-letters.css';
 
         <section class="bg-[#1652a7] container pt-6 pb-8 mt-4 mb-8 md:py-8 md:my-8 sm:flex sm:flex-col rounded-t-2xl md:rounded-t-[5%] overflow-x-clip">
           <div class="reveal reveal-up w-full py-2 md:py-8 flex justify-center">
-            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/logosonrisasblanco.webp" alt="Operación Sonrisas Honduras" class="w-[240px] md:w-[500px] md:mt-8" />
+            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/productosconcausahn/logo-sonrisa-light.webp" alt="Operación Sonrisa Honduras" width={2200} height={385} class="w-[240px] md:w-[500px] md:mt-8" />
           </div>
           <div class="reveal reveal-left w-full pt-6 pb-3 md:py-8 flex justify-center px-4">
             <h1 class="text-white font-title text-2xl md:text-4xl lg:text-6xl">Conoce más sobre la causa</h1>
@@ -154,73 +154,61 @@ import '../../styles/title-letters.css';
           </div>
         </div>
 
-        <!-- Donativos -->
-        <div class="flex flex-col items-center justify-center md:flex-row gap-6 md:gap-8">
-          <!-- Columna Izquierda - Info de Niños -->
-          <div class="flex-1 flex flex-col justify-center">
-            <div class="flex flex-col items-center">
-              <h3 class="title-letters font-title font-bold text-primary text-3xl md:text-4xl lg:text-8xl text-center">
+        <!-- Donativos (Opción 1: montos en horizontal como Indicadores → Clínica Dental → 183) -->
+        <div class="w-full flex justify-center items-center mb-6 md:mb-8">
+          <div class="flex flex-col items-center">
+            <h3 class="title-letters font-title font-bold text-sky-400 text-3xl md:text-4xl lg:text-8xl text-center">
               Donativos
-              </h3>
-              <p class="text-red font-bold text-base md:text-lg lg:text-xl mb-2 text-center">
-              2018- actualidad
-              </p>
-              <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 max-w-32 lg:max-w-64 md:p-0 mx-auto" />
-            </div>
-            
-            <div class="flex-1 flex flex-col items-center justify-center text-center bg-white rounded-2xl p-6 md:p-8">
-              <p class="text-sky-400 font-semibold text-base md:text-lg lg:text-xl mb-4">
-                Este apoyo ha transformado<br/>la sonrisa y la vida de
-              </p>
-              <p class="text-primary font-title font-bold text-6xl md:text-7xl lg:text-8xl mb-4">
-                <span class="count-up" data-target="183" data-decimals="0">183</span>
-              </p>
-              <p class="text-sky-400 font-semibold text-base md:text-lg lg:text-xl">
-                niños y niñas
-              </p>
-            </div>
+            </h3>
+            <p class="text-red font-bold text-base md:text-lg lg:text-xl mb-2 text-center">
+              2018 - actualidad
+            </p>
+            <LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/sonrisa.webp" alt="Operación Sonrisas Honduras" class="p-4 md:p-0 max-w-32 lg:max-w-64 mx-auto" />
           </div>
+        </div>
 
-          <!-- Columna Derecha - Montos -->
-          <div class="flex-1 bg-sky-400 rounded-3xl p-6 md:p-8 lg:p-10 flex flex-col justify-center gap-6 md:gap-8">
+        <!-- Montos en Lempiras - 3 columnas en desktop, filas en mobile -->
+        <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10">
+          <div class="flex flex-col md:flex-row md:divide-x md:divide-gray-300 gap-6 md:gap-0">
             <!-- Monto 1 -->
-            <div class="text-center">
-              <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                L <span class="count-up" data-target="331252.41" data-decimals="2">331,252.41</span>
+            <div class="flex-1 text-center px-4 animate-item">
+              <p class="text-primary font-title font-bold text-4xl md:text-3xl lg:text-4xl xl:text-5xl mb-2 whitespace-nowrap">
+                <span class="text-[0.6em] mr-1">L</span><span class="count-up" data-target="331252.41" data-decimals="2">331,252.41</span>
               </p>
-              <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
+              <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
                 en especie
               </p>
             </div>
 
             <!-- Monto 2 -->
-            <div class="text-center">
-              <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                L <span class="count-up" data-target="3807150" data-decimals="0">3,807,150</span>
+            <div class="flex-1 text-center px-4 animate-item">
+              <p class="text-primary font-title font-bold text-4xl md:text-3xl lg:text-4xl xl:text-5xl mb-2 whitespace-nowrap">
+                <span class="text-[0.6em] mr-1">L</span><span class="count-up" data-target="3807150" data-decimals="0">3,807,150</span>
               </p>
-              <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
+              <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
                 en efectivo
               </p>
             </div>
 
             <!-- Monto 3 -->
-            <div class="text-center">
-              <p class="text-white font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
-                L <span class="count-up" data-target="253174.64" data-decimals="2">253,174.64</span>
+            <div class="flex-1 text-center px-4 animate-item">
+              <p class="text-primary font-title font-bold text-4xl md:text-3xl lg:text-4xl xl:text-5xl mb-2 whitespace-nowrap">
+                <span class="text-[0.6em] mr-1">L</span><span class="count-up" data-target="253174.64" data-decimals="2">253,174.64</span>
               </p>
-              <p class="text-white font-semibold text-base md:text-lg lg:text-xl">
+              <p class="text-sky-400 font-semibold text-sm md:text-base lg:text-lg">
                 en infraestructura
               </p>
             </div>
           </div>
-          
         </div>
-        <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10 mt-8">
+
+        <!-- Destino del monto: Clínica Dental → Mayo 2022 → 5,707 consultas -->
+        <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10 mt-6 md:mt-8">
             <div class="flex flex-col md:flex-row  gap-6 md:gap-0">
               <!-- Indicador 1 -->
               <div class="flex-1 text-center px-4 animate-item">
                  <p class="text-sky-400 font-semibold text-xl md:text-base lg:text-2xl">
-                  Este monto se invirtio en
+                  Este monto se invirtió en
                 </p>
                 <p class="text-primary font-title font-bold text-4xl md:text-5xl lg:text-6xl mb-2">
                   Clínica Dental
@@ -263,6 +251,19 @@ import '../../styles/title-letters.css';
               </div>
             </div>
           </div>
+
+        <!-- Impacto: 183 niños y niñas -->
+        <div class="text-center mt-10 md:mt-14 animate-item">
+          <p class="text-sky-400 font-semibold text-base md:text-lg lg:text-2xl mb-2 md:mb-4">
+            Este apoyo ha transformado<br/>la sonrisa y la vida de
+          </p>
+          <p class="text-primary font-title font-bold text-6xl md:text-7xl lg:text-8xl mb-2 md:mb-4">
+            <span class="count-up" data-target="183" data-decimals="0">183</span>
+          </p>
+          <p class="text-sky-400 font-semibold text-base md:text-lg lg:text-2xl">
+            niños y niñas
+          </p>
+        </div>
       </section>
 
       <!-- Sección de Productos Participantes -->
