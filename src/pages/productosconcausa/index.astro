@@ -54,6 +54,11 @@ const gallery = [
   { file: '77e31eed-3bb2-4292-910f-bd4ff5ae9bd8', w: 1464, h: 1135, left: '-1.74%', top: '-12.1%', width: '107.72%', alt: 'Entrega de donativo a Operación Sonrisa Honduras' },
   { file: '94d5c629-2380-4e5a-986c-990fe437c64c', w: 1123, h: 709, left: '-5.21%', top: '-0.86%', width: '111.2%', alt: 'Equipo de Operación Sonrisa Honduras' },
   { file: '1fef6d9d-7657-46f1-bd8a-9332d61e653d', w: 1600, h: 1120, left: '-6.95%', top: '-1.73%', width: '107.72%', alt: 'Familias apoyadas por Operación Sonrisa Honduras' },
+  // Fotos 3:2, un poco más anchas que el marco (531.5x361): alto completo y centradas en horizontal
+  { file: '3c36f638-c568-47a0-8a2b-e5eba56456d1', w: 4240, h: 2832, left: '-0.85%', top: '0%', width: '101.69%', alt: 'Voluntaria de Operación Sonrisa Honduras revisando a un bebé' },
+  { file: '6a7b55dd-ff11-4b4b-91a4-aa0968c1c347', w: 4240, h: 2832, left: '-0.85%', top: '0%', width: '101.69%', alt: 'Evaluación médica a un niño en jornada de Operación Sonrisa Honduras' },
+  { file: 'b0807703-b883-42ff-a9ff-e23b88822037', w: 3643, h: 2433, left: '-0.85%', top: '0%', width: '101.69%', alt: 'Voluntario de Operación Sonrisa Honduras con una familia' },
+  { file: 'f41a826d-3782-40ce-b0d2-22aa7bc86543', w: 4240, h: 2832, left: '-0.85%', top: '0%', width: '101.69%', alt: 'Reconocimiento de Dinant y Yummies a Operación Sonrisa Honduras' },
 ];
 
 // Mismo srcset para el header y la grilla de productos; solo cambia sizes
@@ -152,13 +157,12 @@ const galleryImgs = await Promise.all(
             <b class="hn-hl">Snacks Yummies y tú</b> <b>pueden crear sonrisas que transforman vidas.</b>
           </p>
         </div>
-        <!-- Carrusel igual al de /productosconcausa/gt: 1 foto en mobile, 2 en tablet, 3 en desktop.
-             Solo hay 3 fotos: se repiten para que el loop de 3 por vista tenga hacia dónde avanzar. -->
+        <!-- Carrusel igual al de /productosconcausa/gt: 1 foto en mobile, 2 en tablet, 3 en desktop. -->
         <div class="reveal reveal-up reveal-delay-2 hn-gallery" aria-roledescription="carrusel" aria-label="Galería Operación Sonrisa Honduras">
           <div class="swiper hn-gallery__swiper">
             <div class="swiper-wrapper">
-              {[...gallery, ...gallery].map((g, n) => {
-                const img = galleryImgs[n % gallery.length];
+              {gallery.map((g, n) => {
+                const img = galleryImgs[n];
                 return (
                   <div class="swiper-slide">
                     <div class="hn-gallery__frame">
