@@ -1,4 +1,4 @@
 allowBuilds:
   esbuild: true
-  scrollreveal: set this to true or false
+  scrollreveal: false
   sharp: true
