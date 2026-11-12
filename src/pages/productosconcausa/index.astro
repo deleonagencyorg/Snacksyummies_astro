@@ -6,6 +6,7 @@ import { ViewTransitions } from 'astro:transitions';
 import patternConoce from '../../assets/productosconcausahn/pattern-conoce.svg?url';
 import '../../styles/title-letters.css';
 import '../../styles/pcc-gt-fonts.css';
+import 'swiper/css';
 
 const CDN = 'https://snack.yummiespromociones.com/SnacksyummiesAssets';
 const HN = `${CDN}/productosconcausahn`;
@@ -61,7 +62,7 @@ const productImgs = await Promise.all(
 );
 const galleryImgs = await Promise.all(
   gallery.map((g) => responsive(`${HN}/${g.file}.webp`, g.w, g.h, [400, 640, 960, 1280],
-    '(min-width: 1920px) 600px, (min-width: 640px) 36vw, 108vw')),
+    '(min-width: 1920px) 600px, (min-width: 768px) 36vw, (min-width: 640px) 56vw, 108vw')),
 );
 ---
 
@@ -151,13 +152,29 @@ const galleryImgs = await Promise.all(
             <b class="hn-hl">Snacks Yummies y tú</b> <b>pueden crear sonrisas que transforman vidas.</b>
           </p>
         </div>
-        <!-- Marco blanco de 7px con radio 41.5px; cada foto recortada como en el diseño -->
-        <div class="hn-gallery">
-          {gallery.map((g, i) => (
-            <div class:list={['reveal', 'reveal-up', i === 1 && 'reveal-delay-1', i === 2 && 'reveal-delay-2', 'hn-gallery__frame']}>
-              <img src={galleryImgs[i].src} srcset={galleryImgs[i].srcset} sizes={galleryImgs[i].sizes} alt={g.alt} width={galleryImgs[i].width} height={galleryImgs[i].height} loading="lazy" decoding="async" style={`left:${g.left};top:${g.top};width:${g.width}`} />
+        <!-- Carrusel igual al de /productosconcausa/gt: 1 foto en mobile, 2 en tablet, 3 en desktop.
+             Solo hay 3 fotos: se repiten para que el loop de 3 por vista tenga hacia dónde avanzar. -->
+        <div class="reveal reveal-up reveal-delay-2 hn-gallery" aria-roledescription="carrusel" aria-label="Galería Operación Sonrisa Honduras">
+          <div class="swiper hn-gallery__swiper">
+            <div class="swiper-wrapper">
+              {[...gallery, ...gallery].map((g, n) => {
+                const img = galleryImgs[n % gallery.length];
+                return (
+                  <div class="swiper-slide">
+                    <div class="hn-gallery__frame">
+                      <img src={img.src} srcset={img.srcset} sizes={img.sizes} alt={g.alt} width={img.width} height={img.height} loading="lazy" decoding="async" style={`left:${g.left};top:${g.top};width:${g.width}`} />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          ))}
+          </div>
+          <button type="button" class="hn-gallery__nav hn-gallery__nav--prev" aria-label="Foto anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+          </button>
+          <button type="button" class="hn-gallery__nav hn-gallery__nav--next" aria-label="Foto siguiente">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+          </button>
         </div>
         <div class="reveal reveal-up hn-conoce__cta">
           <a href="/productosconcausa/historia" class="font-gt-title hn-conoce__btn">Conoce nuestra historia</a>
@@ -186,7 +203,7 @@ const galleryImgs = await Promise.all(
           </div>
           
           <!-- Grid de Indicadores - 3 columnas en desktop, filas en mobile -->
-          <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10">
+          <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10" data-count-group>
             <div class="flex flex-col md:flex-row md:divide-x md:divide-gray-300 gap-6 md:gap-0">
               <!-- Indicador 1 -->
               <div class="flex-1 text-center px-4 animate-item">
@@ -235,7 +252,7 @@ const galleryImgs = await Promise.all(
         </div>
 
         <!-- Montos en Lempiras - 3 columnas en desktop, filas en mobile -->
-        <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10">
+        <div class="bg-gray-100 rounded-3xl p-6 md:p-8 lg:p-10" data-count-group>
           <div class="flex flex-col md:flex-row md:divide-x md:divide-gray-300 gap-6 md:gap-0">
             <!-- Monto 1 -->
             <div class="flex-1 text-center px-4 animate-item">
@@ -356,7 +373,7 @@ const galleryImgs = await Promise.all(
         <!-- Cada bolsa sobre tarjeta gris #f2f2f2 (diseño: 385x467, radio 68px, bolsa de 375px de alto centrada) -->
         <div class="hn-productos__grid">
           {products.map((p, i) => (
-            <div class="hn-product animate-item">
+            <div class="hn-product animate-item" style={`--p-color:${p.color}`}>
               <div class="hn-product__card">
                 <img src={productImgs[i].src} srcset={productImgs[i].srcset} sizes={productSizes.grid} alt={p.alt} width={productImgs[i].width} height={productImgs[i].height} loading="lazy" decoding="async" />
               </div>
@@ -979,10 +996,44 @@ const galleryImgs = await Promise.all(
   }
 
   .hn-gallery {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
+    position: relative;
     margin-top: 1.5rem;
+  }
+
+  .hn-gallery__swiper {
+    border-radius: 1.5rem;
+  }
+
+  /* Flechas (como en GT): círculo blanco con la flecha azul, sobre el borde de las fotos */
+  .hn-gallery__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    background: #fff;
+    color: var(--hn-blue);
+    box-shadow: 0 0.5rem 1.5rem -0.4rem rgba(0, 0, 0, 0.35);
+    transform: translateY(-50%);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .hn-gallery__nav:hover { background: #ffc000; }
+  .hn-gallery__nav:active { transform: translateY(-50%) scale(0.92); }
+  .hn-gallery__nav--prev { left: -0.75rem; }
+  .hn-gallery__nav--next { right: -0.75rem; }
+
+  .hn-gallery__nav svg {
+    width: 55%;
+    height: 55%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   /* Marco blanco de 7px (trazo del diseño) con radio 41.5px; la foto va recortada dentro */
@@ -1034,12 +1085,6 @@ const galleryImgs = await Promise.all(
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
   }
 
-  @media (min-width: 640px) {
-    .hn-gallery {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
   @media (min-width: 768px) {
     .hn-conoce {
       border-radius: calc(123 * var(--u)) calc(123 * var(--u)) 0 0;
@@ -1069,12 +1114,24 @@ const galleryImgs = await Promise.all(
       margin-top: calc(56 * var(--u));
     }
 
-    /* 3 fotos de 531.5 con 36.9 de separación */
+    /* 3 fotos de 531.5 con 36.9 de separación (lo fija Swiper en JS) */
     .hn-gallery {
       width: calc(1668.3 * var(--u));
-      gap: calc(36.9 * var(--u));
       margin: calc(79 * var(--u)) 0 0 calc(-1 * var(--u));
     }
+
+    .hn-gallery__swiper {
+      border-radius: calc(41.5 * var(--u));
+    }
+
+    /* Las flechas quedan en el margen de 128px a cada lado de la galería */
+    .hn-gallery__nav {
+      width: max(2.75rem, calc(84 * var(--u)));
+      height: max(2.75rem, calc(84 * var(--u)));
+    }
+
+    .hn-gallery__nav--prev { left: calc(-106 * var(--u)); }
+    .hn-gallery__nav--next { right: calc(-106 * var(--u)); }
 
     .hn-gallery__frame {
       border-width: calc(7 * var(--u));
@@ -1171,6 +1228,66 @@ const galleryImgs = await Promise.all(
   .hn-product__card img {
     width: 66%;
     height: auto;
+    opacity: 0;
+    transform: translateY(calc(160 * var(--u))) scale(0.85);
+  }
+
+  /* Igual que los productos del header (GT y HN): la bolsa sube con rebote cuando aparece la tarjeta */
+  .hn-product.visible .hn-product__card img {
+    animation: hnProductIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  /*
+   * Hover (solo con mouse): la tarjeta se levanta con sombra y toma un tinte del color del producto;
+   * la bolsa crece, se inclina y flota (el flotado lo maneja el script con `translate` para que al
+   * salir termine la vuelta y regrese suave). scale/rotate/translate se suman a la entrada sin pisarla.
+   */
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hn-product__card {
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.45s ease, background-color 0.45s ease;
+    }
+
+    .hn-product__card img {
+      transition: scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), rotate 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.45s ease;
+    }
+
+    .hn-product__name {
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hn-product.visible:hover .hn-product__card {
+      transform: translateY(max(-10px, calc(-14 * var(--u))));
+      background-color: color-mix(in srgb, var(--p-color) 16%, #f2f2f2);
+      box-shadow: 0 calc(34 * var(--u)) calc(60 * var(--u)) calc(-22 * var(--u)) color-mix(in srgb, var(--p-color) 55%, transparent);
+    }
+
+    .hn-product.visible:hover .hn-product__card img {
+      scale: 1.12;
+      rotate: -4deg;
+      filter: drop-shadow(0 calc(26 * var(--u)) calc(18 * var(--u)) rgba(0, 0, 0, 0.28));
+    }
+
+    .hn-product.visible:nth-child(even):hover .hn-product__card img {
+      rotate: 4deg;
+    }
+
+    .hn-product.visible:hover .hn-product__name {
+      transform: scale(1.06);
+    }
+  }
+
+  .hn-product.visible:nth-child(1) .hn-product__card img { animation-delay: 0.3s; }
+  .hn-product.visible:nth-child(2) .hn-product__card img { animation-delay: 0.45s; }
+  .hn-product.visible:nth-child(3) .hn-product__card img { animation-delay: 0.6s; }
+  .hn-product.visible:nth-child(4) .hn-product__card img { animation-delay: 0.75s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hn-product__card img,
+    .hn-product.visible .hn-product__card img {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 
   .hn-product__name {
@@ -1524,6 +1641,8 @@ const galleryImgs = await Promise.all(
 </style>
 
 <script>
+  import Swiper from 'swiper';
+  import { Autoplay, Navigation, A11y } from 'swiper/modules';
   import { initTitleLetters } from '../../scripts/titleLetters';
 
   // Intersection Observer para animar elementos al hacer scroll
@@ -1625,24 +1744,111 @@ const galleryImgs = await Promise.all(
     // Títulos letra por letra (.title-letters)
     initTitleLetters();
 
+    // Productos participantes: la bolsa flota solo mientras el mouse está encima.
+    // Al salir termina la vuelta en curso (al doble de velocidad) y queda en reposo, sin saltos.
+    if (window.matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
+      document.querySelectorAll<HTMLElement>('.hn-product').forEach((product) => {
+        const bag = product.querySelector<HTMLImageElement>('.hn-product__card img');
+        if (!bag) return;
+        let float: Animation | null = null;
+
+        product.addEventListener('pointerenter', (e) => {
+          if (e.pointerType !== 'mouse') return;
+          if (float && float.playState === 'running') {
+            float.updatePlaybackRate(1);
+            float.effect?.updateTiming({ iterations: Infinity });
+            return;
+          }
+          // Misma escala que --u: 26px del diseño a 1920, mínimo 10px
+          const pageWidth = document.querySelector<HTMLElement>('.hn-page')?.clientWidth ?? window.innerWidth;
+          const lift = Math.max(10, (26 * pageWidth) / 1920);
+          float = bag.animate(
+            [{ translate: '0 0' }, { translate: `0 -${lift}px` }, { translate: '0 0' }],
+            { duration: 1800, iterations: Infinity, easing: 'ease-in-out' },
+          );
+        });
+
+        product.addEventListener('pointerleave', () => {
+          if (!float) return;
+          const iteration = float.effect?.getComputedTiming().currentIteration ?? 0;
+          float.effect?.updateTiming({ iterations: iteration + 1 });
+          float.updatePlaybackRate(2);
+        });
+      });
+    }
+
+    // Carrusel de la galería de "Conoce más sobre la causa" (misma configuración que /productosconcausa/gt)
+    const gallery = document.querySelector<HTMLElement>('.hn-gallery');
+    const gallerySwiper = gallery?.querySelector<HTMLElement & { swiper?: Swiper }>('.hn-gallery__swiper');
+    if (gallery && gallerySwiper && !gallerySwiper.swiper) {
+      // Separación del diseño (36.9px a 1920) escalada con el ancho de la página, igual que --u
+      const pageWidth = () => document.querySelector<HTMLElement>('.hn-page')?.clientWidth ?? window.innerWidth;
+      const designGap = () => (36.9 * pageWidth()) / 1920;
+
+      new Swiper(gallerySwiper, {
+        modules: [Autoplay, Navigation, A11y],
+        loop: true,
+        speed: 700,
+        grabCursor: true,
+        slidesPerView: 1,
+        spaceBetween: 16,
+        autoplay: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? false
+          : { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
+        navigation: {
+          prevEl: gallery.querySelector<HTMLElement>('.hn-gallery__nav--prev'),
+          nextEl: gallery.querySelector<HTMLElement>('.hn-gallery__nav--next'),
+        },
+        a11y: {
+          prevSlideMessage: 'Foto anterior',
+          nextSlideMessage: 'Foto siguiente',
+        },
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 16 },
+          768: { slidesPerView: 3, spaceBetween: designGap() },
+        },
+        on: {
+          resize(swiper) {
+            if (window.innerWidth >= 768) {
+              swiper.params.spaceBetween = designGap();
+              swiper.update();
+            }
+          },
+        },
+      });
+    }
+
     // Contador animado para las cifras de Indicadores y Donativos
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const counters = document.querySelectorAll<HTMLElement>('.count-up');
 
     const digitalCounters = document.querySelectorAll<HTMLElement>('.digital-counter');
 
-    const runCount = (target: number, duration: number, render: (value: number) => void) => {
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+    // Arranca y termina suave, sin el "golpe" inicial de easeOut: las cifras no se ven aceleradas
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const runCount = (
+      target: number,
+      duration: number,
+      render: (value: number, done: boolean) => void,
+      ease: (t: number) => number = easeOutCubic
+    ) => {
       const start = performance.now();
 
       const tick = (now: number) => {
         const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-        render(target * eased);
-        if (progress < 1) requestAnimationFrame(tick);
+        const done = progress >= 1;
+        render(done ? target : target * ease(progress), done);
+        if (!done) requestAnimationFrame(tick);
       };
 
       requestAnimationFrame(tick);
     };
+
+    const COUNT_DURATION = 3200;
+    // Espera a que termine el fade-in de .animate-item antes de contar
+    const COUNT_DELAY = 300;
 
     const animateCounter = (el: HTMLElement) => {
       const target = parseFloat(el.dataset.target || '0');
@@ -1652,9 +1858,10 @@ const galleryImgs = await Promise.all(
         maximumFractionDigits: decimals
       });
 
-      runCount(target, 2000, (value) => {
-        el.textContent = format.format(value);
-      });
+      runCount(target, COUNT_DURATION, (value, done) => {
+        // Mientras cuenta, los decimales quedan en 0 para que no parpadeen; al final se muestra la cifra exacta
+        el.textContent = format.format(done ? value : Math.floor(value));
+      }, easeInOutCubic);
     };
 
     // Contador digital de la campaña: actualiza cada dígito por separado
@@ -1703,14 +1910,29 @@ const galleryImgs = await Promise.all(
             if (target.classList.contains('digital-counter')) {
               animateDigitalCounter(target);
             } else {
-              animateCounter(target);
+              setTimeout(() => animateCounter(target), COUNT_DELAY);
             }
             counterObserver.unobserve(entry.target);
           }
         });
       }, { threshold: 0.5 });
 
-      counters.forEach(counter => counterObserver.observe(counter));
+      // Grupos (Indicadores, Donativos): todas las cifras del bloque arrancan juntas,
+      // aunque en mobile estén apiladas y no entren a la vez en pantalla
+      const groupObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const groupCounters = entry.target.querySelectorAll<HTMLElement>('.count-up');
+            setTimeout(() => groupCounters.forEach(animateCounter), COUNT_DELAY);
+            groupObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll<HTMLElement>('[data-count-group]').forEach(group => groupObserver.observe(group));
+      counters.forEach(counter => {
+        if (!counter.closest('[data-count-group]')) counterObserver.observe(counter);
+      });
       digitalCounters.forEach(counter => counterObserver.observe(counter));
     }
   });
