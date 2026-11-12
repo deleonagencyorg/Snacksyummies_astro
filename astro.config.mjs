@@ -14,6 +14,10 @@ export default defineConfig({
   redirects: {
     '/gt/productosconcausa': { status: 301, destination: '/productosconcausa/gt' },
   },
+  // Permite que astro:assets (getImage/<Image>) genere versiones reducidas de imágenes del CDN en el build
+  image: {
+    domains: ['snack.yummiespromociones.com'],
+  },
   integrations: [
     react(),
     PinyAstro(),

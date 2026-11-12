@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/ProductosConCausaLayout.astro';
 import LazyImage from '../../components/common/LazyImage.astro';
+import { getImage } from 'astro:assets';
 import { ViewTransitions } from 'astro:transitions';
 import patternConoce from '../../assets/productosconcausahn/pattern-conoce.svg?url';
 import '../../styles/title-letters.css';
@@ -8,6 +9,31 @@ import '../../styles/pcc-gt-fonts.css';
 
 const CDN = 'https://snack.yummiespromociones.com/SnacksyummiesAssets';
 const HN = `${CDN}/productosconcausahn`;
+
+// Los originales del CDN miden hasta 16383px de ancho (~1MB cada uno). En el build se generan versiones
+// reducidas (srcset) para que cada pantalla baje y decodifique solo el tamaño con que se ve.
+type Responsive = { src: string; srcset: string; sizes: string; width: number; height: number };
+const responsive = async (src: string, w: number, h: number, widths: number[], sizes: string): Promise<Responsive> => {
+  const max = Math.min(w, Math.max(...widths));
+  const height = Math.round((max * h) / w);
+  const img = await getImage({ src, width: max, height, widths: widths.filter((x) => x <= w), sizes, format: 'webp', quality: 80 });
+  return { src: img.src, srcset: img.srcSet.attribute, sizes, width: max, height };
+};
+
+// sizes: mobile usa una mesa de 1320px (--u = 100cqw / 1320) y desde 640px la de 1920px, con tope de 1920px
+const hero = {
+  bg: await responsive(`${HN}/header/header_bg.webp`, 16383, 10102, [640, 960, 1280, 1920, 2560, 3840],
+    '(min-width: 1920px) 1920px, (min-width: 640px) 100vw, 146vw'),
+  ribbon: await responsive(`${HN}/header/sonrisas.webp`, 16383, 6566, [960, 1440, 1920, 2784, 3840],
+    '(min-width: 1920px) 2784px, (min-width: 640px) 145vw, 211vw'),
+  years: await responsive(`${HN}/header/10_years.webp`, 16383, 10022, [480, 800, 1056, 1600, 2112],
+    '(min-width: 1920px) 1056px, (min-width: 640px) 55vw, 80vw'),
+};
+const productSizes = {
+  hero: '(min-width: 1920px) 340px, (min-width: 640px) 18vw, 26vw',
+  grid: '(min-width: 1920px) 254px, (min-width: 768px) 14vw, 34vw',
+};
+const productWidths = [240, 340, 480, 680];
 
 // Sonrisas rojas del diseño (YPOPS-CAUSA_WEB-LAYOUT-HN.ai), exportadas del vector original
 const smiles = {
@@ -28,6 +54,15 @@ const gallery = [
   { file: '94d5c629-2380-4e5a-986c-990fe437c64c', w: 1123, h: 709, left: '-5.21%', top: '-0.86%', width: '111.2%', alt: 'Equipo de Operación Sonrisa Honduras' },
   { file: '1fef6d9d-7657-46f1-bd8a-9332d61e653d', w: 1600, h: 1120, left: '-6.95%', top: '-1.73%', width: '107.72%', alt: 'Familias apoyadas por Operación Sonrisa Honduras' },
 ];
+
+// Mismo srcset para el header y la grilla de productos; solo cambia sizes
+const productImgs = await Promise.all(
+  products.map((p) => responsive(`${HN}/products/${p.file}.webp`, 2626, p.h, productWidths, productSizes.hero)),
+);
+const galleryImgs = await Promise.all(
+  gallery.map((g) => responsive(`${HN}/${g.file}.webp`, g.w, g.h, [400, 640, 960, 1280],
+    '(min-width: 1920px) 600px, (min-width: 640px) 36vw, 108vw')),
+);
 ---
 
 <Layout
@@ -42,15 +77,15 @@ const gallery = [
     <article class="w-full">
        <!-- Header HN (YPOPS-CAUSA_WEB-LAYOUT-HN.ai): fondo fijo + listón que se llena de izq. a der. + productos + 10 años flotando al final -->
        <header id="inicio" class="hn-hero">
-         <img src={`${HN}/header/header_bg.webp`} alt="" aria-hidden="true" class="hn-hero__bg" width="16383" height="10102" loading="eager" fetchpriority="high" decoding="async" />
-         <img src={`${HN}/header/sonrisas.webp`} alt="Sumando sonrisas" class="hn-hero__ribbon" width="16383" height="6566" loading="eager" decoding="async" />
-         <img src={`${HN}/products/ypops-nacho-jalapeno_osh-hn.webp`} alt="Yummi Pops Nacho Jalapeño Cream" class="hn-hero__product hn-hero__product--1" width="2626" height="3877" loading="eager" decoding="async" />
-         <img src={`${HN}/products/ypops-nacho-queso_osh-hn.webp`} alt="Yummi Pops Nacho Queso Blanco" class="hn-hero__product hn-hero__product--2" width="2626" height="3872" loading="eager" decoding="async" />
-         <img src={`${HN}/products/ypops-queso_osh-hn.webp`} alt="Yummi Pops Palomitas de Maíz Queso" class="hn-hero__product hn-hero__product--3" width="2626" height="3876" loading="eager" decoding="async" />
-         <img src={`${HN}/products/ypops-sal_osh.webp`} alt="Yummi Pops Palomitas de Maíz Sal Marina" class="hn-hero__product hn-hero__product--4" width="2626" height="3877" loading="eager" decoding="async" />
+         <img src={hero.bg.src} srcset={hero.bg.srcset} sizes={hero.bg.sizes} alt="" aria-hidden="true" class="hn-hero__bg" width={hero.bg.width} height={hero.bg.height} loading="eager" fetchpriority="high" decoding="async" />
+         <img src={hero.ribbon.src} srcset={hero.ribbon.srcset} sizes={hero.ribbon.sizes} alt="Sumando sonrisas" class="hn-hero__ribbon" width={hero.ribbon.width} height={hero.ribbon.height} loading="eager" decoding="async" />
+         <img src={productImgs[0].src} srcset={productImgs[0].srcset} sizes={productSizes.hero} alt="Yummi Pops Nacho Jalapeño Cream" class="hn-hero__product hn-hero__product--1" width={productImgs[0].width} height={productImgs[0].height} loading="eager" decoding="async" />
+         <img src={productImgs[1].src} srcset={productImgs[1].srcset} sizes={productSizes.hero} alt="Yummi Pops Nacho Queso Blanco" class="hn-hero__product hn-hero__product--2" width={productImgs[1].width} height={productImgs[1].height} loading="eager" decoding="async" />
+         <img src={productImgs[2].src} srcset={productImgs[2].srcset} sizes={productSizes.hero} alt="Yummi Pops Palomitas de Maíz Queso" class="hn-hero__product hn-hero__product--3" width={productImgs[2].width} height={productImgs[2].height} loading="eager" decoding="async" />
+         <img src={productImgs[3].src} srcset={productImgs[3].srcset} sizes={productSizes.hero} alt="Yummi Pops Palomitas de Maíz Sal Marina" class="hn-hero__product hn-hero__product--4" width={productImgs[3].width} height={productImgs[3].height} loading="eager" decoding="async" />
          <!-- Flotado en el contenedor y entrada en la imagen: cada transform en su propio elemento, sin saltos al pasar de una animación a otra -->
          <div class="hn-hero__years">
-           <img src={`${HN}/header/10_years.webp`} alt="10 años Yummi Pops y Operación Sonrisa Honduras" class="hn-hero__years-img" width="16383" height="10022" loading="eager" decoding="async" />
+           <img src={hero.years.src} srcset={hero.years.srcset} sizes={hero.years.sizes} alt="10 años Yummi Pops y Operación Sonrisa Honduras" class="hn-hero__years-img" width={hero.years.width} height={hero.years.height} loading="eager" decoding="async" />
          </div>
        </header>
 
@@ -120,7 +155,7 @@ const gallery = [
         <div class="hn-gallery">
           {gallery.map((g, i) => (
             <div class:list={['reveal', 'reveal-up', i === 1 && 'reveal-delay-1', i === 2 && 'reveal-delay-2', 'hn-gallery__frame']}>
-              <img src={`${HN}/${g.file}.webp`} alt={g.alt} width={g.w} height={g.h} loading="lazy" decoding="async" style={`left:${g.left};top:${g.top};width:${g.width}`} />
+              <img src={galleryImgs[i].src} srcset={galleryImgs[i].srcset} sizes={galleryImgs[i].sizes} alt={g.alt} width={galleryImgs[i].width} height={galleryImgs[i].height} loading="lazy" decoding="async" style={`left:${g.left};top:${g.top};width:${g.width}`} />
             </div>
           ))}
         </div>
@@ -320,10 +355,10 @@ const gallery = [
 
         <!-- Cada bolsa sobre tarjeta gris #f2f2f2 (diseño: 385x467, radio 68px, bolsa de 375px de alto centrada) -->
         <div class="hn-productos__grid">
-          {products.map((p) => (
+          {products.map((p, i) => (
             <div class="hn-product animate-item">
               <div class="hn-product__card">
-                <img src={`${HN}/products/${p.file}.webp`} alt={p.alt} width="2626" height={p.h} loading="lazy" decoding="async" />
+                <img src={productImgs[i].src} srcset={productImgs[i].srcset} sizes={productSizes.grid} alt={p.alt} width={productImgs[i].width} height={productImgs[i].height} loading="lazy" decoding="async" />
               </div>
               <h3 class="font-gt-bold15 hn-product__name" style={`color:${p.color}`}>
                 {p.name[0]}<br/>{p.name[1]}
