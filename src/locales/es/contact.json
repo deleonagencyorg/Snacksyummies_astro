@@ -1,7 +1,8 @@
 {
   "title": "Contáctanos",
   "subtitle": "¿Tienes preguntas? ¡Estamos aquí para ti!",
-  "description": "Envíanos tus dudas o comentarios llenando el formulario de la derecha, o contáctanos vía e-mail o teléfono.",
+  "description": "Envíanos tus dudas o comentarios llenando el formulario de la derecha, o contáctanos vía teléfono.",
+  "descriptionMobile": "Envíanos tus dudas o comentarios llenando el formulario a continuación, o contáctanos vía teléfono.",
   "email": "contacto@yummies.com",
   "phone": "1234-56789",
   "form": {
@@ -51,7 +52,7 @@
       "+504":{
         "tab": "Honduras",
         "name": "Yummies Honduras",
-        "address": "Corporación Dinant, Frente a Plantas Tropicales, Blvd. Suyapa, 11101 Tegucigalpa, Francisco Morazán, Honduras",
+        "address": "Corporación Dinant, frente a Plantas Tropicales, Blvd. Suyapa, 11101 Tegucigalpa, Francisco Morazán, Honduras",
         "phones": ["2275-3370", "2239-5869", "2235-7521"],
         "email": "contacto.honduras@yummies.com",
         "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/oficina-honduras.webp",
