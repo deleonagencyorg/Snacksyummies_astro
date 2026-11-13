@@ -445,7 +445,7 @@ const galleryImgs = await Promise.all(
 
               <!-- Video Placeholder -->
               <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
-                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-01(2).webm" class="w-auto h-auto md:p-0" />
+                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-01(2).webm" preload="metadata" class="w-auto h-auto md:p-0" />
                 <!-- Play Button -->
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all testimonial-video-overlay">
                   <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
@@ -476,7 +476,7 @@ const galleryImgs = await Promise.all(
 
               <!-- Video Placeholder -->
               <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
-                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-02(2).webm" class="w-auto h-auto md:p-0" />
+                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-02(2).webm" preload="metadata" class="w-auto h-auto md:p-0" />
                 <!-- Play Button -->
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all testimonial-video-overlay">
                   <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
@@ -507,7 +507,7 @@ const galleryImgs = await Promise.all(
 
               <!-- Video Placeholder -->
               <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
-                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-Ulises.webm" class="w-auto h-auto md:p-0" />
+                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-Ulises.webm" preload="metadata" class="w-auto h-auto md:p-0" />
                 <!-- Play Button -->
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all testimonial-video-overlay">
                   <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
@@ -538,7 +538,7 @@ const galleryImgs = await Promise.all(
 
               <!-- Video Placeholder -->
               <div class="relative aspect-video bg-gray-300 rounded-xl overflow-hidden group cursor-pointer">
-                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-Niño.webm" class="w-auto h-auto md:p-0" />
+                <video src="https://snack.yummiespromociones.com/SnacksyummiesAssets/Producto Con Causa-Testimonial-Niño.webm" preload="metadata" class="w-auto h-auto md:p-0" />
                 <!-- Play Button -->
                 <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 group-hover:bg-opacity-30 transition-all testimonial-video-overlay">
                   <svg class="w-16 h-16 md:w-20 md:h-20 text-white opacity-90" fill="currentColor" viewBox="0 0 20 20">
@@ -612,8 +612,7 @@ const galleryImgs = await Promise.all(
     }
   }
 
-  /* img, o el canvas que lo reemplaza ya reducido (ver script) */
-  .hn-hero > :is(img, canvas) {
+  .hn-hero > img {
     position: absolute;
     max-width: none;
     height: auto;
@@ -1649,6 +1648,35 @@ const galleryImgs = await Promise.all(
   import { Autoplay, Navigation, A11y } from 'swiper/modules';
   import { initTitleLetters } from '../../scripts/titleLetters';
 
+  // Header: la animación arranca apenas sus propias imágenes están descargadas y decodificadas
+  // (ya vienen reducidas del build), sin esperar al resto de la página.
+  function startHero() {
+    const hero = document.querySelector<HTMLElement>('.hn-hero');
+    if (!hero || hero.dataset.heroStarted) return;
+    hero.dataset.heroStarted = 'true';
+
+    const ready = (img: HTMLImageElement) =>
+      (img.complete
+        ? Promise.resolve()
+        : new Promise((resolve) => {
+            img.addEventListener('load', resolve, { once: true });
+            img.addEventListener('error', resolve, { once: true });
+          })
+      ).then(() => img.decode().catch(() => {}));
+
+    const images = Promise.all(Array.from(hero.querySelectorAll('img')).map(ready));
+    // Red muy lenta: no dejar el header vacío más de 3s
+    const timeout = new Promise((resolve) => setTimeout(resolve, 3000));
+    Promise.race([images, timeout]).then(() => {
+      // Dos frames para que las imágenes ya estén pintadas antes del primer cuadro de la animación
+      requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('visible')));
+    });
+  }
+
+  // Primera carga: el script (module) corre al terminar de leerse el HTML, antes de window.load.
+  // En navegaciones con ViewTransitions lo vuelve a llamar astro:page-load (abajo).
+  startHero();
+
   // Intersection Observer para animar elementos al hacer scroll
   document.addEventListener('astro:page-load', () => {
     const observerOptions = {
@@ -1674,59 +1702,9 @@ const galleryImgs = await Promise.all(
 
     // Observar items individuales
     const animatedItems = document.querySelectorAll('.animate-item, .reveal');
-    // Header: las capas del CDN miden hasta 16383px de ancho. Pintarlas por primera vez congela ~800ms
-    // (justo cuando entra el 10 años). Antes de animar se reemplaza cada imagen por un canvas del tamaño
-    // con que se ve (x densidad de pantalla), así la animación solo mueve bitmaps livianos.
-    // El CDN no manda CORS: el canvas queda "tainted", pero se puede mostrar sin problema.
-    const hero = document.querySelector<HTMLElement>('.hn-hero');
-    if (hero) {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-      const shrink = async (img: HTMLImageElement) => {
-        try {
-          if (!img.complete || !img.naturalWidth) {
-            await new Promise((resolve, reject) => {
-              img.addEventListener('load', resolve, { once: true });
-              img.addEventListener('error', reject, { once: true });
-            });
-          }
-          // 1.25x de margen por si la ventana crece después
-          const width = Math.ceil(img.offsetWidth * dpr * 1.25);
-          if (!width || img.naturalWidth <= width * 1.2) {
-            await img.decode();
-            return;
-          }
-          const height = Math.round((width * img.naturalHeight) / img.naturalWidth);
-          const bitmap = await createImageBitmap(img, { resizeWidth: width, resizeHeight: height, resizeQuality: 'high' });
-          const canvas = document.createElement('canvas');
-          canvas.width = width;
-          canvas.height = height;
-          canvas.getContext('2d')?.drawImage(bitmap, 0, 0, width, height);
-          bitmap.close();
-          // Copia class y los data-astro-cid-* (los estilos de la página están "scoped" a ese atributo)
-          const skip = new Set(['src', 'srcset', 'sizes', 'alt', 'width', 'height', 'loading', 'decoding', 'fetchpriority']);
-          for (const { name, value } of Array.from(img.attributes)) {
-            if (!skip.has(name)) canvas.setAttribute(name, value);
-          }
-          if (img.alt) {
-            canvas.setAttribute('role', 'img');
-            canvas.setAttribute('aria-label', img.alt);
-          } else {
-            canvas.setAttribute('aria-hidden', 'true');
-          }
-          img.replaceWith(canvas);
-        } catch {
-          // Si algo falla se queda la imagen original
-        }
-      };
-
-      const ready = Promise.all(Array.from(hero.querySelectorAll('img')).map(shrink));
-      const timeout = new Promise(resolve => setTimeout(resolve, 4000));
-      Promise.race([ready, timeout]).then(() => {
-        // Dos frames para que los canvas ya estén pintados antes del primer cuadro de la animación
-        requestAnimationFrame(() => requestAnimationFrame(() => hero.classList.add('visible')));
-      });
-    }
+    // El header arranca por su cuenta (startHero), no aquí: en la primera visita astro:page-load
+    // espera a window.load, que a su vez espera los GIF y videos de más abajo (~3MB+)
+    startHero();
 
     animatedItems.forEach(item => {
       observer.observe(item);
