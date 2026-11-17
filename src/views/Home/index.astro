@@ -134,7 +134,11 @@ const slides = Array.isArray(commonAssets)
       alt: asset.alt || 'Snacks Yummies',
       title: asset.title || '',
       subtitle: asset.description || '',
-      link: asset.url || asset.link || ''
+      link: asset.url || asset.link || '',
+      // Códigos ISO de país donde se muestra el slide (vacío = todos los países)
+      countries: Array.isArray(asset.countries)
+        ? asset.countries.map((c: string) => String(c).toUpperCase())
+        : []
     }))
   : [];
 

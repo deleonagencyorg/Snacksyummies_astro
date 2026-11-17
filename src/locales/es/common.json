@@ -88,6 +88,16 @@
     "slidermaskmobile": "https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp",
     "slider": [
       {
+        "id": "slide-sonrisas-hn",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/snacks-yummies-sonrisas-hn.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/snacks-yummies-sonrisas-hn-mobile.webp",
+        "alt": "Snacks Yummies - Productos con causa Honduras",
+        "title": "",
+        "description": "",
+        "link": "https://www.snacksyummies.com/productosconcausa/",
+        "countries": ["HN"]
+      },
+      {
         "id": "slide1",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-DESKTOP.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-MOBILE.webp",
