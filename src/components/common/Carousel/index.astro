@@ -11,6 +11,7 @@ export interface Props {
     title: string;
     subtitle: string;
     link?: string;
+    countries?: string[];
   }>;
   loading?: boolean;
 }
@@ -34,8 +35,11 @@ const safeSlides = slideCount > 0
 // Log de depuración
 
 
-// Identificar la primera imagen para cargarla con prioridad
-const firstSlide = safeSlides[0] || {};
+// Slides restringidos por país
+const isGeoSlide = (slide: any) => Array.isArray(slide?.countries) && slide.countries.length > 0;
+
+const firstSlide: any = safeSlides.find((s) => !isGeoSlide(s)) || {};
+const firstGlobalIndex = safeSlides.indexOf(firstSlide);
 
 // Log del primer slide
 
@@ -50,9 +54,87 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
 <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <!-- Cargar scripts del carrusel solo en el cliente -->
-<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel', slideCount, showControls }}>
+<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel' }}>
   // Variable global para almacenar la instancia de Swiper
   window.mainCarouselInstance = window.mainCarouselInstance || null;
+
+  const GEO_SESSION_KEY = 'yummies_carousel_geo_confirmed';
+
+  const geoGetCookie = (name) => {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
+  };
+
+  const geoTemplateCountries = (container) => {
+    const set = new Set();
+    container.querySelectorAll('template.geo-slide-template').forEach((tpl) => {
+      (tpl.getAttribute('data-countries') || '').split(',').forEach((c) => {
+        if (c.trim()) set.add(c.trim().toUpperCase());
+      });
+    });
+    return set;
+  };
+
+  const geoSyncDecision = (container) => {
+    try {
+      const forced = new URLSearchParams(window.location.search).get('country');
+      if (forced) return { country: forced.toUpperCase() };
+    } catch (_) {}
+
+    try {
+      const confirmed = sessionStorage.getItem(GEO_SESSION_KEY);
+      if (confirmed) return { country: confirmed.toUpperCase() };
+    } catch (_) {}
+
+    const cookie = geoGetCookie('yummies_geo_v2') || geoGetCookie('yummies_country_code');
+    if (cookie && !geoTemplateCountries(container).has(cookie.toUpperCase())) {
+      return { country: cookie.toUpperCase() };
+    }
+    return { pending: true };
+  };
+
+  const geoConfirmCountry = async () => {
+    if (!window.__yummiesCarouselGeoPromise) {
+      window.__yummiesCarouselGeoPromise = (async () => {
+        try {
+          const r = await fetch('https://ipapi.co/json/');
+          if (r.ok) {
+            const d = await r.json();
+            if (d && d.country_code) return String(d.country_code).toUpperCase();
+          }
+        } catch (_) {}
+        try {
+          const r = await fetch('https://api.country.is/');
+          if (r.ok) {
+            const d = await r.json();
+            if (d && d.country) return String(d.country).toUpperCase();
+          }
+        } catch (_) {}
+        return null;
+      })().then((code) => {
+        if (code) {
+          try { sessionStorage.setItem(GEO_SESSION_KEY, code); } catch (_) {}
+        }
+        return code;
+      });
+    }
+    return window.__yummiesCarouselGeoPromise;
+  };
+
+  // Inserta los slides del país coincide
+  const geoInsertSlides = (container, country) => {
+    if (!country) return false;
+    let inserted = false;
+    container.querySelectorAll('template.geo-slide-template').forEach((tpl) => {
+      const allowed = (tpl.getAttribute('data-countries') || '')
+        .split(',').map((c) => c.trim().toUpperCase()).filter(Boolean);
+      if (allowed.includes(country)) {
+        tpl.replaceWith(tpl.content.cloneNode(true));
+        inserted = true;
+      }
+    });
+    return inserted;
+  };
   
   function initMainCarousel() {
     // Destruir instancia previa si existe
@@ -78,6 +160,20 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
         console.warn('Contenedor del carrusel no encontrado');
         return;
       }
+
+      // Slides por país
+      let geoPending = false;
+      if (container.querySelector('template.geo-slide-template')) {
+        const decision = geoSyncDecision(container);
+        if (decision.pending) {
+          geoPending = true;
+        } else {
+          geoInsertSlides(container, decision.country);
+        }
+      }
+
+      const slideCount = container.querySelectorAll('.swiper-wrapper > .swiper-slide').length;
+      const showControls = slideCount > 1;
       
       try {
         // Ocultar controles si no son necesarios
@@ -88,6 +184,9 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
           if (nextBtn) nextBtn.style.display = 'none';
           if (prevBtn) prevBtn.style.display = 'none';
           if (pagination) pagination.style.display = 'none';
+        } else {
+          container.querySelectorAll('.swiper-button-next, .swiper-button-prev, .swiper-pagination')
+            .forEach((el) => { el.style.display = ''; });
         }
         
         // Configuración de Swiper
@@ -122,6 +221,20 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
         
         // Inicializar Swiper
         window.mainCarouselInstance = new Swiper(carouselSelector, swiperConfig);
+
+        // Confirmar país solo si coincide se inserta el slide y se reinicia el carrusel
+        if (geoPending) {
+          geoConfirmCountry().then((country) => {
+            if (!country || !container.isConnected) return;
+            if (!geoTemplateCountries(container).has(country)) return;
+            if (window.mainCarouselInstance && typeof window.mainCarouselInstance.destroy === 'function') {
+              try { window.mainCarouselInstance.destroy(true, true); } catch (_) {}
+              window.mainCarouselInstance = null;
+            }
+            geoInsertSlides(container, country);
+            initMainCarousel();
+          });
+        }
         
         // Actualizar al cambiar orientación
         const handleOrientationChange = () => {
@@ -172,19 +285,26 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
     <!-- Swiper container -->
     <div class="swiper-container main-carousel">
       <div class="swiper-wrapper">
-        {safeSlides.map((slide, index) => (
-          <CarouselSlide 
-            slide={{
-              desktop: slide.desktop,
-              mobile: slide.mobile,
-              alt: slide.alt || 'Snacks Yummies',
-              title: slide.title || '',
-              subtitle: slide.subtitle || '',
-              link: slide.link || ''
-            }}
-            priority={index === 0}
-          />
-        ))}
+        {safeSlides.map((slide, index) => {
+          const slideEl = (
+            <CarouselSlide 
+              slide={{
+                desktop: slide.desktop,
+                mobile: slide.mobile,
+                alt: slide.alt || 'Snacks Yummies',
+                title: slide.title || '',
+                subtitle: slide.subtitle || '',
+                link: slide.link || ''
+              }}
+              priority={index === firstGlobalIndex}
+            />
+          );
+          return isGeoSlide(slide) ? (
+            <template class="geo-slide-template" data-countries={(slide.countries || []).join(',')}>
+              {slideEl}
+            </template>
+          ) : slideEl;
+        })}
       </div>
       
       <!-- Controles de navegación -->
