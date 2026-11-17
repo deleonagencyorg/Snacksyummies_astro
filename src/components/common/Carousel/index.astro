@@ -11,6 +11,7 @@ export interface Props {
     title: string;
     subtitle: string;
     link?: string;
+    countries?: string[];
   }>;
   loading?: boolean;
 }
@@ -34,14 +35,10 @@ const safeSlides = slideCount > 0
 // Log de depuración
 
 
-// Identificar la primera imagen para cargarla con prioridad
 const firstSlide = safeSlides[0] || {};
-
-// Log del primer slide
-
-
-// Opcional: Precargar la primera imagen para mejorar el LCP
-const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
+const firstPublicSlide = safeSlides.find((slide) => !slide.countries?.length);
+const preloadFirstImage = Boolean(firstPublicSlide?.mobile && firstPublicSlide?.desktop);
+const geoPreloadSlide = firstSlide.countries?.length ? firstSlide : null;
 
 ---
 
@@ -50,9 +47,106 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
 <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 <!-- Cargar scripts del carrusel solo en el cliente -->
-<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel', slideCount, showControls }}>
+<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel' }}>
   // Variable global para almacenar la instancia de Swiper
   window.mainCarouselInstance = window.mainCarouselInstance || null;
+  const geoParkedSlides = new WeakMap();
+  const GEO_COOKIE_NAME = 'yummies_geo_v2';
+  const GEO_COOKIE_DAYS = 7;
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  function getGeoCookieValue() {
+    return getCookie('yummies_geo_v2') || getCookie('yummies_country_code') || null;
+  }
+
+  function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/; SameSite=Lax';
+  }
+
+  function slideIsAllowed(slide, country) {
+    const raw = slide.getAttribute('data-countries');
+    if (!raw) return true;
+    if (!country) return false;
+    const allowed = raw.split(',').map((code) => code.trim().toUpperCase()).filter(Boolean);
+    return allowed.includes(String(country).toUpperCase());
+  }
+
+  // Misma cadena que el resto del sitio: cookie, /api/geo-headers, ipapi.co, api.country.is y respaldo HN.
+  async function resolveCountryCode() {
+    const cached = getGeoCookieValue();
+    if (cached) return cached;
+
+    try {
+      const response = await fetch('/api/geo-headers');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.country) {
+          setCookie(GEO_COOKIE_NAME, data.country, GEO_COOKIE_DAYS);
+          return data.country;
+        }
+      }
+    } catch (_) {}
+
+    try {
+      const response = await fetch('https://ipapi.co/json/');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.country_code) {
+          setCookie(GEO_COOKIE_NAME, data.country_code, GEO_COOKIE_DAYS);
+          return data.country_code;
+        }
+      }
+    } catch (_) {}
+
+    try {
+      const response = await fetch('https://api.country.is/');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.country) {
+          setCookie(GEO_COOKIE_NAME, data.country, GEO_COOKIE_DAYS);
+          return data.country;
+        }
+      }
+    } catch (_) {}
+
+    setCookie(GEO_COOKIE_NAME, 'HN', GEO_COOKIE_DAYS);
+    return 'HN';
+  }
+
+  function syncSlidesToCountry(country) {
+    const wrapper = document.querySelector(`${carouselSelector} .swiper-wrapper`);
+    if (!wrapper) return 0;
+
+    wrapper.querySelectorAll(':scope > .swiper-slide-duplicate').forEach((node) => node.remove());
+
+    const parked = geoParkedSlides.get(wrapper) || [];
+    parked.sort((a, b) => a.index - b.index);
+    parked.forEach(({ el, index }) => {
+      if (el.isConnected) return;
+      const ref = wrapper.children[index] || null;
+      wrapper.insertBefore(el, ref);
+    });
+
+    const nextParked = [];
+    Array.from(wrapper.children).forEach((node, index) => {
+      if (!(node instanceof HTMLElement)) return;
+      if (!node.classList.contains('swiper-slide') || node.classList.contains('swiper-slide-duplicate')) return;
+      if (slideIsAllowed(node, country)) {
+        node.classList.remove('geo-pending');
+        return;
+      }
+      nextParked.push({ el: node, index });
+    });
+    nextParked.forEach(({ el }) => el.remove());
+    geoParkedSlides.set(wrapper, nextParked);
+
+    return wrapper.querySelectorAll(':scope > .swiper-slide:not(.swiper-slide-duplicate)').length;
+  }
   
   function initMainCarousel() {
     // Destruir instancia previa si existe
@@ -78,31 +172,37 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
         console.warn('Contenedor del carrusel no encontrado');
         return;
       }
+
+      const country = getGeoCookieValue();
+      const visibleCount = syncSlidesToCountry(country);
+      const controlsEnabled = visibleCount > 1;
+
+      if (!country && !window.__geoCarouselLookupStarted) {
+        window.__geoCarouselLookupStarted = true;
+        resolveCountryCode().then(() => initMainCarousel());
+      }
       
       try {
-        // Ocultar controles si no son necesarios
-        if (!showControls) {
-          const nextBtn = container.querySelector('.swiper-button-next');
-          const prevBtn = container.querySelector('.swiper-button-prev');
-          const pagination = container.querySelector('.swiper-pagination');
-          if (nextBtn) nextBtn.style.display = 'none';
-          if (prevBtn) prevBtn.style.display = 'none';
-          if (pagination) pagination.style.display = 'none';
-        }
+        const nextBtn = container.querySelector('.swiper-button-next');
+        const prevBtn = container.querySelector('.swiper-button-prev');
+        const pagination = container.querySelector('.swiper-pagination');
+        [nextBtn, prevBtn, pagination].forEach((control) => {
+          if (control) control.style.display = controlsEnabled ? '' : 'none';
+        });
         
         // Configuración de Swiper
         const swiperConfig = {
-          loop: showControls,
-          autoplay: showControls ? {
+          loop: controlsEnabled,
+          autoplay: controlsEnabled ? {
             delay: 5000,
             disableOnInteraction: false,
             pauseOnMouseEnter: false,
           } : false,
-          navigation: showControls ? {
+          navigation: controlsEnabled ? {
             nextEl: `${carouselSelector} .swiper-button-next`,
             prevEl: `${carouselSelector} .swiper-button-prev`,
           } : false,
-          pagination: showControls ? {
+          pagination: controlsEnabled ? {
             el: `${carouselSelector} .swiper-pagination`,
             clickable: true,
           } : false,
@@ -160,13 +260,29 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
   <Skeleton items={3} />
 ) : (
   <div class="relative overflow-hidden w-full" transition:animate="fade">
-    {preloadFirstImage && (
+    {preloadFirstImage && firstPublicSlide && (
       <>
-        <!-- Precargar la primera imagen para dispositivos móviles -->
-        <link rel="preload" href={firstSlide.mobile} as="image" media="(max-width: 767px)">
-        <!-- Precargar la primera imagen para escritorio -->
-        <link rel="preload" href={firstSlide.desktop} as="image" media="(min-width: 768px)">
+        <link rel="preload" href={firstPublicSlide.mobile} as="image" media="(max-width: 767px)">
+        <link rel="preload" href={firstPublicSlide.desktop} as="image" media="(min-width: 768px)">
       </>
+    )}
+    {geoPreloadSlide && (
+      <script is:inline define:vars={{ mobile: geoPreloadSlide.mobile, desktop: geoPreloadSlide.desktop, countries: geoPreloadSlide.countries ?? [] }}>
+        (function () {
+          var match = document.cookie.match(/(?:^|; )yummies_geo_v2=([^;]*)/) || document.cookie.match(/(?:^|; )yummies_country_code=([^;]*)/);
+          var country = match ? decodeURIComponent(match[1]).toUpperCase() : '';
+          var allowed = (countries || []).map(function (code) { return String(code).toUpperCase(); });
+          if (!country || allowed.indexOf(country) === -1) return;
+          [{ href: mobile, media: '(max-width: 767px)' }, { href: desktop, media: '(min-width: 768px)' }].forEach(function (item) {
+            var link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = item.href;
+            link.media = item.media;
+            document.head.appendChild(link);
+          });
+        })();
+      </script>
     )}
     
     <!-- Swiper container -->
@@ -180,7 +296,8 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
               alt: slide.alt || 'Snacks Yummies',
               title: slide.title || '',
               subtitle: slide.subtitle || '',
-              link: slide.link || ''
+              link: slide.link || '',
+              countries: slide.countries || []
             }}
             priority={index === 0}
           />

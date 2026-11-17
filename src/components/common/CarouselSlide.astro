@@ -10,6 +10,7 @@ export interface Props {
     subtitle: string;
     link?: string;
     description?: string;
+    countries?: string[];
   };
   priority?: boolean;
 }
@@ -17,7 +18,13 @@ export interface Props {
 const { slide, priority = false } = Astro.props;
 ---
 
-<div class="swiper-slide relative w-full h-full flex items-center justify-center">
+<div
+  class:list={[
+    'swiper-slide relative w-full h-full flex items-center justify-center',
+    slide.countries?.length ? 'geo-pending' : undefined,
+  ]}
+  data-countries={slide.countries?.length ? slide.countries.join(',') : undefined}
+>
   {slide.link ? (
     <a 
       href={slide.link} 

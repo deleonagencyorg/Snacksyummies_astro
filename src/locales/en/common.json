@@ -105,6 +105,16 @@
     "slidermaskmobile": "https://snack.yummiespromociones.com/snacksyummies/bg-front-mobile_1_.webp",
     "slider": [
       {
+        "id": "slide-os-hn",
+        "desktop": "/images/banners/operacion-sonrisa-hn-desktop.webp",
+        "mobile": "/images/banners/operacion-sonrisa-hn-mobile.webp",
+        "alt": "10 years of smiles with Operation Smile Honduras",
+        "title": "",
+        "description": "",
+        "link": "/productosconcausa/",
+        "countries": ["HN"]
+      },
+      {
         "id": "slide1",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-DESKTOP.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/YPOPS-NACHO-PIZZA_BANNER-MOBILE.webp",

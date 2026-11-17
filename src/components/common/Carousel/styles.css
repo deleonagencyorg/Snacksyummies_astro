@@ -6,6 +6,10 @@
   --swiper-navigation-sides-offset: 30px;
 }
 
+.swiper-container.main-carousel .swiper-slide.geo-pending {
+  display: none !important;
+}
+
 .swiper-container.main-carousel {
   width: 100%;
   height: auto;

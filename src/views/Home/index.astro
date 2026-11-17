@@ -134,7 +134,10 @@ const slides = Array.isArray(commonAssets)
       alt: asset.alt || 'Snacks Yummies',
       title: asset.title || '',
       subtitle: asset.description || '',
-      link: asset.url || asset.link || ''
+      link: asset.url || asset.link || '',
+      countries: Array.isArray(asset.countries)
+        ? asset.countries.filter((code: unknown) => typeof code === 'string' && code.length > 0)
+        : []
     }))
   : [];
 
