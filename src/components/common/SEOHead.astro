@@ -11,6 +11,8 @@ interface Props {
   image?: string;
   type?: 'website' | 'article' | 'recipe' | 'product';
   schemaData?: Record<string, any> | Array<Record<string, any>>;
+  /** Añade " | Snacks Yummies" al título. Desactivar para títulos de compartir más cortos. */
+  appendSiteName?: boolean;
 }
 
 const {
@@ -19,7 +21,8 @@ const {
   canonicalUrl,
   image = 'https://snack.yummiespromociones.com/snacksyummies/og-image.jpg',
   type = 'website',
-  schemaData = {}
+  schemaData = {},
+  appendSiteName = true
 } = Astro.props as Props;
 
 const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
@@ -74,7 +77,7 @@ const fallbackDescription =
     ? 'Snacks de Centroamérica: Zambos, Ranchitas, Ziba\'s, Cappy, Taqueritos, Yummi Nuts y Yummi Pops.'
     : 'Snacks from Central America: Zambos, Ranchitas, Ziba\'s, Cappy, Taqueritos, Yummi Nuts and Yummi Pops.';
 const metaDescription = description?.trim() || fallbackDescription;
-const documentTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const documentTitle = !appendSiteName || title.includes(siteName) ? title : `${title} | ${siteName}`;
 const ogLocale = currentLang === 'en' ? 'en_US' : 'es_HN';
 
 const schemaArray = Array.isArray(schemaData) ? schemaData : (Object.keys(schemaData || {}).length ? [schemaData] : []);
